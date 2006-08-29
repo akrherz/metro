@@ -1,0 +1,40 @@
+# translation of metro_preprocess_qa_qc_forecast.po to 
+# Copyright (C) YEAR ORGANIZATION, 2005.
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: metro_preprocess_qa_qc_forecast\n"
+"POT-Creation-Date: 2005-02-28 11:57+EST\n"
+"PO-Revision-Date: 2005-02-28 12:01-0500\n"
+"Last-Translator: \n"
+"Language-Team:  <en@li.org>\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Generated-By: pygettext.py 1.5\n"
+"X-Generator: KBabel 1.9.1\n"
+
+#: metro_preprocess_qa_qc_forecast.py:71
+msgid "All the clouds value (<cc>) of atmospheric forecast must be"
+msgstr "Toutes les valeurs de couverture nuageuse (<cc>) de la prévision atmosphérique doivent être "
+
+#: metro_preprocess_qa_qc_forecast.py:72
+msgid " integers in interval 0-8. See file '%s'"
+msgstr "des entiers dans l'intervalle 0-8. Voir le fichier '%s'"
+
+#: metro_preprocess_qa_qc_forecast.py:105
+msgid "All the precipitation value (<ra> and <sn>)"
+msgstr "Toutes les valeurs de précipitation (<ra> et <sn>)"
+
+#: metro_preprocess_qa_qc_forecast.py:106
+msgid " of atmospheric forecast represent the TOTAL"
+msgstr "de la prévision atmosphérique représente l'accumulation TOTALE "
+
+#: metro_preprocess_qa_qc_forecast.py:107
+msgid " amount of precipitation since the beginning"
+msgstr "depuis le début "
+
+#: metro_preprocess_qa_qc_forecast.py:108
+msgid " of the period. See file '%s'"
+msgstr "de la période. Voir le fichier '%s'"
+
