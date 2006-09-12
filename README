@@ -19,7 +19,7 @@ Copyright (C) 2006 Environment Canada
 Packages included in the directory metro/src/frontend/external_lib are NOT part 
 of METRo but are distributed under the condition of their corresponding license (Python License, Apache License)
 
-It is developped and maintained by the staff of the Centre météorogique du 
+It is developped and maintained by the staff of the Centre météorologique du 
 Canada (CMC), Montréal, Québec.
 
 METRo is mainly written in python but also use fortran and C (to link the python 

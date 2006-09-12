@@ -38,7 +38,7 @@ To run METRo, you will need the following software packages:
 
              ls /usr/lib | grep libxml2.so
 
-          * The written number represent the release you have installed. To avoid all conflicts, it's very important to avoid the conflicts. download the tarball with the corresponding release number and install. 
+          * The written number represent the release you have installed. To avoid all conflicts, download the tarball with the corresponding release number and install. 
 
 
 === Gentoo linux ===
