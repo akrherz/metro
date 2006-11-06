@@ -382,7 +382,7 @@
          FICORR = 0.0
          FSCORR = 0.0
          FAIL = .true.
-         WRITE(*,*) "Plus de 25 iterations dans le couplage"
+         WRITE(*,*) "More than 25 iterations in the coupling phase "
       else if ( abs(min(99.99,max(-99.99,T(1,now)))) .eq. 99.99 .or.
      *        FAIL ) then
          FICORR = 0.0
@@ -391,6 +391,7 @@
      *        min(99.99,max(-99.99,T(1,now))),
      *        min(99.99,max(-99.99,REAL(TSO))),COFI,COFS
          FAIL = .true.
+         WRITE(*,*) " Temperature over 99 degrees, aborting in coupling"
       else if ( mod(iter,15) .eq. 0 .and.
      *        min(REAL(max(T(1,now),REAL(TSO-0.1))),REAL(TSO+0.1)) 
      *    .ne. T(1,now) ) then
