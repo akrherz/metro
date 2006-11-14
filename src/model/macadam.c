@@ -40,9 +40,9 @@
 **
 ** Date:        April 16, 2004
 **
-** Description: Fichier qui gère le modèle de METRo lui-même.
-**  Toutes les routines fortran doivent être appelé par ce fichier.  Le 
-**  séquençage du modèle se fait par ce fichier.
+** Description: File that handled the METRo model. 
+**  All the fortran routines must be called in this file. The modele
+**  sequence is here.
 **
 ** 
 ***************************************************************************/
@@ -54,7 +54,8 @@
 #define f77name(x) x##_
 
 
-/* Constante pour la taille des string pour la compatibilite avec fortran */
+/* Constants for the string width for the compatibility with the fortran code. */
+/* 
 #define nNBROFSTRING 50
 #define nNAMELENGTH 100
 #define nNAMELENGTHLONG 150
@@ -81,13 +82,13 @@ static struct doubleStruct stFP; /* Phase change energy */
  
  Parameters:  
 [I BOOL bFlat : road (FALSE) or bridge (TRUE)]
-[I double dMLat : Latitude de la station meteo]
-[I double dMLong : Longitude de la station meteo]
-[I double dLCorr : Nombre d'heure entre le fuseau horaire et UTC]
-[I double* dpZones : profondeur en metre de chacune des couches de la route]
-[I long nNbrOfZone : nombre de couches composant la route]
-[I long* npMateriau : code indiquant la composition de la couche de la route.
-   voir http://wikid.cmc.ec.gc.ca/tiki-index.php?page=Type+de+Surface]
+[I double dMLat : Latitude of the RWIS station]
+[I double dMLong : Longitude of the RWIS station]
+[I double dLCorr : Number of hours between the time zone and UTC]
+[I double* dpZones : Depth in meter of each layer of the road]
+[I long nNbrOfZone : Number of layers in the road]
+[I long* npMateriau : code indicating the composition of the road:
+   see http://documentation.wikia.com/wiki/Layer_type_%28METRo%29]
 [I double* dpTA : interpolated air temperature]
 [I double* dpQP : interpolated quantity of precipitation]
 [I double* dpFF : interpolated wind velocity]
@@ -189,7 +190,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   double dEr1=0;
   double dEr2=0;
   double dFp=0.0;
-  /* Valeur pour la grille */
+  /* Grid values */
   long nIRef=0;
   long nIR40;
   double* dpCnt;
@@ -211,7 +212,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   dpCnt = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
   dpGri = (double*)malloc((2*nNGRILLEMAX)*sizeof(double));
   
-   /* Initilisation des constantes physique dans le code fortran */ 
+  /* Initilization of physical constants in the fortran code */
   f77name(setconstphys)(&bSilent);
 
   /******************************* Station ********************************/
@@ -222,21 +223,20 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   if(bFlat){
     nNbrOfZone = 1;
   }
-  else{/* Faire attention ici.  Dans le cas d'une route, on ajoute une couche 
-           de 20 mètres de type 4 (sable).*/
+  else{/* Note: In the case of a 'road', a 20 sand meters layer is added at the bottom.*/
     dpZones[nNbrOfZone] = 20.0;
     npMateriau[nNbrOfZone]= 4;
     nNbrOfZone = nNbrOfZone +1;
   }
 
-  /* Creation de la grille */
+  /* Grid creation */
   f77name(grille)(dpGri, dpCnt, &nIRef, &nIR40, &bFlat, &nNbrOfZone, dpZones, npMateriau, &dDiff, &bEchec); 
   if(FALSE){
     bSucces = FALSE;
   }
 
-  /* Extraction des observations */
-  /*  TODO MT: those -1 is because it is use in fortran */
+  /* Extraction of observations */
+  /*  Those -1 is because it is use in fortran */
   nDeltaTIndice = (dDeltaT)*3600/30.-1;
 
   nLenObservation = nLenObservation -1;
@@ -254,16 +254,16 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   else if(bpNoObs[3]){
     BOOL bFalse = FALSE;
     if(!bSilent)
-      printf(" Une seule observation valide: Pas d'init et couplage.\n");
+      printf(" Only one valid observation: No initialization nor coupling.\n");
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, &dMLon, dpGri, npSwo);
     nNtp2 = nLenObservation - nDeltaTIndice;
    }
   else if(bpNoObs[1]){
-    /* moins de trois heures d'observation dans le couplage */
+    /* less than 3 hours of observation in the coupling */
     BOOL bFalse = FALSE;
     long nOne =1;
     if(!bSilent)
-      printf(" Pas assez de donnees pour le couplag)e.\n");
+      printf(" Not enough data for coupling.\n");
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, &dMLon, dpGri, npSwo); 
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
     nNtp2 = nLenObservation - nDeltaTIndice;
@@ -271,10 +271,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   else if(bpNoObs[0]){
     BOOL bTmp = FALSE;    
     if(!bSilent)
-      printf(" Pas de donnees pour initialisation.\n");
+      printf(" Not enough data for initialization.\n");
     nNtdcl  = nLenObservation - ((nLenObservation < 28800.0/dDT) ? nLenObservation : 28800.0/dDT);
-    /*     printf("nNtdcl:%d\n",nNtdcl); */
-    if(nNtdcl == 0) /* Patch parce que nNtdcl prend la valeur 0 en fortran!*/
+    if(nNtdcl == 0) /* Patch because nNtdcl does not take the value 0 in fortran!*/
       nNtdcl =1;
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nNtdcl]), &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]), &dDiff, &dMLon, dpGri, npSwo); 
     nNtp = - nDeltaTIndice + nNtdcl;
@@ -296,7 +295,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   else{/* observation complete */
     long nOne =1;
     if(!bSilent)
-      printf("Observation complete\n");
+      printf("Complete observations\n");
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]), &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, dpGri, npSwo); 
     nNtdcl  = nLenObservation - nDeltaTIndice - ((nLenObservation-nDeltaTIndice < 28800.0/dDT) ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
@@ -323,7 +322,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
 
   if(bEchec){
     if(!bSilent)
-      printf("Echec in balanc\n");
+      printf("Failed in balanc\n");
     bSucces = FALSE;       
     goto liberation;
   }
