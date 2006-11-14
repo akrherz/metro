@@ -55,7 +55,7 @@
 
 
 /* Constants for the string width for the compatibility with the fortran code. */
-/* 
+
 #define nNBROFSTRING 50
 #define nNAMELENGTH 100
 #define nNAMELENGTHLONG 150
@@ -74,14 +74,14 @@ static struct doubleStruct stFV; /* Vapor flux */
 static struct doubleStruct stFC; /* Sensible head */
 static struct doubleStruct stFA; /* Anthropogenic flux */
 static struct doubleStruct stG; /* Ground flux */
-static struct doubleStruct stBB; /* Black body radiation */
+static struct doubleStruct stBB; /* Black body radiation */ 
 static struct doubleStruct stFP; /* Phase change energy */
-
+ 
 /****************************************************************************
- Name: Do_Metro
+ Name: Do_Metro 
  
  Parameters:  
-[I BOOL bFlat : road (FALSE) or bridge (TRUE)]
+[I BOOL bFlat : road (FALSE) or bridge (TRUE)] 
 [I double dMLat : Latitude of the RWIS station]
 [I double dMLong : Longitude of the RWIS station]
 [I double dLCorr : Number of hours between the time zone and UTC]
@@ -91,19 +91,19 @@ static struct doubleStruct stFP; /* Phase change energy */
    see http://documentation.wikia.com/wiki/Layer_type_%28METRo%29]
 [I double* dpTA : interpolated air temperature]
 [I double* dpQP : interpolated quantity of precipitation]
-[I double* dpFF : interpolated wind velocity]
+[I double* dpFF : interpolated wind velocity] 
 [I double* dpPS : interpolated surface pressure]
 [I double* dpFS : interpolated solar flux]
 [I double* dpFI : interpolated visible flux]
 [I double* TYP : Type of precipitation: 0 = nada, 1= liquid, 2=solid]
-[I double* dpRC : interpolated road condition. 0 = dry, 1=wet]
-[I double dpTAO : interpolated observed air temperature]
+[I double* dpRC : interpolated road condition. 0 = dry, 1=wet] 
+[I double dpTAO : interpolated observed air temperature] 
 [I double* dpRTO : interpolated observed road temperature]
 [I double* dpDTO : interpolated observed deep road temperature]
-[I double* dpTimeO : steps of 30 seconds for the observation]
-[I long* npSWO1 : Boolean field to check if the deep road temperature 
+[I double* dpTimeO : steps of 30 seconds for the observation] 
+[I long* npSWO1 : Boolean field to check if the deep road temperature  
     passed the QA/QC]
-[I long* npSWO2 : Boolean field to check if the air temperature 
+[I long* npSWO2 : Boolean field to check if the air temperature  
     passed the QA/QC]
 [I long* npSWO3 : Boolean field to check if the dew point 
     passed the QA/QC]
@@ -113,21 +113,20 @@ static struct doubleStruct stFP; /* Phase change energy */
 [I double dDeltaT : Time diffence, in hours, between the first observation 
   and the start of METRo.]
 [I long nLenObservation : Number of valid observations.  30 seconds steps.]
-[I long nNbrTimeSteps : number of 30 seconds steps in the forecast]
+[I long nNbrTimeSteps : number of 30 seconds steps in the forecast] 
 
-Returns: None
-
+Returns: None 
+ 
 Functions Called: 
 Those are fortran functions called with f77name.  Only the function
 balanc and grille should remains here at the release of macadam.
-grille : Création de la grille pour le modèle.
-makitp : Création d'une température analytique pour la température de la route.
-initial : Initilisation du profil pour la température de la route.
-coupla : Couplage.
-balanc : Prévision du modèle.
+grille : Grid creation for the model. 
+makitp : Creation of an analytic temperature for the temperature of the road.
+initial : Initilization of the initial temperature profile 
+coupla : Coupling
+balanc : Forecast
 
 <function description>
-
 Description:
 This is part of the module "metro_model.py".  This C function make the forecast
  for the METRo software
