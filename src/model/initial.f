@@ -36,7 +36,11 @@
 ************************************************************************
 
 ***
-*     Sous-routine INITIAL: effectue l'initialisation du profile de 
+*     Sous-routine INITIAL: Initialization of the temperature profile
+*                            of the road based on the surface temperature,
+*                            the sub-surface temperature and the air 
+*                            temperature.
+*                          Effectue l'initialisation du profile de 
 *                           temperature de la route a partir des donnees
 *                           de temperature a la surface, a 40 cm et la 
 *                           temperature de l'air.
@@ -57,15 +61,15 @@
 *     DEFINITIONS     *
 ***                 ***
 ***
-*     Entrees
+*     Input
 *     -------
-*     FLAT: switch pont / route
-*     iref: nombre de niveau de la grille
-*     ir40: niveau situe a 40 cm de profondeur
-*     DEB: Indice de debut de l'initialisation
-*     FIN: Indice de fin de l'initialisation
-*     TSO, TUO, TAO: forcage ( surface, 40 cm, air [sous le pont] )
-*     SWO: serie temporelle indiquant les trous dans les observations
+*     FLAT: switch bridge / road 
+*     iref: number of grid levels 
+*     ir40: level at 40 cm depth
+*     DEB: Start indice of initialization
+*     FIN: End indice of initialization
+*     TSO, TUO, TAO: forcing ( surface, 40 cm, air [under the bridge] )
+*     SWO: temporel serie indicating the hole in the observations
 ***
       LOGICAL FLAT
       INTEGER iref, ir40, DEB, FIN
@@ -74,18 +78,18 @@
       DOUBLE PRECISION TSO(Nl)
       DOUBLE PRECISION TUO(Nl), TAO(Nl)
 ***
-*     Sorties
+*     Output
 *     -------
-*     ITP: profil de temperature initial
+*     ITP: Initial temperature profile
 ***
       DOUBLE PRECISION ITP(n)
 ***
 *     Internes
 *     --------
-*     now, next: reference au pas de temp
-*     T: profil de temperature
-*     G: profil des flux
-*     DTDZ: gradient de temperature initial
+*     now, next: time step references
+*     T: Temperature profile
+*     G: Flux profile
+*     DTDZ: Initial temperature gradient
 ***
       CHARACTER*80 outfmt
       INTEGER next, now
@@ -108,7 +112,7 @@
       CALL ARRAY2MATRIXDOUBLEPRECISION(CNT_IN, CNT, n, 2)      
       next = 1
       now = 2
-      do j=1,n
+      do j=1,iref
          T(j,now) = ITP(j)
       end do
 
@@ -120,7 +124,7 @@
             G(j) = CNT(j,1) * ( T(j+1,now) - T(j,now) )
          end do
          do j=2,iref-1
-            T(j,next) = T(j,now)+DT*(CNT(j,2)*( G(j) - G(j-1 )))
+            T(j,next) = T(j,now)+DT*(CNT(j,2)*( G(j) - G(j-1)))
          end do
          if ( SWO(i,1) .eq. 1 ) then
             T(ir40,next) = TUO(i)
@@ -140,7 +144,7 @@
          ITP(i) = T(i,now)
       end do
 
-*     Ecriture au journal
+*     Log writing
 *     -------------------
       write(outfmt,667) min(99.99,max(-99.99,REAL(TSO(FIN)))),' / ',
      *                  real(FIN-DEB)*DT/3.6e3
