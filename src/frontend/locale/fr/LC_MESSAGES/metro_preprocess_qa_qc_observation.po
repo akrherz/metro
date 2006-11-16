@@ -1,14 +1,15 @@
-# translation of metro_preprocess_qa_qc_observation.po to 
+# translation of metro_preprocess_qa_qc_observation_merge_fr.po to 
+# translation of metro_preprocess_qa_qc_observation.po to
 # translation of metro_preprocess_qa_qc_observation_merge_fr.po to
 # translation of metro_preprocess_qa_qc_observation.po to
 # Copyright (C) YEAR ORGANIZATION.
-# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004, 2005.
+# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: metro_preprocess_qa_qc_observation\n"
-"POT-Creation-Date: 2005-03-17 14:56+EST\n"
-"PO-Revision-Date: 2005-03-17 15:06-0500\n"
+"Project-Id-Version: metro_preprocess_qa_qc_observation_merge_fr\n"
+"POT-Creation-Date: 2006-11-16 21:16+UTC\n"
+"PO-Revision-Date: 2006-11-16 21:31+0000\n"
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
@@ -17,71 +18,75 @@ msgstr ""
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.9.1\n"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:65
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:100
 #, fuzzy
 msgid "No valid observations. Halting METRo"
 msgstr "Aucune observation valide. Arrêt de METRo"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:98
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:133
 msgid "No valid observation"
 msgstr "Aucune observation valide"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:142
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:178
 msgid "Invalid road temperature"
 msgstr "Température de la route invalide"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:147
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:183
 msgid "%d th  temperature is %f"
 msgstr "La %d ième  temperature est %f"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:191
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:228
 msgid "More than %d minutes between 2 measures"
 msgstr "Plus de %d minutes entre 2 mesures"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:198
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:247
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:235
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:284
 msgid "Indice: %d"
 msgstr "Indice: %d"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:201
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:238
 msgid "Cutoff time: day:%d hour:%d minute:%d"
 msgstr "Heure de coupure: jour:%d heure:%d minute:%d"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:217
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:254
 msgid "Time of observation are not in order. "
 msgstr "Les temps d'observation ne sont pas en ordre. "
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:218
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:255
 msgid "Check the %d th value"
 msgstr "Vérifiez la %d ième valeur"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:240
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:277
 msgid "Observation is more than %d hours"
-msgstr "Les observations date de plus de %d heures"
+msgstr "Les observations datent de plus de %d heures"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:242
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:279
 #, fuzzy
 msgid "before the first roadcast"
 msgstr "avant la première heure de prévision routière"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:266
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:303
 #, fuzzy
 msgid "Observation after the first roadcast time of METRo"
 msgstr "Les observations sont après la première heure de prévision routière"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:270
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:307
 msgid "Threshold: %d"
 msgstr "Seuil: %d"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:277
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:314
 msgid "Time difference: %f"
 msgstr "Différence de temps: %f"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:463
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:360
+msgid "No valid sub-surface temperature (element <sst>) in observation file %s"
+msgstr "Aucune température sous la route n'est valide (élément  <sst>) dans le fichier d'observation %s"
+
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:508
 msgid "First atmospheric forecast: %s"
 msgstr "Date de la première prévision atmosphérique: %s"
 
-#: src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:468
+#: ../src/frontend/executable_module/metro_preprocess_qa_qc_observation.py:513
 msgid "First valid observation   : %s"
 msgstr "Première observation valide:                 %s"
 
