@@ -60,3 +60,4 @@ struct doubleStruct get_fa(void);
 struct doubleStruct get_g(void);
 struct doubleStruct get_bb(void);
 struct doubleStruct get_fp(void);
+struct longStruct get_echec(void);

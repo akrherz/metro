@@ -408,3 +408,4 @@ extern struct doubleStruct get_fa(void);
 extern struct doubleStruct get_g(void);
 extern struct doubleStruct get_bb(void);
 extern struct doubleStruct get_fp(void);
+extern struct longStruct get_echec(void);

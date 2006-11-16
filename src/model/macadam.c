@@ -66,16 +66,17 @@
 /* This cannot be perform unless you retrieve one pointer as a return value */
 static struct doubleStruct stRA; /* Liquid accumlation */
 static struct doubleStruct stSN; /* Snow/ice acculation */
-static struct longStruct stRC; /* Road condition */
+static struct longStruct   stRC; /* Road condition */
 static struct doubleStruct stRT; /* Road temperature */
 static struct doubleStruct stIR; /* Infra-red flux */
 static struct doubleStruct stSF; /* Solar flux */
 static struct doubleStruct stFV; /* Vapor flux */
 static struct doubleStruct stFC; /* Sensible head */
 static struct doubleStruct stFA; /* Anthropogenic flux */
-static struct doubleStruct stG; /* Ground flux */
+static struct doubleStruct stG;  /* Ground flux */
 static struct doubleStruct stBB; /* Black body radiation */ 
 static struct doubleStruct stFP; /* Phase change energy */
+static struct longStruct   stEc; /* Boolean to know if the execution was a success */
  
 /****************************************************************************
  Name: Do_Metro 
@@ -167,7 +168,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   ******/
   BOOL bFail = FALSE;
   BOOL bSucces = TRUE;
-  BOOL bEchec;
   long nNtp;
   long nNtp2;
   long nNRec;
@@ -216,7 +216,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
 
   /******************************* Station ********************************/
 
-  bEchec = FALSE;
+  *stEc.plArray = FALSE;
   dFCorr = 2.0*dOMEGA*sin(dPI*dMLat/180.0); 
 
   if(bFlat){
@@ -229,9 +229,10 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
   }
 
   /* Grid creation */
-  f77name(grille)(dpGri, dpCnt, &nIRef, &nIR40, &bFlat, &nNbrOfZone, dpZones, npMateriau, &dDiff, &bEchec); 
-  if(FALSE){
+  f77name(grille)(dpGri, dpCnt, &nIRef, &nIR40, &bFlat, &nNbrOfZone, dpZones, npMateriau, &dDiff, stEc.plArray); 
+  if(*(stEc.plArray)){
     bSucces = FALSE;
+    goto liberation;
   }
 
   /* Extraction of observations */
@@ -277,10 +278,10 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nNtdcl]), &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]), &dDiff, &dMLon, dpGri, npSwo); 
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &dLCorr, &bEchec, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &dLCorr, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
     if(!bSilent)
       printf("coupla 1 \n");
-    if(bEchec){
+    if(*(stEc.plArray)){
       bSucces = FALSE;       
       goto liberation;
     }
@@ -300,10 +301,10 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &dLCorr, &bEchec, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &dLCorr, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
     if(!bSilent)
       printf("coupla 2\n");
-     if(bEchec){
+    if(*(stEc.plArray)){
        bSucces = FALSE;       
        goto liberation;
      }
@@ -317,9 +318,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
 
   
   /************Prevision**************************************************/
-  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr, dpWw, &dWa, &dAlr, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &bEchec, stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray); 
+  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr, dpWw, &dWa, &dAlr, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray); 
 
-  if(bEchec){
+  if(*(stEc.plArray)){
     if(!bSilent)
       printf("Failed in balanc\n");
     bSucces = FALSE;       
@@ -417,6 +418,7 @@ void init_structure(long nSize)
   stG.nSize = nSize;
   stBB.nSize = nSize;
   stFP.nSize = nSize;
+  stEc.nSize = 1;
   /* Memory alloc */
   stRC.plArray = (long*)calloc((nSize),sizeof(long));
   stRA.pdArray = (double*)calloc((nSize),sizeof(double));
@@ -430,7 +432,7 @@ void init_structure(long nSize)
   stG.pdArray = (double*)calloc((nSize),sizeof(double));
   stBB.pdArray = (double*)calloc((nSize),sizeof(double));
   stFP.pdArray = (double*)calloc((nSize),sizeof(double));
-
+  stEc.plArray = (long*)calloc((1),sizeof(long));
 }
 
 void mydebug(double* list1, long* list2){
@@ -499,4 +501,9 @@ struct doubleStruct get_bb(void){
 struct doubleStruct get_fp(void){
 
   return stFP;
+}
+
+struct longStruct get_echec(void){
+
+  return stEc;
 }

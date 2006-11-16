@@ -58,5 +58,6 @@ get_fa = _macadam.get_fa
 get_g = _macadam.get_g
 get_bb = _macadam.get_bb
 get_fp = _macadam.get_fp
+get_echec = _macadam.get_echec
 
 
