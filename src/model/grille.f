@@ -36,12 +36,14 @@
 
 
 ***
-*     Sous-routine GRILLE: sert a creer le maillage pour le modele de 
-*                          conduction thermique du sol.
+*     Sous-routine GRILLE: Creation of network for the thermic conduction
+*                           model of the road.
+*                          Sert a creer le maillage pour le modele de 
+*                           conduction thermique du sol.
 *
 *     Auteur: Louis-Philippe Crevier
 *     Date: Juin 1999
-*     Adaptation au C et au Fortran95: Miguel Tremblay
+*     Adaptation to C and Fortran77: Miguel Tremblay
 *     Date: 26 avril 2004
 ***
       SUBROUTINE GRILLE ( GRI_IN, CNT_IN, iref, ir40, 
@@ -57,42 +59,42 @@
 *     DEFINITIONS   *
 ***               ***
 ***
-*     Entrees
+*     Input
 *     -------
-*     FLAT: switch pont / route
-*     MAT: Type de materiau dans chaque zone
-*     NZONE: nombre de zones
-*     ZONES: limites des differentes zones
+*     FLAT: switch bridge / road
+*     MAT: Materiel type of each zone
+*     NZONE: number of zones
+*     ZONES: limites in differents zones
 ***
       LOGICAL FLAT, ECHEC
       INTEGER NZONE, MAT(20)
       DOUBLE PRECISION ZONES(20), CS(20), KS(20)
 ***
-*     Sorties
+*     Output
 *     -------
-*     iref: indice du dernier niveau utilisee par le modele
-*     ir40: indice du niveau le plus pres de 40 cm.
-*     GRI: profondeur des differents niveaux utilises
-*     CNT: constantes utilisees pour les calculs de conduction
-*     DIFF: Vecteur utilise pour creer les profiles initiaux de temperature
+*     iref:  number of grid levels 
+*     ir40: level at 40 cm depth
+*     GRI: depth of the levels
+*     CNT: constants of conduction
+*     DIFF: Vector used to create the initial profile of temperature
 ***
       INTEGER iref, ir40
       DOUBLE PRECISION GRI(n,2), CNT(n,2), DIFF
       DOUBLE PRECISION GRI_IN(n*2)
       DOUBLE PRECISION CNT_IN(n*2)
 ***
-*     Internes
+*     Local
 *     --------
-*     CS: capacite du sol, par zone
-*     KS: conductivite du sol, par zone
-*     CC: parametre de grille ( FLAT = .f. )
-*     INTER: indice du niveau present
-*     YPG, YPT: derivees 1ere et 2eme de GRI
-*     DY: epaisseur des niveaux ( apres transformation )
-*     C: CS transpose sur GRI
-*     Ko: KS transpose sur GRI
-*     dd: parametre de la GRI ( FLAT = .f. )
-*     ratio: ratio de transition lors transfert CS -> C et KS -> Ko
+*     CS: ground capacity, by zone
+*     KS: ground conductivity, by zone
+*     CC: grid parameter ( FLAT = .f. )
+*     INTER: indice of present level
+*     YPG, YPT: 1st and 2nd derivatives of GRI
+*     DY: thickness of levels  ( after transformation )
+*     C: CS transpose on GRI
+*     Ko: KS transpose on GRI
+*     dd: parameter of GRI ( FLAT = .f. )
+*     ratio: transition ratio of transfert CS -> C and KS -> Ko
 ***
       INTEGER INTER, NMAX
       REAL YPG(n), YPT(n), C(n), Ko(n)
@@ -107,7 +109,7 @@
 *     =========
 
       if( .not. bSilent) then
-         WRITE(*,*) "DEBUT DE GRILLE"
+         WRITE(*,*) "GRILLE ROUTINE START"
       end if
 
       DO k=1,2
@@ -115,6 +117,8 @@
             CNT(j,k) = 0.
          END DO
       END DO
+*     Association of conductivity/capicity on different layers of 
+*     materiels.
 *     Associer les conductivites/capacites aux differentes 
 *     couches de materiaux
 *     ----------------------------------------------------
@@ -152,6 +156,7 @@
          DIFF = ((MIN(0.4,REAL(ZONES(i)))-ZONES(i-1))/0.4)* 
      *        KS(i)/CS(i) + DIFF
       END DO
+*     Creation of the grid itself and his derivatives
 *     Creer la grille elle-meme et ses derivees
 *     -----------------------------------------
       IF ( FLAT ) THEN
@@ -160,18 +165,22 @@
          DY = max( 0.01 , REAL(ZONES(NZONE)) / real(n) )
          iref = int( ZONES(NZONE) / DY )
          DO j=1,iref
+*       Grid of the flux layers
 *       Grille des niveaux de flux
             GRI(j,1) = j * DY
+*       Grid of temperature layers
 *       Grille des niveaux de temperatures
             GRI(j,2) = ( real(j)-0.5 ) * DY
+*       Derivate on the flux layers
 *       Derivee sur les niveaux de flux
             YPG(j) = 1.0
+*       Derivate on the temperature layer
 *       Derivee sur les niveaux de temperature
             YPT(j) = 1.0
             IF ( GRI(j,2) .le. 0.4 ) ir40 = j
          END DO
       ELSE
-*    Cas FLAT = .false. => ROUTE
+*    Case FLAT = .false. => ROAD
 *    ---------------------------
          CC = 3.6
          dd = 20.0
@@ -199,6 +208,7 @@
          END DO
       END IF
 
+*     Association of conductivity/capacity on the grid levels
 *     Associer les conductivites/capacites aux niveaux de la grille
 *     -------------------------------------------------------------
       INTER = 1
@@ -222,7 +232,18 @@
          ELSE
             Ko(j) = KS(INTER)
          END IF
+*     Stability check for the CFL condition
+         IF ( Ko(j) .lt. 0 ) THEN
+            WRITE(*,*) "Numerical stability test failed"
+            WRITE(*,*) " for grid level", j
+            WRITE(*,*) "Please increase the tickness of your "
+            WRITE(*,*) " layer, especially the cement if present"
+            ECHEC = .true.
+            return
+         END IF
       END DO
+*     Creation of the CNT that contains the contribution of the capacity
+*     and conductivity in addition of the used metric factors
 *     Creation de CNT qui contient les contributions des capacites et
 *     conductivites en plus des facteurs de la metrique utilisee
 *     ---------------------------------------------------------------
@@ -234,12 +255,12 @@
       END DO
       ECHEC = .false.
 
-* Mettre la matrice dans l'array pour l'output
+
       CALL MATRIX2ARRAYDOUBLEPRECISION(GRI,GRI_IN, n, 2)
       CALL MATRIX2ARRAYDOUBLEPRECISION(CNT, CNT_IN, n, 2)
 
       if( .not. bSilent) then
-         WRITE(*,*) "FIN DE GRILLE"      
+         WRITE(*,*) "GRILLE ROUTINE ENDED"      
       end if
       
 
