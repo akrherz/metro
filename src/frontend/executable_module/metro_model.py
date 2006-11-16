@@ -307,19 +307,26 @@ class Metro_model(Metro_module):
 
         metro_logger.print_message(metro_logger.LOGGER_MSG_EXECPRIMARY,
                                    _("Start sending data to METRo core"))
-#        print "Le vent", lWS
+
+        bEchec = []
         macadam.Do_Metro(bFlat,\
                          fLat, fLon, fLCorr,\
                          lLayerThick, nNbrOfLayer, lLayerType, \
                          lAT, lQP, lWS, lAP, lSF, lIR, lFT, lPI, lSC,\
                          lAT_obs,lST_obs, lSST_obs, \
-                         lAH, lTime_obs,\
-                         lSWO, bNoObs,\
+                         lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \
                          nNbrTimeSteps, bSilent)
 
-        metro_logger.print_message(metro_logger.LOGGER_MSG_EXECPRIMARY,
-                                   _("End of METRo core"))
+        bEchec = (macadam.get_echec())[0]
+        # Check if the execution of the model was a succes:
+        if bEchec != 0:
+            sError_message = _("Fatal error in METRo physical model.") 
+            metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
+                                       sError_message)
+        else:
+            metro_logger.print_message(metro_logger.LOGGER_MSG_EXECPRIMARY,
+                                       _("End of METRo core"))
 
     def __create_roadcast_collection( self, forecast, observation, station ):
         
