@@ -179,7 +179,11 @@ class Metro_dom2metro(Metro_module):
                                                             sHeader_xpath,
                                                             lData_types,
                                                             sData_xpath)
-        except:
+        except "METRoDateError", sError:
+            sXmlError = _("XML error in file '%s'.\n") % (sFilename) +\
+                        sError
+            raise sXmlError
+        except :
             sXmlError = _("XML error in file '%s'.") % (sFilename)
             raise sXmlError
 
