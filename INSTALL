@@ -46,7 +46,7 @@ Become root and
 
    1. Install gcc with the compiler g77
 
-       USE="f77" emerge sys-devel/gcc
+       USE="fortran" emerge sys-devel/gcc
 
    2. Install/Update python at the release 2.3 or +
 
