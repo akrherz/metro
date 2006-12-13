@@ -2666,10 +2666,10 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   long arg1 ;
   double arg2 ;
   double arg3 ;
-  double arg4 ;
-  double *arg5 = (double *) 0 ;
-  long arg6 ;
-  long *arg7 = (long *) 0 ;
+  double *arg4 = (double *) 0 ;
+  long arg5 ;
+  long *arg6 = (long *) 0 ;
+  double *arg7 = (double *) 0 ;
   double *arg8 = (double *) 0 ;
   double *arg9 = (double *) 0 ;
   double *arg10 = (double *) 0 ;
@@ -2683,31 +2683,28 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   double *arg18 = (double *) 0 ;
   double *arg19 = (double *) 0 ;
   double *arg20 = (double *) 0 ;
-  double *arg21 = (double *) 0 ;
+  long *arg21 = (long *) 0 ;
   long *arg22 = (long *) 0 ;
-  long *arg23 = (long *) 0 ;
-  double arg24 ;
+  double arg23 ;
+  long arg24 ;
   long arg25 ;
   long arg26 ;
-  long arg27 ;
   long val1 ;
   int ecode1 = 0 ;
   double val2 ;
   int ecode2 = 0 ;
   double val3 ;
   int ecode3 = 0 ;
-  double val4 ;
-  int ecode4 = 0 ;
-  long val6 ;
-  int ecode6 = 0 ;
-  double val24 ;
+  long val5 ;
+  int ecode5 = 0 ;
+  double val23 ;
+  int ecode23 = 0 ;
+  long val24 ;
   int ecode24 = 0 ;
   long val25 ;
   int ecode25 = 0 ;
   long val26 ;
   int ecode26 = 0 ;
-  long val27 ;
-  int ecode27 = 0 ;
   PyObject * obj0 = 0 ;
   PyObject * obj1 = 0 ;
   PyObject * obj2 = 0 ;
@@ -2734,9 +2731,8 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
   PyObject * obj23 = 0 ;
   PyObject * obj24 = 0 ;
   PyObject * obj25 = 0 ;
-  PyObject * obj26 = 0 ;
   
-  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOOOOOOOOOOOOOOOOOOOO:Do_Metro",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8,&obj9,&obj10,&obj11,&obj12,&obj13,&obj14,&obj15,&obj16,&obj17,&obj18,&obj19,&obj20,&obj21,&obj22,&obj23,&obj24,&obj25,&obj26)) SWIG_fail;
+  if (!PyArg_ParseTuple(args,(char *)"OOOOOOOOOOOOOOOOOOOOOOOOOO:Do_Metro",&obj0,&obj1,&obj2,&obj3,&obj4,&obj5,&obj6,&obj7,&obj8,&obj9,&obj10,&obj11,&obj12,&obj13,&obj14,&obj15,&obj16,&obj17,&obj18,&obj19,&obj20,&obj21,&obj22,&obj23,&obj24,&obj25)) SWIG_fail;
   ecode1 = SWIG_AsVal_long(obj0, &val1);
   if (!SWIG_IsOK(ecode1)) {
     SWIG_exception_fail(SWIG_ArgError(ecode1), "in method '" "Do_Metro" "', argument " "1"" of type '" "long""'");
@@ -2752,26 +2748,21 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
     SWIG_exception_fail(SWIG_ArgError(ecode3), "in method '" "Do_Metro" "', argument " "3"" of type '" "double""'");
   } 
   arg3 = (double)(val3);
-  ecode4 = SWIG_AsVal_double(obj3, &val4);
-  if (!SWIG_IsOK(ecode4)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode4), "in method '" "Do_Metro" "', argument " "4"" of type '" "double""'");
-  } 
-  arg4 = (double)(val4);
   {
     long i;
     // Check if is a list 
-    if (PyList_Check(obj4)) {
-      long nSize = PyList_Size(obj4);
+    if (PyList_Check(obj3)) {
+      long nSize = PyList_Size(obj3);
       long i = 0;
-      arg5 = (double*) malloc((nSize+1)*sizeof(double));
+      arg4 = (double*) malloc((nSize+1)*sizeof(double));
       for (i = 0; i < nSize; i++) {
-        PyObject *o = PyList_GetItem(obj4,i);
+        PyObject *o = PyList_GetItem(obj3,i);
         if (PyFloat_Check(o)){
-          arg5[i] = PyFloat_AsDouble(o);
+          arg4[i] = PyFloat_AsDouble(o);
         }
         else{
           PyErr_SetString(PyExc_TypeError,"list must contain double numbers");
-          free(arg5);
+          free(arg4);
           return NULL;
         }
       }// end for
@@ -2781,25 +2772,49 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
       return NULL;
     }
   }
-  ecode6 = SWIG_AsVal_long(obj5, &val6);
-  if (!SWIG_IsOK(ecode6)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode6), "in method '" "Do_Metro" "', argument " "6"" of type '" "long""'");
+  ecode5 = SWIG_AsVal_long(obj4, &val5);
+  if (!SWIG_IsOK(ecode5)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode5), "in method '" "Do_Metro" "', argument " "5"" of type '" "long""'");
   } 
-  arg6 = (long)(val6);
+  arg5 = (long)(val5);
+  {
+    long i;
+    // Check if is a list 
+    if (PyList_Check(obj5)) {
+      long nSize = PyList_Size(obj5);
+      long i = 0;
+      arg6 = (long*) malloc((nSize+1)*sizeof(long));
+      for (i = 0; i < nSize; i++) {
+        PyObject *o = PyList_GetItem(obj5,i);
+        if (PyInt_Check(o)){
+          arg6[i] = PyInt_AsLong(o);
+        }
+        else{
+          PyErr_SetString(PyExc_TypeError,"list must contain long numbers");
+          free(arg6);
+          return NULL;
+        }
+      }// end for
+    }// end if
+    else{
+      PyErr_SetString(PyExc_TypeError,"not a list");
+      return NULL;
+    }
+  }
   {
     long i;
     // Check if is a list 
     if (PyList_Check(obj6)) {
       long nSize = PyList_Size(obj6);
       long i = 0;
-      arg7 = (long*) malloc((nSize+1)*sizeof(long));
+      arg7 = (double*) malloc((nSize+1)*sizeof(double));
       for (i = 0; i < nSize; i++) {
         PyObject *o = PyList_GetItem(obj6,i);
-        if (PyInt_Check(o)){
-          arg7[i] = PyInt_AsLong(o);
+        if (PyFloat_Check(o)){
+          arg7[i] = PyFloat_AsDouble(o);
         }
         else{
-          PyErr_SetString(PyExc_TypeError,"list must contain long numbers");
+          PyErr_SetString(PyExc_TypeError,"list must contain double numbers");
           free(arg7);
           return NULL;
         }
@@ -3128,14 +3143,14 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
     if (PyList_Check(obj20)) {
       long nSize = PyList_Size(obj20);
       long i = 0;
-      arg21 = (double*) malloc((nSize+1)*sizeof(double));
+      arg21 = (long*) malloc((nSize+1)*sizeof(long));
       for (i = 0; i < nSize; i++) {
         PyObject *o = PyList_GetItem(obj20,i);
-        if (PyFloat_Check(o)){
-          arg21[i] = PyFloat_AsDouble(o);
+        if (PyInt_Check(o)){
+          arg21[i] = PyInt_AsLong(o);
         }
         else{
-          PyErr_SetString(PyExc_TypeError,"list must contain double numbers");
+          PyErr_SetString(PyExc_TypeError,"list must contain long numbers");
           free(arg21);
           return NULL;
         }
@@ -3170,35 +3185,16 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
       return NULL;
     }
   }
-  {
-    long i;
-    // Check if is a list 
-    if (PyList_Check(obj22)) {
-      long nSize = PyList_Size(obj22);
-      long i = 0;
-      arg23 = (long*) malloc((nSize+1)*sizeof(long));
-      for (i = 0; i < nSize; i++) {
-        PyObject *o = PyList_GetItem(obj22,i);
-        if (PyInt_Check(o)){
-          arg23[i] = PyInt_AsLong(o);
-        }
-        else{
-          PyErr_SetString(PyExc_TypeError,"list must contain long numbers");
-          free(arg23);
-          return NULL;
-        }
-      }// end for
-    }// end if
-    else{
-      PyErr_SetString(PyExc_TypeError,"not a list");
-      return NULL;
-    }
-  }
-  ecode24 = SWIG_AsVal_double(obj23, &val24);
-  if (!SWIG_IsOK(ecode24)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode24), "in method '" "Do_Metro" "', argument " "24"" of type '" "double""'");
+  ecode23 = SWIG_AsVal_double(obj22, &val23);
+  if (!SWIG_IsOK(ecode23)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode23), "in method '" "Do_Metro" "', argument " "23"" of type '" "double""'");
   } 
-  arg24 = (double)(val24);
+  arg23 = (double)(val23);
+  ecode24 = SWIG_AsVal_long(obj23, &val24);
+  if (!SWIG_IsOK(ecode24)) {
+    SWIG_exception_fail(SWIG_ArgError(ecode24), "in method '" "Do_Metro" "', argument " "24"" of type '" "long""'");
+  } 
+  arg24 = (long)(val24);
   ecode25 = SWIG_AsVal_long(obj24, &val25);
   if (!SWIG_IsOK(ecode25)) {
     SWIG_exception_fail(SWIG_ArgError(ecode25), "in method '" "Do_Metro" "', argument " "25"" of type '" "long""'");
@@ -3209,18 +3205,16 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
     SWIG_exception_fail(SWIG_ArgError(ecode26), "in method '" "Do_Metro" "', argument " "26"" of type '" "long""'");
   } 
   arg26 = (long)(val26);
-  ecode27 = SWIG_AsVal_long(obj26, &val27);
-  if (!SWIG_IsOK(ecode27)) {
-    SWIG_exception_fail(SWIG_ArgError(ecode27), "in method '" "Do_Metro" "', argument " "27"" of type '" "long""'");
-  } 
-  arg27 = (long)(val27);
-  Do_Metro(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19,arg20,arg21,arg22,arg23,arg24,arg25,arg26,arg27);
+  Do_Metro(arg1,arg2,arg3,arg4,arg5,arg6,arg7,arg8,arg9,arg10,arg11,arg12,arg13,arg14,arg15,arg16,arg17,arg18,arg19,arg20,arg21,arg22,arg23,arg24,arg25,arg26);
   resultobj = SWIG_Py_Void();
   {
-    free((double*)arg5);
+    free((double*)arg4);
   }
   {
-    free((long*)arg7);
+    free((long*)arg6);
+  }
+  {
+    free((double*)arg7);
   }
   {
     free((double*)arg8);
@@ -3262,21 +3256,21 @@ SWIGINTERN PyObject *_wrap_Do_Metro(PyObject *SWIGUNUSEDPARM(self), PyObject *ar
     free((double*)arg20);
   }
   {
-    free((double*)arg21);
+    free((long*)arg21);
   }
   {
     free((long*)arg22);
-  }
-  {
-    free((long*)arg23);
   }
   return resultobj;
 fail:
   {
-    free((double*)arg5);
+    free((double*)arg4);
   }
   {
-    free((long*)arg7);
+    free((long*)arg6);
+  }
+  {
+    free((double*)arg7);
   }
   {
     free((double*)arg8);
@@ -3318,13 +3312,10 @@ fail:
     free((double*)arg20);
   }
   {
-    free((double*)arg21);
+    free((long*)arg21);
   }
   {
     free((long*)arg22);
-  }
-  {
-    free((long*)arg23);
   }
   return NULL;
 }
@@ -3789,6 +3780,36 @@ fail:
 }
 
 
+SWIGINTERN PyObject *_wrap_get_echec(PyObject *SWIGUNUSEDPARM(self), PyObject *args) {
+  PyObject *resultobj = 0;
+  struct longStruct result;
+  
+  if (!PyArg_ParseTuple(args,(char *)":get_echec")) SWIG_fail;
+  result = get_echec();
+  {
+    long i;
+    long nSizeArray;
+    long* plArray;
+    
+    // Store the value of struct in local variables
+    nSizeArray = (&result)->nSize;
+    plArray = (&result)->plArray;
+    // Create the python list
+    resultobj = PyList_New(nSizeArray);
+    for(i=0; i<nSizeArray; i++){
+      // Create the python object from double
+      PyObject* o;
+      o = PyInt_FromLong(plArray[i]);
+      // Set the variable in the list.
+      PyList_SetItem(resultobj, i, o);
+    }
+  }
+  return resultobj;
+fail:
+  return NULL;
+}
+
+
 static PyMethodDef SwigMethods[] = {
 	 { (char *)"print_args", _wrap_print_args, METH_VARARGS, NULL},
 	 { (char *)"Do_Metro", _wrap_Do_Metro, METH_VARARGS, NULL},
@@ -3806,6 +3827,7 @@ static PyMethodDef SwigMethods[] = {
 	 { (char *)"get_g", _wrap_get_g, METH_VARARGS, NULL},
 	 { (char *)"get_bb", _wrap_get_bb, METH_VARARGS, NULL},
 	 { (char *)"get_fp", _wrap_get_fp, METH_VARARGS, NULL},
+	 { (char *)"get_echec", _wrap_get_echec, METH_VARARGS, NULL},
 	 { NULL, NULL, 0, NULL }
 };
 

@@ -390,7 +390,7 @@ int print_args(char **argv) {
 
   
 
-extern void Do_Metro(long, double, double, double, double*, long, long*, double*,  double*, double*, double*, double*, double*, double*,  double*, double*, double*, double*,  double*, double*, double*, long*, long*, double, long, long, long);
+extern void Do_Metro(long, double, double, double*, long, long*, double*,  double*, double*, double*, double*, double*, double*,  double*, double*, double*, double*,  double*, double*, double*, long*, long*, double, long, long, long);
 
 extern void Echo(void);
 

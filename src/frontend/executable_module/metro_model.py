@@ -293,12 +293,6 @@ class Metro_model(Metro_module):
 
         bFlat = cs_data.get_station_type()
 
-        fLCorr = metro_date.getTimeCorrection(sShort_time_zone)
-
-        sMessage = _("fLCorr is: ") + str(fLCorr)
-        metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
-                                   sMessage)
-        
         sMessage = _("------------station config END---------------------")
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
@@ -310,7 +304,7 @@ class Metro_model(Metro_module):
 
         bEchec = []
         macadam.Do_Metro(bFlat,\
-                         fLat, fLon, fLCorr,\
+                         fLat, fLon, \
                          lLayerThick, nNbrOfLayer, lLayerType, \
                          lAT, lQP, lWS, lAP, lSF, lIR, lFT, lPI, lSC,\
                          lAT_obs,lST_obs, lSST_obs, \

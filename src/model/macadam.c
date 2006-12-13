@@ -85,7 +85,6 @@ static struct longStruct   stEc; /* Boolean to know if the execution was a succe
 [I BOOL bFlat : road (FALSE) or bridge (TRUE)] 
 [I double dMLat : Latitude of the RWIS station]
 [I double dMLong : Longitude of the RWIS station]
-[I double dLCorr : Number of hours between the time zone and UTC]
 [I double* dpZones : Depth in meter of each layer of the road]
 [I long nNbrOfZone : Number of layers in the road]
 [I long* npMateriau : code indicating the composition of the road:
@@ -141,7 +140,7 @@ Miguel Tremblay  mai 2004
  
 ***************************************************************************/
 
-void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
+void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
 {
   /* Path des fichiers utilises */
   char* cpNRep; 
@@ -278,7 +277,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nNtdcl]), &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]), &dDiff, &dMLon, dpGri, npSwo); 
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &dLCorr, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
     if(!bSilent)
       printf("coupla 1 \n");
     if(*(stEc.plArray)){
@@ -301,7 +300,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon,  double dLCorr, double* d
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, &dLCorr, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
     if(!bSilent)
       printf("coupla 2\n");
     if(*(stEc.plArray)){

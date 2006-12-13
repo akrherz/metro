@@ -44,7 +44,7 @@
      *                    PVC , iref, NTP, NTP2, CNT_IN, ITP, TSO, FLAT,
      *                    FCOR, WW , WA, ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
-     *                    FAIL, EPSILON, Z0, Z0T, ZU, ZT, LCORR, ECHEC,
+     *                    FAIL, EPSILON, Z0, Z0T, ZU, ZT, ECHEC,
      *                    dpRA, dpSN, npRC, dpRT, dpIR, dpSF, dpFV,
      *                    dpFC, dpFA, dpG, dpBB, dpFP)
 
@@ -79,7 +79,6 @@
 *     Z0T: Longueur de rugosite (m)
 *     ZU: Hauteur du niveau de la prevision de vent (m)
 *     ZT: Hauteur du niveau de la prevision atmospherique (m)
-*     LCORR: Decalage horaire pour retrouver l'heure local (h)
 *     EPSILON: Emissivite de la route
 *     TS0: Temperature cible pour la fin du couplage (C)
 *     FCOR: Facteur de Coriolis
@@ -98,7 +97,7 @@
       DOUBLE PRECISION TYP(DTMAX), PVC(DTMAX)
       DOUBLE PRECISION CNT(n,2), CNT_IN(2*n)
       DOUBLE PRECISION FCOR, WW(2), WA
-      DOUBLE PRECISION ALN, ALR, TSO, FP, LCORR
+      DOUBLE PRECISION ALN, ALR, TSO, FP
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
       DOUBLE PRECISION dpSN(DTMAX), dpRA(DTMAX)
       DOUBLE PRECISION dpIR(DTMAX), dpSF(DTMAX)
