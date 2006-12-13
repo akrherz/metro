@@ -65,7 +65,7 @@ sTemporaryDirectory = '/tmp/metro_translation/'
 def main():
     # Check if the .tar of the documentation is in argument.
     if len(sys.argv) < 2:
-        sMessage = 'Usage: ' + sys.argv[0] + ' ../src/frontend/locale/'
+        sMessage = 'Usage: ' + sys.argv[0] + ' ../src/frontend/'
         print sMessage
         return
     else:
