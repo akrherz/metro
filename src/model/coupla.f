@@ -356,7 +356,7 @@
 *        Bilan des accumulations au sol
 *        ++++++++++++++++++++++++++++++
          call RODCON ( ER1, ER2, RHO  , CTU, CL , FP , FZ , 
-     *                 T(1,now), QA(i), QG , PR1, PR2, PRG, DX , PR,
+     *                 T(1,now), QA(i), QG , PR1, PR2, PRG, DX , 
      *                 npRC(i))
 
          dpRT(i) = T(1,next)

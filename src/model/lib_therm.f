@@ -244,7 +244,7 @@
 *     Date: Decembre 1999 / December 1999
 ***
       SUBROUTINE RODCON ( ER1, ER2, RHO, CTU, CL , FP, FZ,
-     *                    TS , QA , QG , PR1, PR2, PRG, DX, PR, ETAT )
+     *                    TS , QA , QG , PR1, PR2, PRG, DX, ETAT )
       IMPLICIT NONE
 
       INTEGER Nl, n
@@ -268,7 +268,7 @@
 *     QA Humidite specifique (g/kg) au niveau ZT
 *     QG Humidite specifique a la surface de la route
 
-      DOUBLE PRECISION FP, QA, PR
+      DOUBLE PRECISION FP, QA
       INTEGER ETAT
       REAL RHO, CTU, CL, FZ
       REAL TS, QG, PR1, PR2, PRG, DX
