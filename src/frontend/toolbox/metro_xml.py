@@ -75,9 +75,9 @@ def init( sMetro_xml_lib = ""):
                                                 sMessage)
                 sys.exit(3)
             else:
-                sMessage = _("metro_xml_pyxml will be used.\nFor better ") +\
-                           _("performance you can install libxml2 on your ") +\
-                           _("system.")
+                sMessage = _("metro_xml_pyxml will be used.\nWE STRONGLY ") +\
+                           _("RECOMMAND THAT YOU USED libxml2, METRo") +\
+                           _("WOULD BE 10 TIMES FASTER.")
                 metro_logger.print_init_message( \
                     metro_logger.LOGGER_INIT_SUCCESS,
                     sMessage)
@@ -103,7 +103,7 @@ def validate_string( sXml_content ):
     if metro_xml_lib.get_name() == "Metro_xml_libxml2":
         metro_xml_lib.validate_xml_string(sXml_content)
     else:
-        sMessage = _("Validation is only supported with Metro_xml_libxml2")
+        sMessage = _("Validation is only supported with metro_xml_libxml2")
         if metro_logger.is_initialised():
             metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
                                        sMessage)
