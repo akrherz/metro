@@ -1,4 +1,3 @@
-# translation of metro_preprocess_qa_qc_forecast_merge_fr.po to 
 # translation of metro_preprocess_qa_qc_forecast.po to
 # Copyright (C) YEAR ORGANIZATION, 2005, 2006.
 #

@@ -1,10 +1,3 @@
-# translation of metro_model_merge_fr.po to 
-# translation of metro_model_merge_fr.po to
-# translation of metro_model.po to
-# translation of test.po to
-# translation of test.po to
-# translation of metro_model.po to
-# translation of metro_model.p0.po to
 # Copyright (C) YEAR ORGANIZATION.
 # Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004, 2006.
 #
