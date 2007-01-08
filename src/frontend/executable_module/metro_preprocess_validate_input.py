@@ -119,7 +119,7 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         naObservation = observation_data.get_matrix_col('OBSERVATION_TIME')
         fObservation_end = naObservation[len(naObservation)-1]
 
-        if fForecast_start > fObservation_end:
+        if fForecast_start >= fObservation_end:
             sForecast_start = metro_date.seconds2iso8601(fForecast_start)
             sObservation_end = metro_date.seconds2iso8601(fObservation_end)
             sError = _("Forecast and observation don't overlap. The date\n") +\
