@@ -33,14 +33,14 @@
 #
 #
 
-####################################################
-# Name:	       Metro_preprocess_validate_input
-# Description:  Validate input data to make sure they conform to certain rule. 
-#               1) Forecast and observation must overlap
-#               
-# Auteur: Francois Fortin
-# Date: 9 novembre 2004
-####################################################
+"""
+Name:	       Metro_preprocess_validate_input
+Description:  Validate input data to make sure they conform to certain rule. 
+               1) Forecast and observation must overlap
+               
+Auteur: Francois Fortin
+Date: 9 novembre 2004
+"""
 
 from metro_preprocess import Metro_preprocess
 
@@ -68,27 +68,24 @@ class Metro_preprocess_validate_input(Metro_preprocess):
                                 observation_data.get_controlled_data())
 
 
-
-####################################################
-# Name: __validate_roadcast_start_date
-#
-# Parameters: controlled observation data
-#
-# Returns: None
-#
-# Functions Called: 
-#
-# Description: If roadcast start date is not set, set it
-#              to the date of the last observation.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 4th 2004
-#####################################################
     def __validate_roadcast_start_date(self, ro_controlled_data):
+        """
+        Parameters: controlled observation data
+        
+        Returns: None
+        
+        Functions Called: 
 
+        Description: If roadcast start date is not set, set it
+                     to the date of the last observation.
+
+        Notes: 
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 4th 2004
+        """
+        
         # Get start time
         if metro_config.get_value('INIT_ROADCAST_START_DATE') == "":
             naOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
@@ -100,21 +97,16 @@ class Metro_preprocess_validate_input(Metro_preprocess):
             metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
                                        sMessage)            
 
-####################################################        
-# Name: __validate_overlap
-#
-# Parameters: forecast_data, observation_data
-#
-# Returns: None
-#
-# Functions Called:
-#
-# Description: Make sure forecast and observation overlap, if it's
-#              not the case abort METRo
-#
-# Notes: 
-#####################################################
+
     def __validate_overlap( self, forecast_data, observation_data ):
+        """        
+        Parameters: forecast_data, observation_data
+
+        Description: Make sure forecast and observation overlap, if it's
+                     not the case abort METRo
+
+        """
+
         fForecast_start = forecast_data.get_matrix_col('FORECAST_TIME')[0]
         naObservation = observation_data.get_matrix_col('OBSERVATION_TIME')
         fObservation_end = naObservation[len(naObservation)-1]
