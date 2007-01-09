@@ -56,7 +56,7 @@
       LOGICAL bSilent, silent
       INTEGER Nl, n
       REAL DT
-      INTEGER DTMAX, NCOLMAX
+      INTEGER DTMAX
       COMMON/CTSPHY/  CPD, CPV, RGASD, RGASV, TRPL, TCDK, RAUW,
      *                EPS1, EPS2, DELTA, CAPPA, TGL, CONSOL,
      *                GRAV, RAYT, STEFAN, PI, OMEGA,
@@ -66,13 +66,12 @@
       COMMON /SILENT/ bSilent
       
 
-*     DTMAX -> # de pas de temps maximal apres le debut de la matrice SCRIBE
+*     DTMAX -> # de pas de temps maximal
 *     Nl -> nombre de pas de temps maximal de la periode contenant 
 *     les observations (48h + un coussin = 60h)
 *     DT -> pas de temps du modele de bilan energetique
-*     NCOLMAX -> # de colonnes permis dans les matrices SCRIBE
 *     n -> nombre maximal de niveaux des grilles dans le sol
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NCOLMAX, n
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
 
       REAL TTT,PRS,QQQ,EEE,TVI,QST
       REAL FOEW,FODLE,FOQST,FODQS,FOEFQ,FOQFE,FOTVT,FOTTV,FOHR
@@ -183,7 +182,6 @@
       DTMAX = 12000
       Nl = 11520
       DT = 30.0
-      NCOLMAX = 73
       n = 200
 
       if( .not. bSilent) then

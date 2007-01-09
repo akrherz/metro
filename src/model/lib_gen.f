@@ -50,8 +50,8 @@
       INTEGER j
       INTEGER Nl, n
       REAL DT
-      INTEGER DTMAX, NCOLMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NCOLMAX, n
+      INTEGER DTMAX
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
 
 ***                 ***
 *     DEFINITIONS     *
