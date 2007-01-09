@@ -189,8 +189,8 @@
 
       INTEGER Nl, n
       REAL DT
-      INTEGER DTMAX, NRECMAX, NCOLMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NRECMAX, NCOLMAX, n
+      INTEGER DTMAX, NCOLMAX
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NCOLMAX, n
 ***                 ***
 *     DEFINITIONS     *
 ***                 ***
@@ -249,8 +249,8 @@
 
       INTEGER Nl, n
       REAL DT
-      INTEGER DTMAX, NRECMAX, NCOLMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NRECMAX, NCOLMAX, n
+      INTEGER DTMAX, NCOLMAX
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NCOLMAX, n
       REAL CH 
 *     MEA -> Quantite d'eau avant ecoulement. MEA(1) : liquide 
 *      MEA(2): solide

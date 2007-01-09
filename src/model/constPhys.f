@@ -56,7 +56,7 @@
       LOGICAL bSilent, silent
       INTEGER Nl, n
       REAL DT
-      INTEGER DTMAX, NRECMAX, NCOLMAX
+      INTEGER DTMAX, NCOLMAX
       COMMON/CTSPHY/  CPD, CPV, RGASD, RGASV, TRPL, TCDK, RAUW,
      *                EPS1, EPS2, DELTA, CAPPA, TGL, CONSOL,
      *                GRAV, RAYT, STEFAN, PI, OMEGA,
@@ -70,10 +70,9 @@
 *     Nl -> nombre de pas de temps maximal de la periode contenant 
 *     les observations (48h + un coussin = 60h)
 *     DT -> pas de temps du modele de bilan energetique
-*     NRECMAX -> # de temps (lignes) permis dans le infile/matrice SCRIBE
 *     NCOLMAX -> # de colonnes permis dans les matrices SCRIBE
 *     n -> nombre maximal de niveaux des grilles dans le sol
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NRECMAX, NCOLMAX, n
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NCOLMAX, n
 
       REAL TTT,PRS,QQQ,EEE,TVI,QST
       REAL FOEW,FODLE,FOQST,FODQS,FOEFQ,FOQFE,FOTVT,FOTTV,FOHR
@@ -184,7 +183,6 @@
       DTMAX = 12000
       Nl = 11520
       DT = 30.0
-      NRECMAX = 73
       NCOLMAX = 73
       n = 200
 

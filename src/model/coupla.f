@@ -34,7 +34,7 @@
 
 
 ***
-*     Sous-routine COUPLA: effectue le couplage des previsions SCRIBE avec 
+*     Sous-routine COUPLA: effectue le couplage des previsions  avec 
 *                          les observations des stations meteo-routieres
 *
 *     Auteur /  Author: Louis-Philippe Crevier
@@ -52,8 +52,8 @@
       INTEGER i, j
       INTEGER Nl, n
       REAL DT
-      INTEGER DTMAX, NRECMAX, NCOLMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NRECMAX, NCOLMAX, n
+      INTEGER DTMAX, NCOLMAX
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, NCOLMAX, n
 
 ***                 ***
 *     DEFINITIONS     *
