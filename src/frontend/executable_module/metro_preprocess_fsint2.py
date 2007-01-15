@@ -33,6 +33,18 @@
 #
 #
 
+"""
+Name:		Metro_preprocess_fsint2
+Description: Subroutine correcting the incident solar flux
+              to take the sunrise/sunset into account.
+
+Notes: Take a special care with the difference between the interpolated
+       values and the raw one. The search for the sunrise/sunset
+       is performed on the raw values of SF. The number of time step
+       is performed on the raw values of time. The number of time steps
+       should normally correspond to the interpolated intervals.
+"""
+
 from metro_preprocess import Metro_preprocess
 
 import time
@@ -52,25 +64,11 @@ from data_module import metro_data
 
 _ = metro_util.init_translation('metro_preprocess_fsint2')
 
-####################################################
-# Name:		Metro_preprocess_fsint2
-# Description: Sous-routine corrigeant le flux solaire
-#                incident pour tenir compte du lever/coucher
-#                du soleil a la station.
-# Notes:   Provient de lib_gen.f  Faire attention a la nuance entre
-#  les valeurs interpollees et les valeurs bruts.  La recherche de
-#  l'aube et de l'aurore se
-#  fait sur les valeurs bruts du SF.  Le nombre de pas de temps
-#  necessaire pour la correction de l'aurore et de l'aube se calcule
-#  a partir des valeurs de temps bruts.  Le nombre de pas devraient
-#  normalement correspondre l'intervalle interpolle.  A verifier.
-####################################################
-
 
 class Metro_preprocess_fsint2(Metro_preprocess):
 
     ##
-    # attributs de la classe
+    # Class attribute
     ##
     fLat = 0 # Latitude of the station
     fLon = 0 # Longitude of the station
@@ -99,31 +97,31 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         pStation.set_data(station_data)        
 
 
-
-####################################################
-# Name: __set_attribute
-        #
-# Parameters:[I] metro_data wf_controlled_data : controlled data.  Read-only
-#            [I] metro_data wf_interpolated_data : container of the interpolated
-#                 data.
-# Returns: None
-#
-# Functions Called:  self.forecast_data.get_matrix_col
-#                    station_data.get_latitude
-#                    station_data.get_longitude
-#                    __get_eot
-#
-# Description: Set the attributes needed by this class
-#
-# Notes: <other information, if any>
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      July 2nd 2004
-#####################################################
     def __set_attribute(self, wf_controlled_data,
                         wf_interpolated_data,
                         station_data):
+        """
+         Name: __set_attribute
+        
+         Parameters:[I] metro_data wf_controlled_data : controlled data.  Read-only
+                    [I] metro_data wf_interpolated_data : container of the
+                    interpolated data.
+         Returns: None
+
+         Functions Called:  self.forecast_data.get_matrix_col
+                            station_data.get_latitude
+                            station_data.get_longitude
+                            __get_eot
+
+         Description: Set the attributes needed by this class
+
+         Notes: <other information, if any>
+
+         Revision History:
+         Author		Date		Reason
+         Miguel Tremblay      July 2nd 2004
+         """
+        
         # Get the cTime of the beginning of data
         nTime = wf_controlled_data.get_matrix_col('FORECAST_TIME')[0]
         # Lat & Lon
@@ -132,32 +130,33 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         # Set the constant for the position of the earth around the sun
         (self.fEot, self.fR0r, self.tDeclsc) = self.__get_eot(nTime)
 
-####################################################
-# Name: __set_theoretical_flux
-        #
-# Parameters:[I] metro_data wf_controlled_data : controlled data.  Read-only
-#            [I] metro_data wf_interpolated_data : container of the interpolated
-#                 data.
-# Returns: None
-#
-# Functions Called: wf_controlled_data.get_matrix_col
-#                   numarray.cos, where, 
-#                   wf_controlled_data.append_matrix_col
-#                   metro_util.interpolate
-#                   
-#                   
-#
-# Description: The flux value of the forecast are calculated from the
-#               position of the earth around the sun.
-#
-# Notes: All times are in UTC.
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      July 29th2004
-#####################################################
+
     def __set_theoretical_flux(self, wf_controlled_data, \
                                wf_interpolated_data):
+        """
+        Name: __set_theoretical_flux
+        Parameters:[I] metro_data wf_controlled_data : controlled data.  Read-only
+            [I] metro_data wf_interpolated_data : container of the interpolated
+            data.
+        Returns: None
+
+        Functions Called: wf_controlled_data.get_matrix_col
+                  numarray.cos, where, 
+                  wf_controlled_data.append_matrix_col
+                  metro_util.interpolate
+                   
+                   
+
+         Description: The flux value of the forecast are calculated from the
+                      position of the earth around the sun.
+
+         Notes: All times are in UTC. Since Sun.py gives times over 24h,
+                special case is done with %24.
+
+         Revision History:
+         Author		Date		Reason
+         Miguel Tremblay      July 29th 2004
+         """
         
         ctimeFirstForecast = wf_controlled_data.get_matrix_col\
                              ('FORECAST_TIME')[0]
@@ -179,7 +178,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
             sLat = 'S'
 
         tSunset = metro_date.tranform_decimal_hour_in_minutes(fSunsetTimeUTC)
-        tSunrise = metro_date.tranform_decimal_hour_in_minutes(fSunriseTimeUTC)        
+        tSunrise = metro_date.tranform_decimal_hour_in_minutes(fSunriseTimeUTC)      
         sMessage = _("For the date %d-%d-%d,\n") % \
                    ((nStartDay,nStartMonth,nStartYear)) +\
                    _("at the latitude %0.2f ") %(abs(round(self.fLat,2))) + sLat +\
@@ -197,8 +196,9 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         
         naSft = numarray.zeros(nTimeHourLength, type=numarray.Float)
         naCoeff = numarray.zeros(nTimeHourLength, type=numarray.Float)
-        ###### In the night, the solar flux is null ############### 
-        for i in range(0,nTimeHourLength):
+        
+        ###### In the night, the solar flux is null ###############
+        for i in range(0, nTimeHourLength):
             nCurrentHour = (naTimeHour[i])%24
             # atmospheric forecast is before the sunrise
             # or after the sunset
@@ -263,39 +263,34 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
         wf_interpolated_data.append_matrix_col('IR', naIR)
 
-        
-
-####################################################
-# Name: __get_eot
-#
-# Parameters: [I] int nTime : cTime of the beginning of the forecast
-#
-#
-# Returns: tuple (double fEot, double fR0r, tuple tDeclsc)
-#           dEot: Correction due a l'equation du temps
-#           dR0r: Constante solaire corrigee pour l'equation du temps
-#           tDeclsc: Declinaison
-#
-# Functions Called: __Solcons
-#                   time.gmtime
-#                   calendar.isleap
-#                   cos, sin
-#                   
-#                   
-#
-# Description: Sous-routine calculant la composante
-#   de l'equation du temps dans les calculs
-#   du flux solaire "theorique". Correction provenant du model GEM.
-#
-# Notes: De lib_gen.f
-#     EOT: Correction due a l'equation du temps
-#     R0R: Constante solaire corrigee pour l'equation du temps
-#     DECLSC: Declinaison
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       June 30th 2004
-#####################################################
     def __get_eot(self, nTime):
+        """
+         Name: __get_eot
+
+         Parameters: [I] int nTime : cTime of the beginning of the forecast
+
+
+         Returns: tuple (double fEot, double fR0r, tuple tDeclsc)
+                  dEot: Correction for the equation of time
+                  dR0r: Corrected solar constant for the equation of time
+                  tDeclsc: Declinaison
+
+         Functions Called: __Solcons
+                           time.gmtime
+                           calendar.isleap
+                           cos, sin
+                   
+                   
+
+         Description: Subroutine computing the part of the equation of time
+                      needed in the computing of the theoritical solar flux
+                      Correction originating of the CMC GEM model.
+
+         Revision History:
+         Author		Date		Reason
+         Miguel Tremblay       June 30th 2004
+         """
+        
         # Convert ctime to python tuple for time.
         # see http://www.python.org/doc/current/lib/module-time.html
         tDate = time.gmtime(nTime)
@@ -324,25 +319,25 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
         return (self.fEot, self.fR0r, self.tDeclsc)
 
-####################################################
-# Name: __Solcons
-#
-# Parameters: [[I] double dAlf : Constante solaire corrigeant
-#                l'excentricite
-#
-# Returns: double dVar : Variation de la constante solaire
-#
-# Functions Called: cos, sin
-#
-# Description:
-#
-# Notes: <other information, if any>
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      June 30th 2004
-#####################################################
     def __Solcons(self, dAlf):
+        """
+        Name: __Solcons
+        
+        Parameters: [I] double dAlf : Solar constant to correct the excentricity
+        
+        Returns: double dVar : Variation of the solar constant
+
+        Functions Called: cos, sin
+         
+        Description:
+         
+        Notes: <other information, if any>
+         
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      June 30th 2004
+        """
+        
         dVar = 1.0/(1.0-9.464e-4*sin(dAlf)-0.01671*cos(dAlf)- \
                     + 1.489e-4*cos(2.0*dAlf)-2.917e-5*sin(3.0*dAlf)- \
                     + 3.438e-4*cos(4.0*dAlf))**2
