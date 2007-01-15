@@ -151,6 +151,7 @@ class Metro_preprocess_combine(Metro_preprocess):
             for i in range(0, nLenATO-self.NTP):
                 naAT[i-self.NTP2] = naATO[i+self.NTP-1]
             # Relaxation des observations vers la prevision.
+            # Relaxation of observation to forecast.
             # Constante de 4 heures / 4 hour relaxation constant
             nFactor = nLenATO-self.NTP
             fTaCorr = naAT[nLenATO-self.NTP-self.NTP2]-naATO[nLenATO-1]
