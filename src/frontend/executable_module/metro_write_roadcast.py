@@ -45,7 +45,7 @@ _ = metro_util.init_translation('metro_write_roadcast')
 class Metro_write_roadcast(Metro_write):
 
     ##
-    # methodes redefinies
+    # Redefined methods
     ##
     def start(self):
         Metro_write.start(self)
@@ -55,7 +55,7 @@ class Metro_write_roadcast(Metro_write):
         
         if self.domRoadcast != None:
             sFilename = metro_config.get_value('FILE_ROADCAST_FILENAME')
-            self._write_dom(sFilename,self.domRoadcast)
+            self._write_dom(sFilename, self.domRoadcast)
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
                                        _("no DOM roadcast, nothing to write"))
