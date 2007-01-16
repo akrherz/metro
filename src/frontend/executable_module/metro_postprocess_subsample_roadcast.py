@@ -33,14 +33,14 @@
 #
 #
 
-####################################################
-# Name       : Metro_postprocess_subsample        
-# Description: Subsampling roadcast matrix at 20 minutes interval
-# Work on    : roadcast_data.subsampled_data
-# Notes      :   
-# Author     : Francois Fortin
-# Date       : 10 September 2004
-####################################################
+"""
+Name       : Metro_postprocess_subsample        
+Description: Subsampling roadcast matrix at 20 minutes interval
+Work on    : roadcast_data.subsampled_data
+Notes      :   
+Author     : Francois Fortin
+Date       : 10 September 2004
+"""
 
 from metro_postprocess import Metro_postprocess
 
@@ -77,11 +77,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
         for sElement in lElementToExtract:
             dElement_Array[sElement] = rc_controlled.get_matrix_col(sElement)
 
-#        naWS = rc_controlled.get_matrix_col('WS')
-#        metro_util.print_numarray(naWS)
-        
-        # recupere certaine valeur necessaire a le creation
-        # d'un roadcast complet
+        # Get some values necessary for the creation of a complete roadcast
         iObservation_len = roadcast.get_attribute('OBSERVATION_LENGTH')
         fObservation_delta_t = roadcast.get_attribute('OBSERVATION_DELTAT_T')
         iNb_timesteps = roadcast.get_attribute('FORECAST_NB_TIMESTEPS')
@@ -89,14 +85,12 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
                         metro_constant.fTimeStep/3600.0-fObservation_delta_t)
         sStartDate = metro_config.get_value('INIT_ROADCAST_START_DATE')
         fStartDate = metro_date.parse_date_string(sStartDate)
-        # Write the start date in the roadcast
-#        roadcast.set_header_value('FIRST_ROADCAST',sStartDate) 
         
         sMessage = _("Specified roadcast start date: '%s'") % (sStartDate)
         metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                    sMessage)
         #
-        # Generer la matrice roadcast de donnees
+        # Create the data matrix for roadcast
         #
         rc_subsampled = roadcast.get_subsampled_data()
 
@@ -116,8 +110,6 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
                 for sElement in dElement_Array.keys():
                     lMatrix_line[rc_subsampled.index_of_matrix_col(sElement)] = \
                       dElement_Array[sElement][i]
-#                    if sElement == 'WS':
-#                        print dElement_Array[sElement][i]
                 # Ugly stuff.  Don't know. No clue about the 600.
                 for j in range(int(max(1,i-600/metro_constant.fTimeStep)),\
                                int(min(iNb_timesteps,i+600/\
@@ -135,7 +127,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
 
                 lMatrix_line[rc_subsampled.index_of_matrix_col('RC')] = nRCcode
 
-                # ajout de la nouvelle ligne dans la matrice
+                # Adding the new line in the matrix
                 rc_subsampled.append_matrix_row(lMatrix_line)
 
         fActual_start_date = dElement_Array['ROADCAST_TIME'][0]
