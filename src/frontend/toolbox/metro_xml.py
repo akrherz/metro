@@ -33,6 +33,15 @@
 #
 #
 
+"""
+Name       : metro_xml.py
+Description: Methods to create and manipulate xml DOM
+Work on    : 
+Notes      :   
+Author     : Francois Fortin
+Date       : 2004
+"
+
 import sys
 import string
 
@@ -85,9 +94,9 @@ def init( sMetro_xml_lib = ""):
                                                          "metro_xml_pyxml")
                 metro_xml_lib = metro_xml_pyxml.Metro_xml_pyxml()
         else:
-#            metro_logger.print_init_message( \
-#                    metro_logger.LOGGER_INIT_SUCCESS,
-#                    _("metro_xml_libxml2 will be used."))
+            metro_logger.print_init_message( \
+                    metro_logger.LOGGER_INIT_SUCCESS,
+                    _("metro_xml_libxml2 will be used."))
             metro_xml_libxml2 = metro_util.import_name('toolbox',
                                                        "metro_xml_libxml2")
             metro_xml_lib = metro_xml_libxml2.Metro_xml_libxml2()
@@ -151,16 +160,16 @@ def extract_data(lDefs,nodeItems):
 
     lData = []
 
-    # recupere les informations sur les types de donnees
+    # Retrieve the informations about the data type
     dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
     dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
 
     dData_type = metro_util.join_dictionaries(dStandard_data_type,
                                               dExtended_data_type)
 
-    # pour chacune des definitions d'item
+    # For each definitions of item
     for dDef in lDefs:
-        # recupere le nom et le type de l'item
+        # Get the name and the type of the item
         sTag = dDef['XML_TAG']
         sData_type_name = dDef['DATA_TYPE']
 
@@ -173,38 +182,37 @@ def extract_data(lDefs,nodeItems):
                                        _("type will be used.")) 
             sData_type_name = 'DEFAULT'
 
-        # extraction de l'information
+        # Information extraction 
 
-        # le type de donne requiert l'appel d'une fonction
-        # pour recueillir l'information
+        # The given type needs the function call
+        #  to retrieve the data
         sReadHandler = dData_type[sData_type_name]['READ']
 
-        # construction du code necessaire pour importer le module dans lequelle
-        # se trouve la fonction servant a extraire la donne
+        # Creation of code necessary to import the module into which
+        #  we can find the function needed to extract the data
         lFunctionPart = string.split(sReadHandler,'.')
         sFunction_module = string.join(lFunctionPart[:-1],".")
         sCode = "import " +sFunction_module
         exec sCode
 
         if dData_type[sData_type_name].has_key('CHILD'):
-            # construction de l'instruction effectuant l'appel de la fonction
-            # qui va extraire la donne qui contient une liste de "sous-donne"
-
+            # Construction of instruction doing the function call that will
+            #  extract the data containing a list of "sub-data"
             nodeTmp = metro_xml_lib.xpath(nodeItems,
                                           sTag)
             lChildList = dData_type[sData_type_name]['CHILD']
             sCode = "data = " + sReadHandler + "(lChildList,nodeTmp)"
         else:
-            # construction de l'instruction effectuant l'appel de la fonction
-            # qui va extraire la donnee
+            # Construction of instruction doing the function call that will
+            #  extract the data 
             sCode = "data = " + sReadHandler + "(sTag,nodeItems)"
 
         exec sCode
         lData.append(data)
 
-    # Si il y a juste 1 definition de donnees (lDefs) c'est que c'est un "array".
-    # Alors dans ce cas il faut extraire le "array" de la liste
-    # [[1,2,3,...,N]]  ==>  [1,2,3,...,N]
+    # If there is only one definition of data (lDefs), it is an "array".
+    #  In this case, we must extract the "array" from the list
+    #  [[1,2,3,...,N]]  ==>  [1,2,3,...,N]
     if len(lDefs) == 1:
         if lData:
             lData = lData[0]
@@ -275,7 +283,7 @@ def write_to_file( domDoc, sFilename ):
 
 def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
 
-    # recupere les informations sur les types de donnees
+    # Retrieve the informations on the data types
     dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
     dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
 
@@ -283,7 +291,7 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
                                               dExtended_data_type)
 
     for dDef in lDefs:
-        # recupere le nom et le type de l'item
+        # Retrieve the name and the item type
         sTag = dDef['NAME']
         sXml_tag = dDef['XML_TAG']
         sData_type_name = dDef['DATA_TYPE']
@@ -297,28 +305,27 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
             sData_type_name = 'DEFAULT'
 
 
-        # creation de la node
+        # Node creation 
 
-        # le type de donne requiert l'appel d'une fonction pour creer la node
+        # The data type needs the call of a function to create the node
         sWriteHandler = dData_type[sData_type_name]['WRITE']
 
-        # construction du code necessaire pour importer le module dans lequelle
-        # se trouve la fonction servant a creer la node
+        # Creation of code needed to import the module in which we can find
+        #  the function used to create the node.
         lFunctionPart = string.split(sWriteHandler,'.')
         sFunction_module = string.join(lFunctionPart[:-1],".")
         sCode = "import " +sFunction_module
         exec sCode
 
         if dData_type[sData_type_name].has_key('CHILD'):
-            # construction de l'instruction effectuant l'appel de la fonction
-            # qui va creer la node qui contient une liste de "sous-node"
-
+            # Construction of instruction doing the function call that will
+            #  create the node containing a list of "sub-node"
             lChildList = dData_type[sData_type_name]['CHILD']
             sCode = "nodeData = " + sWriteHandler + \
                     "(domDoc,sXml_tag,lChildList,dData[sTag])"
         else:
-            # construction de l'instruction effectuant l'appel de la fonction
-            # qui va creer la node
+            # Construction of instruction doing the function call that will
+            #  create the node 
             sCode = "nodeData = " + sWriteHandler + \
                     "(domDoc,sXml_tag,dData[sTag])"
         exec sCode
@@ -326,12 +333,15 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
         append_child(nodeParent, nodeData)
 
 
-# sPrediction_xpath : Chacune des predictions sera contenue dans une node
-#                     qui portera le nom indique par sPrediction_xpath.
 def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
                                   lDefs, metro_data_object, naMatrix ):
+    """
+    Each prediction will be contained in a node that will have the name
+    given by sPrediction_xpath.
+    """
 
-    # recupere les informations sur les types de donnees
+
+    # Retrieve the informations about the data types
     dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
     dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
     dData_type = metro_util.join_dictionaries(dStandard_data_type,
@@ -339,14 +349,14 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
 
     for naData in naMatrix:
 
-        # si necessaire, creation d'une node pour contenir la prediction
+        # If needed, creation of a node to contain the prediction
         if sPrediction_xpath != None and sPrediction_xpath != "":
             nodePrediction = mkdir_xpath(domDoc, nodeParent, sPrediction_xpath)
         else:
             nodePrediction = nodeParent
 
         for dDef in lDefs:
-            # recupere le nom et le type de l'item
+            # Get the name and the type of the item
             sTag = dDef['NAME']
             sXml_tag = dDef['XML_TAG']
             sData_type_name = dDef['DATA_TYPE']
@@ -360,33 +370,30 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
                                            sMessage)
                 sData_type_name = 'DEFAULT'
 
-            # creation de la node
+            # Node creation 
 
-            # le type de donne requiert l'appel
-            # d'une fonction pour creer la node
+            # The data type needs the call of a function to create the node
             sWriteHandler = dData_type[sData_type_name]['WRITE']
 
-            # construction du code necessaire pour importer le module
-            # dans lequelle se trouve la fonction servant a creer la node
+            # Creation of code needed to import the module in which we can find
+            #  the function used to create the node.
             lFunctionPart = string.split(sWriteHandler,'.')
             sFunction_module = string.join(lFunctionPart[:-1],".")
             sCode = "import " +sFunction_module
             exec sCode
 
-            # extraction de la donner du numarray
+            # Extraction of the data from the numarray
             val = naData[metro_data_object.index_of_matrix_col(sTag)]
             
             if dData_type[sData_type_name].has_key('CHILD'):
-                # construction de l'instruction effectuant l'appel de
-                # la fonction qui va creer la node qui contient une
-                # liste de "sous-node"
-
+                # Construction of instruction doing the function call that will
+                #  create the node containing a list of "sub-node"
                 lChildList = dData_type[sData_type_name]['CHILD']
                 sCode = "nodeData = " + sWriteHandler + \
                         "(domDoc,sXml_tag,lChildList,val)"
             else:
-                # construction de l'instruction effectuant l'appel de la
-                # fonction qui va creer la node
+                # Construction of instruction doing the function call that will
+                #  create the node 
                 sCode = "nodeData = " + sWriteHandler + "(domDoc,sXml_tag,val)"
 
             exec sCode
