@@ -91,6 +91,7 @@ class Metro_model(Metro_module):
         pStation.set_data(station_data)
 
         # creer et ajouter infdata
+        # Creation and adding infdata
         infdata_roadcast = metro_infdata.Metro_infdata(
             'ROADCAST', metro_infdata.DATATYPE_METRO_DATA_COLLECTION)
         infdata_roadcast.set_data_collection(roadcast_data)
@@ -148,7 +149,7 @@ class Metro_model(Metro_module):
 
         dStation_header = cs_data.get_header()
 
-# test observation
+        # test observation
         dObservation_header = ro_data.get_header()
         lObservation_data   = ro_data.get_matrix()
         sMessage = "Observation_header=" + str(dObservation_header)
@@ -157,8 +158,8 @@ class Metro_model(Metro_module):
         sMessage = "Observation_data=" + str(lObservation_data)
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
-
-# test forecast
+        
+        # test forecast
         dForecast_header = wf_data.get_header()
         lForecast_data   = wf_data.get_matrix()
 
@@ -169,7 +170,7 @@ class Metro_model(Metro_module):
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
 
-# debut roadlayer MATRIX
+        # start roadlayer MATRIX
 
         naLayerType  = cs_data.get_matrix_col('TYPE')
         lLayerType = naLayerType.astype(numarray.Int32).tolist()
@@ -191,7 +192,7 @@ class Metro_model(Metro_module):
         sMessage = _("roadlayer thick=") + str(lLayerThick)
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
-        # fin roadlayer MATRIX
+        # end roadlayer MATRIX
 
         fTime =  dStation_header['PRODUCTION_DATE']
         fTimeForecast = dForecast_header['PRODUCTION_DATE']
@@ -324,27 +325,28 @@ class Metro_model(Metro_module):
 
     def __create_roadcast_collection( self, forecast, observation, station ):
         
-        # Creation de l'objet Metro_data pour roadcast
+
+        # Creation of the Metro_data object for the roadcast
         lStandard_items = metro_config.get_value( \
             'XML_ROADCAST_PREDICTION_STANDARD_ITEMS')
         lExtended_items = metro_config.get_value( \
             'XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')        
         lItems = lStandard_items + lExtended_items
         roadcast = metro_data.Metro_data(lItems)
-        # extraction des donnees forecast utilise pour generer les roadcasts
+        # Extraction of forecast data used to create the roadcasts.
         wf_data = forecast.get_interpolated_data()
                 
         #
-        # Generer le header du roadcast
+        # Generate the header of roadcast
         #
 
-        # extraction des informations
+        # extraction of informations
         sRoadcast_version = \
             metro_config.get_value('FILE_ROADCAST_CURRENT_VERSION')
         sRoadcast_station = station.get_station_name()
         fRoadcast_production_date = time.time()
         
-        # ajout des informations au header
+        # Adding the informations to the header
         roadcast.set_header_value('VERSION',sRoadcast_version)
         roadcast.set_header_value('ROAD_STATION',sRoadcast_station)
         roadcast.set_header_value('PRODUCTION_DATE',fRoadcast_production_date)
@@ -354,18 +356,18 @@ class Metro_model(Metro_module):
         roadcast.set_header_value('FIRST_ROADCAST', \
                   metro_config.get_value('INIT_ROADCAST_START_DATE'))
 
-#            wf_data.get_matrix_col('FORECAST_TIME')[0])
-        #
-        # Generer la matrice roadcast de donnees
-        # 
 
-        # extraction de donnees utilisees par metro_core pour ses calculs
+        #
+        # Generate the roadcast matrix of data
+        #
+
+        # Extraction of data used by metro_core in the computation
         iObservation_len = self.__get_observation_lenght(observation)
         fObservation_delta_t = self.__get_observation_delta_t(observation)
         iNb_timesteps = self.__get_nb_timesteps(forecast)
 
 
-        # extraction des donnees roadcast calculees par metro_core
+        # Extraction of roadcast data computed by metro_core
         lRA = (macadam.get_ra())[:iNb_timesteps]
         lSN = (macadam.get_sn())[:iNb_timesteps]
         lRC = (macadam.get_rc())[:iNb_timesteps]
@@ -398,7 +400,7 @@ class Metro_model(Metro_module):
 
         roadcast.init_matrix(iNb_timesteps, roadcast.get_nb_matrix_col())
 
-        # ajout des donnees a la matrice du roadcast
+        # Data added to the roadcast matrix
         roadcast.set_matrix_col('RA', lRA)
         roadcast.set_matrix_col('SN', lSN)
         roadcast.set_matrix_col('RC', lRC)
@@ -420,7 +422,7 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('FP', lFP)
         roadcast.set_matrix_col('CC', naCC)
 
-        # Creation de l'objet Metro_data_collection pour roadcast
+        # Creation of the object Metro_data_collection for the roadcast
         lStandard_attributes = metro_config.get_value( \
             'DATA_ATTRIBUTE_ROADCAST_STANDARD')
         lExtended_attributes = metro_config.get_value( \
@@ -432,8 +434,7 @@ class Metro_model(Metro_module):
             Metro_data_collection_output(roadcast,lAttributes)
 
         
-        # sauvegarde de certaine valeur necessaire a le creation
-        # d'un roadcast complet
+        # Writing of data needed for the roadcast.
         roadcast_collection.set_attribute('OBSERVATION_LENGTH',
                                           iObservation_len)
         roadcast_collection.set_attribute('OBSERVATION_DELTAT_T',
