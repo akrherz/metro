@@ -48,7 +48,7 @@ _ = metro_util.init_translation('metro_metro2dom')
 class Metro_metro2dom( Metro_module ):
 
     ##
-    # attributs de la classe
+    # Class attributes
     ##
     domForecast    = None
     domRoadcast    = None
@@ -59,7 +59,7 @@ class Metro_metro2dom( Metro_module ):
     roadcast_data    = None
     
     ##
-    # methodes redefinies
+    # redefined methods
     ##
     def start( self ):
         Metro_module.start(self)
@@ -82,6 +82,7 @@ class Metro_metro2dom( Metro_module ):
         if roadcast_data != None:
             domRoadcast = \
                 self.__create_roadcast(roadcast_data.get_subsampled_data())
+
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
                 _("No roadcast, can't create DOM roadcast"))
@@ -102,7 +103,7 @@ class Metro_metro2dom( Metro_module ):
     def __create_forecast( self, data ):
 
         #
-        # construction du DOM et du root de forecast
+        # DOM and root element creation
         #
 
         sRoot_xpath = metro_config.get_value('XML_FORECAST_XPATH_ROOT')
@@ -110,15 +111,15 @@ class Metro_metro2dom( Metro_module ):
         nodeRoot = metro_xml.get_dom_root(domDoc)
 
         #
-        # construction du header de forecast
+        # Forecast header creation
         #
 
-        # concatenation de toutes les cles du header
+        # Concatenation of all header keys
         lSkeys = metro_config.get_value('XML_FORECAST_HEADER_STANDARD_ITEMS')
         lEkeys = metro_config.get_value('XML_FORECAST_HEADER_EXTENDED_ITEMS')
         lHeader_keys = lSkeys + lEkeys
 
-        # construction du xpath
+        # xpath creation
         sHeader_xpath = metro_config.get_value('XML_FORECAST_XPATH_HEADER')
 
         self.__create_header(domDoc, nodeRoot, sHeader_xpath,
@@ -126,17 +127,17 @@ class Metro_metro2dom( Metro_module ):
 
 
         #
-        # construction de la matrix de forecast
+        # Creation of the forecast matrix
         #
 
-        # concatenation de toutes les types de predictions
+        # Concatentation of all prediction types
         lSkeys = \
                metro_config.get_value('XML_FORECAST_PREDICTION_STANDARD_ITEMS')
         lEkeys = \
                metro_config.get_value('XML_FORECAST_PREDICTION_EXTENDED_ITEMS')
         lPrediction_keys = lSkeys + lEkeys
 
-        # construction du xpath
+        # xpath creation
         sPrediction_xpath = metro_config.get_value( \
             'XML_FORECAST_XPATH_PREDICTION')
 
@@ -149,7 +150,7 @@ class Metro_metro2dom( Metro_module ):
     def __create_roadcast( self, data ):
 
         #
-        # construction du DOM et du root de roadcast
+        # DOM and root element creation
         #
 
         sRoot_xpath = metro_config.get_value('XML_ROADCAST_XPATH_ROOT')
@@ -157,15 +158,15 @@ class Metro_metro2dom( Metro_module ):
         nodeRoot = metro_xml.get_dom_root(domDoc)
 
         #
-        # construction du header de forecast
+        # Roadcast header creation
         #
 
-        # concatenation de toutes les cles du header
+        # Concatenation of all header keys
         lHeader_keys = \
             metro_config.get_value('XML_ROADCAST_HEADER_STANDARD_ITEMS') + \
             metro_config.get_value('XML_ROADCAST_HEADER_EXTENDED_ITEMS')
 
-        # construction du xpath
+        # xpath creation
         sHeader_xpath = metro_config.get_value('XML_ROADCAST_XPATH_HEADER')
 
         self.__create_header(domDoc, nodeRoot, sHeader_xpath,
@@ -173,15 +174,15 @@ class Metro_metro2dom( Metro_module ):
 
 
         #
-        # construction de la matrix de forecast
+        # reation of the roadcast matrix
         #
 
-        # concatenation de toutes les types de predictions
+        # Concatentation of all prediction types
         lPrediction_keys = \
             metro_config.get_value('XML_ROADCAST_PREDICTION_STANDARD_ITEMS') + \
             metro_config.get_value('XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')
 
-        # construction du xpath
+        #  xpath creation
         sPrediction_xpath = \
             metro_config.get_value('XML_ROADCAST_XPATH_PREDICTION')
 
@@ -196,10 +197,10 @@ class Metro_metro2dom( Metro_module ):
 
         lHeader_xpath = string.split(sHeader_xpath,"/")
 
-        # supprime le root xml du xpath
+        # remove root xml from xpath
         sHeader_xpath = string.join(lHeader_xpath[2:],'/')
 
-        # si necessaire, creation d'une node pour contenir le header
+        # If necessary, node creation to contains the header
         if sHeader_xpath != "":
             nodeHeader = metro_xml.mkdir_xpath(domDoc, nodeRoot, sHeader_xpath)
         else:
@@ -207,7 +208,7 @@ class Metro_metro2dom( Metro_module ):
 
         dHeader = metro_data.get_header()
 
-        # creation du header
+        # header creation
         metro_xml.create_node_tree_from_dict(domDoc, nodeHeader,
                                              lHeader_keys, dHeader)
 
@@ -218,25 +219,25 @@ class Metro_metro2dom( Metro_module ):
 
         lPrediction_xpath = string.split(sPrediction_xpath,"/")
 
-        # creation de la branche qui contiendra les predictions
+        # Creation of the branch containing the predictions
         iNb_element = len(lPrediction_xpath)
         if iNb_element > 3:
-            # conserve le path entre le root et la feuille
+            # Keep the path between the root and the leaves.
             # ex: /niveau1/niveau2/niveau3/niveau4 -> niveau2/niveau3
             sPrediction_xpath = string.join(lPrediction_xpath[2:iNb_element-1],
                                             '/')
-            # creation de la branche
+            # Branc creation
             nodePrediction = metro_xml.mkdir_xpath(domDoc, nodeRoot,
                                                    sPrediction_xpath)
         else:
             nodePrediction = nodeRoot
 
-        # extration du nom d'une node prediction
+        # Extraction of the name of the prediction node
         sPrediction_node_name = string.join(lPrediction_xpath[iNb_element-1:],
                                             '/')
 
         #
-        # creation des donnees
+        # Data creation
         naMatrix   = metro_data.get_matrix()
         metro_xml.create_node_tree_from_matrix(domDoc, nodePrediction,
                                                sPrediction_node_name,
