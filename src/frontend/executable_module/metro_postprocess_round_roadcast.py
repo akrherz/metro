@@ -33,14 +33,14 @@
 #
 #
 
-####################################################
-# Name       : Metro_postprocess_round_roadcast         
-# Description: Rounding of float value stocked in roadcast matrix
-# Work on    : roadcast_data.subsampled_data
-# Notes      :   
-# Author     : Francois Fortin
-# Date       : 1 September 2004
-####################################################
+"""
+Name       : Metro_postprocess_round_roadcast         
+Description: Rounding of float value stocked in roadcast matrix
+Work on    : roadcast_data.subsampled_data
+Notes      :   
+Author     : Francois Fortin
+Date       : 1 September 2004
+"""
 
 from metro_postprocess import Metro_postprocess
 
@@ -73,33 +73,32 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
 
     def __round_roadcast( self, roadcast_data):
 
-        # recuperer la definitions des colonnes de la matrice
+        # Get the matrix columns definition
         lStandard_roadcast = metro_config.get_value( \
             'XML_ROADCAST_PREDICTION_STANDARD_ITEMS')
         lExtended_roadcast = metro_config.get_value( \
             'XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')        
         lRoadcast_items = lStandard_roadcast + lExtended_roadcast
 
-        # recuperer la valeur par defaut pour la precision des "float"
-        # d'un roadcast
+        # Get the default value for the accurary of "float" of the roadcast
         iDefault_precision = \
             metro_config.get_value('DEFAULT_ROADCAST_PREDICTION_PRECISION')
 
-        # traiter chacun des colonnes d'un roadcast
+        # Process of each column of roadcast
         iItem_id = 0
         for dRoadcast_item in lRoadcast_items:
 
-            # si c'est une colonne de float
+            # If this column contains float data
             if dRoadcast_item['DATA_TYPE'] == 'REAL':
 
-                # si la precision a ete specifie: l'utilise
-                # sinon utilise la valeur par defaut pour les roadcast
+                # If the accuracy have been specified: use it.
+                # Otherwhise use the default value for the roadcast.
                 if 'PRECISION' in dRoadcast_item:
                     iPrecision = dRoadcast_item['PRECISION']
                 else:
                     iPrecision = iDefault_precision
 
-                # effectuer l'arrondissement
+                # Perform the round operation
                 naCol = roadcast_data.get_matrix_col(dRoadcast_item['NAME'])
                 naCol = numarray.around(naCol,iPrecision)
                 roadcast_data.set_matrix_col(dRoadcast_item['NAME'], naCol)
