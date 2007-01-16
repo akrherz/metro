@@ -151,11 +151,12 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                       position of the earth around the sun.
 
          Notes: All times are in UTC. Since Sun.py gives times over 24h,
-                special case is done with %24.
+                special case is done with %24 (January 15th 2006 modifications).
 
          Revision History:
          Author		Date		Reason
          Miguel Tremblay      July 29th 2004
+         Miguel Tremblay     January 15th 2006
          """
         
         ctimeFirstForecast = wf_controlled_data.get_matrix_col\
@@ -199,12 +200,13 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         
         ###### In the night, the solar flux is null ###############
         for i in range(0, nTimeHourLength):
+            # Current hour is needed for the computation of
+            # fDh in the theoritical solar flux.
             nCurrentHour = (naTimeHour[i])%24
             # atmospheric forecast is before the sunrise
             # or after the sunset
-            if nCurrentHour < fSunriseTimeUTC or \
-                   nCurrentHour > fSunsetTimeUTC:
-                naSft[i] = 0
+            if self.__in_the_dark(nCurrentHour, fSunriseTimeUTC, fSunsetTimeUTC,):
+                    naSft[i] = 0
             else:
                 fDh =  nCurrentHour*pi/12.0 + \
                       self.fLon*pi/180. - pi + self.fEot        
@@ -343,3 +345,39 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                     + 3.438e-4*cos(4.0*dAlf))**2
         return dVar
 
+    def __in_the_dark(self, nCurrentTime, fSunrise, fSunset):
+        """
+        Name: __in_the_dark
+        
+        Parameters: [I] int nCurrentTime. Current time. In [0,24]
+                    [I] float fSunrise. Sunrise time as returned by Sun.py
+                      Value could be > 24.
+                    [I] float fSunset. Sunset time as returned by Sun.py
+                      Value could be > 24.
+                      
+        Returns: boul bDark
+
+        Functions Called: cos, sin
+         
+        Description: Sometimes, value returned by Sun.py are over 24. Since
+          the time of day is needed with modulo 24, a special check must be
+          performed. See https://gna.org/bugs/?8277 for more details.
+         
+        Notes: <other information, if any>
+         
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      January 15th 2006
+        """
+        bDark=False
+        
+        if ((fSunset%24 > fSunrise%24) and \
+            (nCurrentTime < fSunrise or \
+             nCurrentTime > fSunset)) or \
+             (not(fSunset%24 > fSunrise%24) and \
+              (nCurrentTime > fSunset%24 and \
+               nCurrentTime < fSunrise%24)):
+            bDark=True
+
+        return bDark
+        
