@@ -40,7 +40,7 @@ Work on    :
 Notes      :   
 Author     : Francois Fortin
 Date       : 2004
-"
+"""
 
 import sys
 import string
