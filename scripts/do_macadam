@@ -74,11 +74,11 @@ echo "C compilation"
 gcc -c  macadam.c macadam_wrap.c $PYTHON_INC
 
 echo "Fortran compilation"
-g77 -Wall -Wimplicit -Wsurprising -W -c  lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
+gfortran -Wall -Wimplicit -Wsurprising -W -c  lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
 
 
 echo "Link"
-g77 -shared macadam.o macadam_wrap.o  lib_gen.o  grille.o array2matrix.o initial.o coupla.o lib_therm.o flxsurfz.o balanc.o constPhys.o  -lc -o _macadam.so
+gfortran -shared macadam.o macadam_wrap.o  lib_gen.o  grille.o array2matrix.o initial.o coupla.o lib_therm.o flxsurfz.o balanc.o constPhys.o  -lc -o _macadam.so
 
 
 echo "Copying .so in ../frontend/model"

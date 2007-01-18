@@ -190,6 +190,7 @@ sMetro_dir = "metro-" + sVersion_number
 lPath = string.split(sys.path[0],"/")
 sRoot_path = string.join(lPath[:-2],"/")
 sMetro_real_dir = string.join(lPath[:-1],"/")
+sPackage_path = string.join(lPath[:-4],"/")
 
 if not os.path.isdir(sRoot_path + "/" + sMetro_dir):
     print "Wrong METRo directory name. The version of METRo extract from the" +\
@@ -214,14 +215,14 @@ shutil.copy2( sRoot_path + "/" + sMetro_dir + "/scripts/setup.sh",
               sRoot_path + "/" + sMetro_dir + "/")
 # copy model binary to lib
 shutil.copy2( sRoot_path + "/" + sMetro_dir + "/src/frontend/model/_macadam.so",
-              sRoot_path + "/" + sMetro_dir + "/lib")
+              sRoot_path + "/" + sMetro_dir + "/src/model/_macadam.so.prebuilt")
 shutil.copy2( sRoot_path + "/" + sMetro_dir + "/src/frontend/model/macadam.py",
-              sRoot_path + "/" + sMetro_dir + "/lib")
+              sRoot_path + "/" + sMetro_dir + "/src/model/macadam.py.prebuilt")
 
 sPackage_list = sPackage_list + sMetro_dir + "/setup.sh "
 
 # make tarball
-sCommand = "tar cjvf metro-" + sVersion_number + ".tar.bz2 --exclude CVS -C " +\
+sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + ".tar.bz2 --exclude .svn -C " +\
            sRoot_path + " " + sPackage_list
 print 'Executing', sCommand
 os.system(sCommand)
@@ -231,7 +232,7 @@ print "* Cleanup *"
 
 print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/setup.sh")
 os.remove(sRoot_path + "/" + sMetro_dir + "/setup.sh")
-print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
-os.remove(sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
-print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
-os.remove(sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
+#print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
+#os.remove(sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
+#print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
+#os.remove(sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")

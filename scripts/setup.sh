@@ -135,8 +135,8 @@ else
         mkdir  $installation_dir/src/frontend/model
     fi
     touch $installation_dir/src/frontend/model/__init__.py
-    cp $installation_dir/lib/_macadam.so $installation_dir/src/frontend/model
-    cp $installation_dir/lib/macadam.py $installation_dir/src/frontend/model
+    cp $installation_dir/src/model/_macadam.so.prebuilt $installation_dir/src/frontend/model/_macadam.so
+    cp $installation_dir/src/model/macadam.py.prebuilt $installation_dir/src/frontend/model/macadam.py
 fi
 
 echo ""
@@ -151,8 +151,8 @@ cp -r src/frontend $destination_path/bin
 echo  "* Copying METRo data exemples to: "$destination_path/data
 cp -r data $destination_path/
 
-echo  "* Copying METRo external lib to: "$destination_path/bin/external_lib/
-cp lib/* $destination_path/bin/external_lib/
+#echo  "* Copying METRo external lib to: "$destination_path/bin/external_lib/
+#cp lib/* $destination_path/bin/external_lib/
 
 echo  "* Copying METRo documentation to: "$destination_path/doc
 cp -r doc $destination_path/
@@ -169,8 +169,14 @@ echo "METRo successfully installed in '$destination_path'"
 echo "---------------------------------------------------"
 echo ""
 echo "* Installation done *"
+echo ""
 echo "To test the installation of METRo"
-echo " go in directory  $destination_path/bin/ and try the command 'python metro --selftest'"
-echo "Compare the files  ../data/roadcast/roadcast_selftest.xml and"
-echo " ../data/roadcast/roadcast_selftest_reference.xml. They should be identical."
- 
+echo "---------------------------------"
+echo "Go into the METRo directory:"
+echo " 'cd $destination_path/bin/'" 
+echo "Launch METRo selftest:"
+echo " 'python metro --selftest'"
+echo "Compare the files:"
+echo " 'diff ../data/roadcast/roadcast_selftest.xml ../data/roadcast/roadcast_selftest_reference.xml'"
+echo "They should be identical except for the production-date."
+
