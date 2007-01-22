@@ -92,6 +92,11 @@ src/frontend/executable_module/metro_string2dom_station.py
 src/frontend/executable_module/metro_write.py
 src/frontend/executable_module/metro_write_forecast.py
 src/frontend/executable_module/metro_write_roadcast.py
+src/frontend/executable_module/metro_validate.py
+src/frontend/executable_module/metro_validate_forecast.py
+src/frontend/executable_module/metro_validate_observation.py
+src/frontend/executable_module/metro_validate_observation_ref.py
+src/frontend/executable_module/metro_validate_station.py
 
 src/frontend/external_lib/Sun.py
 src/frontend/external_lib/W3CDate.py
@@ -119,6 +124,8 @@ src/model/macadam.c
 src/model/macadam.h
 src/model/macadam.i
 src/model/number.h
+src/model/_macadam.so.prebuilt
+src/model/macadam.py.prebuilt
 
 doc
 
@@ -192,47 +199,68 @@ sRoot_path = string.join(lPath[:-2],"/")
 sMetro_real_dir = string.join(lPath[:-1],"/")
 sPackage_path = string.join(lPath[:-4],"/")
 
-if not os.path.isdir(sRoot_path + "/" + sMetro_dir):
-    print "Wrong METRo directory name. The version of METRo extract from the" +\
-          "\nsrc/frontend/metro_config.py file is: '%s'.\n"  % (sVersion_number) +\
-          "The metro directory name is: '%s'.\n" % (sMetro_real_dir) +\
-          "\n and should be %s \n"  % (sRoot_path + "/" + sMetro_dir) +\
-          "Please correct the above error."
-    sys.exit(1)
+#if not os.path.isdir(sRoot_path + "/" + sMetro_dir):
+#    print "Wrong METRo directory name. The version of METRo extract from the" +\
+#          "\nsrc/frontend/metro_config.py file is: '%s'.\n"  % (sVersion_number) +\
+#          "The metro directory name is: '%s'.\n" % (sMetro_real_dir) +\
+#          "\n and should be %s \n"  % (sRoot_path + "/" + sMetro_dir) +\
+#          "Please correct the above error."
+#    sys.exit(1)
 
 # add leading metro directory name to each filename
-sPackage_list = string.replace(sPackage_list,"\n","\n" + sMetro_dir + "/")
+sPackage_list = string.replace(sPackage_list,"\n","\n" + "trunk" + "/")
 
 # replace \n by a space character
 sPackage_list = string.replace(sPackage_list,"\n"," ")
 
 # remove any single sMetro_dir entry
 sPackage_list = sPackage_list + " "
-sPackage_list = string.replace(sPackage_list," " + sMetro_dir + "/ "," ")
+
+# do it 2 time (dirty hack)
+sPackage_list = string.replace(sPackage_list," " + "trunk" + "/ "," ")
+sPackage_list = string.replace(sPackage_list," " + "trunk" + "/ "," ")
 
 # copy setup.sh in root of package
-shutil.copy2( sRoot_path + "/" + sMetro_dir + "/scripts/setup.sh",
-              sRoot_path + "/" + sMetro_dir + "/")
+shutil.copy2( sRoot_path + "/" + "trunk" + "/scripts/setup.sh",
+              sRoot_path + "/" + "trunk" + "/")
 # copy model binary to lib
-shutil.copy2( sRoot_path + "/" + sMetro_dir + "/src/frontend/model/_macadam.so",
-              sRoot_path + "/" + sMetro_dir + "/src/model/_macadam.so.prebuilt")
-shutil.copy2( sRoot_path + "/" + sMetro_dir + "/src/frontend/model/macadam.py",
-              sRoot_path + "/" + sMetro_dir + "/src/model/macadam.py.prebuilt")
+shutil.copy2( sRoot_path + "/" + "trunk" + "/src/frontend/model/_macadam.so",
+              sRoot_path + "/" + "trunk" + "/src/model/_macadam.so.prebuilt")
+shutil.copy2( sRoot_path + "/" + "trunk" + "/src/frontend/model/macadam.py",
+              sRoot_path + "/" + "trunk" + "/src/model/macadam.py.prebuilt")
 
-sPackage_list = sPackage_list + sMetro_dir + "/setup.sh "
+sPackage_list = sPackage_list + "trunk" + "/setup.sh "
+
+#print "[" + sPackage_list + "]"
+
+
+
 
 # make tarball
-sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + ".tar.bz2 --exclude .svn -C " +\
+#sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + \
+#           ".tar.bz2 --exclude .svn -C --transform 's,^\./,%s/,' ." % (sMetro_dir) + \
+#           sRoot_path + " " + sPackage_list
+sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + \
+           ".tar.bz2 --exclude .svn --transform 's,^trunk/,%s/,' " % (sMetro_dir) + " -C " + \
            sRoot_path + " " + sPackage_list
 print 'Executing', sCommand
+#import sys
+#sys.exit(1)
 os.system(sCommand)
+
 
 # cleanup
 print "* Cleanup *"
 
-print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/setup.sh")
-os.remove(sRoot_path + "/" + sMetro_dir + "/setup.sh")
+print "remove '%s'" % (sRoot_path + "/" + "trunk" + "/setup.sh")
+os.remove(sRoot_path + "/" + "trunk" + "/setup.sh")
 #print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
 #os.remove(sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
 #print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
 #os.remove(sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
+
+print ""
+print 
+print "* Package Creation Done *"
+print "The METRo Package is located here:"
+print "'" + sPackage_path + "/metro-" + sVersion_number + ".tar.bz2"
