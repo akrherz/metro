@@ -194,7 +194,9 @@ if not sVersion_number:
 sMetro_dir = "metro-" + sVersion_number
 
 # get path of metro parent directory
+
 lPath = string.split(sys.path[0],"/")
+sSvn_root_dir = lPath[-2]
 sRoot_path = string.join(lPath[:-2],"/")
 sMetro_real_dir = string.join(lPath[:-1],"/")
 sPackage_path = string.join(lPath[:-4],"/")
@@ -208,7 +210,7 @@ sPackage_path = string.join(lPath[:-4],"/")
 #    sys.exit(1)
 
 # add leading metro directory name to each filename
-sPackage_list = string.replace(sPackage_list,"\n","\n" + "trunk" + "/")
+sPackage_list = string.replace(sPackage_list,"\n","\n" + sSvn_root_dir + "/")
 
 # replace \n by a space character
 sPackage_list = string.replace(sPackage_list,"\n"," ")
@@ -217,19 +219,19 @@ sPackage_list = string.replace(sPackage_list,"\n"," ")
 sPackage_list = sPackage_list + " "
 
 # do it 2 time (dirty hack)
-sPackage_list = string.replace(sPackage_list," " + "trunk" + "/ "," ")
-sPackage_list = string.replace(sPackage_list," " + "trunk" + "/ "," ")
+sPackage_list = string.replace(sPackage_list," " + sSvn_root_dir + "/ "," ")
+sPackage_list = string.replace(sPackage_list," " + sSvn_root_dir + "/ "," ")
 
 # copy setup.sh in root of package
-shutil.copy2( sRoot_path + "/" + "trunk" + "/scripts/setup.sh",
-              sRoot_path + "/" + "trunk" + "/")
+shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/scripts/setup.sh",
+              sRoot_path + "/" + sSvn_root_dir + "/")
 # copy model binary to lib
-shutil.copy2( sRoot_path + "/" + "trunk" + "/src/frontend/model/_macadam.so",
-              sRoot_path + "/" + "trunk" + "/src/model/_macadam.so.prebuilt")
-shutil.copy2( sRoot_path + "/" + "trunk" + "/src/frontend/model/macadam.py",
-              sRoot_path + "/" + "trunk" + "/src/model/macadam.py.prebuilt")
+shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/src/frontend/model/_macadam.so",
+              sRoot_path + "/" + sSvn_root_dir + "/src/model/_macadam.so.prebuilt")
+shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/src/frontend/model/macadam.py",
+              sRoot_path + "/" + sSvn_root_dir + "/src/model/macadam.py.prebuilt")
 
-sPackage_list = sPackage_list + "trunk" + "/setup.sh "
+sPackage_list = sPackage_list + sSvn_root_dir + "/setup.sh "
 
 #print "[" + sPackage_list + "]"
 
@@ -241,7 +243,7 @@ sPackage_list = sPackage_list + "trunk" + "/setup.sh "
 #           ".tar.bz2 --exclude .svn -C --transform 's,^\./,%s/,' ." % (sMetro_dir) + \
 #           sRoot_path + " " + sPackage_list
 sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + \
-           ".tar.bz2 --exclude .svn --transform 's,^trunk/,%s/,' " % (sMetro_dir) + " -C " + \
+           ".tar.bz2 --exclude .svn --transform 's,^%s/,%s/,' " % (sSvn_root_dir,sMetro_dir) + " -C " + \
            sRoot_path + " " + sPackage_list
 print 'Executing', sCommand
 #import sys
@@ -252,8 +254,8 @@ os.system(sCommand)
 # cleanup
 print "* Cleanup *"
 
-print "remove '%s'" % (sRoot_path + "/" + "trunk" + "/setup.sh")
-os.remove(sRoot_path + "/" + "trunk" + "/setup.sh")
+print "remove '%s'" % (sRoot_path + "/" + sSvn_root_dir + "/setup.sh")
+os.remove(sRoot_path + "/" + sSvn_root_dir + "/setup.sh")
 #print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
 #os.remove(sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
 #print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
@@ -263,4 +265,4 @@ print ""
 print 
 print "* Package Creation Done *"
 print "The METRo Package is located here:"
-print "'" + sPackage_path + "/metro-" + sVersion_number + ".tar.bz2"
+print "'" + sPackage_path + "/metro-" + sVersion_number + ".tar.bz2" + "'"
