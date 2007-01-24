@@ -199,7 +199,7 @@ lPath = string.split(sys.path[0],"/")
 sSvn_root_dir = lPath[-2]
 sRoot_path = string.join(lPath[:-2],"/")
 sMetro_real_dir = string.join(lPath[:-1],"/")
-sPackage_path = string.join(lPath[:-4],"/")
+sPackage_path = string.join(lPath[:-2],"/")
 
 #if not os.path.isdir(sRoot_path + "/" + sMetro_dir):
 #    print "Wrong METRo directory name. The version of METRo extract from the" +\
