@@ -90,7 +90,7 @@ if [ -z $FC ]; then
 fi
 
 echo "Fortran compilation"
-$FC -Wall -Wimplicit -Wsurprising -W -c  lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
+$FC -Wall -Wsurprising -W -c  lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
 
 
 echo "Link"
