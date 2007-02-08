@@ -65,7 +65,7 @@
 /* Those variables are declared here because we have to get them in python */
 /* This cannot be perform unless you retrieve one pointer as a return value */
 static struct doubleStruct stRA; /* Liquid accumlation */
-static struct doubleStruct stSN; /* Snow/ice acculation */
+static struct doubleStruct stSN; /* Snow/ice accumulation */
 static struct longStruct   stRC; /* Road condition */
 static struct doubleStruct stRT; /* Road temperature */
 static struct doubleStruct stIR; /* Infra-red flux */
@@ -316,7 +316,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   }/* End else observation complete */
 
   
-  /************Prevision**************************************************/
+  /************ roadcast **************************************************/
   f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr, dpWw, &dWa, &dAlr, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray); 
 
   if(*(stEc.plArray)){
@@ -325,7 +325,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     bSucces = FALSE;       
     goto liberation;
   }
-  /* Preparation du fichier de sortie */
+  /* Preparation of output file */
   if(!bSilent)
     printf("Free memory\n");
 
@@ -353,55 +353,9 @@ int main(argc, argv)
  return 0; 
 } 
 
-
-/****************************************************************************
- Name: Echo
- 
- Parameters: None
-
-Returns: None
-
-Functions Called: printf
-
-Description:
-Function that only does a printf of "here".  Used to deploy this code
- in python.
-
-Notes:
-
-Revision History:
-
-Author		Date		Reason
-Miguel Tremblay 28 mai 2004     Put the C code in python.
-
- ***************************************************************************/
-void Echo()
-{
-  printf("here\n");
-}
-
-/****************************************************************************
- Name: Echo
- 
- Parameters: None
-
-Returns: None
-
-Functions Called: printf
-
-Description: Initialize all the static structure
-
-Notes:
-
-Revision History:
-
-Author		Date		Reason
-Miguel Tremblay 9 mars 2005     
-
-***************************************************************************/
 void init_structure(long nSize)
 {
-  /* Allocation de mémoire */
+  /* Memory allocation */
 
   /* Size */
 
@@ -432,12 +386,6 @@ void init_structure(long nSize)
   stBB.pdArray = (double*)calloc((nSize),sizeof(double));
   stFP.pdArray = (double*)calloc((nSize),sizeof(double));
   stEc.plArray = (long*)calloc((1),sizeof(long));
-}
-
-void mydebug(double* list1, long* list2){
-
-  printf("In mydebug\n");
-
 }
 
 struct doubleStruct get_ra(void){

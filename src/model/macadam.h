@@ -42,11 +42,7 @@
 
 void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP, double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, double* dpFT, double* dpTYP, double* dpRc, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSWO,  BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent);
 	      
-void Echo(void);
-
 void init_structure(long nSize);
-
-void mydebug(double* list1, long* list2);
 
 struct doubleStruct get_ra(void);
 struct doubleStruct get_sn(void);
