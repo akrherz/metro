@@ -34,6 +34,8 @@
 
 
 ***
+*     Subroutine COUPLA: Do the coupling between the atmospheric forecast
+*                        and the observations of the RWIS station.
 *     Sous-routine COUPLA: effectue le couplage des previsions  avec 
 *                          les observations des stations meteo-routieres
 *
@@ -59,35 +61,35 @@
 *     DEFINITIONS     *
 ***                 ***
 ***
-*     Entrees
+*     Input
 *     -------
-*     FS: Flux solaire incident (W)
-*     FI: Flux infra-rouge incident (W)
-*     P0: Pression de surface (Pa)
-*     TA: Temperature de l'air (C) au niveau ZT
-*     QA: Humidite specifique (g/kg) au niveau ZT
-*     VA: Vent (m/s) au niveau ZU
-*     TYP: Type probable de precipitation ( 1 -> pluie, 2 -> neige )
-*     FT: "Forecast time" (heures GMT)
-*     PR: Taux de precipitation (m/s)
-*     PVC: Etat de la chaussee (0 [sec] ou 1 [mouille])
-*     iref: Nombre de niveau dans la grille
-*     NTP: Indice de debut du couplage
-*     NTP2: Indice de fin du couplage
-*     CNT: Constantes de la grille
-*     Z0: Longueur de rugosite (m)
-*     Z0T: Longueur de rugosite (m)
-*     ZU: Hauteur du niveau de la prevision de vent (m)
-*     ZT: Hauteur du niveau de la prevision atmospherique (m)
-*     EPSILON: Emissivite de la route
-*     TS0: Temperature cible pour la fin du couplage (C)
-*     FCOR: Facteur de Coriolis
-*     WW: Vents minimum le jour et la nuit (m/s)
-*     WA: Flux "anthropogenique"
-*     ALN: Albedo de la neige
-*     ALR: Albedo de la route 
-*     FP: Point de congelation (C)
-*     FLAT: Specifie si pont ou non
+*     FS: Incident solar flux (W)
+*     FI: Incident infra-red flux (W)
+*     P0: Surface pressure (Pa)
+*     TA: Air temperature (C) at level ZT
+*     QA: Specific humidity (g/kg) at level ZT
+*     VA: Wind (m/s) at level ZU
+*     TYP: Probable type of precipitation ( 1 -> rain, 2 -> snow )
+*     FT: "Forecast time" (GMT)
+*     PR: Precipitation rate (m/s)
+*     PVC: Road condition (0 [dry] ou 1 [wet])
+*     iref: Number of levels in the grid
+*     NTP: Index for the start of coupling
+*     NTP2: Index for the end of coupling
+*     CNT: Grid constants
+*     Z0: Roughness length (m)
+*     Z0T: Roughness length (m)
+*     ZU: Height of level of the wind forecast (m)
+*     ZT:  Height of level of the atmospheric forecast (m)
+*     EPSILON: Road emissivity
+*     TS0: Target temperature for the end of coupling (C)
+*     FCOR: Coriolis factor
+*     WW: Minimum winds for the day and the night (m/s)
+*     WA: Anthropogenic flux
+*     ALN: Snow Albedo 
+*     ALR: Road Albedo 
+*     FP: Frozing point (C)
+*     FLAT: Road or bridge
 ***
       LOGICAL FLAT
       INTEGER iref, NTP, NTP2
@@ -108,21 +110,21 @@
       INTEGER npRC(DTMAX)
       INTEGER nCheckBefore, nCheckAfter, n30SecondsStepIn3Hours
 ***
-*     Entrees/Sorties
+*     I/O
 *     ---------------
-*     ITP: Profil de temperature de la route (C, iref niveaux != 0)
+*     ITP: Road temperature profile  (C, iref levels != 0)
 ***
       LOGICAL ECHEC
       DOUBLE PRECISION ITP(n)
 ***
-*     Sorties
+*     Output
 *     -------
-*     FAIL: Indique si le couplage a echoue
-*     TS: Serie temporelle de temperature de surface
-*     FSCORR: Coefficient de couplage du flux solaire
-*     FICORR: Coefficient de couplage du flux infra-rouge
-*     ER1: Quantite d'eau sur la route (mm)
-*     ER2: Equivalent en eau de la neige/glace sur la route (mm)
+*     FAIL: Tells if the coupling have failed or not
+*     TS: Time series for the surface temperature
+*     FSCORR: Coupling Coefficient for the solar flux
+*     FICORR: Coupling Coefficient for the infra-red flux
+*     ER1: Water quantity of the road (mm)
+*     ER2: Water Equivalent for ice/snow on the road (mm)
 ***
       LOGICAL FAIL
       DOUBLE PRECISION  FSCORR, FICORR, ER1, ER2
@@ -140,13 +142,13 @@
       REAL CL, PR1, PR2, DX, PRG, FZ
       REAL coeff1, coeff2, cotemp, COFS, COFI
 ***
-*     Variables de FLXSURFZ
+*     Variables of FLXSURFZ
 *     ---------------------
 ***
       REAL CMU, CTU, RIB,  ILMO, FTEMP, FVAP
       REAL H, UE, LZZ0, LZZ0T, FM, FH
 ***
-*     Initialisation du common CLELOG
+*     Initialisation of common CLELOG
 *     -------------------------------
 ***
 
@@ -234,9 +236,9 @@
          WRITE(*,*) "DEBUT COUPLA"
       end if
 *****
-**     Conversion du array en matrice
+**     Conversion of array in matrix
       CALL ARRAY2MATRIXDOUBLEPRECISION(CNT_IN, CNT , n, 2)
-**     Initialisation de parametres
+**     Initialisation of parametres
 **     ++++++++++++++++++++++++++++
       FAIL = .FALSE.
       DOWN = .FALSE.
@@ -245,12 +247,12 @@
       coeff1 = 0.
       coeff2 = 1.
       ILMO = 1.
-**     Claculer la duree du couplage
+**    Compute the length of coupling
       COUDUR = real(NTP2-NTP+1)*DT/3.6e3
-*     Initialisation de la variation d'albedo en fonction de la neige
+*     Initialisation of albedo variation due to snow presence
 *     ---------------------------------------------------------------
 *     |                                                             |
-*     |  Voir balanc.F pour la description de la fonction utilisee  |
+*     |  See balanc.F for the description of the function used      |
 *     |                                                             |
 *     ---------------------------------------------------------------
       M = (ALN - ALR) / 5.
@@ -295,42 +297,42 @@
       end if
 
 *     +++++++++++++++++++++++++++++++++
-*      Entree de la boucle de couplage
+*     Entry of the coupling loop
 *     +++++++++++++++++++++++++++++++++
       do i = NTP+1,NTP2
-*        Ajustement des conditions de chaussee
+*        Adjustement of the road conditions
 *        +++++++++++++++++++++++++++++++++++++
          ER1 = PVC(i)*ER1
          ER2 = PVC(i)*ER2
-*        Preparation des differents termes du bilan
+*        Preparation of differents terms of balance
 *        ++++++++++++++++++++++++++++++++++++++++++
 *        road temp in Kelvins         
          TSK = T(1,now) + TCDK
-*        radiation corps noir
+*        Black body radiation 
          RA = EPSILON*STEFAN*TSK**4
-*        humidite a la suface
+*        Humidity at the surface
          call SRFHUM  ( QG, CL, ER1, ER2, TSK, P0(i), QA(i), FP )
-*        densite de l'air au sol
+*        Air density at ground
          ier = CHKDIV ( RGASD * FOTVT ( TSK , QG ), "coupla.ftn", 209 )
          if ( ier .eq. 1 ) then
             ECHEC = .true.
             return
          end if
          RHO = P0(i) / ( RGASD * FOTVT ( TSK , QG ) )
-*        modification du vent
+*        Wind modification 
          call VENMIN  ( WW, FT(i), VA(i) )
-*        energie utilisee/liberee par neige fondante/pluie verglacante
+*        Energy used/free by the melting snow/freezing rain
          call VERGLAS ( TYP(i), T(1,now), FP, FZ, PR(i),
      *                  PR1, PR2, PRG, FAIL )
-*        coefficients des flux de chaleur
+*        Heat flux coefficients
          call FLXSURFZ( CMU  , CTU , RIB  , FTEMP, FVAP ,
      *                  ILMO, UE   , FCOR , TA(i)+TCDK,
      *                  QA(i), ZU, ZT  , VA(i), TSK  , QG   ,
      *                  H    , Z0  , Z0T  , LZZ0 , LZZ0T,
      *                  FM   , FH  ,  1,  1     )
-*        albedo efficace
+*        Effective albedo 
          AL = 1.0 - max( ALR,min( ALN,M*ER2+ALR-M ) )
-*        Calcul du bilan energetique
+*        Energetic balance computation
 *        +++++++++++++++++++++++++++
          G(0) = max(0.0,REAL(COFS*AL*FS(i))) - RA 
      *        + COFI*EPSILON*FI(i)
@@ -350,10 +352,10 @@
          T(1,next) = REAL(T(1,now)+DT*(CNT(1,2)*( G(1) - G(0)) ))
 
          DX = 0.0
-*        Calculer l'evolution des temperatures dans le sol         
+*        Compute the evolution of temperature in the ground
 *        +++++++++++++++++++++++++++++++++++++++++++++++++
          call TSEVOL ( T, iref, now, CNT, G, FLAT, TA(i) )
-*        Bilan des accumulations au sol
+*        Balance of accumulation at the ground
 *        ++++++++++++++++++++++++++++++
          call RODCON ( ER1, ER2, RHO  , CTU, CL , FP , FZ , 
      *                 T(1,now), QA(i), QG , PR1, PR2, PRG, DX , 
@@ -363,7 +365,7 @@
          dpRA(i) = ER1
          dpSN(i) = ER2
 
-*        Inversion des indices
+*        Inversion of indices
 *        +++++++++++++++++++++
          next = 3 - next
          now = 3 - now
@@ -375,7 +377,7 @@
      *        min(99.99,max(-99.99,T(1,now))),
      *        min(99.99,max(-99.99,REAL(TSO))),COFI,COFS
 *      end if
-*     Determiner la necessite d'autres iterations
+*     Check if other iterations are necessary
 *     +++++++++++++++++++++++++++++++++++++++++++
       if ( iter .eq. 25 ) then
          FICORR = 0.0
@@ -422,7 +424,7 @@
       end if
  223  format(1x,i3,3x,f5.2,3x,f6.2,3x,f6.2,f9.5,f9.5)
 
-**     Conversion de la matrice en array
+**     Conversion of matrix in array
       CALL MATRIX2ARRAYDOUBLEPRECISION(CNT, CNT_IN, n, 2)
 
       if( .not. bSilent) then
