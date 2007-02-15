@@ -380,7 +380,7 @@ class Metro_model(Metro_module):
         lFG = (macadam.get_g())[:iNb_timesteps]
         lBB = (macadam.get_bb())[:iNb_timesteps]
         lFP = (macadam.get_fp())[:iNb_timesteps]
-
+        lSST =  (macadam.get_sst())[:iNb_timesteps]
 
         # TODO MT: Le +30 est la pour que l'output soit au bon moment.
         #  Il y a eu un probleme dans la conversion entre le C et le fortran
