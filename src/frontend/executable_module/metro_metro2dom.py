@@ -216,7 +216,6 @@ class Metro_metro2dom( Metro_module ):
     def __create_matrix( self, domDoc, nodeRoot, sPrediction_xpath,
                          lPrediction_keys, metro_data):
 
-
         lPrediction_xpath = string.split(sPrediction_xpath,"/")
 
         # Creation of the branch containing the predictions
@@ -226,7 +225,7 @@ class Metro_metro2dom( Metro_module ):
             # ex: /niveau1/niveau2/niveau3/niveau4 -> niveau2/niveau3
             sPrediction_xpath = string.join(lPrediction_xpath[2:iNb_element-1],
                                             '/')
-            # Branc creation
+            # Branch creation
             nodePrediction = metro_xml.mkdir_xpath(domDoc, nodeRoot,
                                                    sPrediction_xpath)
         else:
