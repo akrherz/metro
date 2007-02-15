@@ -77,6 +77,7 @@ static struct doubleStruct stG;  /* Ground flux */
 static struct doubleStruct stBB; /* Black body radiation */ 
 static struct doubleStruct stFP; /* Phase change energy */
 static struct longStruct   stEc; /* Boolean to know if the execution was a success */
+static struct doubleStruct stSST; /* Subsurface temperature */
  
 /****************************************************************************
  Name: Do_Metro 
@@ -136,7 +137,7 @@ Notes:
 Revision History:
 
 Author		Date		Reason
-Miguel Tremblay  mai 2004     
+Miguel Tremblay  May 2004     
  
 ***************************************************************************/
 
@@ -147,23 +148,22 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   /* Argument de la ligne de commande. Donne par python  */
 
-/**     Un "O" a la fin du nom de la variable indique qu'elle provient 
-  **     des observations locales/ An "O" at the end of a variable name 
+ /**     A "O" at the end of a variable name 
   **     indicates it comes from the local observation
   **
   **     Ex: TA, TAO (observations)
   **
-  **     TA: temperature de l'air / air temperature
-  **     TD: point de rosee / dew point temperature
-  **     VA: vitesse du vent / wind speed
-  **     DD: direction du vent / wind direction
-  **     FS : solar flux solaire
-  **     FI : infra-red flux infra-rouge
-  **     AC: accumulations
-  **     TYP: type de precipitation type
-  **     P0 : pression a la surface / surface pressure
-  **     GMT: Variable contenant l'heure "reelle"
-  **     DT: Temperature sous la surface
+  **     TA : air temperature
+  **     TD : dew point temperature
+  **     VA : wind speed
+  **     DD : wind direction
+  **     FS : solar flux 
+  **     FI : infra-red flux 
+  **     AC : accumulations
+  **     TYP: precipitation type
+  **     P0 : surface pressure
+  **     GMT: Time GMT
+  **     DT : Subsurface temperature
   ******/
   BOOL bFail = FALSE;
   BOOL bSucces = TRUE;
@@ -263,21 +263,35 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     long nOne =1;
     if(!bSilent)
       printf(" Not enough data for coupling.\n");
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, &dMLon, dpGri, npSwo); 
-    f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
+    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[0]),\
+		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
+		    &dMLon, dpGri, npSwo); 
+    f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, \
+		     &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
     nNtp2 = nLenObservation - nDeltaTIndice;
   }
   else if(bpNoObs[0]){
     BOOL bTmp = FALSE;    
     if(!bSilent)
       printf(" Not enough data for initialization.\n");
-    nNtdcl  = nLenObservation - ((nLenObservation < 28800.0/dDT) ? nLenObservation : 28800.0/dDT);
-    if(nNtdcl == 0) /* Patch because nNtdcl does not take the value 0 in fortran!*/
+    nNtdcl  = nLenObservation - ((nLenObservation < 28800.0/dDT)\
+				 ? nLenObservation : 28800.0/dDT);
+    /* Patch because nNtdcl does not take the value 0 in fortran!*/
+    if(nNtdcl == 0) 
       nNtdcl =1;
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nNtdcl]), &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]), &dDiff, &dMLon, dpGri, npSwo); 
+    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
+		    &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]),\
+		    &dDiff, &dMLon, dpGri, npSwo); 
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC,\
+		    &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, \
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, \
+		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
+		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
+		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
+		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, \
+		    stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
     if(!bSilent)
       printf("coupla 1 \n");
     if(*(stEc.plArray)){
@@ -288,19 +302,32 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       long nOne = 1;
       if(!bSilent)
 	printf("fail\n");      
-      f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
+      f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
+		       &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
      }
   }
   else{/* observation complete */
     long nOne =1;
     if(!bSilent)
       printf("Complete observations\n");
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]), &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, dpGri, npSwo); 
-    nNtdcl  = nLenObservation - nDeltaTIndice - ((nLenObservation-nDeltaTIndice < 28800.0/dDT) ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
-    f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
+    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]),\
+		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
+		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, dpGri, npSwo); 
+    nNtdcl  = nLenObservation - nDeltaTIndice -\
+      ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
+       ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
+    f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
+		     &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
+		    dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp,\
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa,\
+		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
+		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
+		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
+		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
+		    stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
     if(!bSilent)
       printf("coupla 2\n");
     if(*(stEc.plArray)){
@@ -317,7 +344,14 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   
   /************ roadcast **************************************************/
-  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr, dpWw, &dWa, &dAlr, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,  &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray, stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray); 
+  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef,\
+		  &nIR40, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr,\
+		  dpWw,&dWa, &dAlr, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
+		  &dEr2, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
+		  stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray,\
+		  stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
+		  stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray,\
+		  stSST.pdArray); 
 
   if(*(stEc.plArray)){
     if(!bSilent)
@@ -372,6 +406,7 @@ void init_structure(long nSize)
   stBB.nSize = nSize;
   stFP.nSize = nSize;
   stEc.nSize = 1;
+  stSST.nSize = nSize;
   /* Memory alloc */
   stRC.plArray = (long*)calloc((nSize),sizeof(long));
   stRA.pdArray = (double*)calloc((nSize),sizeof(double));
@@ -386,6 +421,7 @@ void init_structure(long nSize)
   stBB.pdArray = (double*)calloc((nSize),sizeof(double));
   stFP.pdArray = (double*)calloc((nSize),sizeof(double));
   stEc.plArray = (long*)calloc((1),sizeof(long));
+  stSST.pdArray = (double*)calloc((nSize),sizeof(double));
 }
 
 struct doubleStruct get_ra(void){
@@ -453,4 +489,9 @@ struct doubleStruct get_fp(void){
 struct longStruct get_echec(void){
 
   return stEc;
+}
+
+struct doubleStruct get_sst(void){
+
+  return stSST;
 }
