@@ -42,13 +42,13 @@
 *     Date: Juillet 1999
 ***
       SUBROUTINE BALANC ( FS  , FI , P0  , TA , QA , VA , TYP, FT, PR,
-     *                    iref, NTP, NTFM, CNT_IN, ITP, FLAT,
+     *                    iref, ir40, NTP, NTFM, CNT_IN, ITP, FLAT,
      *                    FCOR, WW , WA, ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    EPSILON, Z0, Z0T, ZU, ZT, ECHEC, dpRT, 
      *                    dpRA, dpSN,
      *                    npRC, dpIR, dpSF, dpFV,
-     *                    dpFC, dpFA, dpG, dpBB, dpFP)
+     *                    dpFC, dpFA, dpG, dpBB, dpFP, dpSST)
 
       IMPLICIT NONE
       INTEGER i, j
@@ -73,7 +73,6 @@
 *     TYP: Type probable de precipitation ( 1 -> pluie, 2 -> neige )
 *     FT: "Forecast time" (heures GMT)
 *     PR: Taux de precipitation (m/s)
-*     iref: Nombre de niveau dans la grille
 *     NTP: Indice de debut de la prevision
 *     NTFM: Indice de fin de la prevision
 *     CNT: Constantes de la grille
@@ -94,9 +93,11 @@
 *     ITP: Profil de temperature de la route (C, iref niveaux != 0)
 *     FSCORR: Coefficient de couplage du flux solaire
 *     FICORR: Coefficient de couplage du flux infra-rouge
+*     iref:  number of grid levels 
+*     ir40: level at 40 cm depth 
 ***
       LOGICAL FLAT
-      INTEGER iref, NTP, NTFM
+      INTEGER iref, ir40, NTP, NTFM
       DOUBLE PRECISION FS(DTMAX),  FI(DTMAX), P0(DTMAX)
       DOUBLE PRECISION TA(DTMAX), QA(DTMAX), VA(DTMAX)
       DOUBLE PRECISION TYP(DTMAX), FT(DTMAX), PR(DTMAX)
@@ -110,7 +111,7 @@
       DOUBLE PRECISION dpFC(DTMAX), dpFA(DTMAX)
       DOUBLE PRECISION dpG(DTMAX), dpBB(DTMAX)
       DOUBLE PRECISION dpRT(DTMAX), dpFV(DTMAX)
-      DOUBLE PRECISION dpFP(DTMAX)
+      DOUBLE PRECISION dpFP(DTMAX), dpSST(DTMAX)
       INTEGER npRC(DTMAX)
 ***
 *     Entrees/Sorties
@@ -339,6 +340,7 @@
          dpFA(i) = WA
          dpFP(i) = PRG
          dpG(i) = G(0)
+         dpSST(i) = T(ir40, now)
          G(1) = CNT(1,1) * ( T(2,now) - T(1,now) )
 
 *        Transition de phase lors d'un passage par le point de fusion
