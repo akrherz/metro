@@ -107,8 +107,10 @@ t = gettext.translation('metro_util', get_exec_root_path() +\
 _ = t.gettext
     
 
-# Utiliser pour tester la validite d'un import
 def test_import( sModule_name ):
+    """
+    Used to test check if a module is present.
+    """
     try:
         sCode = "import " + sModule_name
         exec sCode
