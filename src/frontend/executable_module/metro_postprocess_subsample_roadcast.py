@@ -65,16 +65,23 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
         pRoadcast.set_data_collection(roadcast_data)
 
     def __subsample_roadcast( self, roadcast):
-        lElementToExtract = ['RA', 'SN', 'RC', 'ST', 'ROADCAST_TIME', \
-                             'HH', 'AT', 'WS', 'TD', 'QP-SN', 'QP-RA', \
-                             'IR', 'SF', 'FV', 'FC', 'FA', 'FG', 'BB', \
-                             'FP', 'CC']
+
+        # Get all roadcast items
+        lStandard_roadcast = metro_config.get_value( \
+            'XML_ROADCAST_PREDICTION_STANDARD_ITEMS')
+        lExtended_roadcast = metro_config.get_value( \
+            'XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')        
+        lRoadcast_items = lStandard_roadcast + lExtended_roadcast
+
+        
         dElement_Array = {}
 
         rc_controlled = roadcast.get_controlled_data()
 
         # Put array in a dictionnary
-        for sElement in lElementToExtract:
+        for dRoadcast_item in lRoadcast_items:
+            sElement = dRoadcast_item['NAME']
+
             dElement_Array[sElement] = rc_controlled.get_matrix_col(sElement)
 
         # Get some values necessary for the creation of a complete roadcast
