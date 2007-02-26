@@ -1015,6 +1015,11 @@ def set_default_value( ):
                     'XML_TAG':"st",
                     'DATA_TYPE':"REAL",
                     'PRECISION':2},
+
+                   {'NAME':"SST",
+                    'XML_TAG':"sst",
+                    'DATA_TYPE':"REAL",
+                    'PRECISION':2},
                    ],
 
          'FROM'     :CFG_INTERNAL,

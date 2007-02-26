@@ -421,6 +421,9 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('BB', lBB)
         roadcast.set_matrix_col('FP', lFP)
         roadcast.set_matrix_col('CC', naCC)
+#        print "ST=" + str(lST)
+#        print "SST=" + str(lSST)
+        roadcast.set_matrix_col('SST', lSST)
 
         # Creation of the object Metro_data_collection for the roadcast
         lStandard_attributes = metro_config.get_value( \
