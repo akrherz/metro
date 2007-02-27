@@ -2,7 +2,7 @@
 <roadcast>
   <header>
     <version>1.4</version>
-    <production-date>2006-08-22T13:57:44Z</production-date>
+    <production-date>2007-02-27T19:00:52Z</production-date>
     <road-station>rsy</road-station>
     <latitude>46.2</latitude>
     <longitude>-60.28</longitude>
@@ -31,6 +31,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-0.79</st>
+      <sst>-7.02</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T20:20Z</roadcast-time>
@@ -53,6 +54,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-1.85</st>
+      <sst>-7.43</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T20:40Z</roadcast-time>
@@ -75,6 +77,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.74</st>
+      <sst>-7.84</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T21:00Z</roadcast-time>
@@ -97,6 +100,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.94</st>
+      <sst>-8.23</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T21:20Z</roadcast-time>
@@ -119,6 +123,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-3.49</st>
+      <sst>-8.63</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T21:40Z</roadcast-time>
@@ -141,6 +146,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-4.03</st>
+      <sst>-9.02</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T22:00Z</roadcast-time>
@@ -163,6 +169,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-4.57</st>
+      <sst>-9.4</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T22:20Z</roadcast-time>
@@ -185,6 +192,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-5.02</st>
+      <sst>-9.46</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T22:40Z</roadcast-time>
@@ -207,6 +215,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-5.41</st>
+      <sst>-9.51</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T23:00Z</roadcast-time>
@@ -229,6 +238,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-5.77</st>
+      <sst>-9.55</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T23:20Z</roadcast-time>
@@ -251,6 +261,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-6.16</st>
+      <sst>-9.9</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-30T23:40Z</roadcast-time>
@@ -273,6 +284,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-6.59</st>
+      <sst>-10.27</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T00:00Z</roadcast-time>
@@ -295,6 +307,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-7.03</st>
+      <sst>-10.63</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T00:20Z</roadcast-time>
@@ -317,6 +330,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-7.4</st>
+      <sst>-10.67</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T00:40Z</roadcast-time>
@@ -339,6 +353,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-7.71</st>
+      <sst>-10.7</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T01:00Z</roadcast-time>
@@ -361,6 +376,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-7.99</st>
+      <sst>-10.72</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T01:20Z</roadcast-time>
@@ -383,6 +399,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.19</st>
+      <sst>-10.43</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T01:40Z</roadcast-time>
@@ -405,6 +422,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.32</st>
+      <sst>-10.12</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T02:00Z</roadcast-time>
@@ -427,6 +445,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.41</st>
+      <sst>-9.8</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T02:20Z</roadcast-time>
@@ -449,6 +468,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.53</st>
+      <sst>-9.8</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T02:40Z</roadcast-time>
@@ -471,6 +491,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.68</st>
+      <sst>-9.82</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T03:00Z</roadcast-time>
@@ -493,6 +514,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.83</st>
+      <sst>-9.83</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T03:20Z</roadcast-time>
@@ -515,6 +537,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.0</st>
+      <sst>-9.85</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T03:40Z</roadcast-time>
@@ -537,6 +560,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.18</st>
+      <sst>-9.86</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T04:00Z</roadcast-time>
@@ -559,6 +583,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.35</st>
+      <sst>-9.87</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T04:20Z</roadcast-time>
@@ -581,6 +606,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.56</st>
+      <sst>-10.2</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T04:40Z</roadcast-time>
@@ -603,6 +629,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.82</st>
+      <sst>-10.54</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T05:00Z</roadcast-time>
@@ -625,6 +652,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.09</st>
+      <sst>-10.88</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T05:20Z</roadcast-time>
@@ -647,6 +675,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.29</st>
+      <sst>-10.91</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T05:40Z</roadcast-time>
@@ -669,6 +698,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.43</st>
+      <sst>-10.91</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T06:00Z</roadcast-time>
@@ -691,6 +721,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.55</st>
+      <sst>-10.92</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T06:20Z</roadcast-time>
@@ -713,6 +744,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.73</st>
+      <sst>-11.24</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T06:40Z</roadcast-time>
@@ -735,6 +767,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.97</st>
+      <sst>-11.58</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T07:00Z</roadcast-time>
@@ -757,6 +790,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.23</st>
+      <sst>-11.92</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T07:20Z</roadcast-time>
@@ -779,6 +813,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.42</st>
+      <sst>-11.94</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T07:40Z</roadcast-time>
@@ -801,6 +836,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.55</st>
+      <sst>-11.95</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T08:00Z</roadcast-time>
@@ -823,6 +859,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.66</st>
+      <sst>-11.95</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T08:20Z</roadcast-time>
@@ -845,6 +882,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.84</st>
+      <sst>-12.27</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T08:40Z</roadcast-time>
@@ -867,6 +905,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.07</st>
+      <sst>-12.61</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T09:00Z</roadcast-time>
@@ -889,6 +928,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.33</st>
+      <sst>-12.95</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T09:20Z</roadcast-time>
@@ -911,6 +951,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.51</st>
+      <sst>-12.97</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T09:40Z</roadcast-time>
@@ -933,6 +974,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.64</st>
+      <sst>-12.97</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T10:00Z</roadcast-time>
@@ -955,6 +997,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.75</st>
+      <sst>-12.97</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T10:20Z</roadcast-time>
@@ -977,6 +1020,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.84</st>
+      <sst>-12.97</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T10:40Z</roadcast-time>
@@ -999,6 +1043,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.93</st>
+      <sst>-12.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T11:00Z</roadcast-time>
@@ -1021,6 +1066,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-13.0</st>
+      <sst>-12.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T11:20Z</roadcast-time>
@@ -1043,6 +1089,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-13.08</st>
+      <sst>-12.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T11:40Z</roadcast-time>
@@ -1065,6 +1112,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-13.15</st>
+      <sst>-12.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T12:00Z</roadcast-time>
@@ -1087,6 +1135,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-13.21</st>
+      <sst>-12.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T12:20Z</roadcast-time>
@@ -1109,6 +1158,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.84</st>
+      <sst>-12.67</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T12:40Z</roadcast-time>
@@ -1131,6 +1181,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-12.14</st>
+      <sst>-12.34</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T13:00Z</roadcast-time>
@@ -1153,6 +1204,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.29</st>
+      <sst>-12.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T13:20Z</roadcast-time>
@@ -1175,6 +1227,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.32</st>
+      <sst>-11.67</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T13:40Z</roadcast-time>
@@ -1197,6 +1250,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.28</st>
+      <sst>-11.34</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T14:00Z</roadcast-time>
@@ -1219,6 +1273,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.19</st>
+      <sst>-11.01</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T14:20Z</roadcast-time>
@@ -1241,6 +1296,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-7.19</st>
+      <sst>-10.67</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T14:40Z</roadcast-time>
@@ -1263,6 +1319,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-6.25</st>
+      <sst>-10.34</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T15:00Z</roadcast-time>
@@ -1285,6 +1342,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-5.33</st>
+      <sst>-10.01</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T15:20Z</roadcast-time>
@@ -1307,6 +1365,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-4.55</st>
+      <sst>-9.68</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T15:40Z</roadcast-time>
@@ -1329,6 +1388,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-3.85</st>
+      <sst>-9.34</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T16:00Z</roadcast-time>
@@ -1351,6 +1411,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-3.2</st>
+      <sst>-9.01</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T16:20Z</roadcast-time>
@@ -1373,6 +1434,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.78</st>
+      <sst>-8.99</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T16:40Z</roadcast-time>
@@ -1395,6 +1457,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.52</st>
+      <sst>-8.99</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T17:00Z</roadcast-time>
@@ -1417,6 +1480,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.35</st>
+      <sst>-8.99</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T17:20Z</roadcast-time>
@@ -1439,6 +1503,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.13</st>
+      <sst>-8.68</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T17:40Z</roadcast-time>
@@ -1461,6 +1526,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-1.88</st>
+      <sst>-8.35</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T18:00Z</roadcast-time>
@@ -1483,6 +1549,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-1.64</st>
+      <sst>-8.01</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T18:20Z</roadcast-time>
@@ -1505,6 +1572,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-1.81</st>
+      <sst>-8.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T18:40Z</roadcast-time>
@@ -1527,6 +1595,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.28</st>
+      <sst>-8.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T19:00Z</roadcast-time>
@@ -1549,6 +1618,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-2.89</st>
+      <sst>-8.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T19:20Z</roadcast-time>
@@ -1571,6 +1641,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-3.78</st>
+      <sst>-8.31</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T19:40Z</roadcast-time>
@@ -1593,6 +1664,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-4.88</st>
+      <sst>-8.65</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T20:00Z</roadcast-time>
@@ -1615,6 +1687,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-6.09</st>
+      <sst>-8.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T20:20Z</roadcast-time>
@@ -1637,6 +1710,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-7.15</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T20:40Z</roadcast-time>
@@ -1659,6 +1733,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.08</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T21:00Z</roadcast-time>
@@ -1681,6 +1756,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-8.98</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T21:20Z</roadcast-time>
@@ -1703,6 +1779,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.58</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T21:40Z</roadcast-time>
@@ -1725,6 +1802,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-9.95</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T22:00Z</roadcast-time>
@@ -1747,6 +1825,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.23</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T22:20Z</roadcast-time>
@@ -1769,6 +1848,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.45</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T22:40Z</roadcast-time>
@@ -1791,6 +1871,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.64</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T23:00Z</roadcast-time>
@@ -1813,6 +1894,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-10.81</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T23:20Z</roadcast-time>
@@ -1835,6 +1917,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.02</st>
+      <sst>-9.32</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-01-31T23:40Z</roadcast-time>
@@ -1857,6 +1940,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.27</st>
+      <sst>-9.65</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T00:00Z</roadcast-time>
@@ -1879,6 +1963,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.54</st>
+      <sst>-9.98</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T00:20Z</roadcast-time>
@@ -1901,6 +1986,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.74</st>
+      <sst>-10.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T00:40Z</roadcast-time>
@@ -1923,6 +2009,7 @@
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-11.89</st>
+      <sst>-10.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T01:00Z</roadcast-time>
@@ -1945,6 +2032,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-12.01</st>
+      <sst>-10.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T01:20Z</roadcast-time>
@@ -1967,6 +2055,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-12.12</st>
+      <sst>-10.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T01:40Z</roadcast-time>
@@ -1989,6 +2078,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-12.21</st>
+      <sst>-10.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T02:00Z</roadcast-time>
@@ -2011,6 +2101,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-12.29</st>
+      <sst>-10.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T02:20Z</roadcast-time>
@@ -2033,6 +2124,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-12.25</st>
+      <sst>-9.68</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T02:40Z</roadcast-time>
@@ -2055,6 +2147,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-12.12</st>
+      <sst>-9.35</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T03:00Z</roadcast-time>
@@ -2077,6 +2170,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.94</st>
+      <sst>-9.02</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T03:20Z</roadcast-time>
@@ -2099,6 +2193,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.84</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T03:40Z</roadcast-time>
@@ -2121,6 +2216,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.81</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T04:00Z</roadcast-time>
@@ -2143,6 +2239,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.8</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T04:20Z</roadcast-time>
@@ -2165,6 +2262,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.8</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T04:40Z</roadcast-time>
@@ -2187,6 +2285,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.8</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T05:00Z</roadcast-time>
@@ -2209,6 +2308,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.8</st>
+      <sst>-9.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T05:20Z</roadcast-time>
@@ -2231,6 +2331,7 @@
       <fp>0.0</fp>
       <rc>7</rc>
       <st>-11.59</st>
+      <sst>-8.37</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T05:40Z</roadcast-time>
@@ -2253,6 +2354,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-11.21</st>
+      <sst>-7.7</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T06:00Z</roadcast-time>
@@ -2275,6 +2377,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.75</st>
+      <sst>-7.03</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T06:20Z</roadcast-time>
@@ -2297,6 +2400,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.47</st>
+      <sst>-7.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T06:40Z</roadcast-time>
@@ -2319,6 +2423,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.34</st>
+      <sst>-7.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T07:00Z</roadcast-time>
@@ -2341,6 +2446,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.25</st>
+      <sst>-7.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T07:20Z</roadcast-time>
@@ -2363,6 +2469,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.17</st>
+      <sst>-7.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T07:40Z</roadcast-time>
@@ -2385,6 +2492,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.11</st>
+      <sst>-7.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T08:00Z</roadcast-time>
@@ -2407,6 +2515,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-10.06</st>
+      <sst>-7.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T08:20Z</roadcast-time>
@@ -2429,6 +2538,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.94</st>
+      <sst>-6.68</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T08:40Z</roadcast-time>
@@ -2451,6 +2561,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.77</st>
+      <sst>-6.35</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T09:00Z</roadcast-time>
@@ -2473,6 +2584,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.6</st>
+      <sst>-6.02</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T09:20Z</roadcast-time>
@@ -2495,6 +2607,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.48</st>
+      <sst>-6.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T09:40Z</roadcast-time>
@@ -2517,6 +2630,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.4</st>
+      <sst>-6.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T10:00Z</roadcast-time>
@@ -2539,6 +2653,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.34</st>
+      <sst>-6.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T10:20Z</roadcast-time>
@@ -2561,6 +2676,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.29</st>
+      <sst>-6.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T10:40Z</roadcast-time>
@@ -2583,6 +2699,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.24</st>
+      <sst>-6.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T11:00Z</roadcast-time>
@@ -2605,6 +2722,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-9.19</st>
+      <sst>-6.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T11:20Z</roadcast-time>
@@ -2627,6 +2745,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-8.77</st>
+      <sst>-4.42</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T11:40Z</roadcast-time>
@@ -2649,6 +2768,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-8.16</st>
+      <sst>-2.75</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T12:00Z</roadcast-time>
@@ -2671,6 +2791,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-7.45</st>
+      <sst>-1.08</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T12:20Z</roadcast-time>
@@ -2693,6 +2814,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-6.38</st>
+      <sst>-1.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T12:40Z</roadcast-time>
@@ -2715,6 +2837,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-5.04</st>
+      <sst>-1.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T13:00Z</roadcast-time>
@@ -2737,6 +2860,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-3.55</st>
+      <sst>-1.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T13:20Z</roadcast-time>
@@ -2759,6 +2883,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-2.18</st>
+      <sst>-1.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T13:40Z</roadcast-time>
@@ -2781,6 +2906,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>-0.93</st>
+      <sst>-1.0</sst>
     </prediction>
     <prediction>
       <roadcast-time>2004-02-01T14:00Z</roadcast-time>
@@ -2803,6 +2929,7 @@
       <fp>0.0</fp>
       <rc>3</rc>
       <st>0.01</st>
+      <sst>-1.0</sst>
     </prediction>
   </prediction-list>
 </roadcast>
