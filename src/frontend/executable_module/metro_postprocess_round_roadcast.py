@@ -34,7 +34,7 @@
 #
 
 """
-Name       : Metro_postprocess_round_roadcast         
+Name       : metro_postprocess_round_roadcast         
 Description: Rounding of float value stocked in roadcast matrix
 Work on    : roadcast_data.subsampled_data
 Notes      :   

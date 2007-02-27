@@ -249,7 +249,7 @@
       ILMO = 1.
 **    Compute the length of coupling
       COUDUR = real(NTP2-NTP+1)*DT/3.6e3
-*     Initialisation of albedo variation due to snow presence
+*     Initialization of albedo variation due to snow presence
 *     ---------------------------------------------------------------
 *     |                                                             |
 *     |  See balanc.F for the description of the function used      |
