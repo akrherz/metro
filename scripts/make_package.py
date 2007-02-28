@@ -201,14 +201,6 @@ sRoot_path = string.join(lPath[:-2],"/")
 sMetro_real_dir = string.join(lPath[:-1],"/")
 sPackage_path = string.join(lPath[:-2],"/")
 
-#if not os.path.isdir(sRoot_path + "/" + sMetro_dir):
-#    print "Wrong METRo directory name. The version of METRo extract from the" +\
-#          "\nsrc/frontend/metro_config.py file is: '%s'.\n"  % (sVersion_number) +\
-#          "The metro directory name is: '%s'.\n" % (sMetro_real_dir) +\
-#          "\n and should be %s \n"  % (sRoot_path + "/" + sMetro_dir) +\
-#          "Please correct the above error."
-#    sys.exit(1)
-
 # add leading metro directory name to each filename
 sPackage_list = string.replace(sPackage_list,"\n","\n" + sSvn_root_dir + "/")
 
@@ -233,36 +225,34 @@ shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/src/frontend/model/macadam.py
 
 sPackage_list = sPackage_list + sSvn_root_dir + "/setup.sh "
 
-#print "[" + sPackage_list + "]"
-
-
-
-
-# make tarball
-#sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + \
-#           ".tar.bz2 --exclude .svn -C --transform 's,^\./,%s/,' ." % (sMetro_dir) + \
-#           sRoot_path + " " + sPackage_list
-sCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + \
+#tar command
+sTarCommand = "tar cjvf " +  sPackage_path + "/metro-" + sVersion_number + \
            ".tar.bz2 --exclude .svn --transform 's,^%s/,%s/,' " % (sSvn_root_dir,sMetro_dir) + " -C " + \
            sRoot_path + " " + sPackage_list
-print 'Executing', sCommand
-#import sys
-#sys.exit(1)
-os.system(sCommand)
+
+#execute tar command
+print 'Executing', sTarCommand
+os.system(sTarCommand)
+
+#sign command
+sSignCommand = "gpg --detach-sign " + sPackage_path + "/metro-" + sVersion_number + ".tar.bz2"
+
+#sign package
+print "\nMake a detached signature: '" + sSignCommand + "'"
+os.system(sSignCommand)
 
 
 # cleanup
-print "* Cleanup *"
+print "\n* Cleanup *"
 
 print "remove '%s'" % (sRoot_path + "/" + sSvn_root_dir + "/setup.sh")
 os.remove(sRoot_path + "/" + sSvn_root_dir + "/setup.sh")
-#print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
-#os.remove(sRoot_path + "/" + sMetro_dir + "/lib/_macadam.so")
-#print "remove '%s'" % (sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
-#os.remove(sRoot_path + "/" + sMetro_dir + "/lib/macadam.py")
 
 print ""
 print 
-print "* Package Creation Done *"
+print "* Package Creation Done *\n"
 print "The METRo Package is located here:"
 print "'" + sPackage_path + "/metro-" + sVersion_number + ".tar.bz2" + "'"
+print ""
+print "The METRo Package signature is located here:"
+print "'" + sPackage_path + "/metro-" + sVersion_number + ".tar.bz2.sig" + "'"
