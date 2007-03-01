@@ -77,8 +77,8 @@ METRO_CONFIG_GETTEXT_PACKAGE  = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # definition des constantes
-CFG_METRO_VERSION="3.0.2"
-CFG_METRO_DATE="2007-01-22"
+CFG_METRO_VERSION="3.0.3"
+CFG_METRO_DATE="2007-02-27"
 
 
 # provenance de la valeur( ligne de commande, fichier de configuration,
