@@ -15,7 +15,7 @@ To run METRo, you will need the following software packages:
     * Package python numarray version 0.9
     * libxml2 (see further for the right version)
     * PyXML 0.8.3 or + 
-
+    * numpy 0.9.8 or +
 
 == Prerequisite installation ==
 
@@ -39,7 +39,7 @@ To run METRo, you will need the following software packages:
              ls /usr/lib | grep libxml2.so
 
           * The written number represent the release you have installed. To avoid all conflicts, download the tarball with the corresponding release number and install. 
-
+   7. Install numpy
 
 === Gentoo linux ===
 Become root and
@@ -68,7 +68,9 @@ Become root and
 
        emerge -u dev-libs/libxml2 
 
+   7. Install/Update the package numpy at the release 0.9.8 or +
 
+       emerge -u dev-python/numpy
 
 == METRo software installation ==
 
