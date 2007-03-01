@@ -78,7 +78,7 @@ METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # definition des constantes
 CFG_METRO_VERSION="3.0.3"
-CFG_METRO_DATE="2007-02-27"
+CFG_METRO_DATE="2007-03-01"
 
 
 # provenance de la valeur( ligne de commande, fichier de configuration,
@@ -528,7 +528,7 @@ def set_default_value( ):
          'COMMENTS':_("roadcast filename")}
 
     dConfig['FILE_ROADCAST_CURRENT_VERSION'] = \
-        {'VALUE'   :"1.4",
+        {'VALUE'   :"1.5",
          'FROM'    :CFG_INTERNAL,
          'COMMENTS':_("current version for roadcast file")}
 
