@@ -1,7 +1,7 @@
                       METRo README file
 
 
-You are currently reading the README file of the release 3.0.2 (January 2007)
+You are currently reading the README file of the release 3.0.3 (February 2007)
 
 
 == What is METRo ? ==
@@ -40,6 +40,7 @@ METRo uses needs the following software:
 * python numarray
 * libxml2 & libxslt
 * PyXML 0.8.3
+* numpy 0.9.8
 
 View INSTALL file for more information
 
