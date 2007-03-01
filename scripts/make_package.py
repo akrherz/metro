@@ -106,6 +106,8 @@ src/frontend/external_lib/Plist_config/__init__.py
 src/frontend/external_lib/Plist_config/plist_reader.py
 src/frontend/external_lib/Plist_config/plist_writer.py
 src/frontend/external_lib/fpconst.py
+src/frontend/external_lib/_numpy.so
+src/frontend/external_lib/arrayfns.so
 
 src/frontend/locale
 
