@@ -34,7 +34,7 @@
 
 progname=`basename $0`
 
-METRO_VERSION=3.0.2
+METRO_VERSION=3.0.3
 
 
 if [[ $1 = clean ]]; then    
@@ -49,7 +49,7 @@ error.  Correct error and restart.\n\n"
 
 trap 'echo -e $ERRMSG; exit 1' ERR
 
-echo "Building METRo $METRO_VERSION"
+echo "Building METRo $METRO_VERSION model"
 
 if [ -n "$PYTHON_INCLUDE" ] ; then
     if [ ! -d $PYTHON_INCLUDE ]; then
