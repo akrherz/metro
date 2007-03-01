@@ -114,16 +114,30 @@ if [ -d $destination_path ]; then
     fi
 fi
 
+# check if gfortran library exist on the target system
+echo "* Checking for libgfortran.so.1"
+if ! locate libgfortran.so.1; then
+    echo "----------------------------------------------------------"
+    echo "WARNING!"
+    echo "Could not find gfortran library on your system."
+    echo "METRo model will be recompiled."
+    echo "----------------------------------------------------------"
+    echo ""
+    bCompile=1
+fi
+    
+
 if [ $bCompile == 1 ]; then
     if [ ! -n "$PYTHON_INCLUDE" ] ; then
         echo "----------------------------------------------------------"
         echo "WARNING!"
         echo "No python path defined. setup.sh may not be able"
-            echo "to properly install METRo."
+        echo "to properly install METRo."
         echo "Please set environment variable PYTHON_INCLUDE to your"
         echo "python include directory."
         echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.3\""
         echo "----------------------------------------------------------"
+	echo ""
     fi
     cd src/model
     ../../scripts/do_macadam clean
