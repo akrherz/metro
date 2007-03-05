@@ -33,11 +33,12 @@
 #
 #
 
-####################################################
-# Name:	 metro_date.py
-# Description: Date and time functions for METRo
-# Notes:
-####################################################
+"""
+Name:	 metro_date.py
+Description: Date and time functions for METRo
+Notes:
+"""
+
 import xml.utils.iso8601
 import math
 import time
