@@ -1,6 +1,6 @@
 # translation of metro_preprocess_validate_input.po to 
 # translation of metro_preprocess_validate_input.po to
-# Copyright (C) YEAR ORGANIZATION, 2005, 2007.
+# Copyright (C) 2007 Environnement Canada, 2005, 2007.
 #
 msgid ""
 msgstr ""

@@ -4,7 +4,7 @@
 # translation of test.po to
 # translation of metro_model.po to
 # translation of metro_model.p0.po to
-# Copyright (C) YEAR ORGANIZATION.
+# Copyright (C) 2007 Environment Canada.
 # Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004.
 #
 msgid ""

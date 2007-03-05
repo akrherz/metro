@@ -1,7 +1,7 @@
 # translation of metro_postprocess_subsample_roadcast.po to 
 # translation of metro_postprocess_subsample_roadcast.po to
 # translation of metro_postprocess_subsample_roadcast.po to
-# Copyright (C) YEAR ORGANIZATION.
+# Copyright (C) 2007 Environnement Canada.
 # Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004, 2007.
 #
 msgid ""

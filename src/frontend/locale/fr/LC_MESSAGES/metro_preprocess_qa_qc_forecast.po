@@ -1,5 +1,5 @@
 # translation of metro_preprocess_qa_qc_forecast.po to
-# Copyright (C) YEAR ORGANIZATION, 2005, 2006.
+# Copyright (C) 2007 Environnement Canada, 2005, 2006.
 #
 msgid ""
 msgstr ""

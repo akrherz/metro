@@ -1,7 +1,7 @@
 # translation of metro_logger.po to 
 # translation of test.po to
 # translation of metro_logger.po to
-# Copyright (C) YEAR ORGANIZATION.
+# Copyright (C) 2007 Environment Canada.
 # Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004.
 #
 msgid ""
