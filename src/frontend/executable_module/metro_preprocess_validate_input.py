@@ -34,7 +34,7 @@
 #
 
 """
-Name:	       Metro_preprocess_validate_input
+Name:	      metro_preprocess_validate_input
 Description:  Validate input data to make sure they conform to certain rule. 
                1) Forecast and observation must overlap
                
@@ -61,14 +61,14 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         pObservation = self.get_infdata_reference('OBSERVATION')
         observation_data = pObservation.get_data_collection()
 
-        self.__validate_roadcast_start_date(observation_data.\
+        self.__validate_last_observation_date(observation_data.\
                                             get_controlled_data())
 
         self.__validate_overlap(forecast_data.get_controlled_data(),
                                 observation_data.get_controlled_data())
 
 
-    def __validate_roadcast_start_date(self, ro_controlled_data):
+    def __validate_last_observation_date(self, observation_data):
         """
         Parameters: controlled observation data
         
@@ -76,8 +76,7 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         
         Functions Called: 
 
-        Description: If roadcast start date is not set, set it
-                     to the date of the last observation.
+        Description: Set the date of the last observation.
 
         Notes: 
 
@@ -85,18 +84,16 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      August 4th 2004
         """
-        
-        # Get start time
-        if metro_config.get_value('INIT_ROADCAST_START_DATE') == "":
-            naOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
-            fLast_observation_date = naOT[len(naOT)-1]
-            sStart_date = metro_date.seconds2iso8601(fLast_observation_date)
-            metro_config.set_value('INIT_ROADCAST_START_DATE', sStart_date)
-            sMessage = _("Roadcast start date set to the date of\nthe last ") +\
-                       _("observation: '%s'") % (sStart_date)
-            metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
-                                       sMessage)            
 
+        # Get the last observation
+        naOT = observation_data.get_matrix_col('OBSERVATION_TIME')
+        fLast_observation_date = naOT[len(naOT)-1]
+        sStart_date = metro_date.seconds2iso8601(fLast_observation_date)
+        metro_config.set_value('DATA_ATTRIBUTE_LAST_OBSERVATION', sStart_date)
+        sMessage = _("Last observation date is: '%s'") % (sStart_date)
+        metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
+                                   sMessage)            
+        
 
     def __validate_overlap( self, forecast_data, observation_data ):
         """        
