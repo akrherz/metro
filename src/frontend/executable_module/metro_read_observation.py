@@ -33,6 +33,18 @@
 #
 #
 
+"""
+Name:	      metro_read_observation.py
+Description:  check if a observation file is provided. Return an error message
+              if not.
+              Set the last observation time.
+               
+Authors: Francois Fortin
+         Miguel Tremblay
+Date:    March 5th 2007
+"""
+
+
 from metro_read import Metro_read
 
 import metro_config
@@ -46,7 +58,7 @@ _ = metro_util.init_translation('metro_read_observation')
 class Metro_read_observation(Metro_read):
 
     ##
-    #methodes redefinies
+    # Methods overwritten
     ##
     def start(self):
         Metro_read.start(self)
@@ -55,8 +67,6 @@ class Metro_read_observation(Metro_read):
             sFilename = metro_config.get_value('FILE_OBSERVATION_FILENAME')
         else:
             sFilename = ""
-
-
 
         if sFilename != "":
 
@@ -67,7 +77,7 @@ class Metro_read_observation(Metro_read):
                 metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                            sError_message)
             else:
-                # creer et ajouter infdata
+                # Create and add infdata
                 infdata_observation = metro_infdata.Metro_infdata(
                     'OBSERVATION', metro_infdata.DATATYPE_METRO_DATA_COLLECTION)
                 infdata_observation.set_input_information(sFile_content)
@@ -77,3 +87,4 @@ class Metro_read_observation(Metro_read):
                              _("the option: '--input-observation'")
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                        sError_message)     
+
