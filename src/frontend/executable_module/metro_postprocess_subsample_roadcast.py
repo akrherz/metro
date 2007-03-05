@@ -37,9 +37,12 @@
 Name       : Metro_postprocess_subsample        
 Description: Subsampling roadcast matrix at 20 minutes interval
 Work on    : roadcast_data.subsampled_data
-Notes      :   
+
+Notes      : 
+
 Author     : Francois Fortin
-Date       : 10 September 2004
+             Miguel Tremblay
+Date       : March 5th 2007
 """
 
 from metro_postprocess import Metro_postprocess
@@ -59,12 +62,70 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
 
         pRoadcast = self.get_infdata_reference('ROADCAST')
         roadcast_data = pRoadcast.get_data_collection()
-
-        self.__subsample_roadcast(roadcast_data)
+        pObservation = self.get_infdata_reference('OBSERVATION')
+        observation_data = pObservation.get_data_collection()
+        
+        nInitialTimestep = self.__set_first_roadcast_date(observation_data.\
+                                       get_controlled_data(), roadcast_data)
+        self.__subsample_roadcast(roadcast_data, nInitialTimestep)
 
         pRoadcast.set_data_collection(roadcast_data)
 
-    def __subsample_roadcast( self, roadcast):
+    def __set_first_roadcast_date(self, observation_data, roadcast_data):
+        """
+        Name: ___set_first_roadcast_date
+        Parameters: Observation and roadcast
+
+        Description: If the date of the first roadcast is not specified in the input
+                     (command line or config file), set it to first round 20 minutes after
+                     the last observation.
+
+        Author: Miguel Tremblay
+        Date: March 5th 2007
+        """
+        if metro_config.get_value('INIT_ROADCAST_START_DATE') != "":
+             # Set the xml header value
+             controlled_roadcast = roadcast_data.get_subsampled_data()
+             controlled_roadcast.set_header_value('FIRST_ROADCAST',\
+                                                  metro_config.get_value('INIT_ROADCAST_START_DATE'))
+             return 0
+        else :
+            naOT = observation_data.get_matrix_col('OBSERVATION_TIME')
+            fLast_observation_date = naOT[len(naOT)-1]
+            sLast_observation_date = metro_date.seconds2iso8601(fLast_observation_date)
+
+            # Fetch the first 20 minutes value.
+            iNb_timesteps = roadcast_data.get_attribute('FORECAST_NB_TIMESTEPS')
+            nSecondsForOutput = metro_constant.nMinutesForOutput*60
+            lTimeStep = roadcast_data.get_controlled_data().get_matrix_col('HH')
+            for i in range(0, iNb_timesteps):
+                fCurrentTime = lTimeStep[i]*3600
+                # Forecast at every 20 minutes, i.e. 1200 seconds  
+                # if current time is a 20 minute interval
+                # and roadcast time is >= roadcast start date
+                if round(fCurrentTime)%nSecondsForOutput == 0:
+                    sLast_observation =  metro_config.\
+                                        get_value('DATA_ATTRIBUTE_LAST_OBSERVATION')
+                    fLast_observation = metro_date.parse_date_string(sLast_observation)
+                    sStart_date = metro_date.seconds2iso8601(fLast_observation + \
+                                                             (i+1)*\
+                                                             metro_constant.fTimeStep)
+                    metro_config.set_value('INIT_ROADCAST_START_DATE', sStart_date)
+                    sMessage = _("Roadcast start date set to: ''%s'") % (sStart_date)
+                    metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
+                                               sMessage)
+                    # Set the xml header value
+                    controlled_roadcast = roadcast_data.get_subsampled_data()
+                    controlled_roadcast.set_header_value('FIRST_ROADCAST', sStart_date)
+                    return i
+
+
+                #  Something bad hapened.
+                sMessage = _("Unable to determine the first time of roadcast!")
+                metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
+                                           sMessage)
+
+    def __subsample_roadcast(self, roadcast, nFirstRoundTimestep):
 
         # Get all roadcast items
         lStandard_roadcast = metro_config.get_value( \
@@ -81,7 +142,6 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
         # Put array in a dictionnary
         for dRoadcast_item in lRoadcast_items:
             sElement = dRoadcast_item['NAME']
-
             dElement_Array[sElement] = rc_controlled.get_matrix_col(sElement)
 
         # Get some values necessary for the creation of a complete roadcast
@@ -91,9 +151,10 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
         fEndCoupling = (iObservation_len*\
                         metro_constant.fTimeStep/3600.0-fObservation_delta_t)
         sStartDate = metro_config.get_value('INIT_ROADCAST_START_DATE')
+
         fStartDate = metro_date.parse_date_string(sStartDate)
         
-        sMessage = _("Specified roadcast start date: '%s'") % (sStartDate)
+        sMessage = _("Output file roadcast start date: '%s'") % (sStartDate)
         metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                    sMessage)
         #
@@ -102,7 +163,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
         rc_subsampled = roadcast.get_subsampled_data()
 
         nSecondsForOutput = metro_constant.nMinutesForOutput*60
-        for i in range(0,iNb_timesteps):
+        for i in range(nFirstRoundTimestep, iNb_timesteps):
             fCurrentTime = dElement_Array['HH'][i]*3600
 
             # Forecast at every 20 minutes, i.e. 1200 seconds  
@@ -128,7 +189,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
 
                     lRCvect[iRC-1] = lRCvect[iRC-1] +1
 
-                # Identify the highest value:
+                # Identify the highest value for the road condition
                 nTop = max(lRCvect)
                 nRCcode = lRCvect.index(nTop)+1
 
@@ -138,7 +199,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
                 rc_subsampled.append_matrix_row(lMatrix_line)
 
         fActual_start_date = dElement_Array['ROADCAST_TIME'][0]
-        sMessage = _("Actual roadcast start date: '%s'") \
+        sMessage = _("Roadcast start date of the model is: '%s'") \
                    % (metro_date.seconds2iso8601(fActual_start_date))
         metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                    sMessage)
