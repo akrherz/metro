@@ -33,13 +33,13 @@
 #
 #
 
-####################################################
-# Name:	       Metro_preprocess_qa_qc_observation
-# Description: QA and QC for the RWIS observation are performed here.
-# Notes: 
-# Auteur: Miguel Tremblay
-# Date: 4 aout 2004
-####################################################
+"""
+Name:	       Metro_preprocess_qa_qc_observation
+Description: QA and QC for the RWIS observation are performed here.
+Notes: 
+Auteur: Miguel Tremblay
+Date: 4 aout 2004
+"""
 
 from metro_preprocess import Metro_preprocess
 
@@ -103,28 +103,29 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
 
 
-####################################################
-# Name: __set_time
-#
-# Parameters: metro_data controlled_data : controlled observation data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                  numarray.zeros
-#                  metro_date.get_hour, get_minute
-#                  metro_date.get_elapsed_time
-#                  metro_data.append_matrix_col
-#
-# Description: Put the value of the time in seconds.  Set it in the matrix.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 4th 2004
-#####################################################
     def __set_time(self, ro_controlled_data):
+        """
+        Name: __set_time
+        Parameters: metro_data controlled_data : controlled observation data
+
+        Returns: None
+        
+        Functions Called: metro_data.get_matrix_col
+                          numarray.zeros
+                          metro_date.get_hour, get_minute
+                          metro_date.get_elapsed_time
+                          metro_data.append_matrix_col
+
+        Description: Put the value of the time in seconds.
+                      Set it in the matrix.
+
+        Notes: 
+
+        Revision History:
+        Author		    Date		Reason
+        Miguel Tremblay      August 4th 2004
+        """
+        
         naOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
         naTime = numarray.zeros(len(naOT))
         naTime[0] = metro_date.get_hour(naOT[0])*3600 + \
@@ -143,30 +144,29 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         # Registered.
         ro_controlled_data.append_matrix_col('Time', naTime)
     
-####################################################
-# Name: __remove_bad_arg
-#
-# Parameters: metro_data controlled_data : controlled observation data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   numarray.where, nonzero
-#                   metro_logger.print_message
-#                   metro_data.del_matrix_row
-#                   metro_date.get_hour
-#                   metro_config.get_value
-#
-# Description: Remove the wrong measure of surface temperature
-#   in the controlled observations.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 4th 2004
-#####################################################
     def __remove_bad_arg(self, ro_controlled_data):
+        """
+        Name: __remove_bad_arg
+        Parameters: metro_data controlled_data : controlled observation data
+        Returns: None
+
+        Functions Called: metro_data.get_matrix_col
+                          numarray.where, nonzero
+                          metro_logger.print_message
+                          metro_data.del_matrix_row
+                          metro_date.get_hour
+                          metro_config.get_value
+
+        Description: Remove the wrong measure of surface temperature
+                     in the controlled observations.
+
+        Notes: 
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 4th 2004
+        """
+
         ################ Check road surface temperature ###############
         naST = ro_controlled_data.get_matrix_col('ST')
         # More than nRoadTemperatureHigh degrees
@@ -181,7 +181,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                 for i in range(0,len(naBadIndices)):
                     nIndice = naBadIndices[i]
                     sMessage = _("%d th  temperature is %f") %  \
-                               ( nIndice, round(naST[nIndice],2))
+                               ( nIndice, round(naST[nIndice],2)) 
                     metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                                sMessage)
                 
@@ -193,29 +193,30 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
             naBadIndices = (numarray.nonzero(naBad))[0]
             ro_controlled_data.del_matrix_row(naBadIndices)
 
-####################################################
-# Name: __check_time_order
-#
-# Parameters: metro_data controlled_data : controlled observation data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   metro_util.get_difference_array
-#                   numarray.where, nonzero, arange
-#                   metro_date.get_day, get_hour, get_minute
-#                   metro_data.del_matrix_row
-#                   metro_logger.print_message
-#
-# Description: Check if the time of the observation are in order.  
-#               Cut the information that are spaced by more than 240 minutes.
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 4th 2004
-#####################################################
     def __check_time_order(self, ro_controlled_data, wf_controlled_data):
+        """
+        Name: __check_time_order
+
+        Parameters: metro_data controlled_data : controlled observation data
+
+        Returns: None
+        
+        Functions Called: metro_data.get_matrix_col
+                          metro_util.get_difference_array
+                          numarray.where, nonzero, arange
+                          metro_date.get_day, get_hour, get_minute
+                          metro_data.del_matrix_row
+                          metro_logger.print_message
+
+        Description: Check if the time of the observation are in order.  
+                     Cut the information that are spaced by more than 240 minutes.
+        Notes: 
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 4th 2004
+        """
+        
         naTime = ro_controlled_data.get_matrix_col('Time')
         naCheck = metro_util.get_difference_array(naTime)
         # If a gap of more than nGapMinuteObservation
@@ -288,10 +289,12 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
             
         # Get start time
         sStart_time = metro_config.get_value('INIT_ROADCAST_START_DATE')
-        fStart_time = metro_date.parse_date_string(sStart_time)
-        
+        # If start time is not specified, default will be used
+        if sStart_time == "":
+            return
 
-        # Check if the observation are not before the start of the roadcast.
+        # Check if the observation are not before the start of the roadcast if specified.
+        fStart_time = metro_date.parse_date_string(sStart_time)
         naOT = ro_controlled_data.get_matrix_col('Time')\
                +nHourStart*3600
         naDiff = - naOT + int(metro_date.get_hour(fStart_time))*3600
