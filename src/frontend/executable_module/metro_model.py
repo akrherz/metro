@@ -122,8 +122,9 @@ class Metro_model(Metro_module):
         ro_data = observation.get_interpolated_data()
         cs_data = station
 
-        # Get start time
-        sStart_time = metro_config.get_value('INIT_ROADCAST_START_DATE')
+        # Start time from model is the last observation
+        sStart_time = metro_config.get_value('DATA_ATTRIBUTE_LAST_OBSERVATION')
+        print sStart_time
         fStart_time = metro_date.parse_date_string(sStart_time)
 
 
@@ -201,15 +202,6 @@ class Metro_model(Metro_module):
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
         
-
-        # Issue date
-#        fIssue_time = metro_date.list_to_date \
-#                      ([int(sModel_start_y), \
-#                        int(sModel_start_m), \
-#                        int(sModel_start_d), \
-#                        [int(sModel_start_h),0] \
-#                        ,sTimeZone])
-
         fIssue_time = fStart_time
         
         sMessage = _("issue time=") + time.ctime(fIssue_time)
@@ -353,9 +345,6 @@ class Metro_model(Metro_module):
         roadcast.set_header_value('LATITUDE', station.get_header()['COORDINATE'][0])
         roadcast.set_header_value('LONGITUDE', station.get_header()['COORDINATE'][1])
         roadcast.set_header_value('FILETYPE','roadcast')
-        roadcast.set_header_value('FIRST_ROADCAST', \
-                  metro_config.get_value('INIT_ROADCAST_START_DATE'))
-
 
         #
         # Generate the roadcast matrix of data
