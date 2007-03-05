@@ -35,6 +35,17 @@
 #
 
 
+"""
+Name:         metro_config
+Author:      Francois Fortin
+Date:        30/03/2004
+
+Description: Module that centralize all the metro configuration.
+             Configuration is saved in a dictionnary of dictionnaries.
+
+"""
+
+
 import os
 import sys
 import getopt
@@ -52,41 +63,21 @@ _ = metro_util.init_translation('metro_config')
 
 
 
-#===============================================================================
-#
-# Nom:         metro_config
-#
-# Auteur:      Francois Fortin
-#
-# Date:        30/03/2004
-#
-# Description: Module permettant de centraliser les configuration de metro.
-#              Les configurations sont conserve dans un dictionnaire
-#              de dictionnaire.
-#
-# TODO:        Lecture de la ligne de  commande
-#              Lecture du fichier de config
-#              NB La ligne de commande peut specifier le nom d'un
-#              fichier de config
-#
-#===============================================================================
-
-
-# Configuration pour la traduction des messages en differentes langues
+# Configuration for translation of messages in diffenrent languages
 METRO_CONFIG_GETTEXT_PACKAGE  = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
-# definition des constantes
+# Constant definition 
 CFG_METRO_VERSION="3.0.3"
 CFG_METRO_DATE="2007-03-01"
 
 
-# provenance de la valeur( ligne de commande, fichier de configuration,
-#                         valeur "hardcoder", constante interne a metro )
-# NB: 1. la ligne de commande a preseance sur le fichier de config qui a
-#        preseance sur les valeurs "hardcoder"
-#     2. On ne devrait pas redefinir les constantes interne a metro dans
-#        un fichier de configuration ou sur la ligne de commande
+# Origin of the value (command line, config file, hardcoded value,
+#                       metro internal constant)
+# NB: 1. The command line overwrite the config file. Config file overwrite
+#          hardcoded value.
+#     2. We should not redefine metro internal constant in a config file nor
+#         in command line.
 CFG_INTERNAL    = 0
 CFG_HARDCODED   = 1
 CFG_CONFIGFILE  = 2
@@ -180,7 +171,8 @@ def overlay_config( dBase, dNew, iConfig_level ):
                            'FROM'    :iConfig_level,
                            'COMMENTS':sMessage}
 
-            sWarning = _("%s\nkey='%s'\nvalue='%s'") % (sMessage, sKey, dNew[sKey])
+            sWarning = _("%s\nkey='%s'\nvalue='%s'") %\
+                       (sMessage, sKey, dNew[sKey])
             metro_logger.print_init_message(metro_logger.LOGGER_INIT_SUCCESS,
                                             sWarning)
 
@@ -277,19 +269,14 @@ def key_exist( sKey ):
 
 
 
-
-#-------------------------------------------------------------------------------
-#
-# Nom:          get_metro_version
-#
-# Parametres:   aucun
-#
-# Retourne:     string: le numero de version
-#
-# Descriptions: recupere le niveau de version de metro
-#
-#-------------------------------------------------------------------------------
 def get_metro_version( ):
+    """
+    Name:          get_metro_version
+    Parameters:   None
+    Output:     string: version number
+    Descriptions: Get the version of METRo
+    """
+    
     return CFG_METRO_VERSION + " (" + CFG_METRO_DATE + ")" 
 
 def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
@@ -1085,6 +1072,11 @@ def set_default_value( ):
          'FROM'     :CFG_HARDCODED,
          'COMMENTS' :_("extended observation attribute.")}
 
+    dConfig['DATA_ATTRIBUTE_LAST_OBSERVATION'] = \
+        {'VALUE'    :[],
+         'FROM'     :CFG_INTERNAL,
+         'COMMENTS' :_("time of the last observation.")}
+
 #===============================================================================
 # Metro initialisation variable
 #===============================================================================
@@ -1125,9 +1117,6 @@ def set_default_value( ):
                      "metro_read_station",
                      "metro_validate_station",
                      "metro_string2dom_station",
-#                     "metro_read_observation_ref",
-#                     "metro_validate_observation_ref",
-#                     "metro_string2dom_observation_ref",      
                      "metro_dom2metro",
                      "metro_preprocess_validate_input",
                      "metro_preprocess_qa_qc_forecast",
@@ -1150,7 +1139,7 @@ def set_default_value( ):
     dConfig['INIT_ROADCAST_START_DATE'] = \
         {'VALUE'   :"",
          'FROM'    :CFG_HARDCODED,
-         'COMMENTS':_("roadcast start time")}
+         'COMMENTS':_("roadcast start time")}    
 
     dConfig['INIT_USER_ROADCAST_START_DATE'] = \
         {'VALUE'   :"",
