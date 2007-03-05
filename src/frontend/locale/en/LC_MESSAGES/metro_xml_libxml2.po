@@ -1,13 +1,13 @@
 # translation of metro_xml_libxml2.po to 
 # Copyright (C) YEAR ORGANIZATION.
-# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004.
+# Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: metro_xml_libxml2\n"
 "POT-Creation-Date: 2006-12-13 21:07+UTC\n"
 "PO-Revision-Date: 2004-11-09 13:30-0500\n"
-"Last-Translator: Miguel Tremblay <afsgmit@cmc.ec.gc.ca>\n"
+"Last-Translator: Miguel Tremblay <miguel.tremblay@ec.gc.ca>\n"
 "Language-Team:  <C@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"

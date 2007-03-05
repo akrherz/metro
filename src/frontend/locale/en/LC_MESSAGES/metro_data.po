@@ -1,17 +1,13 @@
-# translation of metro_data_merge_en.po to 
-# translation of metro_data_merge_en.po to
-# translation of metro_data.po to
-# translation of test.po to
 # translation of metro_data.po to
 # Copyright (C) YEAR ORGANIZATION.
-# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004.
+# Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: metro_data_merge_en\n"
+"Project-Id-Version: metro_data\n"
 "POT-Creation-Date: 2005-03-17 14:56+EST\n"
 "PO-Revision-Date: 2004-12-02 11:59-0500\n"
-"Last-Translator: Miguel Tremblay <afsgmit@cmc.ec.gc.ca>\n"
+"Last-Translator: Miguel Tremblay <miguel.tremblay@ec.gc.ca>\n"
 "Language-Team:  <C@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-15\n"

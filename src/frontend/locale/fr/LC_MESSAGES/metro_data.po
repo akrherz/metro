@@ -1,6 +1,6 @@
 # translation of metro_data.po to
 # Copyright (C) YEAR ORGANIZATION.
-# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004, 2005.
+# Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004, 2005.
 #
 msgid ""
 msgstr ""

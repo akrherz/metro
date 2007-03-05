@@ -1,13 +1,13 @@
-# translation of metro_preprocess_qa_qc_observation_merge_fr.po to 
+# translation of metro_preprocess_qa_qc_observation.po to 
 # translation of metro_preprocess_qa_qc_observation.po to
-# translation of metro_preprocess_qa_qc_observation_merge_fr.po to
+# translation of metro_preprocess_qa_qc_observation.po to
 # translation of metro_preprocess_qa_qc_observation.po to
 # Copyright (C) YEAR ORGANIZATION.
-# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004, 2005, 2006.
+# Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004, 2005, 2006.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: metro_preprocess_qa_qc_observation_merge_fr\n"
+"Project-Id-Version: metro_preprocess_qa_qc_observation\n"
 "POT-Creation-Date: 2006-11-16 21:16+UTC\n"
 "PO-Revision-Date: 2006-11-16 21:31+0000\n"
 "Last-Translator: \n"

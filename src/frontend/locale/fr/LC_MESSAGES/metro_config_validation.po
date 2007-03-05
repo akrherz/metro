@@ -1,13 +1,13 @@
 # translation of metro_config_validation.po to 
 # Copyright (C) YEAR ORGANIZATION.
-# Miguel Tremblay <afsgmit@cmc.ec.gc.ca>, 2004.
+# Miguel Tremblay <miguel.tremblay@ec.gc.ca>, 2004.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: metro_config_validation\n"
 "POT-Creation-Date: Tue Nov  9 10:25:15 2004\n"
 "PO-Revision-Date: 2004-11-09 10:35-0500\n"
-"Last-Translator: Miguel Tremblay <afsgmit@cmc.ec.gc.ca>\n"
+"Last-Translator: Miguel Tremblay <miguel.tremblay@ec.gc.ca>\n"
 "Language-Team:  <C@li.org>\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ISO-8859-1\n"

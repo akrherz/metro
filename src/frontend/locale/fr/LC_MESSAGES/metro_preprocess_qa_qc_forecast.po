@@ -3,7 +3,7 @@
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: metro_preprocess_qa_qc_forecast_merge_fr\n"
+"Project-Id-Version: metro_preprocess_qa_qc_forecast\n"
 "POT-Creation-Date: 2006-11-16 21:16+UTC\n"
 "PO-Revision-Date: 2006-11-16 21:27+0000\n"
 "Last-Translator: \n"
