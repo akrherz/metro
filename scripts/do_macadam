@@ -34,7 +34,7 @@
 
 progname=`basename $0`
 
-METRO_VERSION=3.0.3
+METRO_VERSION=3.0.4
 
 
 if [[ $1 = clean ]]; then    
@@ -59,8 +59,16 @@ if [ -n "$PYTHON_INCLUDE" ] ; then
     fi
     PYTHON_INC=-I$PYTHON_INCLUDE
 else
-    echo "No python path defined"
+    echo "----------------------------------------------------------"
+    echo "WARNING!"
+    echo "No python path defined."
     echo "Will try to used the default path for python 2.3"
+    echo "If it still doesn't work,"
+    echo "please set environment variable PYTHON_INCLUDE to your"
+    echo "python include directory."
+    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.3\""
+    echo "----------------------------------------------------------"
+    echo ""
     PYTHON_INC="-I/usr/include/python2.3/"
 fi
 echo "Python include path = "$PYTHON_INC
@@ -71,7 +79,7 @@ echo 'macadam.i :'
 swig -python  macadam.i 
 
 echo "C compilation"
-gcc -c  macadam.c macadam_wrap.c $PYTHON_INC
+gcc -c -fPIC macadam.c macadam_wrap.c $PYTHON_INC
 
 if [ -z $FC ]; then
     if [ `which gfortran` ]; then
@@ -90,7 +98,7 @@ if [ -z $FC ]; then
 fi
 
 echo "Fortran compilation"
-$FC -Wall -Wsurprising -W -c  lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
+$FC -Wall -Wsurprising -W -c -fPIC lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
 
 
 echo "Link"
