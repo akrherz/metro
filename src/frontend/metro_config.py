@@ -68,8 +68,8 @@ METRO_CONFIG_GETTEXT_PACKAGE  = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # Constant definition 
-CFG_METRO_VERSION="3.0.3"
-CFG_METRO_DATE="2007-03-01"
+CFG_METRO_VERSION="3.0.4"
+CFG_METRO_DATE="2007-03-09"
 
 
 # Origin of the value (command line, config file, hardcoded value,
