@@ -33,11 +33,11 @@
 #
 #
 
-####################################################
-# Name:	       metro_constant
-# Description: The constant needed in different modules of METRo
-# Notes:   
-####################################################
+"""
+Name:	       metro_constant
+Description: The constant needed in different modules of METRo
+Notes:   
+"""
 
 # platform dependent?
 Infinity = 1e1000
@@ -87,3 +87,4 @@ nNL = 11520
 # METRo output
 #  Indicates at what will be the time interval between 2 field in the roadcast
 nMinutesForOutput = 20
+
