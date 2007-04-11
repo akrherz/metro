@@ -42,7 +42,8 @@ Note:         Observation file cannot be too long because of the limitation of
                length in the fortran array.
 TODO:         Remove length limitation once the fortran code is removed from METRo.
                
-Auteur: Francois Fortin
+Author: Francois Fortin
+        Miguel Tremblay
 Date: 9 novembre 2004
 """
 
@@ -70,6 +71,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
 
         self.__validate_observation_length(observation_data.\
                                             get_controlled_data())
+        self.__validate_forecast_length(forecast_data.get_controlled_data())
+
 
         self.__validate_last_observation_date(observation_data.\
                                             get_controlled_data())
@@ -77,6 +80,32 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         self.__validate_overlap(forecast_data.get_controlled_data(),
                                 observation_data.get_controlled_data())
 
+
+    def __validate_forecast_length(self, forecast_data):
+        """
+        Parameters: controlled forecast data
+        
+        Returns: None
+        
+        Functions Called: 
+
+        Description: METRo needs more than one forecast date. If there is only one
+         forecast, give an error message an exit.
+
+        Notes: 
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      March 20th 2007
+        """
+        
+         # Check the length of forecast. Pick one element at random
+        naFT = forecast_data.get_matrix_col('FORECAST_TIME')
+
+        if len(naFT) < 2:
+            sMessage = _("METRo needs more than one forecast date! Exiting")
+            metro_logger.print_message(
+                metro_logger.LOGGER_MSG_STOP, sMessage)
 
     def __validate_observation_length(self, observation_data):
         """
@@ -86,13 +115,16 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         
         Functions Called: 
 
-        Description: Set the date of the last observation.
+        Description: Check if the observation is not too long. If so, truncate the
+          beginning of the observation. This limitation is due to an array size
+          hardcoded in the fortran code. 
 
-        Notes: 
+        Notes: This method should be removed once the fortran code is removed
+                from METRo.
 
         Revision History:
         Author		Date		Reason
-        Miguel Tremblay      March 20th 2007
+        Miguel Tremblay      April 11th 2007
         """
 
         # Check the length of observation
@@ -100,7 +132,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         fLast_observation_date = naOT[len(naOT)-1]
         fFirst_observation_date  = naOT[0]
 
-        fLenght_observation_seconds = fLast_observation_date - fFirst_observation_date
+        fLenght_observation_seconds = fLast_observation_date -\
+                                      fFirst_observation_date
         nNbr_30_seconds_step_in_obs = fLenght_observation_seconds/30
 
         # Check if the length of observation is too high for the fortran code
