@@ -233,12 +233,12 @@
       end if
       return
       end
-************************************************************************
-************************************************************************
+
+
 ************************************************************************
 ***
-*     Sous-routine RODCON: Calcul l'etat des reservoir ER1 (eau) et 
-*                          ER2 (glace/neige)
+*     Sub-routine RODCON: Compute the quantity of the reservoir 
+*                          ER1 (water) and ER2 (ice/snow)
 *
 *     Auteur / Author: Louis-Philippe Crevier
 *     Date: Decembre 1999 / December 1999
@@ -252,21 +252,24 @@
       INTEGER DTMAX
       COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
       REAL CH 
-*     MEA -> Quantite d'eau avant ecoulement. MEA(1) : liquide 
-*      MEA(2): solide
+*     MEA -> Water quantity before runoff. MEA(1) : liquid 
+*      MEA(2): solid
       REAL MEA(2) 
       DATA MEA /0.2, 1.0/ 
-*     CH -> Epaisseur maximale de neige avant le passage de la charrue
+*     CH -> Max height of the snow before the Snowplow remove it
       parameter ( CH = 4.0 )
+
+
 ***                 ***
 *     DEFINITIONS     *
 ***                 ***
 ***
-*     Entrees
+*     Input
 *     -------
 ***
-*     QA Humidite specifique (g/kg) au niveau ZT
-*     QG Humidite specifique a la surface de la route
+*     QA Specific humidity (g/kg) at ZT level
+*     QG  Specific humidity (g/kg) at the road surface
+
 
       DOUBLE PRECISION FP, QA
       INTEGER ETAT
@@ -274,18 +277,17 @@
       REAL TS, QG, PR1, PR2, PRG, DX
 
 ***
-*     Entrees/Sorties
+*     Input/Output
 *     ---------------
 ***
       DOUBLE PRECISION ER1, ER2
 ***
-*     Internes
+*     Internals
 *     --------
 ***
       REAL FV1, FV2, CUTOFF
 ***
-*     Declarations des constantes physique 
-*     et des fonctions thermodynamiques
+*     Physical constants and thermondynamical functions declarations
 *     ------------------------------------
 ***
 *
@@ -330,16 +332,17 @@
          end if
       endif
 
-*    ER1: Reservoir de pluie (mm ?)
-*    Les variables suivantes sont des taux, par seconde
-*    PR1: Taux de précipitations de pluie (mm/sec )
-*    PR2: Taux de précipitation de neige/glace (mm/sec)
-*    PRG: Taux de transfert d'un réservoir à l'autre
-*    FV1: Condensation (négatif de l'évaporation)
-*    DX: Quantité d'eau fondu
-*    MEA: Quantité d'eau maximale => après il y a de l'écoulement
-*    3e-3*( max(REAL(ER2),REAL(MEA(2)))-MEA(2)) ): Écoulement, 
-*     proportionnel à la hauteur du réservoir.
+*    ER1: Water reservoir de (mm)
+*    ER2: Snow/Ice reservoir (mm)
+*    The following variables are rate per second
+*    PR1: Precipitation rate, rain (mm/sec)
+*    PR2: Precipitation rate, snow (mm/sec)
+*    PRG: Transfert rate from one reservoir to the other
+*    FV1: Condensation (negative of evaporation)
+*    DX : Melted water
+*    MEA: Maximum water quantity => after there is runoff
+*    3e-3*( max(REAL(ER2),REAL(MEA(2)))-MEA(2)) ): Runoff, 
+*     proportionnal to reservoir hight.
       ER1 = max(0.0,REAL(ER1 + DT*(
      *     PR1 + FV1 + DX - 
      *     3e-3*( max(REAL(ER1),MEA(1))-MEA(1)) ) ))
@@ -347,69 +350,69 @@
      *     PR2 + FV2 - DX 
      *     - 3e-4*( max(REAL(ER2),MEA(2))-MEA(2)) ) ))
 
-*     Determination de la condition de la chaussee
+*     Road condition computation
 *
-*         Code: 1. -> Pave sec
-*               2. -> Pave mouille
-*               3. -> Glace / Neige
-*               4. -> Melange eau/neige
-*               5. -> Rosee (Dew)
-*               6. -> Neige fondante
-*               7. -> Gel (Frost)
-*               8. -> Pluie verglacante
+*         Code: 1. -> Dry road
+*               2. -> Wet road
+*               3. -> Ice/snow on the road
+*               4. -> Mix water/snow on the road
+*               5. -> Dew
+*               6. -> Melting snow
+*               7. -> Frost
+*               8. -> Icing rain 
 *
 *     --------------------------------------------
       CUTOFF = 0.2
       if ( PRG .gt. 0.0 ) then
 *     -----------------------------------------------------------
-*        8. -> Pluie verglacante
+*        8. -> Icing rain 
 *     -----------------------------------------------------------
          ETAT = 8
       else if ( PRG .lt. 0.0 ) then
 *     -----------------------------------------------------------
-*        6. -> Neige fondante
+*        6. -> Melting snow
 *     -----------------------------------------------------------
          ETAT = 6
       else if ( ER1.lt.CUTOFF .and. ER2.lt.CUTOFF ) then
          if ( FV1.gt.0.0 .and. PR1 .eq. 0.0 ) then
 
 *     -----------------------------------------------------------
-*           5. -> Rosee (Dew)
+*           5. -> Dew
 *     -----------------------------------------------------------
             ETAT = 5
          else if ( ( FV2 .gt. 0.0 .and. PR2 .eq. 0.0 ) .or.
      *               DX .lt. 0.0 ) then
 *     -----------------------------------------------------------
-*           7. -> *** Risque de glace noire ***
-*                 Frost ou gel d'eau au sol 
+*           7. -> *** Black ice warning ***
+*                 Frost or icing of water on the ground
 *     -----------------------------------------------------------
             ETAT = 7
          else
 *     -----------------------------------------------------------
-*           1. -> Pave sec
+*           1. -> Dry road
 *     -----------------------------------------------------------
             ETAT = 1
          end if
       else if ( ER1 .ge. CUTOFF .and. ER2 .ge. CUTOFF ) then
 *     -----------------------------------------------------------
-*        4. -> Transition de phase 
+*        4. -> Phase transition : Mix water/snow on the road
 *     -----------------------------------------------------------
          ETAT = 4
       else if ( ER1 .ge. CUTOFF ) then
 *     -----------------------------------------------------------
-*        2. -> Pave mouille
+*        2. -> Wet road
 *     -----------------------------------------------------------
          ETAT = 2
       else if ( ER2 .ge. CUTOFF ) then
 *     -----------------------------------------------------------
-*        3. -> Glace/Neige
+*        3. -> Ice/snow on the road
 *     -----------------------------------------------------------
          ETAT = 3
       end if
       return
       end
-************************************************************************
-************************************************************************
+
+
 ************************************************************************
 ***
 *     Sous-routine SRFHUM: Calcul l'humidite specifique a la surface de
