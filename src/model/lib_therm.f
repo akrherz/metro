@@ -251,13 +251,10 @@
       REAL DT
       INTEGER DTMAX
       COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
-      REAL CH 
 *     MEA -> Water quantity before runoff. MEA(1) : liquid 
 *      MEA(2): solid
       REAL MEA(2) 
       DATA MEA /0.2, 1.0/ 
-*     CH -> Max height of the snow before the Snowplow remove it
-      parameter ( CH = 4.0 )
 
 
 ***                 ***
