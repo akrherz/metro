@@ -122,9 +122,9 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
                     return i
 
 
-        #  Something bad hapened.
-        sMessage = _("Unable to determine the first time of roadcast!")
-        metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
+            #  Something bad hapened.
+            sMessage = _("Unable to determine the first time of roadcast!")
+            metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
                                        sMessage)
 
     def __subsample_roadcast(self, roadcast, nFirstRoundTimestep):
