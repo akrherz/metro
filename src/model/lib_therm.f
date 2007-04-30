@@ -128,12 +128,16 @@
       end if
       return
       end
-************************************************************************
-************************************************************************
+
+
 ************************************************************************
 ***
-*     Sous-routine VENMIN: Sous-routine pour imposer le vents minimum 
-*                          specifie dans la variable WW.
+*     Subroutine   VENMIN: Impose the minimum winds specified by the WW
+*                           variable. WW(1) is minimum wind for the day
+*                           WW(2) is minimum wind for the night.
+*                           FT is Forecast Time 
+*                           VA is wind speed (Vitesse Air)
+*                           Default is currently 0.
 *
 *     Auteur / Author: Louis-Philippe Crevier
 *     Date: Decembre 1999 / December 1999
@@ -144,12 +148,12 @@
 *     DEFINITIONS     *
 ***                 ***
 ***
-*     Entrees
+*     Input
 *     -------
 ***
       DOUBLE PRECISION WW(2), FT
 ***
-*     Entrees/Sorties
+*     Input/Output
 *     ---------------
 ***
       DOUBLE PRECISION VA
@@ -157,8 +161,8 @@
 *
 *     Procedure
 *     =========
-*     Specification d'un vent minimum selon l'heure du jour
-*     ATT: Heures GMT. Basee sur fuseau de l'est.
+*     Specification of a minimum wind based on the time of the day
+*     WARNING: UTC time. Based on East timezone
 *     -----------------------------------------------------
       if ( FT .gt. 12.5 .and. FT .lt. 25.5 .or.
      *     FT .gt. 36.5 .and. FT .lt. 50.0 ) then
@@ -172,10 +176,11 @@
       else
          VA = max( WW(2), VA )
       end if
+
       return
       end
-************************************************************************
-************************************************************************
+
+
 ************************************************************************
 ***
 *     Sous-routine TSEVOL: Calcul l'evolution du profil de temperature
@@ -265,7 +270,7 @@
 *     -------
 ***
 *     QA Specific humidity (g/kg) at ZT level
-*     QG  Specific humidity (g/kg) at the road surface
+*     QG Specific humidity (g/kg) at the road surface
 
 
       DOUBLE PRECISION FP, QA
