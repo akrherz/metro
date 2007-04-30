@@ -150,6 +150,9 @@
 ***
 *     Input
 *     -------
+*     WW : Minimum winds for the day and the night (m/s)
+*     FT : Forecast time
+*     VA : Wind speed (m/s)
 ***
       DOUBLE PRECISION WW(2), FT
 ***
