@@ -455,7 +455,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         # Check if there is any data for initialisation
         fDeltaT =  observation_data.get_attribute('DELTA_T')
 
-        if fDeltaT < 0:
+        if fDeltaT <= 0:
             bNoObs[0] = 1
         # Less than 3 hours of observation        
         if nNbr30Seconds-fDeltaT*3600/30. < metro_constant.nThreeHours*3600/30:
