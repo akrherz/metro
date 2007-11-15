@@ -237,7 +237,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   /* Extraction of observations */
   /*  Those -1 is because it is use in fortran */
   nDeltaTIndice = (dDeltaT)*3600/30.-1;
-
   nLenObservation = nLenObservation -1;
 
    
@@ -310,6 +309,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     long nOne =1;
     if(!bSilent)
       printf("Complete observations\n");
+
     f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]),\
 		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
 		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, dpGri, npSwo); 
@@ -342,7 +342,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
      }
   }/* End else observation complete */
 
-  
   /************ roadcast **************************************************/
   f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef,\
 		  &nIR40, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr,\
@@ -367,7 +366,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 /* Free everybody */
 /* String */
   /* double */
-  nNbrOfZone= 1234;
   free(dpItp);
   dpItp = NULL;
   free(dpWw);
@@ -375,7 +373,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   free(dpCnt);
   dpCnt = NULL;
   free(dpGri);
-  dpGri = NULL;
+  dpGri = NULL; 
 }/* End Do_Metro */
 
 int main(argc, argv) 
