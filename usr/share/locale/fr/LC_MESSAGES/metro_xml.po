@@ -63,7 +63,7 @@ msgstr "SERA 10 FOIS PLUS RAPIDE."
 #: ../src/frontend/toolbox/metro_xml.py:99
 
 msgid "metro_xml_libxml2 will be used."
-msgstr "metro_xml_pyxml sera utilisée."
+msgstr "metro_xml_libxml2 sera utilisée."
 
 #: ../src/frontend/toolbox/metro_xml.py:115
 msgid "Validation is only supported with metro_xml_libxml2"
