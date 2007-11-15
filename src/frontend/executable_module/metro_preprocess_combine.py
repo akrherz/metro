@@ -88,27 +88,21 @@ class Metro_preprocess_combine(Metro_preprocess):
         pForecast.set_data_collection(forecast_data)
         pObservation.set_data_collection(observation_data)
 
-####################################################        
-# Name: __set_attribute
-#
-# Parameters:
-#
-# Returns: None
-#
-# Functions Called: max, min
-#                   observation_data.get_attribute
-#
-# Description: Compute the number of 30 seconds step in the observation.
-#   Uses self.observation_data.DELTA_T, i.e. the number of hours in the
-#   observation to do so.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 20th 2004
-#####################################################
     def __set_attribute(self, observation_data):
+        """
+        Name: __set_attribute
+
+        Parameters:
+         
+        Returns: None
+ 
+        Functions Called: max, min
+                   observation_data.get_attribute
+
+        Description: Compute the number of 30 seconds step in the observation.
+         Uses self.observation_data.DELTA_T, i.e. the number of hours in the
+         observation to do
+        """
         fDeltaTMetroObservation = observation_data.get_attribute('DELTA_T')
         self.nDeltaIndice = int(fDeltaTMetroObservation*3600/30.)
         self.NTP = max(self.nDeltaIndice,0)
@@ -340,29 +334,27 @@ class Metro_preprocess_combine(Metro_preprocess):
         wf_interpolated_data.set_matrix_col('QP',naQP)
         wf_interpolated_data.append_matrix_col('SC',naSC)
 
-#####################################################
-# Name: __create_QA
-#
-# Parameters:[I] metro_data wf_interpolated_data : interpolated forecast data. 
-#            [I] metro_data wf_interpolated_data :  interpolated observation data. 
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   numarray.zeros, astype
-#                   metro_physics.foqst
-#                    metro_data.append_matrix_col
-#
-# Description: Computation of the absolute humidity (g/kg)
-#  see http://en.wikipedia.org/wiki/Absolute_humidity for a definition.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 24th 2004
-#####################################################
+
     def __create_AH(self, wf_interpolated_data):
-        
+        """
+        Parameters:[I] metro_data wf_interpolated_data : interpolated forecast data. 
+        [I] metro_data wf_interpolated_data :  interpolated observation data. 
+        Returns: None
+
+        Functions Called: metro_data.get_matrix_col
+                          numarray.zeros, astype
+                          metro_physics.foqst
+                          metro_data.append_matrix_col
+
+        Description: Computation of the absolute humidity (g/kg)
+             see http://en.wikipedia.org/wiki/Absolute_humidity for a definition.
+
+        Notes: 
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 24th 2004
+        """
         # Get any of the interpolated forecast to retrieve the length
         naTD = wf_interpolated_data.get_matrix_col('TD')
         naAP = wf_interpolated_data.get_matrix_col('AP')
