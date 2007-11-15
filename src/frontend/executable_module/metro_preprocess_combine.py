@@ -108,33 +108,30 @@ class Metro_preprocess_combine(Metro_preprocess):
         self.NTP = max(self.nDeltaIndice,0)
         self.NTP2 = min(self.nDeltaIndice,0)
 
-####################################################        
-# Name: __combine_AT
-        #
-# Parameters:[I] metro_data wf_interpolated_data : interpolated forecast data. 
-#            [I] metro_data wf_interpolated_data :  interpolated observation data. 
-# Returns: None
-#
-# Functions Called:wf_interpolated_data.get_matrix_col
-#                  observation_data.get_attribute
-#                  numarray.where
-#
-# Description: Combine the air temperature of forecast and observation.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 19th 2004
-#####################################################
+
     def __combine_AT(self, wf_interpolated_data, \
-                     ro_interpolated_data, observation_data):        
+                     ro_interpolated_data, observation_data):
+        """
+        Name: __combine_AT
+        
+        Parameters:[I] metro_data wf_interpolated_data : interpolated
+                       forecast data.
+                   [I] metro_data wf_interpolated_data : interpolated
+                       observation data. 
+        Returns: None
+
+        Functions Called:wf_interpolated_data.get_matrix_col
+                  observation_data.get_attribute
+                  numarray.where
+
+        Description: Combine the air temperature of forecast and observation.
+        """
 
         naAT = wf_interpolated_data.get_matrix_col('AT')
         naATO = ro_interpolated_data.get_matrix_col('AT')
 
         nLenATO = len(naATO)
-        nLenAT = len(naAT)-3*3600/30
+        nLenAT = len(naAT)#-3*3600/30
 
         # Check if there is an error in the observation
         naSwo = observation_data.get_attribute('AT_VALID_INTERPOLATED')
@@ -154,7 +151,6 @@ class Metro_preprocess_combine(Metro_preprocess):
                     nValueSup = nLenAT + self.NTP2
                 else:
                     nValueSup = nLenAT
-#                nValueSup = nLenATO-self.NTP + 460
                 for i in range(nLenATO-self.NTP, nValueSup):
                     naAT[i-self.NTP2] = naAT[i-self.NTP2]-math.exp(-(i-nFactor)\
                                                *metro_constant.fTimeStep \
@@ -163,26 +159,23 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         wf_interpolated_data.set_matrix_col('AT', naAT)  
 
-####################################################        
-# Name: __combine_TD
-        #
-# Parameters:[I] metro_data wf_interpolated_data : interpolated forecast data. 
-#            [I] metro_data wf_interpolated_data :  interpolated observation data. 
-# Returns: None
-#
-# Functions Called: wf_interpolated_data.get_matrix_col
-#                   numarray.where, nonzero
-#
-# Description: Combine the dew point of forecast and observation.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 23th 2004
-#####################################################
+
     def __combine_TD(self, wf_interpolated_data, \
-                     ro_interpolated_data, observation_data):        
+                     ro_interpolated_data, observation_data):
+        """
+        Name: __combine_TD
+        
+        Parameters:[I] metro_data wf_interpolated_data : interpolated
+                         forecast data. 
+                   [I] metro_data wf_interpolated_data : interpolated
+                         observation data. 
+        Returns: None
+
+        Functions Called: wf_interpolated_data.get_matrix_col
+                           numarray.where, nonzero
+
+        Description: Combine the dew point of forecast and observation.
+        """
 
         naTD = wf_interpolated_data.get_matrix_col('TD')
         naAT = wf_interpolated_data.get_matrix_col('AT')
@@ -220,27 +213,24 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         wf_interpolated_data.set_matrix_col('TD', naTD)
  
-####################################################        
-# Name: __combine_WS
-        #
-# Parameters:[I] metro_data wf_interpolated_data : interpolated forecast data. 
-#            [I] metro_data wf_interpolated_data :  interpolated observation data. 
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   collection_data.get_attribute
-#                   numarray.where, nonzero
-#
-# Description: Combine the wind speed of forecast and observation.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 23th 2004
-#####################################################
+
     def __combine_WS(self, wf_interpolated_data, \
-                     ro_interpolated_data, observation_data):        
+                     ro_interpolated_data, observation_data):
+        """
+        Name: __combine_WS
+        
+        Parameters:[I] metro_data wf_interpolated_data : interpolated
+                       forecast data. 
+                   [I] metro_data wf_interpolated_data : interpolated
+                       observation data. 
+        Returns: None
+
+        Functions Called: metro_data.get_matrix_col
+                   collection_data.get_attribute
+                   numarray.where, nonzero
+
+        Description: Combine the wind speed of forecast and observation.
+        """
 
         naWS = wf_interpolated_data.get_matrix_col('WS')
         
@@ -292,27 +282,24 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         wf_interpolated_data.set_matrix_col('WS', naWS)
         
-#####################################################
-# Name: __combine_QP
-#
-# Parameters:[I] metro_data wf_interpolated_data : interpolated forecast data. 
-#            [I] metro_data wf_interpolated_data :  interpolated observation data. 
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   collection_data.get_attribute
-#
-# Description: Set the precipitation rate with the accumulations.
-#  Create the road condition.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 24th 2004
-#####################################################
+
     def __combine_QP(self, wf_interpolated_data, \
-                     ro_interpolated_data):        
+                     ro_interpolated_data):
+        """
+        Name: __combine_QP
+
+        Parameters:[I] metro_data wf_interpolated_data : interpolated
+                       forecast data. 
+                   [I] metro_data wf_interpolated_data : interpolated
+                       observation data. 
+         Returns: None
+
+         Functions Called: metro_data.get_matrix_col
+                   collection_data.get_attribute
+
+          Description: Set the precipitation rate with the accumulations.
+                       Create the road condition.
+        """
         
         naQP = wf_interpolated_data.get_matrix_col('QP')
 
