@@ -33,13 +33,13 @@
 #
 #
 
-####################################################
-# Name:		Metro_physics.py
-# Description: Contains the physical equation used in metro
-# Notes: 
-# Author: Miguel Tremblay
-# Date: August 24th 2004
-####################################################
+"""
+Name:		Metro_physics.py
+Description: Contains the physical equation used in metro
+Notes: 
+Author: Miguel Tremblay
+Date: August 24th 2004
+"""
 
 import math
 import numarray
@@ -48,49 +48,45 @@ from toolbox import metro_constant
 from toolbox import metro_util
 
 
-#####################################################
-# Name: fodqst
-#
-# Parameters:[I] double dTD : dew point
-#            [I] double dPO : surface pressure
-# Returns: None
-#
-# Functions Called:
-#   . . .
-#
-# Description: Computation of the specific saturating humidity
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 24th 2004
-#####################################################
 def foqst(dTD, dPO):
-#    print "foqst", metro_constant.fEps1/(max(1.0, dPO/foew(dTD))\
-#                                         - metro_constant.fEps2)
+    """
+     Name: fodqst
+
+     Parameters:[I] double dTD : dew point
+                [I] double dPO : surface pressure
+     Returns: None
+
+     Functions Called:
+
+     Description: Computation of the specific saturating humidity
+
+     Notes: 
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay      August 24th 2004
+     """
     return metro_constant.fEps1/(max(1.0, dPO/foew(dTD))\
                                  - metro_constant.fEps2)
 
     
-#####################################################
-# Name: foew
-#
-# Parameters: [I] double dPO : surface pressure
-# Returns: None
-#
-# Functions Called: Vapour pressure
-#   . . .
-#
-# Description: 
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 24th 2004
-#####################################################
 def foew(dPO):
+    """
+     Name: foew
+
+     Parameters: [I] double dPO : surface pressure
+     Returns: None
+
+     Functions Called: Vapour pressure
+
+     Description: 
+
+     Notes: 
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay      August 24th 2004
+     """
     dDiff = dPO-metro_constant.fTrpl
     fResult =  610.78*math.exp(min(metro_util.sign(17.269,dDiff),\
                                metro_util.sign(21.875,dDiff))*\
