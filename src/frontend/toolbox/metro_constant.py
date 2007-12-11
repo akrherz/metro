@@ -80,8 +80,7 @@ fTrpl = 273.16
 fTcdk = 273.15
 
 # Used in metro_model to define the size of npSwo, because it finally
-#  goes into fortran...  TODO MT: Remove this variable once there is no more
-#  fortran code.
+#  goes into fortran...  
 nNL = 11520
 
 # METRo output
