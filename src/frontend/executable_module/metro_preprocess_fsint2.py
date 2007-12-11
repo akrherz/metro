@@ -135,16 +135,16 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                                wf_interpolated_data):
         """
         Name: __set_theoretical_flux
-        Parameters:[I] metro_data wf_controlled_data : controlled data.  Read-only
-            [I] metro_data wf_interpolated_data : container of the interpolated
-            data.
+        Parameters:[I] metro_data wf_controlled_data : controlled data.
+                       Read-only
+                   [I] metro_data wf_interpolated_data : container of the
+                       interpolated data.
         Returns: None
 
         Functions Called: wf_controlled_data.get_matrix_col
                   numarray.cos, where, 
                   wf_controlled_data.append_matrix_col
                   metro_util.interpolate
-                   
                    
 
          Description: The flux value of the forecast are calculated from the
@@ -205,11 +205,12 @@ class Metro_preprocess_fsint2(Metro_preprocess):
             nCurrentHour = (naTimeHour[i])%24
             # atmospheric forecast is before the sunrise
             # or after the sunset
-            if self.__in_the_dark(nCurrentHour, fSunriseTimeUTC, fSunsetTimeUTC,):
+            if self.__in_the_dark(nCurrentHour, fSunriseTimeUTC, \
+                                  fSunsetTimeUTC,):
                     naSft[i] = 0
             else:
-                fDh =  nCurrentHour*pi/12.0 + \
-                      self.fLon*pi/180. - pi + self.fEot        
+                # Position of the sun around the earth, in radian
+                fDh =  pi*(nCurrentHour/12.0 + self.fLon/180 - 1) + self.fEot
                 fCosz = self.tDeclsc[0] + \
                         self.tDeclsc[1]*cos(fDh)
                 naSft[i] = max(0.0, fCosz)*self.fR0r
@@ -273,7 +274,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
 
          Returns: tuple (double fEot, double fR0r, tuple tDeclsc)
-                  dEot: Correction for the equation of time
+                  dEot: Correction for the equation of time 
                   dR0r: Corrected solar constant for the equation of time
                   tDeclsc: Declinaison
 
@@ -297,7 +298,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         # see http://www.python.org/doc/current/lib/module-time.html
         tDate = time.gmtime(nTime)
         # Julian date is the 7th argument
-        fJulianDate = tDate[7]+ tDate[3]/24.0
+        fJulianDate = tDate[7] + tDate[3]/24.0
         # Check if it is a leap year
         if(calendar.isleap(tDate[0])):
             fDivide = 366.0
@@ -331,7 +332,8 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
         Functions Called: cos, sin
          
-        Description:
+        Description:  Statement function that calculates the variation of the
+          solar constant as a function of the julian day. (dAlf, in radians)
          
         Notes: <other information, if any>
          
