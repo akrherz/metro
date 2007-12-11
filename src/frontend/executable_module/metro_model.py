@@ -124,7 +124,6 @@ class Metro_model(Metro_module):
 
         # Start time from model is the last observation
         sStart_time = metro_config.get_value('DATA_ATTRIBUTE_LAST_OBSERVATION')
-        print sStart_time
         fStart_time = metro_date.parse_date_string(sStart_time)
 
 
@@ -172,7 +171,6 @@ class Metro_model(Metro_module):
                                    sMessage)
 
         # start roadlayer MATRIX
-
         naLayerType  = cs_data.get_matrix_col('TYPE')
         lLayerType = naLayerType.astype(numarray.Int32).tolist()
         lLayerThick = cs_data.get_matrix_col('THICKNESS').tolist()
@@ -256,12 +254,13 @@ class Metro_model(Metro_module):
                  .astype(numarray.Int32)
         npSWO4 = observation.get_attribute('WS_VALID_INTERPOLATED')\
                  .astype(numarray.Int32)
-        npSWO = numarray.zeros(4*metro_constant.nNL)        
+        npSWO = numarray.zeros(4*metro_constant.nNL)
+        # Put all the arrays in one for the fortran code.
         for i in range(0,len(npSWO1)):
-               npSWO[4*i] = npSWO1[i]
-               npSWO[4*i+1] = npSWO2[i]
-               npSWO[4*i+2] = npSWO3[i] 
-               npSWO[4*i+3] = npSWO4[i] 
+            npSWO[4*i] = npSWO1[i]
+            npSWO[4*i+1] = npSWO2[i]
+            npSWO[4*i+2] = npSWO3[i] 
+            npSWO[4*i+3] = npSWO4[i] 
         lSWO = npSWO.astype(numarray.Int32).tolist()
         
         bNoObs = observation.get_attribute('NO_OBS')
@@ -304,7 +303,6 @@ class Metro_model(Metro_module):
                          lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \
                          nNbrTimeSteps, bSilent)
-
         bEchec = (macadam.get_echec())[0]
         # Check if the execution of the model was a succes:
         if bEchec != 0:
@@ -370,6 +368,8 @@ class Metro_model(Metro_module):
         lBB = (macadam.get_bb())[:iNb_timesteps]
         lFP = (macadam.get_fp())[:iNb_timesteps]
         lSST =  (macadam.get_sst())[:iNb_timesteps]
+        nNbrVerticalLevel = macadam.get_nbr_levels()
+        lDepth = (macadam.get_depth())[:nNbrVerticalLevel]
 
         # TODO MT: Le +30 est la pour que l'output soit au bon moment.
         #  Il y a eu un probleme dans la conversion entre le C et le fortran
