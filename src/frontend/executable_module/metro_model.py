@@ -336,14 +336,7 @@ class Metro_model(Metro_module):
         sRoadcast_station = station.get_station_name()
         fRoadcast_production_date = time.time()
         
-        # Adding the informations to the header
-        roadcast.set_header_value('VERSION',sRoadcast_version)
-        roadcast.set_header_value('ROAD_STATION',sRoadcast_station)
-        roadcast.set_header_value('PRODUCTION_DATE',fRoadcast_production_date)
-        roadcast.set_header_value('LATITUDE', station.get_header()['COORDINATE'][0])
-        roadcast.set_header_value('LONGITUDE', station.get_header()['COORDINATE'][1])
-        roadcast.set_header_value('FILETYPE','roadcast')
-
+    
         #
         # Generate the roadcast matrix of data
         #
@@ -368,8 +361,19 @@ class Metro_model(Metro_module):
         lBB = (macadam.get_bb())[:iNb_timesteps]
         lFP = (macadam.get_fp())[:iNb_timesteps]
         lSST =  (macadam.get_sst())[:iNb_timesteps]
+        # Temperature of levels under the ground.
         nNbrVerticalLevel = macadam.get_nbr_levels()
         lDepth = (macadam.get_depth())[:nNbrVerticalLevel]
+        lLT = (macadam.get_lt())[:nNbrVerticalLevel*iNb_timesteps]
+
+        # Adding the informations to the header
+        roadcast.set_header_value('VERSION',sRoadcast_version)
+        roadcast.set_header_value('ROAD_STATION',sRoadcast_station)
+        roadcast.set_header_value('PRODUCTION_DATE',fRoadcast_production_date)
+        roadcast.set_header_value('LATITUDE', station.get_header()['COORDINATE'][0])
+        roadcast.set_header_value('LONGITUDE', station.get_header()['COORDINATE'][1])
+        roadcast.set_header_value('FILETYPE','roadcast')
+  
 
         # TODO MT: Le +30 est la pour que l'output soit au bon moment.
         #  Il y a eu un probleme dans la conversion entre le C et le fortran
@@ -410,10 +414,8 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('BB', lBB)
         roadcast.set_matrix_col('FP', lFP)
         roadcast.set_matrix_col('CC', naCC)
-#        print "ST=" + str(lST)
-#        print "SST=" + str(lSST)
         roadcast.set_matrix_col('SST', lSST)
-
+      
         # Creation of the object Metro_data_collection for the roadcast
         lStandard_attributes = metro_config.get_value( \
             'DATA_ATTRIBUTE_ROADCAST_STANDARD')
