@@ -406,3 +406,5 @@ extern struct doubleStruct get_bb(void);
 extern struct doubleStruct get_fp(void);
 extern struct longStruct get_echec(void);
 extern struct doubleStruct get_sst(void);
+extern struct doubleStruct get_depth(void);
+extern long get_nbr_levels(void);

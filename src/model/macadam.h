@@ -58,3 +58,5 @@ struct doubleStruct get_bb(void);
 struct doubleStruct get_fp(void);
 struct longStruct get_echec(void);
 struct doubleStruct get_sst(void);
+struct doubleStruct get_depth(void);
+long get_nbr_levels(void);

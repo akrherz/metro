@@ -78,6 +78,7 @@ static struct doubleStruct stBB; /* Black body radiation */
 static struct doubleStruct stFP; /* Phase change energy */
 static struct longStruct   stEc; /* Boolean to know if the execution was a success */
 static struct doubleStruct stSST; /* Subsurface temperature */
+static struct doubleStruct stDepth;  /* Depth of grid levels */
  
 /****************************************************************************
  Name: Do_Metro 
@@ -143,8 +144,6 @@ Miguel Tremblay  May 2004
 
 void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
 {
-  /* Path des fichiers utilises */
-  char* cpNRep; 
 
   /* Argument de la ligne de commande. Donne par python  */
 
@@ -189,7 +188,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   double dEr2=0;
   double dFp=0.0;
   /* Grid values */
-  long nIRef=0;
+/*   long nIRef=0;   */
   long nIR40;
   double* dpCnt;
   double* dpGri;
@@ -198,7 +197,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   /* Allocate memory for all structures */
   init_structure(nDTMAX);
-
+  
 
   for (i=0; i<nNbrTimeSteps; i++){
     stIR.pdArray[i] = dpFI[i];
@@ -218,17 +217,17 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   *stEc.plArray = FALSE;
   dFCorr = 2.0*dOMEGA*sin(dPI*dMLat/180.0); 
 
-  if(bFlat){
-    nNbrOfZone = 1;
-  }
-  else{/* Note: In the case of a 'road', a 20 sand meters layer is added at the bottom.*/
+  if(!bFlat){
+    /* Note: In the case of a 'road', a 20 sand meters layer is added at the bottom.*/
     dpZones[nNbrOfZone] = 20.0;
     npMateriau[nNbrOfZone]= 4;
     nNbrOfZone = nNbrOfZone +1;
   }
+  
 
   /* Grid creation */
-  f77name(grille)(dpGri, dpCnt, &nIRef, &nIR40, &bFlat, &nNbrOfZone, dpZones, npMateriau, &dDiff, stEc.plArray); 
+  f77name(grille)(dpGri, dpCnt, &(stDepth.nSize), &nIR40, &bFlat, &nNbrOfZone,\
+		  dpZones, npMateriau, &dDiff, stDepth.pdArray, stEc.plArray); 
   if(*(stEc.plArray)){
     bSucces = FALSE;
     goto liberation;
@@ -253,7 +252,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     BOOL bFalse = FALSE;
     if(!bSilent)
       printf(" Only one valid observation: No initialization nor coupling.\n");
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, &dMLon, dpGri, npSwo);
+    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, &dMLon, dpGri, npSwo);
     nNtp2 = nLenObservation - nDeltaTIndice;
    }
   else if(bpNoObs[1]){
@@ -262,11 +261,11 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     long nOne =1;
     if(!bSilent)
       printf(" Not enough data for coupling.\n");
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[0]),\
+    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
 		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
 		    &dMLon, dpGri, npSwo); 
-    f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, \
-		     &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
+    f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
+		     &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo); 
     nNtp2 = nLenObservation - nDeltaTIndice;
   }
   else if(bpNoObs[0]){
@@ -278,13 +277,13 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     /* Patch because nNtdcl does not take the value 0 in fortran!*/
     if(nNtdcl == 0) 
       nNtdcl =1;
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
+    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
 		    &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]),\
 		    &dDiff, &dMLon, dpGri, npSwo); 
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC,\
-		    &nIRef, &nNtp, &nNtp2, dpCnt, dpItp, \
+		    &stDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp, \
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
@@ -302,7 +301,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       if(!bSilent)
 	printf("fail\n");      
       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
-		       &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
+		       &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo); 
      }
   }
   else{/* observation complete */
@@ -310,18 +309,18 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     if(!bSilent)
       printf("Complete observations\n");
 
-    f77name(makitp)(dpItp, &nIRef, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]),\
+    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]),\
 		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
 		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, dpGri, npSwo); 
     nNtdcl  = nLenObservation - nDeltaTIndice -\
       ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
        ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
-		     &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo); 
+		     &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
-		    dpRC, &nIRef, &nNtp, &nNtp2, dpCnt, dpItp,\
+		    dpRC, &stDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp,\
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa,\
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
@@ -338,12 +337,13 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
        long nOne = 1;
        if(!bSilent)
 	 printf("fail\n");
-       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &nIRef, &nIR40, &bFlat, npSwo);
+       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo);
      }
   }/* End else observation complete */
 
   /************ roadcast **************************************************/
-  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, &nIRef,\
+  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP,\
+		  &stDepth.nSize,					\
 		  &nIR40, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr,\
 		  dpWw,&dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
 		  &dEr2, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
@@ -405,6 +405,7 @@ void init_structure(long nSize)
   stFP.nSize = nSize;
   stEc.nSize = 1;
   stSST.nSize = nSize;
+  stDepth.nSize = 0; /* Will be computed later */
   /* Memory alloc */
   stRC.plArray = (long*)calloc((nSize),sizeof(long));
   stRA.pdArray = (double*)calloc((nSize),sizeof(double));
@@ -420,6 +421,7 @@ void init_structure(long nSize)
   stFP.pdArray = (double*)calloc((nSize),sizeof(double));
   stEc.plArray = (long*)calloc((1),sizeof(long));
   stSST.pdArray = (double*)calloc((nSize),sizeof(double));
+  stDepth.pdArray =  (double*)calloc((nSize),sizeof(double));
 }
 
 struct doubleStruct get_ra(void){
@@ -492,4 +494,14 @@ struct longStruct get_echec(void){
 struct doubleStruct get_sst(void){
 
   return stSST;
+}
+
+struct doubleStruct get_depth(void){
+
+  return stDepth;
+}
+
+long get_nbr_levels(void){
+
+  return stDepth.nSize;
 }

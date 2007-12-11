@@ -344,6 +344,14 @@
          dpFP(i) = PRG
          dpG(i) = G(0)
          dpSST(i) = T(ir40, now)
+         IF ( MOD(i,40) .eq. 0 ) THEN
+*           WRITE(*,*) "<vl>", i
+           DO j=1, iref
+*            WRITE(*,*) '<level-temp num="', j-1, '">', T(j, now), 
+*     *        '</lev-temp>'
+           END DO
+*         WRITE(*,*) "</vl>"
+         END IF
          G(1) = CNT(1,1) * ( T(2,now) - T(1,now) )
 
 *        Phase Transition when passing the melting point

@@ -47,7 +47,7 @@
 *     Date: 26 avril 2004
 ***
       SUBROUTINE GRILLE ( GRI_IN, CNT_IN, iref, ir40, 
-     *     FLAT, NZONE, ZONES, MAT, DIFF, ECHEC )
+     *     FLAT, NZONE, ZONES, MAT, DIFF, dpDepth, ECHEC )
       IMPLICIT NONE
       INTEGER i, j, k
       INTEGER Nl, n
@@ -77,11 +77,13 @@
 *     GRI: depth of the levels
 *     CNT: constants of conduction
 *     DIFF: Vector used to create the initial profile of temperature
+*     dpDepth: Depth of grid levels
 ***
       INTEGER iref, ir40
       DOUBLE PRECISION GRI(n,2), CNT(n,2), DIFF
       DOUBLE PRECISION GRI_IN(n*2)
       DOUBLE PRECISION CNT_IN(n*2)
+      DOUBLE PRECISION dpDepth(n)
 ***
 *     Local
 *     --------
@@ -162,20 +164,18 @@
       IF ( FLAT ) THEN
 *        Cas FLAT = .true. => PONT
 *        -------------------------
+*        ZONES(NZONE) is the bottom of the 
          DY = max( 0.01 , REAL(ZONES(NZONE)) / real(n) )
          iref = int( ZONES(NZONE) / DY )
          DO j=1,iref
-*       Grid of the flux layers
-*       Grille des niveaux de flux
+*           Grid of the flux layers
             GRI(j,1) = j * DY
-*       Grid of temperature layers
-*       Grille des niveaux de temperatures
+*           Grid of temperature layers
             GRI(j,2) = ( real(j)-0.5 ) * DY
-*       Derivate on the flux layers
-*       Derivee sur les niveaux de flux
+            dpDepth(j) = GRI(j,2)
+*           Derivate on the flux layers
             YPG(j) = 1.0
-*       Derivate on the temperature layer
-*       Derivee sur les niveaux de temperature
+*           Derivate on the temperature layer
             YPT(j) = 1.0
             IF ( GRI(j,2) .le. 0.4 ) ir40 = j
          END DO
@@ -196,9 +196,11 @@
          GRI(1,1) = - (log(( 1 - ( DY / dd ) )) / CC)
          GRI(1,2) = 0.5 * GRI(1,1)
          j=1
+         dpDepth(j) = GRI(j,2)
          DO j=2,iref
             GRI(j,1) = - (log((1. -(real(j) * DY / dd))) / CC)
             GRI(j,2) = 0.5 * ( GRI(j,1) + GRI(j-1,1) )
+            dpDepth(j) = GRI(j,2)
          END DO
          YPG(1) = dd * CC * exp( - (CC * 0.5 * GRI(1,1) ))
          YPT(1) = dd * CC * exp( -(CC * 0.5 * GRI(1,2) ))
@@ -209,7 +211,6 @@
       END IF
 
 *     Association of conductivity/capacity on the grid levels
-*     Associer les conductivites/capacites aux niveaux de la grille
 *     -------------------------------------------------------------
       INTER = 1
       DO j=1,iref
@@ -242,6 +243,7 @@
             return
          END IF
       END DO
+
 *     Creation of the CNT that contains the contribution of the capacity
 *     and conductivity in addition of the used metric factors
 *     Creation de CNT qui contient les contributions des capacites et
