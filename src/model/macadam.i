@@ -408,3 +408,4 @@ extern struct longStruct get_echec(void);
 extern struct doubleStruct get_sst(void);
 extern struct doubleStruct get_depth(void);
 extern long get_nbr_levels(void);
+extern struct doubleStruct get_lt(void);

@@ -79,6 +79,7 @@ static struct doubleStruct stFP; /* Phase change energy */
 static struct longStruct   stEc; /* Boolean to know if the execution was a success */
 static struct doubleStruct stSST; /* Subsurface temperature */
 static struct doubleStruct stDepth;  /* Depth of grid levels */
+static struct doubleStruct stLT; /* Level temperature */
  
 /****************************************************************************
  Name: Do_Metro 
@@ -196,7 +197,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   long nDeltaTIndice=0;
 
   /* Allocate memory for all structures */
-  init_structure(nDTMAX);
+  init_structure(nDTMAX, nNGRILLEMAX);
   
 
   for (i=0; i<nNbrTimeSteps; i++){
@@ -350,7 +351,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		  stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray,\
 		  stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
 		  stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray,\
-		  stSST.pdArray); 
+		  stSST.pdArray, stLT.pdArray); 
 
   if(*(stEc.plArray)){
     if(!bSilent)
@@ -385,43 +386,45 @@ int main(argc, argv)
  return 0; 
 } 
 
-void init_structure(long nSize)
+void init_structure(long nTimeStepMax, long nGrilleLevelMax)
 {
   /* Memory allocation */
 
   /* Size */
 
-  stRC.nSize = nSize;
-  stRA.nSize = nSize;
-  stRT.nSize = nSize;
-  stIR.nSize = nSize;
-  stSF.nSize = nSize;
-  stSN.nSize = nSize;
-  stFV.nSize = nSize;
-  stFC.nSize = nSize;
-  stFA.nSize = nSize;
-  stG.nSize = nSize;
-  stBB.nSize = nSize;
-  stFP.nSize = nSize;
+  stRC.nSize = nTimeStepMax;
+  stRA.nSize = nTimeStepMax;
+  stRT.nSize = nTimeStepMax;
+  stIR.nSize = nTimeStepMax;
+  stSF.nSize = nTimeStepMax;
+  stSN.nSize = nTimeStepMax;
+  stFV.nSize = nTimeStepMax;
+  stFC.nSize = nTimeStepMax;
+  stFA.nSize = nTimeStepMax;
+  stG.nSize = nTimeStepMax;
+  stBB.nSize = nTimeStepMax;
+  stFP.nSize = nTimeStepMax;
   stEc.nSize = 1;
-  stSST.nSize = nSize;
+  stSST.nSize = nTimeStepMax;
   stDepth.nSize = 0; /* Will be computed later */
+  stLT.nSize = nTimeStepMax*nGrilleLevelMax;
   /* Memory alloc */
-  stRC.plArray = (long*)calloc((nSize),sizeof(long));
-  stRA.pdArray = (double*)calloc((nSize),sizeof(double));
-  stIR.pdArray = (double*)calloc((nSize),sizeof(double));
-  stSF.pdArray = (double*)calloc((nSize),sizeof(double));
-  stRT.pdArray = (double*)calloc((nSize),sizeof(double));
-  stSN.pdArray = (double*)calloc((nSize),sizeof(double));
-  stFV.pdArray = (double*)calloc((nSize),sizeof(double));
-  stFC.pdArray = (double*)calloc((nSize),sizeof(double));
-  stFA.pdArray = (double*)calloc((nSize),sizeof(double));
-  stG.pdArray = (double*)calloc((nSize),sizeof(double));
-  stBB.pdArray = (double*)calloc((nSize),sizeof(double));
-  stFP.pdArray = (double*)calloc((nSize),sizeof(double));
+  stRC.plArray = (long*)calloc((nTimeStepMax),sizeof(long));
+  stRA.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stIR.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stSF.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stRT.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stSN.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stFV.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stFC.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stFA.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stG.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stBB.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stFP.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stEc.plArray = (long*)calloc((1),sizeof(long));
-  stSST.pdArray = (double*)calloc((nSize),sizeof(double));
-  stDepth.pdArray =  (double*)calloc((nSize),sizeof(double));
+  stSST.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
+  stDepth.pdArray =  (double*)calloc((nTimeStepMax),sizeof(double));
+  stLT.pdArray = (double*)calloc((nTimeStepMax*nGrilleLevelMax),sizeof(double));
 }
 
 struct doubleStruct get_ra(void){
@@ -504,4 +507,9 @@ struct doubleStruct get_depth(void){
 long get_nbr_levels(void){
 
   return stDepth.nSize;
+}
+
+struct doubleStruct get_lt(void){
+
+  return stLT;
 }

@@ -51,7 +51,7 @@
      *                    EPSILON, Z0, Z0T, ZU, ZT, ECHEC, dpRT, 
      *                    dpRA, dpSN,
      *                    npRC, dpIR, dpSF, dpFV,
-     *                    dpFC, dpFA, dpG, dpBB, dpFP, dpSST)
+     *                    dpFC, dpFA, dpG, dpBB, dpFP, dpSST, dpLT)
 
       IMPLICIT NONE
       INTEGER i, j
@@ -114,10 +114,10 @@
       DOUBLE PRECISION dpFC(DTMAX), dpFA(DTMAX)
       DOUBLE PRECISION dpG(DTMAX), dpBB(DTMAX)
       DOUBLE PRECISION dpRT(DTMAX), dpFV(DTMAX)
-      DOUBLE PRECISION dpFP(DTMAX), dpSST(DTMAX)
+      DOUBLE PRECISION dpFP(DTMAX), dpSST(DTMAX), dpLT(DTMAX*n)
       INTEGER npRC(DTMAX)
 ***
-*     Input/Output
+*     Output
 *     ---------------
 *     FLUX Matrix contening the output fields
 *         FLUX(1,i): FT(i)
@@ -138,6 +138,7 @@
 *                           6. -> Freezing rain
 *                           7. -> Snow
 *     TS:Time series of surface temperature
+*     dpLT: Temperature at every level of the grid
 ***
       LOGICAL ECHEC
       DOUBLE PRECISION ER1, ER2
@@ -344,14 +345,9 @@
          dpFP(i) = PRG
          dpG(i) = G(0)
          dpSST(i) = T(ir40, now)
-         IF ( MOD(i,40) .eq. 0 ) THEN
-*           WRITE(*,*) "<vl>", i
-           DO j=1, iref
-*            WRITE(*,*) '<level-temp num="', j-1, '">', T(j, now), 
-*     *        '</lev-temp>'
-           END DO
-*         WRITE(*,*) "</vl>"
-         END IF
+         DO j=1, iref
+            dpLT((i-1)*iref+j) = T(j, now)
+         END DO
          G(1) = CNT(1,1) * ( T(2,now) - T(1,now) )
 
 *        Phase Transition when passing the melting point
