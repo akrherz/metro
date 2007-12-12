@@ -42,7 +42,7 @@ msgstr "Dans interpolate, les vecteurs n'ont pas"
 
 #: ../src/frontend/toolbox/metro_util.py:207
 msgid "have the same length. %d != %d\n"
-msgstr "la même longueur:%d != %d\n"
+msgstr " la même longueur:%d != %d\n"
 
 #: ../src/frontend/toolbox/metro_util.py:211
 #, fuzzy
