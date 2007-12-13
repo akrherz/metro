@@ -33,14 +33,14 @@
 #
 #
 
-####################################################
-# Name:	 metro_util.py
-# Description: Miscelleneous functions for METRo
-# Notes: The language is set here because metro can be used
-# as a library and metro_util is the module that every other module loads.
-# Thus, the language setting that are used through metro is always set if
-# this code is in the metro_util module.
-####################################################
+"""
+ Name:	 metro_util.py
+ Description: Miscelleneous functions for METRo
+ Notes: The language is set here because metro can be used
+ as a library and metro_util is the module that every other module loads.
+ Thus, the language setting that are used through metro is always set if
+ this code is in the metro_util module.
+"""
 
 import os
 
@@ -63,9 +63,9 @@ import math
 from distutils.version import LooseVersion
 from gettext import gettext as _
 import gettext
-import numarray
-from numarray import array
-from numarray import arange
+import numpy
+from numpy import array
+from numpy import arange
 
 
 import arrayfns
@@ -78,7 +78,7 @@ def import_name( module_path, module_name ):
         return None
     return vars(module)[module_name]
 
-# Retourne le "path" de la racine du package METRo
+# Return the root path of METRo package
 def get_metro_root_path( ):
     lPath = string.split(sys.path[0],"/")
     if lPath[len(lPath)-1] == "frontend":
@@ -87,8 +87,14 @@ def get_metro_root_path( ):
         sRoot_path = string.join(lPath[:-1],"/")
     elif lPath[len(lPath)-1] == "metro":
         sRoot_path = string.join(lPath[:-3],"/")
-        
-    else:
+    else: # Check if metro_util is used as a library
+        lPythonPath =  string.split(os.environ['PYTHONPATH'], ":")
+        for sPath in lPythonPath:
+            lPath = string.split(sPath,"/")
+            if lPath[-2] == "frontend":
+                sRoot_path = string.join(lPath[:-3],"/")
+                return sRoot_path
+        # Nothing have been found
         sError = _("The executable 'metro.py' must be in one of the following directory:\n") +\
                  _("metro_directory/src/frontend' or 'metro_directory/usr/lib/metro'.\n") +\
                  _("The following path is not valid: '%s'.\n\n") % (sys.path[0]) +\
@@ -102,8 +108,8 @@ def get_exec_root_path( ):
     return sys.path[0]
 
 #########
-# Passe pas belle pour pouvoir utiliser la fonction get_metro_root_path
-# Ca permet de definir le underscore pour la traduction avec gettext.
+# Ugly way done in order to use the function get_metro_root_path.
+#  We can then use the underscore for the translation with gettext.
 #########
 t = gettext.translation('metro_util', get_metro_root_path() +\
                         '/usr/share/locale')
@@ -125,8 +131,10 @@ def test_import( sModule_name ):
         print 'sCode= [%s]' % (sCode)
         raise "MetroImportError", sError
 
-# Utiliser pour tester la presence d'une fonction dans un module
 def test_function_existence( sModule_name, sFunction_name ):
+    """
+    Utiliser pour tester la presence d'une fonction dans un module.
+    """
     try:
         sCode_import = "import " + sModule_name
         exec sCode_import
@@ -169,40 +177,38 @@ def list2string( lList ):
 
 
 
-
-####################################################
-# Name: interpolate
-#
-# Parameters: [[I] Numeric.Array lXArray : The value of x to
-#                   interpolate.  Must be of constant distance between
-#                   two consecutives X.]
-#              [[I] Numeric.Array lYArray: The value of y to
-#                   interpolate.]
-#              [[I] int iIncrement: The increment to use
-#                    between two X consecutes values to get the new X
-#
-# Returns: list The interpolate Y value. Throw an exception in case
-#  of error.
-#
-# Functions Called: [interp() see http://wikid.cmc.ec.gc.ca/tiki-index.php?page=Fonction+interp+dans+python]
-# #
-# Description: This function do the interpolation of a one dimension
-#  function.  The x and the corresponding y value are given
-#  (i.e. y[n] correspond to x[n]) The value of x must be
-#  evenly spaced.
-#  The third argument (iIncrement) tells how to
-#  increment the value between two consecutive x.
-#
-# Notes: This function needs the NumArray package. We assume that
-#  the values do no need to be sorted (i.e. they are in order).
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      June 30th 2004   To replace the linear
-#                                        interpolation of fortran code
-#####################################################
-
 def interpolate(xArray, yArray, iIncrement):
+    """
+     Name: interpolate
+
+     Parameters: [[I] Numeric.Array lXArray : The value of x to
+                      interpolate.  Must be of constant distance between
+                      two consecutives X.]
+                 [[I] Numeric.Array lYArray: The value of y to
+                      interpolate.]
+                 [[I] int iIncrement: The increment to use
+                      between two X consecutes values to get the new X
+
+     Returns: list The interpolate Y value. Throw an exception in case
+               of error.
+
+     Functions Called: [interp() ]
+ 
+     Description: This function do the interpolation of a one dimension
+                  function.  The x and the corresponding y value are given
+                  (i.e. y[n] correspond to x[n]) The value of x must be
+                  evenly spaced.
+                  The third argument (iIncrement) tells how to
+                  increment the value between two consecutive x.
+
+     Notes: This function needs the NumArray package. We assume that
+              the values do no need to be sorted (i.e. they are in order).
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay      June 30th 2004   To replace the linear
+     interpolation of fortran code
+    """
     
     # Check if the size of the array is ok.
     iLenXArray = len(xArray)
@@ -214,8 +220,8 @@ def interpolate(xArray, yArray, iIncrement):
         print sMetroUtilWarning
         if iLenYArray < iLenXArray:
             sMetroUtilWarning = _("Padding Y array with average at the end.")
-            naPadd = numarray.zeros(iLenXArray - iLenYArray)+yArray.mean()
-            yArray = numarray.concatenate((yArray,naPadd))
+            naPadd = numpy.zeros(iLenXArray - iLenYArray)+yArray.mean()
+            yArray = numpy.concatenate((yArray,naPadd))
         else:
             raise "METRoUtilError", sMetroUtilWarning
         
@@ -235,94 +241,100 @@ def interpolate(xArray, yArray, iIncrement):
 
     return array(yArrayInt)
 
-####################################################
-# Name: shift_left
-#
-# Parameters: [[I] numarray naInput : The array that the value will be
-#              be shifted left]
-#             [[I] double fValueAdded=0 : The value to be added at left
-#
-# Returns: numarray naOutput: The array with the value shifted
-#
-# Functions Called:  numarray.take
-#                    numarray.concatenate
-#
-# Description: This method shift the value of the array at left, i.e.
-#  naInput[n] becomes naInput[n] for all n in [1..len(naInput)-1].  The
-#  value fValueAdded is added at the end, i.e. naInput[len(naInput)-1]=fValueAdded
-#
-# Notes: naInput must be one dimension.
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       July 2nd         Tanne de toujours faire la meme chose
-#####################################################
+
 def shift_left(naInput, fValueAdded=0):
+    """
+    Name: shift_left
+    
+    Parameters: [[I] numpy naInput : The array that the value will be
+                                     be shifted left]
+                [[I] double fValueAdded=0 : The value to be added at left
+
+    Returns: numpy naOutput: The array with the value shifted
+
+    Functions Called:  numpy.take
+                       numpy.concatenate
+
+    Description: This method shift the value of the array at left, i.e.
+                 naInput[n] becomes naInput[n] for all n in [1..len(naInput)-1].  The
+                 value fValueAdded is added at the end,
+                 i.e. naInput[len(naInput)-1]=fValueAdded
+
+     Notes: naInput must be one dimension.
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay    July 2nd         Tired of always doing the same thing.
+
+     """
     # Check the dimension
-    if(naInput.getshape() <= 0):
+    if(naInput.shape <= 0):
         sMetroUtilError = _("In shift_left, naInput is not of size (1,).\n")+\
                           "len(naInput.getshape())=%s"\
                           % (len(naInput.getshape()))
         raise "METRoUtilError", sMetroUtilError
 
     # Cut the first value
-    naOutput  = numarray.take(naInput,\
-                              numarray.arange(1, len(naInput)))
+    naOutput  = numpy.take(naInput,\
+                              numpy.arange(1, len(naInput)))
     naToBeCat = array([fValueAdded])
-    naOutput = numarray.concatenate((naOutput, naToBeCat))
+    naOutput = numpy.concatenate((naOutput, naToBeCat))
 
     return naOutput
 
 
-####################################################
-# Name: shift_right
-#
-# Parameters: [[I] numarray naInput : The array that the value will be
-#              be shifted right]
-#             [[I] double fValueAdded=0 : The value to be added at the
-#                beginning of the array
-#
-# Returns: numarray naOutput: The array with the value shifted
-#
-# Functions Called:  numarray.take
-#                    numarray.concatenate
-#
-# Description: This method shift the value of the array at right, i.e.
-#  naInput[n] becomes naInput[n+1] for all n in [0..len(naInput)-2].  The
-#  value fValueAdded is added at the begining, i.e. naInput[0]=fValueAdded
-#
-# Notes: naInput must be one dimension.
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       July 2nd         Tanne de toujours faire la meme chose
-#####################################################
 def shift_right(naInput, fValueAdded=0):
+    """
+    
+    Name: shift_right
+
+    Parameters: [[I] numpy naInput : The array that the value will be
+                                     be shifted right]
+                [[I] double fValueAdded=0 : The value to be added at the
+                                            beginning of the array
+
+     Returns: numpy naOutput: The array with the value shifted
+
+     Functions Called:  numpy.take
+                        numpy.concatenate
+
+     Description: This method shift the value of the array at right, i.e.
+       naInput[n] becomes naInput[n+1] for all n in [0..len(naInput)-2].  The
+       value fValueAdded is added at the begining, i.e. naInput[0]=fValueAdded
+
+     Notes: naInput must be one dimension.
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay       July 2nd     Tired of always do the same thing.
+     
+     """
+    
     # Check the dimension
-    if(naInput.getshape() <= 0):
+    if(naInput.shape[0]  <= 0):
         sMetroUtilError = _("In shift_right, naInput is not of size (1,).\n")+\
                           "len(naInput.getshape())=%s"\
                           % (len(naInput.getshape()))
         raise "METRoUtilError", sMetroUtilError
     naToBeCat = array([fValueAdded])
     # Cut the trailing value
-    naOutput  = numarray.take(naInput,\
-                              numarray.arange(0, len(naInput)-1))
-    naOutput = numarray.concatenate((naToBeCat, naOutput))
+    naOutput  = numpy.take(naInput,\
+                              numpy.arange(0, len(naInput)-1))
+    naOutput = numpy.concatenate((naToBeCat, naOutput))
 
     return naOutput
 
 ####################################################
 # Name: get_indice_of
 #
-# Parameters: [[I] numarray naInput : The array to search in.
+# Parameters: [[I] numpy naInput : The array to search in.
 #             [[I] double fValue : The value to "insert" in the array
 #
 # Returns: int nIndice : The indice of the array where fValue belongs.
 #
 # Functions Called:  
 #
-# Description: The numarray must be ordered.  Returns the indices where
+# Description: The numpy must be ordered.  Returns the indices where
 #  naInput[nIndice-1] <= fValue <= naInput[nIndice]
 #
 # Notes: naInput must be one dimension.
@@ -332,8 +344,8 @@ def shift_right(naInput, fValueAdded=0):
 # Miguel Tremblay       July 2nd         Tanne de toujours faire la meme chose
 #####################################################
 def get_indice_of(naInput, fValue=0):
-    if type (naInput) != type(numarray.array([])):
-        naInput = numarray.array(naInput)
+    if type (naInput) != type(numpy.array([])):
+        naInput = numpy.array(naInput)
     if fValue < naInput.min():
         return 0
     elif fValue > naInput.max():
@@ -348,9 +360,9 @@ def get_indice_of(naInput, fValue=0):
 ####################################################
 # Name: get_difference_array
 #
-# Parameters: [[I] numarray naInput :
+# Parameters: [[I] numpy naInput :
 #
-# Returns: numarray naOutput : An array storing the difference.
+# Returns: numpy naOutput : An array storing the difference.
 #          bool bPrevious : If True , get the difference
 #                            between the indice i and the indice i-1.
 #                           If False (default), get the difference between
@@ -415,15 +427,15 @@ def sign(dResult, dSign):
     
 
 ####################################################
-# Name: print_numarray
+# Name: print_numpy
 #
-# Parameters:   numarray naToPrint : array to print
+# Parameters:   numpy naToPrint : array to print
 #
 # Returns:  nothing
 #
 # Functions Called: 
 #
-# Description:  Used for debugging purpose.  Prints all the value of a numarray.
+# Description:  Used for debugging purpose.  Prints all the value of a numpy.
 #
 # Notes: 
 #
@@ -438,11 +450,11 @@ def print_numarray(naToPrint):
 ####################################################
 # Name: subsample
 #
-# Parameters:   numarray naInput : array to subsample
+# Parameters:   numpy naInput : array to subsample
 #               integer nSubsamplingIndice : if == 2, only take one element
 #  out of two.
 #
-# Returns:  numarray naOutput : subsampled array
+# Returns:  numpy naOutput : subsampled array
 #
 # Functions Called: 
 #
@@ -463,20 +475,20 @@ def subsample(naInput, nSubsamplingIndice):
         raise "METRoUtilError", sMetroUtilError
 
     # Perform the subsampling
-    naSub = numarray.arange(0, len(naInput), nSubsamplingIndice)
-    naOutput = numarray.take(naInput, naSub)
+    naSub = numpy.arange(0, len(naInput), nSubsamplingIndice)
+    naOutput = numpy.take(naInput, naSub)
 
     return naOutput
 
 ####################################################
 # Name: concat_array
 #
-# Parameters:   numarray naArray1 : array to put in the first column
-#               numarray naArray2 : array to put in the second column
+# Parameters:   numpy naArray1 : array to put in the first column
+#               numpy naArray2 : array to put in the second column
 #
-# Returns:  numarray naConcat : 
+# Returns:  numpy naConcat : 
 #
-# Functions Called: numarray.concatenate numarray.setshape
+# Functions Called: numpy.concatenate numpy.setshape
 #
 # Description: Take two arrays, transform then in column and then form
 #  a couple of number in each position.  Usefull to create graphics.
@@ -502,8 +514,8 @@ def concat_array(naArray1, naArray2):
         sMetroUtilWarning = _("Array are not of the same size") +\
                             _("cutting the first one")
         print sMetroUtilWarning
-        naPadd = numarray.zeros(nLen1 - nLen2)+naArray2.mean()
-        naArray2 = numarray.concatenate((naArray2,naPadd))
+        naPadd = numpy.zeros(nLen1 - nLen2)+naArray2.mean()
+        naArray2 = numpy.concatenate((naArray2,naPadd))
         nLen2 = nLen1
     elif nLen1 < nLen2:
         sMetroUtilError = _("In metro_util.concat_array, array must be") +\
@@ -516,14 +528,14 @@ def concat_array(naArray1, naArray2):
     naArray2.setshape(nLen2,1)
 
     # Then concatenate
-    naConcat = numarray.concatenate((naArray1,naArray2),1)
+    naConcat = numpy.concatenate((naArray1,naArray2),1)
 
     return naConcat
 
 ####################################################
 # Name: cut_indices
 #
-# Parameters:   numarray naArray : array to be cut
+# Parameters:   numpy naArray : array to be cut
 #               float x0 : The minimum from with the left will
 #  be cut.
 #               float  xn:  The maximum from with the right will
@@ -559,9 +571,9 @@ def cut(naArray, x0, xn):
 ####################################################
 # Name: sum_array
 #
-# Parameters:   numarray naInput : array to be sum
+# Parameters:   numpy naInput : array to be sum
 #
-# Returns:   numarray naOutput 
+# Returns:   numpy naOutput 
 #
 # Functions Called: 
 #
@@ -576,11 +588,11 @@ def cut(naArray, x0, xn):
 #####################################################
 def sum_array(naInput):
 
-    naOutput = numarray.array([])
+    naOutput = numpy.array([])
 
     for i in range(0,len(naInput)):
-        naOutput = numarray.concatenate((naOutput, \
-                           numarray.array([naInput[0:i].sum()])),1)
+        naOutput = numpy.concatenate((naOutput, \
+                           numpy.array([naInput[0:i].sum()])),1)
 
     return naOutput
 
