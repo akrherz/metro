@@ -44,7 +44,7 @@ Name:		Metro_preprocess_combine
 """
 
 import math
-import numarray
+import numpy
 
 from metro_preprocess import Metro_preprocess
 from toolbox import metro_constant
@@ -122,7 +122,7 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         Functions Called:wf_interpolated_data.get_matrix_col
                   observation_data.get_attribute
-                  numarray.where
+                  numpy.where
 
         Description: Combine the air temperature of forecast and observation.
         """
@@ -131,13 +131,13 @@ class Metro_preprocess_combine(Metro_preprocess):
         naATO = ro_interpolated_data.get_matrix_col('AT')
 
         nLenATO = len(naATO)
-        nLenAT = len(naAT)#-3*3600/30
+        nLenAT = len(naAT)-3*3600/30
 
         # Check if there is an error in the observation
         naSwo = observation_data.get_attribute('AT_VALID_INTERPOLATED')
         naSwo = naSwo[self.nDeltaIndice:nLenATO]
-        naCheck = numarray.where(naSwo == 0, 1, 0)
-        naBadIndices = (numarray.nonzero(naCheck))[0]
+        naCheck = numpy.where(naSwo == 0, 1, 0)
+        naBadIndices = (numpy.nonzero(naCheck))[0]
         if len(naBadIndices) == 0:
             for i in range(0, nLenATO-self.NTP):
                 naAT[i-self.NTP2] = naATO[i+self.NTP-1]
@@ -172,7 +172,7 @@ class Metro_preprocess_combine(Metro_preprocess):
         Returns: None
 
         Functions Called: wf_interpolated_data.get_matrix_col
-                           numarray.where, nonzero
+                           numpy.where, nonzero
 
         Description: Combine the dew point of forecast and observation.
         """
@@ -187,8 +187,8 @@ class Metro_preprocess_combine(Metro_preprocess):
         # Check if there is an error in the observation
         naSwo = observation_data.get_attribute('TD_VALID_INTERPOLATED')
         naSwo = naSwo[self.nDeltaIndice:nLenTDO]
-        naCheck = numarray.where(naSwo == 0, 1, 0)
-        naBadIndices = (numarray.nonzero(naCheck))[0]
+        naCheck = numpy.where(naSwo == 0, 1, 0)
+        naBadIndices = (numpy.nonzero(naCheck))[0]
         # If there is no error in the dew point, use the observations, otherwise
         #  use the forecast for all the observation.
         if len(naBadIndices) == 0:
@@ -227,7 +227,7 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         Functions Called: metro_data.get_matrix_col
                    collection_data.get_attribute
-                   numarray.where, nonzero
+                   numpy.where, nonzero
 
         Description: Combine the wind speed of forecast and observation.
         """
@@ -241,8 +241,8 @@ class Metro_preprocess_combine(Metro_preprocess):
         # Check if there is an error in the observation
         naSwo = observation_data.get_attribute('WS_VALID_INTERPOLATED')
         naSwo = naSwo[self.nDeltaIndice:nLenWSO]
-        naCheck = numarray.where(naSwo == 0, 1, 0)
-        naBadIndices = (numarray.nonzero(naCheck))[0]
+        naCheck = numpy.where(naSwo == 0, 1, 0)
+        naBadIndices = (numpy.nonzero(naCheck))[0]
         if len(naBadIndices) == 0:
             for i in range(0, nLenWSO-self.NTP):
                 naWS[i-self.NTP2] = naWSO[i+self.NTP-1]
@@ -305,7 +305,7 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         # Create the road condition array. 0 is dry, 1 is wet
         # This is only use in the initialization of profile
-        naSC = numarray.ones(len(naQP))
+        naSC = numpy.ones(len(naQP))
 
         # PI is equal to 1 when there is precipitation, 0 otherwise.
         naPI = ro_interpolated_data.get_matrix_col('PI')
@@ -329,7 +329,7 @@ class Metro_preprocess_combine(Metro_preprocess):
         Returns: None
 
         Functions Called: metro_data.get_matrix_col
-                          numarray.zeros, astype
+                          numpy.zeros, astype
                           metro_physics.foqst
                           metro_data.append_matrix_col
 
@@ -349,8 +349,8 @@ class Metro_preprocess_combine(Metro_preprocess):
         naLenAH = len(naTD)
 
         # Create the array
-        naAH = numarray.zeros(naLenAH)
-        naAH = naAH.astype(numarray.Float)
+        naAH = numpy.zeros(naLenAH)
+        naAH = naAH.astype(numpy.float)
 
         for i in range(0,naLenAH):
             naAH[i] = metro_physics.foqst(naTD[i]+metro_constant.fTcdk,\
