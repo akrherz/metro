@@ -52,7 +52,7 @@ import calendar
 from math import pi
 from math import sin
 from math import cos
-import numarray
+import numpy
 
 import metro_logger
 import Sun
@@ -142,7 +142,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         Returns: None
 
         Functions Called: wf_controlled_data.get_matrix_col
-                  numarray.cos, where, 
+                  numpy.cos, where, 
                   wf_controlled_data.append_matrix_col
                   metro_util.interpolate
                    
@@ -195,8 +195,8 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         nTimeHourLength = len(naTimeHour)
         naCloudsOctal = wf_controlled_data.get_matrix_col('CC')
         
-        naSft = numarray.zeros(nTimeHourLength, type=numarray.Float)
-        naCoeff = numarray.zeros(nTimeHourLength, type=numarray.Float)
+        naSft = numpy.zeros(nTimeHourLength, dtype=numpy.float)
+        naCoeff = numpy.zeros(nTimeHourLength, dtype=numpy.float)
         
         ###### In the night, the solar flux is null ###############
         for i in range(0, nTimeHourLength):
@@ -217,9 +217,9 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         naCoeff =  -1.56e-12*naSft**4 + 5.972e-9*naSft**3 -\
                     8.364e-6*naSft**2  + 5.183e-3*naSft - 0.435
 
-        naCoeff = numarray.where(naCoeff > 0, naCoeff, 0.0)
+        naCoeff = numpy.where(naCoeff > 0, naCoeff, 0.0)
         # Set naCloudsPercent to be able to reference it in the
-        #  numarray.where method.
+        #  numpy.where method.
         naCloudsPercentDay = naCloudsOctal
         naCloudsPercentNight1 = naCloudsOctal
         naCloudsPercentNight2 = naCloudsOctal
@@ -228,23 +228,23 @@ class Metro_preprocess_fsint2(Metro_preprocess):
             nPercentDay = metro_constant.lCloudsDay[i]
             nPercentNight1 = metro_constant.lCloudsNight1[i]
             nPercentNight2 = metro_constant.lCloudsNight2[i]
-            naCloudsPercentDay = numarray.where(naCloudsOctal == i,\
+            naCloudsPercentDay = numpy.where(naCloudsOctal == i,\
                                       nPercentDay, naCloudsPercentDay)
-            naCloudsPercentNight1 = numarray.where(naCloudsOctal == i,\
+            naCloudsPercentNight1 = numpy.where(naCloudsOctal == i,\
                                                    nPercentNight1, \
                                                    naCloudsPercentNight1)
-            naCloudsPercentNight2 = numarray.where(naCloudsOctal == i,\
+            naCloudsPercentNight2 = numpy.where(naCloudsOctal == i,\
                                                    nPercentNight2, \
                                                    naCloudsPercentNight2)
 
         # TODO MT: Voir les implications de cette passe.
         # There is a mix up with the 0-based octal used in fortran
         #  See rofile2.f
-        naCloudsPercentDay = numarray.where(naCloudsPercentDay == 0, 1.0 \
+        naCloudsPercentDay = numpy.where(naCloudsPercentDay == 0, 1.0 \
                                              , naCloudsPercentDay)
-        naCloudsPercentNight1 = numarray.where(naCloudsPercentNight1 == 0, 3.79 \
+        naCloudsPercentNight1 = numpy.where(naCloudsPercentNight1 == 0, 3.79 \
                                              , naCloudsPercentNight1)
-        naCloudsPercentNight2 = numarray.where(naCloudsPercentNight2 == 0,214.7 \
+        naCloudsPercentNight2 = numpy.where(naCloudsPercentNight2 == 0,214.7 \
                                                , naCloudsPercentNight2)
 
         # Solar flux

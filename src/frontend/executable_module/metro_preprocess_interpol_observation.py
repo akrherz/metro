@@ -45,7 +45,7 @@ Date: August 2nd 2004
 from metro_preprocess import Metro_preprocess
 
 import time
-import numarray
+import numpy
 
 import metro_config
 import metro_logger
@@ -106,8 +106,8 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         
         Returns: None
         
-        Functions Called:  numarray.arange, astype
-                           numarray.zeros
+        Functions Called:  numpy.arange, astype
+                           numpy.zeros
                            metro_data.set_matrix
                            metro_data.get_matrix_col
                            metro_data.append_matrix_col
@@ -125,7 +125,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 
         # Set the time in the interpolated matrix.
         naTime =  ro_controlled_data.get_matrix_col('Time')
-        self.naTimeInterpolated = numarray.arange(naTime[0], \
+        self.naTimeInterpolated = numpy.arange(naTime[0], \
                                                   naTime[len(naTime)-1],
                                                   metro_constant.fTimeStep)
 
@@ -133,7 +133,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         #  1/(24*3600) = 1.1574e-5
         self.naTimeInterpolated =  self.naTimeInterpolated/3600 -\
                                   24*((self.naTimeInterpolated*1.1574e-5)\
-                                      .astype(numarray.Int32))
+                                      .astype(numpy.int32))
 
         # Save the time array
         if len(self.naTimeInterpolated) > 1:
@@ -305,7 +305,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Functions Called: metro_util.interpolate,
 #                   metro_data.get_matrix_col
 #                   metro_data.append_matrix_col
-#                   numarray.where, around
+#                   numpy.where, around
 #
 # Description: Does the interpolation of presence of precipitation.
 #
@@ -317,11 +317,11 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
     def __interpolate_PI(self, ro_controlled_data, ro_interpolated_data):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naPI = ro_controlled_data.get_matrix_col('PI')
-        naPI = numarray.where(naPI != 1, 0, naPI)
+        naPI = numpy.where(naPI != 1, 0, naPI)
         naPI = metro_util.interpolate(naTimeOrig, naPI, \
                                       metro_constant.fTimeStep)
         # Round
-        naPI = numarray.around(naPI)
+        naPI = numpy.around(naPI)
         # Store
         ro_interpolated_data.append_matrix_col('PI', naPI)
 
@@ -337,7 +337,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Functions Called: metro_util.interpolate,
 #                   metro_data.get_matrix_col
 #                   metro_data.append_matrix_col
-#                   numarray.where, around
+#                   numpy.where, around
 #
 # Description: Does the interpolation of the Road Condition
 #
@@ -354,13 +354,13 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naSC = ro_controlled_data.get_matrix_col('SC')
         # Convert
-        naSC = numarray.where(naSC == 33, 0, 1)
-        naSC = numarray.where(naSC < 0, 0, naSC)
-        naSC = numarray.where(naSC > 1, 0, naSC)
+        naSC = numpy.where(naSC == 33, 0, 1)
+        naSC = numpy.where(naSC < 0, 0, naSC)
+        naSC = numpy.where(naSC > 1, 0, naSC)
         naSC = metro_util.interpolate(naTimeOrig, naSC, \
                                       metro_constant.fTimeStep)
         # Round
-        naSC = numarray.around(naSC)
+        naSC = numpy.around(naSC)
         # Store
         ro_interpolated_data.append_matrix_col('SC', naSC)
  
@@ -376,7 +376,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Functions Called: metro_util.interpolate,
 #                   observation_data.get_attribute
 #                   observation_data.set_attribute
-#                   numarray.around
+#                   numpy.around
 #
 # Description: Does the interpolation all the attribute that were set in
 #               metro_preprocess_qa_qc_observation
@@ -402,10 +402,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naWS = metro_util.interpolate(naTimeOrig, naWS, \
                                       metro_constant.fTimeStep)        
         # Round
-        naTD = numarray.around(naTD)
-        naAT = numarray.around(naAT)
-        naSST = numarray.around(naSST)
-        naWS = numarray.around(naWS)
+        naTD = numpy.around(naTD)
+        naAT = numpy.around(naAT)
+        naSST = numpy.around(naSST)
+        naWS = numpy.around(naWS)
         # Store
         observation_data.set_attribute('TD_VALID_INTERPOLATED', naTD)
         observation_data.set_attribute('AT_VALID_INTERPOLATED', naAT)

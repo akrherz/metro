@@ -38,7 +38,7 @@ from metro_preprocess import Metro_preprocess
 import sys
 import time
 import os
-import numarray
+import numpy
 
 from toolbox import metro_date
 

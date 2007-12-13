@@ -44,7 +44,7 @@ Date       : 1 September 2004
 
 from metro_postprocess import Metro_postprocess
 
-import numarray
+import numpy
 
 import metro_config
 import metro_logger
@@ -100,7 +100,7 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
 
                 # Perform the round operation
                 naCol = roadcast_data.get_matrix_col(dRoadcast_item['NAME'])
-                naCol = numarray.around(naCol,iPrecision)
+                naCol = numpy.around(naCol,iPrecision)
                 roadcast_data.set_matrix_col(dRoadcast_item['NAME'], naCol)
                 
             iItem_id = iItem_id + 1
