@@ -61,7 +61,7 @@ class Metro_dom2metro(Metro_module):
 
 
     ##
-    # methodes redefinies
+    # Overwritten methodes
     ##
     def start(self):
         Metro_module.start(self)
@@ -84,7 +84,7 @@ class Metro_dom2metro(Metro_module):
         self.domStation         = pStation.get_input_information()
 
         #
-        # Extraction des forecast
+        # Forecast extraction
         #
 
         # validate version number
@@ -97,19 +97,17 @@ class Metro_dom2metro(Metro_module):
                                        sMin_version, sMax_version)
             
         try:
-            # concatenation de toutes les cles du header
+            # concatenation of all the keys of the header
             lHeader_keys = \
                 metro_config.get_value('XML_FORECAST_HEADER_STANDARD_ITEMS') + \
                 metro_config.get_value('XML_FORECAST_HEADER_EXTENDED_ITEMS')
 
-            # construction du xpath
+            # xpath building
             sHeader_xpath = metro_config.get_value('XML_FORECAST_XPATH_HEADER')
-
-            # construction du xpath
             sData_xpath = \
                 metro_config.get_value('XML_FORECAST_XPATH_PREDICTION')
             
-            # concatenation de tout les types de forecast        
+            # concatenation of all forecast types
             lStandard_forecast = \
                 metro_config.get_value('XML_FORECAST_PREDICTION_STANDARD_ITEMS')
             lExtended_forecast = \
@@ -138,8 +136,6 @@ class Metro_dom2metro(Metro_module):
                               + lForecast_extended_attribute
         forecast = metro_data_collection_input.Metro_data_collection_input(
             forecast_data, lForecast_attribute)
-
-                     
 
         #
         # Extraction des observations
@@ -326,35 +322,52 @@ class Metro_dom2metro(Metro_module):
         return Metro_module.DATATYPE_DATA_IN
 
 
-    def __extract_data_from_dom(self, data, domDom,
-                                lHeader_keys, lHeader_xpath,
-                                lData_keys, lData_xpath):
+    def __extract_data_from_dom(self, metro_data, domDom,
+                                ldHeader_keys, sHeader_xpath,
+                                lData_keys, sData_xpath):
+        """
+        Name: __extract_data_from_dom
 
-        if lHeader_keys != None and lHeader_xpath != None:
+        Arguments:  [I] metro_data: Object metro_data that will contain
+                                    all the data.
+                    [I] domDOM: DOM in which data has to be extracted.
+                    [I] ldHeader_keys: List of dictionnaries containing the date
+                                       definitions as defined in metro_config.py
+                    [I] sHeader_xpath: xpath of the header
+                    [I] lData_keys: like ldHeader_keys but for data
+                    [I] sData_xpath : xpath for the data.
+
+        Output: metro_data : object containing all the data extracted.
+
+        Description: Given a list of tags defined in metro_config,
+         this method extract all the values and put them in the object
+         returned.
+        """
+        if ldHeader_keys != None and sHeader_xpath != None:
             
             # extraction des donnes contenue dans les nodes
-            lHeader_data = metro_xml.extract_xpath(lHeader_keys,\
-                                                   domDom,lHeader_xpath)
+            lHeader_data = metro_xml.extract_xpath(ldHeader_keys,\
+                                                   domDom, sHeader_xpath)
 
             # ajout des elements dans le dictionnaire du header
             i = 0
             dHeader={}
-            for i in range(0,len(lHeader_keys)):
-                dHeader_key = lHeader_keys[i]
+            for i in range(0,len(ldHeader_keys)):
+                dHeader_key = ldHeader_keys[i]
                 dHeader[dHeader_key['NAME']] = lHeader_data[i]
 
-            data.set_header(dHeader)
+            metro_data.set_header(dHeader)
 
-        if lData_keys != None and lData_xpath != None:
+        if lData_keys != None and sData_xpath != None:
             # extraction de toute les nodes de mesure contenue dans le DOM
-            lData_matrix = metro_xml.extract_xpath(lData_keys,domDom,\
-                                                   lData_xpath,True)
-
-            # transfert de la matrice dans objet Metro_data_observation
+            lData_matrix = metro_xml.extract_xpath(lData_keys, domDom,\
+                                                   sData_xpath, True)
+            
+            # transfert de la matrice dans objet Metro_data
             for lData_row in lData_matrix:
-                data.append_matrix_row(lData_row)
+                metro_data.append_matrix_row(lData_row)
 
-        return data
+        return metro_data
 
     def validate_file_version_number( self, sFilename, sFile_version,
                                    sMin_version, sMax_version ):
