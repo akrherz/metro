@@ -45,7 +45,7 @@ Date: February 28th 2005
 
 from metro_preprocess import Metro_preprocess
 
-import numarray
+import numpy
 import fpconst
 
 import metro_config
@@ -121,8 +121,8 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
         """
         naCloudsOctal = wf_controlled_data.get_matrix_col('CC')
 
-        if len(numarray.where(naCloudsOctal<0)[0]) != 0  or \
-               len(numarray.where(naCloudsOctal>8)[0]) != 0 :
+        if len(numpy.where(naCloudsOctal<0)[0]) != 0  or \
+               len(numpy.where(naCloudsOctal>8)[0]) != 0 :
             import metro_config
             sMessage = _("All the clouds value (<cc>) of atmospheric forecast must be") +\
                    _(" integers in interval 0-8. See file '%s'") %\
@@ -157,7 +157,7 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
 
         for naPrecip in lPrecip:
             naDiff = naPrecip - metro_util.shift_right(naPrecip,0)
-            if len(numarray.where(naDiff[:-1] < 0)[0]) != 0:
+            if len(numpy.where(naDiff[:-1] < 0)[0]) != 0:
                 sMessage = _("All the precipitation value (<ra> and <sn>)") +\
                            _(" of atmospheric forecast represent the TOTAL") +\
                            _(" amount of precipitation since the beginning") +\

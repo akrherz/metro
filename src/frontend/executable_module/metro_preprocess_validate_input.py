@@ -55,7 +55,7 @@ from toolbox import metro_date
 from toolbox import metro_util
 from toolbox import metro_constant
 
-import numarray
+import numpy
 
 _ = metro_util.init_translation('metro_config')
 
@@ -146,10 +146,10 @@ class Metro_preprocess_validate_input(Metro_preprocess):
             fNewStartTime = fFirst_observation_date + nNumberSecondsToRemove
             sNewStartTime = metro_date.seconds2iso8601(fNewStartTime)
             # Retrieve the first time in observation that is after this date
-            #  numarray trick. Put 0 where the time is under fNewStartTime
-            naNumberOfItemToRemove = numarray.where(naOT <fNewStartTime, 1, 0)
+            #  numpy trick. Put 0 where the time is under fNewStartTime
+            naNumberOfItemToRemove = numpy.where(naOT <fNewStartTime, 1, 0)
             #  Get the indice of the last indice that is not zero
-            tNonZero = numarray.nonzero(naNumberOfItemToRemove)
+            tNonZero = numpy.nonzero(naNumberOfItemToRemove)
             nRemoveUntilIndice = tNonZero[0][-1]+1
             
             sOldStartTime = metro_date.seconds2iso8601(fFirst_observation_date)
