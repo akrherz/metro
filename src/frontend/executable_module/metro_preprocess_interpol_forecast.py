@@ -46,7 +46,7 @@ Description: Interpolation of data in order to be at every 30 seconds.
 from metro_preprocess import Metro_preprocess
 
 import time
-import numarray
+import numpy
 
 from toolbox import metro_util
 from toolbox import metro_date
@@ -99,7 +99,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Returns: None
 
         Functions Called: forecast_data.get_matrix_col
-                          numarray.arange,                  
+                          numpy.arange,                  
                           metro_date.get_hour
                           wf_controlled_data.append_matrix_col
 
@@ -115,15 +115,15 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         
         nbrHours = len(wf_original_data.get_matrix_col('AT'))
 
-        self.naTime = numarray.arange(0,nbrHours)*3600        
+        self.naTime = numpy.arange(0,nbrHours, dtype=numpy.float)*3600        
 
         #  Used in fsint2.
         naTimeStart = \
             wf_original_data.get_matrix_col('FORECAST_TIME')
         nHourStart = int(metro_date.get_hour(naTimeStart[0]))
-        naTimeAtHours = numarray.arange(0,nbrHours) + nHourStart
-
+        naTimeAtHours = numpy.arange(0,nbrHours, dtype=numpy.float) + nHourStart
         wf_controlled_data.append_matrix_col('Hour', naTimeAtHours)
+
 
 
     def __interpolate_FT(self, wf_original_data, wf_controlled_data, \
@@ -151,7 +151,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         
         naFT = wf_original_data.get_matrix_col('FORECAST_TIME')
         naFT = metro_util.interpolate(self.naTime, naFT, \
-                                      metro_constant.fTimeStep)
+                                      metro_constant.fTimeStep)        
         wf_interpolated_data.append_matrix_col('FORECAST_TIME', naFT)
         
         nHourStart = int(metro_date.get_hour(naFT[0]))
@@ -161,6 +161,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
                                       metro_constant.fTimeStep)
         naTime = (naTime+30)/3600+nHourStart
         wf_interpolated_data.append_matrix_col('Time', naTime)
+
 
 
     # Air temperature
@@ -223,7 +224,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
 
         # Patch because of the -99 at the end of the forecast
         fMax = naQP.max()
-        naQP = numarray.where(naQP < 0, fMax, naQP)
+        naQP = numpy.where(naQP < 0, fMax, naQP)
 
         naQP = naQP - metro_util.shift_right(naQP, 0)
         naSN = naSN - metro_util.shift_right(naSN, 0)
@@ -238,7 +239,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
 
         naQP = naQP *10e-4 # Set it in meter
         naQP = naQP / 3600.0 # Convert by second
-        naQP = numarray.where(naQP < 0, 0, naQP)
+        naQP = numpy.where(naQP < 0, 0, naQP)
 
         wf_interpolated_data.append_matrix_col('QP', naQP)
         wf_interpolated_data.append_matrix_col('SN', naSN)
@@ -251,8 +252,8 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Name: __interpolate_WS
 
         Parameters:[I] metro_data wf_original_data : original data.  Read-only
-                   [I] metro_data wf_interpolated_data : container of the interpolated
-                   data.
+                   [I] metro_data wf_interpolated_data : container of the
+                       interpolated data.
 
         Returns: None
 
@@ -330,9 +331,9 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         naAP = wf_original_data.get_matrix_col('AP')
         
         # Replace invalid date by the normal pressure (1013.25 mb)
-        naAP = numarray.where(naAP < metro_constant.nLowerPressure,\
+        naAP = numpy.where(naAP < metro_constant.nLowerPressure,\
                               metro_constant.fNormalPressure,  naAP)
-        naAP = numarray.where(naAP > metro_constant.nUpperPressure,\
+        naAP = numpy.where(naAP > metro_constant.nUpperPressure,\
                               metro_constant.fNormalPressure,  naAP)
         
         # Convert it in pascals.
@@ -356,7 +357,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Functions Called: metro_util.interpolate,
                           metro_data.get_matrix_col
                           metro_data.append_matrix_col
-                          numarray.where, around
+                          numpy.where, around
 
         Description: Interpolate the type of precipitation.  The nearest neighbor is
                       is used.
@@ -389,13 +390,13 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
             else:
                 lPI.append(2)
 
-        naPI = numarray.array(lPI)
+        naPI = numpy.array(lPI)
             
         # Interpolate
         naPI = metro_util.interpolate(self.naTime, naPI, \
                                       metro_constant.fTimeStep)
         # Round
-        naPI = numarray.around(naPI)
+        naPI = numpy.around(naPI)
         # Store
         wf_interpolated_data.append_matrix_col('PI', naPI)
 
@@ -421,14 +422,14 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         """
         lCC = wf_original_data.get_matrix_col('CC')
 
-        naCC = numarray.array(lCC)
+        naCC = numpy.array(lCC)
             
         # Interpolate
         naCC = metro_util.interpolate(self.naTime, naCC, \
                                       metro_constant.fTimeStep)
 
         # Round
-        naCC = numarray.around(naCC)
+        naCC = numpy.around(naCC)
         # Store
         wf_interpolated_data.append_matrix_col('CC', naCC)
 

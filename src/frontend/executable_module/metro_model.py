@@ -37,7 +37,7 @@ from metro_module import Metro_module
 
 import string
 import time
-import numarray
+import numpy
 
 import metro_logger
 import metro_config
@@ -172,7 +172,7 @@ class Metro_model(Metro_module):
 
         # start roadlayer MATRIX
         naLayerType  = cs_data.get_matrix_col('TYPE')
-        lLayerType = naLayerType.astype(numarray.Int32).tolist()
+        lLayerType = naLayerType.astype(numpy.int32).tolist()
         lLayerThick = cs_data.get_matrix_col('THICKNESS').tolist()
         nNbrOfLayer = len(lLayerType)
 
@@ -247,21 +247,21 @@ class Metro_model(Metro_module):
         
         # Concatenate the information to send it to C.
         npSWO1 = observation.get_attribute('SST_VALID_INTERPOLATED')\
-                 .astype(numarray.Int32)
+                 .astype(numpy.int32)
         npSWO2 = observation.get_attribute('AT_VALID_INTERPOLATED')\
-                 .astype(numarray.Int32)
+                 .astype(numpy.int32)
         npSWO3 = observation.get_attribute('TD_VALID_INTERPOLATED')\
-                 .astype(numarray.Int32)
+                 .astype(numpy.int32)
         npSWO4 = observation.get_attribute('WS_VALID_INTERPOLATED')\
-                 .astype(numarray.Int32)
-        npSWO = numarray.zeros(4*metro_constant.nNL)
+                 .astype(numpy.int32)
+        npSWO = numpy.zeros(4*metro_constant.nNL)
         # Put all the arrays in one for the fortran code.
         for i in range(0,len(npSWO1)):
             npSWO[4*i] = npSWO1[i]
             npSWO[4*i+1] = npSWO2[i]
             npSWO[4*i+2] = npSWO3[i] 
             npSWO[4*i+3] = npSWO4[i] 
-        lSWO = npSWO.astype(numarray.Int32).tolist()
+        lSWO = npSWO.astype(numpy.int32).tolist()
         
         bNoObs = observation.get_attribute('NO_OBS')
         

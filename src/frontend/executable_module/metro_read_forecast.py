@@ -46,7 +46,7 @@ _ = metro_util.init_translation('metro_read_forecast')
 class Metro_read_forecast(Metro_read):
 
     ##
-    # methodes redefinies
+    # Overwritten methods
     ##
     def start(self):
         Metro_read.start(self)
@@ -65,7 +65,7 @@ class Metro_read_forecast(Metro_read):
                 metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                            sError_message)
             else:
-                # creer et ajouter infdata
+                # Create and append infdata
                 infdata_forecast = metro_infdata.Metro_infdata(
                     'FORECAST', metro_infdata.DATATYPE_METRO_DATA_COLLECTION)
                 infdata_forecast.set_input_information(sFile_content)
