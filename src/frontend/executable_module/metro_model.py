@@ -103,9 +103,9 @@ class Metro_model(Metro_module):
 
     def __get_nb_timesteps( self, forecast ):
         wf_data = forecast.get_interpolated_data()
-        naFT = wf_data.get_matrix_col('Time')
+        npFT = wf_data.get_matrix_col('Time')
 
-        return len(naFT)
+        return len(npFT)
 
 
     def __get_observation_lenght( self, observation ):
@@ -171,8 +171,8 @@ class Metro_model(Metro_module):
                                    sMessage)
 
         # start roadlayer MATRIX
-        naLayerType  = cs_data.get_matrix_col('TYPE')
-        lLayerType = naLayerType.astype(numpy.int32).tolist()
+        npLayerType  = cs_data.get_matrix_col('TYPE')
+        lLayerType = npLayerType.astype(numpy.int32).tolist()
         lLayerThick = cs_data.get_matrix_col('THICKNESS').tolist()
         nNbrOfLayer = len(lLayerType)
 
@@ -216,13 +216,13 @@ class Metro_model(Metro_module):
         # Forecast
         #  Get the interpolated values.
         wf_interpolated_data =  forecast.get_interpolated_data()
-        naAT =  wf_interpolated_data.get_matrix_col('AT')
-        lAT = naAT.tolist()
+        npAT =  wf_interpolated_data.get_matrix_col('AT')
+        lAT = npAT.tolist()
         lQP = wf_interpolated_data.get_matrix_col('QP').tolist()
-        naWS = wf_interpolated_data.get_matrix_col('WS')
-        lWS = naWS.tolist()
-        naTD = wf_interpolated_data.get_matrix_col('TD') 
-        lTD = naTD.tolist()
+        npWS = wf_interpolated_data.get_matrix_col('WS')
+        lWS = npWS.tolist()
+        npTD = wf_interpolated_data.get_matrix_col('TD') 
+        lTD = npTD.tolist()
         lAP = wf_interpolated_data.get_matrix_col('AP').tolist()
         lSF = wf_interpolated_data.get_matrix_col('SF').tolist()
         lIR = wf_interpolated_data.get_matrix_col('IR').tolist()
@@ -231,7 +231,7 @@ class Metro_model(Metro_module):
         lSC = wf_interpolated_data.get_matrix_col('SC').tolist()
 
         # Number of 30 seconds step.
-        naFT = wf_interpolated_data.get_matrix_col('Time')
+        npFT = wf_interpolated_data.get_matrix_col('Time')
         nNbrTimeSteps = self.__get_nb_timesteps(forecast)
         lAH = wf_interpolated_data.get_matrix_col('AH').tolist()
 
@@ -379,16 +379,16 @@ class Metro_model(Metro_module):
         #  Il y a eu un probleme dans la conversion entre le C et le fortran
         #  qui fait en sorte qu'il y a un decalage d'un indice.  Il faudra que
         #  ce soit corrige.
-        naRT = wf_data.get_matrix_col('FORECAST_TIME')[:iNb_timesteps]
-        naRT = naRT + 30
-        naHH = wf_data.get_matrix_col('Time')[:iNb_timesteps]
-        naAT = wf_data.get_matrix_col('AT')[:iNb_timesteps]
+        npRT = wf_data.get_matrix_col('FORECAST_TIME')[:iNb_timesteps]
+        npRT = npRT + 30
+        npHH = wf_data.get_matrix_col('Time')[:iNb_timesteps]
+        npAT = wf_data.get_matrix_col('AT')[:iNb_timesteps]
         # 3.6 is to convert from m/s to km/h
-        naWS = wf_data.get_matrix_col('WS')[:iNb_timesteps]*3.6
-        naTD = wf_data.get_matrix_col('TD')[:iNb_timesteps]
-        naQP_SN = wf_data.get_matrix_col('SN')[:iNb_timesteps]
-        naQP_RA = wf_data.get_matrix_col('RA')[:iNb_timesteps]
-        naCC = wf_data.get_matrix_col('CC')[:iNb_timesteps]
+        npWS = wf_data.get_matrix_col('WS')[:iNb_timesteps]*3.6
+        npTD = wf_data.get_matrix_col('TD')[:iNb_timesteps]
+        npQP_SN = wf_data.get_matrix_col('SN')[:iNb_timesteps]
+        npQP_RA = wf_data.get_matrix_col('RA')[:iNb_timesteps]
+        npCC = wf_data.get_matrix_col('CC')[:iNb_timesteps]
 
 
         roadcast.init_matrix(iNb_timesteps, roadcast.get_nb_matrix_col())
@@ -398,13 +398,13 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('SN', lSN)
         roadcast.set_matrix_col('RC', lRC)
         roadcast.set_matrix_col('ST', lST)
-        roadcast.set_matrix_col('ROADCAST_TIME', naRT)
-        roadcast.set_matrix_col('HH', naHH)
-        roadcast.set_matrix_col('AT', naAT)
-        roadcast.set_matrix_col('WS', naWS)
-        roadcast.set_matrix_col('TD', naTD)
-        roadcast.set_matrix_col('QP-SN', naQP_SN)
-        roadcast.set_matrix_col('QP-RA', naQP_RA)
+        roadcast.set_matrix_col('ROADCAST_TIME', npRT)
+        roadcast.set_matrix_col('HH', npHH)
+        roadcast.set_matrix_col('AT', npAT)
+        roadcast.set_matrix_col('WS', npWS)
+        roadcast.set_matrix_col('TD', npTD)
+        roadcast.set_matrix_col('QP-SN', npQP_SN)
+        roadcast.set_matrix_col('QP-RA', npQP_RA)
         roadcast.set_matrix_col('IR', lIR)
         roadcast.set_matrix_col('SF', lSF)
         roadcast.set_matrix_col('FV', lFV)
@@ -413,7 +413,7 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('FG', lFG)
         roadcast.set_matrix_col('BB', lBB)
         roadcast.set_matrix_col('FP', lFP)
-        roadcast.set_matrix_col('CC', naCC)
+        roadcast.set_matrix_col('CC', npCC)
         roadcast.set_matrix_col('SST', lSST)
       
         # Creation of the object Metro_data_collection for the roadcast
