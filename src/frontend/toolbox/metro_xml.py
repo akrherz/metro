@@ -130,33 +130,61 @@ def xpath( domDom, sXpath ):
     return sRslt
 
 def extract_xpath(lDefs, domDom, sXpath, bIs_matrix=False):
+    """
+    Name: extract_xpath
 
-    items = metro_xml_lib.xpath(metro_xml_lib.get_dom_root(domDom),
+    Arguments: [I] lDefs: list of dictionnaries containing the data definitions
+                            as defined in metro_config.py
+               [I] domDOM: DOM in which data has to be extracted.
+               [I] sXPath: Path of the node containing all the subnodes
+                            (header, prediction, etc.)
+               [I] bIs_matrix: Boolean indicating if there is more than one
+                               value to fetch
+
+    Output:  llExtractedValue : A list of lists containing the expected values.
+
+    Description: Return one or all the value contained under the xpath in the DOM.
+    """
+    
+    node_items = metro_xml_lib.xpath(metro_xml_lib.get_dom_root(domDom),
                                 sXpath)
 
     if bIs_matrix == True:
-        if len(items) > 0:
-            rslt = []
-            for node_item in items:
-                data = extract_data(lDefs,node_item)
-                rslt.append(data)
+        if len(node_items) > 0:
+            llExtractedValue = []
+            for node_item in node_items:
+                lData = extract_data(lDefs, node_item)
+                llExtractedValue.append(lData)
         else:
-            rslt = None
+            llExtractedValue = None
     else:
-        if len(items) == 1:
-            node_item = items[0]
-            rslt = extract_data(lDefs,node_item)
-        elif len(items) > 1:
-            rslt = []
-            for node_item in items:
-                data = extract_data(lDefs,node_item)
-                rslt.append(data)
+        if len(node_items) == 1:
+            node_item = node_items[0]
+            llExtractedValue = extract_data(lDefs, node_item)
+        elif len(node_items) > 1:
+            llExtractedValue = []
+            for node_item in node_items:
+                lData = extract_data(lDefs, node_item)
+                llExtractedValue.append(lData)
         else:
-            rslt = None
+            llExtractedValue = None
 
-    return rslt
 
-def extract_data(lDefs,nodeItems):
+    return llExtractedValue
+
+def extract_data(lDefs, nodeItems):
+    """
+    Name: extract_data
+
+    Arguments:  [I] lDefs: list of dictionary containing the
+                           definition of XML element in metro_config.py
+                [I] nodeItems: fecth the elements in theses nodes
+
+    Output:   lData :: list of values, one per definition in lDefs.
+
+    Description: Extract the data from one node containing more nodes.
+    """
+
 
     lData = []
 
