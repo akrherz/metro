@@ -85,7 +85,7 @@ class Metro_data:
         
         self.bRead_only = False
         self.dHeader = {}
-        self.naMatrix = numpy.array([], dtype=numpy.float)
+        self.npMatrix = numpy.array([], dtype=numpy.float)
 
          # Name of the columns of the matrix
         self.lMatrix_col_name = []
@@ -160,8 +160,8 @@ class Metro_data:
     def init_matrix( self, iNb_row, iNb_col, fVal=metro_constant.NaN ):
         """Init a matrix of n row and m column filled with a value."""
         if not self.is_readonly():
-            self.naMatrix = numpy.zeros((iNb_row,iNb_col))
-            self.naMatrix = self.naMatrix + fVal
+            self.npMatrix = numpy.zeros((iNb_row,iNb_col))
+            self.npMatrix = self.npMatrix + fVal
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
@@ -178,7 +178,7 @@ class Metro_data:
 # Descriptions:
 #
 #-------------------------------------------------------------------------------
-    def set_matrix( self, naMatrix ):
+    def set_matrix( self, npMatrix ):
         """Set the whole matrix with a new one.
 
         This method should be used with care because the new and old matrix
@@ -186,7 +186,7 @@ class Metro_data:
         will be the only way to access column of the new one.
         """
         if not self.is_readonly():
-            self.naMatrix = naMatrix
+            self.npMatrix = npMatrix
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
@@ -197,7 +197,7 @@ class Metro_data:
 #
 # Name:         set_matrix_col
 #
-# Parameters:   I sCol_name : nom de la colonne, I naCol : tableau de donnee
+# Parameters:   I sCol_name : nom de la colonne, I npCol : tableau de donnee
 #
 # Returns:      0 si succes
 #
@@ -205,7 +205,7 @@ class Metro_data:
 # Descriptions: ecrase le contenue de la colonne iCol avec de nouvelle donnees
 #
 #-------------------------------------------------------------------------------
-    def set_matrix_col( self, sCol_name, naCol ):
+    def set_matrix_col( self, sCol_name, npCol ):
         """Set matrix column with a new one."""
 
         if sCol_name in self.lMatrix_col_name:
@@ -218,17 +218,17 @@ class Metro_data:
             raise ERROR_METRO_DATA, sError
         
         if not self.is_readonly():
-            if iCol > len(self.naMatrix[0,:]):
+            if iCol > len(self.npMatrix[0,:]):
                sOutOfBoundError = _("Array does not contain this indice: %d") \
                                   % iCol
                raise ERROR_METRO_DATA, sOutOfBoundError
-            elif len(self.naMatrix[:,iCol]) != len(naCol):
+            elif len(self.npMatrix[:,iCol]) != len(npCol):
                 sLengthError = _("Array does not have the right lenght.\n") + \
-                               _("Array length: %d \n") % len(naCol) + \
-                               _("Matrix length: %d \n") % len(self.naMatrix[:,icol])
+                               _("Array length: %d \n") % len(npCol) + \
+                               _("Matrix length: %d \n") % len(self.npMatrix[:,icol])
                 raise  ERROR_METRO_DATA, sLengthError
             else:
-                self.naMatrix[:,iCol] = naCol
+                self.npMatrix[:,iCol] = npCol
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
@@ -250,19 +250,19 @@ class Metro_data:
             while None in lData_row:
                 iIndex = lData_row.index(None)
                 lData_row[iIndex] = metro_constant.NaN
-            self.naMatrix = self.__append_row_to_matrix(self.naMatrix,lData_row)
+            self.npMatrix = self.__append_row_to_matrix(self.npMatrix,lData_row)
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
 
-    def append_matrix_col( self, sCol_name, naData_col ):
+    def append_matrix_col( self, sCol_name, npData_col ):
         """
         Name:         append_matrix_col
 
         Parameters:   I sCol_name  : column name
-                      I naData_col : column to insert in the matrix.
+                      I npData_col : column to insert in the matrix.
   
         Returns:      0 if success
 
@@ -275,8 +275,8 @@ class Metro_data:
                 self.lMatrix_col_name.append(sCol_name)
 
                 # Append column in the matrix
-                self.naMatrix = self.__append_col_to_matrix(self.naMatrix,\
-                                                            naData_col)
+                self.npMatrix = self.__append_col_to_matrix(self.npMatrix,\
+                                                            npData_col)
             else:
                 sError = _("Cant append column '%s'.%s") % (sCol_name,
                                                             MESSAGE_COL_EXIST)
@@ -338,7 +338,7 @@ class Metro_data:
 #-------------------------------------------------------------------------------
     def get_matrix( self ):
         """Get a copy of the whole matrix."""
-        return self.naMatrix.copy()
+        return self.npMatrix.copy()
 
 
     def get_matrix_col( self, sCol_name ):
@@ -363,7 +363,7 @@ class Metro_data:
 
         iCol = self.lMatrix_col_name.index(sCol_name)
 
-        return self.naMatrix[:,iCol].copy()
+        return self.npMatrix[:,iCol].copy()
 
     def index_of_matrix_col( self, sCol_name ):
         """Get index value of a matrix column identified by sCol_name."""
@@ -405,31 +405,31 @@ class Metro_data:
 #  Author		Date		Reason
 # Miguel Tremblay      August 4th 2004
 #####################################################
-    def del_matrix_row(self, naIndiceToRemove):
+    def del_matrix_row(self, npIndiceToRemove):
         """Delete one or more row identified by indices.
 
         Arguments:        
-        naIndiceToRemove: numpy of indices to remove.
+        npIndiceToRemove: numpy of indices to remove.
                           Indices must be in increasing order.
         """
         if not self.is_readonly():
-            for i in range(len(naIndiceToRemove)-1,-1,-1):
-                nIndice = naIndiceToRemove[i]                
+            for i in range(len(npIndiceToRemove)-1,-1,-1):
+                nIndice = npIndiceToRemove[i]                
                 sMessage =  "removing %d" % ((nIndice))
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                    sMessage)
-                naFirstPart = self.naMatrix[0:nIndice,:]
-                sMessage = "len(%s)" % (len(self.naMatrix))
+                npFirstPart = self.npMatrix[0:nIndice,:]
+                sMessage = "len(%s)" % (len(self.npMatrix))
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                    sMessage)
-                if nIndice+1 < len(self.naMatrix) :
-                    naSecondPart = self.naMatrix[nIndice+1:len(self.naMatrix),:]
-                    self.naMatrix = numpy.concatenate((naFirstPart,
-                                                          naSecondPart))
+                if nIndice+1 < len(self.npMatrix) :
+                    npSecondPart = self.npMatrix[nIndice+1:len(self.npMatrix),:]
+                    self.npMatrix = numpy.concatenate((npFirstPart,
+                                                          npSecondPart))
                 else:
-                    self.naMatrix = naFirstPart
+                    self.npMatrix = npFirstPart
                 # Check if there at least one element left
-                if len(self.naMatrix) ==0:
+                if len(self.npMatrix) ==0:
                     sEmptyMatrixError = _("All the data are invalid")
                     metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,\
                                                sMessage)
@@ -438,15 +438,15 @@ class Metro_data:
         else:
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
-    def __append_row_to_matrix( self, naMatrix, naRow ):
-        iCol = len(naRow)
-        iRow = len(naMatrix)
-        naMatrix = numpy.resize(naMatrix, (iRow+1,iCol) )
-        naMatrix[iRow:] = naRow
-        return naMatrix
+    def __append_row_to_matrix( self, npMatrix, npRow ):
+        iCol = len(npRow)
+        iRow = len(npMatrix)
+        npMatrix = numpy.resize(npMatrix, (iRow+1,iCol) )
+        npMatrix[iRow:] = npRow
+        return npMatrix
 
-    def __append_col_to_matrix( self, naMatrix, naCol ):
-        naMatrix = naMatrix.transpose()
-        naMatrix = self.__append_row_to_matrix(naMatrix, naCol)
-        naMatrix = naMatrix.transpose()
-        return naMatrix
+    def __append_col_to_matrix( self, npMatrix, npCol ):
+        npMatrix = npMatrix.transpose()
+        npMatrix = self.__append_row_to_matrix(npMatrix, npCol)
+        npMatrix = npMatrix.transpose()
+        return npMatrix
