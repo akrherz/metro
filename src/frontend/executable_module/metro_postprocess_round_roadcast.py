@@ -99,9 +99,9 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
                     iPrecision = iDefault_precision
 
                 # Perform the round operation
-                naCol = roadcast_data.get_matrix_col(dRoadcast_item['NAME'])
-                naCol = numpy.around(naCol,iPrecision)
-                roadcast_data.set_matrix_col(dRoadcast_item['NAME'], naCol)
+                npCol = roadcast_data.get_matrix_col(dRoadcast_item['NAME'])
+                npCol = numpy.around(npCol,iPrecision)
+                roadcast_data.set_matrix_col(dRoadcast_item['NAME'], npCol)
                 
             iItem_id = iItem_id + 1
         

@@ -88,8 +88,8 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
         for sElement in wf_controlled_data.get_matrix_col_list():
             if sElement.find('TIME') > 0:
                 continue
-            naElement = wf_controlled_data.get_matrix_col(sElement)
-            for fElement in naElement:
+            npElement = wf_controlled_data.get_matrix_col(sElement)
+            for fElement in npElement:
                 if fpconst.isNaN(fElement):
                     sMessage = _("Value in forecast file must be valid.\n") +\
                                _("A value for the element <%s> is invalid") % (sElement.lower())+\
@@ -119,10 +119,10 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      February 28th 2005
         """
-        naCloudsOctal = wf_controlled_data.get_matrix_col('CC')
+        npCloudsOctal = wf_controlled_data.get_matrix_col('CC')
 
-        if len(numpy.where(naCloudsOctal<0)[0]) != 0  or \
-               len(numpy.where(naCloudsOctal>8)[0]) != 0 :
+        if len(numpy.where(npCloudsOctal<0)[0]) != 0  or \
+               len(numpy.where(npCloudsOctal>8)[0]) != 0 :
             import metro_config
             sMessage = _("All the clouds value (<cc>) of atmospheric forecast must be") +\
                    _(" integers in interval 0-8. See file '%s'") %\
@@ -155,9 +155,9 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
         lPrecip.append(wf_controlled_data.get_matrix_col('SN'))
 
 
-        for naPrecip in lPrecip:
-            naDiff = naPrecip - metro_util.shift_right(naPrecip,0)
-            if len(numpy.where(naDiff[:-1] < 0)[0]) != 0:
+        for npPrecip in lPrecip:
+            npDiff = npPrecip - metro_util.shift_right(npPrecip,0)
+            if len(numpy.where(npDiff[:-1] < 0)[0]) != 0:
                 sMessage = _("All the precipitation value (<ra> and <sn>)") +\
                            _(" of atmospheric forecast represent the TOTAL") +\
                            _(" amount of precipitation since the beginning") +\

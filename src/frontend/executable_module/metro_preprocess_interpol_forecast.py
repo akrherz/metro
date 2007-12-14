@@ -55,7 +55,7 @@ from toolbox import metro_constant
 ##
 # Class attributes
 ##
-naTime = None # Array representing the time in seconds.
+npTime = None # Array representing the time in seconds.
 
 
 class Metro_preprocess_interpol_forecast(Metro_preprocess):
@@ -103,7 +103,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
                           metro_date.get_hour
                           wf_controlled_data.append_matrix_col
 
-        Description: Set the naTime array to span all the values
+        Description: Set the npTime array to span all the values
                      of the input matrix. The input must be at every hour.
 
         Notes: The initialization of the processed_data is made here.
@@ -115,14 +115,14 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         
         nbrHours = len(wf_original_data.get_matrix_col('AT'))
 
-        self.naTime = numpy.arange(0,nbrHours, dtype=numpy.float)*3600        
+        self.npTime = numpy.arange(0,nbrHours, dtype=numpy.float)*3600        
 
         #  Used in fsint2.
-        naTimeStart = \
+        npTimeStart = \
             wf_original_data.get_matrix_col('FORECAST_TIME')
-        nHourStart = int(metro_date.get_hour(naTimeStart[0]))
-        naTimeAtHours = numpy.arange(0,nbrHours, dtype=numpy.float) + nHourStart
-        wf_controlled_data.append_matrix_col('Hour', naTimeAtHours)
+        nHourStart = int(metro_date.get_hour(npTimeStart[0]))
+        npTimeAtHours = numpy.arange(0,nbrHours, dtype=numpy.float) + nHourStart
+        wf_controlled_data.append_matrix_col('Hour', npTimeAtHours)
 
 
 
@@ -142,34 +142,34 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
                          metro_data.append_matrix_col
 
          Description: Interpolate forcast time.
-                      Copy self.naTime in wf_processed_data 'FORECAST_TIME'
+                      Copy self.npTime in wf_processed_data 'FORECAST_TIME'
 
          Revision History:
          Author		Date		Reason
          Miguel Tremblay      July 13th 2004
          """
         
-        naFT = wf_original_data.get_matrix_col('FORECAST_TIME')
-        naFT = metro_util.interpolate(self.naTime, naFT, \
+        npFT = wf_original_data.get_matrix_col('FORECAST_TIME')
+        npFT = metro_util.interpolate(self.npTime, npFT, \
                                       metro_constant.fTimeStep)        
-        wf_interpolated_data.append_matrix_col('FORECAST_TIME', naFT)
+        wf_interpolated_data.append_matrix_col('FORECAST_TIME', npFT)
         
-        nHourStart = int(metro_date.get_hour(naFT[0]))
-        naTime = self.naTime
-        wf_controlled_data.append_matrix_col('Time', naTime)
-        naTime = metro_util.interpolate(self.naTime, naTime, \
+        nHourStart = int(metro_date.get_hour(npFT[0]))
+        npTime = self.npTime
+        wf_controlled_data.append_matrix_col('Time', npTime)
+        npTime = metro_util.interpolate(self.npTime, npTime, \
                                       metro_constant.fTimeStep)
-        naTime = (naTime+30)/3600+nHourStart
-        wf_interpolated_data.append_matrix_col('Time', naTime)
+        npTime = (npTime+30)/3600+nHourStart
+        wf_interpolated_data.append_matrix_col('Time', npTime)
 
 
 
     # Air temperature
-    def __interpolate_AT(self, wf_original_data, wf_interpolated_data):
+    def __interpolate_AT(self, wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_AT
         
-        Parameters:[I] metro_data wf_original_data : original data.  Read-only
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
                    [I] metro_data wf_processed_data : container of the interpolated
                     data.
 
@@ -187,17 +187,17 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Miguel Tremblay      July 12th 2004
         """
         
-        naAT = wf_original_data.get_matrix_col('AT')
-        naAT = metro_util.interpolate(self.naTime, naAT, \
+        npAT = wf_originpl_data.get_matrix_col('AT')
+        npAT = metro_util.interpolate(self.npTime, npAT, \
                                       metro_constant.fTimeStep)
-        wf_interpolated_data.append_matrix_col('AT', naAT)
+        wf_interpolated_data.append_matrix_col('AT', npAT)
 
         
-    def __interpolate_QP(self, wf_original_data, wf_interpolated_data):
+    def __interpolate_QP(self, wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_QP
 
-        Parameters:[I] metro_data wf_original_data : original data.  Read-only
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
                    [I] metro_data wf_interpolated_data : container of the interpolated
                    data.
 
@@ -217,41 +217,41 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      July 12th 2004
         """
-        naRA = wf_original_data.get_matrix_col('RA')
-        naSN = wf_original_data.get_matrix_col('SN')
-        naQP = naSN/10*metro_constant.nSnowWaterRatio \
-               + naRA
+        npRA = wf_originpl_data.get_matrix_col('RA')
+        npSN = wf_originpl_data.get_matrix_col('SN')
+        npQP = npSN/10*metro_constant.nSnowWaterRatio \
+               + npRA
 
         # Patch because of the -99 at the end of the forecast
-        fMax = naQP.max()
-        naQP = numpy.where(naQP < 0, fMax, naQP)
+        fMax = npQP.max()
+        npQP = numpy.where(npQP < 0, fMax, npQP)
 
-        naQP = naQP - metro_util.shift_right(naQP, 0)
-        naSN = naSN - metro_util.shift_right(naSN, 0)
-        naRA = naRA - metro_util.shift_right(naRA, 0)
+        npQP = npQP - metro_util.shift_right(npQP, 0)
+        npSN = npSN - metro_util.shift_right(npSN, 0)
+        npRA = npRA - metro_util.shift_right(npRA, 0)
         
-        naQP = metro_util.interpolate(self.naTime, naQP, \
+        npQP = metro_util.interpolate(self.npTime, npQP, \
                                       metro_constant.fTimeStep)
-        naSN = metro_util.interpolate(self.naTime, naSN, \
+        npSN = metro_util.interpolate(self.npTime, npSN, \
                                       metro_constant.fTimeStep)
-        naRA = metro_util.interpolate(self.naTime, naRA, \
+        npRA = metro_util.interpolate(self.npTime, npRA, \
                                       metro_constant.fTimeStep)
 
-        naQP = naQP *10e-4 # Set it in meter
-        naQP = naQP / 3600.0 # Convert by second
-        naQP = numpy.where(naQP < 0, 0, naQP)
+        npQP = npQP *10e-4 # Set it in meter
+        npQP = npQP / 3600.0 # Convert by second
+        npQP = numpy.where(npQP < 0, 0, npQP)
 
-        wf_interpolated_data.append_matrix_col('QP', naQP)
-        wf_interpolated_data.append_matrix_col('SN', naSN)
-        wf_interpolated_data.append_matrix_col('RA', naRA)
+        wf_interpolated_data.append_matrix_col('QP', npQP)
+        wf_interpolated_data.append_matrix_col('SN', npSN)
+        wf_interpolated_data.append_matrix_col('RA', npRA)
         
 
     # Wind velocity
-    def __interpolate_WS(self, wf_original_data, wf_interpolated_data):
+    def __interpolate_WS(self, wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_WS
 
-        Parameters:[I] metro_data wf_original_data : original data.  Read-only
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
                    [I] metro_data wf_interpolated_data : container of the
                        interpolated data.
 
@@ -270,18 +270,18 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      July 12th 2004
         """
-        naWS = wf_original_data.get_matrix_col('WS')*0.2777777
-        naWS = metro_util.interpolate(self.naTime, naWS, \
+        npWS = wf_originpl_data.get_matrix_col('WS')*0.2777777
+        npWS = metro_util.interpolate(self.npTime, npWS, \
                                       metro_constant.fTimeStep)
-        wf_interpolated_data.append_matrix_col('WS', naWS)
+        wf_interpolated_data.append_matrix_col('WS', npWS)
         
 
     # Dew point
-    def __interpolate_TD(self, wf_original_data, wf_interpolated_data):
+    def __interpolate_TD(self, wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_TD
 
-        Parameters:[I] metro_data wf_original_data : original data.  Read-only
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
                    [I] metro_data wf_interpolated_data : container of the interpolated
                    data.
 
@@ -299,18 +299,18 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      July 12th 2004
         """
-        naTD = wf_original_data.get_matrix_col('TD')
-        naTD = metro_util.interpolate(self.naTime, naTD, \
+        npTD = wf_originpl_data.get_matrix_col('TD')
+        npTD = metro_util.interpolate(self.npTime, npTD, \
                                       metro_constant.fTimeStep)
-        wf_interpolated_data.append_matrix_col('TD', naTD)
+        wf_interpolated_data.append_matrix_col('TD', npTD)
 
         
     # Pressure
-    def __interpolate_AP(self, wf_original_data, wf_interpolated_data):
+    def __interpolate_AP(self, wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_AP
 
-        Parameters:[I] metro_data wf_original_data : original data.  Read-only
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
                    [I] metro_data wf_interpolated_data : container of the interpolated
                    data.
 
@@ -328,27 +328,27 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
          Author		Date		Reason
          Miguel Tremblay      July 12th 2004
          """
-        naAP = wf_original_data.get_matrix_col('AP')
+        npAP = wf_originpl_data.get_matrix_col('AP')
         
         # Replace invalid date by the normal pressure (1013.25 mb)
-        naAP = numpy.where(naAP < metro_constant.nLowerPressure,\
-                              metro_constant.fNormalPressure,  naAP)
-        naAP = numpy.where(naAP > metro_constant.nUpperPressure,\
-                              metro_constant.fNormalPressure,  naAP)
+        npAP = numpy.where(npAP < metro_constant.nLowerPressure,\
+                              metro_constant.fNormalPressure,  npAP)
+        npAP = numpy.where(npAP > metro_constant.nUpperPressure,\
+                              metro_constant.fNormalPressure,  npAP)
         
         # Convert it in pascals.
-        naAP = naAP*100
-        naAP = metro_util.interpolate(self.naTime, naAP, \
+        npAP = npAP*100
+        npAP = metro_util.interpolate(self.npTime, npAP, \
                                       metro_constant.fTimeStep)
-        wf_interpolated_data.append_matrix_col('AP', naAP)
+        wf_interpolated_data.append_matrix_col('AP', npAP)
 
 
     # Type of precipitation
-    def __interpolate_PI(self, wf_original_data, wf_interpolated_data):
+    def __interpolate_PI(self, wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_PI
 
-        Parameters:[I] metro_data wf_original_data : original data.  Read-only
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
                    [I] metro_data wf_interpolated_data : container of the interpolated
                    data.
 
@@ -367,42 +367,42 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      July 15th 2004
         """
-        naRA = wf_original_data.get_matrix_col('RA')
-        naSN = wf_original_data.get_matrix_col('SN')
-        naAT = wf_original_data.get_matrix_col('AT')
+        npRA = wf_originpl_data.get_matrix_col('RA')
+        npSN = wf_originpl_data.get_matrix_col('SN')
+        npAT = wf_originpl_data.get_matrix_col('AT')
         # Replace the last value if they are not good
-        if naRA[len(naRA)-1] < 0:
-            naRA[len(naRA)-1] = naRA.max()
-        if naSN[len(naSN)-1] < 0:
-            naSN[len(naSN)-1] = naSN.max()
+        if npRA[len(npRA)-1] < 0:
+            npRA[len(npRA)-1] = npRA.max()
+        if npSN[len(npSN)-1] < 0:
+            npSN[len(npSN)-1] = npSN.max()
         
-        naDiffRA = naRA - metro_util.shift_right(naRA, 0)
-        naDiffSN = naSN - metro_util.shift_right(naSN, 0)
+        npDiffRA = npRA - metro_util.shift_right(npRA, 0)
+        npDiffSN = npSN - metro_util.shift_right(npSN, 0)
         lPI = []
 
-        for i in range(0, len(naDiffRA)):
-            if naDiffRA[i] > 0:
+        for i in range(0, len(npDiffRA)):
+            if npDiffRA[i] > 0:
                 lPI.append(1)
-            elif naDiffSN[i] > 0:
+            elif npDiffSN[i] > 0:
                 lPI.append(2)
-            elif naAT[i] > 0:
+            elif npAT[i] > 0:
                 lPI.append(1)
             else:
                 lPI.append(2)
 
-        naPI = numpy.array(lPI)
+        npPI = numpy.array(lPI)
             
         # Interpolate
-        naPI = metro_util.interpolate(self.naTime, naPI, \
+        npPI = metro_util.interpolate(self.npTime, npPI, \
                                       metro_constant.fTimeStep)
         # Round
-        naPI = numpy.around(naPI)
+        npPI = numpy.around(npPI)
         # Store
-        wf_interpolated_data.append_matrix_col('PI', naPI)
+        wf_interpolated_data.append_matrix_col('PI', npPI)
 
 
 
-    def __interpolate_CC(self,  wf_original_data, wf_interpolated_data):
+    def __interpolate_CC(self,  wf_originpl_data, wf_interpolated_data):
         """
         Name: __interpolate_cloud_cover
         
@@ -420,17 +420,17 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      June 20th 2005
         """
-        lCC = wf_original_data.get_matrix_col('CC')
+        lCC = wf_originpl_data.get_matrix_col('CC')
 
-        naCC = numpy.array(lCC)
+        npCC = numpy.array(lCC)
             
         # Interpolate
-        naCC = metro_util.interpolate(self.naTime, naCC, \
+        npCC = metro_util.interpolate(self.npTime, npCC, \
                                       metro_constant.fTimeStep)
 
         # Round
-        naCC = numpy.around(naCC)
+        npCC = numpy.around(npCC)
         # Store
-        wf_interpolated_data.append_matrix_col('CC', naCC)
+        wf_interpolated_data.append_matrix_col('CC', npCC)
 
 

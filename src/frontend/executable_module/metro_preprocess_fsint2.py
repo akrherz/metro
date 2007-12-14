@@ -191,80 +191,80 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
                                    sMessage)
 
-        naTimeHour =  wf_controlled_data.get_matrix_col('Hour')
-        nTimeHourLength = len(naTimeHour)
-        naCloudsOctal = wf_controlled_data.get_matrix_col('CC')
+        npTimeHour =  wf_controlled_data.get_matrix_col('Hour')
+        nTimeHourLength = len(npTimeHour)
+        npCloudsOctal = wf_controlled_data.get_matrix_col('CC')
         
-        naSft = numpy.zeros(nTimeHourLength, dtype=numpy.float)
-        naCoeff = numpy.zeros(nTimeHourLength, dtype=numpy.float)
+        npSft = numpy.zeros(nTimeHourLength, dtype=numpy.float)
+        npCoeff = numpy.zeros(nTimeHourLength, dtype=numpy.float)
         
         ###### In the night, the solar flux is null ###############
         for i in range(0, nTimeHourLength):
             # Current hour is needed for the computation of
             # fDh in the theoritical solar flux.
-            nCurrentHour = (naTimeHour[i])%24
+            nCurrentHour = (npTimeHour[i])%24
             # atmospheric forecast is before the sunrise
             # or after the sunset
             if self.__in_the_dark(nCurrentHour, fSunriseTimeUTC, \
                                   fSunsetTimeUTC,):
-                    naSft[i] = 0
+                    npSft[i] = 0
             else:
                 # Position of the sun around the earth, in radian
                 fDh =  pi*(nCurrentHour/12.0 + self.fLon/180 - 1) + self.fEot
                 fCosz = self.tDeclsc[0] + \
                         self.tDeclsc[1]*cos(fDh)
-                naSft[i] = max(0.0, fCosz)*self.fR0r
-        naCoeff =  -1.56e-12*naSft**4 + 5.972e-9*naSft**3 -\
-                    8.364e-6*naSft**2  + 5.183e-3*naSft - 0.435
+                npSft[i] = max(0.0, fCosz)*self.fR0r
+        npCoeff =  -1.56e-12*npSft**4 + 5.972e-9*npSft**3 -\
+                    8.364e-6*npSft**2  + 5.183e-3*npSft - 0.435
 
-        naCoeff = numpy.where(naCoeff > 0, naCoeff, 0.0)
-        # Set naCloudsPercent to be able to reference it in the
+        npCoeff = numpy.where(npCoeff > 0, npCoeff, 0.0)
+        # Set npCloudsPercent to be able to reference it in the
         #  numpy.where method.
-        naCloudsPercentDay = naCloudsOctal
-        naCloudsPercentNight1 = naCloudsOctal
-        naCloudsPercentNight2 = naCloudsOctal
+        npCloudsPercentDay = npCloudsOctal
+        npCloudsPercentNight1 = npCloudsOctal
+        npCloudsPercentNight2 = npCloudsOctal
         # Correction based on the clouds
         for i in range(0,9):
             nPercentDay = metro_constant.lCloudsDay[i]
             nPercentNight1 = metro_constant.lCloudsNight1[i]
             nPercentNight2 = metro_constant.lCloudsNight2[i]
-            naCloudsPercentDay = numpy.where(naCloudsOctal == i,\
-                                      nPercentDay, naCloudsPercentDay)
-            naCloudsPercentNight1 = numpy.where(naCloudsOctal == i,\
+            npCloudsPercentDay = numpy.where(npCloudsOctal == i,\
+                                      nPercentDay, npCloudsPercentDay)
+            npCloudsPercentNight1 = numpy.where(npCloudsOctal == i,\
                                                    nPercentNight1, \
-                                                   naCloudsPercentNight1)
-            naCloudsPercentNight2 = numpy.where(naCloudsOctal == i,\
+                                                   npCloudsPercentNight1)
+            npCloudsPercentNight2 = numpy.where(npCloudsOctal == i,\
                                                    nPercentNight2, \
-                                                   naCloudsPercentNight2)
+                                                   npCloudsPercentNight2)
 
         # TODO MT: Voir les implications de cette passe.
         # There is a mix up with the 0-based octal used in fortran
         #  See rofile2.f
-        naCloudsPercentDay = numpy.where(naCloudsPercentDay == 0, 1.0 \
-                                             , naCloudsPercentDay)
-        naCloudsPercentNight1 = numpy.where(naCloudsPercentNight1 == 0, 3.79 \
-                                             , naCloudsPercentNight1)
-        naCloudsPercentNight2 = numpy.where(naCloudsPercentNight2 == 0,214.7 \
-                                               , naCloudsPercentNight2)
+        npCloudsPercentDay = numpy.where(npCloudsPercentDay == 0, 1.0 \
+                                             , npCloudsPercentDay)
+        npCloudsPercentNight1 = numpy.where(npCloudsPercentNight1 == 0, 3.79 \
+                                             , npCloudsPercentNight1)
+        npCloudsPercentNight2 = numpy.where(npCloudsPercentNight2 == 0,214.7 \
+                                               , npCloudsPercentNight2)
 
         # Solar flux
-        naSF3 = naSft * naCoeff * naCloudsPercentDay
+        npSF3 = npSft * npCoeff * npCloudsPercentDay
 
         # Infra-red flux 
-        naAT = wf_controlled_data.get_matrix_col('AT')
-        naIR = naCloudsPercentNight1*naAT+naCloudsPercentNight2
-        wf_controlled_data.append_matrix_col('IR', naIR)
+        npAT = wf_controlled_data.get_matrix_col('AT')
+        npIR = npCloudsPercentNight1*npAT+npCloudsPercentNight2
+        wf_controlled_data.append_matrix_col('IR', npIR)
 
         # Interpolate
-        naTime = wf_controlled_data.get_matrix_col('Time')
-        naIR = metro_util.interpolate(naTime, naIR, \
+        npTime = wf_controlled_data.get_matrix_col('Time')
+        npIR = metro_util.interpolate(npTime, npIR, \
                                       metro_constant.fTimeStep)
-        wf_controlled_data.append_matrix_col('SF', naSF3)
-        naSF  = metro_util.interpolate(naTime, naSF3, \
+        wf_controlled_data.append_matrix_col('SF', npSF3)
+        npSF  = metro_util.interpolate(npTime, npSF3, \
                                       metro_constant.fTimeStep)
-        wf_interpolated_data.append_matrix_col('SF',  naSF)
+        wf_interpolated_data.append_matrix_col('SF',  npSF)
 
-        wf_interpolated_data.append_matrix_col('IR', naIR)
+        wf_interpolated_data.append_matrix_col('IR', npIR)
 
     def __get_eot(self, nTime):
         """

@@ -127,37 +127,37 @@ class Metro_preprocess_combine(Metro_preprocess):
         Description: Combine the air temperature of forecast and observation.
         """
 
-        naAT = wf_interpolated_data.get_matrix_col('AT')
-        naATO = ro_interpolated_data.get_matrix_col('AT')
+        npAT = wf_interpolated_data.get_matrix_col('AT')
+        npATO = ro_interpolated_data.get_matrix_col('AT')
 
-        nLenATO = len(naATO)
-        nLenAT = len(naAT)-3*3600/30
+        nLenATO = len(npATO)
+        nLenAT = len(npAT)-3*3600/30
 
         # Check if there is an error in the observation
-        naSwo = observation_data.get_attribute('AT_VALID_INTERPOLATED')
-        naSwo = naSwo[self.nDeltaIndice:nLenATO]
-        naCheck = numpy.where(naSwo == 0, 1, 0)
-        naBadIndices = (numpy.nonzero(naCheck))[0]
-        if len(naBadIndices) == 0:
+        npSwo = observation_data.get_attribute('AT_VALID_INTERPOLATED')
+        npSwo = npSwo[self.nDeltaIndice:nLenATO]
+        npCheck = numpy.where(npSwo == 0, 1, 0)
+        npBadIndices = (numpy.nonzero(npCheck))[0]
+        if len(npBadIndices) == 0:
             for i in range(0, nLenATO-self.NTP):
-                naAT[i-self.NTP2] = naATO[i+self.NTP-1]
+                npAT[i-self.NTP2] = npATO[i+self.NTP-1]
             # Relaxation des observations vers la prevision.
             # Relaxation of observation to forecast.
             # Constante de 4 heures / 4 hour relaxation constant
             nFactor = nLenATO-self.NTP
-            fTaCorr = naAT[nLenATO-self.NTP-self.NTP2]-naATO[nLenATO-1]
+            fTaCorr = npAT[nLenATO-self.NTP-self.NTP2]-npATO[nLenATO-1]
             if fTaCorr != 0:
                 if self.NTP2 < 0:
                     nValueSup = nLenAT + self.NTP2
                 else:
                     nValueSup = nLenAT
                 for i in range(nLenATO-self.NTP, nValueSup):
-                    naAT[i-self.NTP2] = naAT[i-self.NTP2]-math.exp(-(i-nFactor)\
+                    npAT[i-self.NTP2] = npAT[i-self.NTP2]-math.exp(-(i-nFactor)\
                                                *metro_constant.fTimeStep \
                                                *metro_constant.fConst)*fTaCorr
 
 
-        wf_interpolated_data.set_matrix_col('AT', naAT)  
+        wf_interpolated_data.set_matrix_col('AT', npAT)  
 
 
     def __combine_TD(self, wf_interpolated_data, \
@@ -177,41 +177,41 @@ class Metro_preprocess_combine(Metro_preprocess):
         Description: Combine the dew point of forecast and observation.
         """
 
-        naTD = wf_interpolated_data.get_matrix_col('TD')
-        naAT = wf_interpolated_data.get_matrix_col('AT')
-        naTDO = ro_interpolated_data.get_matrix_col('TD')
+        npTD = wf_interpolated_data.get_matrix_col('TD')
+        npAT = wf_interpolated_data.get_matrix_col('AT')
+        npTDO = ro_interpolated_data.get_matrix_col('TD')
         
-        nLenTDO = len(naTDO)
-        nLenTD = len(naTD)-3*3600/30
+        nLenTDO = len(npTDO)
+        nLenTD = len(npTD)-3*3600/30
 
         # Check if there is an error in the observation
-        naSwo = observation_data.get_attribute('TD_VALID_INTERPOLATED')
-        naSwo = naSwo[self.nDeltaIndice:nLenTDO]
-        naCheck = numpy.where(naSwo == 0, 1, 0)
-        naBadIndices = (numpy.nonzero(naCheck))[0]
+        npSwo = observation_data.get_attribute('TD_VALID_INTERPOLATED')
+        npSwo = npSwo[self.nDeltaIndice:nLenTDO]
+        npCheck = numpy.where(npSwo == 0, 1, 0)
+        npBadIndices = (numpy.nonzero(npCheck))[0]
         # If there is no error in the dew point, use the observations, otherwise
         #  use the forecast for all the observation.
-        if len(naBadIndices) == 0:
+        if len(npBadIndices) == 0:
             for i in range(0, nLenTDO-self.NTP):
-                naTD[i-self.NTP2] = naTDO[i+self.NTP-1]
+                npTD[i-self.NTP2] = npTDO[i+self.NTP-1]
 
             # Relaxation des observations vers la prevision.
             # Constante de 4 heures / 4 hour relaxation constant
             nFactor = nLenTDO-self.NTP
-            fTdCorr = naTD[nLenTDO-self.NTP-self.NTP2]-naTDO[nLenTDO-1]
+            fTdCorr = npTD[nLenTDO-self.NTP-self.NTP2]-npTDO[nLenTDO-1]
             if fTdCorr != 0:
                 if self.NTP2 < 0:
                     nValueSup = nLenTD + self.NTP2
                 else:
                     nValueSup = nLenTD
                 for i in range(nLenTDO-self.NTP, nValueSup):
-                    naTD[i-self.NTP2] = naTD[i-self.NTP2]-math.exp(-(i-nFactor)\
+                    npTD[i-self.NTP2] = npTD[i-self.NTP2]-math.exp(-(i-nFactor)\
                                                *metro_constant.fTimeStep \
                                                *metro_constant.fConst)*fTdCorr
-                    if  naTD[i-self.NTP2] >  naAT[i-self.NTP2]:
-                         naTD[i-self.NTP2] =  naAT[i-self.NTP2]
+                    if  npTD[i-self.NTP2] >  npAT[i-self.NTP2]:
+                         npTD[i-self.NTP2] =  npAT[i-self.NTP2]
 
-        wf_interpolated_data.set_matrix_col('TD', naTD)
+        wf_interpolated_data.set_matrix_col('TD', npTD)
  
 
     def __combine_WS(self, wf_interpolated_data, \
@@ -232,20 +232,20 @@ class Metro_preprocess_combine(Metro_preprocess):
         Description: Combine the wind speed of forecast and observation.
         """
 
-        naWS = wf_interpolated_data.get_matrix_col('WS')
+        npWS = wf_interpolated_data.get_matrix_col('WS')
         
-        naWSO = ro_interpolated_data.get_matrix_col('WS')
-        nLenWSO = len(naWSO)
-        nLenWS = len(naWS)-3*3600/30
+        npWSO = ro_interpolated_data.get_matrix_col('WS')
+        nLenWSO = len(npWSO)
+        nLenWS = len(npWS)-3*3600/30
 
         # Check if there is an error in the observation
-        naSwo = observation_data.get_attribute('WS_VALID_INTERPOLATED')
-        naSwo = naSwo[self.nDeltaIndice:nLenWSO]
-        naCheck = numpy.where(naSwo == 0, 1, 0)
-        naBadIndices = (numpy.nonzero(naCheck))[0]
-        if len(naBadIndices) == 0:
+        npSwo = observation_data.get_attribute('WS_VALID_INTERPOLATED')
+        npSwo = npSwo[self.nDeltaIndice:nLenWSO]
+        npCheck = numpy.where(npSwo == 0, 1, 0)
+        npBadIndices = (numpy.nonzero(npCheck))[0]
+        if len(npBadIndices) == 0:
             for i in range(0, nLenWSO-self.NTP):
-                naWS[i-self.NTP2] = naWSO[i+self.NTP-1]
+                npWS[i-self.NTP2] = npWSO[i+self.NTP-1]
 
             # Relaxation of observation on the atmospheric forecast
             # 4 hour relaxation constant
@@ -259,8 +259,8 @@ class Metro_preprocess_combine(Metro_preprocess):
             else: # Cast anyway
                 nValueSup = int(round(nValueSup))
             nFactor = nLenWSO-self.NTP
-            fCurrentObs = naWSO[nLenWSO-1]
-            fCurrentFor = naWS[nLenWSO-self.NTP-self.NTP2]
+            fCurrentObs = npWSO[nLenWSO-1]
+            fCurrentFor = npWS[nLenWSO-self.NTP-self.NTP2]
             if fCurrentObs < fCurrentFor:
                 if fCurrentFor == 0:
                     fCurrentFor = 1.0
@@ -271,16 +271,16 @@ class Metro_preprocess_combine(Metro_preprocess):
                          metro_constant.fTimeStep
                 for i in range(int(round(nLenWSO-self.NTP)), nValueSup):
                     fFactor = fSlope*(i-nLenWSO+self.NTP)+fTdCorr
-                    naWS[i-self.NTP2] = fFactor*naWS[i-self.NTP2]
+                    npWS[i-self.NTP2] = fFactor*npWS[i-self.NTP2]
                 
             elif fCurrentFor < fCurrentObs:
                 fTdCorr = fCurrentFor - fCurrentObs
                 for i in range(int(round(nLenWSO-self.NTP)), nValueSup):  
-                    naWS[i-self.NTP2] = naWS[i-self.NTP2]-math.exp(-(i-nFactor)\
+                    npWS[i-self.NTP2] = npWS[i-self.NTP2]-math.exp(-(i-nFactor)\
                                            *metro_constant.fTimeStep \
                                            *metro_constant.fConst)*fTdCorr
 
-        wf_interpolated_data.set_matrix_col('WS', naWS)
+        wf_interpolated_data.set_matrix_col('WS', npWS)
         
 
     def __combine_QP(self, wf_interpolated_data, \
@@ -301,25 +301,25 @@ class Metro_preprocess_combine(Metro_preprocess):
                        Create the road condition.
         """
         
-        naQP = wf_interpolated_data.get_matrix_col('QP')
+        npQP = wf_interpolated_data.get_matrix_col('QP')
 
         # Create the road condition array. 0 is dry, 1 is wet
         # This is only use in the initialization of profile
-        naSC = numpy.ones(len(naQP))
+        npSC = numpy.ones(len(npQP))
 
         # PI is equal to 1 when there is precipitation, 0 otherwise.
-        naPI = ro_interpolated_data.get_matrix_col('PI')
-        naSCO = ro_interpolated_data.get_matrix_col('SC')
-        nLenPI = len(naPI)
-        nLenQP = len(naQP)-3*3600/30
+        npPI = ro_interpolated_data.get_matrix_col('PI')
+        npSCO = ro_interpolated_data.get_matrix_col('SC')
+        nLenPI = len(npPI)
+        nLenQP = len(npQP)-3*3600/30
 
         for i in range(0, nLenPI-self.NTP):
-            naQP[i-self.NTP2] = naPI[i+self.NTP-1]*\
-                                (naQP[i+1-self.NTP2])
-            naSC[i-self.NTP2] = naSCO[i+self.NTP-1]
+            npQP[i-self.NTP2] = npPI[i+self.NTP-1]*\
+                                (npQP[i+1-self.NTP2])
+            npSC[i-self.NTP2] = npSCO[i+self.NTP-1]
 
-        wf_interpolated_data.set_matrix_col('QP',naQP)
-        wf_interpolated_data.append_matrix_col('SC',naSC)
+        wf_interpolated_data.set_matrix_col('QP',npQP)
+        wf_interpolated_data.append_matrix_col('SC',npSC)
 
 
     def __create_AH(self, wf_interpolated_data):
@@ -343,17 +343,17 @@ class Metro_preprocess_combine(Metro_preprocess):
         Miguel Tremblay      August 24th 2004
         """
         # Get any of the interpolated forecast to retrieve the length
-        naTD = wf_interpolated_data.get_matrix_col('TD')
-        naAP = wf_interpolated_data.get_matrix_col('AP')
+        npTD = wf_interpolated_data.get_matrix_col('TD')
+        npAP = wf_interpolated_data.get_matrix_col('AP')
 
-        naLenAH = len(naTD)
+        npLenAH = len(npTD)
 
         # Create the array
-        naAH = numpy.zeros(naLenAH)
-        naAH = naAH.astype(numpy.float)
+        npAH = numpy.zeros(npLenAH)
+        npAH = npAH.astype(numpy.float)
 
-        for i in range(0,naLenAH):
-            naAH[i] = metro_physics.foqst(naTD[i]+metro_constant.fTcdk,\
-                                           naAP[i])
+        for i in range(0,npLenAH):
+            npAH[i] = metro_physics.foqst(npTD[i]+metro_constant.fTcdk,\
+                                           npAP[i])
             
-        wf_interpolated_data.append_matrix_col('AH', naAH)
+        wf_interpolated_data.append_matrix_col('AH', npAH)

@@ -100,9 +100,9 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         """
         
          # Check the length of forecast. Pick one element at random
-        naFT = forecast_data.get_matrix_col('FORECAST_TIME')
+        npFT = forecast_data.get_matrix_col('FORECAST_TIME')
 
-        if len(naFT) < 2:
+        if len(npFT) < 2:
             sMessage = _("METRo needs more than one forecast date! Exiting")
             metro_logger.print_message(
                 metro_logger.LOGGER_MSG_STOP, sMessage)
@@ -128,9 +128,9 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         """
 
         # Check the length of observation
-        naOT = observation_data.get_matrix_col('OBSERVATION_TIME')
-        fLast_observation_date = naOT[len(naOT)-1]
-        fFirst_observation_date  = naOT[0]
+        npOT = observation_data.get_matrix_col('OBSERVATION_TIME')
+        fLast_observation_date = npOT[len(npOT)-1]
+        fFirst_observation_date  = npOT[0]
 
         fLenght_observation_seconds = fLast_observation_date -\
                                       fFirst_observation_date
@@ -147,9 +147,9 @@ class Metro_preprocess_validate_input(Metro_preprocess):
             sNewStartTime = metro_date.seconds2iso8601(fNewStartTime)
             # Retrieve the first time in observation that is after this date
             #  numpy trick. Put 0 where the time is under fNewStartTime
-            naNumberOfItemToRemove = numpy.where(naOT <fNewStartTime, 1, 0)
+            npNumberOfItemToRemove = numpy.where(npOT <fNewStartTime, 1, 0)
             #  Get the indice of the last indice that is not zero
-            tNonZero = numpy.nonzero(naNumberOfItemToRemove)
+            tNonZero = numpy.nonzero(npNumberOfItemToRemove)
             nRemoveUntilIndice = tNonZero[0][-1]+1
             
             sOldStartTime = metro_date.seconds2iso8601(fFirst_observation_date)
@@ -183,8 +183,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         """
 
         # Get the last observation
-        naOT = observation_data.get_matrix_col('OBSERVATION_TIME')
-        fLast_observation_date = naOT[len(naOT)-1]
+        npOT = observation_data.get_matrix_col('OBSERVATION_TIME')
+        fLast_observation_date = npOT[len(npOT)-1]
         sStart_date = metro_date.seconds2iso8601(fLast_observation_date)
         metro_config.set_value('DATA_ATTRIBUTE_LAST_OBSERVATION', sStart_date)
         sMessage = _("Last observation date is: '%s'") % (sStart_date)
@@ -202,8 +202,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         """
 
         fForecast_start = forecast_data.get_matrix_col('FORECAST_TIME')[0]
-        naObservation = observation_data.get_matrix_col('OBSERVATION_TIME')
-        fObservation_end = naObservation[len(naObservation)-1]
+        npObservation = observation_data.get_matrix_col('OBSERVATION_TIME')
+        fObservation_end = npObservation[len(npObservation)-1]
 
         if fForecast_start > fObservation_end:
             sForecast_start = metro_date.seconds2iso8601(fForecast_start)

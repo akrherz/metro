@@ -126,23 +126,23 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         Miguel Tremblay      August 4th 2004
         """
         
-        naOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
-        naTime = numpy.zeros(len(naOT))
-        naTime[0] = metro_date.get_hour(naOT[0])*3600 + \
-                    metro_date.get_minute(naOT[0])*60
-        if len(naOT) == 0:
+        npOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
+        npTime = numpy.zeros(len(npOT))
+        npTime[0] = metro_date.get_hour(npOT[0])*3600 + \
+                    metro_date.get_minute(npOT[0])*60
+        if len(npOT) == 0:
             sMessage = _("No valid observation")
             metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
                                        sMessage)
             return 
-        for i in range(1,len(naOT)):
-            fTimeElapsed =  metro_date.get_elapsed_time(naOT[i], \
-                                                        naOT[i-1],\
+        for i in range(1,len(npOT)):
+            fTimeElapsed =  metro_date.get_elapsed_time(npOT[i], \
+                                                        npOT[i-1],\
                                                         "UTC", "seconds")
-            naTime[i] = naTime[i-1]+fTimeElapsed
+            npTime[i] = npTime[i-1]+fTimeElapsed
             
         # Registered.
-        ro_controlled_data.append_matrix_col('Time', naTime)
+        ro_controlled_data.append_matrix_col('Time', npTime)
     
     def __remove_bad_arg(self, ro_controlled_data):
         """
@@ -168,30 +168,30 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         """
 
         ################ Check road surface temperature ###############
-        naST = ro_controlled_data.get_matrix_col('ST')
+        npST = ro_controlled_data.get_matrix_col('ST')
         # More than nRoadTemperatureHigh degrees
-        naBad = numpy.where(naST > metro_constant\
+        npBad = numpy.where(npST > metro_constant\
                                .nRoadTemperatureHigh , 1, 0)
-        if len(naBad) > 0:
-            naBadIndices = (numpy.nonzero(naBad))[0]
-            if len(naBadIndices) > 0:
+        if len(npBad) > 0:
+            npBadIndices = (numpy.nonzero(npBad))[0]
+            if len(npBadIndices) > 0:
                 sMessage = _("Invalid road temperature")
                 metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                            sMessage)
-                for i in range(0,len(naBadIndices)):
-                    nIndice = naBadIndices[i]
+                for i in range(0,len(npBadIndices)):
+                    nIndice = npBadIndices[i]
                     sMessage = _("%d th  temperature is %f") %  \
-                               ( nIndice, round(naST[nIndice],2)) 
+                               ( nIndice, round(npST[nIndice],2)) 
                     metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                                sMessage)
                 
-                ro_controlled_data.del_matrix_row(naBadIndices)
+                ro_controlled_data.del_matrix_row(npBadIndices)
         # or less than nRoadTemperatureMin
-        naST = ro_controlled_data.get_matrix_col('ST')
-        naBad = numpy.where(naST < metro_constant.nRoadTemperatureMin , 1, 0)
-        if len(naBad) > 0:
-            naBadIndices = (numpy.nonzero(naBad))[0]
-            ro_controlled_data.del_matrix_row(naBadIndices)
+        npST = ro_controlled_data.get_matrix_col('ST')
+        npBad = numpy.where(npST < metro_constant.nRoadTemperatureMin , 1, 0)
+        if len(npBad) > 0:
+            npBadIndices = (numpy.nonzero(npBad))[0]
+            ro_controlled_data.del_matrix_row(npBadIndices)
 
     def __check_time_order(self, ro_controlled_data, wf_controlled_data):
         """
@@ -217,75 +217,75 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         Miguel Tremblay      August 4th 2004
         """
         
-        naTime = ro_controlled_data.get_matrix_col('Time')
-        naCheck = metro_util.get_difference_array(naTime)
+        npTime = ro_controlled_data.get_matrix_col('Time')
+        npCheck = metro_util.get_difference_array(npTime)
         # If a gap of more than nGapMinuteObservation
         #  minutes is identify, cut the value before.
-        naCheck = metro_util.get_difference_array(naTime)        
-        naBad = numpy.where( naCheck > metro_constant.\
+        npCheck = metro_util.get_difference_array(npTime)        
+        npBad = numpy.where( npCheck > metro_constant.\
                                 nGapMinuteObservation*60, 1, 0)
-        naBadIndice =  (numpy.nonzero(naBad))[0]
-        if len(naBadIndice) > 0:
+        npBadIndice =  (numpy.nonzero(npBad))[0]
+        if len(npBadIndice) > 0:
             sMessage =  _("More than %d minutes between 2 measures")\
                           % (metro_constant.nGapMinuteObservation)
             metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
                                        sMessage)
-            naOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
-            for i in range(0,len(naBadIndice)):
-                nIndice = naBadIndice[i]
+            npOT = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')
+            for i in range(0,len(npBadIndice)):
+                nIndice = npBadIndice[i]
                 sMessage = _("Indice: %d") % (nIndice)
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                            sMessage)
                 sMessage =  _("Cutoff time: day:%d hour:%d minute:%d") %\
-                      (metro_date.get_day(naOT[nIndice]),\
-                       metro_date.get_hour(naOT[nIndice]),\
-                       metro_date.get_minute(naOT[nIndice]))
+                      (metro_date.get_day(npOT[nIndice]),\
+                       metro_date.get_hour(npOT[nIndice]),\
+                       metro_date.get_minute(npOT[nIndice]))
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                            sMessage)
 
             
-            toto = numpy.arange(0,naBadIndice[len(naBadIndice)-1]+1) 
+            toto = numpy.arange(0,npBadIndice[len(npBadIndice)-1]+1) 
             ro_controlled_data.del_matrix_row(toto)
-        naTime = ro_controlled_data.get_matrix_col('Time')
-        naBad = numpy.where( naCheck < 0, 1, 0)
-        naBadIndice = (numpy.nonzero(naBad))[0]
+        npTime = ro_controlled_data.get_matrix_col('Time')
+        npBad = numpy.where( npCheck < 0, 1, 0)
+        npBadIndice = (numpy.nonzero(npBad))[0]
         # Accept 1 value under zero because the last value of
-        #  naBadIndice = naCheck[len(naCheck)-1] - naCheck[0]
-        if len(naBadIndice) > 1:
+        #  npBadIndice = npCheck[len(npCheck)-1] - npCheck[0]
+        if len(npBadIndice) > 1:
             sMessage = _("Time of observation are not in order. ") + \
-                       _("Check the %d th value") %(naBadIndice[1])
+                       _("Check the %d th value") %(npBadIndice[1])
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
                                       sMessage )
         # Remove the values that are equal.
-        naBad = numpy.where( naCheck == 0, 1, 0)
-        naBadIndice = (numpy.nonzero(naBad))[0]
-        ro_controlled_data.del_matrix_row(naBadIndice)
+        npBad = numpy.where( npCheck == 0, 1, 0)
+        npBadIndice = (numpy.nonzero(npBad))[0]
+        ro_controlled_data.del_matrix_row(npBadIndice)
 
 
 ########################################################
 
-        naFT = wf_controlled_data.get_matrix_col('FORECAST_TIME')
+        npFT = wf_controlled_data.get_matrix_col('FORECAST_TIME')
         
-        naOT = ro_controlled_data.get_matrix_col('Time')
-        nHourStart = metro_date.get_hour(naFT[0])
-        naDiff = - naOT + nHourStart*3600
-        naBad = numpy.where(naDiff > metro_constant.\
+        npOT = ro_controlled_data.get_matrix_col('Time')
+        nHourStart = metro_date.get_hour(npFT[0])
+        npDiff = - npOT + nHourStart*3600
+        npBad = numpy.where(npDiff > metro_constant.\
                                nHourForExpirationOfObservation*3600, 1, 0)
-        if len(naBad) > 0:
-            naBadIndices = (numpy.nonzero(naBad))[0]
-            if len(naBadIndices) > 0:
-                naBadIndices = (numpy.nonzero(naBad))[0]
+        if len(npBad) > 0:
+            npBadIndices = (numpy.nonzero(npBad))[0]
+            if len(npBadIndices) > 0:
+                npBadIndices = (numpy.nonzero(npBad))[0]
                 sMessage = _("Observation is more than %d hours")  \
                            % ( metro_constant.nHourForExpirationOfObservation)\
                            + _("before the first roadcast")
                 metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
                                            sMessage)
-                for i in range(0,len(naBadIndices)):
-                    nIndice = naBadIndices[i]
+                for i in range(0,len(npBadIndices)):
+                    nIndice = npBadIndices[i]
                     sMessage = _("Indice: %d") % (nIndice)
                     metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                                sMessage)
-                    ro_controlled_data.del_matrix_row(naBadIndices)
+                    ro_controlled_data.del_matrix_row(npBadIndices)
             
         # Get start time
         sStart_time = metro_config.get_value('INIT_ROADCAST_START_DATE')
@@ -295,14 +295,14 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
         # Check if the observation are not before the start of the roadcast if specified.
         fStart_time = metro_date.parse_date_string(sStart_time)
-        naOT = ro_controlled_data.get_matrix_col('Time')\
+        npOT = ro_controlled_data.get_matrix_col('Time')\
                +nHourStart*3600
-        naDiff = - naOT + int(metro_date.get_hour(fStart_time))*3600
-        naBad = numpy.where(naDiff > metro_constant\
+        npDiff = - npOT + int(metro_date.get_hour(fStart_time))*3600
+        npBad = numpy.where(npDiff > metro_constant\
                                .nHourForExpirationOfObservation*3600, 1, 0)
-        if len(naBad) > 0:
-            naBadIndices = (numpy.nonzero(naBad))[0]
-            if len(naBadIndices) > 0:
+        if len(npBad) > 0:
+            npBadIndices = (numpy.nonzero(npBad))[0]
+            if len(npBadIndices) > 0:
                 sMessage = _("Observation after the first roadcast time of METRo")
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                            sMessage)
@@ -312,13 +312,13 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                               +  int(metro_date.get_month(fStart_time))*60)
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                            sMessage)
-                for i in range(0,len(naBadIndices)):
-                    nIndice = naBadIndices[i]
+                for i in range(0,len(npBadIndices)):
+                    nIndice = npBadIndices[i]
                     sMessage = _("Time difference: %f") \
-                               % (naDiff[nIndice])
+                               % (npDiff[nIndice])
                     metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,\
                                                sMessage)
-                    ro_controlled_data.del_matrix_row(naBadIndices)
+                    ro_controlled_data.del_matrix_row(npBadIndices)
 
 
 ####################################################
@@ -343,59 +343,59 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 # Miguel Tremblay      August 4th 2004
 #####################################################
     def __validate(self, ro_controlled_data, observation_data):
-        naSST = ro_controlled_data.get_matrix_col('SST')
-        naAT = ro_controlled_data.get_matrix_col('AT')
-        naTD = ro_controlled_data.get_matrix_col('TD')
-        naWS = ro_controlled_data.get_matrix_col('WS')
+        npSST = ro_controlled_data.get_matrix_col('SST')
+        npAT = ro_controlled_data.get_matrix_col('AT')
+        npTD = ro_controlled_data.get_matrix_col('TD')
+        npWS = ro_controlled_data.get_matrix_col('WS')
 
         # Check SST #######################################
-        naCheck = numpy.where(naSST > metro_constant.nSubSurRoadTmpHigh, 0, 1)
-        naCheck = numpy.where(naSST < metro_constant.nSubSurRoadTmpMin, 0,\
-                                 naCheck)
+        npCheck = numpy.where(npSST > metro_constant.nSubSurRoadTmpHigh, 0, 1)
+        npCheck = numpy.where(npSST < metro_constant.nSubSurRoadTmpMin, 0,\
+                                 npCheck)
 
-        if len(naCheck) > 0:
+        if len(npCheck) > 0:
             # Special case, first element is not valid
-            if naCheck[0] == 0:
+            if npCheck[0] == 0:
                 i = 1
-                while (naCheck[i] == 0):
+                while (npCheck[i] == 0):
                     i = i+1
-                    if i == len(naCheck): # No valid sub surface temperature
+                    if i == len(npCheck): # No valid sub surface temperature
                         sMessage = _("No valid sub-surface temperature (element <sst>) in observation file %s")  %\
                                    (metro_config.\
                                     get_value('FILE_OBSERVATION_FILENAME'))
                         metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
                                                    sMessage)
                          
-                fCurrent = naSST[i]
-            for i in range(0,len(naCheck)):
-                if naCheck[i] == 1: # Good value
-                    fCurrent = naSST[i]
+                fCurrent = npSST[i]
+            for i in range(0,len(npCheck)):
+                if npCheck[i] == 1: # Good value
+                    fCurrent = npSST[i]
                     continue
                 else:
-                    naSST[i] = fCurrent
+                    npSST[i] = fCurrent
 
-        ro_controlled_data.set_matrix_col('SST', naSST)
-        observation_data.set_attribute('SST_VALID', numpy.ones(len(naSST)))
+        ro_controlled_data.set_matrix_col('SST', npSST)
+        observation_data.set_attribute('SST_VALID', numpy.ones(len(npSST)))
             
         # Check AT ###########################################
-        naCheck = numpy.where(naAT > metro_constant.nAirTempHigh , 0, 1)
-        naCheck = numpy.where(naAT < metro_constant.nAirTempMin , 0, naCheck)
-        if len(naCheck) > 0:
-            observation_data.set_attribute('AT_VALID', naCheck)
+        npCheck = numpy.where(npAT > metro_constant.nAirTempHigh , 0, 1)
+        npCheck = numpy.where(npAT < metro_constant.nAirTempMin , 0, npCheck)
+        if len(npCheck) > 0:
+            observation_data.set_attribute('AT_VALID', npCheck)
             
         # Check TD ##########################################
-        naCheck = numpy.where(naTD > metro_constant.nAirTempHigh, 0, 1)
-        naCheck = numpy.where(naTD < metro_constant.nAirTempMin, 0, naCheck)
-        naCheck = numpy.where(naTD > naAT , 0, naCheck)
-        if len(naCheck) > 0:
-            observation_data.set_attribute('TD_VALID', naCheck)
+        npCheck = numpy.where(npTD > metro_constant.nAirTempHigh, 0, 1)
+        npCheck = numpy.where(npTD < metro_constant.nAirTempMin, 0, npCheck)
+        npCheck = numpy.where(npTD > npAT , 0, npCheck)
+        if len(npCheck) > 0:
+            observation_data.set_attribute('TD_VALID', npCheck)
         
         # Check WS ###########################################
-        naCheck = numpy.where(naWS > metro_constant.nMaxWindSpeed, 0, 1)
-        naCheck = numpy.where(naWS < 0, 0, naCheck)
+        npCheck = numpy.where(npWS > metro_constant.nMaxWindSpeed, 0, 1)
+        npCheck = numpy.where(npWS < 0, 0, npCheck)
 
-        if len(naCheck) > 0:
-            observation_data.set_attribute('WS_VALID', naCheck)
+        if len(npCheck) > 0:
+            observation_data.set_attribute('WS_VALID', npCheck)
 
 
 ####################################################
@@ -417,9 +417,9 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 # Miguel Tremblay      August 5th 2004
 #####################################################
     def __set_road_condition(self, ro_controlled_data):
-        naSC = ro_controlled_data.get_matrix_col('SC')        
-        naSC = numpy.where(naSC == 33, 0, 1)
-        ro_controlled_data.set_matrix_col('SC', naSC) 
+        npSC = ro_controlled_data.get_matrix_col('SC')        
+        npSC = numpy.where(npSC == 33, 0, 1)
+        ro_controlled_data.set_matrix_col('SC', npSC) 
 
 ####################################################
 # Name: __set_coupling_instruction
@@ -445,9 +445,9 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                                    ro_interpolated_data, \
                                    observation_data):
         # Take any of the column of the observation to check the dimensions.
-        naAT = ro_controlled_data.get_matrix_col('AT') 
-        naTime = ro_controlled_data.get_matrix_col('Time')
-        nNbr30Seconds = (naTime[len(naTime)-1]-naTime[0]) \
+        npAT = ro_controlled_data.get_matrix_col('AT') 
+        npTime = ro_controlled_data.get_matrix_col('Time')
+        nNbr30Seconds = (npTime[len(npTime)-1]-npTime[0]) \
                         /metro_constant.fTimeStep
 
         # Initialize the boolean field
@@ -461,11 +461,11 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         if nNbr30Seconds-fDeltaT*3600/30. < metro_constant.nThreeHours*3600/30:
             bNoObs[1] = 1
         # No valid observation
-        if len(naAT) == 0:
+        if len(npAT) == 0:
             bNoObs[2] = 1
             
         # One valid observation
-        if len(naAT) == 1:
+        if len(npAT) == 1:
             bNoObs[3] = 1
             
         # Set the variable
@@ -539,12 +539,12 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 # Miguel Tremblay      March 1st 2005
 #####################################################
     def __check_TA_TD(self, ro_controlled_data, observation_data):
-        naTD = ro_controlled_data.get_matrix_col('TD')
-        naAT = ro_controlled_data.get_matrix_col('AT')
+        npTD = ro_controlled_data.get_matrix_col('TD')
+        npAT = ro_controlled_data.get_matrix_col('AT')
 
         # First check, if TD > AT, replace TD by AT
-        naTD = numpy.where(naTD > naAT, naAT, naTD)
+        npTD = numpy.where(npTD > npAT, npAT, npTD)
 
-        ro_controlled_data.set_matrix_col('TD', naTD) 
+        ro_controlled_data.set_matrix_col('TD', npTD) 
 
 

@@ -72,7 +72,7 @@ class Metro_preprocess_bidon(Metro_preprocess):
 
         
     def __test_matrix_col(self, wf_data): 
-        naAT = wf_data.get_matrix_col('AT')
+        npAT = wf_data.get_matrix_col('AT')
 
     def __test_data(self, data):
         print data.get_header()
@@ -112,11 +112,11 @@ class Metro_preprocess_bidon(Metro_preprocess):
 
     def __wf_set_gmt_time(self, wf_data_object):
 
-        naWf_data = wf_data_object.get_matrix_col('FORECAST_TIME')
-        naWf_data[0] = 12.0
-        naWf_data[1] = 56.0
-        wf_data_object.append_matrix_col("YY",naWf_data)
-        naWf_data = wf_data_object.get_matrix_col('YY')
+        npWf_data = wf_data_object.get_matrix_col('FORECAST_TIME')
+        npWf_data[0] = 12.0
+        npWf_data[1] = 56.0
+        wf_data_object.append_matrix_col("YY",npWf_data)
+        npWf_data = wf_data_object.get_matrix_col('YY')
 
 
 
