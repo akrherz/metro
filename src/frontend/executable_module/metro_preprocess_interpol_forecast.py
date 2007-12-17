@@ -113,14 +113,14 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Miguel Tremblay      July 12th 2004
         """
         
-        nbrHours = len(wf_original_data.get_matrix_col('AT'))
-
-        self.npTime = numpy.arange(0,nbrHours, dtype=numpy.float)*3600        
-
         #  Used in fsint2.
-        npTimeStart = \
-            wf_original_data.get_matrix_col('FORECAST_TIME')
-        nHourStart = int(metro_date.get_hour(npTimeStart[0]))
+        npFT = \
+             wf_original_data.get_matrix_col('FORECAST_TIME')
+        nHourStart = int(metro_date.get_hour(npFT[0]))
+        nbrHours = metro_date.get_elapsed_time(npFT[-1], \
+                                               npFT[0]) + 1
+        self.npTime = numpy.arange(0, nbrHours, dtype=numpy.float)*3600 
+
         npTimeAtHours = numpy.arange(0,nbrHours, dtype=numpy.float) + nHourStart
         wf_controlled_data.append_matrix_col('Hour', npTimeAtHours)
 
@@ -132,8 +132,8 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Name: __interpolate_FT
 
         Parameters:[I] metro_data wf_original_data : original data.  Read-only
-                   [I] metro_data wf_processed_data : container of the interpolated
-                   data.
+                   [I] metro_data wf_processed_data : container of the
+                        interpolated data.
 
         Returns: None
 

@@ -89,8 +89,9 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         
         Functions Called: 
 
-        Description: METRo needs more than one forecast date. If there is only one
-         forecast, give an error message an exit.
+        Description: METRo needs more than one forecast date. If there is
+                    only one forecast, give an error message an exit. If the
+                    forecast is not given for every hour, METRo give an error.
 
         Notes: 
 
@@ -99,13 +100,30 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         Miguel Tremblay      March 20th 2007
         """
         
-         # Check the length of forecast. Pick one element at random
+         # Check the length of forecast. 
         npFT = forecast_data.get_matrix_col('FORECAST_TIME')
+        
+        nbrHours = metro_date.get_elapsed_time(npFT[-1], \
+                                               npFT[0]) + 1
 
+        # At least 2 forecast
         if len(npFT) < 2:
             sMessage = _("METRo needs more than one forecast date! Exiting")
             metro_logger.print_message(
                 metro_logger.LOGGER_MSG_STOP, sMessage)
+
+        # Forecast must be at every hour.
+        for i in range(len(npFT)):
+            nHourElapsed = metro_date.get_elapsed_time(npFT[i], \
+                                                       npFT[0])
+            if i != nHourElapsed:
+                sMessage = _("Atmospheric forecast must be at every hour.") +\
+                           _(" Check file from %d hours after the start time.") \
+                           % (i)
+                metro_logger.print_message(
+                    metro_logger.LOGGER_MSG_STOP, sMessage)
+
+
 
     def __validate_observation_length(self, observation_data):
         """
