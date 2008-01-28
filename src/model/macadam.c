@@ -71,7 +71,7 @@ static struct doubleStruct stRT; /* Road temperature */
 static struct doubleStruct stIR; /* Infra-red flux */
 static struct doubleStruct stSF; /* Solar flux */
 static struct doubleStruct stFV; /* Vapor flux */
-static struct doubleStruct stFC; /* Sensible head */
+static struct doubleStruct stFC; /* Sensible heat */
 static struct doubleStruct stFA; /* Anthropogenic flux */
 static struct doubleStruct stG;  /* Ground flux */
 static struct doubleStruct stBB; /* Black body radiation */ 
