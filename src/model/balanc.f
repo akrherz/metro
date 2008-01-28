@@ -325,26 +325,26 @@
          COFI = 1.0 + FICORR*exp((-DT)*real(i-NTP)/(4.*3600.))
 *        Computing of energy balance
 *        +++++++++++++++++++++++++++
-*         (COFS*AL*FS(i)) : Absorbed solar flux
-*         RA : Outgoing infra-red flux
-*         COFI*EPSILON*FI(i) : Absorbed infra-red flux
-*         RHO*CTU*( CPD*(TA(i)-T(1,now))) FC
-*         RHO*CTU*(CL*(QA(i)-QG)) : FV
-*         PRG : Phase change flux
-*         WA : Anthropogenic flux
-         G(0) = max(0.0,REAL(COFS*AL*FS(i))) - RA + COFI*EPSILON*FI(i)
-     *        + RHO*CTU*( CPD*(TA(i)-T(1,now)) + CL*(QA(i)-QG)) + PRG
-     *        + WA
+*         dpIR : Absorbed infra-red flux
+*         dpSF : Absorbed solar flux
+*         dpFV : Vapor flux
+*         dpBB : Outgoing infra-red flux (black body)
+*         dpFC : Sensible heat
+*         dpFA : Anthropogenic flux
+*         dpFP : Phase change flux
+*         dpSST : Subsurface temperature
 *        Output information         
          dpIR(i) = COFI*EPSILON*FI(i)
-         dpSF(i) = COFS*AL*FS(i)
+         dpSF(i) = max(0.0, COFS*AL*FS(i))
          dpFV(i) = RHO*CTU*(CL*(QA(i)-QG))
          dpBB(i) = - RA
          dpFC(i) =  RHO*CTU*( CPD*(TA(i)-T(1,now)))
          dpFA(i) = WA
          dpFP(i) = PRG
-         dpG(i) = G(0)
          dpSST(i) = T(ir40, now)
+         G(0) = dpSF(i) + dpBB(i) + dpIR(i)
+     *        +  dpFV(i) + dpFC(i) + dpFP(i) + dpFA(i)
+         dpG(i) = G(0)
          DO j=1, iref
             dpLT((i-1)*iref+j) = T(j, now)
          END DO
