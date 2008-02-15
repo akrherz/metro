@@ -68,8 +68,6 @@ from numpy import array
 from numpy import arange
 
 
-import arrayfns
-
 # return a module object import from module_path
 def import_name( module_path, module_name ):
     try:
@@ -220,8 +218,8 @@ def interpolate(xArray, yArray, iIncrement):
         print sMetroUtilWarning
         if iLenYArray < iLenXArray:
             sMetroUtilWarning = _("Padding Y array with average at the end.")
-            naPadd = numpy.zeros(iLenXArray - iLenYArray)+yArray.mean()
-            yArray = numpy.concatenate((yArray,naPadd))
+            npPadd = numpy.zeros(iLenXArray - iLenYArray)+yArray.mean()
+            yArray = numpy.concatenate((yArray,npPadd))
         else:
             raise "METRoUtilError", sMetroUtilWarning
         
@@ -237,30 +235,30 @@ def interpolate(xArray, yArray, iIncrement):
 
     # Build the new x
     xArrayInt = arange(xArray[0],xArray[iLenXArray-1],iIncrement)
-    yArrayInt = arrayfns.interp(yArray,xArray, xArrayInt)
+    yArrayInt = interp(yArray,xArray, xArrayInt)
 
     return array(yArrayInt)
 
 
-def shift_left(naInput, fValueAdded=0):
+def shift_left(npInput, fValueAdded=0):
     """
     Name: shift_left
     
-    Parameters: [[I] numpy naInput : The array that the value will be
+    Parameters: [[I] numpy npInput : The array that the value will be
                                      be shifted left]
                 [[I] double fValueAdded=0 : The value to be added at left
 
-    Returns: numpy naOutput: The array with the value shifted
+    Returns: numpy npOutput: The array with the value shifted
 
     Functions Called:  numpy.take
                        numpy.concatenate
 
     Description: This method shift the value of the array at left, i.e.
-                 naInput[n] becomes naInput[n] for all n in [1..len(naInput)-1].  The
+                 npInput[n] becomes npInput[n] for all n in [1..len(npInput)-1].  The
                  value fValueAdded is added at the end,
-                 i.e. naInput[len(naInput)-1]=fValueAdded
+                 i.e. npInput[len(npInput)-1]=fValueAdded
 
-     Notes: naInput must be one dimension.
+     Notes: npInput must be one dimension.
 
      Revision History:
      Author		Date		Reason
@@ -268,41 +266,41 @@ def shift_left(naInput, fValueAdded=0):
 
      """
     # Check the dimension
-    if(naInput.shape <= 0):
-        sMetroUtilError = _("In shift_left, naInput is not of size (1,).\n")+\
-                          "len(naInput.getshape())=%s"\
-                          % (len(naInput.getshape()))
+    if(npInput.shape <= 0):
+        sMetroUtilError = _("In shift_left, npInput is not of size (1,).\n")+\
+                          "len(npInput.getshape())=%s"\
+                          % (len(npInput.getshape()))
         raise "METRoUtilError", sMetroUtilError
 
     # Cut the first value
-    naOutput  = numpy.take(naInput,\
-                              numpy.arange(1, len(naInput)))
-    naToBeCat = array([fValueAdded])
-    naOutput = numpy.concatenate((naOutput, naToBeCat))
+    npOutput  = numpy.take(npInput,\
+                              numpy.arange(1, len(npInput)))
+    npToBeCat = array([fValueAdded])
+    npOutput = numpy.concatenate((npOutput, npToBeCat))
 
-    return naOutput
+    return npOutput
 
 
-def shift_right(naInput, fValueAdded=0):
+def shift_right(npInput, fValueAdded=0):
     """
     
     Name: shift_right
 
-    Parameters: [[I] numpy naInput : The array that the value will be
+    Parameters: [[I] numpy npInput : The array that the value will be
                                      be shifted right]
                 [[I] double fValueAdded=0 : The value to be added at the
                                             beginning of the array
 
-     Returns: numpy naOutput: The array with the value shifted
+     Returns: numpy npOutput: The array with the value shifted
 
      Functions Called:  numpy.take
                         numpy.concatenate
 
      Description: This method shift the value of the array at right, i.e.
-       naInput[n] becomes naInput[n+1] for all n in [0..len(naInput)-2].  The
-       value fValueAdded is added at the begining, i.e. naInput[0]=fValueAdded
+       npInput[n] becomes npInput[n+1] for all n in [0..len(npInput)-2].  The
+       value fValueAdded is added at the begining, i.e. npInput[0]=fValueAdded
 
-     Notes: naInput must be one dimension.
+     Notes: npInput must be one dimension.
 
      Revision History:
      Author		Date		Reason
@@ -311,111 +309,115 @@ def shift_right(naInput, fValueAdded=0):
      """
     
     # Check the dimension
-    if(naInput.shape[0]  <= 0):
-        sMetroUtilError = _("In shift_right, naInput is not of size (1,).\n")+\
-                          "len(naInput.getshape())=%s"\
-                          % (len(naInput.getshape()))
+    if(npInput.shape[0]  <= 0):
+        sMetroUtilError = _("In shift_right, npInput is not of size (1,).\n")+\
+                          "len(npInput.getshape())=%s"\
+                          % (len(npInput.getshape()))
         raise "METRoUtilError", sMetroUtilError
-    naToBeCat = array([fValueAdded])
+    npToBeCat = array([fValueAdded])
     # Cut the trailing value
-    naOutput  = numpy.take(naInput,\
-                              numpy.arange(0, len(naInput)-1))
-    naOutput = numpy.concatenate((naToBeCat, naOutput))
+    npOutput  = numpy.take(npInput,\
+                              numpy.arange(0, len(npInput)-1))
+    npOutput = numpy.concatenate((npToBeCat, npOutput))
 
-    return naOutput
+    return npOutput
 
-####################################################
-# Name: get_indice_of
-#
-# Parameters: [[I] numpy naInput : The array to search in.
-#             [[I] double fValue : The value to "insert" in the array
-#
-# Returns: int nIndice : The indice of the array where fValue belongs.
-#
-# Functions Called:  
-#
-# Description: The numpy must be ordered.  Returns the indices where
-#  naInput[nIndice-1] <= fValue <= naInput[nIndice]
-#
-# Notes: naInput must be one dimension.
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       July 2nd         Tanne de toujours faire la meme chose
-#####################################################
-def get_indice_of(naInput, fValue=0):
-    if type (naInput) != type(numpy.array([])):
-        naInput = numpy.array(naInput)
-    if fValue < naInput.min():
+
+def get_indice_of(npInput, fValue=0):
+    """
+    Name: get_indice_of
+
+    Parameters: [[I] numpy npInput : The array to search in.
+                [[I] double fValue : The value to "insert" in the array
+
+    Returns: int nIndice : The indice of the array where fValue belongs.
+
+    Functions Called:  
+
+    Description: The numpy must be ordered.  Returns the indices where
+        npInput[nIndice-1] <= fValue <= npInput[nIndice]
+
+    Notes: npInput must be one dimension.
+
+    Revision History:
+    Author		Date		Reason
+    Miguel Tremblay   July 2nd         Tanne de toujours faire la meme chose
+    """
+    if type (npInput) != type(numpy.array([])):
+        npInput = numpy.array(npInput)
+    if fValue < npInput.min():
         return 0
-    elif fValue > naInput.max():
-        return len(naInput)
-    for i in range(1, len(naInput)):
-        if naInput[i-1] <= fValue and fValue <= naInput[i]:
+    elif fValue > npInput.max():
+        return len(npInput)
+    for i in range(1, len(npInput)):
+        if npInput[i-1] <= fValue and fValue <= npInput[i]:
             return i
 
     sMetroUtilError = _("No indice with this value: %d") %(fValue)
     raise "METRoUtilError", sMetroUtilError
 
-####################################################
-# Name: get_difference_array
-#
-# Parameters: [[I] numpy naInput :
-#
-# Returns: numpy naOutput : An array storing the difference.
-#          bool bPrevious : If True , get the difference
-#                            between the indice i and the indice i-1.
-#                           If False (default), get the difference between
-#                            the indice i and indice i+1.
-#          
-#
-# Functions Called:  
-#
-# Description: This method compute the difference between consecutive value
-#  in a numarrray.
-#           naOutput[0] = naInput[1]-naInput[0]
-#           naOutput[i] = naInput[1+1]-naInput[i]
-#           naOutput[len(naOutput)-1] = naInput[0]-naInput[len(naInput)-1]
-#
-# Notes: naInput must be one dimension.
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       August 4th 2004     Compute time in observation
-#####################################################
-def get_difference_array(naInput, bPrevious=False):
-    if bPrevious:
-        naShiftRight = shift_right(naInput,naInput[len(naInput)-1])
-        naOutput = naShiftRight - naInput
-        return naOutput
-    else:
-        naShiftLeft = shift_left(naInput,naInput[0])
-        naOutput = naShiftLeft - naInput
-        return naOutput
 
-####################################################
-# Name: sign
-#
-# Parameters:   [I double  dResult : 
-#               [I double  dSign : 
-#
-# Returns:  - abs(dResult) if dSign < 0
-#           abs(dResult) if dSign > 0
-#           
-#
-# Functions Called:  abs
-#
-# Description:  See "Returns"
-#
-# Notes: This is the equivalent of SIGN in fortran.  And no,
-#  there is no built-in function that does that.
-#  See http://makeashorterlink.com/?D27123029
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       August 24th 2004     
-#####################################################
+def get_difference_array(npInput, bPrevious=False):
+    """
+    Name: get_difference_array
+
+    Parameters: [[I] numpy npInput :
+
+    Returns: numpy npOutput : An array storing the difference.
+            bool bPrevious : If True , get the difference
+                              between the indice i and the indice i-1.
+                             If False (default), get the difference between
+                              the indice i and indice i+1.
+          
+
+    Functions Called:  
+
+    Description: This method compute the difference between consecutive value
+      in a numarrray.
+      npOutput[0] = npInput[1]-npInput[0]
+      npOutput[i] = npInput[1+1]-npInput[i]
+      npOutput[len(npOutput)-1] = npInput[0]-npInput[len(npInput)-1]
+      
+    Notes: npInput must be one dimension.
+
+    Revision History:
+    Author		Date		Reason
+    Miguel Tremblay       August 4th 2004     Compute time in observation
+    """
+    
+    if bPrevious:
+        npShiftRight = shift_right(npInput,npInput[len(npInput)-1])
+        npOutput = npShiftRight - npInput
+        return npOutput
+    else:
+        npShiftLeft = shift_left(npInput,npInput[0])
+        npOutput = npShiftLeft - npInput
+        return npOutput
+
+
 def sign(dResult, dSign):
+    """
+    Name: sign
+
+    Parameters:   [I double  dResult : 
+                  [I double  dSign : 
+
+    Returns:  - abs(dResult) if dSign < 0
+                abs(dResult) if dSign > 0
+           
+
+    Functions Called:  abs
+
+    Description:  See "Returns"
+
+    Notes: This is the equivalent of SIGN in fortran.  And no,
+    there is no built-in function that does that.
+
+    Revision History:
+    Author		Date		Reason
+    Miguel Tremblay       August 24th 2004
+    """
+    
     # If dSign is == 0, raise an error
     if dSign == 0:
         sMetroUtilError = _("Cannot determine the sign of zero")
@@ -426,96 +428,76 @@ def sign(dResult, dSign):
         return -abs(dResult)
     
 
-####################################################
-# Name: print_numpy
-#
-# Parameters:   numpy naToPrint : array to print
-#
-# Returns:  nothing
-#
-# Functions Called: 
-#
-# Description:  Used for debugging purpose.  Prints all the value of a numpy.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       September 17th 2004     
-#####################################################
-def print_numarray(naToPrint):
-    for i in range(0, len(naToPrint)):
-        print "printing", i, naToPrint[i]
+def subsample(npInput, nSubsamplingIndice):
+    """
+     Name: subsample
 
-####################################################
-# Name: subsample
-#
-# Parameters:   numpy naInput : array to subsample
-#               integer nSubsamplingIndice : if == 2, only take one element
-#  out of two.
-#
-# Returns:  numpy naOutput : subsampled array
-#
-# Functions Called: 
-#
-# Description:  
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       September 20th 2004     
-#####################################################
-def subsample(naInput, nSubsamplingIndice):
+     Parameters:   numpy npInput : array to subsample
+                   integer nSubsamplingIndice : if == 2, only take one element
+                   out of two.
+
+     Returns:  numpy npOutput : subsampled array
+
+     Functions Called: 
+
+     Description:  
+
+     Notes: 
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay       September 20th 2004
+     """
     # Check if there is an error
-    if len(naInput) < nSubsamplingIndice:
+    if len(npInput) < nSubsamplingIndice:
         sMetroUtilError = _("In metro_util.subsample, subsampling rate")+\
                           _("is higher than array size: %d > %d") %\
-                          (nSubsamplingIndice, len(naInput ))
+                          (nSubsamplingIndice, len(npInput ))
         raise "METRoUtilError", sMetroUtilError
 
     # Perform the subsampling
-    naSub = numpy.arange(0, len(naInput), nSubsamplingIndice)
-    naOutput = numpy.take(naInput, naSub)
+    npSub = numpy.arange(0, len(npInput), nSubsamplingIndice)
+    npOutput = numpy.take(npInput, npSub)
 
-    return naOutput
+    return npOutput
 
-####################################################
-# Name: concat_array
-#
-# Parameters:   numpy naArray1 : array to put in the first column
-#               numpy naArray2 : array to put in the second column
-#
-# Returns:  numpy naConcat : 
-#
-# Functions Called: numpy.concatenate numpy.setshape
-#
-# Description: Take two arrays, transform then in column and then form
-#  a couple of number in each position.  Usefull to create graphics.
-#
-#   x = [x1, x2, ..., xn]
-#   y = [y1, y2, ..., yn]
-#   concat_array(x,y) return [[x1,y1],
-#                             [x2,y2],
-#                             ...,
-#                             [xn,yn]],
-#                             
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       September 20th 2004     
-#####################################################
-def concat_array(naArray1, naArray2):
-    nLen1 = len(naArray1)
-    nLen2 = len(naArray2)
+
+def concat_array(npArray1, npArray2):
+    """
+    Name: concat_array
+
+    Parameters:   numpy npArray1 : array to put in the first column
+                  numpy npArray2 : array to put in the second column
+
+    Returns:  numpy npConcat : 
+
+    Functions Called: numpy.concatenate numpy.setshape
+
+    Description: Take two arrays, transform then in column and then form
+     a couple of number in each position.  Usefull to create graphics.
+
+    x = [x1, x2, ..., xn]
+    y = [y1, y2, ..., yn]
+    concat_array(x,y) return [[x1,y1],
+                              [x2,y2],
+                              ...,
+                              [xn,yn]],
+                             
+
+    Notes: 
+
+    Revision History:
+    Author		Date		Reason
+    Miguel Tremblay       September 20th 2004
+    """
+    nLen1 = len(npArray1)
+    nLen2 = len(npArray2)
     if nLen2 < nLen1:
         sMetroUtilWarning = _("Array are not of the same size") +\
                             _("cutting the first one")
         print sMetroUtilWarning
-        naPadd = numpy.zeros(nLen1 - nLen2)+naArray2.mean()
-        naArray2 = numpy.concatenate((naArray2,naPadd))
+        npPadd = numpy.zeros(nLen1 - nLen2)+npArray2.mean()
+        npArray2 = numpy.concatenate((npArray2,npPadd))
         nLen2 = nLen1
     elif nLen1 < nLen2:
         sMetroUtilError = _("In metro_util.concat_array, array must be") +\
@@ -524,77 +506,79 @@ def concat_array(naArray1, naArray2):
         raise "METRoUtilError", sMetroUtilError
 
     # First, rotate the axis
-    naArray1.setshape(nLen1,1)
-    naArray2.setshape(nLen2,1)
+    npArray1.setshape(nLen1,1)
+    npArray2.setshape(nLen2,1)
 
     # Then concatenate
-    naConcat = numpy.concatenate((naArray1,naArray2),1)
+    npConcat = numpy.concatenate((npArray1,npArray2),1)
 
-    return naConcat
+    return npConcat
 
-####################################################
-# Name: cut_indices
-#
-# Parameters:   numpy naArray : array to be cut
-#               float x0 : The minimum from with the left will
-#  be cut.
-#               float  xn:  The maximum from with the right will
-#  be cut.
-#
-# Returns:  [indiceLeft, indiceRight]
-#
-# Functions Called: 
-#
-# Description:  Reduce an array to the value between x0 and xn
-#
-#
-# Notes: Array should be monotone 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       September 20th 2004     
-#####################################################
-def cut_indices(naArray, x0, xn):
-    nFirstValidIndice = get_indice_of(naArray, x0)
-    nLastValidIndice = get_indice_of(naArray, xn)
+
+def cut_indices(npArray, x0, xn):
+    """
+     Name: cut_indices
+
+ Parameters:   numpy npArray : array to be cut
+               float x0 : The minimum from with the left will
+  be cut.
+               float  xn:  The maximum from with the right will
+  be cut.
+
+ Returns:  [indiceLeft, indiceRight]
+
+ Functions Called: 
+
+ Description:  Reduce an array to the value between x0 and xn
+
+
+ Notes: Array should be monotone 
+
+ Revision History:
+  Author		Date		Reason
+ Miguel Tremblay       September 20th 2004
+"""
+    nFirstValidIndice = get_indice_of(npArray, x0)
+    nLastValidIndice = get_indice_of(npArray, xn)
 
     lRes = [nFirstValidIndice,nLastValidIndice]
     return lRes
 
     
-def cut(naArray, x0, xn):
-    [left,right] = cut_indices(naArray, x0, xn)
+def cut(npArray, x0, xn):
+    [left,right] = cut_indices(npArray, x0, xn)
 
-    naRes = naArray[left:right]
-    return naRes
+    npRes = npArray[left:right]
+    return npRes
 
-####################################################
-# Name: sum_array
-#
-# Parameters:   numpy naInput : array to be sum
-#
-# Returns:   numpy naOutput 
-#
-# Functions Called: 
-#
-# Description:  Put the sum of naInput[0:i].sum() in naOuput[i]
-#
-#
-# Notes: Array should be 1-dimension
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       January 18th 2005
-#####################################################
-def sum_array(naInput):
 
-    naOutput = numpy.array([])
+def sum_array(npInput):
+    """
+     Name: sum_array
 
-    for i in range(0,len(naInput)):
-        naOutput = numpy.concatenate((naOutput, \
-                           numpy.array([naInput[0:i].sum()])),1)
+     Parameters:   numpy npInput : array to be sum
 
-    return naOutput
+     Returns:   numpy npOutput 
+
+     Functions Called: 
+
+     Description:  Put the sum of npInput[0:i].sum() in npOuput[i]
+
+
+     Notes: Array should be 1-dimension
+
+     Revision History:
+     Author		Date		Reason
+     Miguel Tremblay       January 18th 2005
+     """
+
+    npOutput = numpy.array([])
+
+    for i in range(0,len(npInput)):
+        npOutput = numpy.concatenate((npOutput, \
+                           numpy.array([npInput[0:i].sum()])),1)
+
+    return npOutput
 
 
 def validate_version_number(sVersion, sMin_version, sMax_version ):
@@ -626,26 +610,24 @@ def validate_version_number(sVersion, sMin_version, sMax_version ):
                    % (max_version)
         raise "VersionErrorUndetermined", sMessage
 
-####################################################
-# Name: init_translation
-#
-# Parameters:   string sFilename :
-#
-#
-# Returns:  _
-#
-# Functions Called: gettext.translation
-#
-# Description:  Indication which file should be use for translation.
-#
-#
-# Notes:
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       November 8th 2004     
-#####################################################
+
 def init_translation(sFilename):
+    """
+    Name: init_translation
+
+    Parameters:   string sFilename :
+
+    Functions Called: gettext.translation
+
+    Description:  Indication which file should be use for translation.
+
+
+    Notes:
+
+    Revision History:
+    Author		Date		Reason
+    Miguel Tremblay       November 8th 2004
+    """
     t = gettext.translation(sFilename, get_metro_root_path() +\
                             '/usr/share/locale')
     _t_ = t.gettext
@@ -653,3 +635,27 @@ def init_translation(sFilename):
     return _t_
 
 
+def interp(y_values, x_values, new_x_values):
+  """
+  Perform interpolation similar to deprecated arrayfns.interp in Numeric.
+
+  interp(y, x, z) = y(z) interpolated by treating y(x) as piecewise fcn.
+
+  Comes from http://projects.scipy.org/pipermail/scipy-user/2007-March/011479.html
+  Thank you Stephen
+  """
+  x = array(x_values, dtype='float')
+  y = array(y_values, dtype='float')
+
+  xx = array(new_x_values, dtype='float')
+  # High indices
+  hi = numpy.searchsorted(x, xx)
+
+  # Low indices
+  lo = hi - 1
+
+  slopes = (y[hi] - y[lo])/(x[hi] - x[lo])
+
+  # Interpolated data
+  yy = y[lo] + slopes*(xx - x[lo])
+  return yy
