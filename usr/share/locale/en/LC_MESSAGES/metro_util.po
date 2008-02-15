@@ -61,12 +61,12 @@ msgid "Space between two values in xArray:"
 msgstr "Space between two values in xArray:"
 
 #: src/frontend/toolbox/metro_util.py:201
-msgid "In shift_left, naInput is not of size (1,).\n"
-msgstr "In shift_left, naInput is not of size (1,).\n"
+msgid "In shift_left, npInput is not of size (1,).\n"
+msgstr "In shift_left, npInput is not of size (1,).\n"
 
 #: src/frontend/toolbox/metro_util.py:243
-msgid "In shift_right, naInput is not of size (1,).\n"
-msgstr "In shift_right, naInput is not of size (1,).\n"
+msgid "In shift_right, npInput is not of size (1,).\n"
+msgstr "In shift_right, npInput is not of size (1,).\n"
 
 #: src/frontend/toolbox/metro_util.py:285
 msgid "No indice with this value: %d"
