@@ -52,21 +52,17 @@ sys.setdefaultencoding('ISO-8859-1')
 #  to Standard Output.
 sys.stdout = codecs.lookup('ISO-8859-1')[-1](sys.stdout)
 
-# ajout du repertoire a la liste de repertoire
-# dans lequelle on peut faire un import
-pathInclude = sys.path[0] + '/external_lib' # a cause de Plist_config/PListReader.py 
+# Add the directories where we can do an import
+# use of Plist_config/PListReader.py
+pathInclude = sys.path[0] + '/external_lib'  
 sys.path.append(pathInclude)
 
-pathInclude = sys.path[0] + '/../../lib/metro/external_lib' # a cause de arrayfns et _numpy (installed package)
+# use of _macadam (installed package)
+pathInclude = sys.path[0] + '/../../lib/metro' 
 sys.path.append(pathInclude)
 
-pathInclude = sys.path[0] + '/../../usr/lib/metro/external_lib' # a cause de arrayfns et _numpy (devel)
-sys.path.append(pathInclude)
-
-pathInclude = sys.path[0] + '/../../lib/metro' # a cause de _macadam (installed package)
-sys.path.append(pathInclude)
-
-pathInclude = sys.path[0] + '/../../usr/lib/metro' # a cause de _macadam (devel)
+# use of _macadam (devel)
+pathInclude = sys.path[0] + '/../../usr/lib/metro' 
 sys.path.append(pathInclude)
 
 pathInclude = sys.path[0] + '/executable_module'
@@ -95,17 +91,19 @@ from toolbox import metro_util
 _ = metro_util.init_translation('metro')
 
 def metro_execute_module(lObject_execution_sequence):
-
-    # executer la suite d'objet qui forme un programme metro
+    """
+    Load the module sequence for METRo execution.
+    """
+    
     i = 0
     iLen_object_execution_sequence = len(lObject_execution_sequence)
     while i < iLen_object_execution_sequence:
         object = lObject_execution_sequence[i]
 
-        # execution du module
+        # module execution
         object.start()
 
-        # envoie des resultats au module suivant
+        # send the results to the following module
         if i+1 < iLen_object_execution_sequence:
             target_object = lObject_execution_sequence[i+1]
 
@@ -119,22 +117,26 @@ def metro_execute_module(lObject_execution_sequence):
                             _("%s want to receive %s.") %\
                             (string.upper(target_object.__module__),
                              target_object.get_receive_type_txtid())
-                metro_logger.print_message(metro_logger.LOGGER_MSG_STOP, sMessage)
+                metro_logger.print_message(metro_logger.LOGGER_MSG_STOP, \
+                                           sMessage)
 
-        # cleanup du module
+        # module cleanup 
         object.stop()
         i = i + 1
 
 
 def metro_get_execution_sequence():
-    # recuperer la sequence d'execution de metro
+    """
+    Fetch the METRo execution sequence.
+    """
+    
     lModule_execution_sequence = metro_config.get_value\
                                  ("INIT_MODULE_EXECUTION_SEQUENCE")
 
     lObject_sequence = []
 
-    # creer un objet pour chacun des module a executer et
-    # placer le tout dans une liste
+    # Creation of an object for each module and add everything
+    #  in a list
     for sModule_name in lModule_execution_sequence:
         module = __import__(sModule_name)
         sClass_name = string.capitalize(sModule_name)
@@ -145,37 +147,38 @@ def metro_get_execution_sequence():
 
 
 def metro_init():
-
-    # initialisation de la configuration
+    """
+    Initialization of configuration.
+    """
     metro_config.init()
 
-    # traitement des arguments de la ligne de commande
+    # Processing of command line arguments
     dCmdline_conf = metro_config.get_cmdline_conf(sys.argv)
     metro_config.process_command_line_parameter(dCmdline_conf)
 
-    # Debut de l'initialisation de METRo
+    # Start METRo initialization
     sMessage = _("Initialising METRo %s") % (metro_config.CFG_METRO_VERSION)
     metro_logger.print_init_message(metro_logger.LOGGER_INIT_MESSAGE,
                                     sMessage)
     metro_logger.print_init_message(metro_logger.LOGGER_INIT_BLANK)
 
-    # initialisation de la librairie XML
+    # XML library initialization
     metro_xml.init()
 
-    # lecture d'un fichier de configuration
+    # Read the config file
     dFile_conf = metro_config.read_configuration_file(dCmdline_conf)
 
-    # combinaison des differents niveaux de configuration
+    # Combine the different configuration levels
     metro_config.overlay_configuration(dFile_conf, dCmdline_conf)
 
-    # validation de la configuration
+    # Configuration validation
     metro_config.validating_configuration()
     
-    #initialisation du logger
+    # Logger initialisation 
     metro_logger.init()
 
-    # Recupere une liste de module qui constitue
-    # la sequence d'execution de metro.
+    # Fetch the module list that constitute de METRo
+    #  execution sequence
     lObject_sequence = metro_get_execution_sequence()
 
     metro_logger.print_init_message(metro_logger.LOGGER_INIT_BLANK)
