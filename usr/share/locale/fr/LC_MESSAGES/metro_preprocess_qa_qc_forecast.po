@@ -23,11 +23,11 @@ msgid "A value for the element <%s> is invalid"
 msgstr "Une valeur pour l'élément <%s> est invalide"
 
 #: ../src/frontend/executable_module/metro_preprocess_qa_qc_forecast.py:96
-#, fuzzy
 msgid ""
 " in the file\n"
 "'%s'"
-msgstr "dans le fichier \n'%s'"
+msgstr " dans le fichier\n"
+"'%s'"
 
 #: ../src/frontend/executable_module/metro_preprocess_qa_qc_forecast.py:127
 msgid "All the clouds value (<cc>) of atmospheric forecast must be"
