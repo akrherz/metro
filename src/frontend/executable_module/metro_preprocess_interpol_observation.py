@@ -126,8 +126,8 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         # Set the time in the interpolated matrix.
         naTime =  ro_controlled_data.get_matrix_col('Time')
         self.naTimeInterpolated = numpy.arange(naTime[0], \
-                                                  naTime[len(naTime)-1],
-                                                  metro_constant.fTimeStep)
+                                               naTime[len(naTime)-1],
+                                               metro_constant.fTimeStep)
 
         # 1.1574e-5 is the conversion from seconds to day.
         #  1/(24*3600) = 1.1574e-5
@@ -154,32 +154,26 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 
             raise NoObservationException
 
-####################################################
-# Name: __interpolate_AT
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#
-# Description: Does the interpolation of the air temperature
-#
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 5th 2004
-#####################################################
     # Air temperature
     def __interpolate_AT(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_AT
+
+        Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
+        [I] metro_data ro_interpolated_data : container of the interpolated
+        data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+
+        Description: Does the interpolation of the air temperature
+        """
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naAT = ro_controlled_data.get_matrix_col('AT')
-        naAT = metro_util.interpolate(naTimeOrig, naAT, \
-                                      metro_constant.fTimeStep)
+        naAT = metro_util.interpolate(naTimeOrig, naAT)
         ro_interpolated_data.append_matrix_col('AT', naAT)
 
 ####################################################
@@ -205,8 +199,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
     def __interpolate_TD(self, ro_controlled_data, ro_interpolated_data):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naTD = ro_controlled_data.get_matrix_col('TD')
-        naTD = metro_util.interpolate(naTimeOrig, naTD, \
-                                      metro_constant.fTimeStep)
+        naTD = metro_util.interpolate(naTimeOrig, naTD)
         ro_interpolated_data.append_matrix_col('TD', naTD)
 
 ####################################################
@@ -234,8 +227,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
     def __interpolate_WS(self, ro_controlled_data, ro_interpolated_data):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naWS = ro_controlled_data.get_matrix_col('WS')*0.2777777
-        naWS = metro_util.interpolate(naTimeOrig, naWS, \
-                                      metro_constant.fTimeStep)
+        naWS = metro_util.interpolate(naTimeOrig, naWS)
         ro_interpolated_data.append_matrix_col('WS', naWS)
 
 ####################################################
@@ -261,8 +253,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
     def __interpolate_ST(self, ro_controlled_data, ro_interpolated_data):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naST = ro_controlled_data.get_matrix_col('ST')
-        naST = metro_util.interpolate(naTimeOrig, naST, \
-                                      metro_constant.fTimeStep)
+        naST = metro_util.interpolate(naTimeOrig, naST)
         ro_interpolated_data.append_matrix_col('ST', naST)
 
 ####################################################
@@ -289,8 +280,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naSST = ro_controlled_data.get_matrix_col('SST')
 
-        naSST = metro_util.interpolate(naTimeOrig, naSST, \
-                                      metro_constant.fTimeStep)
+        naSST = metro_util.interpolate(naTimeOrig, naSST)
         ro_interpolated_data.append_matrix_col('SST', naSST)
 
 ####################################################
@@ -318,8 +308,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naPI = ro_controlled_data.get_matrix_col('PI')
         naPI = numpy.where(naPI != 1, 0, naPI)
-        naPI = metro_util.interpolate(naTimeOrig, naPI, \
-                                      metro_constant.fTimeStep)
+        naPI = metro_util.interpolate(naTimeOrig, naPI)
         # Round
         naPI = numpy.around(naPI)
         # Store
@@ -357,8 +346,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naSC = numpy.where(naSC == 33, 0, 1)
         naSC = numpy.where(naSC < 0, 0, naSC)
         naSC = numpy.where(naSC > 1, 0, naSC)
-        naSC = metro_util.interpolate(naTimeOrig, naSC, \
-                                      metro_constant.fTimeStep)
+        naSC = metro_util.interpolate(naTimeOrig, naSC)
         # Round
         naSC = numpy.around(naSC)
         # Store
@@ -393,14 +381,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naWS = observation_data.get_attribute('WS_VALID')
 
         # Interpolate
-        naSST = metro_util.interpolate(naTimeOrig, naSST, \
-                                      metro_constant.fTimeStep)
-        naAT = metro_util.interpolate(naTimeOrig, naAT, \
-                                      metro_constant.fTimeStep)
-        naTD = metro_util.interpolate(naTimeOrig, naTD, \
-                                      metro_constant.fTimeStep)
-        naWS = metro_util.interpolate(naTimeOrig, naWS, \
-                                      metro_constant.fTimeStep)        
+        naSST = metro_util.interpolate(naTimeOrig, naSST)
+        naAT = metro_util.interpolate(naTimeOrig, naAT)
+        naTD = metro_util.interpolate(naTimeOrig, naTD)
+        naWS = metro_util.interpolate(naTimeOrig, naWS)
         # Round
         naTD = numpy.around(naTD)
         naAT = numpy.around(naAT)
