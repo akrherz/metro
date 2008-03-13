@@ -184,14 +184,14 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         tSunrise = metro_date.tranform_decimal_hour_in_minutes(\
             self.fSunrise)      
         sMessage = _("For the date %d-%d-%d,\n") % \
-                   ((nStartDay,nStartMonth,nStartYear)) +\
+                   ((self.nStartDay,self.nStartMonth,self.nStartYear)) +\
                    _("at the latitude %0.2f ") %(abs(round(self.fLat,2))) + sLat +\
                    _(" and longitude %0.2f ") %(abs(round(self.fLon,2))) + sLon +\
                    _("\nsunrise is at %d:%d:%d UTC\n") \
                    % ((tSunrise[0], tSunrise[1], tSunrise[2])) +\
                    _("sunset  is at %d:%d:%d UTC") \
                   % ((tSunset[0], tSunset[1], tSunset[2])) 
-       metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
+        metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
                                   sMessage)
 
  
@@ -246,7 +246,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         self.nStartDay =  metro_date.get_day(ctimeFirstForecast)
         cSun = Sun.Sun()
         (fSunriseTimeUTC, fSunsetTimeUTC) = cSun.sunRiseSet(\
-           nStartYear, nStartMonth, nStartDay,\
+           self.nStartYear, self.nStartMonth, self.nStartDay,\
            self.fLon, self.fLat)
 
         self.fSunrise = fSunriseTimeUTC
