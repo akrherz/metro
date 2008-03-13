@@ -36,7 +36,7 @@
 
 
 """
-Name:         metro_config
+Name:        metro_config
 Author:      Francois Fortin
 Date:        30/03/2004
 
@@ -241,19 +241,17 @@ def validating_configuration( ):
     metro_logger.print_init_message(metro_logger.LOGGER_INIT_SUCCESS,
                                     _("METRo configuration validated"))
 
-#-------------------------------------------------------------------------------
-#
-# Nom:          get_value
-#
-# Parametres:   I sKey : cle de l'information a extraire du dictionnaire
-#                        de configuration
-#
-# Retourne:     valeur de la cle extraite, None si echec
-#
-# Descriptions: recupere l'information identifie par une cle(sKey)
-#
-#-------------------------------------------------------------------------------
+
 def get_value( sKey ):
+    """
+    Description: Get the information in the configuration correspoding to sKey
+
+    Parameters:
+    sKey (string): key representating the value to extract from the
+    configuration dictionnary.
+
+    Return the value (undefined type) of the dictionnary for sKey.
+    """
 
     return dConfig[sKey]['VALUE']
 
@@ -415,22 +413,10 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
 
 
-#-------------------------------------------------------------------------------
-#
-# Nom:          set_default_value
-#
-# Parametres:   NA
-#
-# Retourne:     NA
-#
-# Descriptions: initilisation de la configuration avec des valeurs "hardcoder"
-#
-#-------------------------------------------------------------------------------
 def set_default_value( ):
-
-#===============================================================================
-# Filename and version
-#===============================================================================
+    """
+    Initialization of configuration with hardecoded values.
+    """
 
 # ------------------------------------ input -----------------------------------
 
@@ -682,7 +668,13 @@ def set_default_value( ):
 
 
     dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'] = \
-        {'VALUE'   :[ ],
+        {'VALUE'   :[{'NAME':"IR",
+                      'XML_TAG':"IR",
+                      'DATA_TYPE':"REAL"},
+
+                     {'NAME':"SF",
+                      'XML_TAG':"sf",
+                      'DATA_TYPE':"REAL"}],
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("extended forecast prediction items.")}
 
