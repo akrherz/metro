@@ -53,11 +53,6 @@ class Metro_read_forecast(Metro_read):
         
         if metro_config.key_exist('FILE_FORECAST_IN_FILENAME'):
             sFilename = metro_config.get_value('FILE_FORECAST_IN_FILENAME')
-        else:
-            sFilename = ""
-
-        if sFilename != "":
-
             try:
                 sFile_content = self._read_input_data(sFilename)
             except IOError:
