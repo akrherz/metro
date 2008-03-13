@@ -73,13 +73,39 @@ class Metro_data:
     is raised.
     """
 
-    def __init__(self, lData_types=[]):
+##    def __init__(self, lData_types=[]):
+##        """
+##        Perform initialisation of a Metro_data object
+
+##        Arguments:        
+##        lData_types = use to initialised the matrix with a number of column
+##                      determined by len(lData_types).
+##        """
+                      
+        
+##        self.bRead_only = False
+##        self.dHeader = {}
+##        self.npMatrix = numpy.array([], dtype=numpy.float)
+
+##         # Name of the columns of the matrix
+##        self.lMatrix_col_name = []
+##        for data_type in lData_types:
+##            self.lMatrix_col_name.append(data_type['NAME'])
+
+
+    def __init__(self, lStdData_types=[], lExtData_types=[]):
         """
-        Perform initialisation of a Metro_data object
+        Perform initialisation of a Metro_data object.
+        Column are of to kind: Standard Element and Extended element.
+        Both are treated the same way but a call to the method:
+        'is_standardCol' can be use to distinguish both.
 
         Arguments:        
-        lData_types = use to initialised the matrix with a number of column
-                      determined by len(lData_types).
+        lStdData_types = use to initialised the matrix with a number of column
+                         determined by len(lStdData_types) + len(lExtData_types).
+
+        lExtData_types = use to initialised the matrix with a number of column
+                         determined by len(lStdData_types) + len(lExtData_types).                         
         """
                       
         
@@ -87,10 +113,18 @@ class Metro_data:
         self.dHeader = {}
         self.npMatrix = numpy.array([], dtype=numpy.float)
 
-         # Name of the columns of the matrix
-        self.lMatrix_col_name = []
-        for data_type in lData_types:
-            self.lMatrix_col_name.append(data_type['NAME'])
+        # Name of the columns of the matrix
+        self.lMatrix_std_col_name = []
+        for data_type in lStdData_types:
+            self.lMatrix_std_col_name.append(data_type['NAME'])
+
+        self.lMatrix_ext_col_name = []
+        for data_type in lExtData_types:
+            self.lMatrix_ext_col_name.append(data_type['NAME'])
+
+        self.lMatrix_col_name = self.lMatrix_std_col_name + self.lMatrix_ext_col_name
+        
+
 
     def set_readonly( self, bIs_read_only ):
         """
@@ -103,6 +137,12 @@ class Metro_data:
         Get status of the read only flag.
         """
         return self.bRead_only
+
+    def is_standardCol( self, sColName ):
+        """
+        Return True if sColName is a standard column.
+        """
+        return sColName in self.lMatrix_std_col_name
 
 #-------------------------------------------------------------------------------
 #
@@ -268,11 +308,13 @@ class Metro_data:
 
         Descriptions:  Append a new column of data to the matrix. Matix column
                        will be accessible with the name specified by sCol_name.
+                       Column will be treated as extended
         
         """
         if not self.is_readonly():
             if sCol_name not in self.lMatrix_col_name:
                 self.lMatrix_col_name.append(sCol_name)
+                self.lMatrix_ext_col_name.append(sCol_name)
 
                 # Append column in the matrix
                 self.npMatrix = self.__append_col_to_matrix(self.npMatrix,\

@@ -112,16 +112,15 @@ class Metro_dom2metro(Metro_module):
                 metro_config.get_value('XML_FORECAST_PREDICTION_STANDARD_ITEMS')
             lExtended_forecast = \
                 metro_config.get_value('XML_FORECAST_PREDICTION_EXTENDED_ITEMS')
-            lData_types = lStandard_forecast + lExtended_forecast
             
-            
-            for_data = metro_data.Metro_data(lData_types)
+            for_data = metro_data.Metro_data(lStandard_forecast,lExtended_forecast)
 
             forecast_data = self.__extract_data_from_dom(for_data,
                                                          self.domForecast,
                                                          lHeader_keys,
                                                          sHeader_xpath,
-                                                         lData_types,
+                                                         lStandard_forecast,
+                                                         lExtended_forecast,
                                                          sData_xpath)
         except "IOERROR":
             sXmlError = _("XML error in file '%s'.") % (sFilename)
@@ -165,15 +164,15 @@ class Metro_dom2metro(Metro_module):
             'XML_OBSERVATION_MEASURE_STANDARD_ITEMS')
             lExtended_observation = metro_config.get_value( \
             'XML_OBSERVATION_MEASURE_EXTENDED_ITEMS')        
-            lData_types = lStandard_observation + lExtended_observation
 
-            obs_data = metro_data.Metro_data(lData_types)
+            obs_data = metro_data.Metro_data(lStandard_observation,lExtended_observation)
 
             observation_data = self.__extract_data_from_dom(obs_data,
                                                             self.domObservation,
                                                             lHeader_keys,
                                                             sHeader_xpath,
-                                                            lData_types,
+                                                            lStandard_observation,
+                                                            lExtended_observation,
                                                             sData_xpath)
         except "METRoDateError", sError:
             sXmlError = _("XML error in file '%s'.\n") % (sFilename) +\
@@ -228,16 +227,16 @@ class Metro_dom2metro(Metro_module):
                     'XML_OBSERVATION_MEASURE_STANDARD_ITEMS')
                 lExtended_observation = metro_config.get_value( \
                     'XML_OBSERVATION_MEASURE_EXTENDED_ITEMS')        
-                lData_types = lStandard_observation + lExtended_observation
 
-                obs_data = metro_data.Metro_data(lData_types)
+                obs_data = metro_data.Metro_data(lStandard_observation,lExtended_observation)
 
                 observation_data = \
                     self.__extract_data_from_dom(obs_data,
                                                  self.domObservation_ref,
                                                  lHeader_keys,
                                                  sHeader_xpath,
-                                                 lData_types,
+                                                 lStandard_observation,
+                                                 lExtended_observation,
                                                  sData_xpath)
             except:
                 sXmlError = _("XML error in file '%s'.") % (sFilename)
@@ -286,14 +285,14 @@ class Metro_dom2metro(Metro_module):
                 'XML_STATION_ROADLAYER_STANDARD_ITEMS')
             lExtended_roadlayer = metro_config.get_value( \
                 'XML_STATION_ROADLAYER_EXTENDED_ITEMS')        
-            lData_types = lStandard_roadlayer + lExtended_roadlayer
 
-            cs_data = metro_data_station.Metro_data_station(lData_types)
+            cs_data = metro_data_station.Metro_data_station(lStandard_roadlayer,lExtended_roadlayer )
             station_data = self.__extract_data_from_dom(cs_data,
                                                         self.domStation,
                                                         lHeader_defs,
                                                         sHeader_xpath,
-                                                        lData_types,
+                                                        lStandard_roadlayer,
+                                                        lExtended_roadlayer,
                                                         sData_xpath)
 
         except:
@@ -324,7 +323,8 @@ class Metro_dom2metro(Metro_module):
 
     def __extract_data_from_dom(self, metro_data, domDom,
                                 ldHeader_keys, sHeader_xpath,
-                                lData_keys, sData_xpath):
+                                lStdData_keys, lExtData_keys,
+                                sData_xpath):
         """
         Name: __extract_data_from_dom
 
@@ -334,7 +334,8 @@ class Metro_dom2metro(Metro_module):
                     [I] ldHeader_keys: List of dictionnaries containing the date
                                        definitions as defined in metro_config.py
                     [I] sHeader_xpath: xpath of the header
-                    [I] lData_keys: like ldHeader_keys but for data
+                    [I] lStdData_keys: like ldHeader_keys but for standard data
+                    [I] lExtData_keys: like ldHeader_keys but for extended data
                     [I] sData_xpath : xpath for the data.
 
         Output: metro_data : object containing all the data extracted.
@@ -357,6 +358,8 @@ class Metro_dom2metro(Metro_module):
                 dHeader[dHeader_key['NAME']] = lHeader_data[i]
 
             metro_data.set_header(dHeader)
+
+        lData_keys = lStdData_keys + lExtData_keys
 
         if lData_keys != None and sData_xpath != None:
             # extraction de toute les nodes de mesure contenue dans le DOM
