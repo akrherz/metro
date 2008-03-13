@@ -73,26 +73,6 @@ class Metro_data:
     is raised.
     """
 
-##    def __init__(self, lData_types=[]):
-##        """
-##        Perform initialisation of a Metro_data object
-
-##        Arguments:        
-##        lData_types = use to initialised the matrix with a number of column
-##                      determined by len(lData_types).
-##        """
-                      
-        
-##        self.bRead_only = False
-##        self.dHeader = {}
-##        self.npMatrix = numpy.array([], dtype=numpy.float)
-
-##         # Name of the columns of the matrix
-##        self.lMatrix_col_name = []
-##        for data_type in lData_types:
-##            self.lMatrix_col_name.append(data_type['NAME'])
-
-
     def __init__(self, lStdData_types=[], lExtData_types=[]):
         """
         Perform initialisation of a Metro_data object.
@@ -144,19 +124,15 @@ class Metro_data:
         """
         return sColName in self.lMatrix_std_col_name
 
-#-------------------------------------------------------------------------------
-#
-# Name:         set_header_value
-#
-# Parameters:   I key, I value :
-#
-# Returns:      0 si succes
-#
-# Descriptions: sauvegarde de l'entete d'un Infile
-#
-#-------------------------------------------------------------------------------
     def set_header_value( self, sKey, value ):
-        """Set/add a value to the header"""
+        """
+        Set/add a value to the header
+
+        Parameters:
+          sKey (string): element to set this value to
+          value (??): value of the element sKey
+
+        """
         if not self.is_readonly():
             self.dHeader[sKey] = value
         else:
@@ -165,19 +141,15 @@ class Metro_data:
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
 
-#-------------------------------------------------------------------------------
-#
-# Name:         set_header
-#
-# Parameters:   I header : dictionnaire respectant le format defini plus haut
-#
-# Returns:      0 si succes
-#
-# Descriptions: sauvegarde de l'entete d'un Infile
-#
-#-------------------------------------------------------------------------------
     def set_header( self, dComplete_header ):
-        """Set complete header"""
+        """
+        Set complete header
+
+        Parameters:
+        dComplete_header (dictionnary): dictionnary containing the tag of the
+        elements (the keys) and their corresponding value.
+
+        """
         if not self.is_readonly():
             self.dHeader = dComplete_header
         else:
@@ -186,19 +158,12 @@ class Metro_data:
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
 
-#-------------------------------------------------------------------------------
-#
-# Name:         init_matrix
-#
-# Parameters:   iNb_row, iNb_col, fVal
-#
-# Returns:      
-#
-# Descriptions: initialise ume matrice de nb_row par nb_col avec la valeur val
-#
-#-------------------------------------------------------------------------------
     def init_matrix( self, iNb_row, iNb_col, fVal=metro_constant.NaN ):
-        """Init a matrix of n row and m column filled with a value."""
+        """
+        Init a matrix of n row and m column filled with a value.
+
+        
+        """
         if not self.is_readonly():
             self.npMatrix = numpy.zeros((iNb_row,iNb_col))
             self.npMatrix = self.npMatrix + fVal
@@ -207,17 +172,7 @@ class Metro_data:
                                        MESSAGE_READONLY)
             raise ERROR_METRO_DATA, MESSAGE_READONLY        
 
-#-------------------------------------------------------------------------------
-#
-# Name:         set_matrix
-#
-# Parameters:   I data : matrice respectant le format defini plus haut
-#
-# Returns:      0 si succes
-#
-# Descriptions:
-#
-#-------------------------------------------------------------------------------
+
     def set_matrix( self, npMatrix ):
         """Set the whole matrix with a new one.
 
@@ -233,20 +188,15 @@ class Metro_data:
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
 
-#-------------------------------------------------------------------------------
-#
-# Name:         set_matrix_col
-#
-# Parameters:   I sCol_name : nom de la colonne, I npCol : tableau de donnee
-#
-# Returns:      0 si succes
-#
-#
-# Descriptions: ecrase le contenue de la colonne iCol avec de nouvelle donnees
-#
-#-------------------------------------------------------------------------------
     def set_matrix_col( self, sCol_name, npCol ):
-        """Set matrix column with a new one."""
+        """
+        Set matrix column with a new one. Overwrite the old values.
+
+        Parameters:
+        sCol_name (string): tag of the column to set
+        npCol (numpy array): the array corresponding to this column.
+        
+        """
 
         if sCol_name in self.lMatrix_col_name:
             iCol = self.lMatrix_col_name.index(sCol_name)
@@ -330,35 +280,25 @@ class Metro_data:
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
 
-#-------------------------------------------------------------------------------
-#
-# Name:         get_header
-#
-# Parameters:   aucun
-#
-# Returns:      dictionnaire respectant le format defini plus haut, si il y a une
-#               erreur, retourne un dictionnaire vide
-#
-# Descriptions: recupere le header
-#
-#-------------------------------------------------------------------------------
     def get_header( self ):
-        """Get the complete header dictionary."""
+        """
+        Get the complete header dictionary. Dictionnary could be empty if it is not
+        set before.
+
+        Returns self.dHeader (dictionnary)
+        """
         return self.dHeader
 
-#-------------------------------------------------------------------------------
-#
-# Name:         get_header_value
-#
-# Parameters:   sKey
-#
-# Returns:      valuer identifier par la cle(sKey)
-#
-# Descriptions: recupere une valeur du header
-#
-#-------------------------------------------------------------------------------
-    def get_header_value( self, sKey ):
-        """Get value of a specific header key"""
+
+    def get_header_value(self, sKey ):
+        """
+        Get value of a specific header key
+        
+        Parameters:
+        sKey (string): key of the value to return (tag of element)
+
+        Returns value (undefined format) for this key.
+        """
         if sKey in self.dHeader:
             return self.dHeader[sKey]
         else:
@@ -366,20 +306,12 @@ class Metro_data:
                      % (sKey, metro_util.list2string(self.dHeader.keys()))
             raise ERROR_METRO_DATA, sError
 
-#-------------------------------------------------------------------------------
-#
-# Name:         get_matrix
-#
-# Parameters:   aucun
-#
-# Returns:      matrice respectant le format defini plus haut, si il y a une
-#               erreur, retourne une matrice vide
-#
-# Descriptions: Recupere une copie des donnees
-#
-#-------------------------------------------------------------------------------
+
     def get_matrix( self ):
-        """Get a copy of the whole matrix."""
+        """
+        Get a copy of the whole matrix. Matrix is empty if not set before.
+
+        """
         return self.npMatrix.copy()
 
 
@@ -426,32 +358,15 @@ class Metro_data:
         """Get number of matrix column."""
         return len(self.lMatrix_col_name)
 
-
     
-####################################################
-# Name: del_matrix_row
-#
-# Parameters: numpy naIndices : Indices of row to delete
-#
-# Returns: None
-#
-# Functions Called: 
-#   
-#
-# Description: Used in QC to remove wrong data. Indices must be in increasing
-#               order.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 4th 2004
-#####################################################
     def del_matrix_row(self, npIndiceToRemove):
-        """Delete one or more row identified by indices.
+        """
+        Delete one or more row identified by indices.
+        Used in QC to remove wrong data. Indices must be in increasing
+        order.
 
         Arguments:        
-        npIndiceToRemove: numpy of indices to remove.
+        npIndiceToRemove (numpy) of indices to remove.
                           Indices must be in increasing order.
         """
         if not self.is_readonly():
