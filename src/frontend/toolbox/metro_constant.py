@@ -51,8 +51,9 @@ fTimeStep = 30.0
 nSnowWaterRatio = 10
 # Cloud constant to correct the flux
 lCloudsDay = [1.0, 0.97, 0.94, 0.89, 0.85, 0.80, 0.71, 0.65, 0.33]
-lCloudsNight1 = [3.79, 4.13, 4.13, 4.26, 4.38, 4.19, 4.395, 4.34, 4.51]
-lCloudsNight2 = [214.7, 226.2, 234.8, 243.4, 250.7, 259.2, 270.9, 280.9, 298.4]
+lCloudsNightCoeff1 = [3.79, 4.13, 4.13, 4.26, 4.38, 4.19, 4.395, 4.34, 4.51]
+lCloudsNightCoeff2 = [214.7, 226.2, 234.8, 243.4, 250.7, \
+                      259.2, 270.9, 280.9, 298.4]
 
 # QA & QC for observation
 nRoadTemperatureMin = -40

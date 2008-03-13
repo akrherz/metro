@@ -73,6 +73,13 @@ class Metro_preprocess_fsint2(Metro_preprocess):
     fLat = 0 # Latitude of the station
     fLon = 0 # Longitude of the station
 
+    # Date
+    nStartDay = None
+    nStartMonth = None
+    nStartYear = None
+    fSunrise = None
+    fSunset = None
+
     fEot = None
     fR0r = None
     tDeclsc = ()
@@ -91,6 +98,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         self.__set_attribute(forecast_data.get_controlled_data(), \
                              forecast_data.get_interpolated_data(), \
                              station_data)
+        self.__print_info()
         self.__set_theoretical_flux(forecast_data.get_controlled_data(), \
                                     forecast_data.get_interpolated_data())
         pForecast.set_data_collection(forecast_data)
@@ -129,7 +137,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         self.fLon = station_data.get_longitude()
         # Set the constant for the position of the earth around the sun
         (self.fEot, self.fR0r, self.tDeclsc) = self.__get_eot(nTime)
-
+        self.__set_sunrise_sunset(wf_controlled_data)
 
     def __set_theoretical_flux(self, wf_controlled_data, \
                                wf_interpolated_data):
@@ -141,34 +149,27 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                        interpolated data.
         Returns: None
 
-        Functions Called: wf_controlled_data.get_matrix_col
-                  numpy.cos, where, 
-                  wf_controlled_data.append_matrix_col
-                  metro_util.interpolate
-                   
+        Description: The flux value of the forecast are calculated from the
+        position of the earth around the sun.
 
-         Description: The flux value of the forecast are calculated from the
-                      position of the earth around the sun.
+        Notes: All times are in UTC. Since Sun.py gives times over 24h,
+        special case is done with %24 (January 15th 2006 modifications).
 
-         Notes: All times are in UTC. Since Sun.py gives times over 24h,
-                special case is done with %24 (January 15th 2006 modifications).
-
-         Revision History:
-         Author		Date		Reason
-         Miguel Tremblay      July 29th 2004
-         Miguel Tremblay     January 15th 2006
-         """
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      July 29th 2004
+        Miguel Tremblay     January 15th 2006
+        """
+        # SF
+        self.__set_sf(wf_controlled_data, wf_interpolated_data)
+        # IR
+        self.__set_ir(wf_controlled_data, wf_interpolated_data)
         
-        ctimeFirstForecast = wf_controlled_data.get_matrix_col\
-                             ('FORECAST_TIME')[0]
-        # Get the sunrise and the sunset
-        nStartYear =  metro_date.get_year(ctimeFirstForecast)
-        nStartMonth =   metro_date.get_month(ctimeFirstForecast)
-        nStartDay =  metro_date.get_day(ctimeFirstForecast)
-        cSun = Sun.Sun()
-        (fSunriseTimeUTC, fSunsetTimeUTC) = cSun.sunRiseSet(\
-           nStartYear, nStartMonth, nStartDay,\
-           self.fLon, self.fLat)
+    def __print_info(self):
+        """
+        Print the information about the sunrise/sunset computed for this
+        day and emplacement.
+        """
         if self.fLon < 0:
             sLon = 'W'
         else:
@@ -178,8 +179,10 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         else:
             sLat = 'S'
 
-        tSunset = metro_date.tranform_decimal_hour_in_minutes(fSunsetTimeUTC)
-        tSunrise = metro_date.tranform_decimal_hour_in_minutes(fSunriseTimeUTC)      
+        tSunset = metro_date.tranform_decimal_hour_in_minutes(\
+            self.fSunset)
+        tSunrise = metro_date.tranform_decimal_hour_in_minutes(\
+            self.fSunrise)      
         sMessage = _("For the date %d-%d-%d,\n") % \
                    ((nStartDay,nStartMonth,nStartYear)) +\
                    _("at the latitude %0.2f ") %(abs(round(self.fLat,2))) + sLat +\
@@ -187,14 +190,82 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                    _("\nsunrise is at %d:%d:%d UTC\n") \
                    % ((tSunrise[0], tSunrise[1], tSunrise[2])) +\
                    _("sunset  is at %d:%d:%d UTC") \
-                   % ((tSunset[0], tSunset[1], tSunset[2])) 
-        metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
-                                   sMessage)
+                  % ((tSunset[0], tSunset[1], tSunset[2])) 
+       metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
+                                  sMessage)
 
-        npTimeHour =  wf_controlled_data.get_matrix_col('Hour')
-        nTimeHourLength = len(npTimeHour)
-        npCloudsOctal = wf_controlled_data.get_matrix_col('CC')
+ 
+
+    def __set_ir(self, wf_controlled_data, wf_interpolated_data):
+        """
+        Set the theoretical infrared flux.
+           
+        Parameters:
+        wf_controlled_data (weather forecast)
+        """
+        npTime = wf_controlled_data.get_matrix_col('Time')
+        (npCoeff1, npCoeff2) = self.__get_cloud_coefficient(wf_controlled_data)
+        npAT = wf_controlled_data.get_matrix_col('AT')
+        npIR = npCoeff1*npAT+npCoeff2
+        wf_controlled_data.set_matrix_col('IR', npIR)
+        npIR = metro_util.interpolate(npTime, npIR, \
+                                      metro_constant.fTimeStep)
+        wf_interpolated_data.append_matrix_col('IR', npIR)
         
+
+    def __set_sf(self, wf_controlled_data, wf_interpolated_data):
+        """
+        Set the theoretical solar flux.
+           
+        Parameters:
+        wf_controlled_data (weather forecast)
+        """
+        npTime = wf_controlled_data.get_matrix_col('Time')
+        npSF = self.__get_sf(wf_controlled_data, self.fSunrise, self.fSunset)
+        wf_controlled_data.set_matrix_col('SF', npSF)
+        npSF2  = metro_util.interpolate(npTime, npSF, \
+                                       metro_constant.fTimeStep)
+        wf_interpolated_data.append_matrix_col('SF',  npSF2)
+
+
+    def __set_sunrise_sunset(self, wf_controlled_data):
+        """
+        Description: Get the value of sunrise/sunset for the first
+        day of forecast.
+   
+        Parameters:
+        wf_controlled_data (weather forecast)
+        
+        Set the attribute for sunrise/sunset
+        """
+        ctimeFirstForecast = wf_controlled_data.get_matrix_col\
+                             ('FORECAST_TIME')[0]
+        # Get the sunrise and the sunset
+        self.nStartYear =  metro_date.get_year(ctimeFirstForecast)
+        self.nStartMonth =   metro_date.get_month(ctimeFirstForecast)
+        self.nStartDay =  metro_date.get_day(ctimeFirstForecast)
+        cSun = Sun.Sun()
+        (fSunriseTimeUTC, fSunsetTimeUTC) = cSun.sunRiseSet(\
+           nStartYear, nStartMonth, nStartDay,\
+           self.fLon, self.fLat)
+
+        self.fSunrise = fSunriseTimeUTC
+        self.fSunset = fSunsetTimeUTC
+
+
+    def __get_sf(self, wf_controlled_data, fSunriseTimeUTC, fSunsetTimeUTC):
+        """
+        Description: Return an array containing the values of SF.
+        
+        Parameters:
+        wf_controlled_data (weather forecast)
+        fSunriseTimeUTC (float): sunrise time in UTC
+        fSunsetTimeUT (float): sunset time in UTC
+        """
+        npTimeHour =  wf_controlled_data.get_matrix_col('Hour')
+        npCloudsOctal = wf_controlled_data.get_matrix_col('CC')
+        nTimeHourLength = len(npTimeHour)
+    
         npSft = numpy.zeros(nTimeHourLength, dtype=numpy.float)
         npCoeff = numpy.zeros(nTimeHourLength, dtype=numpy.float)
         
@@ -206,65 +277,61 @@ class Metro_preprocess_fsint2(Metro_preprocess):
             # atmospheric forecast is before the sunrise
             # or after the sunset
             if self.__in_the_dark(nCurrentHour, fSunriseTimeUTC, \
-                                  fSunsetTimeUTC,):
-                    npSft[i] = 0
+                                  fSunsetTimeUTC):
+                npSft[i] = 0
             else:
                 # Position of the sun around the earth, in radian
                 fDh =  pi*(nCurrentHour/12.0 + self.fLon/180 - 1) + self.fEot
                 fCosz = self.tDeclsc[0] + \
                         self.tDeclsc[1]*cos(fDh)
                 npSft[i] = max(0.0, fCosz)*self.fR0r
-        npCoeff =  -1.56e-12*npSft**4 + 5.972e-9*npSft**3 -\
-                    8.364e-6*npSft**2  + 5.183e-3*npSft - 0.435
 
+
+        npCoeff =  -1.56e-12*npSft**4 + 5.972e-9*npSft**3 -\
+                  8.364e-6*npSft**2  + 5.183e-3*npSft - 0.435
         npCoeff = numpy.where(npCoeff > 0, npCoeff, 0.0)
+
         # Set npCloudsPercent to be able to reference it in the
         #  numpy.where method.
         npCloudsPercentDay = npCloudsOctal
-        npCloudsPercentNight1 = npCloudsOctal
-        npCloudsPercentNight2 = npCloudsOctal
         # Correction based on the clouds
         for i in range(0,9):
             nPercentDay = metro_constant.lCloudsDay[i]
-            nPercentNight1 = metro_constant.lCloudsNight1[i]
-            nPercentNight2 = metro_constant.lCloudsNight2[i]
             npCloudsPercentDay = numpy.where(npCloudsOctal == i,\
-                                      nPercentDay, npCloudsPercentDay)
-            npCloudsPercentNight1 = numpy.where(npCloudsOctal == i,\
-                                                   nPercentNight1, \
-                                                   npCloudsPercentNight1)
-            npCloudsPercentNight2 = numpy.where(npCloudsOctal == i,\
-                                                   nPercentNight2, \
-                                                   npCloudsPercentNight2)
+                                             nPercentDay, npCloudsPercentDay)
 
-        # TODO MT: Voir les implications de cette passe.
-        # There is a mix up with the 0-based octal used in fortran
-        #  See rofile2.f
-        npCloudsPercentDay = numpy.where(npCloudsPercentDay == 0, 1.0 \
-                                             , npCloudsPercentDay)
-        npCloudsPercentNight1 = numpy.where(npCloudsPercentNight1 == 0, 3.79 \
-                                             , npCloudsPercentNight1)
-        npCloudsPercentNight2 = numpy.where(npCloudsPercentNight2 == 0,214.7 \
-                                               , npCloudsPercentNight2)
-
+        npCloudsPercentDay = numpy.where(npCloudsPercentDay == 0, 1.0, \
+                                         npCloudsPercentDay)
         # Solar flux
         npSF3 = npSft * npCoeff * npCloudsPercentDay
+        
+        return npSF3
 
-        # Infra-red flux 
-        npAT = wf_controlled_data.get_matrix_col('AT')
-        npIR = npCloudsPercentNight1*npAT+npCloudsPercentNight2
-        wf_controlled_data.append_matrix_col('IR', npIR)
 
-        # Interpolate
-        npTime = wf_controlled_data.get_matrix_col('Time')
-        npIR = metro_util.interpolate(npTime, npIR, \
-                                      metro_constant.fTimeStep)
-        wf_controlled_data.append_matrix_col('SF', npSF3)
-        npSF  = metro_util.interpolate(npTime, npSF3, \
-                                      metro_constant.fTimeStep)
-        wf_interpolated_data.append_matrix_col('SF',  npSF)
+    def __get_cloud_coefficient(self, wf_controlled_data):
+        """
+        Get the coefficient D1 and D2 as described in the metro article
+        p.2030 corresponding to the octal values in npCloudsOctal.
 
-        wf_interpolated_data.append_matrix_col('IR', npIR)
+        wf_controlled_data (weather forecast): 
+
+        Note: Could be place in metro_physic if npCloudsOctal is given
+        in arguement instead of wf_controlled_data.
+
+        Return (npCoeff1, npCoeff2) with coefficients.
+        """
+        npCloudsOctal = wf_controlled_data.get_matrix_col('CC')
+        
+        npCoeff1 = npCloudsOctal
+        npCoeff2 = npCloudsOctal
+        for i in range(0,9):
+            fCoeff1 = metro_constant.lCloudsNightCoeff1[i]
+            fCoeff2 = metro_constant.lCloudsNightCoeff2[i]
+            npCoeff1 = numpy.where(npCloudsOctal == i, fCoeff1, npCoeff1)
+            npCoeff2 = numpy.where(npCloudsOctal == i, fCoeff2, npCoeff2)
+                 
+
+        return (npCoeff1, npCoeff2) 
 
     def __get_eot(self, nTime):
         """
@@ -293,7 +360,6 @@ class Metro_preprocess_fsint2(Metro_preprocess):
          Author		Date		Reason
          Miguel Tremblay       June 30th 2004
          """
-        
         # Convert ctime to python tuple for time.
         # see http://www.python.org/doc/current/lib/module-time.html
         tDate = time.gmtime(nTime)
