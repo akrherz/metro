@@ -42,10 +42,15 @@ Date: August 24th 2004
 """
 
 import math
-import numarray
+from math import pi
+from math import sin
+from math import cos
 
-from toolbox import metro_constant
-from toolbox import metro_util
+import numpy
+
+import metro_constant
+import metro_util
+import metro_date
 
 
 def foqst(dTD, dPO):
@@ -94,3 +99,64 @@ def foew(dPO):
                            (dPO-35.86+max(0.0,metro_util.sign(28.2,-dDiff))))
     
     return fResult
+
+
+def get_sf(npCloudsOctal, npTimeHour, fStartForecastTime, \
+           fSunriseTimeUTC, fSunsetTimeUTC,  fLat, fLon):
+    """
+    Description: Return an array containing the values of SF.
+        
+    Parameters:
+    npCloudOctal (numpy array): array of octal value representing the
+     cloud coverage.
+     fSunriseTimeUTC (float): sunrise time in UTC
+     fSunsetTimeUT (float): sunset time in UTC
+     nStartForecastTime (??):
+     fLat (float): latitude of emplacement
+     fLon (float): longitude of emplacement
+
+    Return npSF (numpy array): Array containing the solar flux.
+     """
+    nTimeHourLength = len(npCloudsOctal)
+    (fEot, fR0r, tDeclsc) = metro_date.get_eot(fStartForecastTime, fLat)
+     
+    npSft = numpy.zeros(nTimeHourLength, dtype=numpy.float)
+    npCoeff = numpy.zeros(nTimeHourLength, dtype=numpy.float)
+        
+    ###### In the night, the solar flux is null ###############
+    for i in range(0, nTimeHourLength):
+        # Current hour is needed for the computation of
+        # fDh in the theoritical solar flux.
+        nCurrentHour = (npTimeHour[i])%24
+        # atmospheric forecast is before the sunrise
+        # or after the sunset
+        if metro_date.in_the_dark(nCurrentHour, fSunriseTimeUTC, \
+                              fSunsetTimeUTC):
+            npSft[i] = 0
+        else:
+            # Position of the sun around the earth, in radian
+            fDh =  pi*(nCurrentHour/12.0 + fLon/180 - 1) + fEot
+            fCosz = tDeclsc[0] + tDeclsc[1]*cos(fDh)
+            npSft[i] = max(0.0, fCosz)*fR0r
+
+
+    npCoeff =  -1.56e-12*npSft**4 + 5.972e-9*npSft**3 -\
+              8.364e-6*npSft**2  + 5.183e-3*npSft - 0.435
+    npCoeff = numpy.where(npCoeff > 0, npCoeff, 0.0)
+
+    # Set npCloudsPercent to be able to reference it in the
+    #  numpy.where method.
+    npCloudsPercentDay = npCloudsOctal
+    # Correction based on the clouds
+    for i in range(0,9):
+        nPercentDay = metro_constant.lCloudsDay[i]
+        npCloudsPercentDay = numpy.where(npCloudsOctal == i,\
+                                         nPercentDay, npCloudsPercentDay)
+
+    npCloudsPercentDay = numpy.where(npCloudsPercentDay == 0, 1.0, \
+                                     npCloudsPercentDay)
+    # Solar flux
+    npSF = npSft * npCoeff * npCloudsPercentDay
+        
+    return npSF
+

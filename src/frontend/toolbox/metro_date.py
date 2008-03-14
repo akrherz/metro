@@ -42,10 +42,18 @@ Notes: Time zone string used through this file correspond to the code
  on your system.
 """
 
-import xml.utils.iso8601
+
 import math
+from math import pi
+from math import sin
+from math import cos
+
+# Date import
 import time
 import datetime
+import calendar
+import xml.utils.iso8601
+
 import os
 import string
 
@@ -286,3 +294,94 @@ def str_to_at_least_two_digits(nNumber):
         sRes = '0'+sRes
 
     return sRes
+
+
+def in_the_dark(nCurrentTime, fSunrise, fSunset):
+    """
+    Sometimes, value returned by Sun.py are over 24. Since
+    the time of day is needed with modulo 24, a special check must be
+    performed. See https://gna.org/bugs/?8277 for more details.
+        
+    Parameters:
+    nCurrentTime (int): Current time. In [0,24]
+    fSunrise (float): Sunrise time as returned by Sun.py. Value could be > 24.
+    fSunset (float): Sunset time as returned by Sun.py.  Value could be > 24.
+                      
+    Returns bDark (bool): True if between fSunset and fSunrise.
+                          False if between fSunrise and fSunset.
+
+    """
+    bDark=False
+        
+    if ((fSunset%24 > fSunrise%24) and \
+        (nCurrentTime < fSunrise or \
+         nCurrentTime > fSunset)) or \
+         (not(fSunset%24 > fSunrise%24) and \
+          (nCurrentTime > fSunset%24 and \
+           nCurrentTime < fSunrise%24)):
+        bDark=True
+
+    return bDark
+        
+
+def get_eot(fTime, fLat):
+    """
+    Subroutine computing the part of the equation of time
+    needed in the computing of the theoritical solar flux
+    Correction originating of the CMC GEM model.
+    
+    Parameters:
+    fTime (float): cTime of the beginning of the forecast
+    fLat (float): latitude of emplacement
+
+    Returns: tuple (double fEot, double fR0r, tuple tDeclsc)
+             dEot: Correction for the equation of time 
+             dR0r: Corrected solar constant for the equation of time
+             tDeclsc: Declinaison
+
+    """
+    # Convert ctime to python tuple for time.
+    # see http://www.python.org/doc/current/lib/module-time.html
+    tDate = time.gmtime(fTime)
+    # Julian date is the 7th argument
+    fJulianDate = tDate[7] + tDate[3]/24.0
+    # Check if it is a leap year
+    if(calendar.isleap(tDate[0])):
+        fDivide = 366.0
+    else:
+        fDivide = 365.0
+    # Correction for "equation of time"
+    fA = fJulianDate/fDivide*2*pi
+    fR0r = solcons(fA)*metro_constant.fConsol
+    fRdecl = 0.412*cos((fJulianDate+10.0)*2.0*pi/fDivide-pi)
+    fDeclsc1 = sin(fLat*pi/180.0)*sin(fRdecl)
+    fDeclsc2 = cos(fLat*pi/180.0)*cos(fRdecl)
+    tDeclsc = (fDeclsc1, fDeclsc2)
+    # in minutes
+    fEot = 0.002733 -7.343*sin(fA)+ .5519*cos(fA) -9.47*sin(2.0*fA) \
+                -3.02*cos(2.0*fA) -0.3289*sin(3.*fA) -0.07581*cos(3.0*fA) \
+                -0.1935*sin(4.0*fA) -0.1245*cos(4.0*fA)
+    # Express in fraction of hour
+    fEot = fEot/60.0
+    # Express in radians
+    fEot = fEot*15*pi/180.0
+
+    return (fEot, fR0r, tDeclsc)
+
+
+def solcons(dAlf):
+    """
+    Statement function that calculates the variation of the
+    solar constant as a function of the julian day. (dAlf, in radians)
+    
+    Parameters:
+    dAlf (double) : Solar constant to correct the excentricity
+        
+    Returns dVar (double : Variation of the solar constant
+    """
+        
+    dVar = 1.0/(1.0-9.464e-4*sin(dAlf)-0.01671*cos(dAlf)- \
+                + 1.489e-4*cos(2.0*dAlf)-2.917e-5*sin(3.0*dAlf)- \
+                + 3.438e-4*cos(4.0*dAlf))**2
+    return dVar
+
