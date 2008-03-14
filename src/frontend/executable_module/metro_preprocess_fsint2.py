@@ -81,10 +81,6 @@ class Metro_preprocess_fsint2(Metro_preprocess):
     fSunrise = None
     fSunset = None
 
-    fEot = None
-    fR0r = None
-    tDeclsc = ()
-
 #####################################################
     def start(self):
         Metro_preprocess.start(self)
@@ -119,36 +115,23 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
         Returns: None
         """
-        
-        # Get the cTime of the beginning of data
-        nTime = wf_controlled_data.get_matrix_col('FORECAST_TIME')[0]
         # Lat & Lon
         self.fLat = station_data.get_latitude()
         self.fLon = station_data.get_longitude()
-        # Set the constant for the position of the earth around the sun
-        (self.fEot, self.fR0r, self.tDeclsc) = metro_date.get_eot(nTime, self.fLat)
         self.__set_sunrise_sunset(wf_controlled_data)
 
     def __set_theoretical_flux(self, wf_controlled_data, \
                                wf_interpolated_data):
         """
-        Name: __set_theoretical_flux
-        Parameters:[I] metro_data wf_controlled_data : controlled data.
-                       Read-only
-                   [I] metro_data wf_interpolated_data : container of the
-                       interpolated data.
-        Returns: None
-
-        Description: The flux value of the forecast are calculated from the
+        The flux value of the forecast are calculated from the
         position of the earth around the sun.
 
         Notes: All times are in UTC. Since Sun.py gives times over 24h,
         special case is done with %24 (January 15th 2006 modifications).
 
-        Revision History:
-        Author		Date		Reason
-        Miguel Tremblay      July 29th 2004
-        Miguel Tremblay     January 15th 2006
+        Parameters:
+        wf_controlled_data (metro_data) : controlled data. Read-only
+        wf_interpolated_data (metro_data) : container of the interpolated data.
         """
         # SF
         self.__set_sf(wf_controlled_data, wf_interpolated_data)
@@ -191,7 +174,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         Set the theoretical infrared flux.
            
         Parameters:
-        wf_controlled_data (weather forecast)
+        wf_controlled_data (metro_data) : controlled data. Read-only
         """
         npTime = wf_controlled_data.get_matrix_col('Time')
         (npCoeff1, npCoeff2) = self.__get_cloud_coefficient(wf_controlled_data)
@@ -207,7 +190,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         Set the theoretical solar flux.
            
         Parameters:
-        wf_controlled_data (weather forecast)
+        wf_controlled_data (metro_data) : controlled data. Read-only
         """
         # Get data
         npTime = wf_controlled_data.get_matrix_col('Time')
@@ -236,7 +219,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         day of forecast.
    
         Parameters:
-        wf_controlled_data (weather forecast)
+        wf_controlled_data (metro_data) : controlled data. Read-only
         
         Set the attribute for sunrise/sunset
         """
@@ -260,7 +243,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         Get the coefficient D1 and D2 as described in the metro article
         p.2030 corresponding to the octal values in npCloudsOctal.
 
-        wf_controlled_data (weather forecast): 
+        wf_controlled_data (metro_data) : controlled data. Read-only
 
         Note: Could be place in metro_physic if npCloudsOctal is given
         in arguement instead of wf_controlled_data.
