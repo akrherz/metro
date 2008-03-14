@@ -95,8 +95,12 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                              forecast_data.get_interpolated_data(), \
                              station_data)
         self.__print_info()
-        self.__set_theoretical_flux(forecast_data.get_controlled_data(), \
-                                    forecast_data.get_interpolated_data())
+        # SF
+        self.__set_sf(forecast_data.get_controlled_data(),\
+                     forecast_data.get_interpolated_data() )
+        # IR
+        self.__set_ir(forecast_data.get_controlled_data(),\
+                     forecast_data.get_interpolated_data() )
         pForecast.set_data_collection(forecast_data)
         pStation.set_data(station_data)        
 
@@ -119,24 +123,6 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         self.fLon = station_data.get_longitude()
         self.__set_sunrise_sunset(wf_controlled_data)
 
-    def __set_theoretical_flux(self, wf_controlled_data, \
-                               wf_interpolated_data):
-        """
-        The flux value of the forecast are calculated from the
-        position of the earth around the sun.
-
-        Notes: All times are in UTC. Since Sun.py gives times over 24h,
-        special case is done with %24 (January 15th 2006 modifications).
-
-        Parameters:
-        wf_controlled_data (metro_data) : controlled data. Read-only
-        wf_interpolated_data (metro_data) : container of the interpolated data.
-        """
-        # SF
-        self.__set_sf(wf_controlled_data, wf_interpolated_data)
-        # IR
-        self.__set_ir(wf_controlled_data, wf_interpolated_data)
-        
     def __print_info(self):
         """
         Print the information about the sunrise/sunset computed for this
