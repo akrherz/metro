@@ -57,7 +57,6 @@ import numpy
 import metro_logger
 import Sun
 from toolbox import metro_physics
-from toolbox import metro_constant
 from toolbox import metro_util
 from toolbox import metro_date
 from data_module import metro_data
@@ -177,7 +176,8 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         wf_controlled_data (metro_data) : controlled data. Read-only
         """
         npTime = wf_controlled_data.get_matrix_col('Time')
-        (npCoeff1, npCoeff2) = self.__get_cloud_coefficient(wf_controlled_data)
+        npCloudOctal = wf_controlled_data.get_matrix_col('CC')
+        (npCoeff1, npCoeff2) = metro_physics.get_cloud_coefficient(npCloudOctal)
         npAT = wf_controlled_data.get_matrix_col('AT')
         npIR = npCoeff1*npAT+npCoeff2
         wf_controlled_data.set_matrix_col('IR', npIR)
@@ -236,32 +236,6 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
         self.fSunrise = fSunriseTimeUTC
         self.fSunset = fSunsetTimeUTC
-
-
-    def __get_cloud_coefficient(self, wf_controlled_data):
-        """
-        Get the coefficient D1 and D2 as described in the metro article
-        p.2030 corresponding to the octal values in npCloudsOctal.
-
-        wf_controlled_data (metro_data) : controlled data. Read-only
-
-        Note: Could be place in metro_physic if npCloudsOctal is given
-        in arguement instead of wf_controlled_data.
-
-        Return (npCoeff1, npCoeff2) with coefficients.
-        """
-        npCloudsOctal = wf_controlled_data.get_matrix_col('CC')
-        
-        npCoeff1 = npCloudsOctal
-        npCoeff2 = npCloudsOctal
-        for i in range(0,9):
-            fCoeff1 = metro_constant.lCloudsNightCoeff1[i]
-            fCoeff2 = metro_constant.lCloudsNightCoeff2[i]
-            npCoeff1 = numpy.where(npCloudsOctal == i, fCoeff1, npCoeff1)
-            npCoeff2 = numpy.where(npCloudsOctal == i, fCoeff2, npCoeff2)
-                 
-
-        return (npCoeff1, npCoeff2) 
 
 
     

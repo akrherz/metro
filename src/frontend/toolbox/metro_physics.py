@@ -109,11 +109,11 @@ def get_sf(npCloudsOctal, npTimeHour, fStartForecastTime, \
     Parameters:
     npCloudOctal (numpy array): array of octal value representing the
      cloud coverage.
-     fSunriseTimeUTC (float): sunrise time in UTC
-     fSunsetTimeUT (float): sunset time in UTC
-     nStartForecastTime (??):
-     fLat (float): latitude of emplacement
-     fLon (float): longitude of emplacement
+    fSunriseTimeUTC (float): sunrise time in UTC
+    fSunsetTimeUT (float): sunset time in UTC
+    nStartForecastTime (??):
+    fLat (float): latitude of emplacement
+    fLon (float): longitude of emplacement
 
     Return npSF (numpy array): Array containing the solar flux.
      """
@@ -160,3 +160,26 @@ def get_sf(npCloudsOctal, npTimeHour, fStartForecastTime, \
         
     return npSF
 
+def get_cloud_coefficient(npCloudsOctal):
+    """
+    Get the coefficient D1 and D2 as described in the metro article
+    p.2030 corresponding to the octal values in npCloudsOctal.
+
+    npCloudOctal (numpy array): array of octal value representing the
+     cloud coverage.
+
+    Note: Could be place in metro_physic if npCloudsOctal is given
+    in arguement instead of wf_controlled_data.
+
+    Return (npCoeff1, npCoeff2) with coefficients.
+    """
+    npCoeff1 = npCloudsOctal
+    npCoeff2 = npCloudsOctal
+    for i in range(0,9):
+        fCoeff1 = metro_constant.lCloudsNightCoeff1[i]
+        fCoeff2 = metro_constant.lCloudsNightCoeff2[i]
+        npCoeff1 = numpy.where(npCloudsOctal == i, fCoeff1, npCoeff1)
+        npCoeff2 = numpy.where(npCloudsOctal == i, fCoeff2, npCoeff2)
+                 
+
+    return (npCoeff1, npCoeff2) 
