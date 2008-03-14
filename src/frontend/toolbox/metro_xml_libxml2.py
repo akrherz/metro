@@ -49,7 +49,6 @@ Date: Somewhere in the summer 2004
 """
 
 import libxml2
-import numarray
 
 import metro_logger
 from toolbox import metro_util
@@ -218,16 +217,6 @@ class Metro_xml_libxml2:
         for node in nodes:
             lNode.append(self.get_node_value(node))
         return lNode
-
-    def get_nodes_in_numarray(self, dom, sXPath):
-        """
-        Same as get_nodes_in_list but return a numarray
-        """
-        lList = self.get_nodes_in_list(dom, sXPath)
-        naResult = numarray.array(map(lambda x: float(x),lList))
-
-
-        return naResult
 
     def set_prop(self, node, sName, value):
         """
