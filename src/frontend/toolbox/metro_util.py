@@ -64,20 +64,24 @@ from distutils.version import LooseVersion
 from gettext import gettext as _
 import gettext
 import numpy
-from numpy import array
-from numpy import arange
 
+import metro_constant
 
-# return a module object import from module_path
 def import_name( module_path, module_name ):
+    """
+    return a module object import from module_path.
+    """
     try:
         module = __import__(module_path, globals(), locals(), [module_name])
     except ImportError:
         return None
     return vars(module)[module_name]
 
-# Return the root path of METRo package
+
 def get_metro_root_path( ):
+    """
+    Return the root path of METRo package.
+    """
     lPath = string.split(sys.path[0],"/")
     if lPath[len(lPath)-1] == "frontend":
         sRoot_path = string.join(lPath[:-2],"/")
@@ -175,7 +179,7 @@ def list2string( lList ):
 
 
 
-def interpolate(xArray, yArray, iIncrement):
+def interpolate(xArray, yArray):
     """
      Name: interpolate
 
@@ -196,7 +200,8 @@ def interpolate(xArray, yArray, iIncrement):
                   function.  The x and the corresponding y value are given
                   (i.e. y[n] correspond to x[n]) The value of x must be
                   evenly spaced.
-                  The third argument (iIncrement) tells how to
+                  The increment value is set in metro_constant by the
+                  value of fTimeStep and tells how to
                   increment the value between two consecutive x.
 
      Notes: This function needs the NumArray package. We assume that
@@ -207,7 +212,7 @@ def interpolate(xArray, yArray, iIncrement):
      Miguel Tremblay      June 30th 2004   To replace the linear
      interpolation of fortran code
     """
-    
+    iIncrement = metro_constant.fTimeStep
     # Check if the size of the array is ok.
     iLenXArray = len(xArray)
     iLenYArray = len(yArray)
@@ -234,10 +239,10 @@ def interpolate(xArray, yArray, iIncrement):
         raise "METRoUtilError", sMetroUtilError
 
     # Build the new x
-    xArrayInt = arange(xArray[0],xArray[iLenXArray-1],iIncrement)
+    xArrayInt = numpy.arange(xArray[0],xArray[iLenXArray-1],iIncrement)
     yArrayInt = interp(yArray,xArray, xArrayInt)
 
-    return array(yArrayInt)
+    return numpy.array(yArrayInt)
 
 
 def shift_left(npInput, fValueAdded=0):
@@ -275,7 +280,7 @@ def shift_left(npInput, fValueAdded=0):
     # Cut the first value
     npOutput  = numpy.take(npInput,\
                               numpy.arange(1, len(npInput)))
-    npToBeCat = array([fValueAdded])
+    npToBeCat = numpy.array([fValueAdded])
     npOutput = numpy.concatenate((npOutput, npToBeCat))
 
     return npOutput
@@ -314,7 +319,7 @@ def shift_right(npInput, fValueAdded=0):
                           "len(npInput.getshape())=%s"\
                           % (len(npInput.getshape()))
         raise "METRoUtilError", sMetroUtilError
-    npToBeCat = array([fValueAdded])
+    npToBeCat = numpy.array([fValueAdded])
     # Cut the trailing value
     npOutput  = numpy.take(npInput,\
                               numpy.arange(0, len(npInput)-1))
@@ -644,10 +649,10 @@ def interp(y_values, x_values, new_x_values):
   Comes from http://projects.scipy.org/pipermail/scipy-user/2007-March/011479.html
   Thank you Stephen
   """
-  x = array(x_values, dtype='float')
-  y = array(y_values, dtype='float')
+  x = numpy.array(x_values, dtype='float')
+  y = numpy.array(y_values, dtype='float')
 
-  xx = array(new_x_values, dtype='float')
+  xx = numpy.array(new_x_values, dtype='float')
   # High indices
   hi = numpy.searchsorted(x, xx)
 
