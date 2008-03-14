@@ -362,7 +362,7 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
 
 
 def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
-                                  lDefs, metro_data_object, naMatrix ):
+                                  lDefs, metro_data_object, npMatrix ):
     """
     Each prediction will be contained in a node that will have the name
     given by sPrediction_xpath.
@@ -375,7 +375,7 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
     dData_type = metro_util.join_dictionaries(dStandard_data_type,
                                               dExtended_data_type)
 
-    for naData in naMatrix:
+    for npData in npMatrix:
 
         # If needed, creation of a node to contain the prediction
         if sPrediction_xpath != None and sPrediction_xpath != "":
@@ -410,8 +410,8 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
             sCode = "import " +sFunction_module
             exec sCode
 
-            # Extraction of the data from the numarray
-            val = naData[metro_data_object.index_of_matrix_col(sTag)]
+            # Extraction of the data from the matrix
+            val = npData[metro_data_object.index_of_matrix_col(sTag)]
             
             if dData_type[sData_type_name].has_key('CHILD'):
                 # Construction of instruction doing the function call that will
