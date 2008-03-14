@@ -36,7 +36,10 @@
 """
 Name:	 metro_date.py
 Description: Date and time functions for METRo
-Notes:
+
+Notes: Time zone string used through this file correspond to the code
+ used by the OS. The list can be found in the directory usr/share/zoneinfo
+ on your system.
 """
 
 import xml.utils.iso8601
@@ -44,17 +47,22 @@ import math
 import time
 import datetime
 import os
-import sys
 import string
 
-from toolbox import metro_util
-from toolbox import metro_constant
+import metro_util
+import metro_constant
 
 _ = metro_util.init_translation('metro_date')
 
-# sDate must conform to ISO 8601. ref. http://www.w3.org/TR/NOTE-datetime
-# return float ctime
 def parse_date_string( sDate ):
+    """
+    Take a date in the ISO 8601 format and return a date in ctime format.
+
+    Parameter:
+    sDate (string): date in ISO 8601 format
+
+    Returns fDate (float): time in ctime format.
+    """
 
     if sDate != None:
         try:
@@ -75,17 +83,20 @@ def seconds2iso8601( fDate ):
     return xml.utils.iso8601.tostring(round(fDate))
     # Must replace the decimal of the seconds
     
-##################################################
-# Returns the current date in iso8601 format
-##################################################
 def get_current_date_iso8601():
+    """
+    Returns the current date in iso8601 format
+    """
+    
     fCurrentTime  = time.time()
     sCurrentTime = seconds2iso8601(fCurrentTime)
     return sCurrentTime
 
 def time_zone_convert(tm, source_zone, dest_zone):
-    '''Convert a broken-down time (time.struct_time or tuple) from
-    one named time zone to another.'''
+    """
+    Convert a broken-down time (time.struct_time or tuple) from
+    one named time zone to another.
+    """
     old_zone = os.environ['TZ']
     try:
         os.environ['TZ'] = source_zone
@@ -145,12 +156,13 @@ def get_struct_time( fTime, sTime_zone="UTC" ):
 
 
 def get_short_time_zone(tm, sTime_zone):
-
-    # get first part of time zone spec ( before first comma ) 
-    # see http://www.qnx.com/developers/docs/momentics621_docs/neutrino/ ...
-    #     lib_ref/global.html#TheTZEnvironmentVariable
-    #
-    # ex: EST5EDT4,M4.1.0/02:00:00,M10.5.0/02:00:00 ->  EST5EDT4
+    """
+    Get first part of time zone spec ( before first comma ) 
+     see http://www.qnx.com/developers/docs/momentics621_docs/neutrino/ ...
+         lib_ref/global.html#TheTZEnvironmentVariable
+    
+    ex: EST5EDT4,M4.1.0/02:00:00,M10.5.0/02:00:00 ->  EST5EDT4
+    """
     if ',' in sTime_zone:
         lTz = string.split(sTime_zone,',')
         sTime_zone = lTz[0]
@@ -168,72 +180,22 @@ def get_short_time_zone(tm, sTime_zone):
     else:
         return sTz_letter[:3]
 
-####################################################
-# Name: getTimeCorrection
-#
-# Parameters: [[I] string sTimeZone : Represente les 3 lettres du fuseau horaire
-#
-# Returns: int dLCorr : retourne la difference par rapport au UTC
-#
-# Description: Fonction qui etait auparavant dans lib_gen.f
-#
-# Notes: <
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       june 28th 2004   Journee d'election federale
-#####################################################
 
-def getTimeCorrection(sTimeZone):
-
-    if( sTimeZone == 'PST' or sTimeZone == 'HNP' ):
-        fLCorr = -8.0
-    elif ( sTimeZone == 'MST' or sTimeZone == 'HNR' ):
-        fLCorr = -7.0
-    elif ( sTimeZone == 'CST' or sTimeZone == 'HNC' ):
-        fLCorr = -6.0
-    elif ( sTimeZone == 'EST' or sTimeZone == 'HNE' ):
-        fLCorr = -5.0
-    elif ( sTimeZone == 'AST' or sTimeZone == 'HNA' ):
-        fLCorr = -4.0
-    elif ( sTimeZone == 'NST' or sTimeZone == 'HNT' ):
-        fLCorr = -3.5
-    elif ( sTimeZone == 'PDT' or sTimeZone == 'HAP' ):
-        fLCorr = -7.0
-    elif ( sTimeZone == 'MDT' or sTimeZone == 'HAR' ):
-        fLCorr = -6.0
-    elif ( sTimeZone == 'CDT' or sTimeZone == 'HAC' ):
-        fLCorr = -5.0
-    elif ( sTimeZone == 'EDT' or sTimeZone == 'HAE' ):
-        fLCorr = -4.0
-    elif ( sTimeZone == 'ADT' or sTimeZone == 'HAA' ):
-        fLCorr = -3.0
-    elif ( sTimeZone == 'NDT' or sTimeZone == 'HAT' ):
-        fLCorr = -2.5
-    else:
-        sTimeZoneError = _("Unknown time zone: %s") % (sTimeZone)
-        raise "METRoDateError", sTimeZoneError
-
-    return fLCorr
-
-####################################################
-# Name: get_elapsed_time
-#
-# Parameters: [[I] ftime1 float : ctime de la premiere date]
-#             [[I] ftime2 float : ctime de la deuxieme date]
-#
-# Returns: The time difference between ftime1 and ftime2
-#
-# Description: Retourne la difference ftime1 - ftime2
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       august 2nd 2004   
-#####################################################
 def get_elapsed_time(ftime1, ftime2, sTimeZone="UTC", sUnit="hours"):
+    """
+    Return the difference between the 2 ctime: ftime1 - ftime2.
 
+    Parameters.
+    ftime1 (float): ctime for end time.
+    ftime2 (float): ctime for start time.
+    sTimeZone (string): time zone code. See 'Note' in the general comment
+    of metro_util.
+    sUnit (string): Precision of which this function should round. Possible
+    choices are in ['hours', 'days', 'seconds']
+
+    Return nResult (int): Values rounded to sUnit.
+    """
+    
     # Transform the ctime in the datetime.datetime class
     cTime1 = datetime.datetime(get_year(ftime1,sTimeZone), \
                                get_month(ftime1,sTimeZone), \
@@ -263,53 +225,17 @@ def get_elapsed_time(ftime1, ftime2, sTimeZone="UTC", sUnit="hours"):
                                      % (sUnit)
         raise "METRoDateError", sInvalidParameterError
 
-def list_to_date(lDate):
 
-    old_zone = os.environ['TZ']
-
-    try:
-        iYear      = lDate[0]
-        iMonth     = lDate[1]
-        iDay       = lDate[2]
-        iHour      = lDate[3][0]
-        iMin       = lDate[3][1]
-        sTime_zone = lDate[4]
-
-
-        os.environ['TZ'] = sTime_zone
-        time.tzset()
-
-        #convertion de la date en format ctime
-        tDate = (iYear, iMonth, iDay, iHour, iMin, 0, 0, 0, -1)        
-        fRslt = time.mktime(tDate)  #convertion en ctime
-    except:
-        fRslt = None
-
-    os.environ['TZ'] = old_zone
-    time.tzset()
-
-#    print "oldtime=",time.ctime(fRslt)
-    return fRslt
-
-
-####################################################
-# Name: tranform_decimal_hour_in_minutes
-#
-# Parameters: [[I] float fTimeHour : Time in decimal form. Eg 1.90 for
-#                       1h54:00
-#
-# Returns: [nHour, nMinute, nSecond]
-#
-# Description: Return an array containing the hour, the minutes and the secondes,
-#   respectively.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay       October 29th 2004   
-#####################################################
 def tranform_decimal_hour_in_minutes(fTimeHour):
+    """
+    Return an array containing the hour, the minutes and the secondes,
+    respectively.
+
+    Parameter:
+    fTimeHour (float): ctime to be transformed
+
+    Return a tuple: (nHour, nMinute, nSecond)
+    """
     # Extract decimal from integer part
     tModHour = math.modf(fTimeHour)
     nHour = int(tModHour[1])
