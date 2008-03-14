@@ -150,15 +150,14 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
          """
         
         npFT = wf_original_data.get_matrix_col('FORECAST_TIME')
-        npFT = metro_util.interpolate(self.npTime, npFT, \
-                                      metro_constant.fTimeStep)        
+        npFT = metro_util.interpolate(self.npTime, npFT)
+                                      
         wf_interpolated_data.append_matrix_col('FORECAST_TIME', npFT)
         
         nHourStart = int(metro_date.get_hour(npFT[0]))
         npTime = self.npTime
         wf_controlled_data.append_matrix_col('Time', npTime)
-        npTime = metro_util.interpolate(self.npTime, npTime, \
-                                      metro_constant.fTimeStep)
+        npTime = metro_util.interpolate(self.npTime, npTime)
         npTime = (npTime+30)/3600+nHourStart
         wf_interpolated_data.append_matrix_col('Time', npTime)
 
@@ -188,8 +187,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         """
         
         npAT = wf_originpl_data.get_matrix_col('AT')
-        npAT = metro_util.interpolate(self.npTime, npAT, \
-                                      metro_constant.fTimeStep)
+        npAT = metro_util.interpolate(self.npTime, npAT)
         wf_interpolated_data.append_matrix_col('AT', npAT)
 
         
@@ -230,12 +228,9 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         npSN = npSN - metro_util.shift_right(npSN, 0)
         npRA = npRA - metro_util.shift_right(npRA, 0)
         
-        npQP = metro_util.interpolate(self.npTime, npQP, \
-                                      metro_constant.fTimeStep)
-        npSN = metro_util.interpolate(self.npTime, npSN, \
-                                      metro_constant.fTimeStep)
-        npRA = metro_util.interpolate(self.npTime, npRA, \
-                                      metro_constant.fTimeStep)
+        npQP = metro_util.interpolate(self.npTime, npQP)
+        npSN = metro_util.interpolate(self.npTime, npSN)
+        npRA = metro_util.interpolate(self.npTime, npRA)
 
         npQP = npQP *10e-4 # Set it in meter
         npQP = npQP / 3600.0 # Convert by second
@@ -271,8 +266,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Miguel Tremblay      July 12th 2004
         """
         npWS = wf_originpl_data.get_matrix_col('WS')*0.2777777
-        npWS = metro_util.interpolate(self.npTime, npWS, \
-                                      metro_constant.fTimeStep)
+        npWS = metro_util.interpolate(self.npTime, npWS)
         wf_interpolated_data.append_matrix_col('WS', npWS)
         
 
@@ -300,8 +294,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         Miguel Tremblay      July 12th 2004
         """
         npTD = wf_originpl_data.get_matrix_col('TD')
-        npTD = metro_util.interpolate(self.npTime, npTD, \
-                                      metro_constant.fTimeStep)
+        npTD = metro_util.interpolate(self.npTime, npTD)
         wf_interpolated_data.append_matrix_col('TD', npTD)
 
         
@@ -338,8 +331,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         
         # Convert it in pascals.
         npAP = npAP*100
-        npAP = metro_util.interpolate(self.npTime, npAP, \
-                                      metro_constant.fTimeStep)
+        npAP = metro_util.interpolate(self.npTime, npAP)
         wf_interpolated_data.append_matrix_col('AP', npAP)
 
 
@@ -393,8 +385,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         npPI = numpy.array(lPI)
             
         # Interpolate
-        npPI = metro_util.interpolate(self.npTime, npPI, \
-                                      metro_constant.fTimeStep)
+        npPI = metro_util.interpolate(self.npTime, npPI)
         # Round
         npPI = numpy.around(npPI)
         # Store
@@ -425,8 +416,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         npCC = numpy.array(lCC)
             
         # Interpolate
-        npCC = metro_util.interpolate(self.npTime, npCC, \
-                                      metro_constant.fTimeStep)
+        npCC = metro_util.interpolate(self.npTime, npCC)
 
         # Round
         npCC = numpy.around(npCC)
