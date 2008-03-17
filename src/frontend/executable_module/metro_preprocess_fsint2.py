@@ -55,6 +55,7 @@ from math import cos
 import numpy
 
 import metro_logger
+import metro_config
 import Sun
 from toolbox import metro_physics
 from toolbox import metro_util
@@ -166,10 +167,15 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         (npCoeff1, npCoeff2) = metro_physics.get_cloud_coefficient(npCloudOctal)
         npAT = wf_controlled_data.get_matrix_col('AT')
         npIR = npCoeff1*npAT+npCoeff2
-        wf_controlled_data.set_matrix_col('IR', npIR)
-        npIR = metro_util.interpolate(npTime, npIR)
-        wf_interpolated_data.append_matrix_col('IR', npIR)
+        npIR2 = metro_util.interpolate(npTime, npIR)
         
+        if metro_config.get_value('IR'):
+            wf_controlled_data.set_matrix_col('IR', npIR)
+            wf_interpolated_data.set_matrix_col('IR', npIR2)
+        else:
+            wf_controlled_data.append_matrix_col('IR', npIR)
+            wf_interpolated_data.append_matrix_col('IR',  npIR2)
+
 
     def __set_sf(self, wf_controlled_data, wf_interpolated_data):
         """
@@ -192,11 +198,15 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
 
         # Set value in matrix
-        wf_controlled_data.set_matrix_col('SF', npSF)
-
         # Set value in interpolated matrix.
         npSF2  = metro_util.interpolate(npTime, npSF)
-        wf_interpolated_data.append_matrix_col('SF',  npSF2)
+        print metro_config.get_value('SF')
+        if metro_config.get_value('SF'):
+            wf_controlled_data.set_matrix_col('SF', npSF)
+            wf_interpolated_data.set_matrix_col('SF', npSF)
+        else:
+            wf_controlled_data.append_matrix_col('SF', npSF)
+            wf_interpolated_data.append_matrix_col('SF',  npSF2)
 
 
     def __set_sunrise_sunset(self, wf_controlled_data):
