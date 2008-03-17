@@ -92,7 +92,8 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "bypass-core",
                      "generate-dtd-catalog",
                      "config=","generate-config=","log-file=","verbose-level=",
-                     "selftest", "silent", "roadcast-start-date=", "lang="]
+                     "selftest", "silent", "roadcast-start-date=", "lang=",
+                     "use-solarflux-forecast", "use-infrared-forecast"]
 
 
 
@@ -374,17 +375,26 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
         
         if o == "--output-roadcast":
             dConf['FILE_ROADCAST_FILENAME'] = a
-    
 
-#        if o == "--xml-lib":
-#            if a == "pyxml":
-#                a = "metro_xml_pyxml"
-#            if a == "libxml2":
-#                a = "metro_xml_libxml2"
-#
-#            dConf['INIT_XML_LIB'] = a
+        if o == "--use-infrared-forecast":
+            dConfig['IR']['VALUE'] = True
+            # Add extended item based on options in command line.
+            dIRDict = {'NAME':"IR",
+                       'XML_TAG':"IR",
+                       'DATA_TYPE':"REAL"}
+            dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
+            'VALUE'].append(dIRDict)
+
+        if o == "--use-solarflux-forecast":
+            dConfig['SF']['VALUE'] = True
+            dSFDict= {'NAME':"SF",
+                      'XML_TAG':"sf",
+                      'DATA_TYPE':"REAL"}
+            dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
+            'VALUE'].append(dSFDict)
 
 
+        # Selftest value
         if o == "--selftest":
             dConf['INIT_ROADCAST_START_DATE'] = "2004-01-30T20:00Z"
 
@@ -666,19 +676,14 @@ def set_default_value( ):
          'FROM'     :CFG_INTERNAL,
          'COMMENTS' :_("standard forecast prediction items")}
 
-
+    
     dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'] = \
-        {'VALUE'   :[{'NAME':"IR",
-                      'XML_TAG':"IR",
-                      'DATA_TYPE':"REAL"},
-
-                     {'NAME':"SF",
-                      'XML_TAG':"sf",
-                      'DATA_TYPE':"REAL"}],
+        {'VALUE'   :[],
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("extended forecast prediction items.")}
 
-
+ 
+        
     # --------------------------------- Observation ----------------------------
     
     dConfig['XML_OBSERVATION_XPATH_ROOT'] = \
@@ -1094,11 +1099,6 @@ def set_default_value( ):
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("default language is english")}
 
-#    dConfig['INIT_XML_LIB'] = \
-#        {'VALUE'   :"metro_xml_libxml2",
-#         'FROM'    :CFG_HARDCODED,
-#         'COMMENTS':_("xml implementation for METRo")}
-
     dConfig['INIT_MODULE_EXECUTION_SEQUENCE'] = \
         {'VALUE'   :["metro_read_forecast",
                      "metro_validate_forecast",
@@ -1162,6 +1162,16 @@ def set_default_value( ):
          'COMMENTS' :_("default time zone for forecast prediction date")}
 
 
+    dConfig['IR'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Use infrared value from forecast")}
+
+    dConfig['SF'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Use solar flux value from forecast")}
+
     # ---------------------------- observation ---------------------------------
 
 
@@ -1207,20 +1217,7 @@ def set_default_value( ):
          'FROM'     :CFG_HARDCODED,
          'COMMENTS' :_("default precision for roadcast prediction value")}    
 
-#===============================================================================
-# ????????????????????
-#===============================================================================
-
-
     dConfig['T_BYPASS_CORE'] = \
         {'VALUE'   :False,
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("test")}
-
-
-#    dConfig['FILE_OBSERVATION_REF_FILENAME'] = \
-#        {'VALUE'   :None,
-#         'FROM'    :CFG_HARDCODED,
-#         'COMMENTS':_("observation filename")}
-
-  
