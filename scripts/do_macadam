@@ -34,7 +34,7 @@
 
 progname=`basename $0`
 
-METRO_VERSION=3.1.0
+METRO_VERSION=3.2.0
 
 
 if [[ $1 = clean ]]; then    
@@ -62,14 +62,14 @@ else
     echo "----------------------------------------------------------"
     echo "WARNING!"
     echo "No python path defined."
-    echo "Will try to used the default path for python 2.3"
+    echo "Will try to used the default path for python 2.4"
     echo "If it still doesn't work,"
     echo "please set environment variable PYTHON_INCLUDE to your"
     echo "python include directory."
-    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.3\""
+    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.4\""
     echo "----------------------------------------------------------"
     echo ""
-    PYTHON_INC="-I/usr/include/python2.3/"
+    PYTHON_INC="-I/usr/include/python2.4/"
 fi
 echo "    Python include path = "$PYTHON_INC
 
@@ -106,9 +106,10 @@ $FC -shared macadam.o macadam_wrap.o  lib_gen.o  grille.o array2matrix.o initial
 
 
 echo "    Copying .so in usr/share/metro/model"
-#if [ ! -d ../../usr/share/metro/model ]; then
-#    mkdir ../../usr/share/metro/model
-#fi
+if [ ! -d ../../usr/share/metro/model ]; then
+    mkdir ../../usr/share/metro/model
+fi
 cp _macadam.so ../../usr/lib/metro/
 cp macadam.py ../../usr/share/metro/model/
 
+#cp -v _macadam.so  macadam.py ../frontend/model/
