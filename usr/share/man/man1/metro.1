@@ -18,6 +18,12 @@ Display a list of command line options.
 .B \-\-roadcast-start-date date
 Optionnal.  If this argument is not present, the date of the last observation is used. Date of the first roadcast.  The format is ISO 8601.  See http://en.wikipedia.org/wiki/ISO_8601 for further details.
 .TP
+.B \-\-use-solarflux-forecast
+Optionnal. Use this argument if you want to provide the solar flux in the atmospheric forecast file instead of a theoretical flux based on cloud cover. The tag for solar flux in forecast file is '<sf>'.
+.TP
+.B \-\-use-infrared-forecast
+Optionnal. Use this argument if you want to provide the infra-fred flux in the atmospheric forecast file instead of a theoretical flux based on cloud cover. The tag for infra-red flux in forecast file is '<ir>'.
+.TP
 .B \-\-input\-forecast filename
 Set where is the atmosperic forecast file.
 .TP
