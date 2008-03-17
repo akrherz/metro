@@ -40,7 +40,7 @@ Description:  Validate input data to make sure they conform to certain rule.
 
 Note:         Observation file cannot be too long because of the limitation of
                length in the fortran array.
-TODO:         Remove length limitation once the fortran code is removed from METRo.
+
                
 Author: Francois Fortin
         Miguel Tremblay
@@ -72,7 +72,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         self.__validate_observation_length(observation_data.\
                                             get_controlled_data())
         self.__validate_forecast_length(forecast_data.get_controlled_data())
-
+        self.__validate_optional_args_forecast(forecast_data.\
+                                               get_controlled_data())
 
         self.__validate_last_observation_date(observation_data.\
                                             get_controlled_data())
@@ -81,23 +82,42 @@ class Metro_preprocess_validate_input(Metro_preprocess):
                                 observation_data.get_controlled_data())
 
 
+    def __validate_optional_args_forecast(self, forecast_data):
+        """
+        In the case the user asked to use infra-red and/or solar flux
+        as input, check if the values are really in the input files.
+        """
+
+        # Check for solar-flux
+        if metro_config.get_value('SF') and not \
+           forecast_data.is_standardCol('SF'):
+            sInputAtmosphericForecast = metro_config.\
+                                        get_value('FILE_FORECAST_IN_FILENAME')
+            sMessage = _("The option '--use-solarflux-forecast' was used\n") +\
+                       _("but the information was not in the atmospheric\n") +\
+                       _("forecast file. Please check for the tag '<sf>'\n") +\
+                       _("in the file: %s") % (sInputAtmosphericForecast)
+            metro_logger.print_message(
+                metro_logger.LOGGER_MSG_STOP, sMessage)
+        # Check for infra-red
+        if metro_config.get_value('IR') and not \
+           forecast_data.is_standardCol('IR'):
+            sInputAtmosphericForecast = metro_config.\
+                                        get_value('FILE_FORECAST_IN_FILENAME')
+            sMessage = _("The option '--use-infrared-forecast' was used\n") +\
+                       _("but the information was not in the atmospheric\n") +\
+                       _("forecast file. Please check for the tag '<ir>'\n") +\
+                       _("in the file: %s") % (sInputAtmosphericForecast)
+            metro_logger.print_message(
+                metro_logger.LOGGER_MSG_STOP, sMessage)
+        
+
     def __validate_forecast_length(self, forecast_data):
         """
         Parameters: controlled forecast data
         
-        Returns: None
-        
-        Functions Called: 
-
-        Description: METRo needs more than one forecast date. If there is
-                    only one forecast, give an error message an exit. If the
-                    forecast is not given for every hour, METRo give an error.
-
-        Notes: 
-
-        Revision History:
-        Author		Date		Reason
-        Miguel Tremblay      March 20th 2007
+        Description: METRo needs more than one forecast date.
+        If there is only one forecast, give an error message an exit.
         """
         
          # Check the length of forecast. 
@@ -129,20 +149,9 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         """
         Parameters: controlled observation data
         
-        Returns: None
-        
-        Functions Called: 
-
-        Description: Check if the observation is not too long. If so, truncate the
-          beginning of the observation. This limitation is due to an array size
-          hardcoded in the fortran code. 
-
-        Notes: This method should be removed once the fortran code is removed
-                from METRo.
-
-        Revision History:
-        Author		Date		Reason
-        Miguel Tremblay      April 11th 2007
+        Description: Check if the observation is not too long.
+        If so, truncate the beginning of the observation.
+        This limitation is due to an array size hardcoded in the fortran code. 
         """
 
         # Check the length of observation
@@ -185,12 +194,6 @@ class Metro_preprocess_validate_input(Metro_preprocess):
 
     def __validate_last_observation_date(self, observation_data):
         """
-        Parameters: controlled observation data
-        
-        Returns: None
-        
-        Functions Called: 
-
         Description: Set the date of the last observation.
 
         Notes: 
