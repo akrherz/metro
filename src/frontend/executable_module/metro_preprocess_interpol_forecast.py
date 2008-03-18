@@ -38,6 +38,9 @@ Name:	       Metro_preprocess_interpol_forecast
 Description: Interpolation of data in order to be at every 30 seconds.
   Solar flux is a special case.
 
+Note: Solar and infrared flux are interpolated in metro_preprocess_fsint2.py
+ when they are given in the atmospheric forecast file.
+
  TODO MT: Do the update in order that the array are 0-based
  Auteur: Miguel Tremblay
  Date: August 2nd 2004
