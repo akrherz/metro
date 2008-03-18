@@ -112,10 +112,10 @@ class Metro_dom2metro(Metro_module):
                 metro_config.get_value('XML_FORECAST_PREDICTION_STANDARD_ITEMS')
             lExtended_forecast = \
                 metro_config.get_value('XML_FORECAST_PREDICTION_EXTENDED_ITEMS')
-            
-            for_data = metro_data.Metro_data(lStandard_forecast,lExtended_forecast)
+            forecast_data = metro_data.Metro_data(lStandard_forecast,\
+                                             lExtended_forecast)
 
-            forecast_data = self.__extract_data_from_dom(for_data,
+            forecast_data = self.__extract_data_from_dom(forecast_data,
                                                          self.domForecast,
                                                          lHeader_keys,
                                                          sHeader_xpath,
