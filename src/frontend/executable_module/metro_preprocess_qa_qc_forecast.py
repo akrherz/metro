@@ -92,17 +92,18 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
             for fElement in npElement:
                 if fpconst.isNaN(fElement):
                     if wf_controlled_data.is_standardCol(sElement):
-                        sMessage = _("Value in forecast file must be valid.\n") +\
-                                   _("A value for the element <%s> is invalid") % (sElement.lower())+\
-                                   _(" in the file\n'%s'") %  (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
-                
+                        sMessage = _("Value in forecast file must be valid.\n") \
+                                   + _("A value for the element <%s> is invalid")\
+                                   % (sElement.lower())+\
+                                   _(" in the file\n'%s'") %\
+                                   (metro_config.get_value(\
+                            "FILE_FORECAST_IN_FILENAME"))
                         raise "MetroAtmosphericForecastError", sMessage
                     else:
                         sMessage = _("A value for the extended element <%s> is invalid") % (sElement.lower())+\
                                    _(" in the file\n'%s'") %  (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
                         metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,\
                                                    sMessage)
-
 
 
         
