@@ -89,8 +89,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
         """
 
         # Check for solar-flux
-        if metro_config.get_value('SF') and not \
-           forecast_data.is_standardCol('SF'):
+        if metro_config.get_value('SF') and  \
+           'SF' not in forecast_data.lMatrix_col_name:
             sInputAtmosphericForecast = metro_config.\
                                         get_value('FILE_FORECAST_IN_FILENAME')
             sMessage = _("The option '--use-solarflux-forecast' was used\n") +\
@@ -100,8 +100,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
             metro_logger.print_message(
                 metro_logger.LOGGER_MSG_STOP, sMessage)
         # Check for infra-red
-        if metro_config.get_value('IR') and not \
-           forecast_data.is_standardCol('IR'):
+        if metro_config.get_value('IR') and  \
+           'IR' not in forecast_data.lMatrix_col_name:
             sInputAtmosphericForecast = metro_config.\
                                         get_value('FILE_FORECAST_IN_FILENAME')
             sMessage = _("The option '--use-infrared-forecast' was used\n") +\
