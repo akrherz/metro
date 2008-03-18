@@ -87,8 +87,6 @@ class Metro_data:
         lExtData_types = use to initialised the matrix with a number of column
                          determined by len(lStdData_types) + len(lExtData_types).                         
         """
-                      
-        
         self.bRead_only = False
         self.dHeader = {}
         self.npMatrix = numpy.array([], dtype=numpy.float)
@@ -102,8 +100,8 @@ class Metro_data:
         for data_type in lExtData_types:
             self.lMatrix_ext_col_name.append(data_type['NAME'])
 
-        self.lMatrix_col_name = self.lMatrix_std_col_name + self.lMatrix_ext_col_name
-        
+        self.lMatrix_col_name = self.lMatrix_std_col_name +\
+                                self.lMatrix_ext_col_name
 
 
     def set_readonly( self, bIs_read_only ):
