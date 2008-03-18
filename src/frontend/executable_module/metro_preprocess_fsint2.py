@@ -162,20 +162,22 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         Parameters:
         wf_controlled_data (metro_data) : controlled data. Read-only
         """
-        npTime = wf_controlled_data.get_matrix_col('Time')
+        npTime = wf_controlled_data.get_matrix_col('Time') 
+
+        # Only interpolate if IR is given
+        if  metro_config.get_value('IR'):
+            npIR = wf_controlled_data.get_matrix_col('IR')
+            npIR2 = metro_util.interpolate(npTime, npIR)
+            wf_interpolated_data.append_matrix_col('IR', npIR2)
+            return
+        
         npCloudOctal = wf_controlled_data.get_matrix_col('CC')
         (npCoeff1, npCoeff2) = metro_physics.get_cloud_coefficient(npCloudOctal)
         npAT = wf_controlled_data.get_matrix_col('AT')
         npIR = npCoeff1*npAT+npCoeff2
         npIR2 = metro_util.interpolate(npTime, npIR)
-        
-        if metro_config.get_value('IR'):
-            wf_controlled_data.set_matrix_col('IR', npIR)
-            wf_interpolated_data.set_matrix_col('IR', npIR2)
-        else:
-            wf_controlled_data.append_matrix_col('IR', npIR)
-            wf_interpolated_data.append_matrix_col('IR',  npIR2)
-
+        wf_controlled_data.append_matrix_col('IR', npIR)
+        wf_interpolated_data.append_matrix_col('IR', npIR2)
 
     def __set_sf(self, wf_controlled_data, wf_interpolated_data):
         """
@@ -184,8 +186,16 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         Parameters:
         wf_controlled_data (metro_data) : controlled data. Read-only
         """
+        npTime = wf_controlled_data.get_matrix_col('Time') 
+
+        # Only interpolate if IR is given
+        if  metro_config.get_value('SF'):
+            npSF = wf_controlled_data.get_matrix_col('SF')
+            npSF2 = metro_util.interpolate(npTime, npSF)
+            wf_interpolated_data.append_matrix_col('SF', npSF2)
+            return
+        
         # Get data
-        npTime = wf_controlled_data.get_matrix_col('Time')
         npCloudOctal = wf_controlled_data.get_matrix_col('CC')
         npTimeHour =  wf_controlled_data.get_matrix_col('Hour')
         fStartForecastTime = wf_controlled_data.\
@@ -195,18 +205,10 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                                     fStartForecastTime,\
                                     self.fSunrise, self.fSunset,\
                                     self.fLat, self.fLon)
-
-
-        # Set value in matrix
-        # Set value in interpolated matrix.
         npSF2  = metro_util.interpolate(npTime, npSF)
-        print metro_config.get_value('SF')
-        if metro_config.get_value('SF'):
-            wf_controlled_data.set_matrix_col('SF', npSF)
-            wf_interpolated_data.set_matrix_col('SF', npSF)
-        else:
-            wf_controlled_data.append_matrix_col('SF', npSF)
-            wf_interpolated_data.append_matrix_col('SF',  npSF2)
+
+        wf_controlled_data.append_matrix_col('SF', npSF)
+        wf_interpolated_data.append_matrix_col('SF',  npSF2)
 
 
     def __set_sunrise_sunset(self, wf_controlled_data):
