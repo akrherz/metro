@@ -238,6 +238,7 @@ class Metro_metro2dom( Metro_module ):
         #
         # Data creation
         naMatrix   = metro_data.get_matrix()
+        
         metro_xml.create_node_tree_from_matrix(domDoc, nodePrediction,
                                                sPrediction_node_name,
                                                lPrediction_keys,

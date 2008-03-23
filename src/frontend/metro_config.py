@@ -93,7 +93,8 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "generate-dtd-catalog",
                      "config=","generate-config=","log-file=","verbose-level=",
                      "selftest", "silent", "roadcast-start-date=", "lang=",
-                     "use-solarflux-forecast", "use-infrared-forecast"]
+                     "use-solarflux-forecast", "use-infrared-forecast",
+                     "level"]
 
 
 
@@ -394,6 +395,14 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             'VALUE'].append(dSFDict)
 
 
+        if o == "--level":
+            dConfig['TL']['VALUE'] = True
+            dTLDict= {'NAME':"TL",
+                         'XML_TAG':"tl",
+                         'DATA_TYPE':"LIST_LEVEL_TEMP"}
+            dConfig['XML_ROADCAST_PREDICTION_EXTENDED_ITEMS'][\
+            'VALUE'].append(dTLDict)            
+
         # Selftest value
         if o == "--selftest":
             dConf['INIT_ROADCAST_START_DATE'] = "2004-01-30T20:00Z"
@@ -574,7 +583,15 @@ def set_default_value( ):
                                  'XML_TAG':"longitude",
                                  'DATA_TYPE':'REAL'},
                                 ]},
-
+                  
+                  'LIST_LEVEL_TEMP': \
+                      {'READ' :"",
+                       'WRITE':"metro_metro2dom_handler.write_list",
+                       'CHILD':[{'NAME':"LEV-TEMP",
+                                 'XML_TAG':"lev-temp",
+                                 'DATA_TYPE':'REAL'}
+                               ]},
+                  
                   'ROADLAYER_TYPE': \
                       {'READ'	:"metro_dom2metro_handler.read_roadlayer_type",
                        'WRITE':""},
@@ -1004,6 +1021,7 @@ def set_default_value( ):
                     'XML_TAG':"sst",
                     'DATA_TYPE':"REAL",
                     'PRECISION':2},
+
                    ],
 
          'FROM'     :CFG_INTERNAL,
@@ -1171,6 +1189,12 @@ def set_default_value( ):
         {'VALUE'   :False,
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("Use solar flux value from forecast")}
+
+    dConfig['TL'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Output levels (TL) in roadcast")}
+    
 
     # ---------------------------- observation ---------------------------------
 

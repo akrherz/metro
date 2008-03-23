@@ -199,6 +199,7 @@ def extract_data(lDefs, nodeItems):
     for dDef in lDefs:
         # Get the name and the type of the item
         sTag = dDef['XML_TAG']
+        
         sData_type_name = dDef['DATA_TYPE']
 
         if sData_type_name not in dData_type.keys():
@@ -427,3 +428,40 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
             exec sCode
 
             append_child(nodePrediction, nodeData)
+
+def get_handler(sHandlerType, dDefData, dAllDefData=None):
+
+    if dAllDefData == None:
+        # Retrieve the informations about the data types
+        dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
+        dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
+        dAllDefData = metro_util.join_dictionaries(dStandard_data_type,
+                                              dExtended_data_type)
+    
+    sTag = dDefData['NAME']
+    sXml_tag = dDefData['XML_TAG']
+    sData_type_name = dDefData['DATA_TYPE']
+
+    if sData_type_name not in dAllDefData.keys():
+        sMessage = _("Invalid data_type: (%s) for the following ") \
+                   % (sData_type_name) +\
+                   _("tag:(%s). Default data type will be used.") \
+                   % (sTag)
+        metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
+                                           sMessage)
+        sData_type_name = 'DEFAULT'
+                
+    # The data type needs the call of a function to create the node
+    sHandler = dAllDefData[sData_type_name][sHandlerType]
+
+    return sHandler
+
+def get_handler_import_code(sHandler):
+
+    # Creation of code needed to import the module in which we can find
+    #  the function used to create the node.
+    lFunctionPart = string.split(sHandler,'.')
+    sFunction_module = string.join(lFunctionPart[:-1],".")
+    sCode = "import " +sFunction_module
+
+    return sCode

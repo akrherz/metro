@@ -40,6 +40,7 @@ import string
 import metro_config
 from toolbox import metro_xml
 from toolbox import metro_date
+from toolbox import metro_util
 
 def write_string( domDoc, sXml_tag, sString ):
     return metro_xml.create_text_node(domDoc, sXml_tag, sString)
@@ -53,6 +54,47 @@ def write_real( domDoc, sXml_tag, iData ):
 def write_date( domDoc, sXml_tag, fDate ):
     sDate = metro_date.seconds2iso8601(fDate)
     return metro_xml.create_text_node(domDoc, sXml_tag, sDate)
+
+def write_list( domDoc, sXml_list_tag, lChildList, lValues ):
+    lValues=[0.2,3.4]
+
+
+    listNode = metro_xml.create_node( domDoc,  sXml_list_tag)
+#    print "domDoc=" + str(domDoc)
+#    print "xmltag=" + str(sXml_tag1)
+#    print "lChildList=" + str(lChildList)
+#    print "toto=" + str(lValues)
+
+    #
+    # Get handler
+    #
+    
+
+
+    dDef = lChildList[0]
+
+    sWriteHandler = metro_xml.get_handler('WRITE', dDef)
+    
+    sImportHandlerCode = metro_xml.get_handler_import_code(sWriteHandler)
+    
+    exec sImportHandlerCode
+
+    sXml_tag = dDef['XML_TAG']
+    
+    #
+    # Add value to listNode
+    #
+    for val in lValues:
+        # Construction of instruction doing the function call that will
+        #  create the node 
+        sCode = "nodeData = " + sWriteHandler + "(domDoc,sXml_tag,val)"
+
+        exec sCode
+
+        metro_xml.append_child(listNode,nodeData)
+
+    return listNode
+        
 
 def integer_to_string(iNumber, iWidth=0):
     sNumber = str(iNumber)
