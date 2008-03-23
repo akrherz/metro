@@ -199,30 +199,11 @@ def extract_data(lDefs, nodeItems):
     for dDef in lDefs:
         # Get the name and the type of the item
         sTag = dDef['XML_TAG']
-        
         sData_type_name = dDef['DATA_TYPE']
-
-        if sData_type_name not in dData_type.keys():
-            metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
-                                       _("Invalid data_type: (%s) for the ") \
-                                       % (sData_type_name) +\
-                                       _("following tag:(%s). Default data ")\
-                                       % (sTag) +\
-                                       _("type will be used.")) 
-            sData_type_name = 'DEFAULT'
-
-        # Information extraction 
-
-        # The given type needs the function call
-        #  to retrieve the data
-        sReadHandler = dData_type[sData_type_name]['READ']
-
-        # Creation of code necessary to import the module into which
-        #  we can find the function needed to extract the data
-        lFunctionPart = string.split(sReadHandler,'.')
-        sFunction_module = string.join(lFunctionPart[:-1],".")
-        sCode = "import " +sFunction_module
-        exec sCode
+        
+        sReadHandler = get_handler('READ', dDef, dData_type)
+        sImportHandlerCode = get_handler_import_code(sReadHandler)
+        exec sImportHandlerCode
 
         if dData_type[sData_type_name].has_key('CHILD'):
             # Construction of instruction doing the function call that will
@@ -325,26 +306,9 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
         sXml_tag = dDef['XML_TAG']
         sData_type_name = dDef['DATA_TYPE']
 
-        if sData_type_name not in dData_type.keys():
-            sMessage = _("Invalid data_type: (%s) for the following tag:(%s).") \
-                       % (sData_type_name, sTag)+\
-                       _(" Default data type will be used.")
-            metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
-                                       sMessage)
-            sData_type_name = 'DEFAULT'
-
-
-        # Node creation 
-
-        # The data type needs the call of a function to create the node
-        sWriteHandler = dData_type[sData_type_name]['WRITE']
-
-        # Creation of code needed to import the module in which we can find
-        #  the function used to create the node.
-        lFunctionPart = string.split(sWriteHandler,'.')
-        sFunction_module = string.join(lFunctionPart[:-1],".")
-        sCode = "import " +sFunction_module
-        exec sCode
+        sWriteHandler = get_handler('WRITE', dDef, dData_type)
+        sImportHandlerCode = get_handler_import_code(sWriteHandler)
+        exec sImportHandlerCode
 
         if dData_type[sData_type_name].has_key('CHILD'):
             # Construction of instruction doing the function call that will
@@ -390,26 +354,9 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
             sXml_tag = dDef['XML_TAG']
             sData_type_name = dDef['DATA_TYPE']
 
-            if sData_type_name not in dData_type.keys():
-                sMessage = _("Invalid data_type: (%s) for the following ") \
-                           % (sData_type_name) +\
-                           _("tag:(%s). Default data type will be used.") \
-                           % (sTag)
-                metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
-                                           sMessage)
-                sData_type_name = 'DEFAULT'
-
-            # Node creation 
-
-            # The data type needs the call of a function to create the node
-            sWriteHandler = dData_type[sData_type_name]['WRITE']
-
-            # Creation of code needed to import the module in which we can find
-            #  the function used to create the node.
-            lFunctionPart = string.split(sWriteHandler,'.')
-            sFunction_module = string.join(lFunctionPart[:-1],".")
-            sCode = "import " +sFunction_module
-            exec sCode
+            sWriteHandler = get_handler('WRITE', dDef)
+            sImportHandlerCode = get_handler_import_code(sWriteHandler)
+            exec sImportHandlerCode
 
             # Extraction of the data from the matrix
             val = npData[metro_data_object.index_of_matrix_col(sTag)]
