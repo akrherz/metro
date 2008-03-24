@@ -33,6 +33,7 @@
 #
 #
 
+
 import numpy
 
 import metro_logger
@@ -102,6 +103,11 @@ class Metro_data:
 
         self.lMatrix_col_name = self.lMatrix_std_col_name +\
                                 self.lMatrix_ext_col_name
+
+        self.lMatrix_col_usage = []
+
+        for i in range(0,len(self.lMatrix_col_name)):
+            self.lMatrix_col_usage.append([i])
 
 
     def set_readonly( self, bIs_read_only ):
@@ -195,15 +201,8 @@ class Metro_data:
         npCol (numpy array): the array corresponding to this column.
         
         """
-
-        if sCol_name in self.lMatrix_col_name:
-            iCol = self.lMatrix_col_name.index(sCol_name)
-        else:
-            sMatrix_col_list = metro_util.list2string(self.lMatrix_col_name)
-            sError = _("%s is not a valid column name. Valid column name ") \
-                     % (sCol_name) + \
-                     _("are: %s") % (sMatrix_col_list)
-            raise ERROR_METRO_DATA, sError
+        
+        iCol = self.index_of_matrix_col(sCol_name)
         
         if not self.is_readonly():
             if iCol > len(self.npMatrix[0,:]):
@@ -213,7 +212,7 @@ class Metro_data:
             elif len(self.npMatrix[:,iCol]) != len(npCol):
                 sLengthError = _("Array does not have the right lenght.\n") + \
                                _("Array length: %d \n") % len(npCol) + \
-                               _("Matrix length: %d \n") % len(self.npMatrix[:,icol])
+                               _("Matrix length: %d \n") % len(self.npMatrix[:,iCol])
                 raise  ERROR_METRO_DATA, sLengthError
             else:
                 self.npMatrix[:,iCol] = npCol
@@ -324,16 +323,7 @@ class Metro_data:
         Descriptions: Get a copy of a matrix column identified by sCol_name.
         """
 
-        if sCol_name in self.lMatrix_col_name:
-            iCol = self.lMatrix_col_name.index(sCol_name)
-        else:
-            sMatrix_col_list = metro_util.list2string(self.lMatrix_col_name)
-            sError = _("%s is not a valid column name. Valid column name ") \
-                     % (sCol_name) + \
-                     _("are: %s") % (sMatrix_col_list)
-            raise ERROR_METRO_DATA, sError
-
-        iCol = self.lMatrix_col_name.index(sCol_name)
+        iCol = self.index_of_matrix_col(sCol_name)
 
         return self.npMatrix[:,iCol].copy()
 
