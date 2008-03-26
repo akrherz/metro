@@ -83,11 +83,11 @@ def get_metro_root_path( ):
     Return the root path of METRo package.
     """
     lPath = string.split(sys.path[0],"/")
-    if lPath[len(lPath)-1] == "frontend":
+    if lPath[-1] == "frontend":
         sRoot_path = string.join(lPath[:-2],"/")
-    elif lPath[len(lPath)-1] == "bin":
+    elif lPath[-1] == "bin":
         sRoot_path = string.join(lPath[:-1],"/")
-    elif lPath[len(lPath)-1] == "metro":
+    elif lPath[-1] == "metro":
         sRoot_path = string.join(lPath[:-3],"/")
     else: # Check if metro_util is used as a library
         lPythonPath =  string.split(os.environ['PYTHONPATH'], ":")
@@ -103,7 +103,7 @@ def get_metro_root_path( ):
                  _("Aborting execution of METRo.\n")
         print sError
         sys.exit(1)
-    
+   
     return sRoot_path
 
 def get_exec_root_path( ):
