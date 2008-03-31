@@ -171,8 +171,8 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
             fCurrentTime = dElement_Array['HH'][i]*3600
 
             # Forecast at every 20 minutes, i.e. 1200 seconds  
-            lRCvect = [0]*rc_subsampled.get_nb_matrix_col()
-            lMatrix_line = [None]*rc_subsampled.get_nb_matrix_col()
+            lRCvect = [0]*rc_subsampled.get_real_nb_matrix_col()
+            lMatrix_line = [None]*rc_subsampled.get_real_nb_matrix_col()
 
             # if current time is a 20 minute interval
             # and roadcast time is >= roadcast start date
@@ -180,8 +180,22 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
                    dElement_Array['ROADCAST_TIME'][i] >= fStartDate :
 
                 for sElement in dElement_Array.keys():
-                    lMatrix_line[rc_subsampled.index_of_matrix_col(sElement)] = \
-                      dElement_Array[sElement][i]
+
+                    lIndexList = rc_subsampled.index_of_matrix_col(sElement)
+                    if not rc_subsampled.is_multi_col(sElement) :
+                        # single col
+                        lMatrix_line[rc_subsampled.index_of_matrix_col(sElement)[0]] = \
+                            dElement_Array[sElement][i]                        
+                    else:
+                        # multicol
+                        # FFTODO optimisation could probably be done here
+                        
+                        iCol = 0
+                        for j in lIndexList:
+                            lMatrix_line[j] = \
+                                dElement_Array[sElement][iCol][i]
+                            iCol +=1
+                            
                 # Ugly stuff.  Don't know. No clue about the 600.
                 for j in range(int(max(1,i-600/metro_constant.fTimeStep)),\
                                int(min(iNb_timesteps,i+600/\
@@ -197,7 +211,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
                 nTop = max(lRCvect)
                 nRCcode = lRCvect.index(nTop)+1
 
-                lMatrix_line[rc_subsampled.index_of_matrix_col('RC')] = nRCcode
+                lMatrix_line[rc_subsampled.index_of_matrix_col('RC')[0]] = nRCcode
 
                 # Adding the new line in the matrix
                 rc_subsampled.append_matrix_row(lMatrix_line)

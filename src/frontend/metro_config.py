@@ -397,14 +397,28 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
         if o == "--level":
             dConfig['TL']['VALUE'] = True
-            dTLDict= {'NAME':"TL",
-                         'XML_TAG':"tl",
-                         'DATA_TYPE':"LIST_LEVEL_TEMP"}
+
+            dVlHeader = {'NAME':"VERTICAL_LEVELS",
+                         'XML_TAG':"vertical-levels",
+                         'DATA_TYPE':"VERTICAL_LEVELS"}
+            dConfig['XML_ROADCAST_HEADER_EXTENDED_ITEMS'][\
+            'VALUE'].append(dVlHeader)
+            
+            dTL= {'NAME':"TL",
+                  'XML_TAG':"tl",
+                  'DATA_TYPE':"LIST_LEVEL_TEMP"}
             dConfig['XML_ROADCAST_PREDICTION_EXTENDED_ITEMS'][\
-            'VALUE'].append(dTLDict)            
+            'VALUE'].append(dTL)
+
+
+            
 
         # Selftest value
         if o == "--selftest":
+            print str(opts)
+            
+            opts.append(("--level",""))
+                        
             dConf['INIT_ROADCAST_START_DATE'] = "2004-01-30T20:00Z"
 
             dConf['FILE_FORECAST_IN_FILENAME'] = \
@@ -589,8 +603,19 @@ def set_default_value( ):
                        'WRITE':"metro_metro2dom_handler.write_list",
                        'CHILD':[{'NAME':"LEV-TEMP",
                                  'XML_TAG':"lev-temp",
-                                 'DATA_TYPE':'REAL'}
+                                 'DATA_TYPE':'REAL',
+                                 'PRECISION':2}
                                ]},
+                  
+                  'VERTICAL_LEVELS': \
+                      {'READ' :"",
+                       'WRITE':"metro_metro2dom_handler.write_list",
+                       'CHILD':[{'NAME':"DEPTH",
+                                 'XML_TAG':"depth",
+                                 'DATA_TYPE':'REAL',
+                                 'PRECISION':2}
+                               ]},
+
                   
                   'ROADLAYER_TYPE': \
                       {'READ'	:"metro_dom2metro_handler.read_roadlayer_type",
@@ -917,7 +942,7 @@ def set_default_value( ):
                       {'NAME':"FIRST_ROADCAST",
                        'XML_TAG':"first-roadcast",
                        'DATA_TYPE':"STRING"},
-
+                     
                       ],
 
          'FROM'     :CFG_INTERNAL,

@@ -321,8 +321,11 @@ class Metro_model(Metro_module):
             'XML_ROADCAST_PREDICTION_STANDARD_ITEMS')
         lExtended_items = metro_config.get_value( \
             'XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')        
-        lItems = lStandard_items + lExtended_items
+        lItems = lStandard_items # + lExtended_items
+
+        #FFTODO append all lExtended_items to metrodata        
         roadcast = metro_data.Metro_data(lItems)
+        
         # Extraction of forecast data used to create the roadcasts.
         wf_data = forecast.get_interpolated_data()
                 
@@ -361,11 +364,18 @@ class Metro_model(Metro_module):
         lBB = (macadam.get_bb())[:iNb_timesteps]
         lFP = (macadam.get_fp())[:iNb_timesteps]
         lSST =  (macadam.get_sst())[:iNb_timesteps]
-        # Temperature of levels under the ground.
-        nNbrVerticalLevel = macadam.get_nbr_levels()
-        lDepth = (macadam.get_depth())[:nNbrVerticalLevel]
-        lLT = (macadam.get_lt())[:nNbrVerticalLevel*iNb_timesteps]
 
+        if metro_config.get_value('TL') == True:
+            # Temperature of levels under the ground.
+            nNbrVerticalLevel = macadam.get_nbr_levels()
+            lDepth = (macadam.get_depth())[:nNbrVerticalLevel]
+            lTmpTL = (macadam.get_lt())[:nNbrVerticalLevel*iNb_timesteps]
+            lTL = []        
+            for i in range(0,iNb_timesteps):
+                begin = i * nNbrVerticalLevel
+                end = begin + nNbrVerticalLevel
+                lTL.append(lTmpTL[begin:end])
+           
         # Adding the informations to the header
         roadcast.set_header_value('VERSION',sRoadcast_version)
         roadcast.set_header_value('ROAD_STATION',sRoadcast_station)
@@ -373,6 +383,9 @@ class Metro_model(Metro_module):
         roadcast.set_header_value('LATITUDE', station.get_header()['COORDINATE'][0])
         roadcast.set_header_value('LONGITUDE', station.get_header()['COORDINATE'][1])
         roadcast.set_header_value('FILETYPE','roadcast')
+
+        if metro_config.get_value('TL') == True:
+            roadcast.set_header_value('VERTICAL_LEVELS',lDepth)
   
 
         # TODO MT: Le +30 est la pour que l'output soit au bon moment.
@@ -391,7 +404,7 @@ class Metro_model(Metro_module):
         npCC = wf_data.get_matrix_col('CC')[:iNb_timesteps]
 
 
-        roadcast.init_matrix(iNb_timesteps, roadcast.get_nb_matrix_col())
+        roadcast.init_matrix(iNb_timesteps, roadcast.get_real_nb_matrix_col())
 
         # Data added to the roadcast matrix
         roadcast.set_matrix_col('RA', lRA)
@@ -415,7 +428,11 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('FP', lFP)
         roadcast.set_matrix_col('CC', npCC)
         roadcast.set_matrix_col('SST', lSST)
-      
+
+        if metro_config.get_value('TL') == True:
+            roadcast.append_matrix_multiCol('TL', lTL)
+
+        
         # Creation of the object Metro_data_collection for the roadcast
         lStandard_attributes = metro_config.get_value( \
             'DATA_ATTRIBUTE_ROADCAST_STANDARD')

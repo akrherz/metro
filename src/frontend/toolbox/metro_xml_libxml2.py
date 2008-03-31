@@ -151,6 +151,9 @@ class Metro_xml_libxml2:
         doc = ctxt.doc()
         doc.freeDoc()
 
+    #------------------
+    # creation d'un DOM
+    #------------------
     
     def create_dom( self, sDoc_name ):
         """
@@ -175,6 +178,9 @@ class Metro_xml_libxml2:
     
     def create_node( self, domDoc, sNode_name ):
         return libxml2.newNode(sNode_name)
+
+    def set_attribute( self, node, sAttributeName, sAttributeValue ):
+        node.setProp(sAttributeName,  sAttributeValue)
     
     def append_child( self, nodeParent, nodeChild ):
         nodeParent.addChild(nodeChild)

@@ -67,7 +67,7 @@ class Metro_data_collection_output(Metro_data_collection):
         self.subsampled_data = copy.deepcopy(data)
         self.subsampled_data.init_matrix(0,
                                          self.subsampled_data.\
-                                         get_nb_matrix_col())
+                                         get_real_nb_matrix_col())
 
 
     def set_raw_data( self, data ):

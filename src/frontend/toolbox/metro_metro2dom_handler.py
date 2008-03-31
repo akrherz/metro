@@ -56,27 +56,15 @@ def write_date( domDoc, sXml_tag, fDate ):
     return metro_xml.create_text_node(domDoc, sXml_tag, sDate)
 
 def write_list( domDoc, sXml_list_tag, lChildList, lValues ):
-    lValues=[0.2,3.4]
-
-
+    
     listNode = metro_xml.create_node( domDoc,  sXml_list_tag)
-#    print "domDoc=" + str(domDoc)
-#    print "xmltag=" + str(sXml_tag1)
-#    print "lChildList=" + str(lChildList)
-#    print "toto=" + str(lValues)
 
     #
     # Get handler
     #
-    
-
-
     dDef = lChildList[0]
-
     sWriteHandler = metro_xml.get_handler('WRITE', dDef)
-    
     sImportHandlerCode = metro_xml.get_handler_import_code(sWriteHandler)
-    
     exec sImportHandlerCode
 
     sXml_tag = dDef['XML_TAG']
@@ -84,6 +72,7 @@ def write_list( domDoc, sXml_list_tag, lChildList, lValues ):
     #
     # Add value to listNode
     #
+    num=0
     for val in lValues:
         # Construction of instruction doing the function call that will
         #  create the node 
@@ -91,8 +80,10 @@ def write_list( domDoc, sXml_list_tag, lChildList, lValues ):
 
         exec sCode
 
+        metro_xml.set_attribute(nodeData,"num",str(num))
         metro_xml.append_child(listNode,nodeData)
 
+        num+=1
     return listNode
         
 

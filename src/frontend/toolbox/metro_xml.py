@@ -287,6 +287,9 @@ def create_text_node( domDoc, sNode_name, sNode_value ):
 def append_child( nodeParent, nodeChild ):
     metro_xml_lib.append_child(nodeParent, nodeChild)
 
+def set_attribute( node, sAttributeName, sAttributeValue ):
+    metro_xml_lib.set_attribute(node, sAttributeName, sAttributeValue)
+
 def write_to_file( domDoc, sFilename ):
     metro_xml_lib.write_xml_file(domDoc, sFilename)
 
@@ -359,7 +362,18 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
             exec sImportHandlerCode
 
             # Extraction of the data from the matrix
-            val = npData[metro_data_object.index_of_matrix_col(sTag)]
+            lIndexList = metro_data_object.index_of_matrix_col(sTag)
+            if not metro_data_object.is_multi_col(sTag):
+                # single col
+                val = npData[lIndexList[0]]
+            else:
+                # multi col
+                # FFTODO good candidate for optimisation
+                
+                val = []
+                
+                for i in lIndexList:
+                    val.append(npData[i])
             
             if dData_type[sData_type_name].has_key('CHILD'):
                 # Construction of instruction doing the function call that will

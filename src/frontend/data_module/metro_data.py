@@ -67,6 +67,21 @@ class Metro_data:
              ex 'AT', 'FORECAST_TIME', etc.
              Numpy are used to represent the matrix.
 
+             A column is identified by a name. But a name can reference
+             several real column in the matrix. The attribute lMatrix_col_usage
+             store the column index of each column name.
+
+             Mutli col can only be in extended data types.
+
+             This is how it work:
+             AT = 1 column
+             FORECAST_TIME = 1 column 
+             TL = 4 column
+             
+             self.lMatrix_col_name = ['AT', 'FORECAST_TIME', 'TL']
+             self.lMatrix_col_usage = [[0], [1], [2,3,4,5]]
+             
+
     It is possible to prevent modification of the data by using the read_only
     functionnality provided by the class.
 
@@ -201,9 +216,10 @@ class Metro_data:
         npCol (numpy array): the array corresponding to this column.
         
         """
-        
-        iCol = self.index_of_matrix_col(sCol_name)
-        
+
+        # FFTODO set multi col
+        iCol = self.index_of_matrix_col(sCol_name)[0]
+
         if not self.is_readonly():
             if iCol > len(self.npMatrix[0,:]):
                sOutOfBoundError = _("Array does not contain this indice: %d") \
@@ -261,11 +277,65 @@ class Metro_data:
         if not self.is_readonly():
             if sCol_name not in self.lMatrix_col_name:
                 self.lMatrix_col_name.append(sCol_name)
+                if self.lMatrix_col_usage == []:
+                    nextCol = 0
+                else:
+                    nextCol = self.lMatrix_col_usage[-1][-1] + 1
+                    
+                self.lMatrix_col_usage.append(range(nextCol,nextCol+1))
                 self.lMatrix_ext_col_name.append(sCol_name)
+                
 
                 # Append column in the matrix
                 self.npMatrix = self.__append_col_to_matrix(self.npMatrix,\
                                                             npData_col)
+            else:
+                sError = _("Cant append column '%s'.%s") % (sCol_name,
+                                                            MESSAGE_COL_EXIST)
+                raise ERROR_METRO_DATA, sError
+
+        else:
+            metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                       MESSAGE_READONLY)
+            raise ERROR_METRO_DATA, MESSAGE_READONLY
+
+    def append_matrix_multiCol( self, sCol_name, lColOfList ):
+        """
+        Name:         append_matrix_col
+
+        Parameters:   I sCol_name  : column name
+                      I npData_col : column to insert in the matrix.
+  
+        Returns:      0 if success
+
+        Descriptions:  Append a new column of data to the matrix. Matix column
+                       will be accessible with the name specified by sCol_name.
+                       Column will be treated as extended
+        
+        """
+        if not self.is_readonly():
+            if sCol_name not in self.lMatrix_col_name:
+                self.lMatrix_col_name.append(sCol_name)
+                if self.lMatrix_col_usage == []:
+                    nextCol = 0
+                else:
+                    nextCol = self.lMatrix_col_usage[-1][-1] + 1
+
+                nbCol = len(lColOfList[0])
+                    
+                self.lMatrix_col_usage.append(range(nextCol,nextCol+nbCol))
+                self.lMatrix_ext_col_name.append(sCol_name)
+                
+
+                # Append column in the matrix
+                for i in range(0,nbCol):
+                    colToInsert = []
+                    for col in lColOfList:
+                        colToInsert.append(col[i])
+                    
+                    self.npMatrix = self.__append_col_to_matrix(self.npMatrix,\
+                                                                colToInsert)
+                    
             else:
                 sError = _("Cant append column '%s'.%s") % (sCol_name,
                                                             MESSAGE_COL_EXIST)
@@ -312,6 +382,9 @@ class Metro_data:
         return self.npMatrix.copy()
 
 
+    def is_multi_col( self, sCol_name ):
+        return len(self.index_of_matrix_col(sCol_name)) > 1
+
     def get_matrix_col( self, sCol_name ):
         """
         Name:         get_matrix_col
@@ -323,14 +396,26 @@ class Metro_data:
         Descriptions: Get a copy of a matrix column identified by sCol_name.
         """
 
-        iCol = self.index_of_matrix_col(sCol_name)
+        # FFTODO get multi col
+        if self.is_multi_col(sCol_name):
+            begin = self.index_of_matrix_col(sCol_name)[0]
+            end = self.index_of_matrix_col(sCol_name)[-1]
+            returnList = []
+            for i in range(begin,end+1):
+                returnList.append(self.npMatrix[:,i].copy())
+            return returnList
+        else:
+            iCol = self.index_of_matrix_col(sCol_name)[0]
 
-        return self.npMatrix[:,iCol].copy()
+            return self.npMatrix[:,iCol].copy()
+
 
     def index_of_matrix_col( self, sCol_name ):
         """Get index value of a matrix column identified by sCol_name."""
         if sCol_name in self.lMatrix_col_name:
-            return self.lMatrix_col_name.index(sCol_name)
+            index = self.lMatrix_col_name.index(sCol_name)
+            
+            return self.lMatrix_col_usage[index]
         else:
             sMatrix_col_list = metro_util.list2string(self.lMatrix_col_name)
             sError = _("%s is not a valid column name. Valid column name ") \
@@ -345,6 +430,13 @@ class Metro_data:
     def get_nb_matrix_col( self ):
         """Get number of matrix column."""
         return len(self.lMatrix_col_name)
+
+    def get_real_nb_matrix_col( self ):
+        """Get real number of matrix column."""
+        if self.lMatrix_col_usage == []:
+            return 0
+        else:
+            return self.lMatrix_col_usage[-1][-1] + 1
 
     
     def del_matrix_row(self, npIndiceToRemove):

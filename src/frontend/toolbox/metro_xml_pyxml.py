@@ -145,6 +145,11 @@ class Metro_xml_pyxml:
     
     def create_node( self, domDoc, sNode_name ):
         return domDoc.createElement(sNode_name)
+
+    def set_attribute( self, node, sAttributeName, sAttributeValue ):
+        pass
+        # FFTODO code that operation for pyxml
+        #node.setProp(sAttributeName,  sAttributeValue)
     
     def append_child( self, nodeParent, nodeChild ):
         nodeParent.appendChild(nodeChild)
