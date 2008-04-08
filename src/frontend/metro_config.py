@@ -613,7 +613,7 @@ def set_default_value( ):
                        'CHILD':[{'NAME':"DEPTH",
                                  'XML_TAG':"depth",
                                  'DATA_TYPE':'REAL',
-                                 'PRECISION':2}
+                                 'PRECISION':3}
                                ]},
 
                   

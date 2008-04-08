@@ -238,6 +238,46 @@ class Metro_data:
             raise ERROR_METRO_DATA, MESSAGE_READONLY
 
 
+    def set_matrix_multiCol( self, sCol_name, lColOfList ):
+        """
+        Name:         set_matrix_col
+
+        Parameters:   I sCol_name  : column name
+                      I npData_col : column to insert in the matrix.
+  
+        Returns:      0 if success
+
+        Descriptions:  Append a new column of data to the matrix. Matix column
+                       will be accessible with the name specified by sCol_name.
+                       Column will be treated as extended
+        
+        """
+
+        # FFTODO set multi col
+        lCol_list = self.index_of_matrix_col(sCol_name)
+
+        if not self.is_readonly():
+            if lCol_list[-1] > len(self.npMatrix[0,:]):
+               sOutOfBoundError = _("Array does not contain this indice: %s") \
+                                  % str(lCol_list)
+               raise ERROR_METRO_DATA, sOutOfBoundError
+           # FFTODO need to activate that check
+#            elif len(self.npMatrix[:,lColOfList[0]]) != len(lColOfList[0]):
+#                sLengthError = _("Array does not have the right lenght.\n") + \
+#                               _("Array length: %d \n") % len(lColOfList[0]) + \
+#                               _("Matrix length: %d \n") % len(self.npMatrix[:,lColOfList[0]])
+#                raise  ERROR_METRO_DATA, sLengthError
+            else:
+                iInCol = 0
+                for iCol in lCol_list:
+                    self.npMatrix[:,iCol] = lColOfList[iInCol]
+                    iInCol+=1
+        else:
+            metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                       MESSAGE_READONLY)
+            raise ERROR_METRO_DATA, MESSAGE_READONLY  
+
+
     def append_matrix_row( self, lData_row ):
         """
         Name:         append_matrix_row

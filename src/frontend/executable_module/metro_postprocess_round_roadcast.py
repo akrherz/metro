@@ -64,14 +64,47 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
             metro_config.get_value('DEFAULT_ROADCAST_PREDICTION_PRECISION')
 
         if roadcast_data != None:
-            self.__round_roadcast(roadcast_data.get_subsampled_data())
+            self.__round_roadcast_header(roadcast_data.get_subsampled_data())
+            self.__round_roadcast_data(roadcast_data.get_subsampled_data())            
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
                                        _("No roadcast!"))
 
         pRoadcast.set_data_collection(roadcast_data)
 
-    def __round_roadcast( self, roadcast_data):
+
+    def __round_roadcast_header( self, roadcast):
+        if 'VERTICAL_LEVELS' in roadcast.get_header():
+            # Get the default value for the accurary of "float" of the roadcast
+            iDefault_precision = \
+                metro_config.get_value('DEFAULT_ROADCAST_PREDICTION_PRECISION')
+
+            dData_types = metro_config.get_value('XML_DATATYPE_STANDARD')
+            dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
+
+            dData_types.update(dExtended_data_type)
+            
+            sCurrent_data_type = 'VERTICAL_LEVELS'
+
+            # get precision
+            if 'CHILD' in dData_types[sCurrent_data_type]:
+                if len(dData_types[sCurrent_data_type]['CHILD']) == 1 and \
+                   dData_types[sCurrent_data_type]['CHILD'][0]['DATA_TYPE'] == 'REAL':
+                    # If the accuracy have been specified: use it.
+                    # Otherwhise use the default value for the roadcast.
+                    if 'PRECISION' in dData_types[sCurrent_data_type]['CHILD'][0]:
+                        iPrecision = dData_types[sCurrent_data_type]['CHILD'][0]['PRECISION']
+                    else:
+                        iPrecision = iDefault_precision
+                    
+            lLevels = roadcast.get_header_value('VERTICAL_LEVELS')
+
+            lRounded = [round(x,iPrecision) for x in lLevels]
+
+            roadcast.set_header_value('VERTICAL_LEVELS',lRounded)
+
+
+    def __round_roadcast_data( self, roadcast_data):
 
         # Get the matrix columns definition
         lStandard_roadcast = metro_config.get_value( \
@@ -84,10 +117,17 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
         iDefault_precision = \
             metro_config.get_value('DEFAULT_ROADCAST_PREDICTION_PRECISION')
 
+
+        dData_types = metro_config.get_value('XML_DATATYPE_STANDARD')
+        dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
+
+        dData_types.update(dExtended_data_type)
+
         # Process of each column of roadcast
         iItem_id = 0
         for dRoadcast_item in lRoadcast_items:
 
+            sCurrent_data_type = dRoadcast_item['DATA_TYPE']
             # If this column contains float data
             if dRoadcast_item['DATA_TYPE'] == 'REAL':
 
@@ -102,6 +142,19 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
                 npCol = roadcast_data.get_matrix_col(dRoadcast_item['NAME'])
                 npCol = numpy.around(npCol,iPrecision)
                 roadcast_data.set_matrix_col(dRoadcast_item['NAME'], npCol)
-                
-            iItem_id = iItem_id + 1
-        
+
+            # If this column as only one child who is a REAL: its probably a list of float
+            elif 'CHILD' in dData_types[sCurrent_data_type]:
+                if len(dData_types[sCurrent_data_type]['CHILD']) == 1 and \
+                   dData_types[sCurrent_data_type]['CHILD'][0]['DATA_TYPE'] == 'REAL':
+                    # If the accuracy have been specified: use it.
+                    # Otherwhise use the default value for the roadcast.
+                    if 'PRECISION' in dData_types[sCurrent_data_type]['CHILD'][0]:
+                        iPrecision = dData_types[sCurrent_data_type]['CHILD'][0]['PRECISION']
+                    else:
+                        iPrecision = iDefault_precision
+
+                    npCol = roadcast_data.get_matrix_col(dRoadcast_item['NAME'])
+            
+                    npCol = numpy.around(npCol,iPrecision)
+                    roadcast_data.set_matrix_multiCol(dRoadcast_item['NAME'], npCol)
