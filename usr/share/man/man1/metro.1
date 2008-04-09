@@ -24,6 +24,12 @@ Optionnal. Use this argument if you want to provide the solar flux in the atmosp
 .B \-\-use-infrared-forecast
 Optionnal. Use this argument if you want to provide the infra-fred flux in the atmospheric forecast file instead of a theoretical flux based on cloud cover. The tag for infra-red flux in forecast file is '<ir>'.
 .TP
+.B \-\-output\-subsurface-\levels
+Put in the output roadcast all the temperature for the subsurfaces levels, 19 levels for roads or a uniform grid at every cm for bridges. 
+.RS
+WARNING: Using this option slow down METRo by a factor of 2.
+.RE
+.TP
 .B \-\-input\-forecast filename
 Set where is the atmosperic forecast file.
 .TP
@@ -47,11 +53,21 @@ Set the path of the metro log file.
 .TP
 .B \-\-verbose\-level level
 Select the verbose level of the logged messages of metro.  
-.br    1- No log is made of any message
-.br    2- Minimal level 
-.br    3- Normal (default)
-.br    4- Full
-.br    5- Debug
+.RS
+1- No log is made of any message
+.RE
+.RS
+2- Minimal level 
+.RE
+.RS
+3- Normal (default)
+.RE
+.RS
+4- Full
+.RE
+.RS
+5- Debug
+.RE
 .TP
 .B \-\-selftest
 Execute a test with default files provided with metro.  The default command line is:
