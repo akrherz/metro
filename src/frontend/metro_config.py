@@ -94,7 +94,7 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "config=","generate-config=","log-file=","verbose-level=",
                      "selftest", "silent", "roadcast-start-date=", "lang=",
                      "use-solarflux-forecast", "use-infrared-forecast",
-                     "level"]
+                     "output-subsurface-levels"]
 
 
 
@@ -395,7 +395,7 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             'VALUE'].append(dSFDict)
 
 
-        if o == "--level":
+        if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
 
             dVlHeader = {'NAME':"VERTICAL_LEVELS",
@@ -417,7 +417,7 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
         if o == "--selftest":
             print str(opts)
             
-            opts.append(("--level",""))
+            opts.append(("--output-subsurface-levels",""))
                         
             dConf['INIT_ROADCAST_START_DATE'] = "2004-01-30T20:00Z"
 
