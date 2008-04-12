@@ -68,8 +68,8 @@ METRO_CONFIG_GETTEXT_PACKAGE  = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # Constant definition 
-CFG_METRO_VERSION="3.1.0"
-CFG_METRO_DATE="2007-09-03"
+CFG_METRO_VERSION="3.2.0"
+CFG_METRO_DATE="2008-04-08"
 
 
 # Origin of the value (command line, config file, hardcoded value,
@@ -534,7 +534,7 @@ def set_default_value( ):
          'COMMENTS':_("roadcast filename")}
 
     dConfig['FILE_ROADCAST_CURRENT_VERSION'] = \
-        {'VALUE'   :"1.5",
+        {'VALUE'   :"1.6",
          'FROM'    :CFG_INTERNAL,
          'COMMENTS':_("current version for roadcast file")}
 
