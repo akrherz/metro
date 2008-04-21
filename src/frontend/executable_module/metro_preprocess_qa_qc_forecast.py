@@ -89,6 +89,11 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
             if sElement.find('TIME') > 0:
                 continue
             npElement = wf_controlled_data.get_matrix_col(sElement)
+            # In the case of 'CC', only return an error if both SF and IR
+            #  are not given
+            if sElement is 'CC':
+                if metro_config.get_value('SF') and metro_config.get_value('IR'):
+                    continue
             for fElement in npElement:
                 if fpconst.isNaN(fElement):
                     if wf_controlled_data.is_standardCol(sElement):
@@ -102,7 +107,7 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
                     else:
                         sMessage = _("A value for the extended element <%s> is invalid") % (sElement.lower())+\
                                    _(" in the file\n'%s'") %  (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
-                        metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,\
+                        metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
                                                    sMessage)
 
 
