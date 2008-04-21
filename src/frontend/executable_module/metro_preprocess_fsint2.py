@@ -102,6 +102,8 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         # IR
         self.__set_ir(forecast_data.get_controlled_data(),\
                      forecast_data.get_interpolated_data() )
+        self.__set_cc(forecast_data.get_controlled_data(),\
+                      forecast_data.get_interpolated_data() )
         pForecast.set_data_collection(forecast_data)
         pStation.set_data(station_data)        
 
@@ -110,7 +112,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                         wf_interpolated_data,
                         station_data):
         """
-        Set the attributes needed by this clas
+        Set the attributes needed by this class.
         
         Parameters:
         wf_controlled_data (metro_data) : controlled data.  Read-only
@@ -210,6 +212,24 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         wf_controlled_data.append_matrix_col('SF', npSF)
         wf_interpolated_data.append_matrix_col('SF',  npSF2)
 
+
+    def __set_cc(self, wf_controlled_data, wf_interpolated_data):
+        """
+        In the case that SF and IR are given, put the values of CC to -1.
+           
+        Parameters:
+        wf_controlled_data (metro_data) : controlled data. Read-only
+        """
+        if metro_config.get_value('SF') and metro_config.get_value('IR'):
+            npTime = wf_controlled_data.get_matrix_col('Time') 
+            npCloudOctal = wf_controlled_data.get_matrix_col('CC')
+            nLength = len(npCloudOctal)
+            npCloud = numpy.ones(nLength) * (-1)
+            npCloud2  = metro_util.interpolate(npTime, npCloud)
+            
+            wf_controlled_data.set_matrix_col('CC', npCloud)
+            wf_interpolated_data.set_matrix_col('CC',  npCloud2)
+        
 
     def __set_sunrise_sunset(self, wf_controlled_data):
         """
