@@ -381,7 +381,7 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             dConfig['IR']['VALUE'] = True
             # Add extended item based on options in command line.
             dIRDict = {'NAME':"IR",
-                       'XML_TAG':"IR",
+                       'XML_TAG':"ir",
                        'DATA_TYPE':"REAL"}
             dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
             'VALUE'].append(dIRDict)
