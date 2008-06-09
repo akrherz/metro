@@ -52,10 +52,11 @@
       INTEGER npInput(0:nLine*nColumn-1) 
       INTEGER nppOutput(0:nLine-1,0:nColumn-1) 
       INTEGER  i,j
+      
+      WRITE(*,*) "asdf"
 
-
-      DO i=0, nLine-1
-         DO j=0, nColumn-1
+      DO j=0, nColumn-1
+         DO i=0, nLine-1
             nppOutput(i,j) = npInput(i*nColumn + j)
          END DO
       END DO
