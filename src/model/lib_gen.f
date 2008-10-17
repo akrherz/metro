@@ -51,7 +51,8 @@
       INTEGER Nl, n
       REAL DT
       INTEGER DTMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
+      REAL PADDING
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, PADDING, n
 
 ***                 ***
 *     DEFINITIONS     *

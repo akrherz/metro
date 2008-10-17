@@ -71,7 +71,8 @@
 *     les observations (48h + un coussin = 60h)
 *     DT -> pas de temps du modele de bilan energetique
 *     n -> nombre maximal de niveaux des grilles dans le sol
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
+      REAL PADDING
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, PADDING, n
 
       REAL TTT,PRS,QQQ,EEE,TVI,QST
       REAL FOEW,FODLE,FOQST,FODQS,FOEFQ,FOQFE,FOTVT,FOTTV,FOHR

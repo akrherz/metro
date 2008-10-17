@@ -73,6 +73,13 @@ else
 fi
 echo "    Python include path = "$PYTHON_INC
 
+PLATFORM=`python -c "import platform;print platform.architecture()[0]"`
+if  [ $PLATFORM = "64bit" ]; then
+    FORTRAN_DEFAULT_INTEGER="-fdefault-integer-8"
+    echo "    64 bit architecture detected"
+else
+    FORTRAN_DEFAULT_INTEGER=""
+fi
 
 echo "    Using SWIG"
 echo '    macadam.i :'
@@ -98,7 +105,7 @@ if [ -z $FC ]; then
 fi
 
 echo "    Fortran compilation"
-$FC -Wall -Wsurprising -W -c -fPIC lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
+$FC -Wall -Wsurprising -W -c -fPIC  $FORTRAN_DEFAULT_INTEGER lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
 
 
 echo "    Link"

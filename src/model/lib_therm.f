@@ -198,7 +198,8 @@
       INTEGER Nl, n
       REAL DT
       INTEGER DTMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
+      REAL PADDING
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, PADDING, n
 ***                 ***
 *     DEFINITIONS     *
 ***                 ***
@@ -258,7 +259,8 @@
       INTEGER Nl, n
       REAL DT
       INTEGER DTMAX
-      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, n
+      REAL PADDING
+      COMMON /BUFFER_SIZE/ DTMAX, Nl, DT, PADDING, n
 *     MEA -> Water quantity before runoff. MEA(1) : liquid 
 *      MEA(2): solid
       REAL MEA(2) 
