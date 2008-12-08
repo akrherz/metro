@@ -36,7 +36,8 @@
 """
 Name:	       Metro_preprocess_interpol_observation
 Description: Interplation of data in order to be at every 30 seconds.
-               Solar flux is a particular case.
+               Solar flux is a particular case and is handle in
+               metro_preprocess_fsint2.py .
 
 Author: Miguel Tremblay
 Date: August 2nd 2004
