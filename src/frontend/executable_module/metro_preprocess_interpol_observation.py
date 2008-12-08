@@ -159,7 +159,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         """
         Name: __interpolate_AT
 
-        Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
+        Parameters:[I] metro_data ro_controlled_data : controlled data. Read-only
         [I] metro_data ro_interpolated_data : container of the interpolated
         data.
 
@@ -176,55 +176,58 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         naAT = metro_util.interpolate(naTimeOrig, naAT)
         ro_interpolated_data.append_matrix_col('AT', naAT)
 
-####################################################
-# Name: __interpolate_TD
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#
-# Description: Does the interpolation of the dew point
-#
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 5th 2004
-#####################################################
+
+    # Dew point
     def __interpolate_TD(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_TD
+
+        Parameters:[I] metro_data ro_controlled_data : controlled data.Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                                                         interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+
+        Description: Does the interpolation of the dew point
+
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 5th 2004
+        """
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naTD = ro_controlled_data.get_matrix_col('TD')
         naTD = metro_util.interpolate(naTimeOrig, naTD)
         ro_interpolated_data.append_matrix_col('TD', naTD)
 
-####################################################
-# Name: __interpolate_WS
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#
-# Description: Does the interpolation of the wind speed.
-#               Wind is in km/h and is converted in
-#               m/s by the product with 0.2777777
-#
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 11th 2004
-#####################################################
+    # Wind speed
     def __interpolate_WS(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_WS
+
+        Parameters:[I] metro_data ro_controlled_data : controlled data. Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                                                         interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+
+        Description: Does the interpolation of the wind speed.
+                     Wind is in km/h and is converted in
+                     m/s by the product with 0.2777777
+
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 11th 2004
+        """
         naTimeOrig = ro_controlled_data.get_matrix_col('Time')
         naWS = ro_controlled_data.get_matrix_col('WS')*0.2777777
         naWS = metro_util.interpolate(naTimeOrig, naWS)
