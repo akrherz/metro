@@ -101,7 +101,7 @@ class Metro_preprocess_combine(Metro_preprocess):
 
         Description: Compute the number of 30 seconds step in the observation.
          Uses self.observation_data.DELTA_T, i.e. the number of hours in the
-         observation to do
+         observation to do so.
         """
         fDeltaTMetroObservation = observation_data.get_attribute('DELTA_T')
         self.nDeltaIndice = int(fDeltaTMetroObservation*3600/30.)
