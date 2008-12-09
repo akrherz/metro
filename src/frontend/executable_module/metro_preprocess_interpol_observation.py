@@ -59,7 +59,7 @@ _ = metro_util.init_translation('metro_preprocess_interpol_observation')
 ##
 # Class attributes
 ##
-naTimeInterpolated = None # Array representing the time in seconds.
+npTimeInterpolated = None # Array representing the time in seconds.
 OneObservationException =  _("Not enough observation to do the interpolation")
 NoObservationException = _("No valid observation.  Aborting")
 
@@ -125,23 +125,23 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         """
 
         # Set the time in the interpolated matrix.
-        naTime =  ro_controlled_data.get_matrix_col('Time')
-        self.naTimeInterpolated = numpy.arange(naTime[0], \
-                                               naTime[len(naTime)-1],
+        npTime =  ro_controlled_data.get_matrix_col('Time')
+        self.npTimeInterpolated = numpy.arange(npTime[0], \
+                                               npTime[len(npTime)-1],
                                                metro_constant.fTimeStep)
 
         # 1.1574e-5 is the conversion from seconds to day.
         #  1/(24*3600) = 1.1574e-5
-        self.naTimeInterpolated =  self.naTimeInterpolated/3600 -\
-                                  24*((self.naTimeInterpolated*1.1574e-5)\
+        self.npTimeInterpolated =  self.npTimeInterpolated/3600 -\
+                                  24*((self.npTimeInterpolated*1.1574e-5)\
                                       .astype(numpy.int32))
 
         # Save the time array
-        if len(self.naTimeInterpolated) > 1:
+        if len(self.npTimeInterpolated) > 1:
             ro_interpolated_data.append_matrix_col('Time', \
-                                                self.naTimeInterpolated)
+                                                self.npTimeInterpolated)
         # Only one observation, abort interpolation
-        elif len(self.naTimeInterpolated) == 1:
+        elif len(self.npTimeInterpolated) == 1:
             observation_data.set_attribute('NO_OBS',\
                                            [False, False, False, True])
             raise OneObservationException            
@@ -172,10 +172,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 
         Description: Does the interpolation of the air temperature
         """
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naAT = ro_controlled_data.get_matrix_col('AT')
-        naAT = metro_util.interpolate(naTimeOrig, naAT)
-        ro_interpolated_data.append_matrix_col('AT', naAT)
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npAT = ro_controlled_data.get_matrix_col('AT')
+        npAT = metro_util.interpolate(npTimeOrig, npAT)
+        ro_interpolated_data.append_matrix_col('AT', npAT)
 
 
     # Dew point
@@ -200,10 +200,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      August 5th 2004
         """
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naTD = ro_controlled_data.get_matrix_col('TD')
-        naTD = metro_util.interpolate(naTimeOrig, naTD)
-        ro_interpolated_data.append_matrix_col('TD', naTD)
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npTD = ro_controlled_data.get_matrix_col('TD')
+        npTD = metro_util.interpolate(npTimeOrig, npTD)
+        ro_interpolated_data.append_matrix_col('TD', npTD)
 
     # Wind speed
     def __interpolate_WS(self, ro_controlled_data, ro_interpolated_data):
@@ -229,10 +229,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         Author		Date		Reason
         Miguel Tremblay      August 11th 2004
         """
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naWS = ro_controlled_data.get_matrix_col('WS')*0.2777777
-        naWS = metro_util.interpolate(naTimeOrig, naWS)
-        ro_interpolated_data.append_matrix_col('WS', naWS)
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npWS = ro_controlled_data.get_matrix_col('WS')*0.2777777
+        npWS = metro_util.interpolate(npTimeOrig, npWS)
+        ro_interpolated_data.append_matrix_col('WS', npWS)
 
 ####################################################
 # Name: __interpolate_ST
@@ -255,10 +255,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Miguel Tremblay      August 11th 2004
 #####################################################
     def __interpolate_ST(self, ro_controlled_data, ro_interpolated_data):
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naST = ro_controlled_data.get_matrix_col('ST')
-        naST = metro_util.interpolate(naTimeOrig, naST)
-        ro_interpolated_data.append_matrix_col('ST', naST)
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npST = ro_controlled_data.get_matrix_col('ST')
+        npST = metro_util.interpolate(npTimeOrig, npST)
+        ro_interpolated_data.append_matrix_col('ST', npST)
 
 ####################################################
 # Name: __interpolate_SST
@@ -281,11 +281,11 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Miguel Tremblay      August 11th 2004
 #####################################################
     def __interpolate_SST(self, ro_controlled_data, ro_interpolated_data):
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naSST = ro_controlled_data.get_matrix_col('SST')
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npSST = ro_controlled_data.get_matrix_col('SST')
 
-        naSST = metro_util.interpolate(naTimeOrig, naSST)
-        ro_interpolated_data.append_matrix_col('SST', naSST)
+        npSST = metro_util.interpolate(npTimeOrig, npSST)
+        ro_interpolated_data.append_matrix_col('SST', npSST)
 
 ####################################################
 # Name: __interpolate_PI
@@ -309,14 +309,14 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Miguel Tremblay      August 12th 2004
 #####################################################
     def __interpolate_PI(self, ro_controlled_data, ro_interpolated_data):
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naPI = ro_controlled_data.get_matrix_col('PI')
-        naPI = numpy.where(naPI != 1, 0, naPI)
-        naPI = metro_util.interpolate(naTimeOrig, naPI)
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npPI = ro_controlled_data.get_matrix_col('PI')
+        npPI = numpy.where(npPI != 1, 0, npPI)
+        npPI = metro_util.interpolate(npTimeOrig, npPI)
         # Round
-        naPI = numpy.around(naPI)
+        npPI = numpy.around(npPI)
         # Store
-        ro_interpolated_data.append_matrix_col('PI', naPI)
+        ro_interpolated_data.append_matrix_col('PI', npPI)
 
 ####################################################
 # Name: __interpolate_SC
@@ -344,17 +344,17 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Miguel Tremblay      August 12th 2004
 #####################################################
     def __interpolate_SC(self, ro_controlled_data, ro_interpolated_data):
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naSC = ro_controlled_data.get_matrix_col('SC')
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npSC = ro_controlled_data.get_matrix_col('SC')
         # Convert
-        naSC = numpy.where(naSC == 33, 0, 1)
-        naSC = numpy.where(naSC < 0, 0, naSC)
-        naSC = numpy.where(naSC > 1, 0, naSC)
-        naSC = metro_util.interpolate(naTimeOrig, naSC)
+        npSC = numpy.where(npSC == 33, 0, 1)
+        npSC = numpy.where(npSC < 0, 0, npSC)
+        npSC = numpy.where(npSC > 1, 0, npSC)
+        npSC = metro_util.interpolate(npTimeOrig, npSC)
         # Round
-        naSC = numpy.around(naSC)
+        npSC = numpy.around(npSC)
         # Store
-        ro_interpolated_data.append_matrix_col('SC', naSC)
+        ro_interpolated_data.append_matrix_col('SC', npSC)
  
 ####################################################
 # Name: __interpolate_validatation
@@ -370,7 +370,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 #                   observation_data.set_attribute
 #                   numpy.around
 #
-# Description: Does the interpolation all the attribute that were set in
+# Description: Does the interpolation of all the attributes that were set in
 #               metro_preprocess_qa_qc_observation
 #
 # Revision History:
@@ -378,24 +378,24 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 # Miguel Tremblay      August 12th 2004
 #####################################################
     def __interpolate_validatation(self,ro_controlled_data, observation_data):
-        naTimeOrig = ro_controlled_data.get_matrix_col('Time')
-        naSST = observation_data.get_attribute('SST_VALID')
-        naAT = observation_data.get_attribute('AT_VALID')
-        naTD = observation_data.get_attribute('TD_VALID')
-        naWS = observation_data.get_attribute('WS_VALID')
+        npTimeOrig = ro_controlled_data.get_matrix_col('Time')
+        npSST = observation_data.get_attribute('SST_VALID')
+        npAT = observation_data.get_attribute('AT_VALID')
+        npTD = observation_data.get_attribute('TD_VALID')
+        npWS = observation_data.get_attribute('WS_VALID')
 
         # Interpolate
-        naSST = metro_util.interpolate(naTimeOrig, naSST)
-        naAT = metro_util.interpolate(naTimeOrig, naAT)
-        naTD = metro_util.interpolate(naTimeOrig, naTD)
-        naWS = metro_util.interpolate(naTimeOrig, naWS)
+        npSST = metro_util.interpolate(npTimeOrig, npSST)
+        npAT = metro_util.interpolate(npTimeOrig, npAT)
+        npTD = metro_util.interpolate(npTimeOrig, npTD)
+        npWS = metro_util.interpolate(npTimeOrig, npWS)
         # Round
-        naTD = numpy.around(naTD)
-        naAT = numpy.around(naAT)
-        naSST = numpy.around(naSST)
-        naWS = numpy.around(naWS)
+        npTD = numpy.around(npTD)
+        npAT = numpy.around(npAT)
+        npSST = numpy.around(npSST)
+        npWS = numpy.around(npWS)
         # Store
-        observation_data.set_attribute('TD_VALID_INTERPOLATED', naTD)
-        observation_data.set_attribute('AT_VALID_INTERPOLATED', naAT)
-        observation_data.set_attribute('SST_VALID_INTERPOLATED', naSST)
-        observation_data.set_attribute('WS_VALID_INTERPOLATED', naWS)
+        observation_data.set_attribute('TD_VALID_INTERPOLATED', npTD)
+        observation_data.set_attribute('AT_VALID_INTERPOLATED', npAT)
+        observation_data.set_attribute('SST_VALID_INTERPOLATED', npSST)
+        observation_data.set_attribute('WS_VALID_INTERPOLATED', npWS)
