@@ -318,29 +318,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         # Store
         ro_interpolated_data.append_matrix_col('PI', npPI)
 
-####################################################
-# Name: __interpolate_SC
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#                   numpy.where, around
-#
-# Description: Does the interpolation of the Road Condition
-#  33 is the SSI code.  SEE the documentation for the conversion
-#  between this code and the other standard:
-#  (http://documentation.wikia.com/wiki/Road_condition_%28METRo%29
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 12th 2004
-#####################################################
+
     def __interpolate_SC(self, ro_controlled_data, ro_interpolated_data):
         """
         Name: __interpolate_SC
