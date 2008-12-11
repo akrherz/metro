@@ -333,17 +333,40 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
 #                   numpy.where, around
 #
 # Description: Does the interpolation of the Road Condition
-#
-# TODO MT: 33 c'est le code SSI.  Voir si on met le code NTCIP
-#  (http://wikid.cmc.ec.gc.ca/tiki-index.php?page=met_Condition+du+pav%C3%A9e)
-#  ou simplement un binaire qui devrait etre complete par la personne qui
-#  encapsulera les observations dans un format XML.
+#  33 is the SSI code.  SEE the documentation for the conversion
+#  between this code and the other standard:
+#  (http://documentation.wikia.com/wiki/Road_condition_%28METRo%29
 #
 # Revision History:
 #  Author		Date		Reason
 # Miguel Tremblay      August 12th 2004
 #####################################################
     def __interpolate_SC(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_SC
+
+        Parameters:[I] metro_data ro_controlled_data : controlled data.
+                                                        Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                                                  interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+                          numpy.where, around
+
+        Description: Does the interpolation of the Road Condition
+          33 is the SSI code.  SEE the documentation for the conversion
+          between this code and the other standard:
+          http://documentation.wikia.com/wiki/Road_condition_%28METRo%29
+
+          Revision History:
+          Author		Date		Reason
+          Miguel Tremblay      August 12th 2004
+          """
+        
         npTimeOrig = ro_controlled_data.get_matrix_col('Time')
         npSC = ro_controlled_data.get_matrix_col('SC')
         # Convert
