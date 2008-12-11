@@ -380,8 +380,10 @@ class Metro_model(Metro_module):
         roadcast.set_header_value('VERSION',sRoadcast_version)
         roadcast.set_header_value('ROAD_STATION',sRoadcast_station)
         roadcast.set_header_value('PRODUCTION_DATE',fRoadcast_production_date)
-        roadcast.set_header_value('LATITUDE', station.get_header()['COORDINATE'][0])
-        roadcast.set_header_value('LONGITUDE', station.get_header()['COORDINATE'][1])
+        roadcast.set_header_value('LATITUDE', station.get_header()\
+                                  ['COORDINATE'][0])
+        roadcast.set_header_value('LONGITUDE', station.get_header()\
+                                  ['COORDINATE'][1])
         roadcast.set_header_value('FILETYPE','roadcast')
 
         if metro_config.get_value('TL') == True:
