@@ -98,4 +98,7 @@ Become root and
 
        path_to_metro/usr/share/metro/data/roadcast/roadcast_selftest.xml
 
-      was created successfully, your installation is working.
+      was created successfully and the differences with 
+       path_to_metro/data/roadcast/roadcast_selftest_reference.xml
+      is only the element <production-date>.
+
