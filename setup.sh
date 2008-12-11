@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 #
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada
