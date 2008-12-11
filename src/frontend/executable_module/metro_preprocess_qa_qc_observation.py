@@ -399,29 +399,6 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
 
 ####################################################
-# Name: __set_road_condition
-#
-# Parameters: metro_data road_controlled_data : controlled observation data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   numpy.where.
-#
-# Description: Transform the road condition (SC) into boolean field
-#
-# Notes: OBSOLETE Miguel March 3rd 2005
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 5th 2004
-#####################################################
-    def __set_road_condition(self, ro_controlled_data):
-        npSC = ro_controlled_data.get_matrix_col('SC')        
-        npSC = numpy.where(npSC == 33, 0, 1)
-        ro_controlled_data.set_matrix_col('SC', npSC) 
-
-####################################################
 # Name: __set_coupling_instruction
 #
 # Parameters: metro_data road_controlled_data : controlled observation data
