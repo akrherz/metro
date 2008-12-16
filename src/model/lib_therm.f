@@ -345,7 +345,8 @@
 *    PR1: Precipitation rate, rain (mm/sec)
 *    PR2: Precipitation rate, snow (mm/sec)
 *    PRG: Transfert rate from one reservoir to the other
-*    FV1: Condensation (negative of evaporation)
+*    FV1: Liquid condensation (negative of evaporation)
+*    FV2: Solid condasentation
 *    DX : Melted water
 *    MEA: Maximum water quantity => after there is runoff
 *    3e-3*( max(REAL(ER2),REAL(MEA(2)))-MEA(2)) ): Runoff, 
