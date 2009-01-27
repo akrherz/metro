@@ -1122,7 +1122,7 @@ def set_default_value( ):
 #===============================================================================
 
     dConfig['INIT_LOGGER_VERBOSE_LEVEL'] = \
-        {'VALUE'   :metro_logger.LOGGER_VERBOSE_LEVEL_FULL,
+        {'VALUE'   :metro_logger.LOGGER_VERBOSE_LEVEL_NORMAL,
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("logger verbosity level")}
 

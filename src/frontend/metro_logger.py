@@ -135,7 +135,9 @@ def write_log_header( fLog_file, iVerbosity ):
     fLog_file.write("\n")
 
     fLog_file.write(_("logger verbosity: "))
-    if iVerbosity == LOGGER_VERBOSE_LEVEL_MINIMAL:
+    if iVerbosity == LOGGER_VERBOSE_LEVEL_NOLOG:
+        fLog_file.write(_("No Log"))
+    elif iVerbosity == LOGGER_VERBOSE_LEVEL_MINIMAL:
         fLog_file.write(_("Minimal"))
     elif iVerbosity == LOGGER_VERBOSE_LEVEL_NORMAL:
         fLog_file.write(_("Normal"))
