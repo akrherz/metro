@@ -191,22 +191,6 @@ def validate_datatype( dConf ):
     validate_datatype_category( sConfig_item, iFrom,
                                 dExtended_data_type, dAll_data_type )
 
-
-# def validate_xml_lib( dConf ):
-#    sKey = 'INIT_XML_LIB'
-#    try:           
-#        metro_util.test_import(dConf[sKey]['VALUE'])
-#    except "MetroImportError", sError:
-#        sMessage = config_error_string(sKey,
-#                                       dConf[sKey]['FROM'],
-#                                       sError)
-#        sMessage = sMessage + \
-#                   _("\nYou can use one of the following shorthand " + \
-#                     "(pyxml, libxml2)\nor a valid module name")
-#        metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
-#                                        sMessage)
-#        sys.exit(3)
-
 def validate_execution_sequence( dConf ):
     sKey = 'INIT_MODULE_EXECUTION_SEQUENCE'
     lExecutionSequence = dConf[sKey]['VALUE']
@@ -270,8 +254,9 @@ def validate_roadcast_start_time( dConf ):
     
     
 def validate_config( dConf ):
-
-    validate_xml_lib(dConf)
+    """
+    Execution of the validation of the configuration files.
+    """
     validate_datatype(dConf)
     validate_execution_sequence(dConf)
     validate_station_layer_default_type(dConf)
