@@ -238,7 +238,7 @@ def validating_configuration( ):
     metro_logger.print_init_message(metro_logger.LOGGER_INIT_MESSAGE,
                                     sMessage)
     
-#    metro_config_validation.validate_config(dConfig)
+    metro_config_validation.validate_config(dConfig)
 
     metro_logger.print_init_message(metro_logger.LOGGER_INIT_SUCCESS,
                                     _("METRo configuration validated"))
