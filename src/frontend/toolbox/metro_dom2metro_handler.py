@@ -122,13 +122,21 @@ def list_to_coordinate(lValue):
     return (lat,lon)
 
 def roadlayer_type_to_roadlayer_code(sLayerType):
-    dValidLayerType = metro_config.get_value('XML_STATION_ROADLAYER_VALID_TYPE')
+    dValidLayerType = metro_config.get_value(\
+        'XML_STATION_ROADLAYER_VALID_TYPE')
 
     sLayerType = sLayerType.upper()
     if sLayerType in dValidLayerType:
         iLayer_code = dValidLayerType[sLayerType]
     else:
-        sDefaultLayerType =  metro_config.get_value('DEFAULT_STATION_ROADLAYER_TYPE')
+        # raise an error
+        sMessage = _("'%s' is not a valid road layer type. ") % (sLayerType) +\
+                   _("Valid type are %s " ) % (dValidLayerType.keys()) +\
+                   _("Check the station configuration file")
+        metro_logger.print_message(metro_logger.LOGGER_MSG_STOP, sMessage)
+        
+        sDefaultLayerType =  metro_config.get_value(\
+            'DEFAULT_STATION_ROADLAYER_TYPE')
         sDefaultLayerType = sDefaultLayerType.upper()
         iLayer_code = dValidLayerType[sDefaultLayerType]
 
