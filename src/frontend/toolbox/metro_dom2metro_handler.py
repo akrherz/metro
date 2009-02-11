@@ -135,11 +135,6 @@ def roadlayer_type_to_roadlayer_code(sLayerType):
                    _("Check the station configuration file")
         metro_logger.print_message(metro_logger.LOGGER_MSG_STOP, sMessage)
         
-        sDefaultLayerType =  metro_config.get_value(\
-            'DEFAULT_STATION_ROADLAYER_TYPE')
-        sDefaultLayerType = sDefaultLayerType.upper()
-        iLayer_code = dValidLayerType[sDefaultLayerType]
-
     return iLayer_code
 
 

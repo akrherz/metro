@@ -1242,11 +1242,6 @@ def set_default_value( ):
          'FROM'     :CFG_HARDCODED,
          'COMMENTS' :_("default time zone for station header date")}
 
-    dConfig['DEFAULT_STATION_ROADLAYER_TYPE'] = \
-        {'VALUE':'ASPHALT',
-         'FROM' :CFG_HARDCODED,
-         'COMMENTS':_("default station roadlayer type")}
-
 
     # ------------------------------ roadcast ----------------------------------
 

@@ -207,26 +207,6 @@ def validate_execution_sequence( dConf ):
                                             sMessage)
             sys.exit(3)
 
-def validate_station_layer_default_type( dConf ):
-    sKey = 'DEFAULT_STATION_ROADLAYER_TYPE'
-    sDefault_type = dConf[sKey]['VALUE']
-    dAllType = dConf['XML_STATION_ROADLAYER_VALID_TYPE']['VALUE']
-    if sDefault_type not in dAllType:
-        iFrom = dConf[sKey]['FROM']
-        
-        lValid_layer = dAllType.keys()
-        lValid_layer.sort()
-        sValid_layer =  metro_util.list2string(lValid_layer)
-        
-        sError = _("'%s' is not a valid road layer type.\n") \
-                 % (sDefault_type)+ \
-                 _("Valid road layer type are:\n[%s]") % (sValid_layer)
-        sMessage = config_error_string(sKey,
-                                       iFrom, sError)
-        metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
-                                        sMessage)
-        sys.exit(3)
-
 def validate_roadcast_start_time( dConf ):
     sKey = 'INIT_ROADCAST_START_DATE'
     sStart_time = dConf[sKey]['VALUE']
@@ -259,6 +239,5 @@ def validate_config( dConf ):
     """
     validate_datatype(dConf)
     validate_execution_sequence(dConf)
-    validate_station_layer_default_type(dConf)
     validate_xml_file_def(dConf)
     validate_roadcast_start_time(dConf)
