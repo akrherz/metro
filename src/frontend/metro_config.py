@@ -891,6 +891,7 @@ def set_default_value( ):
         {'VALUE':{'ASPHALT':1,'ASPHALTE':1,
                   'CRUSHED ROCK':2,'GRAVIER':2,
                   'CEMENT':3,'BETON':3,
+                  'SAND':4, 'SABLE':4
                   },
          'FROM'    :CFG_INTERNAL,
          'COMMENTS':_("valid station layer type")}
