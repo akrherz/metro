@@ -20,10 +20,6 @@
 #include "global.h"
 #include "number.h"
 
-/* Nombre de pas de temps maximal après le début de la matrice SCRIBE */
-/*  12000 -> 100 h */
-#define nDTMAX 12000
-
 /* Pas de temps du modèle de bilan énergétique */
 #define dDT 30.0
 

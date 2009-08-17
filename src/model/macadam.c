@@ -197,7 +197,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   long nDeltaTIndice=0;
 
   /* Allocate memory for all structures */
-  init_structure(nDTMAX, nNGRILLEMAX);
+  init_structure(nNbrTimeSteps,nNGRILLEMAX);
   
 
   for (i=0; i<nNbrTimeSteps; i++){
