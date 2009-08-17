@@ -49,7 +49,7 @@ def write_integer( domDoc, sXml_tag, iData ):
     return metro_xml.create_text_node(domDoc, sXml_tag, str(int(iData)))
 
 def write_real( domDoc, sXml_tag, iData ):
-    return metro_xml.create_text_node(domDoc, sXml_tag, str(iData))
+    return metro_xml.create_text_node(domDoc, sXml_tag, str(float(iData)))
 
 def write_date( domDoc, sXml_tag, fDate ):
     sDate = metro_date.seconds2iso8601(fDate)
