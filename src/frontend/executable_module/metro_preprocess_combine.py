@@ -262,6 +262,8 @@ class Metro_preprocess_combine(Metro_preprocess):
             fCurrentObs = npWSO[nLenWSO-1]
             fCurrentFor = npWS[nLenWSO-self.NTP-self.NTP2]
             if fCurrentObs < fCurrentFor:
+                # The value of 0.01 is arbitrary. It is to avoid a division
+                # by a value too near of zero.
                 if fCurrentFor < 0.01:
                     fCurrentFor = 1.0
                 if fCurrentObs == 0:
