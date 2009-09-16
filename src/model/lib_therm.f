@@ -417,6 +417,15 @@
 *     -----------------------------------------------------------
          ETAT = 3
       end if
+
+*      WRITE(*,*) ETAT
+*      WRITE(*,*) "PRG", PRG
+*      WRITE(*,*) "ER1", ER1
+*      WRITE(*,*) "FV1", FV1
+*      WRITE(*,*) "PR1", PR1
+*      WRITE(*,*) "ER2", ER2
+*      WRITE(*,*) "FV2", FV2
+*      WRITE(*,*) "PR2", PR2
       return
       end
 
