@@ -404,8 +404,8 @@ def sign(dResult, dSign):
     """
     Name: sign
 
-    Parameters:   [I double  dResult : 
-                  [I double  dSign : 
+    Parameters:   [I] double  dResult : 
+                  [I] double  dSign : 
 
     Returns:  - abs(dResult) if dSign < 0
                 abs(dResult) if dSign > 0
@@ -417,17 +417,17 @@ def sign(dResult, dSign):
 
     Notes: This is the equivalent of SIGN in fortran.  And no,
     there is no built-in function that does that.
+    CASE 1:   If y >= 0 then  		
+		sign(x,y) = abs(x)   ,
+    CASE 2:   If y < 0 then 		
+		sign(x,y) = - abs(x)   .
 
     Revision History:
     Author		Date		Reason
     Miguel Tremblay       August 24th 2004
     """
     
-    # If dSign is == 0, raise an error
-    if dSign == 0:
-        sMetroUtilError = _("Cannot determine the sign of zero")
-        raise sMetroUtilError
-    elif dSign > 0:
+    if dSign >= 0:
         return abs(dResult)
     else:
         return -abs(dResult)
