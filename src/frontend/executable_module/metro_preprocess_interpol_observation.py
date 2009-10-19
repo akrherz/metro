@@ -234,27 +234,30 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         npWS = metro_util.interpolate(npTimeOrig, npWS)
         ro_interpolated_data.append_matrix_col('WS', npWS)
 
-####################################################
-# Name: __interpolate_ST
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#
-# Description: Does the interpolation of road temperature
-#
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 11th 2004
-#####################################################
+
     def __interpolate_ST(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_ST
+        
+        Parameters:[I] metro_data ro_controlled_data : controlled data.
+                      Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                         interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+
+        Description: Does the interpolation of road temperature
+
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      August 11th 2004
+        """
+        
         npTimeOrig = ro_controlled_data.get_matrix_col('Time')
         npST = ro_controlled_data.get_matrix_col('ST')
         npST = metro_util.interpolate(npTimeOrig, npST)
