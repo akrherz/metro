@@ -140,7 +140,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                                                         npOT[i-1],\
                                                         "UTC", "seconds")
             npTime[i] = npTime[i-1]+fTimeElapsed
-            
+
         # Registered.
         ro_controlled_data.append_matrix_col('Time', npTime)
     
@@ -321,28 +321,23 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                     ro_controlled_data.del_matrix_row(npBadIndices)
 
 
-####################################################
-# Name: __validate
-#
-# Parameters: metro_data road_controlled_data : controlled observation data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   numpy.where,
-#                   metro_data.set_attribute
-#
-# Description: Set the attributes in road_data_collection to tell if the
-#  values are in accordance of the criterium.
-#
-# Notes: I didn't put the check who verify if the dew point is always
-#         greater than the air temperature. 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 4th 2004
-#####################################################
     def __validate(self, ro_controlled_data, observation_data):
+        """
+        Name: __validate
+
+        Parameters: metro_data road_controlled_data : controlled observation data
+
+        Returns: None
+
+        Functions Called: metro_data.get_matrix_col
+                          numpy.where,
+                          metro_data.set_attribute
+
+        Description: Set the attributes in road_data_collection to tell if the
+                     values are in accordance of the criterium.
+
+        """
+        
         npSST = ro_controlled_data.get_matrix_col('SST')
         npAT = ro_controlled_data.get_matrix_col('AT')
         npTD = ro_controlled_data.get_matrix_col('TD')
@@ -398,29 +393,26 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
             observation_data.set_attribute('WS_VALID', npCheck)
 
 
-####################################################
-# Name: __set_coupling_instruction
-#
-# Parameters: metro_data road_controlled_data : controlled observation data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   collection_data.get_attribute
-#                   collection_data.set_attribute
-#
-# Description: Set the boolean field that will indicate how to perform
-#  the coupling stage, based on what observations are available.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 13th 2004
-#####################################################
     def __set_coupling_instruction(self, ro_controlled_data, \
                                    ro_interpolated_data, \
                                    observation_data):
+        """
+
+        Name: __set_coupling_instruction
+
+        Parameters: metro_data road_controlled_data : controlled observation data
+        
+        Returns: None
+        
+        Functions Called: metro_data.get_matrix_col
+                          collection_data.get_attribute
+                          collection_data.set_attribute
+
+        Description: Set the boolean field that will indicate how to perform
+                     the coupling stage, based on what observations are available.
+
+        """
+        
         # Take any of the column of the observation to check the dimensions.
         npAT = ro_controlled_data.get_matrix_col('AT') 
         npTime = ro_controlled_data.get_matrix_col('Time')
@@ -449,30 +441,23 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         observation_data.set_attribute('NO_OBS',bNoObs)
 
         
-####################################################
-# Name: __set_time_difference
-#
-# Parameters: metro_data road_controlled_data : controlled observation data
-#              metro_data forecast_controlled_data : controlled forecast data
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_controlled_data
-#                   collection_data.set_attribute
-#                   metro_date.get_elapsed_time
-#                   metro_date.get_hour, get_day
-#
-# Description: Set the time difference between the beginning of observation
-#   and the beginnig of the roadcast.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 16th 2004
-#####################################################
     def __set_time_difference(self, ro_controlled_data, wf_controlled_data, \
                               observation_data):
+        """
+        Parameters: metro_data road_controlled_data : controlled observation data
+                    metro_data forecast_controlled_data : controlled forecast data
+
+        Returns: None
+
+        Functions Called: metro_data.get_controlled_data
+                          collection_data.set_attribute
+                          metro_date.get_elapsed_time
+                          metro_date.get_hour, get_day
+
+        Description: Set the time difference between the beginning of observation
+                     and the beginnig of the roadcast.
+        """
+        
         # Compute the time difference between the first forecast time
         #  and the beginning of the observation        
         StartForecast = wf_controlled_data.get_matrix_col('FORECAST_TIME')[0]
@@ -496,26 +481,12 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                                    sMessage)
         
 
-####################################################
-# Name: __check_TA_TD
-#
-# Parameters: 
-#
-# Returns: None
-#
-# Functions Called: metro_data.get_matrix_col
-#                   numpy.where.
-#
-# Description: When the dew point is over the the air temperature, replace
-#  it by the air temperature.
-#
-# Notes: 
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      March 1st 2005
-#####################################################
     def __check_TA_TD(self, ro_controlled_data, observation_data):
+        """
+        Description: When the dew point is over the the air temperature, replace
+                     it by the air temperature.
+        """
+        
         npTD = ro_controlled_data.get_matrix_col('TD')
         npAT = ro_controlled_data.get_matrix_col('AT')
 

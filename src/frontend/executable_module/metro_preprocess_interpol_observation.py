@@ -263,55 +263,47 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         npST = metro_util.interpolate(npTimeOrig, npST)
         ro_interpolated_data.append_matrix_col('ST', npST)
 
-####################################################
-# Name: __interpolate_SST
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#
-# Description: Does the interpolation of road temperature under the surface.
-#
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 11th 2004
-#####################################################
     def __interpolate_SST(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_SST
+
+        Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                        interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+
+        Description: Does the interpolation of road temperature under the surface.
+        """
+        
         npTimeOrig = ro_controlled_data.get_matrix_col('Time')
         npSST = ro_controlled_data.get_matrix_col('SST')
 
         npSST = metro_util.interpolate(npTimeOrig, npSST)
         ro_interpolated_data.append_matrix_col('SST', npSST)
 
-####################################################
-# Name: __interpolate_PI
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   metro_data.get_matrix_col
-#                   metro_data.append_matrix_col
-#                   numpy.where, around
-#
-# Description: Does the interpolation of presence of precipitation.
-#
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 12th 2004
-#####################################################
     def __interpolate_PI(self, ro_controlled_data, ro_interpolated_data):
+        """
+        Name: __interpolate_PI
+
+        Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                        interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+                          numpy.where, around
+
+         Description: Does the interpolation of presence of precipitation.
+         """
+        
         npTimeOrig = ro_controlled_data.get_matrix_col('Time')
         npPI = ro_controlled_data.get_matrix_col('PI')
         npPI = numpy.where(npPI != 1, 0, npPI)
@@ -360,28 +352,27 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         # Store
         ro_interpolated_data.append_matrix_col('SC', npSC)
  
-####################################################
-# Name: __interpolate_validatation
-#
-# Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
-#            [I] metro_data ro_interpolated_data : container of the interpolated
-#                 data.
-#
-# Returns: None
-#
-# Functions Called: metro_util.interpolate,
-#                   observation_data.get_attribute
-#                   observation_data.set_attribute
-#                   numpy.around
-#
-# Description: Does the interpolation of all the attributes that were set in
-#               metro_preprocess_qa_qc_observation
-#
-# Revision History:
-#  Author		Date		Reason
-# Miguel Tremblay      August 12th 2004
-#####################################################
+
     def __interpolate_validatation(self,ro_controlled_data, observation_data):
+        """
+        Name: __interpolate_validatation
+        
+        Parameters:[I] metro_data ro_controlled_data : controlled data.  Read-only
+                   [I] metro_data ro_interpolated_data : container of the
+                        interpolated data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          observation_data.get_attribute
+                          observation_data.set_attribute
+                          numpy.around
+
+         Description: Does the interpolation of all the attributes that were set in
+                      metro_preprocess_qa_qc_observation
+
+        """
+        
         npTimeOrig = ro_controlled_data.get_matrix_col('Time')
         npSST = observation_data.get_attribute('SST_VALID')
         npAT = observation_data.get_attribute('AT_VALID')
