@@ -385,10 +385,10 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         npTD = metro_util.interpolate(npTimeOrig, npTD)
         npWS = metro_util.interpolate(npTimeOrig, npWS)
         # Round
-        npTD = numpy.around(npTD)
-        npAT = numpy.around(npAT)
-        npSST = numpy.around(npSST)
-        npWS = numpy.around(npWS)
+        npTD = numpy.floor(npTD)
+        npAT = numpy.floor(npAT)
+        npSST = numpy.floor(npSST)
+        npWS = numpy.floor(npWS)
         # Store
         observation_data.set_attribute('TD_VALID_INTERPOLATED', npTD)
         observation_data.set_attribute('AT_VALID_INTERPOLATED', npAT)
