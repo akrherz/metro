@@ -68,8 +68,8 @@ METRO_CONFIG_GETTEXT_PACKAGE  = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # Constant definition 
-CFG_METRO_VERSION="3.2.1"
-CFG_METRO_DATE="2008-10-17"
+CFG_METRO_VERSION="3.2.4"
+CFG_METRO_DATE="2009-10-30"
 
 
 # Origin of the value (command line, config file, hardcoded value,
@@ -372,6 +372,8 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             dConf['FILE_STATION_FILENAME'] = a
 
         if o == "--output-forecast":
+            print "Warning: --output-forecast option is DEPRECATED and will be removed in the future."
+            print "It's still there for compatibility reason but won't produce any weather forecast."
             dConf['FILE_FORECAST_OUT_FILENAME'] = a
         
         if o == "--output-roadcast":
@@ -1167,7 +1169,7 @@ def set_default_value( ):
                      "metro_postprocess_round_roadcast",
                      "metro_metro2dom",
                      "metro_write_roadcast",
-                     "metro_write_forecast",
+#                     "metro_write_forecast",
                      ],
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("METro module execution sequence")}

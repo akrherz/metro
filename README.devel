@@ -43,10 +43,39 @@ To compile the Fortran model you will need to perform the following action:
     README
     src/frontend/metro_config.py
 
-2) Compile model:
+3) Commit every change
+    svn commit
+
+4) Compile model:
     compile the Fortran model (see == Compiling "model" ==)
 
-3) Build Package
+5) Build Package
     cd scripts/ 
     ./make_package.py
     * You need a valid gpg key to be able to sign your package
+
+=============
+== Release ==
+=============
+
+1) Make a tag in SVN for the release of that version. You will need an access to the metro project on GNA to do that.
+    The following is an exemple of the user Francois Fortin making a tags for the 3.2.4 version
+
+    svn copy svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/trunk \
+             svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/tags/metro-3.2.4
+    
+2) Upload package to the GNA web site (http://download.gna.org/metro/)
+    scp metro-3.2.4.tar.bz2  metro-3.2.4.tar.bz2.sig francois_fortin@download.gna.org:/upload/metro/
+
+3) Create a new LATEST_RELEASE file with the new version number. The content of the file is:
+
+------------------------------------- cut here --------------------------------
+Please note:
+
+- The latest stable version of the METRo package is:
+  metro-3.2.4
+------------------------------------- cut here --------------------------------
+
+4) Upload the LATEST_RELEASE file to the GNA web site (http://download.gna.org/metro/)
+   scp LATEST_RELEASE francois_fortin@download.gna.org:/upload/metro/
+
