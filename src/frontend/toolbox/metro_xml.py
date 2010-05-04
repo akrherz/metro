@@ -73,26 +73,13 @@ def init( sMetro_xml_lib = ""):
         try:
             metro_util.test_import("metro_xml_libxml2")
         except "MetroImportError":
-            try:
-                metro_util.test_import("metro_xml_pyxml")
-            except "MetroImportError":
-                sMessage = _("Fatal error! No METRo XML library can be use. ") +\
-                           _("\nMETRo need one of the following XML library ") +\
-                           _("installed on the system.\nSupported library:") +\
-                           "python-libxml2, PyXML"
-                metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
-                                                sMessage)
-                sys.exit(3)
-            else:
-                sMessage = _("metro_xml_pyxml will be used.\nWE STRONGLY ") +\
-                           _("RECOMMAND THAT YOU USED libxml2, METRo") +\
-                           _("WOULD BE 10 TIMES FASTER.")
-                metro_logger.print_init_message( \
-                    metro_logger.LOGGER_INIT_SUCCESS,
-                    sMessage)
-                metro_xml_pyxml = metro_util.import_name('toolbox',
-                                                         "metro_xml_pyxml")
-                metro_xml_lib = metro_xml_pyxml.Metro_xml_pyxml()
+            sMessage = _("Fatal error! No METRo XML library can be use. ") +\
+                       _("\nMETRo need one of the following XML library ") +\
+                       _("installed on the system.\nSupported library:") +\
+                       "python-libxml2"
+            metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
+                                            sMessage)
+            sys.exit(3)
         else:
             metro_logger.print_init_message( \
                     metro_logger.LOGGER_INIT_SUCCESS,
@@ -262,7 +249,7 @@ def mkdir_xpath( domDoc, nodeBranch, sXpath ):
     lNode_name = string.split(sXpath,'/')
 
     for sNode_name in lNode_name:
-        nodeChild = metro_xml_lib.create_node(domDoc, sNode_name)
+        nodeChild = metro_xml_lib.create_node(sNode_name)
         metro_xml_lib.append_child(nodeParent,  nodeChild)
         nodeParent = nodeChild
 
@@ -281,8 +268,8 @@ def cd_xpath( nodeBranch, sXpath ):
 def create_node( domDoc, sNode_name):
     return metro_xml_lib.create_node(domDoc, sNode_name)
 
-def create_text_node( domDoc, sNode_name, sNode_value ):
-    return metro_xml_lib.create_text_node( domDoc, sNode_name, sNode_value )
+def create_text_node(sNode_name, sNode_value ):
+    return metro_xml_lib.create_text_node(sNode_name, sNode_value )
 
 def append_child( nodeParent, nodeChild ):
     metro_xml_lib.append_child(nodeParent, nodeChild)
@@ -318,12 +305,12 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
             #  create the node containing a list of "sub-node"
             lChildList = dData_type[sData_type_name]['CHILD']
             sCode = "nodeData = " + sWriteHandler + \
-                    "(domDoc,sXml_tag,lChildList,dData[sTag])"
+                    "(sXml_tag,lChildList,dData[sTag])"
         else:
             # Construction of instruction doing the function call that will
             #  create the node 
             sCode = "nodeData = " + sWriteHandler + \
-                    "(domDoc,sXml_tag,dData[sTag])"
+                    "(sXml_tag,dData[sTag])"
         exec sCode
 
         append_child(nodeParent, nodeData)
@@ -380,11 +367,11 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
                 #  create the node containing a list of "sub-node"
                 lChildList = dData_type[sData_type_name]['CHILD']
                 sCode = "nodeData = " + sWriteHandler + \
-                        "(domDoc,sXml_tag,lChildList,val)"
+                        "(sXml_tag,lChildList,val)"
             else:
                 # Construction of instruction doing the function call that will
                 #  create the node 
-                sCode = "nodeData = " + sWriteHandler + "(domDoc,sXml_tag,val)"
+                sCode = "nodeData = " + sWriteHandler + "(sXml_tag,val)"
 
             exec sCode
 

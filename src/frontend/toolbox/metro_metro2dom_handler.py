@@ -42,18 +42,18 @@ from toolbox import metro_xml
 from toolbox import metro_date
 from toolbox import metro_util
 
-def write_string( domDoc, sXml_tag, sString ):
-    return metro_xml.create_text_node(domDoc, sXml_tag, sString)
+def write_string( sXml_tag, sString ):
+    return metro_xml.create_text_node(sXml_tag, sString)
 
-def write_integer( domDoc, sXml_tag, iData ):
-    return metro_xml.create_text_node(domDoc, sXml_tag, str(int(iData)))
+def write_integer( sXml_tag, iData ):
+    return metro_xml.create_text_node( sXml_tag, str(int(iData)))
 
-def write_real( domDoc, sXml_tag, iData ):
-    return metro_xml.create_text_node(domDoc, sXml_tag, str(float(iData)))
+def write_real( sXml_tag, iData ):
+    return metro_xml.create_text_node( sXml_tag, str(float(iData)))
 
-def write_date( domDoc, sXml_tag, fDate ):
+def write_date( sXml_tag, fDate ):
     sDate = metro_date.seconds2iso8601(fDate)
-    return metro_xml.create_text_node(domDoc, sXml_tag, sDate)
+    return metro_xml.create_text_node(sXml_tag, sDate)
 
 def write_list( domDoc, sXml_list_tag, lChildList, lValues ):
     

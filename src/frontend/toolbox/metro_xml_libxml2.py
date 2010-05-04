@@ -41,8 +41,7 @@
 Name:		metro_xml_libxml2
 Description:  Wrapper for libxml2 library
  
-Notes: All these methods should also be implemented in
-  metro_xml_pyxml.py
+Notes:
 
 Author: François Fortin
 Date: Somewhere in the summer 2004
@@ -163,20 +162,19 @@ class Metro_xml_libxml2:
         domDoc.newChild(None,sDoc_name,None)
         return domDoc
 
-    def create_text_node( self, domDoc, sNode_name, sNode_value ):
+    def create_text_node( self, sNode_name, sNode_value ):
         """
         Create and return a text node of name sNode_name with value
          sNode_value.
         
-         Note: In create_text_node and create_node, even if the object
-           domDoc is not used, it is necessary for compatibility with pyxml.
+         Note: 
         """
         nodeText = libxml2.newText(sNode_value)
         nodeTmp  = libxml2.newNode(sNode_name)
         nodeTmp.addChild(nodeText)
         return nodeTmp
     
-    def create_node( self, domDoc, sNode_name ):
+    def create_node( self, sNode_name ):
         return libxml2.newNode(sNode_name)
 
     def set_attribute( self, node, sAttributeName, sAttributeValue ):
