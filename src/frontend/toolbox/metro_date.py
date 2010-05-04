@@ -52,7 +52,6 @@ from math import cos
 import time
 import datetime
 import calendar
-import xml.utils.iso8601
 
 import os
 import string
@@ -74,7 +73,10 @@ def parse_date_string( sDate ):
 
     if sDate != None:
         try:
-            fDate = xml.utils.iso8601.parse(sDate)
+            # Strip the date in ISO up to the minute only, ie. the first 16 characters
+            sDate = sDate[0:16]
+            tDate = time.strptime(sDate, "%Y-%m-%dT%H:%M")
+            fDate = time.mktime(tDate)
         except ValueError, sError:
             sMessage = _("The following error occured when parsing the ") +\
                        _("ISO 8601 date:\n %s") % (sError)
@@ -88,8 +90,17 @@ def parse_date_string( sDate ):
     return fDate
 
 def seconds2iso8601( fDate ):
-    return xml.utils.iso8601.tostring(round(fDate))
-    # Must replace the decimal of the seconds
+    """
+    Transform a ctime into an ISO8601 format.
+    """
+
+    # Transform ctime in tuple
+    tDate = time.localtime(fDate)
+    # Transform tuple in string
+    sDate = time.strftime('%Y-%m-%dT%H:%MZ', tDate)
+    
+    return sDate
+
     
 def get_current_date_iso8601():
     """
