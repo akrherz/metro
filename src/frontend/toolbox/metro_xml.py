@@ -265,8 +265,8 @@ def cd_xpath( nodeBranch, sXpath ):
         nodeChild = None
     return nodeChild
 
-def create_node( domDoc, sNode_name):
-    return metro_xml_lib.create_node(domDoc, sNode_name)
+def create_node( sNode_name):
+    return metro_xml_lib.create_node(sNode_name)
 
 def create_text_node(sNode_name, sNode_value ):
     return metro_xml_lib.create_text_node(sNode_name, sNode_value )
@@ -311,6 +311,7 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
             #  create the node 
             sCode = "nodeData = " + sWriteHandler + \
                     "(sXml_tag,dData[sTag])"
+        print sCode
         exec sCode
 
         append_child(nodeParent, nodeData)
