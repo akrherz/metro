@@ -43,20 +43,14 @@ from toolbox import metro_util
 
 _ = metro_util.init_translation('metro_logger')
 
-#===============================================================================
-#
-# Nom:         metro_logger
-#
-# Auteur:      Francois Fortin
-#
-# Date:        30/03/2004
-#
-# Description: Module permettant de centraliser l'ecriture des messages d'erreur
-#              de METRo. Le logger a different niveau de verbositer:
-#
-# TODO:
-#
-#===============================================================================
+"""
+Name:         metro_logger
+Author:      Francois Fortin
+Date:        30/03/2004
+
+Description:  Module used to centralize the writing of METRo error
+               message. This logger as many verbosity level.
+"""
 
 # niveau de verbositer du logger
 LOGGER_VERBOSE_LEVEL_NOLOG   = 9999 # setting special pour desactiver le logger
@@ -68,13 +62,13 @@ LOGGER_VERBOSE_LEVEL_DEBUG   = 0
 iLogger_verbose_level = LOGGER_VERBOSE_LEVEL_NOLOG 
 
 # categorie du message
-LOGGER_MSG_DEBUG         = 1   # afficher si verbositer = DEBUG
-LOGGER_MSG_INFORMATIVE   = 6   # afficher si verbositer = FULL
-LOGGER_MSG_EXECSECONDARY = 2   # afficher si verbositer = FULL
-LOGGER_MSG_WARNING       = 11  # afficher si verbositer = ( FULL || NORMAL )
-LOGGER_MSG_EXECPRIMARY   = 12  # afficher si verbositer = ( FULL || NORMAL )
-LOGGER_MSG_CRITICAL      = 21  # toujours affiche
-LOGGER_MSG_STOP          = 22  # toujours affiche
+LOGGER_MSG_DEBUG         = 1   # show if verbosity = DEBUG
+LOGGER_MSG_INFORMATIVE   = 6   # show if verbosity = FULL
+LOGGER_MSG_EXECSECONDARY = 2   # show if verbosity = FULL
+LOGGER_MSG_WARNING       = 11  # show if verbosity = ( FULL || NORMAL )
+LOGGER_MSG_EXECPRIMARY   = 12  # show if verbosity = ( FULL || NORMAL )
+LOGGER_MSG_CRITICAL      = 21  # always displayed
+LOGGER_MSG_STOP          = 22  # alwayds displayed
 
 LOGGER_MSG_DEBUG_TXTID         = _("DEBUG      ")
 LOGGER_MSG_INFORMATIVE_TXTID   = _("INFORMATIVE")
@@ -85,11 +79,12 @@ LOGGER_MSG_CRITICAL_TXTID      = _("CRITICAL   ")
 LOGGER_MSG_STOP_TXTID          = _("STOP       ")
 LOGGER_MSG_UNDEFINED_TXTID     = _("UNDEFINED  ")
 LOGGER_MSG_EMPTY_TXTID         = "             "
-# Condition pour qu'un message soit affiche:
-# categorie du message > niveau de verbositer du logger
 
-# Type de message pour les message imprimer avant la
-# fin de l'initialisation de METRo
+#Condition for a message to be displayed:
+# message's category > logger verbosity level
+
+# Message's type for the message to be print before
+# METRo initialization phase
 LOGGER_INIT_MESSAGE = 0
 LOGGER_INIT_SUCCESS = 1
 LOGGER_INIT_ERROR   = 2
@@ -99,25 +94,23 @@ LOGGER_INIT_BLANK   = 3
 
 bIs_initialised = False
 
-#-------------------------------------------------------------------------------
-#
-# Nom:          write_log_header
-#
-# Parametres:   I fLog_file  : fichier de log
-#               I iVerbosity : niveau de verbosite
-#
-# Retourne:     aucun
-#
-# Descriptions: Ecriture d'un header pour une nouvelle session de log.
-#               Le header comprend:
-#               le numero de version de metro,
-#               l'heure de demarrage,
-#               l'instruction complete pour lancer metro,
-#               niveau de verbosite du logger
-#
-#
-#-------------------------------------------------------------------------------
 def write_log_header( fLog_file, iVerbosity ):
+    """
+    Name:          write_log_header
+
+    Parametres:   I fLog_file  : fichier de log
+                  I iVerbosity : niveau de verbosite
+
+    Return:     none
+
+    Description: Write an header for a new log session.
+                  The header includes:
+                    * METRo's version number
+                    * Starting time
+                    * Complete command line to initiate METRo
+                    * Verbosity level
+    """    
+
     fLog_file.write("\n\n============================================\n")
 
     fLog_file.write(_("METRo version   : "))
@@ -151,44 +144,41 @@ def write_log_header( fLog_file, iVerbosity ):
 
     fLog_file.write("\n============================================\n")
 
-#-------------------------------------------------------------------------------
-#
-# Nom:          init
-#
-# Parametres:   aucun
-#
-# Retourne:     aucun
-#
-# Descriptions: Initialisation du niveau de verbosite du logger
-#
-#-------------------------------------------------------------------------------
+
 def init( ):
+    """
+    Name: init
+    Parameters: none
+    Return: none
+    Description: Logger verbosity level initialization.
+    """
+    
     global iLogger_verbose_level
     global bLogger_shell_display
     global sLogger_filename
     global fLogger_file
     global bIs_initialised
 
-    #pre initialisation pour que l'initialisation du log ne soit pas logge
+    # Pre-initialization in order to not log logger init...
     iLogger_verbose_level     = LOGGER_VERBOSE_LEVEL_NOLOG
     bLogger_shell_display     = False
 
     sMessage = _("Starting METRo logger")
     print_init_message(LOGGER_INIT_MESSAGE,sMessage)
 
-    #recuperer les valeurs de configuration
+    # Retrieve configuration values
     sTmp_logger_filename      = metro_config.get_value("FILE_LOGGER_FILENAME")
     iTmp_logger_verbose_level = \
         metro_config.get_value("INIT_LOGGER_VERBOSE_LEVEL")
     bTmp_logger_shell_display = \
         metro_config.get_value("INIT_LOGGER_SHELL_DISPLAY")
 
-    #initialisation
+    # Initialization
     sLogger_filename      = sTmp_logger_filename
     iLogger_verbose_level = iTmp_logger_verbose_level
     bLogger_shell_display = bTmp_logger_shell_display
 
-    #ouverture du fichier log
+    # Open log file
     try:
         fLogger_file = open(sLogger_filename,'a')
     except IOError:
@@ -198,7 +188,7 @@ def init( ):
         print_init_message(LOGGER_INIT_ERROR,
                            sError_message)
     else:
-        #ecrire le header du log
+        # Log header writing
         write_log_header(fLogger_file, iLogger_verbose_level)
         
         sSuccess_message = _("METRo logger started, log file:'%s'") \
@@ -209,21 +199,13 @@ def init( ):
     bIs_initialised = True
 
         
-
-
-
-#-------------------------------------------------------------------------------
-#
-# Nom:          stop
-#
-# Parametres:   aucun
-#
-# Retourne:     aucun
-#
-# Descriptions: Fermeture du loggger
-#
-#-------------------------------------------------------------------------------
 def stop():
+    """
+    Name: stop
+    Parameter: none
+    Return: none
+    Description: Log closure.
+    """
     if fLogger_file:
         fLogger_file.close()
 
@@ -243,8 +225,20 @@ def stop():
 #
 #-------------------------------------------------------------------------------
 def print_message( iMessage_category, sMessage ):
+    """
+    Name: print_message
 
-    # determiner l'identifiant texte de la categorie de message
+    Parameter:  I iMessage_category : message category
+                I sMessage          : message
+
+    Return: none
+
+    Description: Write a message in the log file. A message is written only
+                  if it's verbosity level is superior from the logger verbosity.
+                  In option, the message can be displayed in shell.
+   """
+
+    # Determine the text identifier for the category of the message
     if iMessage_category == LOGGER_MSG_DEBUG:
         sMessage_category_string = LOGGER_MSG_DEBUG_TXTID
     elif iMessage_category == LOGGER_MSG_INFORMATIVE:
@@ -263,11 +257,10 @@ def print_message( iMessage_category, sMessage ):
         sMessage_category_string = LOGGER_MSG_UNDEFINED_TXTID
 
 
-    # controle si le message doit etre "logge"
+    # Check if the message should be logged
     if iMessage_category > iLogger_verbose_level:
 
-        #Ajustement des newline pour que le texte dans le fichier soit
-        #aligne correctement
+        # Linefeed adjustment for the text in the file to be correctly aligned.
         sMessage = string.replace(sMessage,
                                   "\n",
                                   "\n" + LOGGER_MSG_EMPTY_TXTID)
@@ -280,12 +273,11 @@ def print_message( iMessage_category, sMessage ):
                         % (LOGGER_MSG_CRITICAL_TXTID,sLogger_filename)
                 print sLine
 
-        # controle si le message doit etre afficher dans le shell
+        # Control if the message should be displayed in the shell
         if bLogger_shell_display == True:
             print (sMessage_category_string + ": " + sMessage).encode('ISO-8859-1')
 
-    # si une erreur necessitant l'arret du programme se produit,
-    # il faut avertir l'usager
+    # Warn the user in the case of an error asking the execution to be stopped.
     if iMessage_category == LOGGER_MSG_STOP:
         print "\n\n------------------------------------------------------------------------"
         print _("An unrecoverable error has occured, see details in the log file: ")
@@ -299,17 +291,19 @@ def print_message( iMessage_category, sMessage ):
         sys.exit(1)
 
 def print_blank_line(iMessage_category):
-     # controle si le message doit etre "logge"
+     # Control if the message should be logged.
     if iMessage_category > iLogger_verbose_level:
         if fLogger_file:
             fLogger_file.write("\n")
 
-        # controle si le message doit etre afficher dans le shell
+        #  Control if the message should be displayed in the shell
         if bLogger_shell_display == True:
             print ""
 
-# Cette fonction imprime le message seulemement a l'ecran
 def print_init_message( iType, sMessage="" ):
+    """
+    Print the message on the shell only.
+    """
 
     if iType == LOGGER_INIT_ERROR:
         sMessage_leading_id = "[!!] "
