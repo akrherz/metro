@@ -41,6 +41,7 @@ import metro_config
 import metro_logger
 from toolbox import metro_xml
 from toolbox import metro_util
+from toolbox import metro_error
 from data_module import metro_data
 from data_module import metro_data_station
 from data_module import metro_data_collection_input
@@ -122,9 +123,9 @@ class Metro_dom2metro(Metro_module):
                                                          lStandard_forecast,
                                                          lExtended_forecast,
                                                          sData_xpath)
-        except "IOERROR":
+        except IOERROR:
             sXmlError = _("XML error in file '%s'.") % (sFilename)
-            raise sXmlError
+            raise metro_error.Metro_xml_error(sXmlError)
 
         # create forecast collection
         lForecast_standard_attribute = metro_config.get_value(
@@ -137,7 +138,7 @@ class Metro_dom2metro(Metro_module):
             forecast_data, lForecast_attribute)
 
         #
-        # Extraction des observations
+        # Observations extraction
         #
         
         # validate version number
@@ -149,23 +150,23 @@ class Metro_dom2metro(Metro_module):
                                        sMin_version, sMax_version)
 
         try:
-            # concatenation de toutes les cles du header
+            # concatenation of all the header's keys
             lHeader_keys = \
                 metro_config.get_value( 'XML_OBSERVATION_HEADER_STANDARD_ITEMS') + \
                 metro_config.get_value('XML_OBSERVATION_HEADER_STANDARD_ITEMS')
 
-            # construction du xpath
+            # xpath construction
             sHeader_xpath = metro_config.get_value('XML_OBSERVATION_XPATH_HEADER')
-            # construction du xpath
             sData_xpath = metro_config.get_value('XML_OBSERVATION_XPATH_MEASURE')
             
-            # concatenation de tout les types d'observation
+            # concatenation of all observations' type
             lStandard_observation = metro_config.get_value( \
             'XML_OBSERVATION_MEASURE_STANDARD_ITEMS')
             lExtended_observation = metro_config.get_value( \
             'XML_OBSERVATION_MEASURE_EXTENDED_ITEMS')        
 
-            obs_data = metro_data.Metro_data(lStandard_observation,lExtended_observation)
+            obs_data = metro_data.Metro_data(lStandard_observation, \
+                                             lExtended_observation)
 
             observation_data = self.__extract_data_from_dom(obs_data,
                                                             self.domObservation,
@@ -174,13 +175,10 @@ class Metro_dom2metro(Metro_module):
                                                             lStandard_observation,
                                                             lExtended_observation,
                                                             sData_xpath)
-        except "METRoDateError", sError:
+        except :
             sXmlError = _("XML error in file '%s'.\n") % (sFilename) +\
                         sError
-            raise sXmlError
-        except :
-            sXmlError = _("XML error in file '%s'.") % (sFilename)
-            raise sXmlError
+            raise metro_error.Metro_xml_error(sXmlError)
 
         # create observation collection
         lObservation_standard_attribute = metro_config.get_value(
@@ -194,7 +192,7 @@ class Metro_dom2metro(Metro_module):
 
 
         #
-        # Extraction des observations_ref
+        # observations_ref extraction
         #
         
         if self.domObservation_ref != None:
@@ -211,15 +209,13 @@ class Metro_dom2metro(Metro_module):
                                            sMin_version, sMax_version)
             
             try:
-                # concatenation de toutes les cles du header
+                # concatenation of all header's keys
                 lHeader_keys = \
                     metro_config.get_value('XML_OBSERVATION_HEADER_STANDARD_ITEMS') + \
                     metro_config.get_value('XML_OBSERVATION_HEADER_STANDARD_ITEMS')
 
-                # construction du xpath
+                # xpath construction
                 sHeader_xpath = metro_config.get_value('XML_OBSERVATION_XPATH_HEADER')
-            
-                # construction du xpath
                 sData_xpath = metro_config.get_value('XML_OBSERVATION_XPATH_MEASURE')
             
                 # concatenation de tout les types d'observation
@@ -228,7 +224,8 @@ class Metro_dom2metro(Metro_module):
                 lExtended_observation = metro_config.get_value( \
                     'XML_OBSERVATION_MEASURE_EXTENDED_ITEMS')        
 
-                obs_data = metro_data.Metro_data(lStandard_observation,lExtended_observation)
+                obs_data = metro_data.Metro_data(lStandard_observation,\
+                                                 lExtended_observation)
 
                 observation_data = \
                     self.__extract_data_from_dom(obs_data,
@@ -240,7 +237,7 @@ class Metro_dom2metro(Metro_module):
                                                  sData_xpath)
             except:
                 sXmlError = _("XML error in file '%s'.") % (sFilename)
-                raise sXmlError
+                raise metro_error.Metro_xml_error(sXmlError)
 
             # create observation collection
             lObservation_standard_attribute = metro_config.get_value(
@@ -257,7 +254,7 @@ class Metro_dom2metro(Metro_module):
             pObservation_ref.set_data_collection(observation_ref)
 
         #
-        # Extraction des station
+        # station extraction
         #
 
         # validate version number
@@ -269,24 +266,23 @@ class Metro_dom2metro(Metro_module):
                                        sMin_version, sMax_version)
 
         try:
-            # concatenation de toutes les cles du header
+            # concatenation of all header's keys
             lHeader_defs = \
                 metro_config.get_value('XML_STATION_HEADER_STANDARD_ITEMS') + \
                 metro_config.get_value('XML_STATION_HEADER_EXTENDED_ITEMS')
 
-            # construction du xpath
+            # xpath construction
             sHeader_xpath = metro_config.get_value('XML_STATION_XPATH_HEADER')
-
-            # construction du xpath
             sData_xpath = metro_config.get_value('XML_STATION_XPATH_ROADLAYER')
 
-            # concatenation de tout les section d'un roadlayer
+            # concatenation of all the roadlayer sections
             lStandard_roadlayer = metro_config.get_value( \
                 'XML_STATION_ROADLAYER_STANDARD_ITEMS')
             lExtended_roadlayer = metro_config.get_value( \
                 'XML_STATION_ROADLAYER_EXTENDED_ITEMS')        
 
-            cs_data = metro_data_station.Metro_data_station(lStandard_roadlayer,lExtended_roadlayer )
+            cs_data = metro_data_station.Metro_data_station(lStandard_roadlayer,\
+                                                            lExtended_roadlayer )
             station_data = self.__extract_data_from_dom(cs_data,
                                                         self.domStation,
                                                         lHeader_defs,
@@ -297,7 +293,7 @@ class Metro_dom2metro(Metro_module):
 
         except:
             sXmlError = _("XML error in file '%s'.") % (sFilename)
-            raise sXmlError
+            raise  metro_error.Metro_xml_error(sXmlError)
 
 
         pForecast.set_data_collection(forecast)
@@ -307,7 +303,7 @@ class Metro_dom2metro(Metro_module):
 
     def stop(self):
         Metro_module.stop(self)
-        # Liberation de la memoire utilise par les DOM
+        # Free all the memory used by DOM
         metro_xml.free_dom(self.domForecast)
         metro_xml.free_dom(self.domObservation)
         if self.domObservation_ref != None:
@@ -346,11 +342,11 @@ class Metro_dom2metro(Metro_module):
         """
         if ldHeader_keys != None and sHeader_xpath != None:
             
-            # extraction des donnes contenue dans les nodes
+            # extraction of data included in nodes
             lHeader_data = metro_xml.extract_xpath(ldHeader_keys,\
                                                    domDom, sHeader_xpath)
 
-            # ajout des elements dans le dictionnaire du header
+            # Add all the elements in the header's dictionnary
             i = 0
             dHeader={}
             for i in range(0,len(ldHeader_keys)):
@@ -362,11 +358,11 @@ class Metro_dom2metro(Metro_module):
         lData_keys = lStdData_keys + lExtData_keys
 
         if lData_keys != None and sData_xpath != None:
-            # extraction de toute les nodes de mesure contenue dans le DOM
+            # extraction of all the nodes included in the DOM
             lData_matrix = metro_xml.extract_xpath(lData_keys, domDom,\
                                                    sData_xpath, True)
             
-            # transfert de la matrice dans objet Metro_data
+            # matrix transfer in object Metro_data
             for lData_row in lData_matrix:
                 metro_data.append_matrix_row(lData_row)
 
@@ -378,25 +374,10 @@ class Metro_dom2metro(Metro_module):
             metro_util.validate_version_number(sFile_version,
                                             sMin_version,
                                             sMax_version)
-        except "VersionErrorLow", sError:
+        except metro_error.Metro_version_error as inst:
             sMessage =_("An error occured when reading ") +\
                       _("file:\n'%s'.\nThe error is:\n'%s'.") \
-                        % (sFilename,sError)
+                        % (sFilename, str(sError))
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                        sMessage)
-        except "VersionErrorHigh", sError:
-            sMessage =_("An error occured when reading ") +\
-                      _("file:\n'%s'.\nThe error is:\n'%s'.\n") \
-                      % (sFilename,sError) +\
-                      _("METRo will try to read the file.") 
 
-            metro_logger.print_message(metro_logger.LOGGER_MSG_CRITICAL,
-                                       sMessage)
-        except "VersionErrorUndetermined", sError:
-            sMessage =_("An error occured when reading ") +\
-                      _("file:\n'%s'.\nThe error is:\n'%s'.\n") \
-                      % (sFilename,sError) + \
-                      _("METRo will try to read the file.") \
-
-            metro_logger.print_message(metro_logger.LOGGER_MSG_CRITICAL,
-                                       sMessage) 
