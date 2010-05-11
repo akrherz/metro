@@ -58,6 +58,7 @@ import string
 
 import metro_util
 import metro_constant
+import metro_error
 
 _ = metro_util.init_translation('metro_date')
 
@@ -73,7 +74,8 @@ def parse_date_string( sDate ):
 
     if sDate != None:
         try:
-            # Strip the date in ISO up to the minute only, ie. the first 16 characters
+            # Strip the date in ISO up to the minute only,
+            # ie. the first 16 characters
             sDate = sDate[0:16]
             tDate = time.strptime(sDate, "%Y-%m-%dT%H:%M")
             fDate = time.mktime(tDate)
@@ -81,11 +83,11 @@ def parse_date_string( sDate ):
             sMessage = _("The following error occured when parsing the ") +\
                        _("ISO 8601 date:\n %s") % (sError)
             fDate = metro_constant.NaN
-            raise "METRoDateError", sMessage        
+            raise metro_error.Metro_date_error(sMessage)
     else:
         sMessage = _("The following error occured when parsing a ") +\
                    _("date:\nNo date string to convert")
-        raise "METRoDateError", sMessage
+        raise  metro_error.Metro_date_error(sMessage)
     
     return fDate
 
@@ -242,7 +244,7 @@ def get_elapsed_time(ftime1, ftime2, sTimeZone="UTC", sUnit="hours"):
     else:
         sInvalidParameterError =_("Invalid criteria in get_elapsed_time: sUnit = %s")\
                                      % (sUnit)
-        raise "METRoDateError", sInvalidParameterError
+        raise  metro_error.Metro_date_error(sInvalidParameterError)
 
 
 def tranform_decimal_hour_in_minutes(fTimeHour):

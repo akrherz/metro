@@ -38,6 +38,7 @@ import os
 
 import metro_config
 import metro_logger
+import metro_error
 from toolbox import metro_date
 from toolbox import metro_util
 from toolbox import metro_xml
@@ -59,9 +60,9 @@ def read_date(sTag,nodeBranch):
     sDate = metro_xml.extract_data_from_node(sTag,nodeBranch)
     try:
         fDate = metro_date.parse_date_string(sDate)
-    except "DateError", sError:
+    except metro_error.Metro_date_error as inst:
         metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
-                                   sError)
+                                   str(inst))
         fDate = 0.0
     return fDate
 

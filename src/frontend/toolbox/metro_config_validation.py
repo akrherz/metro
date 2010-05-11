@@ -40,6 +40,7 @@ import sys
 
 import metro_config
 import metro_logger
+import metro_error
 from toolbox import metro_util
 from toolbox import metro_date
 
@@ -70,10 +71,10 @@ def validate_handler( sHandler, iFrom, sDescription ):
     sFunction_name = lFunctionPart[-1]
     try:           
         metro_util.test_function_existence(sFunction_module, sFunction_name)
-    except "MetroImportError", sError:
+    except metro_error.Metro_import_error as inst:
         sMessage = config_error_string(sDescription,
                                        iFrom,
-                                       sError)
+                                       inst)
         metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
                                         sMessage)
         sys.exit(3)
@@ -198,7 +199,7 @@ def validate_execution_sequence( dConf ):
     for sModule in lExecutionSequence:
         try:           
             metro_util.test_import(sModule)
-        except "MetroImportError", sError:
+        except metro_error.Metro_import_error(sError):
             sConfig_path = "%s module:'%s'" % (sKey,sModule)
             sMessage = config_error_string(sConfig_path,
                                            iFrom,
@@ -214,7 +215,7 @@ def validate_roadcast_start_time( dConf ):
     if sStart_time != "":
         try:
             metro_date.parse_date_string(sStart_time)
-        except "DateError", sError:
+        except metro_error.Metro_date_error as inst:
             sMessage = _("Fatal error, the date string '%s' passed to the\n ")\
                        % (sStart_time)+\
                        _("option '--roadcast-start-date' doesn't conform to ") +\
@@ -223,8 +224,6 @@ def validate_roadcast_start_time( dConf ):
                                             sMessage)
             sys.exit(3)
     else:
-#        sMessage = _("METRo need a valid roadcast start date\n" +
-#                     "Please use the option: '--roadcast-start-date'")
         sMessage = _("No roadcast start date provided. The date of the\n") + \
                    _("last observation will be used as the roadcast ") + \
                    _("start date\n")

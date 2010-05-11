@@ -40,9 +40,14 @@
  as a library and metro_util is the module that every other module loads.
  Thus, the language setting that are used through metro is always set if
  this code is in the metro_util module.
+
+ metro_logger cannot be invoked here since this module is imported in
+ metro_logger. Errors must raised here must be catched elsewhere and then
+ be logged through this module, if possible.
 """
 
 import os
+import metro_error
 
 # set environment variable LANGUAGE and LC_ALL
 if 'LANGUAGE' not in os.environ and 'LC_ALL' not in os.environ:
@@ -125,13 +130,8 @@ def test_import( sModule_name ):
     try:
         sCode = "import " + sModule_name
         exec sCode
-    except SyntaxError, sError:
-        raise "MetroImportError", sError
-    except ImportError, sError:
-        raise "MetroImportError", sError
-    except EOFError, sError:
-        print 'sCode= [%s]' % (sCode)
-        raise "MetroImportError", sError
+    except (SyntaxError, ImportError, EOFError) as sError:
+        raise metro_error.Metro_import_error(sError)
 
 def test_function_existence( sModule_name, sFunction_name ):
     """
@@ -142,13 +142,9 @@ def test_function_existence( sModule_name, sFunction_name ):
         exec sCode_import
         sCode_function = "func_object = " + sModule_name + "." + sFunction_name
         exec sCode_function
-        
-    except SyntaxError, sError:
-        raise "MetroImportError", sError
-    except ImportError, sError:
-        raise "MetroImportError", sError
-    except AttributeError, sError:
-        raise "MetroImportError", sError
+    except (SyntaxError, ImportError, AttributeError) as inst:
+        raise metro_error.Metro_import_error(inst)
+
     
 def join_dictionaries(dDict1, dDict2):
     lKeys = dDict1.keys() + dDict2.keys()
@@ -216,27 +212,28 @@ def interpolate(xArray, yArray):
     # Check if the size of the array is ok.
     iLenXArray = len(xArray)
     iLenYArray = len(yArray)
-    if( iLenXArray != iLenYArray):
+    if ( iLenXArray != iLenYArray):
         sMetroUtilWarning = _("In interpolate, the arrays does not") +\
                             _("have the same length. %d != %d\n") %\
                               (iLenXArray, iLenYArray )
+        # Error should be thrown ? Text won<t be in metro_logger...
         print sMetroUtilWarning
-        if iLenYArray < iLenXArray:
+        if  iLenYArray < iLenXArray:
             sMetroUtilWarning = _("Padding Y array with average at the end.")
             npPadd = numpy.zeros(iLenXArray - iLenYArray)+yArray.mean()
             yArray = numpy.concatenate((yArray,npPadd))
         else:
-            raise "METRoUtilError", sMetroUtilWarning
+            raise metro_error.Metro_util_error(sMetroUtilWarning)
         
-    elif(iLenXArray < 2):
+    elif (iLenXArray < 2):
         sMetroUtilError = _("In interpolate, the arrays have only one value (1)")
-        raise "METRoUtilError", sMetroUtilError
-    elif(xArray[1]-xArray[0] < iIncrement):
+        raise  metro_error.Metro_util_error(sMetroUtilError)
+    elif (xArray[1]-xArray[0] < iIncrement):
         sMetroUtilError = _("In interpolate, iIncrement is too big. \n")+\
                           _("Space between two values in xArray:")+\
                           "xArray[0]: %f xArray[1]:%f \n Increment=%f" \
                           % (xArray[0], xArray[1], iIncrement)
-        raise "METRoUtilError", sMetroUtilError
+        raise metro_error.Metro_util_error(sMetroUtilError)
 
     # Build the new x
     xArrayInt = numpy.arange(xArray[0],xArray[iLenXArray-1],iIncrement)
@@ -271,11 +268,11 @@ def shift_left(npInput, fValueAdded=0):
 
      """
     # Check the dimension
-    if(npInput.shape <= 0):
+    if (npInput.shape <= 0):
         sMetroUtilError = _("In shift_left, npInput is not of size (1,).\n")+\
-                          "len(npInput.getshape())=%s"\
-                          % (len(npInput.getshape()))
-        raise "METRoUtilError", sMetroUtilError
+                          "len(npInput.shape)=%s"\
+                          % (len(npInput.shape))
+        raise metro_error.Metro_util_error(sMetroUtilError)
 
     # Cut the first value
     npOutput  = numpy.take(npInput,\
@@ -314,11 +311,11 @@ def shift_right(npInput, fValueAdded=0):
      """
     
     # Check the dimension
-    if(npInput.shape[0]  <= 0):
+    if (npInput.shape[0]  <= 0):
         sMetroUtilError = _("In shift_right, npInput is not of size (1,).\n")+\
-                          "len(npInput.getshape())=%s"\
-                          % (len(npInput.getshape()))
-        raise "METRoUtilError", sMetroUtilError
+                          "len(npInput.shape)=%s"\
+                          % (len(npInput.shape))
+        raise  metro_error.Metro_util_error(sMetroUtilError)
     npToBeCat = numpy.array([fValueAdded])
     # Cut the trailing value
     npOutput  = numpy.take(npInput,\
@@ -359,7 +356,8 @@ def get_indice_of(npInput, fValue=0):
             return i
 
     sMetroUtilError = _("No indice with this value: %d") %(fValue)
-    raise "METRoUtilError", sMetroUtilError
+    raise metro_error.Metro_util_error(sMetroUtilError)
+
 
 
 def get_difference_array(npInput, bPrevious=False):
@@ -404,8 +402,8 @@ def sign(dResult, dSign):
     """
     Name: sign
 
-    Parameters:   [I] double  dResult : 
-                  [I] double  dSign : 
+    Parameters:   [I double  dResult : 
+                  [I double  dSign : 
 
     Returns:  - abs(dResult) if dSign < 0
                 abs(dResult) if dSign > 0
@@ -417,17 +415,17 @@ def sign(dResult, dSign):
 
     Notes: This is the equivalent of SIGN in fortran.  And no,
     there is no built-in function that does that.
-    CASE 1:   If y >= 0 then  		
-		sign(x,y) = abs(x)   ,
-    CASE 2:   If y < 0 then 		
-		sign(x,y) = - abs(x)   .
 
     Revision History:
     Author		Date		Reason
     Miguel Tremblay       August 24th 2004
     """
     
-    if dSign >= 0:
+    # If dSign is == 0, raise an error
+    if dSign == 0:
+        sMetroUtilError = _("Cannot determine the sign of zero")
+        raise sMetroUtilError
+    elif dSign > 0:
         return abs(dResult)
     else:
         return -abs(dResult)
@@ -458,7 +456,7 @@ def subsample(npInput, nSubsamplingIndice):
         sMetroUtilError = _("In metro_util.subsample, subsampling rate")+\
                           _("is higher than array size: %d > %d") %\
                           (nSubsamplingIndice, len(npInput ))
-        raise "METRoUtilError", sMetroUtilError
+        raise metro_error.Metro_util_error(sMetroUtilError)
 
     # Perform the subsampling
     npSub = numpy.arange(0, len(npInput), nSubsamplingIndice)
@@ -508,7 +506,7 @@ def concat_array(npArray1, npArray2):
         sMetroUtilError = _("In metro_util.concat_array, array must be") +\
                           _(" of the same dimension: %d != %d") % \
                           ((nLen1, nLen2))
-        raise "METRoUtilError", sMetroUtilError
+        raise metro_error.Metro_util_error(sMetroUtilError)
 
     # First, rotate the axis
     npArray1.setshape(nLen1,1)
@@ -522,27 +520,25 @@ def concat_array(npArray1, npArray2):
 
 def cut_indices(npArray, x0, xn):
     """
-     Name: cut_indices
+    Name: cut_indices
 
- Parameters:   numpy npArray : array to be cut
-               float x0 : The minimum from with the left will
-  be cut.
-               float  xn:  The maximum from with the right will
-  be cut.
+    Parameters:   numpy npArray : array to be cut
+                  float x0 : The minimum from with the left will be cut.
+                  float  xn:  The maximum from with the right will be cut.
 
- Returns:  [indiceLeft, indiceRight]
+    Returns:  [indiceLeft, indiceRight]
 
- Functions Called: 
+    Functions Called: 
 
- Description:  Reduce an array to the value between x0 and xn
+    Description:  Reduce an array to the value between x0 and xn
 
 
- Notes: Array should be monotone 
+    Notes: Array should be monotone 
 
- Revision History:
-  Author		Date		Reason
- Miguel Tremblay       September 20th 2004
-"""
+    Revision History:
+    Author		Date		Reason
+    Miguel Tremblay       September 20th 2004
+    """
     nFirstValidIndice = get_indice_of(npArray, x0)
     nLastValidIndice = get_indice_of(npArray, xn)
 
@@ -600,20 +596,20 @@ def validate_version_number(sVersion, sMin_version, sMax_version ):
                        % (version, min_version) +\
                        _("to '%s' inclusively are supported") \
                        % (max_version)
-            raise "VersionErrorLow", sMessage
-                
-        elif version > max_version:
+            raise metro_error.Metro_version_error(sMessage)                
+        elif  version > max_version:
             sMessage = _("Version number:'%s' is not yet supported. Version ")\
                        % (version) +\
                        _("from '%s' to '%s' inclusively are supported") \
                        % (min_version,max_version)
-            raise "VersionErrorHigh", sMessage
+            raise metro_error.Metro_version_error(sMessage)
+
     else:
         sMessage = _("Can't find version number. Version from '%s' ") \
                    % (min_version) +\
                    _("to '%s' inclusively are supported") \
                    % (max_version)
-        raise "VersionErrorUndetermined", sMessage
+        raise metro_error.Metro_version_error(sMessage)
 
 
 def init_translation(sFilename):

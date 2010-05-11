@@ -82,3 +82,12 @@ class Metro_version_error(Metro_error):
         """ Put the message in string only if it is a string"""        
         self.sError = "\n" +  _("METRo's version error: ") + self.sError
         return self.sError
+
+class Metro_date_error(Metro_error):
+    """
+    Something went wrong with a date
+    """
+    def __str__(self):
+        """ Put the message in string only if it is a string"""        
+        self.sError = "\n" +  _("Date error: ") + self.sError
+        return self.sError

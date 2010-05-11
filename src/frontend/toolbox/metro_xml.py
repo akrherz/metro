@@ -47,6 +47,7 @@ import string
 
 import metro_config
 import metro_logger
+import metro_error
 from toolbox import metro_util
 
 _ = metro_util.init_translation('metro_xml')
@@ -56,7 +57,7 @@ def init( sMetro_xml_lib = ""):
     if sMetro_xml_lib != "":
         try:
             metro_xml_lib = __import__(sMetro_xml_lib)
-        except "MetroImportError":
+        except metro_error.Metro_import_error:
             sMessage =  _("Fatal error! Can't import '%s' xml library") \
                        % (sMetro_xml_lib)
             metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
@@ -68,11 +69,11 @@ def init( sMetro_xml_lib = ""):
             metro_xml_lib = __import__(sMetro_xml_lib)
         
     else:
-#        metro_logger.print_init_message(metro_logger.LOGGER_INIT_MESSAGE,
-#                                        _("Auto configure METRo XML library"))
+        metro_logger.print_init_message(metro_logger.LOGGER_INIT_MESSAGE,
+                                        _("Auto configure METRo XML library"))
         try:
             metro_util.test_import("metro_xml_libxml2")
-        except "MetroImportError":
+        except metro_error.Metro_import_error as inst:
             sMessage = _("Fatal error! No METRo XML library can be use. ") +\
                        _("\nMETRo need one of the following XML library ") +\
                        _("installed on the system.\nSupported library:") +\
@@ -311,7 +312,6 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
             #  create the node 
             sCode = "nodeData = " + sWriteHandler + \
                     "(sXml_tag,dData[sTag])"
-        print sCode
         exec sCode
 
         append_child(nodeParent, nodeData)
