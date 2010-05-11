@@ -91,3 +91,12 @@ class Metro_date_error(Metro_error):
         """ Put the message in string only if it is a string"""        
         self.sError = "\n" +  _("Date error: ") + self.sError
         return self.sError
+
+class Metro_xml_error(Metro_error):
+    """
+    Something went wrong in parsing the XML
+    """
+    def __str__(self):
+        """ Put the message in string only if it is a string"""        
+        self.sError = "\n" + self.sError
+        return self.sError
