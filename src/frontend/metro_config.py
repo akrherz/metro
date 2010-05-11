@@ -118,16 +118,6 @@ def read_config_file( sFilename ):
     else:
                 
         plreader = plist_reader.Plist_reader()
-# DESACTIVATION DE LA VALIDATION
-#        try:
-#            metro_xml.validate_string(sConfig_file)
-#        except "metroValidationError", sError:
-#            sMessage = _("Fatal error when validating configuration file.\n" +
-#                         "The error is: %s\nThe configuration file:\n%s") \
-#                         % (sError,sConfig_file)
-#            metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
-#                                            sMessage)
-#            sys.exit(2)
         try: 
             dConf = plreader.read(sConfig_file)
         except:
@@ -181,10 +171,6 @@ def overlay_config( dBase, dNew, iConfig_level ):
 
 
 def init( ):
-    # activation du module de traduction
-#    gettext.textdomain(METRO_CONFIG_GETTEXT_PACKAGE)#, METRO_CONFIG_GETTEXT_LOCALEDIR)
-#    print "dans init", gettext.textdomain()
-    
     set_default_value()
 
 def get_cmdline_conf( lArgs ):
