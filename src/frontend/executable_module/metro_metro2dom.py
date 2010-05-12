@@ -68,11 +68,39 @@ class Metro_metro2dom( Metro_module ):
         forecast_data = pForecast.get_data_collection()
         pRoadcast = self.get_infdata_reference('ROADCAST')
         roadcast_data = pRoadcast.get_data_collection()
+
+
+        #
+        # construct dictionnary of write handler
+        #
+        
+        import toolbox.metro_metro2dom_handler 
+
+        # Retrieve the informations about the data type
+        dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
+        dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
+
+        dData_type = metro_util.join_dictionaries(dStandard_data_type,
+                                                  dExtended_data_type)
+
+        dWriteHandlers = {}
+
+        # construct dictionnary of write handlers (only done once so not expensive)
+        sMessage = _("-------------------------- Write handlers available --------------------------\n")
+        for dType in dData_type:
+            if dData_type[dType]['WRITE'] != "":
+                sCode = "handler = " + dData_type[dType]['WRITE']
+                exec sCode
+                dWriteHandlers[dType] = handler
+                sMessage += _("TYPE: %s , HANDLER: %s\n") % (dType.ljust(15),dData_type[dType]['WRITE'])
+        sMessage += "-----------------------------------------------------------------------------"        
+        metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                   sMessage)                
         
         # Create forecast
         if forecast_data != None:
             domForecast = \
-                self.__create_forecast(forecast_data.get_original_data())
+                self.__create_forecast(forecast_data.get_original_data(),dWriteHandlers)
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
                 _("No forecast, can't create DOM forecast"))
@@ -81,7 +109,7 @@ class Metro_metro2dom( Metro_module ):
         # Create roadcast
         if roadcast_data != None:
             domRoadcast = \
-                self.__create_roadcast(roadcast_data.get_subsampled_data())
+                self.__create_roadcast(roadcast_data.get_subsampled_data(),dWriteHandlers)
 
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
@@ -100,7 +128,7 @@ class Metro_metro2dom( Metro_module ):
     def get_send_type( self ):
         return Metro_module.DATATYPE_DOM_OUT
 
-    def __create_forecast( self, data ):
+    def __create_forecast( self, data, dWriteHandlers ):
 
         #
         # DOM and root element creation
@@ -123,7 +151,7 @@ class Metro_metro2dom( Metro_module ):
         sHeader_xpath = metro_config.get_value('XML_FORECAST_XPATH_HEADER')
 
         self.__create_header(domDoc, nodeRoot, sHeader_xpath,
-                             lHeader_keys, data)
+                             lHeader_keys, dWriteHandlers, data)
 
 
         #
@@ -142,12 +170,12 @@ class Metro_metro2dom( Metro_module ):
             'XML_FORECAST_XPATH_PREDICTION')
 
         self.__create_matrix(domDoc, nodeRoot, sPrediction_xpath,
-                             lPrediction_keys, data)
+                             lPrediction_keys, dWriteHandlers, data)
 
         return domDoc
 
 
-    def __create_roadcast( self, data ):
+    def __create_roadcast( self, data, dWriteHandlers ):
 
         #
         # DOM and root element creation
@@ -170,7 +198,7 @@ class Metro_metro2dom( Metro_module ):
         sHeader_xpath = metro_config.get_value('XML_ROADCAST_XPATH_HEADER')
 
         self.__create_header(domDoc, nodeRoot, sHeader_xpath,
-                             lHeader_keys, data)
+                             lHeader_keys, dWriteHandlers, data)
 
 
         #
@@ -187,13 +215,13 @@ class Metro_metro2dom( Metro_module ):
             metro_config.get_value('XML_ROADCAST_XPATH_PREDICTION')
 
         self.__create_matrix(domDoc, nodeRoot, sPrediction_xpath,
-                             lPrediction_keys, data)
+                             lPrediction_keys, dWriteHandlers, data)
 
         return domDoc
 
 
     def __create_header( self, domDoc, nodeRoot, sHeader_xpath,
-                         lHeader_keys, metro_data ):
+                         lHeader_keys, dWriteHandlers, metro_data ):
 
         lHeader_xpath = string.split(sHeader_xpath,"/")
 
@@ -210,11 +238,11 @@ class Metro_metro2dom( Metro_module ):
 
         # header creation
         metro_xml.create_node_tree_from_dict(domDoc, nodeHeader,
-                                             lHeader_keys, dHeader)
+                                             lHeader_keys, dWriteHandlers, dHeader)
 
 
     def __create_matrix( self, domDoc, nodeRoot, sPrediction_xpath,
-                         lPrediction_keys, metro_data):
+                         lPrediction_keys, dWriteHandlers, metro_data):
 
         lPrediction_xpath = string.split(sPrediction_xpath,"/")
 
@@ -242,4 +270,5 @@ class Metro_metro2dom( Metro_module ):
         metro_xml.create_node_tree_from_matrix(domDoc, nodePrediction,
                                                sPrediction_node_name,
                                                lPrediction_keys,
+                                               dWriteHandlers,
                                                metro_data, naMatrix)

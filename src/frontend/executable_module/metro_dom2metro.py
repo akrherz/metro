@@ -84,6 +84,34 @@ class Metro_dom2metro(Metro_module):
             self.domObservation_ref = None
         self.domStation         = pStation.get_input_information()
 
+
+        #
+        # construct dictionnary of read handler
+        #
+        
+        import toolbox.metro_dom2metro_handler 
+
+        # Retrieve the informations about the data type
+        dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
+        dExtended_data_type = metro_config.get_value('XML_DATATYPE_EXTENDED')
+
+        dData_type = metro_util.join_dictionaries(dStandard_data_type,
+                                                  dExtended_data_type)
+
+        dReadHandlers = {}
+
+        # construct dictionnary of read handlers (only done once so not expensive)
+        sMessage = _("-------------------------- Read handlers available --------------------------\n")
+        for dType in dData_type:
+            if dData_type[dType]['READ'] != "":
+                sCode = "handler = " + dData_type[dType]['READ']
+                exec sCode
+                dReadHandlers[dType] = handler
+                sMessage += _("TYPE: %s , HANDLER: %s\n") % (dType.ljust(15),dData_type[dType]['READ'])
+        sMessage += "-----------------------------------------------------------------------------"
+        metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                   sMessage)           
+        
         #
         # Forecast extraction
         #
@@ -122,6 +150,7 @@ class Metro_dom2metro(Metro_module):
                                                          sHeader_xpath,
                                                          lStandard_forecast,
                                                          lExtended_forecast,
+                                                         dReadHandlers,
                                                          sData_xpath)
         except IOERROR:
             sXmlError = _("XML error in file '%s'.") % (sFilename)
@@ -174,6 +203,7 @@ class Metro_dom2metro(Metro_module):
                                                             sHeader_xpath,
                                                             lStandard_observation,
                                                             lExtended_observation,
+                                                            dReadHandlers,
                                                             sData_xpath)
         except :
             sXmlError = _("XML error in file '%s'.\n") % (sFilename) +\
@@ -234,6 +264,7 @@ class Metro_dom2metro(Metro_module):
                                                  sHeader_xpath,
                                                  lStandard_observation,
                                                  lExtended_observation,
+                                                 dReadHandlers,
                                                  sData_xpath)
             except:
                 sXmlError = _("XML error in file '%s'.") % (sFilename)
@@ -289,6 +320,7 @@ class Metro_dom2metro(Metro_module):
                                                         sHeader_xpath,
                                                         lStandard_roadlayer,
                                                         lExtended_roadlayer,
+                                                        dReadHandlers,
                                                         sData_xpath)
 
         except:
@@ -320,6 +352,7 @@ class Metro_dom2metro(Metro_module):
     def __extract_data_from_dom(self, metro_data, domDom,
                                 ldHeader_keys, sHeader_xpath,
                                 lStdData_keys, lExtData_keys,
+                                dReadHandlers,
                                 sData_xpath):
         """
         Name: __extract_data_from_dom
@@ -332,6 +365,9 @@ class Metro_dom2metro(Metro_module):
                     [I] sHeader_xpath: xpath of the header
                     [I] lStdData_keys: like ldHeader_keys but for standard data
                     [I] lExtData_keys: like ldHeader_keys but for extended data
+                    [I] dReadHandlers: dictionnay of read handler.
+                                       key = data type name (ex: INTEGER),
+                                       value = handler (ex: toolbox.metro_dom2metro_handler.read_integer)
                     [I] sData_xpath : xpath for the data.
 
         Output: metro_data : object containing all the data extracted.
@@ -343,7 +379,7 @@ class Metro_dom2metro(Metro_module):
         if ldHeader_keys != None and sHeader_xpath != None:
             
             # extraction of data included in nodes
-            lHeader_data = metro_xml.extract_xpath(ldHeader_keys,\
+            lHeader_data = metro_xml.extract_xpath(ldHeader_keys,dReadHandlers,\
                                                    domDom, sHeader_xpath)
 
             # Add all the elements in the header's dictionnary
@@ -359,7 +395,7 @@ class Metro_dom2metro(Metro_module):
 
         if lData_keys != None and sData_xpath != None:
             # extraction of all the nodes included in the DOM
-            lData_matrix = metro_xml.extract_xpath(lData_keys, domDom,\
+            lData_matrix = metro_xml.extract_xpath(lData_keys, dReadHandlers, domDom,\
                                                    sData_xpath, True)
             
             # matrix transfer in object Metro_data

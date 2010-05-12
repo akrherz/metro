@@ -567,15 +567,15 @@ def set_default_value( ):
                        'WRITE':"toolbox.metro_metro2dom_handler.write_real"},
 
                   'DATE': \
-                      {'READ' :"metro_dom2metro_handler.read_date",
-                       'WRITE':"metro_metro2dom_handler.write_date"},
+                      {'READ' :"toolbox.metro_dom2metro_handler.read_date",
+                       'WRITE':"toolbox.metro_metro2dom_handler.write_date"},
 
                   'STRING': \
-                      {'READ' :"metro_dom2metro_handler.read_string",
-                       'WRITE':"metro_metro2dom_handler.write_string"},
+                      {'READ' :"toolbox.metro_dom2metro_handler.read_string",
+                       'WRITE':"toolbox.metro_metro2dom_handler.write_string"},
 
                   'COORDINATE': \
-                      {'READ' :"metro_dom2metro_handler.read_coordinate",
+                      {'READ' :"toolbox.metro_dom2metro_handler.read_coordinate",
                        'WRITE':"",
                        'CHILD':[{'NAME':"LATITUDE",
                                  'XML_TAG':"latitude",
@@ -588,7 +588,7 @@ def set_default_value( ):
                   
                   'LIST_LEVEL_TEMP': \
                       {'READ' :"",
-                       'WRITE':"metro_metro2dom_handler.write_list",
+                       'WRITE':"toolbox.metro_metro2dom_handler.write_list",
                        'CHILD':[{'NAME':"LEV-TEMP",
                                  'XML_TAG':"lev-temp",
                                  'DATA_TYPE':'REAL',
@@ -597,7 +597,7 @@ def set_default_value( ):
                   
                   'VERTICAL_LEVELS': \
                       {'READ' :"",
-                       'WRITE':"metro_metro2dom_handler.write_list",
+                       'WRITE':"toolbox.metro_metro2dom_handler.write_list",
                        'CHILD':[{'NAME':"DEPTH",
                                  'XML_TAG':"depth",
                                  'DATA_TYPE':'REAL',
@@ -606,12 +606,12 @@ def set_default_value( ):
 
                   
                   'ROADLAYER_TYPE': \
-                      {'READ'	:"metro_dom2metro_handler.read_roadlayer_type",
+                      {'READ'	:"toolbox.metro_dom2metro_handler.read_roadlayer_type",
                        'WRITE':""},
 
                   'DEFAULT': \
-                      {'READ' :"metro_dom2metro_handler.read_string",
-                       'WRITE':"metro_metro2dom_handler.write_string"}
+                      {'READ' :"toolbox.metro_dom2metro_handler.read_string",
+                       'WRITE':"toolbox.metro_metro2dom_handler.write_string"}
                   },
          'FROM'    :CFG_INTERNAL,
          'COMMENTS':_("standard data type for METRo XML files")}

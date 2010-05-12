@@ -66,17 +66,17 @@ def read_date(sTag,nodeBranch):
         fDate = 0.0
     return fDate
 
-def read_coordinate(lChild,nodeBranch):
+def read_coordinate(lChild,nodeBranch,dReadHandler):
     if nodeBranch:
-        lRslt = metro_xml.extract_data(lChild,nodeBranch[0])
+        lRslt = metro_xml.extract_data(lChild,dReadHandler,nodeBranch[0])
     else:
         lRslt = []
 
     return list_to_coordinate(lRslt)
 
-def read_station_components(lChild,nodeBranch):
+def read_station_components(lChild,nodeBranch,dReadHandler):
     if nodeBranch:
-        rslt = metro_xml.extract_data(lChild,nodeBranch[0])
+        rslt = metro_xml.extract_data(lChild,dReadHandler,nodeBranch[0])
     else:
         rslt = None
     return rslt

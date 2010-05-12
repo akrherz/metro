@@ -117,12 +117,15 @@ def xpath( domDom, sXpath ):
         sRslt = None
     return sRslt
 
-def extract_xpath(lDefs, domDom, sXpath, bIs_matrix=False):
+def extract_xpath(lDefs, dReadHandlers, domDom, sXpath, bIs_matrix=False):
     """
     Name: extract_xpath
 
     Arguments: [I] lDefs: list of dictionnaries containing the data definitions
                             as defined in metro_config.py
+               [I] dReadHandlers: dictionnay of read handler.
+                                  key = data type name (ex: INTEGER),
+                                  value = handler (ex: toolbox.metro_dom2metro_handler.read_integer)
                [I] domDOM: DOM in which data has to be extracted.
                [I] sXPath: Path of the node containing all the subnodes
                             (header, prediction, etc.)
@@ -133,7 +136,7 @@ def extract_xpath(lDefs, domDom, sXpath, bIs_matrix=False):
 
     Description: Return one or all the value contained under the xpath in the DOM.
     """
-    
+
     node_items = metro_xml_lib.xpath(metro_xml_lib.get_dom_root(domDom),
                                 sXpath)
 
@@ -141,18 +144,18 @@ def extract_xpath(lDefs, domDom, sXpath, bIs_matrix=False):
         if len(node_items) > 0:
             llExtractedValue = []
             for node_item in node_items:
-                lData = extract_data(lDefs, node_item)
+                lData = extract_data(lDefs, dReadHandlers, node_item)
                 llExtractedValue.append(lData)
         else:
             llExtractedValue = None
     else:
         if len(node_items) == 1:
             node_item = node_items[0]
-            llExtractedValue = extract_data(lDefs, node_item)
+            llExtractedValue = extract_data(lDefs, dReadHandlers, node_item)
         elif len(node_items) > 1:
             llExtractedValue = []
             for node_item in node_items:
-                lData = extract_data(lDefs, node_item)
+                lData = extract_data(lDefs, dReadHandlers, node_item)
                 llExtractedValue.append(lData)
         else:
             llExtractedValue = None
@@ -160,19 +163,21 @@ def extract_xpath(lDefs, domDom, sXpath, bIs_matrix=False):
 
     return llExtractedValue
 
-def extract_data(lDefs, nodeItems):
+def extract_data(lDefs, dReadHandlers, nodeItems):
     """
     Name: extract_data
 
     Arguments:  [I] lDefs: list of dictionary containing the
                            definition of XML element in metro_config.py
+                [I] dReadHandlers: dictionnay of read handler.
+                                   key = data type name (ex: INTEGER),
+                                   value = handler (ex: toolbox.metro_dom2metro_handler.read_integer)
                 [I] nodeItems: fecth the elements in theses nodes
 
     Output:   lData :: list of values, one per definition in lDefs.
 
     Description: Extract the data from one node containing more nodes.
     """
-
 
     lData = []
 
@@ -189,23 +194,15 @@ def extract_data(lDefs, nodeItems):
         sTag = dDef['XML_TAG']
         sData_type_name = dDef['DATA_TYPE']
         
-        sReadHandler = get_handler('READ', dDef, dData_type)
-        sImportHandlerCode = get_handler_import_code(sReadHandler)
-        exec sImportHandlerCode
-
         if dData_type[sData_type_name].has_key('CHILD'):
-            # Construction of instruction doing the function call that will
             #  extract the data containing a list of "sub-data"
-            nodeTmp = metro_xml_lib.xpath(nodeItems,
-                                          sTag)
+            nodeTmp = metro_xml_lib.xpath(nodeItems,sTag)
             lChildList = dData_type[sData_type_name]['CHILD']
-            sCode = "data = " + sReadHandler + "(lChildList,nodeTmp)"
+            data = dReadHandlers[sData_type_name](lChildList,nodeTmp,dReadHandlers)
         else:
-            # Construction of instruction doing the function call that will
-            #  extract the data 
-            sCode = "data = " + sReadHandler + "(sTag,nodeItems)"
+            #  extract the data
+            data = dReadHandlers[sData_type_name](sTag,nodeItems)
 
-        exec sCode
         lData.append(data)
 
     # If there is only one definition of data (lDefs), it is an "array".
@@ -282,7 +279,7 @@ def write_to_file( domDoc, sFilename ):
     metro_xml_lib.write_xml_file(domDoc, sFilename)
 
 
-def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
+def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dWriteHandlers, dData ):
 
     # Retrieve the informations on the data types
     dStandard_data_type = metro_config.get_value('XML_DATATYPE_STANDARD')
@@ -297,28 +294,19 @@ def create_node_tree_from_dict( domDoc, nodeParent, lDefs, dData ):
         sXml_tag = dDef['XML_TAG']
         sData_type_name = dDef['DATA_TYPE']
 
-        sWriteHandler = get_handler('WRITE', dDef, dData_type)
-        sImportHandlerCode = get_handler_import_code(sWriteHandler)
-        exec sImportHandlerCode
-
         if dData_type[sData_type_name].has_key('CHILD'):
-            # Construction of instruction doing the function call that will
             #  create the node containing a list of "sub-node"
             lChildList = dData_type[sData_type_name]['CHILD']
-            sCode = "nodeData = " + sWriteHandler + \
-                    "(sXml_tag,lChildList,dData[sTag])"
+            nodeData = dWriteHandlers[sData_type_name](sXml_tag,lChildList,dData[sTag],dWriteHandlers)
         else:
-            # Construction of instruction doing the function call that will
             #  create the node 
-            sCode = "nodeData = " + sWriteHandler + \
-                    "(sXml_tag,dData[sTag])"
-        exec sCode
+            nodeData = dWriteHandlers[sData_type_name](sXml_tag,dData[sTag])
 
         append_child(nodeParent, nodeData)
 
 
 def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
-                                  lDefs, metro_data_object, npMatrix ):
+                                  lDefs, dWriteHandlers, metro_data_object, npMatrix ):
     """
     Each prediction will be contained in a node that will have the name
     given by sPrediction_xpath.
@@ -345,10 +333,6 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
             sXml_tag = dDef['XML_TAG']
             sData_type_name = dDef['DATA_TYPE']
 
-            sWriteHandler = get_handler('WRITE', dDef)
-            sImportHandlerCode = get_handler_import_code(sWriteHandler)
-            exec sImportHandlerCode
-
             # Extraction of the data from the matrix
             lIndexList = metro_data_object.index_of_matrix_col(sTag)
             if not metro_data_object.is_multi_col(sTag):
@@ -364,17 +348,12 @@ def create_node_tree_from_matrix( domDoc, nodeParent, sPrediction_xpath,
                     val.append(npData[i])
             
             if dData_type[sData_type_name].has_key('CHILD'):
-                # Construction of instruction doing the function call that will
                 #  create the node containing a list of "sub-node"
                 lChildList = dData_type[sData_type_name]['CHILD']
-                sCode = "nodeData = " + sWriteHandler + \
-                        "(sXml_tag,lChildList,val)"
+                nodeData = dWriteHandlers[sData_type_name](sXml_tag,lChildList,val,dWriteHandlers)
             else:
-                # Construction of instruction doing the function call that will
                 #  create the node 
-                sCode = "nodeData = " + sWriteHandler + "(sXml_tag,val)"
-
-            exec sCode
+                nodeData = dWriteHandlers[sData_type_name](sXml_tag,val)
 
             append_child(nodePrediction, nodeData)
 
@@ -405,12 +384,3 @@ def get_handler(sHandlerType, dDefData, dAllDefData=None):
 
     return sHandler
 
-def get_handler_import_code(sHandler):
-
-    # Creation of code needed to import the module in which we can find
-    #  the function used to create the node.
-    lFunctionPart = string.split(sHandler,'.')
-    sFunction_module = string.join(lFunctionPart[:-1],".")
-    sCode = "import " +sFunction_module
-
-    return sCode

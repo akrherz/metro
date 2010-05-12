@@ -129,6 +129,9 @@ def metro_get_execution_sequence():
     """
     Fetch the METRo execution sequence.
     """
+
+    metro_logger.print_init_message(metro_logger.LOGGER_INIT_MESSAGE,
+                                    _("Construct METRo execution sequence:"))
     
     lModule_execution_sequence = metro_config.get_value\
                                  ("INIT_MODULE_EXECUTION_SEQUENCE")
@@ -140,9 +143,13 @@ def metro_get_execution_sequence():
     for sModule_name in lModule_execution_sequence:
         module = __import__(sModule_name)
         sClass_name = string.capitalize(sModule_name)
+        #print sClass_name
         exec "tmp_object =  module." + sClass_name + "()"
         lObject_sequence.append(tmp_object)
 
+    
+    metro_logger.print_init_message(metro_logger.LOGGER_INIT_SUCCESS,
+                                    _("METRo execution sequence ready"))
     return lObject_sequence
 
 

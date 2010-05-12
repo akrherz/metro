@@ -46,7 +46,15 @@ import types
 
 import metro_util
 
-_ = metro_util.init_translation('metro_error')
+# remove comment, need it because received the error:
+#  File "/home/phobos/software/cmc/metro/svn/metro/src/frontend/toolbox/metro_error.py", line 49, in <module>            
+#    _ = metro_util.init_translation('metro_error')                                                                      
+#  File "/home/phobos/software/cmc/metro/svn/metro/src/frontend/toolbox/metro_util.py", line 635, in init_translation    
+#    '/usr/share/locale')                                                                                                
+#  File "/usr/lib/python2.6/gettext.py", line 469, in translation                                                        
+#    raise IOError(ENOENT, 'No translation file found for domain', domain)                                               
+#IOError: [Errno 2] No translation file found for domain: 'metro_error'            
+#_ = metro_util.init_translation('metro_error')
 
 class Metro_error(Exception):
     """

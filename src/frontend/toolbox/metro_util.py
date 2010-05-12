@@ -127,6 +127,7 @@ def test_import( sModule_name ):
     """
     Used to test check if a module is present.
     """
+
     try:
         sCode = "import " + sModule_name
         exec sCode
@@ -137,6 +138,7 @@ def test_function_existence( sModule_name, sFunction_name ):
     """
     Utiliser pour tester la presence d'une fonction dans un module.
     """
+    
     try:
         sCode_import = "import " + sModule_name
         exec sCode_import
