@@ -410,10 +410,10 @@ class Metro_dom2metro(Metro_module):
             metro_util.validate_version_number(sFile_version,
                                             sMin_version,
                                             sMax_version)
-        except metro_error.Metro_version_error as inst:
+        except metro_error.Metro_version_error, inst:
             sMessage =_("An error occured when reading ") +\
                       _("file:\n'%s'.\nThe error is:\n'%s'.") \
-                        % (sFilename, str(sError))
+                        % (sFilename, str(inst))
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                        sMessage)
 

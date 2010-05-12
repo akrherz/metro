@@ -50,15 +50,10 @@ import metro_logger
 from toolbox import metro_constant
 from toolbox import metro_date
 from toolbox import metro_util
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_preprocess_qa_qc_observation')
 
-
-##
-# Class attributes
-##
-
-ERROR_EMPTY_MATRIX = "sEmptyMatrixError"
 
 class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
@@ -96,7 +91,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
             pForecast.set_data_collection(forecast_data)
             pObservation.set_data_collection(observation_data)
 
-        except ERROR_EMPTY_MATRIX:
+        except metro_error.Metro_data_error:
             sMessage = _("No valid observations. Halting METRo")
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
                                        sMessage)

@@ -53,6 +53,7 @@ import metro_logger
 from toolbox import metro_util
 from toolbox import metro_date
 from toolbox import metro_constant
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_preprocess_interpol_observation')
 
@@ -93,8 +94,9 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
                                             get_controlled_data(), \
                                             observation_data)      
             
-        except OneObservationException:
-            print OneObservationException
+        except metro_error.Metro_input_error, inst:
+            metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
+                                       str(inst))
 
         pObservation.set_data_collection(observation_data)
 
@@ -144,7 +146,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         elif len(self.npTimeInterpolated) == 1:
             observation_data.set_attribute('NO_OBS',\
                                            [False, False, False, True])
-            raise OneObservationException            
+            raise metro_error.Metro_input_error(OneObservationException)
         else:
             observation_data.set_attribute('NO_OBS',\
                                            [True, True, True, True])
@@ -153,7 +155,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                        sMessage)
 
-            raise NoObservationException
+            raise metro_error.Metro_input_error(NoObservationException)
 
     # Air temperature
     def __interpolate_AT(self, ro_controlled_data, ro_interpolated_data):

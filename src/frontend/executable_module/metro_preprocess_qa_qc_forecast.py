@@ -53,15 +53,9 @@ import metro_logger
 from toolbox import metro_constant
 from toolbox import metro_date
 from toolbox import metro_util
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_preprocess_qa_qc_forecast')
-
-
-##
-# Class attributes
-##
-
-ERROR_ATMOSPHERIC_FORECAST = "MetroAtmosphericForecastError"
 
 class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
 
@@ -77,9 +71,9 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
             self.__check_if_cloud_octal(forecast_data.get_controlled_data())
             self.__check_precipitation_well_define\
                                (forecast_data.get_controlled_data())
-        except ERROR_ATMOSPHERIC_FORECAST, sMessage:
+        except metro_error.Metro_data_error, inst:
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
-                                       sMessage)
+                                       str(inst))
 
     def __check_if_all_value_are_numbers(self, wf_controlled_data):
         """
@@ -103,7 +97,7 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
                                    _(" in the file\n'%s'") %\
                                    (metro_config.get_value(\
                             "FILE_FORECAST_IN_FILENAME"))
-                        raise "MetroAtmosphericForecastError", sMessage
+                        raise metro_error.Metro_data_error(sMessage)
                     else:
                         sMessage = _("A value for the extended element <%s> is invalid") % (sElement.lower())+\
                                    _(" in the file\n'%s'") %  (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
@@ -140,7 +134,7 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
                    _(" integers in interval 0-8. See file '%s'") %\
                    (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
             
-            raise "MetroAtmosphericForecastError", sMessage
+            raise metro_erro.Metro_data_error(sMessage)
 
     def __check_precipitation_well_define(self, wf_controlled_data):
         """        
@@ -176,4 +170,4 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
                            _(" of the period. See file '%s'") %\
                            (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
                 
-                raise "MetroAtmosphericForecastError", sMessage
+                raise metro_error.Metro_data_error(sMessage)

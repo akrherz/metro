@@ -131,8 +131,8 @@ def test_import( sModule_name ):
     try:
         sCode = "import " + sModule_name
         exec sCode
-    except (SyntaxError, ImportError, EOFError) as sError:
-        raise metro_error.Metro_import_error(sError)
+    except (SyntaxError, ImportError, EOFError), inst:
+        raise metro_error.Metro_import_error(str(inst))
 
 def test_function_existence( sModule_name, sFunction_name ):
     """
@@ -144,7 +144,7 @@ def test_function_existence( sModule_name, sFunction_name ):
         exec sCode_import
         sCode_function = "func_object = " + sModule_name + "." + sFunction_name
         exec sCode_function
-    except (SyntaxError, ImportError, AttributeError) as inst:
+    except (SyntaxError, ImportError, AttributeError), inst:
         raise metro_error.Metro_import_error(inst)
 
     

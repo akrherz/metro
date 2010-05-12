@@ -38,10 +38,9 @@ from metro_module import Metro_module
 import metro_logger
 from toolbox import metro_xml
 from toolbox import metro_util
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_string2dom')
-
-ERROR_METRO_CONVERT = "MetroConvertError"
 
 class Metro_string2dom(Metro_module):
 
@@ -73,9 +72,9 @@ class Metro_string2dom(Metro_module):
                                            _("to DOM."))
                 sMessage = _("Error when converting string to DOM. ") +\
                            _("The string is:\n%s") % (sString)
-                raise ERROR_METRO_CONVERT, sMessage
+                raise metro_error.Metro_xml_error(sMessage)
         else:
             sMessage = _("No string to convert")
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        sMessage)
-            raise ERROR_METRO_CONVERT, sMessage
+            raise metro_error.Metro_xml_error(sMessage)

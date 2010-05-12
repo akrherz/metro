@@ -60,7 +60,7 @@ def read_date(sTag,nodeBranch):
     sDate = metro_xml.extract_data_from_node(sTag,nodeBranch)
     try:
         fDate = metro_date.parse_date_string(sDate)
-    except metro_error.Metro_date_error as inst:
+    except metro_error.Metro_date_error, inst:
         metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
                                    str(inst))
         fDate = 0.0

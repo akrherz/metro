@@ -42,20 +42,21 @@ import metro_logger
 import metro_string2dom
 from toolbox import metro_util
 from toolbox import metro_xml
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_read_station')
 
 class Metro_string2dom_observation_ref(Metro_string2dom):
 
     ##
-    # methodes redefinies
+    # redefined methods
     ##
     def start(self):
         Metro_string2dom.start(self)
         self.__string2dom()
 
     ##
-    # methodes privees
+    #  private methods
     ##
     def __string2dom(self):
         
@@ -64,9 +65,9 @@ class Metro_string2dom_observation_ref(Metro_string2dom):
             sObservation_ref = pObservation_ref.get_input_information()
             try:
                 domObservation_ref = self._convert_string2dom(sObservation_ref)
-            except metro_string2dom.ERROR_METRO_CONVERT, sError:
+            except metro_error.Metro_xml_error, inst:
                 sMessage = _("Fatal Error when converting observation_ref ") +\
-                           _("string to DOM. The error is:\n%s") % (sError)
+                           _("string to DOM. The error is:\n%s") % (str(inst))
                 metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                            sMessage)
             else:

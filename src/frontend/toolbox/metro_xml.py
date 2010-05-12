@@ -73,7 +73,7 @@ def init( sMetro_xml_lib = ""):
                                         _("Auto configure METRo XML library"))
         try:
             metro_util.test_import("metro_xml_libxml2")
-        except metro_error.Metro_import_error as inst:
+        except metro_error.Metro_import_error, inst:
             sMessage = _("Fatal error! No METRo XML library can be use. ") +\
                        _("\nMETRo need one of the following XML library ") +\
                        _("installed on the system.\nSupported library:") +\

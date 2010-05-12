@@ -40,6 +40,7 @@ import metro_logger
 import metro_string2dom
 from toolbox import metro_util
 from toolbox import metro_xml
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_string2dom_forecast')
 
@@ -62,9 +63,9 @@ class Metro_string2dom_forecast(Metro_string2dom):
             sForecast = pForecast.get_input_information()
             try:            
                 domForecast = self._convert_string2dom(sForecast)
-            except metro_string2dom.ERROR_METRO_CONVERT, sError:
+            except metro_error.Metro_xml_error, inst:
                 sMessage = _("Fatal Error when converting forecast ") +\
-                           _("string to DOM. The error is:\n%s") % (sError)
+                           _("string to DOM. The error is:\n%s") % (str(inst))
                 metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                            sMessage)
             else:

@@ -39,14 +39,13 @@ import numpy
 import metro_logger
 from toolbox import metro_constant
 from toolbox import metro_util
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_data')
 
 #Exception
-ERROR_METRO_DATA = "MetroDataError"
 MESSAGE_READONLY = _("This metro_data object is READONLY")
 MESSAGE_COL_EXIST = _("This column name already exist")
-ERROR_EMPTY_MATRIX = "sEmptyMatrixError"
 
 class Metro_data:
     """Basic data class for METRo.
@@ -157,7 +156,7 @@ class Metro_data:
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def set_header( self, dComplete_header ):
@@ -174,7 +173,7 @@ class Metro_data:
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def init_matrix( self, iNb_row, iNb_col, fVal=metro_constant.NaN ):
@@ -189,7 +188,7 @@ class Metro_data:
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY        
+            raise metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def set_matrix( self, npMatrix ):
@@ -204,7 +203,7 @@ class Metro_data:
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def set_matrix_col( self, sCol_name, npCol ):
@@ -224,18 +223,18 @@ class Metro_data:
             if iCol > len(self.npMatrix[0,:]):
                sOutOfBoundError = _("Array does not contain this indice: %d") \
                                   % iCol
-               raise ERROR_METRO_DATA, sOutOfBoundError
+               raise metro_error.Metro_data_error(sOutOfBoundError)
             elif len(self.npMatrix[:,iCol]) != len(npCol):
                 sLengthError = _("Array does not have the right lenght.\n") + \
                                _("Array length: %d \n") % len(npCol) + \
                                _("Matrix length: %d \n") % len(self.npMatrix[:,iCol])
-                raise  ERROR_METRO_DATA, sLengthError
+                raise metro_error.Metro_data_error(sLengthError)
             else:
                 self.npMatrix[:,iCol] = npCol
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def set_matrix_multiCol( self, sCol_name, lColOfList ):
@@ -260,13 +259,13 @@ class Metro_data:
             if lCol_list[-1] > len(self.npMatrix[0,:]):
                sOutOfBoundError = _("Array does not contain this indice: %s") \
                                   % str(lCol_list)
-               raise ERROR_METRO_DATA, sOutOfBoundError
+               raise metro_error.Metro_data_error(sOutOfBoundError)
            # FFTODO need to activate that check
 #            elif len(self.npMatrix[:,lColOfList[0]]) != len(lColOfList[0]):
 #                sLengthError = _("Array does not have the right lenght.\n") + \
 #                               _("Array length: %d \n") % len(lColOfList[0]) + \
 #                               _("Matrix length: %d \n") % len(self.npMatrix[:,lColOfList[0]])
-#                raise  ERROR_METRO_DATA, sLengthError
+#                raise metro_error.Metro_data_error(sLengthError)
             else:
                 iInCol = 0
                 for iCol in lCol_list:
@@ -275,7 +274,7 @@ class Metro_data:
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY  
+            raise  metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def append_matrix_row( self, lData_row ):
@@ -297,7 +296,7 @@ class Metro_data:
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise  metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def append_matrix_col( self, sCol_name, npData_col ):
@@ -332,12 +331,12 @@ class Metro_data:
             else:
                 sError = _("Cant append column '%s'.%s") % (sCol_name,
                                                             MESSAGE_COL_EXIST)
-                raise ERROR_METRO_DATA, sError
+                raise  metro_error.Metro_data_error(sError)
 
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise  metro_error.Metro_data_error(MESSAGE_READONLY)
 
     def append_matrix_multiCol( self, sCol_name, lColOfList ):
         """
@@ -379,12 +378,12 @@ class Metro_data:
             else:
                 sError = _("Cant append column '%s'.%s") % (sCol_name,
                                                             MESSAGE_COL_EXIST)
-                raise ERROR_METRO_DATA, sError
+                raise  metro_error.Metro_data_error(sError)
 
         else:
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        MESSAGE_READONLY)
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise  metro_error.Metro_data_error(MESSAGE_READONLY)
 
 
     def get_header( self ):
@@ -411,7 +410,7 @@ class Metro_data:
         else:
             sError = _("'%s' is not a valid key. Valid keys are:\n%s") \
                      % (sKey, metro_util.list2string(self.dHeader.keys()))
-            raise ERROR_METRO_DATA, sError
+            raise  metro_error.Metro_data_error(sError)
 
 
     def get_matrix( self ):
@@ -461,7 +460,7 @@ class Metro_data:
             sError = _("%s is not a valid column name. Valid column name ") \
                      % (sCol_name) + \
                      _("are: %s") % (sMatrix_col_list)
-            raise ERROR_METRO_DATA, sError
+            raise  metro_error.Metro_data_error(sError)
 
     def get_matrix_col_list( self ):
         """Get list of all the matrix column name."""
@@ -510,10 +509,10 @@ class Metro_data:
                     sEmptyMatrixError = _("All the data are invalid")
                     metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,\
                                                sMessage)
-                    raise ERROR_EMPTY_MATRIX
+                    raise  metro_error.Metro_data_error(sEmptyMatrixError)
                 
         else:
-            raise ERROR_METRO_DATA, MESSAGE_READONLY
+            raise  metro_error.Metro_data_error(MESSAGE_READONLY)
 
     def __append_row_to_matrix( self, npMatrix, npRow ):
         iCol = len(npRow)

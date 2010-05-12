@@ -71,10 +71,10 @@ def validate_handler( sHandler, iFrom, sDescription ):
     sFunction_name = lFunctionPart[-1]
     try:           
         metro_util.test_function_existence(sFunction_module, sFunction_name)
-    except metro_error.Metro_import_error as inst:
+    except metro_error.Metro_import_error, inst:
         sMessage = config_error_string(sDescription,
                                        iFrom,
-                                       inst)
+                                       str(inst))
         metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
                                         sMessage)
         sys.exit(3)
@@ -199,11 +199,11 @@ def validate_execution_sequence( dConf ):
     for sModule in lExecutionSequence:
         try:           
             metro_util.test_import(sModule)
-        except metro_error.Metro_import_error(sError):
+        except metro_error.Metro_import_error, inst:
             sConfig_path = "%s module:'%s'" % (sKey,sModule)
             sMessage = config_error_string(sConfig_path,
                                            iFrom,
-                                           sError)
+                                           str(inst))
             metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR,
                                             sMessage)
             sys.exit(3)
@@ -215,7 +215,7 @@ def validate_roadcast_start_time( dConf ):
     if sStart_time != "":
         try:
             metro_date.parse_date_string(sStart_time)
-        except metro_error.Metro_date_error as inst:
+        except metro_error.Metro_date_error, inst:
             sMessage = _("Fatal error, the date string '%s' passed to the\n ")\
                        % (sStart_time)+\
                        _("option '--roadcast-start-date' doesn't conform to ") +\

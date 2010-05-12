@@ -42,19 +42,9 @@ Description: General error class for METRo.
 
 """
 
-import types
-
 import metro_util
 
-# remove comment, need it because received the error:
-#  File "/home/phobos/software/cmc/metro/svn/metro/src/frontend/toolbox/metro_error.py", line 49, in <module>            
-#    _ = metro_util.init_translation('metro_error')                                                                      
-#  File "/home/phobos/software/cmc/metro/svn/metro/src/frontend/toolbox/metro_util.py", line 635, in init_translation    
-#    '/usr/share/locale')                                                                                                
-#  File "/usr/lib/python2.6/gettext.py", line 469, in translation                                                        
-#    raise IOError(ENOENT, 'No translation file found for domain', domain)                                               
-#IOError: [Errno 2] No translation file found for domain: 'metro_error'            
-#_ = metro_util.init_translation('metro_error')
+_ = metro_util.init_translation('metro_error')
 
 class Metro_error(Exception):
     """
@@ -108,3 +98,23 @@ class Metro_xml_error(Metro_error):
         """ Put the message in string only if it is a string"""        
         self.sError = "\n" + self.sError
         return self.sError
+
+class Metro_input_error(Metro_error):
+    """
+    Error with input file or data.
+    """
+    def __str__(self):
+        """ Put the message in string only if it is a string"""        
+        self.sError = "\n" + _("Input error: ") +  self.sError
+        return self.sError
+
+
+class Metro_data_error(Metro_error):
+    """
+    Error with data.
+    """
+    def __str__(self):
+        """ Put the message in string only if it is a string"""        
+        self.sError = "\n" + _("Data error: ") +  self.sError
+        return self.sError
+
