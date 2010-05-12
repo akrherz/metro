@@ -84,8 +84,8 @@ class Metro_data:
     It is possible to prevent modification of the data by using the read_only
     functionnality provided by the class.
 
-    When an error occur in one of the method, a MetroDataError exception
-    is raised.
+    When an error occur in one of the method, a metro_error.Metro_data_error
+    exception is raised.
     """
 
     def __init__(self, lStdData_types=[], lExtData_types=[]):

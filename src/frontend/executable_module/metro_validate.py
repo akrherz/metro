@@ -46,10 +46,9 @@ from metro_module import Metro_module
 import metro_logger
 from toolbox import metro_xml
 from toolbox import metro_util
+from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_validate')
-
-ERROR_METRO_VALIDATE = "MetroValidateError"
 
 class Metro_validate(Metro_module):
 
@@ -80,11 +79,11 @@ class Metro_validate(Metro_module):
             if sXml_content != "":
                 try:            
                     self.__validate_xml_string(sXml_content)
-                except ERROR_METRO_VALIDATE, sError:
+                except metro_error.Metro_xml_error, inst:
                     sMessage = _("Fatal Error when validating %s ") \
                                %(sInfdata_tag) +\
                                _("XML string.\nThe error is:\n%s") \
-                                 % (sError)
+                                 % (str(inst))
                     metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                                sMessage)
                 else:
@@ -111,13 +110,13 @@ class Metro_validate(Metro_module):
         if sXml_content != None:
             try:
                 return metro_xml.validate_string(sXml_content)
-            except "metroValidationError", sError:
+            except metro_error.Metro_xml_error, inst:
                 metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                            _("Error when validating ") +\
                                            _("XML string."))
-                raise ERROR_METRO_VALIDATE, sError
+                raise metro_error.Metro_xml_error(str(inst))
         else:
             sMessage = _("No XML string to validate")
             metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                        sMessage)
-            raise ERROR_METRO_VALIDATE, sMessage
+            raise metro_error.Metro_xml_error(sMessage)
