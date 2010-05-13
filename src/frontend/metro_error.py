@@ -42,7 +42,7 @@ Description: General error class for METRo.
 
 """
 
-import metro_util
+from toolbox import metro_util
 
 _ = metro_util.init_translation('metro_error')
 

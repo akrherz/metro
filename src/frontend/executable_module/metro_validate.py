@@ -44,9 +44,9 @@ Date:          2004
 from metro_module import Metro_module
 
 import metro_logger
+import metro_error
 from toolbox import metro_xml
 from toolbox import metro_util
-from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_validate')
 

@@ -47,10 +47,10 @@ import numpy
 
 import metro_config
 import metro_logger
+import metro_error
 from toolbox import metro_constant
 from toolbox import metro_date
 from toolbox import metro_util
-from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_preprocess_qa_qc_observation')
 

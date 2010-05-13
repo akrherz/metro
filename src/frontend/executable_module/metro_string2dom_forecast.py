@@ -37,10 +37,10 @@ from metro_string2dom import Metro_string2dom
 
 import metro_config
 import metro_logger
+import metro_error
 import metro_string2dom
 from toolbox import metro_util
 from toolbox import metro_xml
-from toolbox import metro_error
 
 _ = metro_util.init_translation('metro_string2dom_forecast')
 

@@ -39,9 +39,9 @@ import sys
 
 import metro_config
 import metro_logger
+import metro_error
 from toolbox import metro_xml
 from toolbox import metro_util
-from toolbox import metro_error
 from data_module import metro_data
 from data_module import metro_data_station
 from data_module import metro_data_collection_input
