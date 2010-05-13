@@ -9,11 +9,10 @@ http://documentation.wikia.com/wiki/METRo
 
 To run METRo, you will need the following software packages:
 
-    * python 2.3
+    * python 2.3 or greater
     * gfortran
     * SWIG
     * libxml2 (see further for the right version)
-    * PyXML 0.8.3 or + 
     * numpy 0.9.8 or +
 
 == Prerequisite installation ==
@@ -64,9 +63,9 @@ Become root and
 
       Ex: tar xjvf metro-x.x.x.tar.bz2
 
-   2. If there is more than one version of python on your system, set the environment variable PYTHON_INCLUDE to indicate the directory where you find the "include" of python 2.3.
+   2. If there is more than one version of python on your system, set the environment variable PYTHON_INCLUDE to indicate the directory where you find the "include" of python 2.N, where 'N' is the python version..
 
-      Ex: export PYTHON_INCLUDE=/usr/local/include/python2.6
+      Ex: export PYTHON_INCLUDE=/usr/local/include/python2.N
 
    3. Execute the script setup.sh with the destination directory as an argument.
 
