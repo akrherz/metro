@@ -64,8 +64,6 @@ class Metro_metro2dom( Metro_module ):
     def start( self ):
         Metro_module.start(self)
 
-        pForecast = self.get_infdata_reference('FORECAST')
-        forecast_data = pForecast.get_data_collection()
         pRoadcast = self.get_infdata_reference('ROADCAST')
         roadcast_data = pRoadcast.get_data_collection()
 
@@ -97,15 +95,6 @@ class Metro_metro2dom( Metro_module ):
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)                
         
-        # Create forecast
-        if forecast_data != None:
-            domForecast = \
-                self.__create_forecast(forecast_data.get_original_data(),dWriteHandlers)
-        else:
-            metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,
-                _("No forecast, can't create DOM forecast"))
-            domForecast = None
-
         # Create roadcast
         if roadcast_data != None:
             domRoadcast = \
@@ -116,7 +105,6 @@ class Metro_metro2dom( Metro_module ):
                 _("No roadcast, can't create DOM roadcast"))
             domRoadcast = None
 
-        pForecast.set_output_information(domForecast)
         pRoadcast.set_output_information(domRoadcast)
 
     def stop( self ):
@@ -127,52 +115,6 @@ class Metro_metro2dom( Metro_module ):
 
     def get_send_type( self ):
         return Metro_module.DATATYPE_DOM_OUT
-
-    def __create_forecast( self, data, dWriteHandlers ):
-
-        #
-        # DOM and root element creation
-        #
-
-        sRoot_xpath = metro_config.get_value('XML_FORECAST_XPATH_ROOT')
-        domDoc = metro_xml.create_dom(sRoot_xpath)
-        nodeRoot = metro_xml.get_dom_root(domDoc)
-
-        #
-        # Forecast header creation
-        #
-
-        # Concatenation of all header keys
-        lSkeys = metro_config.get_value('XML_FORECAST_HEADER_STANDARD_ITEMS')
-        lEkeys = metro_config.get_value('XML_FORECAST_HEADER_EXTENDED_ITEMS')
-        lHeader_keys = lSkeys + lEkeys
-
-        # xpath creation
-        sHeader_xpath = metro_config.get_value('XML_FORECAST_XPATH_HEADER')
-
-        self.__create_header(domDoc, nodeRoot, sHeader_xpath,
-                             lHeader_keys, dWriteHandlers, data)
-
-
-        #
-        # Creation of the forecast matrix
-        #
-
-        # Concatentation of all prediction types
-        lSkeys = \
-               metro_config.get_value('XML_FORECAST_PREDICTION_STANDARD_ITEMS')
-        lEkeys = \
-               metro_config.get_value('XML_FORECAST_PREDICTION_EXTENDED_ITEMS')
-        lPrediction_keys = lSkeys + lEkeys
-
-        # xpath creation
-        sPrediction_xpath = metro_config.get_value( \
-            'XML_FORECAST_XPATH_PREDICTION')
-
-        self.__create_matrix(domDoc, nodeRoot, sPrediction_xpath,
-                             lPrediction_keys, dWriteHandlers, data)
-
-        return domDoc
 
 
     def __create_roadcast( self, data, dWriteHandlers ):
