@@ -134,7 +134,7 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
                    _(" integers in interval 0-8. See file '%s'") %\
                    (metro_config.get_value("FILE_FORECAST_IN_FILENAME"))
             
-            raise metro_erro.Metro_data_error(sMessage)
+            raise metro_error.Metro_data_error(sMessage)
 
     def __check_precipitation_well_define(self, wf_controlled_data):
         """        
