@@ -59,8 +59,6 @@ class Metro_dom2metro(Metro_module):
     domObservation = None
     domStation     = None
 
-
-
     ##
     # Overwritten methodes
     ##
@@ -152,7 +150,7 @@ class Metro_dom2metro(Metro_module):
                                                          lExtended_forecast,
                                                          dReadHandlers,
                                                          sData_xpath)
-        except IOERROR:
+        except metro_error.Metro_xml_error:
             sXmlError = _("XML error in file '%s'.") % (sFilename)
             raise metro_error.Metro_xml_error(sXmlError)
 
