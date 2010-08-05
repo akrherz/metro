@@ -34,7 +34,7 @@
 
 progname=`basename $0`
 
-METRO_VERSION=3.2.4
+METRO_VERSION=3.2.5
 
 
 if [[ $1 = clean ]]; then    
