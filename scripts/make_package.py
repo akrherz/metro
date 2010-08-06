@@ -48,6 +48,7 @@ sPackage_list = \
 src/frontend/metro.py
 src/frontend/metro_config.py
 src/frontend/metro_logger.py
+src/frontend/metro_error.py
 src/frontend/__init__.py
 
 src/frontend/toolbox/metro_config_validation.py
