@@ -422,8 +422,11 @@ def sign(dResult, dSign):
     Author		Date		Reason
     Miguel Tremblay       August 24th 2004
     """
-    
+    # If dSign is == 0, raise an error 	 
     if dSign == 0:
+        sMetroUtilError = _("Cannot determine the sign of zero") 	 
+        raise sMetroUtilError 	 
+    elif dSign > 0:
         return abs(dResult)
     else:
         return -abs(dResult)
