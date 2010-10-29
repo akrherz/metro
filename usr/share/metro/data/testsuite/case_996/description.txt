@@ -1,0 +1,6 @@
+Only one value in the forecast file.
+
+Error message is:
+EXECUTION  : METRO_PREPROCESS_VALIDATE_INPUT module: start execution
+STOP       : METRo needs more than one forecast date! Exiting
+

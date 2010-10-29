@@ -1,0 +1,5 @@
+Error because the forecast XML file is from an old version (1.0 instead of 1.1).
+
+Error message is:
+             METRo's version error: Version number:'1.0' is too old. Version from '1.1' to '1.1' inclusively are supported'.
+

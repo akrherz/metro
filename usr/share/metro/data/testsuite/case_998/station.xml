@@ -1,0 +1,21 @@
+<?xml version="1.0"?>
+<station>
+    <header>
+        <version>1.0</version>
+        <road-station>Olgettina</road-station>
+        <time-zone>CET</time-zone>
+        <production-date>2006-11-19T03:00Z</production-date>
+        <coordinate>
+            <latitude>45.50</latitude>
+            <longitude>9.26</longitude>
+        </coordinate>
+        <station-type>road</station-type>
+    </header>
+    <roadlayer-list>
+        <roadlayer>
+            <position>1</position>
+            <type>asphalt</type>
+            <thickness>0.2000</thickness>
+        </roadlayer>
+    </roadlayer-list>
+</station>
