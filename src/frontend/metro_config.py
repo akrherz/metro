@@ -411,16 +411,16 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
             dConf['FILE_FORECAST_IN_FILENAME'] = \
                 metro_util.get_metro_root_path() +\
-                "/usr/share/metro/data/forecast/forecast_selftest.xml"
+                "/usr/share/metro/data/selftest/forecast.xml"
             dConf['FILE_OBSERVATION_FILENAME'] = \
                 metro_util.get_metro_root_path() +\
-                "/usr/share/metro/data/observation/observation_selftest.xml" 
+                "/usr/share/metro/data/selftest/observation.xml" 
             dConf['FILE_STATION_FILENAME'] = \
                  metro_util.get_metro_root_path() +\
-                "/usr/share/metro/data/station/station_selftest.xml" 
+                "/usr/share/metro/data/selftest/station.xml" 
             dConf['FILE_ROADCAST_FILENAME'] = \
                  metro_util.get_metro_root_path() +\
-                "/usr/share/metro/data/roadcast/roadcast_selftest.xml"
+                "/usr/share/metro/data/selftest/roadcast.xml"
             dConf['INIT_LOGGER_VERBOSE_LEVEL'] = \
                 metro_logger.LOGGER_VERBOSE_LEVEL_DEBUG
 

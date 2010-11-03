@@ -216,6 +216,6 @@ echo " 'cd $destination_path/usr/bin/'"
 echo "Launch METRo selftest:"
 echo " 'python metro --selftest'"
 echo "Compare the files:"
-echo " 'diff ../share/metro/data/roadcast/roadcast_selftest.xml ../share/metro/data/roadcast/roadcast_selftest_reference.xml'"
+echo " 'diff ../share/metro/data/selftest/roadcast.xml ../share/metro/data/selftest/roadcast_reference.xml'"
 echo "They should be identical except for the production-date."
 
