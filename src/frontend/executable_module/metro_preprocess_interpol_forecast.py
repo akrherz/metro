@@ -48,6 +48,7 @@ Note: Solar and infrared flux are interpolated in metro_preprocess_fsint2.py
 
 from metro_preprocess import Metro_preprocess
 
+import metro_config
 import time
 import numpy
 
@@ -88,7 +89,8 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
                               forecast_data.get_interpolated_data() )
         self.__interpolate_CC(forecast_data.get_original_data(), \
                               forecast_data.get_interpolated_data() )
-        
+        self.__interpolate_FA(forecast_data.get_original_data(), \
+                              forecast_data.get_interpolated_data() )
 
         pForecast.set_data_collection(forecast_data)
 
@@ -427,3 +429,36 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         wf_interpolated_data.append_matrix_col('CC', npCC)
 
 
+
+    # Anthropogenic flux
+    def __interpolate_FA(self, wf_originpl_data, wf_interpolated_data):
+        """
+        Name: __interpolate_FA
+        
+        Parameters:[I] metro_data wf_originpl_data : originpl data.  Read-only
+                   [I] metro_data wf_processed_data : container of the interpolated
+                    data.
+
+        Returns: None
+
+        Functions Called: metro_util.interpolate,
+                          metro_data.get_matrix_col
+                          metro_data.append_matrix_col
+
+        Description: Does the interpolation of the anthropogenic flux
+
+
+        Revision History:
+        Author		Date		Reason
+        Rok Krsmanc      October 22th 2010
+        """
+
+        if metro_config.get_value('FA') == True:
+            npFA = wf_originpl_data.get_matrix_col('FA')
+        # If anthropogenic flux is not specified, FA is set to a constant value of 10 W/m^2
+        else:
+            lFA = [10]
+            npFA = numpy.array(lFA)
+
+        npFA = metro_util.interpolate(self.npTime, npFA)
+        wf_interpolated_data.append_matrix_col('FA', npFA)

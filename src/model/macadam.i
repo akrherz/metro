@@ -390,7 +390,7 @@ int print_args(char **argv) {
 
   
 
-extern void Do_Metro(long, double, double, double*, long, long*, double*,  double*, double*, double*, double*, double*, double*,  double*, double*, double*, double*,  double*, double*, double*, long*, long*, double, long, long, long);
+extern void Do_Metro(long, double, double, double*, long, long*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, double*, long*, long*, double, long, long, long);
 
 extern struct doubleStruct get_ra(void);
 extern struct doubleStruct get_sn(void);
@@ -400,7 +400,6 @@ extern struct doubleStruct get_ir(void);
 extern struct doubleStruct get_sf(void);
 extern struct doubleStruct get_fv(void);
 extern struct doubleStruct get_fc(void);
-extern struct doubleStruct get_fa(void);
 extern struct doubleStruct get_g(void);
 extern struct doubleStruct get_bb(void);
 extern struct doubleStruct get_fp(void);

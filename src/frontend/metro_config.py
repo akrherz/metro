@@ -94,7 +94,9 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "config=","generate-config=","log-file=","verbose-level=",
                      "selftest", "silent", "roadcast-start-date=", "lang=",
                      "use-solarflux-forecast", "use-infrared-forecast",
-                     "output-subsurface-levels"]
+                     "use-anthropogenic-flux",
+                     "output-subsurface-levels",
+                     ]
 
 
 
@@ -382,6 +384,13 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
             'VALUE'].append(dSFDict)
 
+        if o == "--use-anthropogenic-flux":
+            dConfig['FA']['VALUE'] = True
+            dSFDict= {'NAME':"FA",
+                      'XML_TAG':"fa",
+                      'DATA_TYPE':"REAL"}
+            dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
+            'VALUE'].append(dSFDict)
 
         if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
@@ -1203,6 +1212,11 @@ def set_default_value( ):
         {'VALUE'   :False,
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("Use solar flux value from forecast")}
+
+    dConfig['FA'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Use anthropogenic flux value from forecast")}
 
     dConfig['TL'] = \
         {'VALUE'   :False,

@@ -72,7 +72,6 @@ static struct doubleStruct stIR; /* Infra-red flux */
 static struct doubleStruct stSF; /* Solar flux */
 static struct doubleStruct stFV; /* Vapor flux */
 static struct doubleStruct stFC; /* Sensible heat */
-static struct doubleStruct stFA; /* Anthropogenic flux */
 static struct doubleStruct stG;  /* Ground flux */
 static struct doubleStruct stBB; /* Black body radiation */ 
 static struct doubleStruct stFP; /* Phase change energy */
@@ -98,6 +97,7 @@ static struct doubleStruct stLT; /* Level temperature */
 [I double* dpPS : interpolated surface pressure]
 [I double* dpFS : interpolated solar flux]
 [I double* dpFI : interpolated visible flux]
+[I double* dpFA : interpolated anthropogenic flux]
 [I double* TYP : Type of precipitation: 0 = nada, 1= liquid, 2=solid]
 [I double* dpRC : interpolated road condition. 0 = dry, 1=wet] 
 [I double dpTAO : interpolated observed air temperature] 
@@ -143,7 +143,7 @@ Miguel Tremblay  May 2004
  
 ***************************************************************************/
 
-void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
+void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
 {
 
   /* Argument de la ligne de commande. Donne par python  */
@@ -159,6 +159,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   **     DD : wind direction
   **     FS : solar flux 
   **     FI : infra-red flux 
+  **     FA : anthropogenic flux
   **     AC : accumulations
   **     TYP: precipitation type
   **     P0 : surface pressure
@@ -174,7 +175,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   double* dpItp;
   double dDiff;
   double* dpWw;
-  double dWa = 10.0;
   double dAln = 0.5;
   double dAlr = 0.1;
   double dEpsilon = 0.92;
@@ -285,12 +285,12 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC,\
 		    &stDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp, \
-		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa, \
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw,  \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
 		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
 		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, \
-		    stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);  
+		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray);  
     if(!bSilent)
       printf("coupla 1 \n");
     if(*(stEc.plArray)){
@@ -322,12 +322,12 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
 		    dpRC, &stDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp,\
-		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, &dWa,\
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
 		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
 		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
-		    stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray);
+		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray);
     if(!bSilent)
       printf("coupla 2\n");
     if(*(stEc.plArray)){
@@ -346,11 +346,11 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP,\
 		  &stDepth.nSize,					\
 		  &nIR40, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr,\
-		  dpWw,&dWa, &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
+		  dpWw,  &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
 		  &dEr2, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
 		  stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray,\
 		  stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
-		  stFA.pdArray, stG.pdArray, stBB.pdArray, stFP.pdArray,\
+		  dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray,\
 		  stSST.pdArray, stLT.pdArray); 
 
   if(*(stEc.plArray)){
@@ -400,7 +400,6 @@ void init_structure(long nTimeStepMax, long nGrilleLevelMax)
   stSN.nSize = nTimeStepMax;
   stFV.nSize = nTimeStepMax;
   stFC.nSize = nTimeStepMax;
-  stFA.nSize = nTimeStepMax;
   stG.nSize = nTimeStepMax;
   stBB.nSize = nTimeStepMax;
   stFP.nSize = nTimeStepMax;
@@ -417,7 +416,6 @@ void init_structure(long nTimeStepMax, long nGrilleLevelMax)
   stSN.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stFV.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stFC.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
-  stFA.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stG.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stBB.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stFP.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
@@ -467,11 +465,6 @@ struct doubleStruct get_fv(void){
 struct doubleStruct get_fc(void){
 
   return stFC;
-}
-
-struct doubleStruct get_fa(void){
-
-  return stFA;
 }
 
 struct doubleStruct get_g(void){

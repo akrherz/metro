@@ -46,7 +46,7 @@
 ***
       SUBROUTINE BALANC ( FS  , FI , P0  , TA , QA , VA , TYP, FT, PR,
      *                    iref, ir40, NTP, NTFM, CNT_IN, ITP, FLAT,
-     *                    FCOR, WW , WA, ALN, ALR, FP,
+     *                    FCOR, WW , ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    EPSILON, Z0, Z0T, ZU, ZT, ECHEC, dpRT, 
      *                    dpRA, dpSN,
@@ -88,7 +88,7 @@
 *     TS0: Target temperature for the end of coupling (C)
 *     FCOR: Coriolis factor
 *     WW: Minimum winds for the day and the night (m/s)
-*     WA: Anthropogenic flux
+*     dpFA: Anthropogenic flux
 *     ALN: Snow Albedo 
 *     ALR: Road Albedo 
 *     FP: Frozing point (C)
@@ -105,7 +105,7 @@
       DOUBLE PRECISION TA(DTMAX), QA(DTMAX), VA(DTMAX)
       DOUBLE PRECISION TYP(DTMAX), FT(DTMAX), PR(DTMAX)
       DOUBLE PRECISION CNT(n,2), CNT_IN(2*n), ITP(n)
-      DOUBLE PRECISION FCOR, WW(2), WA
+      DOUBLE PRECISION FCOR, WW(2)
       DOUBLE PRECISION ALN, ALR, FP      
       DOUBLE PRECISION  FSCORR, FICORR
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
@@ -339,7 +339,6 @@
          dpFV(i) = RHO*CTU*(CL*(QA(i)-QG))
          dpBB(i) = - RA
          dpFC(i) =  RHO*CTU*( CPD*(TA(i)-T(1,now)))
-         dpFA(i) = WA
          dpFP(i) = PRG
          dpSST(i) = T(ir40, now)
          G(0) = dpSF(i) + dpBB(i) + dpIR(i)

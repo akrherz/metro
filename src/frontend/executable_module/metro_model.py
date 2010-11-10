@@ -226,6 +226,8 @@ class Metro_model(Metro_module):
         lAP = wf_interpolated_data.get_matrix_col('AP').tolist()
         lSF = wf_interpolated_data.get_matrix_col('SF').tolist()
         lIR = wf_interpolated_data.get_matrix_col('IR').tolist()
+        npFA = wf_interpolated_data.get_matrix_col('FA')
+        lFA = npFA.tolist()
         lFT = wf_interpolated_data.get_matrix_col('Time').tolist()
         lPI = wf_interpolated_data.get_matrix_col('PI').tolist()
         lSC = wf_interpolated_data.get_matrix_col('SC').tolist()
@@ -298,7 +300,7 @@ class Metro_model(Metro_module):
         macadam.Do_Metro(bFlat,\
                          fLat, fLon, \
                          lLayerThick, nNbrOfLayer, lLayerType, \
-                         lAT, lQP, lWS, lAP, lSF, lIR, lFT, lPI, lSC,\
+                         lAT, lQP, lWS, lAP, lSF, lIR, lFT, lFA, lPI, lSC,\
                          lAT_obs,lST_obs, lSST_obs, \
                          lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \
@@ -359,7 +361,6 @@ class Metro_model(Metro_module):
         lSF = (macadam.get_sf())[:iNb_timesteps]
         lIR = (macadam.get_ir())[:iNb_timesteps]
         lFC = (macadam.get_fc())[:iNb_timesteps]
-        lFA = (macadam.get_fa())[:iNb_timesteps]
         lFG = (macadam.get_g())[:iNb_timesteps]
         lBB = (macadam.get_bb())[:iNb_timesteps]
         lFP = (macadam.get_fp())[:iNb_timesteps]
@@ -398,6 +399,7 @@ class Metro_model(Metro_module):
         npRT = npRT + 30
         npHH = wf_data.get_matrix_col('Time')[:iNb_timesteps]
         npAT = wf_data.get_matrix_col('AT')[:iNb_timesteps]
+        npFA = wf_data.get_matrix_col('FA')[:iNb_timesteps]
         # 3.6 is to convert from m/s to km/h
         npWS = wf_data.get_matrix_col('WS')[:iNb_timesteps]*3.6
         npTD = wf_data.get_matrix_col('TD')[:iNb_timesteps]
@@ -424,8 +426,8 @@ class Metro_model(Metro_module):
         roadcast.set_matrix_col('SF', lSF)
         roadcast.set_matrix_col('FV', lFV)
         roadcast.set_matrix_col('FC', lFC)
-        roadcast.set_matrix_col('FA', lFA)
         roadcast.set_matrix_col('FG', lFG)
+        roadcast.set_matrix_col('FA', npFA.tolist())
         roadcast.set_matrix_col('BB', lBB)
         roadcast.set_matrix_col('FP', lFP)
         roadcast.set_matrix_col('CC', npCC)

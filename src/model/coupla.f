@@ -44,7 +44,7 @@
 ***
       SUBROUTINE COUPLA ( FS, FI, P0, TA , QA , VA , TYP, FT, PR,
      *                    PVC , iref, NTP, NTP2, CNT_IN, ITP, TSO, FLAT,
-     *                    FCOR, WW , WA, ALN, ALR, FP,
+     *                    FCOR, WW , ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    FAIL, EPSILON, Z0, Z0T, ZU, ZT, ECHEC,
      *                    dpRA, dpSN, npRC, dpRT, dpIR, dpSF, dpFV,
@@ -86,7 +86,7 @@
 *     TS0: Target temperature for the end of coupling (C)
 *     FCOR: Coriolis factor
 *     WW: Minimum winds for the day and the night (m/s)
-*     WA: Anthropogenic flux
+*     dpFA: Anthropogenic flux
 *     ALN: Snow Albedo 
 *     ALR: Road Albedo 
 *     FP: Frozing point (C)
@@ -99,7 +99,7 @@
       DOUBLE PRECISION VA(DTMAX), P0(DTMAX), FT(DTMAX)
       DOUBLE PRECISION TYP(DTMAX), PVC(DTMAX)
       DOUBLE PRECISION CNT(n,2), CNT_IN(2*n)
-      DOUBLE PRECISION FCOR, WW(2), WA
+      DOUBLE PRECISION FCOR, WW(2)
       DOUBLE PRECISION ALN, ALR, TSO, FP
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
       DOUBLE PRECISION dpSN(DTMAX), dpRA(DTMAX)
@@ -338,14 +338,13 @@
          G(0) = max(0.0,REAL(COFS*AL*FS(i))) - RA 
      *        + COFI*EPSILON*FI(i)
      *        + RHO*CTU*( CPD*(TA(i)-T(1,now))
-     *        + CL*(QA(i)-QG)) + PRG + WA
+     *        + CL*(QA(i)-QG)) + PRG + dpFA(i)
 *        Output information         
          dpIR(i) = COFI*EPSILON*FI(i)
          dpSF(i) = COFS*AL*FS(i)
          dpFV(i) = RHO*CTU*(CL*(QA(i)-QG))
          dpBB(i) = - RA
          dpFC(i) =  RHO*CTU*( CPD*(TA(i)-T(1,now)))
-         dpFA(i) = WA
          dpFP(i) = PRG
          dpG(i) = G(0)
 
