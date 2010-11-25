@@ -229,7 +229,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   /* Grid creation */
 
-  f77name(grille)(dpGri, dpCnt, &(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone,\
+  f77name(grille)(dpCnt, &(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone, \
 		  dpZones, npMateriau, &dDiff, stTemperatureDepth.pdArray, \
 		  stFluxDepth.pdArray, stEc.plArray); 
   if(*(stEc.plArray)){
@@ -348,7 +348,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
        long nOne = 1;
        if(!bSilent)
 	 printf("fail\n");
-       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &stTemperatureDepth.nSize, &nIR40, &bFlat, npSwo);
+       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
+			&nLenObservation, dpCnt, &stTemperatureDepth.nSize, \
+			&nIR40, &bFlat, npSwo);
      }
   }/* End else observation complete */
 

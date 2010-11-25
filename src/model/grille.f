@@ -46,7 +46,7 @@
 *     Adaptation to C and Fortran77: Miguel Tremblay
 *     Date: 26 avril 2004
 ***
-      SUBROUTINE GRILLE ( GRI_IN, CNT_IN, iref, ir40, 
+      SUBROUTINE GRILLE (CNT_IN, iref, ir40, 
      *     FLAT, NZONE, ZONES, MAT, DIFF, dpTemperatureDepth, 
      *     dpFluxDepth, ECHEC )
       IMPLICIT NONE
@@ -76,14 +76,13 @@
 *     -------
 *     iref:  number of grid levels 
 *     ir40: level at 40 cm depth
-*     GRI: depth of the levels
 *     CNT: constants of conduction
 *     DIFF: Vector used to create the initial profile of temperature
 *     dpTemperatureDepth: Depth of temperature grid levels
+*     dpFluxDepth: Depth of flux grid levels
 ***
       INTEGER iref, ir40
-      DOUBLE PRECISION GRI(n,2), CNT(n,2), DIFF
-      DOUBLE PRECISION GRI_IN(n*2)
+      DOUBLE PRECISION  CNT(n,2), DIFF
       DOUBLE PRECISION CNT_IN(n*2)
       DOUBLE PRECISION dpTemperatureDepth(n)
       DOUBLE PRECISION dpFluxDepth(n)
@@ -94,7 +93,7 @@
 *     KS: ground conductivity, by zone
 *     CC: grid parameter ( FLAT = .f. )
 *     INTER: indice of present level
-*     YPG, YPT: 1st and 2nd derivatives of GRI
+*     YPG, YPT: 1st and 2nd derivatives of Levels
 *     DY: thickness of levels  ( after transformation )
 *     C: CS transpose on GRI
 *     Ko: KS transpose on GRI
@@ -172,16 +171,14 @@
          iref = int( ZONES(NZONE) / DY )
          DO j=1,iref
 *           Grid of the flux layers
-            GRI(j,1) = j * DY
-            dpFluxDepth =  GRI(j,1)
+            dpFluxDepth =  j * DY
 *           Grid of temperature layers
-            GRI(j,2) = ( real(j)-0.5 ) * DY
-            dpTemperatureDepth(j) = GRI(j,2)
+            dpTemperatureDepth(j) =  ( real(j)-0.5 ) * DY
 *           Derivate on the flux layers
             YPG(j) = 1.0
 *           Derivate on the temperature layer
             YPT(j) = 1.0
-            IF ( GRI(j,2) .le. 0.4 ) ir40 = j
+            IF ( dpTemperatureDepth(j) .le. 0.4 ) ir40 = j
          END DO
       ELSE
 *    Case FLAT = .false. => ROAD
@@ -197,20 +194,19 @@
             j = j + 1
             go to 12
          END IF
-         GRI(1,1) = - (log(( 1 - ( DY / dd ) )) / CC)
-         GRI(1,2) = 0.5 * GRI(1,1)
+         dpFluxDepth(1) =  - (log(( 1 - ( DY / dd ) )) / CC)
+         dpTemperatureDepth(1) =  0.5 *  dpFluxDepth(1)
          j=1
-         dpTemperatureDepth(j) = GRI(j,2)
          DO j=2,iref
-            GRI(j,1) = - (log((1. -(real(j) * DY / dd))) / CC)
-            GRI(j,2) = 0.5 * ( GRI(j,1) + GRI(j-1,1) )
-            dpTemperatureDepth(j) = GRI(j,2)
+            dpFluxDepth(j) =  - (log((1. -(real(j) * DY / dd))) / CC)
+            dpTemperatureDepth(j) = 0.5 * ( dpFluxDepth(j) 
+     *           + dpFluxDepth(j-1) )
          END DO
-         YPG(1) = dd * CC * exp( - (CC * 0.5 * GRI(1,1) ))
-         YPT(1) = dd * CC * exp( -(CC * 0.5 * GRI(1,2) ))
+         YPG(1) = dd * CC * exp( - (CC * 0.5 * dpFluxDepth(1) ))
+         YPT(1) = dd * CC * exp( -(CC * 0.5 * dpTemperatureDepth(1) ))
          DO j=2,iref
-            YPG(j) = dd * CC * exp( - (CC * GRI(j,1) ))
-            YPT(j) = dd * CC * exp( - (CC * GRI(j,2) ))
+            YPG(j) = dd * CC * exp( - (CC * dpFluxDepth(j) ))
+            YPT(j) = dd * CC * exp( - (CC * dpTemperatureDepth(j) ))
          END DO
       END IF
 
@@ -218,9 +214,9 @@
 *     -------------------------------------------------------------
       INTER = 1
       DO j=1,iref
-         IF ( GRI(j,1) .ge. ZONES(INTER) ) THEN
-            ratio = ( ZONES(INTER) - GRI(j-1,1) ) / 
-     *           ( GRI(j,1) - GRI(j-1,1) )
+         IF ( dpFluxDepth(j) .ge. ZONES(INTER) ) THEN
+            ratio = ( ZONES(INTER) - dpFluxDepth(j-1) ) / 
+     *           ( dpFluxDepth(j) - dpFluxDepth(j-1) )
             C(j) = CS(INTER)*ratio + CS(INTER+1)*(1-ratio)
             INTER = INTER + 1
          ELSE
@@ -229,9 +225,9 @@
       END DO
       INTER = 1
       DO j=1,iref
-         IF ( GRI(j,2) .ge. ZONES(INTER) ) THEN
-            ratio = ( ZONES(INTER) - GRI(j-1,2) ) / 
-     *                 ( GRI(j,2) - GRI(j-1,2) )
+         IF ( dpTemperatureDepth(j) .ge. ZONES(INTER) ) THEN
+            ratio = ( ZONES(INTER) - dpTemperatureDepth(j-1) ) / 
+     *           ( dpTemperatureDepth(j) - dpTemperatureDepth(j-1) )
             Ko(j) = KS(INTER)*ratio + KS(INTER+1)*(1-ratio)
             INTER = INTER + 1
          ELSE
@@ -261,8 +257,6 @@
       END DO
       ECHEC = .false.
 
-
-      CALL MATRIX2ARRAYDOUBLEPRECISION(GRI,GRI_IN, n, 2)
       CALL MATRIX2ARRAYDOUBLEPRECISION(CNT, CNT_IN, n, 2)
 
       if( .not. bSilent) then
