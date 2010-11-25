@@ -43,12 +43,13 @@
 *     Date: Aout 1999 / August 1999
 ***
       SUBROUTINE COUPLA ( FS, FI, P0, TA , QA , VA , TYP, FT, PR,
-     *                    PVC , iref, NTP, NTP2, CNT_IN, ITP, TSO, FLAT,
+     *                    PVC , iref, NTP, NTP2, ITP, TSO, FLAT,
      *                    FCOR, WW , ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    FAIL, EPSILON, Z0, Z0T, ZU, ZT, ECHEC,
      *                    dpRA, dpSN, npRC, dpRT, dpIR, dpSF, dpFV,
-     *                    dpFC, dpFA, dpG, dpBB, dpFP)
+     *                    dpFC, dpFA, dpG, dpBB, dpFP, 
+     *                    dpCapacity, dpConductivity)
 
       IMPLICIT NONE
       INTEGER i, j
@@ -77,7 +78,6 @@
 *     iref: Number of levels in the grid
 *     NTP: Index for the start of coupling
 *     NTP2: Index for the end of coupling
-*     CNT: Grid constants
 *     Z0: Roughness length (m)
 *     Z0T: Roughness length (m)
 *     ZU: Height of level of the wind forecast (m)
@@ -91,6 +91,8 @@
 *     ALR: Road Albedo 
 *     FP: Frozing point (C)
 *     FLAT: Road or bridge
+*     dpCapacity: Thermic capacity of the road at every level
+*     dpConductivity: Thermic conductivity of the road at every level
 ***
       LOGICAL FLAT
       INTEGER iref, NTP, NTP2
@@ -98,7 +100,6 @@
       DOUBLE PRECISION QA(DTMAX), PR(DTMAX)
       DOUBLE PRECISION VA(DTMAX), P0(DTMAX), FT(DTMAX)
       DOUBLE PRECISION TYP(DTMAX), PVC(DTMAX)
-      DOUBLE PRECISION CNT(n,2), CNT_IN(2*n)
       DOUBLE PRECISION FCOR, WW(2)
       DOUBLE PRECISION ALN, ALR, TSO, FP
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
@@ -108,6 +109,7 @@
       DOUBLE PRECISION dpG(DTMAX), dpBB(DTMAX)
       DOUBLE PRECISION dpRT(DTMAX), dpFV(DTMAX)
       DOUBLE PRECISION dpFP(DTMAX)
+      DOUBLE PRECISION dpCapacity(DTMAX), dpConductivity(DTMAX)
       INTEGER npRC(DTMAX)
       INTEGER nCheckBefore, nCheckAfter, n30SecondsStepsIn3Hours
 ***
@@ -237,8 +239,6 @@
          WRITE(*,*) "DEBUT COUPLA"
       end if
 *****
-**     Conversion of array in matrix
-      CALL ARRAY2MATRIXDOUBLEPRECISION(CNT_IN, CNT , n, 2)
 **     Initialisation of parametres
 **     ++++++++++++++++++++++++++++
       FAIL = .FALSE.
@@ -349,13 +349,14 @@
          dpFP(i) = PRG
          dpG(i) = G(0)
 
-         G(1) = REAL(CNT(1,1) * ( T(2,now) - T(1,now) ))
-         T(1,next) = REAL(T(1,now)+DT*(CNT(1,2)*( G(1) - G(0)) ))
+         G(1) = REAL(dpConductivity(1) * ( T(2,now) - T(1,now) ))
+         T(1,next) = REAL(T(1,now)+DT*(dpCapacity(1)*( G(1) - G(0)) ))
 
          DX = 0.0
 *        Compute the evolution of temperature in the ground
 *        +++++++++++++++++++++++++++++++++++++++++++++++++
-         call TSEVOL ( T, iref, now, CNT, G, FLAT, TA(i) )
+         call TSEVOL ( T, iref, now, G, FLAT, TA(i), 
+     *        dpCapacity, dpConductivity)
 *        Balance of accumulation at the ground
 *        ++++++++++++++++++++++++++++++
          call RODCON ( ER1, ER2, RHO  , CTU, CL , FP , FZ , 
@@ -424,9 +425,6 @@
          end do
       end if
  223  format(1x,i3,3x,f5.2,3x,f6.2,3x,f6.2,f9.5,f9.5)
-
-**     Conversion of matrix in array
-      CALL MATRIX2ARRAYDOUBLEPRECISION(CNT, CNT_IN, n, 2)
 
       if( .not. bSilent) then
          WRITE(*,*) "FIN COUPLA"

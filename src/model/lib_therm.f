@@ -192,7 +192,8 @@
 *     Auteur / Author: Louis-Philippe Crevier
 *     Date: Decembre 1999 / December 1999
 ***
-      SUBROUTINE TSEVOL ( T, iref, now, CNT, G, FLAT, TA )
+      SUBROUTINE TSEVOL (T, iref, now, G, FLAT, TA, 
+     *     dpCapacity, dpConductivity)
       IMPLICIT NONE
 
       INTEGER Nl, n
@@ -209,7 +210,9 @@
 ***
       INTEGER now, iref
       REAL G(0:n)
-      DOUBLE PRECISION CNT(n,2), TA
+      DOUBLE PRECISION TA
+      DOUBLE PRECISION dpCapacity(n)
+      DOUBLE PRECISION dpConductivity(n)
       LOGICAL FLAT
 ***
 *     Entrees/Sorties
@@ -228,17 +231,17 @@
 *     =========
       next = 3 - now
       do j=2,iref-1
-         G(j) = CNT(j,1) * ( T(j+1,now) - T(j,now) )
+         G(j) = dpConductivity(j) * ( T(j+1,now) - T(j,now) )
       end do
       do j=2,iref-1
-         T(j,next) = T(j,now)+DT*(CNT(j,2)*( G(j) - G(j-1 )))
+         T(j,next) = T(j,now)+DT*(dpCapacity(j)*( G(j) - G(j-1 )))
       end do
       if ( FLAT ) then
 *     BC: underside temp. is air temp
          T(iref,next) = TA
       else
 *     BC: no flux ( G(iref) = 0.0 )
-         T(iref,next) = T(j,now) - DT*CNT(j,2)*G(iref-1)
+         T(iref,next) = T(j,now) - DT*dpCapacity(j)*G(iref-1)
       end if
       return
       end

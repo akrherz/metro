@@ -46,8 +46,9 @@
 *     Adaptation to C and Fortran77: Miguel Tremblay
 *     Date: 26 avril 2004
 ***
-      SUBROUTINE GRILLE (CNT_IN, iref, ir40, 
-     *     FLAT, NZONE, ZONES, MAT, DIFF, dpTemperatureDepth, ECHEC )
+      SUBROUTINE GRILLE (iref, ir40, FLAT, NZONE, ZONES,
+     *     MAT, DIFF, dpTemperatureDepth, ECHEC, dpCapacity,
+     *     dpConductivity)
       IMPLICIT NONE
       INTEGER i, j, k
       INTEGER Nl, n
@@ -75,15 +76,14 @@
 *     -------
 *     iref:  number of grid levels 
 *     ir40: level at 40 cm depth
-*     CNT: constants of conduction
 *     DIFF: Vector used to create the initial profile of temperature
 *     dpTemperatureDepth: Depth of temperature grid levels
-*     dpFluxDepth: Depth of flux grid levels
 ***
       INTEGER iref, ir40
-      DOUBLE PRECISION  CNT(n,2), DIFF
-      DOUBLE PRECISION CNT_IN(n*2)
+      DOUBLE PRECISION DIFF
       DOUBLE PRECISION dpTemperatureDepth(n)
+      DOUBLE PRECISION dpCapacity(n)
+      DOUBLE PRECISION dpConductivity(n)
 ***
 *     Local
 *     --------
@@ -115,11 +115,6 @@
          WRITE(*,*) "GRILLE ROUTINE START"
       end if
 
-      DO k=1,2
-         DO j=1,n
-            CNT(j,k) = 0.
-         END DO
-      END DO
 *     Association of conductivity/capicity on different layers of 
 *     materiels.
 *     Associer les conductivites/capacites aux differentes 
@@ -243,20 +238,16 @@
          END IF
       END DO
 
-*     Creation of the CNT that contains the contribution of the capacity
+*     Creation of the array that contains the contribution of the capacity
 *     and conductivity in addition of the used metric factors
-*     Creation de CNT qui contient les contributions des capacites et
-*     conductivites en plus des facteurs de la metrique utilisee
 *     ---------------------------------------------------------------
-      CNT(1,1) = - (Ko(1) * YPG(1) / DY)
-      CNT(1,2) = - (YPT(1) / ( DY*C(1) ))
+      dpConductivity(1) =  - (Ko(1) * YPG(1) / DY)
+      dpCapacity(1) = - (YPT(1) / ( DY*C(1) ))
       DO j=2,iref
-         CNT(j,1)= - (Ko(j) * YPG(j) / DY)
-         CNT(j,2)= - (YPT(j) / ( DY*C(j) ))
+         dpConductivity(j) = - (Ko(j) * YPG(j) / DY)
+         dpCapacity(j) =  - (YPT(j) / ( DY*C(j) ))
       END DO
       ECHEC = .false.
-
-      CALL MATRIX2ARRAYDOUBLEPRECISION(CNT, CNT_IN, n, 2)
 
       if( .not. bSilent) then
          WRITE(*,*) "GRILLE ROUTINE ENDED"      

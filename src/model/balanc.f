@@ -45,13 +45,13 @@
 *     Date: Juillet 1999
 ***
       SUBROUTINE BALANC ( FS  , FI , P0  , TA , QA , VA , TYP, FT, PR,
-     *                    iref, ir40, NTP, NTFM, CNT_IN, ITP, FLAT,
+     *                    iref, ir40, NTP, NTFM, ITP, FLAT,
      *                    FCOR, WW , ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    EPSILON, Z0, Z0T, ZU, ZT, ECHEC, dpRT, 
-     *                    dpRA, dpSN,
-     *                    npRC, dpIR, dpSF, dpFV,
-     *                    dpFC, dpFA, dpG, dpBB, dpFP, dpSST, dpLT)
+     *                    dpRA, dpSN, npRC, dpIR, dpSF, dpFV, dpFC, 
+     *                    dpFA, dpG, dpBB, dpFP, dpSST, dpLT,
+     *                    dpCapacity, dpConductivity)
 
       IMPLICIT NONE
       INTEGER i, j
@@ -78,7 +78,6 @@
 *     PR: Precipitation rate (m/s)
 *     NTP: Index for the start of coupling
 *     NTFM: Index for the end of forecast
-*     CNT: Grid constants
 *     Z0: Roughness length (m)
 *     Z0T: Roughness length (m)
 *     ZU: Height of level of the wind forecast (m)
@@ -98,13 +97,15 @@
 *     FICORR: Coupling coefficient of infra-red flux
 *     iref:  number of grid levels 
 *     ir40: level at 40 cm depth 
+*     dpCapacity: Thermic capacity of the road at every level 
+*     dpConductivity: Thermic conductivy of the road at every level 
 ***
       LOGICAL FLAT
       INTEGER iref, ir40, NTP, NTFM
       DOUBLE PRECISION FS(DTMAX),  FI(DTMAX), P0(DTMAX)
       DOUBLE PRECISION TA(DTMAX), QA(DTMAX), VA(DTMAX)
       DOUBLE PRECISION TYP(DTMAX), FT(DTMAX), PR(DTMAX)
-      DOUBLE PRECISION CNT(n,2), CNT_IN(2*n), ITP(n)
+      DOUBLE PRECISION ITP(n)
       DOUBLE PRECISION FCOR, WW(2)
       DOUBLE PRECISION ALN, ALR, FP      
       DOUBLE PRECISION  FSCORR, FICORR
@@ -115,6 +116,7 @@
       DOUBLE PRECISION dpG(DTMAX), dpBB(DTMAX)
       DOUBLE PRECISION dpRT(DTMAX), dpFV(DTMAX)
       DOUBLE PRECISION dpFP(DTMAX), dpSST(DTMAX), dpLT(DTMAX*n)
+      DOUBLE PRECISION dpCapacity(DTMAX), dpConductivity(DTMAX)
       INTEGER npRC(DTMAX)
 ***
 *     Output
@@ -247,9 +249,6 @@
          WRITE(*,*) "DEBUT BALANC"
       end if
 
-**    Conversion of array in matrix
-      CALL ARRAY2MATRIXDOUBLEPRECISION(CNT_IN, CNT , n, 2)
-
 *     Initialisation of parametres
 *     ----------------------------
       FZ = 0.1
@@ -347,7 +346,7 @@
          DO j=1, iref
             dpLT((i-1)*iref+j) = T(j, now)
          END DO
-         G(1) = CNT(1,1) * ( T(2,now) - T(1,now) )
+         G(1) = dpConductivity(1) * ( T(2,now) - T(1,now) )
 
 *        Phase Transition when passing the melting point
 *        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -371,11 +370,12 @@
             DX = G(0)/CHLF
          else
             DX = 0.0
-            T(1,next) = T(1,now)+DT*(CNT(1,2)*( G(1) - G(0)))
+            T(1,next) = T(1,now)+DT*(dpCapacity(1)*( G(1) - G(0)))
          end if
 *        Calculation of temperature evolution in the ground
 *        +++++++++++++++++++++++++++++++++++++++++++++++++
-         call TSEVOL ( T, iref, now, CNT, G, FLAT, TA(i) )
+         call TSEVOL ( T, iref, now, G, FLAT, TA(i), 
+     *        dpCapacity, dpConductivity)
 *        Accumulation balance at the surface
 *        ++++++++++++++++++++++++++++
 
@@ -392,9 +392,6 @@
          now = 3 - now
       end do
       
-**     Conversion of matrix in array
-      CALL MATRIX2ARRAYDOUBLEPRECISION(CNT, CNT_IN, n, 2)
-
       if( .not. bSilent) then
          WRITE(*,*) "FIN BALANC"
       end if

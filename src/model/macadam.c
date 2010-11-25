@@ -193,6 +193,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   long nIR40;
   double* dpCnt;
   double* dpCapacity;
+  double* dpConductivity;
   long i;
   long nDeltaTIndice=0;
 
@@ -208,6 +209,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   dpItp = (double*)malloc((nNGRILLEMAX)*sizeof(double));
   dpWw = (double*)calloc((2),sizeof(double));
   dpCnt = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
+  dpCapacity  = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
+  dpConductivity = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
   
   /* Initilization of physical constants in the fortran code */
   f77name(setconstphys)(&bSilent);
@@ -227,9 +230,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   /* Grid creation */
 
-  f77name(grille)(dpCnt, &(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone, \
+  f77name(grille)(&(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone, \
 		  dpZones, npMateriau, &dDiff, stTemperatureDepth.pdArray, \
-		  stEc.plArray); 
+		  stEc.plArray, dpCapacity, dpConductivity); 
   if(*(stEc.plArray)){
     bSucces = FALSE;
     goto liberation;
@@ -269,8 +272,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
 		    &dMLon, npSwo, stTemperatureDepth.pdArray);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
-		     &nLenObservation, dpCnt, &stTemperatureDepth.nSize, &nIR40,\
-		     &bFlat, npSwo); 
+		     &nLenObservation, &stTemperatureDepth.nSize, &nIR40,\
+		     &bFlat, npSwo, dpCapacity, dpConductivity); 
     nNtp2 = nLenObservation - nDeltaTIndice;
   }
   else if(bpNoObs[0]){
@@ -287,14 +290,15 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		    &dDiff, &dMLon, npSwo, stTemperatureDepth.pdArray);
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC,\
-		    &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp, \
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, \
+		    &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp, \
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw,  \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
 		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
 		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, \
-		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray);  
+		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray,\
+		    dpCapacity, dpConductivity);  
     if(!bSilent)
       printf("coupla 1 \n");
     if(*(stEc.plArray)){
@@ -306,8 +310,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       if(!bSilent)
 	printf("fail\n");      
       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
-		       &nLenObservation, dpCnt, &stTemperatureDepth.nSize,\
-		       &nIR40, &bFlat, npSwo); 
+		       &nLenObservation, &stTemperatureDepth.nSize,\
+		       &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
      }
   }
   else{/* observation complete */
@@ -324,18 +328,19 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
        ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
-		     &nLenObservation, dpCnt, &stTemperatureDepth.nSize,\
-		     &nIR40, &bFlat, npSwo); 
+		     &nLenObservation, &stTemperatureDepth.nSize,\
+		     &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
-		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp,\
+		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp,\
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
 		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
 		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
-		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray);
+		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray, \
+		    dpCapacity, dpConductivity);
     if(!bSilent)
       printf("coupla 2\n");
     if(*(stEc.plArray)){
@@ -347,21 +352,21 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
        if(!bSilent)
 	 printf("fail\n");
        f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
-			&nLenObservation, dpCnt, &stTemperatureDepth.nSize, \
-			&nIR40, &bFlat, npSwo);
+			&nLenObservation, &stTemperatureDepth.nSize, \
+			&nIR40, &bFlat, npSwo, dpCapacity, dpConductivity);
      }
   }/* End else observation complete */
 
   /************ roadcast **************************************************/
   f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP,\
 		  &stTemperatureDepth.nSize,					\
-		  &nIR40, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr,\
+		  &nIR40, &nNtp2, &nNbrTimeSteps, dpItp, &bFlat, &dFCorr,\
 		  dpWw,  &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
 		  &dEr2, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
 		  stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray,\
 		  stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
 		  dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray,\
-		  stSST.pdArray, stLT.pdArray); 
+		  stSST.pdArray, stLT.pdArray, dpCapacity, dpConductivity); 
 
   if(*(stEc.plArray)){
     if(!bSilent)
@@ -383,6 +388,10 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   dpWw = NULL;
   free(dpCnt);
   dpCnt = NULL;
+  free(dpCapacity);
+  dpCapacity = NULL;
+  free(dpConductivity);
+  dpConductivity = NULL;
 
 }/* End Do_Metro */
 
