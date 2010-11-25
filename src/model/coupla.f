@@ -109,7 +109,7 @@
       DOUBLE PRECISION dpRT(DTMAX), dpFV(DTMAX)
       DOUBLE PRECISION dpFP(DTMAX)
       INTEGER npRC(DTMAX)
-      INTEGER nCheckBefore, nCheckAfter, n30SecondsStepIn3Hours
+      INTEGER nCheckBefore, nCheckAfter, n30SecondsStepsIn3Hours
 ***
 *     I/O
 *     ---------------
@@ -274,14 +274,15 @@
 *    Criterium: Solar flux must be non zero
 *     during the 3 hours BEFORE the roadcast and 
 *     1 hour AFTER the begining of the roadcast.
-      n30SecondsStepIn3Hours = 3*60*2
-      if (NTP2 - n30SecondsStepIn3Hours > NTP) then
-         nCheckBefore = NTP2-n30SecondsStepIn3Hours 
+*       3*60*2 = 360
+      n30SecondsStepsIn3Hours = 360
+      if (NTP2 - n30SecondsStepsIn3Hours > NTP) then
+         nCheckBefore = NTP2-n30SecondsStepsIn3Hours 
       else
          nCheckBefore = NTP
       end if
-      if (NTP2 + n30SecondsStepIn3Hours/3 < DTMAX) then
-         nCheckAfter = NTP2+n30SecondsStepIn3Hours/3
+      if (NTP2 + n30SecondsStepsIn3Hours/3 < DTMAX) then
+         nCheckAfter = NTP2+n30SecondsStepsIn3Hours/3
       else
          nCheckAfter = DTMAX
       end if
