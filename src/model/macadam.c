@@ -192,12 +192,12 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 /*   long nIRef=0;   */
   long nIR40;
   double* dpCnt;
-  double* dpGri;
+  double* dpCapacity;
   long i;
   long nDeltaTIndice=0;
 
   /* Allocate memory for all structures */
-  init_structure(nNbrTimeSteps,nNGRILLEMAX);
+  init_structure(nNbrTimeSteps, nNGRILLEMAX);
   
 
   for (i=0; i<nNbrTimeSteps; i++){
@@ -208,7 +208,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   dpItp = (double*)malloc((nNGRILLEMAX)*sizeof(double));
   dpWw = (double*)calloc((2),sizeof(double));
   dpCnt = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
-  dpGri = (double*)malloc((2*nNGRILLEMAX)*sizeof(double));
   
   /* Initilization of physical constants in the fortran code */
   f77name(setconstphys)(&bSilent);
@@ -384,8 +383,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   dpWw = NULL;
   free(dpCnt);
   dpCnt = NULL;
-  free(dpGri);
-  dpGri = NULL; 
+
 }/* End Do_Metro */
 
 int main(argc, argv) 
