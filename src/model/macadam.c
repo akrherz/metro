@@ -78,7 +78,6 @@ static struct doubleStruct stFP; /* Phase change energy */
 static struct longStruct   stEc; /* Boolean to know if the execution was a success */
 static struct doubleStruct stSST; /* Subsurface temperature */
 static struct doubleStruct stTemperatureDepth;  /* Depth of temperature grid levels */
-static struct doubleStruct stFluxDepth;  /* Depth of flux grid levels */
 static struct doubleStruct stLT; /* Level temperature */
  
 /****************************************************************************
@@ -231,7 +230,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   f77name(grille)(dpCnt, &(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone, \
 		  dpZones, npMateriau, &dDiff, stTemperatureDepth.pdArray, \
-		  stFluxDepth.pdArray, stEc.plArray); 
+		  stEc.plArray); 
   if(*(stEc.plArray)){
     bSucces = FALSE;
     goto liberation;
@@ -434,7 +433,6 @@ void init_structure(long nTimeStepMax, long nGrilleLevelMax)
   stEc.plArray = (long*)calloc((1),sizeof(long));
   stSST.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stTemperatureDepth.pdArray =  (double*)calloc((nTimeStepMax),sizeof(double));
-  stFluxDepth.pdArray =  (double*)calloc((nTimeStepMax),sizeof(double));
   stLT.pdArray = (double*)calloc((nTimeStepMax*nGrilleLevelMax),sizeof(double));
 }
 

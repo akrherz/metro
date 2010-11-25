@@ -47,8 +47,7 @@
 *     Date: 26 avril 2004
 ***
       SUBROUTINE GRILLE (CNT_IN, iref, ir40, 
-     *     FLAT, NZONE, ZONES, MAT, DIFF, dpTemperatureDepth, 
-     *     dpFluxDepth, ECHEC )
+     *     FLAT, NZONE, ZONES, MAT, DIFF, dpTemperatureDepth, ECHEC )
       IMPLICIT NONE
       INTEGER i, j, k
       INTEGER Nl, n
@@ -85,7 +84,6 @@
       DOUBLE PRECISION  CNT(n,2), DIFF
       DOUBLE PRECISION CNT_IN(n*2)
       DOUBLE PRECISION dpTemperatureDepth(n)
-      DOUBLE PRECISION dpFluxDepth(n)
 ***
 *     Local
 *     --------
@@ -103,6 +101,7 @@
       INTEGER INTER, NMAX
       REAL YPG(n), YPT(n), C(n), Ko(n)
       REAL dd, ratio, CC, DY
+      DOUBLE PRECISION dpFluxDepth(n)
 
       LOGICAL bSilent
       COMMON /SILENT/ bSilent
