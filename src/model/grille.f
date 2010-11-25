@@ -163,7 +163,7 @@
 *     Creer la grille elle-meme et ses derivees
 *     -----------------------------------------
       IF ( FLAT ) THEN
-*        Cas FLAT = .true. => PONT
+*        Case FLAT = .true. => PONT/BRIDGE
 *        -------------------------
 *        ZONES(NZONE) is the bottom of the 
          DY = max( 0.01 , REAL(ZONES(NZONE)) / real(n) )
