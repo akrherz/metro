@@ -45,7 +45,7 @@
 *     Date: Decembre 1999 / December 1999
 ***
       SUBROUTINE MAKITP (ITP, iref, ir40, FLAT, FT, TS, 
-     *                   TU, TA, DIFF, LON, GRI_IN, SWO_IN )
+     *                   TU, TA, DIFF, LON, SWO_IN, dpTemperatureDepth)
       IMPLICIT NONE
       INTEGER j
       INTEGER Nl, n
@@ -63,7 +63,6 @@
 *     FLAT: switch pont / route
 *     iref: indice du dernier niveau utilisee par le modele
 *     ir40: indice du niveau le plus pres de 40 cm.
-*     GRI: profondeur des differents niveaux utilises
 *     SWO: Serie temporelle de validite des observations (0 ou 1)
 *     FT: Forecast time
 *     TS: Temperature de surface de la route
@@ -71,10 +70,11 @@
 *     TA: Temperature de l'air
 *     LON: Longitude de la station
 *     DIFF: Vecteur utilise pour creer les profiles initiaux de temperature
+*     dpTemperatureDepth:  Depth of temperature grid levels
 ***
       LOGICAL FLAT
       DOUBLE PRECISION FT, TS, TU, TA, DIFF, LON
-      DOUBLE PRECISION GRI_IN(2*n), GRI(n,2)
+      DOUBLE PRECISION dpTemperatureDepth(n)
       INTEGER iref, ir40, SWO_IN(Nl*4), SWO(Nl,4)
 
 ***
@@ -118,38 +118,41 @@
 
 *     Conversion du array en matrice
       CALL ARRAY2MATRIXINT(SWO_IN, SWO, Nl, 4)
-      CALL ARRAY2MATRIXDOUBLEPRECISION(GRI_IN, GRI, n, 2)
       FT = FT*3600.0
       ASURF = 7.5
       ABOTT = 3.75
       C = LON*PI/180.0
       K = SQRT( OMEGA / DIFF )
-      B = TS - EXP((-K)*GRI(1,2))*ASURF*SIN(OMEGA*FT - K*GRI(1,2) + C)
+      B = TS - EXP((-K)*dpTemperatureDepth(1))*ASURF
+     *     *SIN(OMEGA*FT - K*dpTemperatureDepth(1) + C)
       if ( SWO(1,1) .eq. 1 ) then
-         E = TU - EXP((-K)*GRI(ir40,2))*
-     *     ASURF*SIN(OMEGA*FT - K*GRI(ir40,2) + C) - B
+         E = TU - EXP((-K)*dpTemperatureDepth(ir40))*
+     *     ASURF*SIN(OMEGA*FT - K*dpTemperatureDepth(ir40) + C)
+     *      - B
       else
          E = 0.0
       end if
 
       do j=1,ir40
-         Ew = E*(GRI(j,2)-GRI(1,2))/(GRI(ir40,2)-GRI(1,2))
-         ITP(j) = REAL(B + Ew + EXP((-K)*GRI(j,2))*
-     *        ASURF*SIN(OMEGA*FT -K*GRI(j,2)+C))
+         Ew = E*(dpTemperatureDepth(j)-dpTemperatureDepth(1))
+     *     /(dpTemperatureDepth(ir40)-dpTemperatureDepth(1))
+         ITP(j) = REAL(B + Ew + EXP((-K)*dpTemperatureDepth(j))*
+     *        ASURF*SIN(OMEGA*FT -K*dpTemperatureDepth(j)+C))
       end do
       if ( FLAT .and. SWO(1,2) .eq. 1) then
          do j=ir40+1,iref
-            Ew = (TA - ITP(ir40))/(GRI(iref,2)-GRI(ir40,2))
-            ITP(j) = ITP(ir40) + (GRI(j,2) - GRI(ir40,2))*Ew
+            Ew = (TA - ITP(ir40))/(dpTemperatureDepth(iref)
+     *            -dpTemperatureDepth(ir40))
+            ITP(j) = ITP(ir40) + (dpTemperatureDepth(j) 
+     *               - dpTemperatureDepth(ir40))*Ew
          end do
       else
          do j=ir40+1,iref
             ITP(j) = B + E +
-     *           EXP((-K)*GRI(j,2))*ASURF*SIN(OMEGA*FT-K*GRI(j,2)+C)
+     *           EXP((-K)*dpTemperatureDepth(j))*ASURF
+     *             *SIN(OMEGA*FT-K*dpTemperatureDepth(j)+C)
          end do
       end if
-*     Conversion de la matrice en array
-      CALL MATRIX2ARRAYDOUBLEPRECISION(GRI, GRI_IN, n, 2)
 
       if( .not. bSilent) then
          WRITE(*,*) "FIN MAKTIP"

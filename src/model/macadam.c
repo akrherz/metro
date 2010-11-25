@@ -77,7 +77,8 @@ static struct doubleStruct stBB; /* Black body radiation */
 static struct doubleStruct stFP; /* Phase change energy */
 static struct longStruct   stEc; /* Boolean to know if the execution was a success */
 static struct doubleStruct stSST; /* Subsurface temperature */
-static struct doubleStruct stDepth;  /* Depth of grid levels */
+static struct doubleStruct stTemperatureDepth;  /* Depth of temperature grid levels */
+static struct doubleStruct stFluxDepth;  /* Depth of flux grid levels */
 static struct doubleStruct stLT; /* Level temperature */
  
 /****************************************************************************
@@ -227,8 +228,10 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   
 
   /* Grid creation */
-  f77name(grille)(dpGri, dpCnt, &(stDepth.nSize), &nIR40, &bFlat, &nNbrOfZone,\
-		  dpZones, npMateriau, &dDiff, stDepth.pdArray, stEc.plArray); 
+
+  f77name(grille)(dpGri, dpCnt, &(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone,\
+		  dpZones, npMateriau, &dDiff, stTemperatureDepth.pdArray, \
+		  stFluxDepth.pdArray, stEc.plArray); 
   if(*(stEc.plArray)){
     bSucces = FALSE;
     goto liberation;
@@ -253,7 +256,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     BOOL bFalse = FALSE;
     if(!bSilent)
       printf(" Only one valid observation: No initialization nor coupling.\n");
-    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, &dMLon, dpGri, npSwo);
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat,\
+		    &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]),\
+		    &dDiff, &dMLon,  npSwo, stTemperatureDepth.pdArray); 
     nNtp2 = nLenObservation - nDeltaTIndice;
    }
   else if(bpNoObs[1]){
@@ -262,11 +267,12 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     long nOne =1;
     if(!bSilent)
       printf(" Not enough data for coupling.\n");
-    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
 		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
-		    &dMLon, dpGri, npSwo); 
+		    &dMLon, npSwo, stTemperatureDepth.pdArray);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
-		     &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo); 
+		     &nLenObservation, dpCnt, &stTemperatureDepth.nSize, &nIR40,\
+		     &bFlat, npSwo); 
     nNtp2 = nLenObservation - nDeltaTIndice;
   }
   else if(bpNoObs[0]){
@@ -278,13 +284,13 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     /* Patch because nNtdcl does not take the value 0 in fortran!*/
     if(nNtdcl == 0) 
       nNtdcl =1;
-    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
 		    &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]),\
-		    &dDiff, &dMLon, dpGri, npSwo); 
+		    &dDiff, &dMLon, npSwo, stTemperatureDepth.pdArray);
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC,\
-		    &stDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp, \
+		    &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp, \
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw,  \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
@@ -302,7 +308,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       if(!bSilent)
 	printf("fail\n");      
       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
-		       &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo); 
+		       &nLenObservation, dpCnt, &stTemperatureDepth.nSize,\
+		       &nIR40, &bFlat, npSwo); 
      }
   }
   else{/* observation complete */
@@ -310,18 +317,21 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     if(!bSilent)
       printf("Complete observations\n");
 
-    f77name(makitp)(dpItp, &stDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nDeltaTIndice]),\
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat,\
+		    &(dpTimeO[nDeltaTIndice]),			      \
 		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
-		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, dpGri, npSwo); 
+		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, npSwo, \
+		    stTemperatureDepth.pdArray);
     nNtdcl  = nLenObservation - nDeltaTIndice -\
       ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
        ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
-		     &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo); 
+		     &nLenObservation, dpCnt, &stTemperatureDepth.nSize,\
+		     &nIR40, &bFlat, npSwo); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
-		    dpRC, &stDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp,\
+		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpCnt, dpItp,\
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
@@ -338,13 +348,13 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
        long nOne = 1;
        if(!bSilent)
 	 printf("fail\n");
-       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &stDepth.nSize, &nIR40, &bFlat, npSwo);
+       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne, &nLenObservation, dpCnt, &stTemperatureDepth.nSize, &nIR40, &bFlat, npSwo);
      }
   }/* End else observation complete */
 
   /************ roadcast **************************************************/
   f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP,\
-		  &stDepth.nSize,					\
+		  &stTemperatureDepth.nSize,					\
 		  &nIR40, &nNtp2, &nNbrTimeSteps, dpCnt, dpItp, &bFlat, &dFCorr,\
 		  dpWw,  &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
 		  &dEr2, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
@@ -405,7 +415,7 @@ void init_structure(long nTimeStepMax, long nGrilleLevelMax)
   stFP.nSize = nTimeStepMax;
   stEc.nSize = 1;
   stSST.nSize = nTimeStepMax;
-  stDepth.nSize = 0; /* Will be computed later */
+  stTemperatureDepth.nSize = 0; /* Will be computed later */
   stLT.nSize = nTimeStepMax*nGrilleLevelMax;
   /* Memory alloc */
   stRC.plArray = (long*)calloc((nTimeStepMax),sizeof(long));
@@ -421,7 +431,8 @@ void init_structure(long nTimeStepMax, long nGrilleLevelMax)
   stFP.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
   stEc.plArray = (long*)calloc((1),sizeof(long));
   stSST.pdArray = (double*)calloc((nTimeStepMax),sizeof(double));
-  stDepth.pdArray =  (double*)calloc((nTimeStepMax),sizeof(double));
+  stTemperatureDepth.pdArray =  (double*)calloc((nTimeStepMax),sizeof(double));
+  stFluxDepth.pdArray =  (double*)calloc((nTimeStepMax),sizeof(double));
   stLT.pdArray = (double*)calloc((nTimeStepMax*nGrilleLevelMax),sizeof(double));
 }
 
@@ -494,12 +505,12 @@ struct doubleStruct get_sst(void){
 
 struct doubleStruct get_depth(void){
 
-  return stDepth;
+  return stTemperatureDepth;
 }
 
 long get_nbr_levels(void){
 
-  return stDepth.nSize;
+  return stTemperatureDepth.nSize;
 }
 
 struct doubleStruct get_lt(void){

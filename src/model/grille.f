@@ -47,7 +47,8 @@
 *     Date: 26 avril 2004
 ***
       SUBROUTINE GRILLE ( GRI_IN, CNT_IN, iref, ir40, 
-     *     FLAT, NZONE, ZONES, MAT, DIFF, dpDepth, ECHEC )
+     *     FLAT, NZONE, ZONES, MAT, DIFF, dpTemperatureDepth, 
+     *     dpFluxDepth, ECHEC )
       IMPLICIT NONE
       INTEGER i, j, k
       INTEGER Nl, n
@@ -78,13 +79,14 @@
 *     GRI: depth of the levels
 *     CNT: constants of conduction
 *     DIFF: Vector used to create the initial profile of temperature
-*     dpDepth: Depth of grid levels
+*     dpTemperatureDepth: Depth of temperature grid levels
 ***
       INTEGER iref, ir40
       DOUBLE PRECISION GRI(n,2), CNT(n,2), DIFF
       DOUBLE PRECISION GRI_IN(n*2)
       DOUBLE PRECISION CNT_IN(n*2)
-      DOUBLE PRECISION dpDepth(n)
+      DOUBLE PRECISION dpTemperatureDepth(n)
+      DOUBLE PRECISION dpFluxDepth(n)
 ***
 *     Local
 *     --------
@@ -171,9 +173,10 @@
          DO j=1,iref
 *           Grid of the flux layers
             GRI(j,1) = j * DY
+            dpFluxDepth =  GRI(j,1)
 *           Grid of temperature layers
             GRI(j,2) = ( real(j)-0.5 ) * DY
-            dpDepth(j) = GRI(j,2)
+            dpTemperatureDepth(j) = GRI(j,2)
 *           Derivate on the flux layers
             YPG(j) = 1.0
 *           Derivate on the temperature layer
@@ -197,11 +200,11 @@
          GRI(1,1) = - (log(( 1 - ( DY / dd ) )) / CC)
          GRI(1,2) = 0.5 * GRI(1,1)
          j=1
-         dpDepth(j) = GRI(j,2)
+         dpTemperatureDepth(j) = GRI(j,2)
          DO j=2,iref
             GRI(j,1) = - (log((1. -(real(j) * DY / dd))) / CC)
             GRI(j,2) = 0.5 * ( GRI(j,1) + GRI(j-1,1) )
-            dpDepth(j) = GRI(j,2)
+            dpTemperatureDepth(j) = GRI(j,2)
          END DO
          YPG(1) = dd * CC * exp( - (CC * 0.5 * GRI(1,1) ))
          YPT(1) = dd * CC * exp( -(CC * 0.5 * GRI(1,2) ))
