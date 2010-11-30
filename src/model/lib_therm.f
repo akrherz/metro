@@ -204,6 +204,8 @@
 ***                 ***
 *     DEFINITIONS     *
 ***                 ***
+*     dpCapacity: Thermic capacity of the road at every level
+*     dpConductivity: Thermic conductivity of the road at every level
 ***
 *     Entrees
 *     -------

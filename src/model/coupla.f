@@ -78,6 +78,7 @@
 *     iref: Number of levels in the grid
 *     NTP: Index for the start of coupling
 *     NTP2: Index for the end of coupling
+*     TSO: Road surface temperature
 *     Z0: Roughness length (m)
 *     Z0T: Roughness length (m)
 *     ZU: Height of level of the wind forecast (m)
@@ -86,7 +87,18 @@
 *     TS0: Target temperature for the end of coupling (C)
 *     FCOR: Coriolis factor
 *     WW: Minimum winds for the day and the night (m/s)
+*     dpRA: Liquid accumulation on the road
+*     dpSN: Solid (snow/ice) accumulation on the road
+*     dpRC: Road condition
+*     dpRT: Road temperature
+*     dpIR: Infra-red flux
+*     dpSF: Solar flux
+*     dpFV: Vapor flux
+*     dpFC: Sensible heat
 *     dpFA: Anthropogenic flux
+*     dpG:  Ground flux 
+*     dpBB: Black body radiation
+*     dpFP: Phase change energy
 *     ALN: Snow Albedo 
 *     ALR: Road Albedo 
 *     FP: Frozing point (C)

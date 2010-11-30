@@ -87,6 +87,18 @@
 *     TS0: Target temperature for the end of coupling (C)
 *     FCOR: Coriolis factor
 *     WW: Minimum winds for the day and the night (m/s)
+*     dpRA: Liquid accumulation on the road
+*     dpSN: Solid (snow/ice) accumulation on the road
+*     dpRC: Road condition
+*     dpRT: Road temperature
+*     dpIR: Infra-red flux
+*     dpSF: Solar flux
+*     dpFV: Vapor flux
+*     dpFC: Sensible heat
+*     dpFA: Anthropogenic flux
+*     dpG:  Ground flux 
+*     dpBB: Black body radiation
+*     dpFP: Phase change energy
 *     dpFA: Anthropogenic flux
 *     ALN: Snow Albedo 
 *     ALR: Road Albedo 
