@@ -122,7 +122,7 @@ for case in caseList:
     print "Test Case: " + case + ""
     print "START"
 
-    roadcastResultPath = "roadcast_" + case
+    roadcastResultPath = "roadcast_" + case + '.xml'
     runCommand = "python " + metroExec + " --silent --verbose-level 0 --input-forecast " + case + "/forecast.xml --input-observation " \
                   + case + "/observation.xml --input-station " + case + "/station.xml --output-roadcast " + roadcastResultPath
 
