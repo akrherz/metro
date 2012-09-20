@@ -258,7 +258,7 @@ def shift_left(npInput, fValueAdded=0):
                        numpy.concatenate
 
     Description: This method shift the value of the array at left, i.e.
-                 npInput[n] becomes npInput[n] for all n in [1..len(npInput)-1].  The
+                 npInput[n] becomes npInput[n-1] for all n in [1..len(npInput)-1].  The
                  value fValueAdded is added at the end,
                  i.e. npInput[len(npInput)-1]=fValueAdded
 

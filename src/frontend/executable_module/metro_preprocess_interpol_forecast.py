@@ -121,6 +121,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         #  Used in fsint2.
         npFT = \
              wf_original_data.get_matrix_col('FORECAST_TIME')
+
         nHourStart = int(metro_date.get_hour(npFT[0]))
         nbrHours = metro_date.get_elapsed_time(npFT[-1], \
                                                npFT[0]) + 1
@@ -229,13 +230,20 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         fMax = npQP.max()
         npQP = numpy.where(npQP < 0, fMax, npQP)
 
+        # Compute the amount fell at each time step
         npQP = npQP - metro_util.shift_right(npQP, 0)
         npSN = npSN - metro_util.shift_right(npSN, 0)
         npRA = npRA - metro_util.shift_right(npRA, 0)
-        
+
+        # Interpolate these values at each time step
         npQP = metro_util.interpolate(self.npTime, npQP)
         npSN = metro_util.interpolate(self.npTime, npSN)
         npRA = metro_util.interpolate(self.npTime, npRA)
+
+        # Shift all the values to have them started at the right time
+        npQP =  metro_util.shift_left(npQP, 0)
+        npSN =  metro_util.shift_left(npSN, 0)
+        npRA =  metro_util.shift_left(npRA, 0)
 
         npQP = npQP *10e-4 # Set it in meter
         npQP = npQP / 3600.0 # Convert by second
