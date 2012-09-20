@@ -218,7 +218,7 @@ def interpolate(xArray, yArray):
         sMetroUtilWarning = _("In interpolate, the arrays does not") +\
                             _("have the same length. %d != %d\n") %\
                               (iLenXArray, iLenYArray )
-        # Error should be thrown ? Text won<t be in metro_logger...
+        # Error should be thrown ? Text won't be in metro_logger...
         print sMetroUtilWarning
         if  iLenYArray < iLenXArray:
             sMetroUtilWarning = _("Padding Y array with average at the end.")
