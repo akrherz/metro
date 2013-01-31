@@ -86,7 +86,7 @@ echo '    macadam.i :'
 swig -python  macadam.i 
 
 echo "    C compilation"
-gcc -c -fPIC -Wall macadam.c $PYTHON_INC
+gcc -c -fPIC -Wall  -Wno-implicit  macadam.c $PYTHON_INC
 gcc -c -fPIC  macadam_wrap.c $PYTHON_INC
 
 if [ -z $FC ]; then
