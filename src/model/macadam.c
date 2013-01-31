@@ -172,8 +172,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   BOOL bSucces = TRUE;
   long nNtp;
   long nNtp2;
-  long nNRec;
-  long nNtdcl;
   double* dpItp;
   double dDiff;
   double* dpWw;
@@ -191,7 +189,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   double dEr2=0;
   double dFp=0.0;
   /* Grid values */
-/*   long nIRef=0;   */
   long nIR40;
   double* dpCnt;
   double* dpCapacity;
@@ -247,12 +244,11 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
    
   /***********************************************************************/
-  /*          Coupling is different if there is more or less than 3 hours.
+  /*   Coupling is different if there is more or less than 3 hours.     */
   /**********************************************************************/
   bFail = FALSE;
   if( !bThreeHoursObs){
     /* less than 3 hours of observation in the coupling */
-    BOOL bFalse = FALSE;
     long nOne =1;
     if(!bSilent)
       printf(" Not enough data for coupling.\n");
@@ -275,13 +271,11 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
 		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, npSwo, \
 		    stTemperatureDepth.pdArray);
-    nNtdcl  = nLenObservation - nDeltaTIndice -\
-      ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
-       ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
+
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
 		     &nLenObservation, &stTemperatureDepth.nSize,\
 		     &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
-    nNtp = 0 + nNtdcl;
+    nNtp = 0; //  + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
 		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp,\

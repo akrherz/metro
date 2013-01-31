@@ -17,8 +17,11 @@
 **
 ****************************************************************************/
 
-#include "global.h"
 #include "number.h"
+
+#define BOOL long
+#define TRUE 1
+#define FALSE 0
 
 /* Pas de temps du modèle de bilan énergétique */
 #define dDT 30.0
