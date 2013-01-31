@@ -65,7 +65,6 @@ nAirTempMin = -60
 nMaxWindSpeed = 90
 nHourForExpirationOfObservation = 48
 nGapMinuteObservation = 240
-nThreeHours = 3
 nLowerPressure = 900
 fNormalPressure = 1013.25 # 1 atmosphere
 nUpperPressure = 1100
@@ -87,3 +86,4 @@ nNL = 11520
 # METRo output
 #  Indicates at what will be the time interval between 2 field in the roadcast
 nMinutesForOutput = 20
+
