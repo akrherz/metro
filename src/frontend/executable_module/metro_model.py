@@ -265,7 +265,7 @@ class Metro_model(Metro_module):
             npSWO[4*i+3] = npSWO4[i] 
         lSWO = npSWO.astype(numpy.int32).tolist()
         
-        bNoObs = observation.get_attribute('NO_OBS')
+        bThreeHoursObs =  observation.get_attribute('THREE_HOURS_OBS')
         
         sMessage = _( "------------station config START---------------------")
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
@@ -287,6 +287,9 @@ class Metro_model(Metro_module):
 
         bFlat = cs_data.get_station_type()
 
+        metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                   sMessage)
+
         sMessage = _("------------station config END---------------------")
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
@@ -302,9 +305,10 @@ class Metro_model(Metro_module):
                          lLayerThick, nNbrOfLayer, lLayerType, \
                          lAT, lQP, lWS, lAP, lSF, lIR, lFT, lFA, lPI, lSC,\
                          lAT_obs,lST_obs, lSST_obs, \
-                         lAH, lTime_obs, lSWO, bNoObs,\
+                         lAH, lTime_obs, lSWO, \
                          fDeltaTMetroObservation, nLenObservation, \
-                         nNbrTimeSteps, bSilent)
+                         nNbrTimeSteps, bSilent, \
+                         bThreeHoursObs)
         bEchec = (macadam.get_echec())[0]
         # Check if the execution of the model was a succes:
         if bEchec != 0:

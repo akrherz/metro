@@ -386,11 +386,12 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
         if o == "--use-anthropogenic-flux":
             dConfig['FA']['VALUE'] = True
-            dSFDict= {'NAME':"FA",
+            dFSDict= {'NAME':"FA",
                       'XML_TAG':"fa",
                       'DATA_TYPE':"REAL"}
             dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
-            'VALUE'].append(dSFDict)
+            'VALUE'].append(dFSDict)
+
 
         if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
@@ -408,7 +409,6 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             'VALUE'].append(dTL)
 
 
-            
 
         # Selftest value
         if o == "--selftest":
@@ -856,7 +856,6 @@ def set_default_value( ):
          'FROM'     :CFG_INTERNAL,
          'COMMENTS' :_("standard station header items")}
 
-
     dConfig['XML_STATION_HEADER_EXTENDED_ITEMS'] = \
         {'VALUE'    :[],
          'FROM'     :CFG_HARDCODED,
@@ -949,7 +948,7 @@ def set_default_value( ):
 
     dConfig['XML_ROADCAST_HEADER_EXTENDED_ITEMS']  = \
         {'VALUE'    :[],
-         'FROM'     :CFG_HARDCODED,
+         'FROM'     :CFG_INTERNAL,
          'COMMENTS' :_("extended roadcast header items")}
 
     dConfig['XML_ROADCAST_PREDICTION_STANDARD_ITEMS'] = \
@@ -1085,7 +1084,7 @@ def set_default_value( ):
                       "TD_VALID_INTERPOLATED",
                       "WS_VALID_INTERPOLATED",
                       "DELTA_T",
-                      "NO_OBS"
+                      "THREE_HOURS_OBS"
                       ],
          'FROM'     :CFG_INTERNAL,
          'COMMENTS' :_("default observation attribute.")}
