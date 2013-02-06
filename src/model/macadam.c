@@ -245,21 +245,15 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
    
   /***********************************************************************/
   /*   Coupling is different if there is more or less than 3 hours.     */
-  if(bpNoObs[2]){
-    goto liberation;
-  }
-  else if(bpNoObs[3]){
-    if(!bSilent)
-      printf(" Only one valid observation: No initialization nor coupling.\n");
-    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat,\
-		    &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]),\
-		    &dDiff, &dMLon,  npSwo, stTemperatureDepth.pdArray); 
-    nNtp2 = nLenObservation - nDeltaTIndice;
-   }
-  else if(bpNoObs[1]){
+  /***********************************************************************/
+
+  if(bpNoObs[1]){
     /* less than 3 hours of observation in the coupling */
-    if(!bSilent)
-      printf(" Not enough data for coupling.\n");
+    if(!bSilent){
+      printf("Less than 3 hours of overlap between the\n");
+      printf("forecast and the road observations. Not enough ");
+      printf("data for coupling.\n");
+    }
     f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
 		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
 		    &dMLon, npSwo, stTemperatureDepth.pdArray);
@@ -304,7 +298,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		       &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
      }
   }
-  else{/* observation complete */
+  else{/* Complete observations */
     if(!bSilent)
       printf("Complete observations\n");
 
