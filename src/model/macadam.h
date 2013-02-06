@@ -17,11 +17,8 @@
 **
 ****************************************************************************/
 
+#include "global.h"
 #include "number.h"
-
-#define BOOL long
-#define TRUE 1
-#define FALSE 0
 
 /* Pas de temps du modèle de bilan énergétique */
 #define dDT 30.0
@@ -39,7 +36,7 @@
 #define dPI  3.141592653590e0  
 #define dOMEGA  0.7292e-4 
 
-void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP, double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRc, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSWO,  double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, BOOL bThreeHoursObs);
+void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP, double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRc, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSWO,  BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent);
 	      
 void init_structure(long nTimeStepMax, long nGrilleLevelMax);
 

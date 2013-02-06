@@ -117,8 +117,6 @@ static struct doubleStruct stLT; /* Level temperature */
   and the start of METRo.]
 [I long nLenObservation : Number of valid observations.  30 seconds steps.]
 [I long nNbrTimeSteps : number of 30 seconds steps in the forecast] 
-[I long bThreeHoursObs: True if the number of observations is over 3 hours ]
-
 
 Returns: None 
  
@@ -145,7 +143,7 @@ Miguel Tremblay  May 2004
  
 ***************************************************************************/
 
-void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent,  BOOL bThreeHoursObs)
+void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
 {
 
   /* Argument de la ligne de commande. Donne par python  */
@@ -172,6 +170,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   BOOL bSucces = TRUE;
   long nNtp;
   long nNtp2;
+  long nNRec;
+  long nNtdcl;
   double* dpItp;
   double dDiff;
   double* dpWw;
@@ -189,6 +189,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   double dEr2=0;
   double dFp=0.0;
   /* Grid values */
+/*   long nIRef=0;   */
   long nIR40;
   double* dpCnt;
   double* dpCapacity;
@@ -244,22 +245,74 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
    
   /***********************************************************************/
-  /*   Coupling is different if there is more or less than 3 hours.     */
+  /*           Couplage de la prevision et des observations.
+  /*           Differentes possibilites selon la quantite d'observations
+  /*           presentes.
   /**********************************************************************/
   bFail = FALSE;
-  if( !bThreeHoursObs){
+  if(bpNoObs[2]){
+    goto liberation;
+  }
+  else if(bpNoObs[3]){
+    BOOL bFalse = FALSE;
+    if(!bSilent)
+      printf(" Only one valid observation: No initialization nor coupling.\n");
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat,\
+		    &(dpTimeO[0]), &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]),\
+		    &dDiff, &dMLon,  npSwo, stTemperatureDepth.pdArray); 
+    nNtp2 = nLenObservation - nDeltaTIndice;
+   }
+  else if(bpNoObs[1]){
     /* less than 3 hours of observation in the coupling */
+    BOOL bFalse = FALSE;
     long nOne =1;
     if(!bSilent)
       printf(" Not enough data for coupling.\n");
-    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, \
-		    &(dpTimeO[0]),				      \
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
 		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
 		    &dMLon, npSwo, stTemperatureDepth.pdArray);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
 		     &nLenObservation, &stTemperatureDepth.nSize, &nIR40,\
 		     &bFlat, npSwo, dpCapacity, dpConductivity); 
     nNtp2 = nLenObservation - nDeltaTIndice;
+  }
+  else if(bpNoObs[0]){
+    BOOL bTmp = FALSE;    
+    if(!bSilent)
+      printf(" Not enough data for initialization.\n");
+    nNtdcl  = nLenObservation - ((nLenObservation < 28800.0/dDT)\
+				 ? nLenObservation : 28800.0/dDT);
+    /* Patch because nNtdcl does not take the value 0 in fortran!*/
+    if(nNtdcl == 0) 
+      nNtdcl =1;
+    f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
+		    &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]),\
+		    &dDiff, &dMLon, npSwo, stTemperatureDepth.pdArray);
+    nNtp = - nDeltaTIndice + nNtdcl;
+    nNtp2 = nLenObservation - nDeltaTIndice;
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, \
+		    &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp, \
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw,  \
+		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
+		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
+		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
+		    stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray, \
+		    dpFA, stG.pdArray, stBB.pdArray, stFP.pdArray,\
+		    dpCapacity, dpConductivity);  
+    if(!bSilent)
+      printf("coupla 1 \n");
+    if(*(stEc.plArray)){
+      bSucces = FALSE;       
+      goto liberation;
+    }
+    if(bFail){
+      long nOne = 1;
+      if(!bSilent)
+	printf("fail\n");      
+      f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
+		       &nLenObservation, &stTemperatureDepth.nSize,\
+		       &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
+     }
   }
   else{/* observation complete */
     long nOne =1;
@@ -271,11 +324,13 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
 		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, npSwo, \
 		    stTemperatureDepth.pdArray);
-
+    nNtdcl  = nLenObservation - nDeltaTIndice -\
+      ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
+       ? nLenObservation-nDeltaTIndice : 28800.0/dDT);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
 		     &nLenObservation, &stTemperatureDepth.nSize,\
 		     &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
-    nNtp = 0; //  + nNtdcl;
+    nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
 		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp,\

@@ -215,7 +215,8 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         npTime = ro_controlled_data.get_matrix_col('Time')
         npCheck = metro_util.get_difference_array(npTime)
         # If a gap of more than nGapMinuteObservation
-        #  minutes is identified, cut the value before.
+        #  minutes is identify, cut the value before.
+        npCheck = metro_util.get_difference_array(npTime)        
         npBad = numpy.where( npCheck > metro_constant.\
                                 nGapMinuteObservation*60, 1, 0)
         npBadIndice =  (numpy.nonzero(npBad))[0]
@@ -287,8 +288,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         if sStart_time == "":
             return
 
-        # Check if the observation are not before the start of the roadcast
-        #  if specified.
+        # Check if the observation are not before the start of the roadcast if specified.
         fStart_time = metro_date.parse_date_string(sStart_time)
         npOT = ro_controlled_data.get_matrix_col('Time')\
                +nHourStart*3600
@@ -409,19 +409,31 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         """
         
         # Take any of the column of the observation to check the dimensions.
+        npAT = ro_controlled_data.get_matrix_col('AT') 
         npTime = ro_controlled_data.get_matrix_col('Time')
         nNbr30Seconds = (npTime[len(npTime)-1]-npTime[0]) \
                         /metro_constant.fTimeStep
 
         # Initialize the boolean field
-        bThreeHoursObs = True
+        bNoObs = [0, 0, 0, 0]
         # Check if there is any data for initialisation
-        # Less than 3 hours of observation (3*3600/30 = 360)
-        if nNbr30Seconds < 360:
-            bThreeHoursObs = False
+        fDeltaT =  observation_data.get_attribute('DELTA_T')
+
+        if fDeltaT <= 0:
+            bNoObs[0] = 1
+        # Less than 3 hours of observation        
+        if nNbr30Seconds-fDeltaT*3600/30. < metro_constant.nThreeHours*3600/30:
+            bNoObs[1] = 1
+        # No valid observation
+        if len(npAT) == 0:
+            bNoObs[2] = 1
+            
+        # One valid observation
+        if len(npAT) == 1:
+            bNoObs[3] = 1
             
         # Set the variable
-        observation_data.set_attribute('THREE_HOURS_OBS',bThreeHoursObs)
+        observation_data.set_attribute('NO_OBS',bNoObs)
 
         
     def __set_time_difference(self, ro_controlled_data, wf_controlled_data, \
