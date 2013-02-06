@@ -170,7 +170,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   BOOL bSucces = TRUE;
   long nNtp;
   long nNtp2;
-  long nNRec;
   long nNtdcl;
   double* dpItp;
   double dDiff;
@@ -189,13 +188,13 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   double dEr2=0;
   double dFp=0.0;
   /* Grid values */
-/*   long nIRef=0;   */
   long nIR40;
   double* dpCnt;
   double* dpCapacity;
   double* dpConductivity;
   long i;
   long nDeltaTIndice=0;
+  long nOne = 1;
 
   /* Allocate memory for all structures */
   init_structure(nNbrTimeSteps, nNGRILLEMAX);
@@ -245,16 +244,11 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
    
   /***********************************************************************/
-  /*           Couplage de la prevision et des observations.
-  /*           Differentes possibilites selon la quantite d'observations
-  /*           presentes.
-  /**********************************************************************/
-  bFail = FALSE;
+  /*   Coupling is different if there is more or less than 3 hours.     */
   if(bpNoObs[2]){
     goto liberation;
   }
   else if(bpNoObs[3]){
-    BOOL bFalse = FALSE;
     if(!bSilent)
       printf(" Only one valid observation: No initialization nor coupling.\n");
     f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat,\
@@ -264,8 +258,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
    }
   else if(bpNoObs[1]){
     /* less than 3 hours of observation in the coupling */
-    BOOL bFalse = FALSE;
-    long nOne =1;
     if(!bSilent)
       printf(" Not enough data for coupling.\n");
     f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
@@ -277,7 +269,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     nNtp2 = nLenObservation - nDeltaTIndice;
   }
   else if(bpNoObs[0]){
-    BOOL bTmp = FALSE;    
     if(!bSilent)
       printf(" Not enough data for initialization.\n");
     nNtdcl  = nLenObservation - ((nLenObservation < 28800.0/dDT)\
@@ -306,7 +297,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       goto liberation;
     }
     if(bFail){
-      long nOne = 1;
       if(!bSilent)
 	printf("fail\n");      
       f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
@@ -315,7 +305,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
      }
   }
   else{/* observation complete */
-    long nOne =1;
     if(!bSilent)
       printf("Complete observations\n");
 
@@ -348,7 +337,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
        goto liberation;
      }
      if(bFail){
-       long nOne = 1;
+
        if(!bSilent)
 	 printf("fail\n");
        f77name(initial)(dpItp, (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,\
