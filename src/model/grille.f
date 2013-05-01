@@ -48,7 +48,7 @@
 ***
       SUBROUTINE GRILLE (iref, ir40, FLAT, NZONE, ZONES,
      *     MAT, DIFF, dpTemperatureDepth, ECHEC, dpCapacity,
-     *     dpConductivity)
+     *     dpConductivity, dSstDepth)
       IMPLICIT NONE
       INTEGER i, j, k
       INTEGER Nl, n
@@ -84,6 +84,7 @@
       DOUBLE PRECISION dpTemperatureDepth(n)
       DOUBLE PRECISION dpCapacity(n)
       DOUBLE PRECISION dpConductivity(n)
+      DOUBLE PRECISION dSstDepth
 ***
 *     Local
 *     --------
@@ -122,7 +123,7 @@
 *     ----------------------------------------------------
       NMAX = NZONE
       DO k=1,NZONE
-         IF ( ZONES(NZONE + 1 - k) .ge. 0.40 ) NMAX = NZONE + 1 - k
+         IF ( ZONES(NZONE + 1 - k) .ge. dSstDepth ) NMAX = NZONE + 1 - k
          IF ( MAT(k) .eq. 1 ) THEN
 *           asphalt(e)
 *           ----------
@@ -148,10 +149,10 @@
             return
          END IF
       END DO
-      DIFF = (MIN(0.4, REAL(ZONES(1)))/0.4)*KS(1)/CS(1)
+      DIFF = (MIN(dSstDepth, REAL(ZONES(1)))/dSstDepth)*KS(1)/CS(1)
 
       DO i=2,NMAX
-         DIFF = ((MIN(0.4,REAL(ZONES(i)))-ZONES(i-1))/0.4)* 
+         DIFF = ((MIN(dSstDepth,REAL(ZONES(i)))-ZONES(i-1))/dSstDepth)* 
      *        KS(i)/CS(i) + DIFF
       END DO
 *     Creation of the grid itself and his derivatives
@@ -172,15 +173,15 @@
             YPG(j) = 1.0
 *           Derivate on the temperature layer
             YPT(j) = 1.0
-            IF ( dpTemperatureDepth(j) .le. 0.4 ) ir40 = j
+            IF ( dpTemperatureDepth(j) .le. dSstDepth ) ir40 = j
          END DO
       ELSE
 *    Case FLAT = .false. => ROAD
 *    ---------------------------
          CC = 3.6
          dd = 20.0
-         ir40=int(0.5+((1-exp(-(CC*0.4)))/(1-exp(-(CC*0.01)))))
-         DY = dd * (1-exp(-(CC*0.4)))/(real(ir40)-0.5)
+         ir40=int(0.5+((1-exp(-(CC*dSstDepth)))/(1-exp(-(CC*0.01)))))
+         DY = dd * (1-exp(-(CC*dSstDepth)))/(real(ir40)-0.5)
          j=1
  12      IF ( real(j)*DY/dd .ge. 1.0 ) THEN
             iref = j - 1

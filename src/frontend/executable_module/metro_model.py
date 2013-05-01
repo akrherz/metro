@@ -287,6 +287,12 @@ class Metro_model(Metro_module):
 
         bFlat = cs_data.get_station_type()
 
+        dSstDepth = cs_data.get_sst_depth()
+
+        sMessage = _( "SST sensor depth: ") + str(dSstDepth)
+        metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                   sMessage)
+
         sMessage = _("------------station config END---------------------")
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
                                    sMessage)
@@ -304,7 +310,8 @@ class Metro_model(Metro_module):
                          lAT_obs,lST_obs, lSST_obs, \
                          lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \
-                         nNbrTimeSteps, bSilent)
+                         nNbrTimeSteps, bSilent, \
+                         dSstDepth)
         bEchec = (macadam.get_echec())[0]
         # Check if the execution of the model was a succes:
         if bEchec != 0:

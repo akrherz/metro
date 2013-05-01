@@ -117,6 +117,7 @@ static struct doubleStruct stLT; /* Level temperature */
   and the start of METRo.]
 [I long nLenObservation : Number of valid observations.  30 seconds steps.]
 [I long nNbrTimeSteps : number of 30 seconds steps in the forecast] 
+[I double dSstDepth : SST sensor depth from station file]
 
 Returns: None 
  
@@ -143,7 +144,7 @@ Miguel Tremblay  May 2004
  
 ***************************************************************************/
 
-void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent)
+void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth)
 {
 
   /* Argument de la ligne de commande. Donne par python  */
@@ -231,7 +232,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   f77name(grille)(&(stTemperatureDepth.nSize), &nIR40, &bFlat, &nNbrOfZone, \
 		  dpZones, npMateriau, &dDiff, stTemperatureDepth.pdArray, \
-		  stEc.plArray, dpCapacity, dpConductivity); 
+		  stEc.plArray, dpCapacity, dpConductivity, &dSstDepth); 
   if(*(stEc.plArray)){
     bSucces = FALSE;
     goto liberation;

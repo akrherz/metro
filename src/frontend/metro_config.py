@@ -95,6 +95,7 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "selftest", "silent", "roadcast-start-date=", "lang=",
                      "use-solarflux-forecast", "use-infrared-forecast",
                      "use-anthropogenic-flux",
+                     "use-sst-sensor-depth",
                      "output-subsurface-levels",
                      ]
 
@@ -386,11 +387,19 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
         if o == "--use-anthropogenic-flux":
             dConfig['FA']['VALUE'] = True
-            dSFDict= {'NAME':"FA",
+            dFADict= {'NAME':"FA",
                       'XML_TAG':"fa",
                       'DATA_TYPE':"REAL"}
             dConfig['XML_FORECAST_PREDICTION_EXTENDED_ITEMS'][\
-            'VALUE'].append(dSFDict)
+            'VALUE'].append(dFADict)
+
+        if o == "--use-sst-sensor-depth":
+            dConfig['SST_DEPTH']['VALUE'] = True
+            dSST_DEPTHDict = {'NAME':"SST_DEPTH",
+                              'XML_TAG':"sst-sensor-depth",
+                              'DATA_TYPE':"REAL"}
+            dConfig['XML_STATION_HEADER_EXTENDED_ITEMS'][\
+            'VALUE'].append(dSST_DEPTHDict)
 
         if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
@@ -949,7 +958,7 @@ def set_default_value( ):
 
     dConfig['XML_ROADCAST_HEADER_EXTENDED_ITEMS']  = \
         {'VALUE'    :[],
-         'FROM'     :CFG_HARDCODED,
+         'FROM'     :CFG_INTERNAL,
          'COMMENTS' :_("extended roadcast header items")}
 
     dConfig['XML_ROADCAST_PREDICTION_STANDARD_ITEMS'] = \
@@ -1245,6 +1254,10 @@ def set_default_value( ):
          'FROM'     :CFG_HARDCODED,
          'COMMENTS' :_("default time zone for station header date")}
 
+    dConfig['SST_DEPTH'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Use subsurface temperature sensor depth value from station")}
 
     # ------------------------------ roadcast ----------------------------------
 

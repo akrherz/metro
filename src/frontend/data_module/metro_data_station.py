@@ -35,6 +35,7 @@
 
 from metro_data import Metro_data
 
+import metro_logger
 import metro_config
 from toolbox import metro_util
 
@@ -119,3 +120,22 @@ class Metro_data_station(Metro_data):
             bFlat = False
             
         return bFlat
+
+    def get_sst_depth(self):
+        """
+        Get the sensor SST depth value
+
+        Return 0.4 if value in station config file is not between 0.2 and 0.6 and if no flag '--use-sst-sensor-depth' is used. Else returns value provided for sensor SST depth in station config file.
+        """
+        if metro_config.get_value('SST_DEPTH') == False:
+            return 0.4
+        else:
+            dStation_header = self.get_header()
+            sStation_sst_depth = dStation_header['SST_DEPTH']
+            if sStation_sst_depth == "None" or sStation_sst_depth > 0.6 or sStation_sst_depth < 0.2:
+                sMessage = _("Sensor SST depth value in station config file is not between 0.2 and 0.6. Value 0.4 for sensor SST depth will be used.")
+                metro_logger.print_message(metro_logger.LOGGER_MSG_CRITICAL,\
+                                      sMessage)
+                return 0.4
+            else:
+                return sStation_sst_depth
