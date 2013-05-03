@@ -66,7 +66,7 @@ nMaxWindSpeed = 90
 nHourForExpirationOfObservation = 48
 nGapMinuteObservation = 240
 nThreeHours = 3
-nLowerPressure = 900
+nLowerPressure = 700
 fNormalPressure = 1013.25 # 1 atmosphere
 nUpperPressure = 1100
 
