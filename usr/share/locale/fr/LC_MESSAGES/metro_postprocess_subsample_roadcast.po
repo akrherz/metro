@@ -12,7 +12,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.9.1\n"
@@ -20,19 +20,19 @@ msgstr ""
 #: ../src/frontend/executable_module/metro_postprocess_subsample_roadcast.py:114
 
 msgid "Roadcast start date set to: ''%s'"
-msgstr "Date de départ de la prévision routière utilisé: '%s'"
+msgstr "Date de dÃ©part de la prÃ©vision routiÃ¨re utilisÃ©: '%s'"
 
 #: ../src/frontend/executable_module/metro_postprocess_subsample_roadcast.py:124
 msgid "Unable to determine the first time of roadcast!"
-msgstr "Impossible de déterminer la première date pour la prévision routière!"
+msgstr "Impossible de dÃ©terminer la premiÃ¨re date pour la prÃ©vision routiÃ¨re!"
 
 #: ../src/frontend/executable_module/metro_postprocess_subsample_roadcast.py:157
 
 msgid "Output file roadcast start date: '%s'"
-msgstr "Date de départ de la prévision routière dans le fichier de sortie: '%s'"
+msgstr "Date de dÃ©part de la prÃ©vision routiÃ¨re dans le fichier de sortie: '%s'"
 
 #: ../src/frontend/executable_module/metro_postprocess_subsample_roadcast.py:202
 
 msgid "Roadcast start date of the model is: '%s'"
-msgstr "Date de départ de la prévision routière dans le modèle: '%s'"
+msgstr "Date de dÃ©part de la prÃ©vision routiÃ¨re dans le modÃ¨le: '%s'"
 

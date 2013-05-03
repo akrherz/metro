@@ -13,7 +13,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.9.1\n"
@@ -40,11 +40,11 @@ msgstr "CRITIQUE   "
 
 #: metro_logger.py:48
 msgid "STOP       "
-msgstr "ARRÊT      "
+msgstr "ARRÃŠT      "
 
 #: metro_logger.py:49
 msgid "UNDEFINED  "
-msgstr "INDÉFINIE  "
+msgstr "INDÃ‰FINIE  "
 
 #: metro_logger.py:86
 msgid "METRo version   : "
@@ -52,7 +52,7 @@ msgstr "Version de METRo: "
 
 #: metro_logger.py:90
 msgid "METRo started   : %s %s"
-msgstr "Départ de METRo: %s %s"
+msgstr "DÃ©part de METRo: %s %s"
 
 #: metro_logger.py:96
 msgid "command line    : "
@@ -60,7 +60,7 @@ msgstr "ligne de commande"
 
 #: metro_logger.py:100
 msgid "logger verbosity: "
-msgstr "prolixité du journal: "
+msgstr "prolixitÃ© du journal: "
 
 #: metro_logger.py:102
 msgid "Minimal"
@@ -76,11 +76,11 @@ msgstr "Maximal"
 
 #: metro_logger.py:108
 msgid "Debug"
-msgstr "Débog"
+msgstr "DÃ©bog"
 
 #: metro_logger.py:110
 msgid "Undefined"
-msgstr "Indéterminé"
+msgstr "IndÃ©terminÃ©"
 
 #: metro_logger.py:137
 msgid "Starting METRo logger"
@@ -88,25 +88,25 @@ msgstr "Lancement du journal de METRo"
 
 #: metro_logger.py:157
 msgid "can't open/create logger file:'%s'"
-msgstr "incapable d'ouvrir/créer le fichier du journal: '%s'"
+msgstr "incapable d'ouvrir/crÃ©er le fichier du journal: '%s'"
 
 #: metro_logger.py:165
 msgid "METRo logger started, log file:'%s'"
-msgstr "Journal de METRo démarré, fichier journal: '%s'"
+msgstr "Journal de METRo dÃ©marrÃ©, fichier journal: '%s'"
 
 #: metro_logger.py:240
 msgid "%s unexpected error, can't write message in the log file: %s"
 msgstr ""
-"%s erreur inattendue, incapable d'écrire le message dans le fichier journal: "
+"%s erreur inattendue, incapable d'Ã©crire le message dans le fichier journal: "
 "%s"
 
 #: metro_logger.py:252
 msgid "An unrecoverable error has occured, see details in the log file: "
-msgstr "Une erreur irréparable est survenue, voir les détails dans le fichier journal"
+msgstr "Une erreur irrÃ©parable est survenue, voir les dÃ©tails dans le fichier journal"
 
 #: metro_logger.py:257
 msgid "Lauching METRo with full logging capability may help you trace the error."
 msgstr ""
-"Le lancement de METRo avec le niveau de prolixité du journal au maximum "
-"pourrait aider à retracer l'erreur."
+"Le lancement de METRo avec le niveau de prolixitÃ© du journal au maximum "
+"pourrait aider Ã  retracer l'erreur."
 

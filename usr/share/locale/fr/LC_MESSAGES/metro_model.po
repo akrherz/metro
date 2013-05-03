@@ -9,18 +9,18 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-15\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.9.1\n"
 
 #: ../src/frontend/executable_module/metro_model.py:87
 msgid "Bypassing METRo core, roadcast not created."
-msgstr "Contournement du noyau de METRo, aucune prévision routière n'est créée"
+msgstr "Contournement du noyau de METRo, aucune prÃ©vision routiÃ¨re n'est crÃ©Ã©e"
 
 #: ../src/frontend/executable_module/metro_model.py:130
 msgid "year: [%s]"
-msgstr "année: [%s]"
+msgstr "annÃ©e: [%s]"
 
 #: ../src/frontend/executable_module/metro_model.py:135
 msgid "month: [%s]"
@@ -44,7 +44,7 @@ msgstr "Type de couche de la route="
 
 #: ../src/frontend/executable_module/metro_model.py:191
 msgid "roadlayer thick="
-msgstr "Épaisseur de la couche="
+msgstr "Ã‰paisseur de la couche="
 
 #: ../src/frontend/executable_module/metro_model.py:199
 msgid "timezone="
@@ -52,11 +52,11 @@ msgstr "fuseau horaire="
 
 #: ../src/frontend/executable_module/metro_model.py:214
 msgid "issue time="
-msgstr "Heure de la première prévision:"
+msgstr "Heure de la premiÃ¨re prÃ©vision:"
 
 #: ../src/frontend/executable_module/metro_model.py:276
 msgid "------------station config START---------------------"
-msgstr "------DÉMARRAGE de la configuration de la station----"
+msgstr "------DÃ‰MARRAGE de la configuration de la station----"
 
 #: ../src/frontend/executable_module/metro_model.py:283
 msgid "Short time zone = "
@@ -76,11 +76,11 @@ msgstr "------------FIN de la configuration de la station---------------------"
 
 #: ../src/frontend/executable_module/metro_model.py:309
 msgid "Start sending data to METRo core"
-msgstr "Début de l'envoie des données au noyau de METRo"
+msgstr "DÃ©but de l'envoie des donnÃ©es au noyau de METRo"
 
 #: ../src/frontend/executable_module/metro_model.py:324
 msgid "Fatal error in METRo physical model."
-msgstr "Erreur fatale dans le modèle physique de METRo."
+msgstr "Erreur fatale dans le modÃ¨le physique de METRo."
 
 #: ../src/frontend/executable_module/metro_model.py:329
 msgid "End of METRo core"

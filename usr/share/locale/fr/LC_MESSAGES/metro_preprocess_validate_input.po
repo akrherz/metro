@@ -18,16 +18,16 @@ msgstr ""
 #: metro_preprocess_validate_input.py:111
 msgid "METRo needs more than one forecast date! Exiting"
 msgstr ""
-"METRo nécessite au moins 2 dates de prévisions atmosphériques! Arrêt de "
+"METRo nÃ©cessite au moins 2 dates de prÃ©visions atmosphÃ©riques! ArrÃªt de "
 "METRo."
 
 #: metro_preprocess_validate_input.py:120
 msgid "Atmospheric forecast must be at every hour."
-msgstr "La prévision atmosphérique doit être à toutes les heures."
+msgstr "La prÃ©vision atmosphÃ©rique doit Ãªtre Ã  toutes les heures."
 
 #: metro_preprocess_validate_input.py:121
 msgid " Check file from %d hours after the start time."
-msgstr " Vérifierle fichier %d heures après le début de la prévision"
+msgstr " VÃ©rifierle fichier %d heures aprÃ¨s le dÃ©but de la prÃ©vision"
 
 #: metro_preprocess_validate_input.py:174
 msgid "Too many observation. Removing the %s seconds "
@@ -35,32 +35,32 @@ msgstr "Trop d'observations. Retrait de  %s secondes "
 
 #: metro_preprocess_validate_input.py:176
 msgid "i.e. %s hour(s)\n"
-msgstr "c'est-à-dire  %s heure(s)\n"
+msgstr "c'est-Ã -dire  %s heure(s)\n"
 
 #: metro_preprocess_validate_input.py:177
 msgid "Old start time is %s\n"
-msgstr "Ancienne date de début: %s\n"
+msgstr "Ancienne date de dÃ©but: %s\n"
 
 #: metro_preprocess_validate_input.py:178
 msgid "New start time is %s"
-msgstr "Nouvelle date de début: %s"
+msgstr "Nouvelle date de dÃ©but: %s"
 
 #: metro_preprocess_validate_input.py:208
 #, fuzzy
 msgid "Last observation date is: '%s'"
-msgstr "La date de la dernière observation est: '%s'"
+msgstr "La date de la derniÃ¨re observation est: '%s'"
 
 #: metro_preprocess_validate_input.py:229
 msgid "Forecast and observation don't overlap. The date\n"
 msgstr ""
-"La prévision atmosphérique et les observations ne se supperpose pas. La "
+"La prÃ©vision atmosphÃ©rique et les observations ne se supperpose pas. La "
 "date\n"
 
 #: metro_preprocess_validate_input.py:230
 msgid "of the first forecast must be before the last date of "
 msgstr ""
-"de la première prévision atmosphérique doit être avant la date de la "
-"dernière "
+"de la premiÃ¨re prÃ©vision atmosphÃ©rique doit Ãªtre avant la date de la "
+"derniÃ¨re "
 
 #: metro_preprocess_validate_input.py:231
 msgid ""
@@ -69,6 +69,6 @@ msgid ""
 "Last Observation='%s'"
 msgstr ""
 "observation.\n"
-"Première prévision atmosphérique='%s'\n"
-"Dernière observation='%s'"
+"PremiÃ¨re prÃ©vision atmosphÃ©rique='%s'\n"
+"DerniÃ¨re observation='%s'"
 

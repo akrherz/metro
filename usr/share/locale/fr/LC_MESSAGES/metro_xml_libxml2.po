@@ -10,7 +10,7 @@ msgstr ""
 "Last-Translator: \n"
 "Language-Team:  <en@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.9.1\n"
@@ -21,7 +21,7 @@ msgstr "Erreur XML!: %s"
 
 #: ../src/frontend/toolbox/metro_xml_libxml2.py:87
 msgid "LIBXML2 Memory leak %d bytes"
-msgstr "Fuite de mémoire dans LIBXML2, %d octets"
+msgstr "Fuite de mÃ©moire dans LIBXML2, %d octets"
 
 #: ../src/frontend/toolbox/metro_xml_libxml2.py:149
 msgid "At least one error occured when validating XML file."

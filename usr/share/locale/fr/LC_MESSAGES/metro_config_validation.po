@@ -10,7 +10,7 @@ msgstr ""
 "Last-Translator: Miguel Tremblay <miguel.tremblay@ec.gc.ca>\n"
 "Language-Team:  <C@li.org>\n"
 "MIME-Version: 1.0\n"
-"Content-Type: text/plain; charset=ISO-8859-1\n"
+"Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Generated-By: pygettext.py 1.5\n"
 "X-Generator: KBabel 1.0.2\n"
@@ -21,7 +21,7 @@ msgstr "Configuration interne de METRo"
 
 #: toolbox/metro_config_validation.py:52
 msgid "Hardcoded value"
-msgstr "Valeur écrite en dur"
+msgstr "Valeur Ã©crite en dur"
 
 #: toolbox/metro_config_validation.py:54
 msgid "Configuration file"
@@ -29,7 +29,7 @@ msgstr "Fichier de configuration"
 
 #: toolbox/metro_config_validation.py:56
 msgid "Command line parameter"
-msgstr "Paramètre de ligne de commande"
+msgstr "ParamÃ¨tre de ligne de commande"
 
 #: toolbox/metro_config_validation.py:60
 msgid "Configuration error:\n"
@@ -37,11 +37,11 @@ msgstr "Erreur de configuration:\n"
 
 #: toolbox/metro_config_validation.py:62
 msgid "Config item: %s\n"
-msgstr "Élément de configuration: %s\n"
+msgstr "Ã‰lÃ©ment de configuration: %s\n"
 
 #: toolbox/metro_config_validation.py:63
 msgid "Set from:    %s.\n"
-msgstr "Assigné depuis:   %s.\n"
+msgstr "AssignÃ© depuis:   %s.\n"
 
 #: toolbox/metro_config_validation.py:64
 msgid ""
@@ -53,11 +53,11 @@ msgstr ""
 
 #: toolbox/metro_config_validation.py:89
 msgid "Some XML definition are not complete.\n"
-msgstr "Certaines défnition XML ne sont pas complète.\n"
+msgstr "Certaines dÃ©fnition XML ne sont pas complÃ¨te.\n"
 
 #: toolbox/metro_config_validation.py:90
 msgid "Each definition must have the following property "
-msgstr "Chaque définition doivent avoir assigné la propriété suivante "
+msgstr "Chaque dÃ©finition doivent avoir assignÃ© la propriÃ©tÃ© suivante "
 
 #: toolbox/metro_config_validation.py:91
 msgid ""
@@ -69,7 +69,7 @@ msgstr ""
 
 #: toolbox/metro_config_validation.py:110
 msgid "In item %s, '%s' is not a valid METRo data type."
-msgstr "Dans l'élément %s, '%s' n'est pas un type de donnée valide pour METRo."
+msgstr "Dans l'Ã©lÃ©ment %s, '%s' n'est pas un type de donnÃ©e valide pour METRo."
 
 #: toolbox/metro_config_validation.py:112
 msgid ""
@@ -78,7 +78,7 @@ msgid ""
 "[%s]"
 msgstr ""
 "\n"
-"Les données valides pour METRo sont:\n"
+"Les donnÃ©es valides pour METRo sont:\n"
 "[%s]"
 
 #: toolbox/metro_config_validation.py:218
@@ -86,12 +86,12 @@ msgid ""
 "Fatal error, the date string '%s' passed to the\n"
 " "
 msgstr ""
-"Erreur fatale, la chaîne de caractère pour la date '%s' de \n"
+"Erreur fatale, la chaÃ®ne de caractÃ¨re pour la date '%s' de \n"
 " "
 
 #: toolbox/metro_config_validation.py:220
 msgid "option '--roadcast-start-date' doesn't conform to "
-msgstr "l'option --roadcast-start-date' n'est pas conforme à "
+msgstr "l'option --roadcast-start-date' n'est pas conforme Ã  "
 
 #: toolbox/metro_config_validation.py:221
 msgid "ISO 8601"
@@ -100,15 +100,15 @@ msgstr "ISO 8601"
 #: toolbox/metro_config_validation.py:228
 msgid "No roadcast start date provided. The date of the\n"
 msgstr ""
-"Aucune date de départ pour la prévision routière n'est fournie. La date \n"
+"Aucune date de dÃ©part pour la prÃ©vision routiÃ¨re n'est fournie. La date \n"
 
 #: toolbox/metro_config_validation.py:229
 msgid "last observation will be used as the roadcast "
-msgstr "de la dernière observation sera utilisée comme "
+msgstr "de la derniÃ¨re observation sera utilisÃ©e comme "
 
 #: toolbox/metro_config_validation.py:230
 msgid "start date\n"
-msgstr "date de départ \n"
+msgstr "date de dÃ©part \n"
 
 msgid "'%s' is not a valid road layer type.\n"
 msgstr "'%s' n'est pas un type de couche valide.\n"

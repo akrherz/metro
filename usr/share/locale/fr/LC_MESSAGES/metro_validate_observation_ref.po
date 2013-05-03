@@ -17,7 +17,7 @@ msgstr ""
 
 #: metro_validate_observation_ref.py:18
 msgid "Error, no observation_ref string to validate.\n"
-msgstr "Erreur, aucune chaîne de caractères à valider pour observation_ref.\n"
+msgstr "Erreur, aucune chaÃ®ne de caractÃ¨res Ã  valider pour observation_ref.\n"
 
 #: metro_validate_observation_ref.py:19
 msgid "You can safely remove this module from the "
@@ -28,6 +28,6 @@ msgid ""
 "EXECUTION SEQUENCE\n"
 "if you don't need it"
 msgstr ""
-"de la séquence d'exécution\n"
+"de la sÃ©quence d'exÃ©cution\n"
 "si vous n'en avez pas besoin."
 
