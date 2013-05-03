@@ -3,7 +3,7 @@
 metro \- METRo is a road weather forecast software from Environment Canada.
 .SH SYNOPSIS
 .B metro
-[\-\-version] [\-\-help] [\-\-roadcast-start-date date] [\-\-input\-forecast filename] [\-\-input\-observation filename] [\-\-input\-station filename] [\-\-output\-forecast filename] [\-\-output\-roadcast filename] [\-\-config filename] [\-\-generate\-config filename] [\-\-log\-file filename] [\-\-verbose\-level level] [\-\-selftest] [\-\-silent] [\-\-lang] [\-\-use\-solarflux\-forecast] [\-\-use\-infrared\-forecast] [\-\-use\-anthropogenic\-flux]
+[\-\-version] [\-\-help] [\-\-roadcast-start-date date] [\-\-input\-forecast filename] [\-\-input\-observation filename] [\-\-input\-station filename] [\-\-output\-forecast filename] [\-\-output\-roadcast filename] [\-\-config filename] [\-\-generate\-config filename] [\-\-log\-file filename] [\-\-verbose\-level level] [\-\-selftest] [\-\-silent] [\-\-lang] [\-\-use\-solarflux\-forecast] [\-\-use\-infrared\-forecast] [\-\-use\-anthropogenic\-flux] [\-\-use-sst-sensor-depth] [--output-subsurface-levels] 
 .SH DESCRIPTION
 With the help of observations provided by roads weather stations (road weather information system, RWIS) and the atmospheric forecast, METRo can predict the roads conditions with particular interest such as: freezing rain, accumulation of snow, frost or defrost soil. 
 .SH OPTIONS
@@ -25,13 +25,13 @@ Optionnal. Use this argument if you want to provide the solar flux in the atmosp
 Optionnal. Use this argument if you want to provide the infra-fred flux in the atmospheric forecast file instead of a theoretical flux based on cloud cover. The tag for infra-red flux in forecast file is '<ir>'.
 .TP
 .B \-\-use-anthropogenic-flux
-Optionnal. Use this argument if you want to provide the anthropogenic flux in the atmospheric forecast file instead of using the default value of 10 W/m². The tag for anthropogenic flux  in forecast file is '<fa>'. 
+Optionnal. Use this argument if you want to provide the anthropogenic flux in the atmospheric forecast file instead of using the default value of 10 W/m². The tag for anthropogenic flux in forecast file is '<fa>'. 
+.TP
+.B \-\-use-sst-sensor-depth
+Optionnal. Use this argument if the subsurface sensor is not at 0.4 m from the surface. This value can be between 0.2 m and 0.6 m. The modified value should be in the station XML config file in the element '<sst-sensor-depth>, included in the <header> node. 
 .TP
 .B \-\-output\-subsurface\-levels
-Put in the output roadcast all the temperature for the subsurfaces levels, 19 levels for roads or a uniform grid at every cm for bridges. 
-.RS
-WARNING: Using this option slow down METRo by a factor of 2.
-.RE
+Optionnal.  Put in the output roadcast all the temperature for the subsurfaces levels, 19 levels for roads or a uniform grid at every cm for bridges. WARNING: Using this option slow down METRo by a factor of 2.
 .TP
 .B \-\-input\-forecast filename
 Set where is the atmosperic forecast file.
@@ -80,7 +80,7 @@ Execute a test with default files provided with metro.  The default command line
 Do not write in the standard output.
 .TP
 .B\-\-lang fr|en
-Choose the language of message for METRo.  Default is english. Only french is currently implemented as other language.
+Choose the language of message for METRo.  Default is english. Only French is currently implemented as other language.
 .SH AUTHOR
 Written by Miguel Tremblay, Francois Fortin, Yves Delage and Louis-Philippe Crevier.
 .SH COPYRIGHT
