@@ -1,6 +1,0 @@
-Error because there is not valid SST in the observation file.
-
-Error message is:
-EXECUTION  : METRO_PREPROCESS_QA_QC_OBSERVATION module: start execution
-STOP       : No valid sub-surface temperature (element <sst>) in observation file observation.xml
-

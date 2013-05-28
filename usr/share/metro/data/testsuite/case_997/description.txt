@@ -1,5 +1,0 @@
-Error in the forecast.xml file. The forecast is not at every hour.
-
-The error message is:
-Atmospheric forecast must be at every hour. Check file from 3 hours after the start time.
-

@@ -1,4 +1,0 @@
-To be used with the option:
- --use-infrared-forecast 
- --use-solarflux-forecast
-
