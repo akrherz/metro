@@ -45,7 +45,7 @@ installation_dir=`pwd`
 
 metro_dir=metro
 
-bCompile=0
+bCompile=1
 sVerbose=""
 
 # 'getopts' processes command line args to script.
@@ -68,6 +68,8 @@ then
     echo ""
     echo "-c  : Will compile the METRo physic model instead of using"
     echo "      the provided binary. Need gfortran compiler."
+    echo "      DEPRECATED, no longer do anything, setup.sh will"
+    echo "      always compile the METRo physic model."
     echo ""
     echo "-v  : Verbose"
     echo ""
@@ -89,6 +91,8 @@ do
             echo ""
             echo "-c  : Will compile the METRo physic model instead of using"
             echo "      the provided binary. Need gfortran compiler." 
+            echo "      DEPRECATED, no longer do anything, setup.sh will"
+            echo "      always compile the METRo physic model."
  	    echo ""
 	    echo "-v  : Verbose"
             echo ""
@@ -152,10 +156,10 @@ if [ $bCompile == 1 ]; then
     ../../scripts/do_macadam clean
     ../../scripts/do_macadam
     cd $installation_dir
-else
-    echo "* Use provided binary for physic model"
-    cp $sVerbose src/model/macadam.py.prebuilt $destination_path/usr/share/metro/model/macadam.py
-    cp $sVerbose src/model/_macadam.so.prebuilt $destination_path/usr/lib/metro/_macadam.so
+#else
+#    echo "* Use provided binary for physic model"
+#    cp $sVerbose src/model/macadam.py.prebuilt $destination_path/usr/share/metro/model/macadam.py
+#    cp $sVerbose src/model/_macadam.so.prebuilt $destination_path/usr/lib/metro/_macadam.so
 fi
 echo ""
 
