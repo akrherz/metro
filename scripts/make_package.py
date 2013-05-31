@@ -132,8 +132,8 @@ src/model/macadam.c
 src/model/macadam.h
 src/model/macadam.i
 src/model/number.h
-src/model/_macadam.so.prebuilt
-src/model/macadam.py.prebuilt
+#src/model/_macadam.so.prebuilt
+#src/model/macadam.py.prebuilt
 
 scripts/check_translation.py
 scripts/copy_msgid_msgstr.py
@@ -226,10 +226,10 @@ sPackage_list = string.replace(sPackage_list," " + sSvn_root_dir + "/ "," ")
 sPackage_list = string.replace(sPackage_list," " + sSvn_root_dir + "/ "," ")
 
 # copy model binary to lib
-shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/usr/lib/metro/_macadam.so",
-              sRoot_path + "/" + sSvn_root_dir + "/src/model/_macadam.so.prebuilt")
-shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/usr/share/metro/model/macadam.py",
-              sRoot_path + "/" + sSvn_root_dir + "/src/model/macadam.py.prebuilt")
+#shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/usr/lib/metro/_macadam.so",
+#              sRoot_path + "/" + sSvn_root_dir + "/src/model/_macadam.so.prebuilt")
+#shutil.copy2( sRoot_path + "/" + sSvn_root_dir + "/usr/share/metro/model/macadam.py",
+#              sRoot_path + "/" + sSvn_root_dir + "/src/model/macadam.py.prebuilt")
 
 
 #tar command
