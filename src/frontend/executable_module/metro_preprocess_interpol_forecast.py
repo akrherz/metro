@@ -59,7 +59,7 @@ from toolbox import metro_constant
 ##
 # Class attributes
 ##
-npTime = None # Array representing the time in seconds.
+nTime = None # Array representing the time in seconds.
 
 
 class Metro_preprocess_interpol_forecast(Metro_preprocess):
@@ -119,8 +119,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         """
         
         #  Used in fsint2.
-        npFT = \
-             wf_original_data.get_matrix_col('FORECAST_TIME')
+        npFT = wf_original_data.get_matrix_col('FORECAST_TIME')
 
         nHourStart = int(metro_date.get_hour(npFT[0]))
         nbrHours = metro_date.get_elapsed_time(npFT[-1], \
@@ -161,10 +160,13 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         wf_interpolated_data.append_matrix_col('FORECAST_TIME', npFT)
         
         nHourStart = int(metro_date.get_hour(npFT[0]))
+        # A strange trick of copying the NumPy array locally to set it in the matrix
+        #  must be done (if I remember well), because otherwhise the array are not included
+        #  in the matrix. It might be because NumPy made use of pointers.
         npTime = self.npTime
         wf_controlled_data.append_matrix_col('Time', npTime)
         npTime = metro_util.interpolate(self.npTime, npTime)
-        npTime = (npTime+30)/3600+nHourStart
+        npTime = npTime/3600+nHourStart
         wf_interpolated_data.append_matrix_col('Time', npTime)
 
 
