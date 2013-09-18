@@ -59,7 +59,7 @@ from toolbox import metro_constant
 ##
 # Class attributes
 ##
-nTime = None # Array representing the time in seconds.
+npTime = None # Array representing the time in seconds.
 
 
 class Metro_preprocess_interpol_forecast(Metro_preprocess):
@@ -166,7 +166,7 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
         npTime = self.npTime
         wf_controlled_data.append_matrix_col('Time', npTime)
         npTime = metro_util.interpolate(self.npTime, npTime)
-        npTime = npTime/3600+nHourStart
+        npTime = (npTime+30)/3600+nHourStart
         wf_interpolated_data.append_matrix_col('Time', npTime)
 
 
