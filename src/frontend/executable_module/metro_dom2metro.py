@@ -1,3 +1,4 @@
+# -*- coding: UTF8 -*-
 #
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada
@@ -58,6 +59,7 @@ class Metro_dom2metro(Metro_module):
     domForecast    = None
     domObservation = None
     domStation     = None
+    domHorizon     = None 
 
     ##
     # Overwritten methodes
@@ -81,6 +83,18 @@ class Metro_dom2metro(Metro_module):
         else:
             self.domObservation_ref = None
         self.domStation         = pStation.get_input_information()
+
+	if self.infdata_exist('HORIZON'):
+            pHorizon = self.get_infdata_reference('HORIZON')
+            self.domHorizon = self.domStation
+            if metro_xml.xpath(self.domHorizon, \
+                               metro_config.get_value('XML_STATION_XPATH_HORIZON')) \
+                               == None:
+                pHorizon.set_input_information(None)
+            else:
+                pHorizon.set_input_information(self.domHorizon)
+        else:
+            pHorizon = None
 
 
         #
@@ -310,8 +324,10 @@ class Metro_dom2metro(Metro_module):
             lExtended_roadlayer = metro_config.get_value( \
                 'XML_STATION_ROADLAYER_EXTENDED_ITEMS')        
 
+
             cs_data = metro_data_station.Metro_data_station(lStandard_roadlayer,\
-                                                            lExtended_roadlayer )
+                                                            lExtended_roadlayer)
+
             station_data = self.__extract_data_from_dom(cs_data,
                                                         self.domStation,
                                                         lHeader_defs,
@@ -324,6 +340,51 @@ class Metro_dom2metro(Metro_module):
         except:
             sXmlError = _("XML error in file '%s'.") % (sFilename)
             raise  metro_error.Metro_xml_error(sXmlError)
+
+
+        
+	#
+        # station horizon extraction
+        #
+
+
+        if ((pHorizon != None) and (pHorizon.get_input_information() != None)):
+            try:
+                # concatenation of all header's keys
+                lHeader_defs = \
+                    metro_config.get_value('XML_STATION_HEADER_STANDARD_ITEMS') + \
+                    metro_config.get_value('XML_STATION_HEADER_EXTENDED_ITEMS')
+
+                # xpath construction
+                sHeader_xpath = metro_config.get_value('XML_STATION_XPATH_HEADER')
+                # xpath construction
+                sHorizon_xpath = metro_config.get_value('XML_STATION_XPATH_HORIZON')
+	    
+                # concatenation of all the horizon sections
+                lStandard_horizon = metro_config.get_value( \
+                    'XML_STATION_HORIZON_STANDARD_ITEMS')
+                lExtended_horizon = metro_config.get_value( \
+                    'XML_STATION_HORIZON_EXTENDED_ITEMS')
+            
+	        cs_horizon_data = metro_data_station.\
+                                  Metro_data_station(lStandard_horizon,\
+                                                     lExtended_horizon)
+            
+	        horizon_data = self.__extract_data_from_dom(cs_horizon_data,
+                                                            self.domHorizon,
+                                                            lHeader_defs,
+                                                            sHeader_xpath,
+                                                            lStandard_horizon,
+                                                            lExtended_horizon,
+                                                            dReadHandlers,
+                                                            sHorizon_xpath)
+
+            except:
+               sXmlError = _("XML error in file '%s'.") % (sFilename)
+               raise  metro_error.Metro_xml_error(sXmlError)
+	    
+	    pHorizon.set_data(horizon_data)
+
 
 
         pForecast.set_data_collection(forecast)

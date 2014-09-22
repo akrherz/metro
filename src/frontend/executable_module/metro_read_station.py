@@ -1,3 +1,4 @@
+# -*- coding: UTF8 -*-
 #
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada
@@ -65,11 +66,17 @@ class Metro_read_station(Metro_read):
                 metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,
                                            sError_message)
             else:
-                # creer et ajouter infdata
+                # Create and add infdata
                 infdata_station = metro_infdata.Metro_infdata(
                     'STATION', metro_infdata.DATATYPE_METRO_DATA)        
                 infdata_station.set_input_information(sFile_content)
                 self.add_infdata(infdata_station)
+
+                if metro_config.get_value('SUNSHADOW'):
+		    infdata_horizon = metro_infdata.Metro_infdata(
+                        'HORIZON', metro_infdata.DATATYPE_METRO_DATA)        
+                    self.add_infdata(infdata_horizon)
+
         else:
             sError_message = _("METRo need a station file, please use the ") +\
                              _("option: '--input-station'") 

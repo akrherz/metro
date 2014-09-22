@@ -1,3 +1,4 @@
+# -*- coding: UTF8 -*-
 #
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada
@@ -56,6 +57,7 @@ import numpy
 
 import metro_logger
 import metro_config
+import metro_preprocess_sunshadw 
 import Sun
 from toolbox import metro_physics
 from toolbox import metro_util
@@ -81,6 +83,9 @@ class Metro_preprocess_fsint2(Metro_preprocess):
     fSunrise = None
     fSunset = None
 
+    npAzim = None
+    npElev = None
+
 #####################################################
     def start(self):
         Metro_preprocess.start(self)
@@ -90,7 +95,13 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         forecast_data = pForecast.get_data_collection()
         pStation = self.get_infdata_reference('STATION')
         station_data = pStation.get_data()
-
+	
+        if self.infdata_exist('HORIZON'):
+            pHorizon = self.get_infdata_reference('HORIZON')
+            horizon_data = pHorizon.get_data()
+            if horizon_data != None:
+                self.npAzim = horizon_data.get_matrix_col('AZIMUTH')
+                self.npElev = horizon_data.get_matrix_col('ELEVATION')
 
         self.__set_attribute(forecast_data.get_controlled_data(), \
                              forecast_data.get_interpolated_data(), \
@@ -190,12 +201,22 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         """
         npTime = wf_controlled_data.get_matrix_col('Time') 
 
-        # Only interpolate if IR is given
+        # Only interpolate if SF is given
         if  metro_config.get_value('SF'):
             npSF = wf_controlled_data.get_matrix_col('SF')
             npSF2 = metro_util.interpolate(npTime, npSF)
+            if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
+	    	npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
+		tDate2 = [time.gmtime(x) for x in npFT2]
+		sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
+	    	npSF2 = metro_preprocess_sunshadw.\
+                        get_corrected_solar_flux(tDate2, npSF2, \
+                                                 self.fLat, self.fLon,\
+                                                 zip(self.npAzim, self.npElev),\
+                                                 m=sunshadw_method)
+
             wf_interpolated_data.append_matrix_col('SF', npSF2)
-            return
+	    return
         
         # Get data
         npCloudOctal = wf_controlled_data.get_matrix_col('CC')
@@ -207,7 +228,17 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                                     fStartForecastTime,\
                                     self.fSunrise, self.fSunset,\
                                     self.fLat, self.fLon)
-        npSF2  = metro_util.interpolate(npTime, npSF)
+	npSF2  = metro_util.interpolate(npTime, npSF)
+
+        if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
+	    npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
+	    tDate2 = [time.gmtime(x) for x in npFT2]
+	    sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
+	    npSF2 = metro_preprocess_sunshadw.\
+                    get_corrected_solar_flux(tDate2, npSF2, \
+                                             self.fLat, self.fLon,\
+                                             zip(self.npAzim, self.npElev),\
+                                             m=sunshadw_method)
 
         wf_controlled_data.append_matrix_col('SF', npSF)
         wf_interpolated_data.append_matrix_col('SF',  npSF2)

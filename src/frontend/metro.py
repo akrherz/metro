@@ -1,6 +1,5 @@
 #!/usr/bin/env python
-
-# -*- coding: iso-8859-15 -*-
+# -*- coding: UTF8 -*-
 #
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada

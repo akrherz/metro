@@ -96,7 +96,9 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "use-solarflux-forecast", "use-infrared-forecast",
                      "use-anthropogenic-flux",
                      "use-sst-sensor-depth",
-                     "output-subsurface-levels",
+                     "enable-sunshadow",
+                     "sunshadow-method=",
+                     "output-subsurface-levels"
                      ]
 
 
@@ -400,6 +402,38 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
                               'DATA_TYPE':"REAL"}
             dConfig['XML_STATION_HEADER_EXTENDED_ITEMS'][\
             'VALUE'].append(dSST_DEPTHDict)
+
+
+        if o == "--enable-sunshadow":
+            dConfig['SUNSHADOW']['VALUE'] = True
+            dConfig['XML_STATION_XPATH_HORIZON'] = \
+                {'VALUE'   :"/station/visible-horizon/direction",
+                 'FROM'    :CFG_INTERNAL,
+                 'COMMENTS':_("xpath path for station visible horizon")}
+            dConfig['XML_STATION_HORIZON_STANDARD_ITEMS'] = \
+                {'VALUE' :[{'NAME':"AZIMUTH",
+                            'XML_TAG':"azimuth",
+                            'DATA_TYPE':"REAL"}, 
+                           {'NAME':"ELEVATION", 
+                            'XML_TAG':"elevation",
+                            'DATA_TYPE':"REAL"} 
+                          ],
+                 'FROM'     :CFG_INTERNAL,
+                 'COMMENTS' :_("standard visible horizon items")}
+            dConfig['XML_STATION_HORIZON_EXTENDED_ITEMS'] = \
+                {'VALUE'    :[],
+                 'FROM'     :CFG_INTERNAL,
+                 'COMMENTS' :_("extended visible horizon items")}
+        
+	if o == "--sunshadow-method":
+            try:
+                dConfig['SUNSHADOW_METHOD']['VALUE'] = int(a)
+	    except:
+	    	# Use default sunshadow method (=1)
+	        pass
+
+
+            
 
         if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
@@ -1258,6 +1292,17 @@ def set_default_value( ):
         {'VALUE'   :False,
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("Use subsurface temperature sensor depth value from station")}
+
+
+    dConfig['SUNSHADOW'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Enable Sun-shadow correction")}
+    
+    dConfig['SUNSHADOW_METHOD'] = \
+        {'VALUE'   :1,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Sun-shadow method number")}
 
     # ------------------------------ roadcast ----------------------------------
 
