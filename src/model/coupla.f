@@ -153,7 +153,8 @@
       INTEGER next, now, iter
       LOGICAL DOWN
       REAL T(n,2), G(0:n)
-      REAL RA, QG, RHO, TSK, AL, COUDUR, M
+      REAL QG, RHO, TSK, COUDUR
+      DOUBLE PRECISION AL, M, RA
       REAL CL, PR1, PR2, DX, PRG, FZ
       REAL coeff1, coeff2, cotemp, COFS, COFI
 ***
@@ -332,7 +333,7 @@
             ECHEC = .true.
             return
          end if
-         RHO = P0(i) / ( RGASD * FOTVT ( TSK , QG ) )
+         RHO = REAL(P0(i) / ( RGASD * FOTVT ( TSK , QG ) ))
 *        Wind modification 
          call VENMIN  ( WW, FT(i), VA(i) )
 *        Energy used/free by the melting snow/freezing rain
@@ -348,10 +349,10 @@
          AL = 1.0 - max( ALR,min( ALN,M*ER2+ALR-M ) )
 *        Energetic balance computation
 *        +++++++++++++++++++++++++++
-         G(0) = max(0.0,REAL(COFS*AL*FS(i))) - RA 
+         G(0) = REAL(max(0.0,REAL(COFS*AL*FS(i))) - RA 
      *        + COFI*EPSILON*FI(i)
      *        + RHO*CTU*( CPD*(TA(i)-T(1,now))
-     *        + CL*(QA(i)-QG)) + PRG + dpFA(i)
+     *        + CL*(QA(i)-QG)) + PRG + dpFA(i))
 *        Output information         
          dpIR(i) = COFI*EPSILON*FI(i)
          dpSF(i) = COFS*AL*FS(i)

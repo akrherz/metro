@@ -100,8 +100,8 @@
 *     ratio: transition ratio of transfert CS -> C and KS -> Ko
 ***
       INTEGER INTER, NMAX
-      REAL YPG(n), YPT(n), C(n), Ko(n)
-      REAL dd, ratio, CC, DY
+      DOUBLE PRECISION YPG(n), YPT(n), C(n), Ko(n)
+      DOUBLE PRECISION dd, ratio, CC, DY
       DOUBLE PRECISION dpFluxDepth(n)
 
       LOGICAL bSilent

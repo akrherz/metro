@@ -163,10 +163,11 @@
       INTEGER ier, CHKDIV
       EXTERNAL CHKDIV
       INTEGER next, now
-      REAL T(n,2), G(0:n), FGD
-      REAL RA, QG, RHO, TSK, AL, M
+      REAL T(n,2), G(0:n)
+      DOUBLE PRECISION FGD, AL, RA, M
+      REAL QG, RHO, TSK
       REAL CL, PR1, PR2, DX, PRG, FZ
-      REAL COFS, COFI
+      DOUBLE PRECISION COFS, COFI
 ***
 *     Variables of FLXSURFZ
 *     ---------------------
@@ -294,8 +295,8 @@
 *     ---------------------------------------
       G(0) = 0.0
       do j=1,iref
-         T(j,now)=ITP(j)
-         T(j,next)=ITP(j)
+         T(j,now)=REAL(ITP(j))
+         T(j,next)=REAL(ITP(j))
          G(j) = 0.
       end do
 *     ++++++++++++++++++++++++++++++++++
@@ -317,7 +318,7 @@
             ECHEC = .true.
             return
          end if
-         RHO = P0(i) / ( RGASD * FOTVT ( TSK , QG ) )
+         RHO = REAL(P0(i) / ( RGASD * FOTVT ( TSK , QG ) ))
 
 *        wind modification 
          call VENMIN  ( WW, FT(i), VA(i) )
@@ -352,13 +353,13 @@
          dpFC(i) =  RHO*CTU*( CPD*(TA(i)-T(1,now)))
          dpFP(i) = PRG
          dpSST(i) = T(ir40, now)
-         G(0) = dpSF(i) + dpBB(i) + dpIR(i)
-     *        +  dpFV(i) + dpFC(i) + dpFP(i) + dpFA(i)
+         G(0) = REAL(dpSF(i) + dpBB(i) + dpIR(i)
+     *        +  dpFV(i) + dpFC(i) + dpFP(i) + dpFA(i))
          dpG(i) = G(0)
          DO j=1, iref
             dpLT((i-1)*iref+j) = T(j, now)
          END DO
-         G(1) = dpConductivity(1) * ( T(2,now) - T(1,now) )
+         G(1) = REAL(dpConductivity(1)) * ( T(2,now) - T(1,now) )
 
 *        Phase Transition when passing the melting point
 *        ++++++++++++++++++++++++++++++++++++++++++++++++++++++++++++
@@ -382,7 +383,7 @@
             DX = G(0)/CHLF
          else
             DX = 0.0
-            T(1,next) = T(1,now)+DT*(dpCapacity(1)*( G(1) - G(0)))
+            T(1,next) = T(1,now)+REAL(DT*(dpCapacity(1)*(G(1)-G(0))))
          end if
 *        Calculation of temperature evolution in the ground
 *        +++++++++++++++++++++++++++++++++++++++++++++++++

@@ -168,7 +168,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   **     DT : Subsurface temperature
   ******/
   BOOL bFail = FALSE;
-  BOOL bSucces = TRUE;
   long nNtp;
   long nNtp2;
   long nNtdcl;
@@ -234,7 +233,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		  dpZones, npMateriau, &dDiff, stTemperatureDepth.pdArray, \
 		  stEc.plArray, dpCapacity, dpConductivity, &dSstDepth); 
   if(*(stEc.plArray)){
-    bSucces = FALSE;
     goto liberation;
   }
 
@@ -288,7 +286,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     if(!bSilent)
       printf("coupla 1 \n");
     if(*(stEc.plArray)){
-      bSucces = FALSE;       
       goto liberation;
     }
     if(bFail){
@@ -328,7 +325,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     if(!bSilent)
       printf("coupla 2\n");
     if(*(stEc.plArray)){
-       bSucces = FALSE;       
        goto liberation;
      }
      if(bFail){
@@ -355,7 +351,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   if(*(stEc.plArray)){
     if(!bSilent)
       printf("Failed in balanc\n");
-    bSucces = FALSE;       
     goto liberation;
   }
   /* Preparation of output file */

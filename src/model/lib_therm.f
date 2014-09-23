@@ -65,7 +65,7 @@
 *     Internes
 *     --------
 ***
-      REAL RATIO
+      DOUBLE PRECISION RATIO
 ***
 *     Declarations des constantes physique 
 *     et des fonctions thermodynamiques
@@ -90,39 +90,39 @@
       if ( TYP.eq.2. .and. TS.le.FP ) then
 *     neige sur route a T < FP
          PR1 = 0.0
-         PR2 = 1e3 * PR
+         PR2 = REAL(1e3 * PR)
          PRG = 0.0
       else if ( TYP.eq.1. .and. TS.gt.FP ) then
 *     pluie sur route a T > FP
-         PR1 = 1e3 * PR
+         PR1 = REAL(1e3 * PR)
          PR2 = 0.0
          PRG = 0.0
       else if ( TYP.eq.2..and. TS.gt.FP+FZ ) then
 *     neige sur route a T > FZ; neige fond au contact de la route
-         PR1 = 1e3 * PR
+         PR1 = REAL(1e3 * PR)
          PR2 = 0.0
-         PRG = - (PR * CHLF * RAUW)
+         PRG = REAL(- (PR * CHLF * RAUW))
       else if ( TYP.eq.1. .and. TS.le.FP-FZ ) then
 *     pluie sur route a T < FZ; pluie gele au contact de la route
          PR1 = 0.0
-         PR2 = 1e3 * PR
-         PRG = PR * CHLF * RAUW
+         PR2 = REAL(1e3 * PR)
+         PRG = REAL(PR * CHLF * RAUW)
       else if ( TYP.eq.2. .and.
      *        max(min(TS,REAL(FP+FZ)),REAL(FP)).eq.TS ) then
 *     neige sur route a FZ > T > 0; une partie de la neige fond au 
 *     contact de la route
          RATIO = 0.25*sin(PI*(TS-FP)/FZ)+0.75
-         PR1 = RATIO * 1e3 * PR
-         PR2 = (1.0-RATIO) * 1e3 * PR
-         PRG = - (RATIO * PR * CHLF * RAUW)
+         PR1 = REAL(RATIO * 1e3 * PR)
+         PR2 = REAL((1.0-RATIO) * 1e3 * PR)
+         PRG = REAL(- (RATIO * PR * CHLF * RAUW))
       else if ( TYP.eq.1. .and.
      *        min(max(TS,REAL(FP-FZ)),REAL(FP)).eq.TS ) then
 *     pluie sur route a -FZ < T < 0; une partie de la pluie gele 
 *     au contact de la route
          RATIO = 0.25*sin(PI*(TS-FP)/FZ)+0.75
-         PR1 = (1.0-RATIO) * 1e3 * PR
-         PR2 = RATIO * 1e3 * PR
-         PRG = RATIO * PR * CHLF * RAUW
+         PR1 = REAL((1.0-RATIO) * 1e3 * PR)
+         PR2 = REAL(RATIO * 1e3 * PR)
+         PRG = REAL(RATIO * PR * CHLF * RAUW)
       else
          FAIL = .true.
       end if
@@ -233,17 +233,17 @@
 *     =========
       next = 3 - now
       do j=2,iref-1
-         G(j) = dpConductivity(j) * ( T(j+1,now) - T(j,now) )
+         G(j) = REAL(dpConductivity(j)) * ( T(j+1,now) - T(j,now) )
       end do
       do j=2,iref-1
-         T(j,next) = T(j,now)+DT*(dpCapacity(j)*( G(j) - G(j-1 )))
+         T(j,next) = T(j,now)+REAL(DT*(dpCapacity(j)*(G(j)-G(j-1 ))))
       end do
       if ( FLAT ) then
 *     BC: underside temp. is air temp
-         T(iref,next) = TA
+         T(iref,next) = REAL(TA)
       else
 *     BC: no flux ( G(iref) = 0.0 )
-         T(iref,next) = T(j,now) - DT*dpCapacity(j)*G(iref-1)
+         T(iref,next) = T(j,now) - REAL(DT*dpCapacity(j)*G(iref-1))
       end if
       return
       end
@@ -297,7 +297,7 @@
 *     Internals
 *     --------
 ***
-      REAL FV1, FV2, CUTOFF
+      DOUBLE PRECISION FV1, FV2, CUTOFF
 ***
 *     Physical constants and thermondynamical functions declarations
 *     ------------------------------------

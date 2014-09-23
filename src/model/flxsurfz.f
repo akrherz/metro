@@ -40,15 +40,15 @@
       SUBROUTINE FLXSURFZ(CMU, CTU, RIB, FTEMP, FVAP, ILMO,
      X                    UE, FCOR, TA , QA , ZU, ZT, VA,
      Y                    TG , QG , H , Z0 , Z0T,
-     %                    LZZ0, LZZ0T, FM, FH,N, ITER )
+     %                    LZZ0, LZZ0T, FM, FH, N, ITER )
       IMPLICIT NONE
       INTEGER N,ITER(N)
       REAL CMU(N),CTU(N),RIB(N),ILMO(N)
       REAL FTEMP(N),FVAP(N)
       DOUBLE PRECISION FCOR(N)
       DOUBLE PRECISION TA(N),QA(N),ZU(N),ZT(N),VA(N)
-      DOUBLE PRECISION Z0(N), Z0T(N)
-      REAL TG(N),QG(N),H(N),UE(N)
+      DOUBLE PRECISION Z0(N), Z0T(N), H(N)
+      REAL TG(N),QG(N),UE(N)
       REAL LZZ0(N),LZZ0T(N)
       REAL fm(N),fh(N)
 *
@@ -129,18 +129,21 @@ c
       REAL AS,ASX,CI,BS,BETA,FACTN,HMIN
 c
       COMMON /SURFCON/AS,ASX,CI,BS,BETA,FACTN,HMIN
-      REAL TPOTA(N)
+      DOUBLE PRECISION TPOTA(N)
       INTEGER J
       INTEGER IT,ITMAX
       REAL HMAX,CORMIN,EPSLN
-      REAL RAC3,CM,CT,ZP
-      REAL F,GG,DG,X,X0,Y,Y0
-      REAL UNSH,HE,HS
-      REAL DTHV,TVA,TVS
-      REAL HL,VAMIN,U
+      REAL RAC3,CM,CT
+      DOUBLE PRECISION ZP
+      REAL F,X,X0,Y,Y0
+      DOUBLE PRECISION DG, UNSH, GG
+      REAL HE,HS
+      DOUBLE PRECISION DTHV,TVA,TVS
+      REAL VAMIN,U
+      DOUBLE PRECISION HL
       REAL CS
       REAL ZB,DD,ILMOX
-      REAL DF,ZZ
+      DOUBLE PRECISION ZZ, DF
       SAVE HMAX,CORMIN,EPSLN
       SAVE ITMAX
       SAVE VAMIN
@@ -150,8 +153,9 @@ c
       DATA VAMIN /0.1/
       DATA EPSLN / 1.0e-05 /
 *
-      real a,b,c,d,psi,z
-      real unsl,hi
+      DOUBLE PRECISION a,b,c,d,z
+      REAL unsl
+      DOUBLE PRECISION hi, psi
 ************************************************************************
 **  fonctions de couche de surface pour le cas stable                 **
 ************************************************************************
@@ -161,7 +165,7 @@ c
       b  (hi)   = d(unsl) - 2*hi
       a  (z,hi) = sqrt(1 + b(hi)*z - c(hi)*z**2)
       psi(z,hi) = 0.5 * (a(z,hi)-z*hi-log(1+b(hi)*z*0.5+a(z,hi))-
-     +            b(hi)/(2*sqrt(c(hi)))*asin((b(hi)-2*c(hi)*z)/d(unsl)))
+     +     b(hi)/(2.0*sqrt(c(hi)))*asin((b(hi)-2.0*c(hi)*z)/d(unsl)))
 *
 *   Limites de validite: unsl >= 0 (cas stable ou neutre)
 *                        c > 0 (hi < d)
@@ -170,7 +174,7 @@ c
 *
 *   Reference :  Y. Delage, BLM, 82 (p23-48) (Eq.33-37)
 ************************************************************************
-      DF(ZZ)=(1-ZZ*UNSH)*sqrt(1+d(ilmo(j))*ZZ/(1-ZZ*UNSH))
+      DF(ZZ)=(1.0-ZZ*UNSH)*sqrt(1.0+d(ilmo(j))*ZZ/(1-ZZ*UNSH))
 *
 *     CONVERTIR TA A TEMPERATURE POTENTIELLE TPOTA
       DO J=1,N
@@ -189,24 +193,24 @@ c
         tva=(1+DELTA*QA(J))*TPOTA(J)
         tvs=(1+DELTA*QG(J))*TG(J)
         dthv=tva-tvs
-        RIB(J)=grav/(tvs+0.5*dthv)*ZP*dthv/u**2
+        RIB(J)=REAL(grav/(tvs+0.5*dthv)*ZP*dthv/u**2)
         if (rib(j).ge.0.0) rib(j) = max(rib(j), EPSLN)
         if (rib(j).lt.0.0) rib(j) = min(rib(j),-EPSLN)
 *
 *  FIRST APPROXIMATION TO ILMO
-        LZZ0(J)=LOG(1+ZU(J)/Z0(J))
-        LZZ0T(J)=LOG((ZT(J)+Z0(J))/Z0T(J))
+        LZZ0(J)=REAL(LOG(1+ZU(J)/Z0(J)))
+        LZZ0T(J)=REAL(LOG((ZT(J)+Z0(J))/Z0T(J)))
         IF(RIB(J).GT.0.)  THEN
            FM(J)=LZZ0(J)+CS*RIB(J)/max(REAL(2*z0(j)),1.0)
            FH(J)=BETA*(LZZ0T(J)+CS*RIB(J))/
      1           max(REAL(sqrt(z0(j)*z0t(j))),1.0)
-           ILMO(J)=RIB(J)*FM(J)**2/(ZP*FH(J))
+           ILMO(J)=REAL(RIB(J)*FM(J)**2/(ZP*FH(J)))
            F=MAX(REAL(ABS(FCOR(J))),CORMIN)
            H(J)=BS*sqrt(karman*u/(ILMO(J)*F*fm(j)))
         ELSE
            FM(J)=LZZ0(J)-min(0.7+log(1-rib(j)),LZZ0(J)-1)
            FH(J)=BETA*(LZZ0T(J)-min(0.7+log(1-rib(j)),LZZ0T(J)-1))
-           ILMO(J)=RIB(J)*FM(J)**2/(ZP*FH(J))
+           ILMO(J)=REAL(RIB(J)*FM(J)**2/(ZP*FH(J)))
         ENDIF
       ENDIF
     1 CONTINUE
@@ -226,25 +230,25 @@ c
         H(J)=MAX(HMIN,hs,hl,factn/d(ILMO(J)))
         UNSH=1/H(J)
         unsl=ILMO(J)
-        fm(J)=LZZ0(J)+psi(REAL(ZU(J)+Z0(J)),unsh)-psi(REAL(Z0(J)),unsh)
-        fh(J)=BETA*(LZZ0T(J)+psi(REAL(ZT(J)+Z0(J)),unsh)
-     *       -psi(REAL(Z0T(J)) ,unsh))
-        DG=(-ZP)*FH(J)/FM(J)**2*(1+beta*(DF(REAL(ZT(J)+Z0(J)))
-     *       -DF(REAL(Z0T(J))))/
-     1          (2*FH(J))-(DF(REAL(ZU(J)+Z0(J)))-DF(REAL(Z0(J))))/FM(J))
+        fm(J)=REAL(LZZ0(J)+psi(ZU(J)+Z0(J),unsh)-psi(Z0(J),unsh))
+        fh(J)=REAL(BETA*(LZZ0T(J)+psi(ZT(J)+Z0(J),unsh)
+     *       -psi(Z0T(J) ,unsh)))
+        DG=(-ZP)*FH(J)/FM(J)**2*(1.0+beta*(DF(ZT(J)+Z0(J))
+     *       -DF(Z0T(J)))/
+     1          (2*FH(J))-(DF(ZU(J)+Z0(J))-DF(Z0(J))))/FM(J)
 
 *----------------------------------------------------------------------
 *  UNSTABLE CASE
       ELSE
-        ILMO(J)=MIN(0.,ILMO(J))
-         X=(1-CI*(ZU(J)+Z0(J))*BETA*ILMO(J))**(1./6)
-         X0=(1-CI*Z0(J)*BETA*ILMO(J))**(1./6.)
+         ILMO(J)=MIN(0.,ILMO(J))
+         X=REAL((1-CI*(ZU(J)+Z0(J))*BETA*ILMO(J))**(1./6))
+         X0=REAL((1-CI*Z0(J)*BETA*ILMO(J))**(1./6.))
          FM(J)=LZZ0(J)+LOG((X0+1)**2*SQRT(X0**2-X0+1)*(X0**2+X0+1)**1.5
      %               /((X+1)**2*SQRT(X**2-X+1)*(X**2+X+1)**1.5))
      %              +RAC3*ATAN(RAC3*((X**2-1)*X0-(X0**2-1)*X)/
      %              ((X0**2-1)*(X**2-1)+3*X*X0))
-         Y=(1-CI*(ZT(J)+Z0(J))*BETA*ILMO(J))**(1./3)
-         Y0=(1-CI*Z0T(J)*BETA*ILMO(J))**(1./3)
+         Y=REAL((1-CI*(ZT(J)+Z0(J))*BETA*ILMO(J))**(1./3))
+         Y0=REAL((1-CI*Z0T(J)*BETA*ILMO(J))**(1./3))
          FH(J)=BETA*(LZZ0T(J)+1.5*LOG((Y0**2+Y0+1)/(Y**2+Y+1))+RAC3*
      %        ATAN(RAC3*2*(Y-Y0)/((2*Y0+1)*(2*Y+1)+3)))
          DG=(-ZP)*FH(J)/FM(J)**2*(1+beta/FH(J)*(1/Y-1/Y0)-2/FM(J)*
@@ -252,8 +256,8 @@ c
       ENDIF
 *----------------------------------------------------------------------
       IF(IT.LT.ITMAX) THEN
-             GG=RIB(J)-FH(J)/FM(J)**2*ZP*ILMO(J)
-             ILMO(J)=ILMO(J)-GG/DG
+         GG=RIB(J)-FH(J)/FM(J)**2*ZP*ILMO(J)
+         ILMO(J)=ILMO(J)-REAL(GG/DG)
       ENDIF
       ENDIF
    35 CONTINUE
@@ -263,16 +267,16 @@ c
         u=max(vamin,REAL(va(j)))
 *----------------------------------------------------------------------
 *  CALCULATE ILMO AND STABILITY FUNCTIONS FROM LOG-LINEAR PROFILE
-        zb=zu(j)/(zt(j)+z0(j)-z0t(j))
+        zb=REAL(zu(j)/(zt(j)+z0(j)-z0t(j)))
         dd=(beta*lzz0t(j)*zb)**2-4*rib(j)*asx*lzz0(j)*beta*
      1        (lzz0t(j)*zb-lzz0(j))
         if(rib(j).gt.0..and.rib(j).lt.beta/asx.and.dd.ge.0.) then
-         ilmox=(beta*lzz0t(j)*zb-2*rib(j)*asx*lzz0(j)-sqrt(dd))
-     1          /(2*zu(j)*(asx**2*rib(j)-beta*asx))
+         ilmox=REAL((beta*lzz0t(j)*zb-2*rib(j)*asx*lzz0(j)-sqrt(dd))
+     1          /(2*zu(j)*(asx**2*rib(j)-beta*asx)))
          if(ilmox.lt.ilmo(j)) then
             ilmo(j)=ilmox
-            fm(j)=lzz0(j)+asx*zu(j)*ilmox
-            fh(j)=beta*(lzz0t(j)+asx*(zt(j)+z0(j)-z0t(j))*ilmox)
+            fm(j)=REAL(lzz0(j)+asx*zu(j)*ilmox)
+            fh(j)=REAL(beta*(lzz0t(j)+asx*(zt(j)+z0(j)-z0t(j))*ilmox))
          endif
         endif
 *----------------------------------------------------------------------
@@ -290,8 +294,8 @@ c
               he=max(HMIN,0.3*UE(J)/F)
               H(J)=MIN(he,hmax)
         endif
-        FTEMP(J)=(-CTU(J))*(TPOTA(J)-TG(J))
-        FVAP(J)=(-CTU(J))*(QA(J)-QG(J))
+        FTEMP(J)=REAL((-CTU(J))*(TPOTA(J)-TG(J)))
+        FVAP(J)=REAL((-CTU(J))*(QA(J)-QG(J)))
       ENDIF
    80 CONTINUE
       RETURN

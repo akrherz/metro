@@ -87,7 +87,7 @@
 *     Internes
 *     --------
 ***
-      REAL ASURF, ABOTT, B, C, K, E, Ew
+      DOUBLE PRECISION ASURF, ABOTT, B, C, K, E, Ew
 
 ***
 *     Definition des constantes physiques

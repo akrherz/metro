@@ -2,7 +2,7 @@
 <roadcast>
   <header>
     <version>1.6</version>
-    <production-date>2010-05-12T15:01Z</production-date>
+    <production-date>2014-09-23T18:02Z</production-date>
     <road-station>rsy</road-station>
     <latitude>46.2</latitude>
     <longitude>-60.28</longitude>
@@ -5044,7 +5044,7 @@
       <fc>-78.83</fc>
       <fa>10.0</fa>
       <fg>-49.57</fg>
-      <bb>-272.15</bb>
+      <bb>-272.16</bb>
       <fp>0.0</fp>
       <rc>1</rc>
       <st>-4.42</st>
@@ -5391,9 +5391,9 @@
       <sf>0.0</sf>
       <ir>166.22</ir>
       <fv>-0.0</fv>
-      <fc>4.24</fc>
+      <fc>4.31</fc>
       <fa>10.0</fa>
-      <fg>-72.59</fg>
+      <fg>-72.53</fg>
       <bb>-253.05</bb>
       <fp>0.0</fp>
       <rc>1</rc>
@@ -5461,9 +5461,9 @@
       <sf>0.0</sf>
       <ir>166.21</ir>
       <fv>-0.0</fv>
-      <fc>10.85</fc>
+      <fc>10.84</fc>
       <fa>10.0</fa>
-      <fg>-64.52</fg>
+      <fg>-64.54</fg>
       <bb>-251.59</bb>
       <fp>0.0</fp>
       <rc>1</rc>
@@ -5533,7 +5533,7 @@
       <fv>0.0</fv>
       <fc>15.6</fc>
       <fa>10.0</fa>
-      <fg>-58.67</fg>
+      <fg>-58.68</fg>
       <bb>-250.49</bb>
       <fp>0.0</fp>
       <rc>1</rc>
@@ -5546,7 +5546,7 @@
         <lev-temp num="3">-8.08</lev-temp>
         <lev-temp num="4">-7.63</lev-temp>
         <lev-temp num="5">-7.26</lev-temp>
-        <lev-temp num="6">-6.97</lev-temp>
+        <lev-temp num="6">-6.96</lev-temp>
         <lev-temp num="7">-6.75</lev-temp>
         <lev-temp num="8">-6.6</lev-temp>
         <lev-temp num="9">-6.52</lev-temp>
@@ -5601,20 +5601,20 @@
       <sf>0.0</sf>
       <ir>166.2</ir>
       <fv>-0.0</fv>
-      <fc>19.28</fc>
+      <fc>20.42</fc>
       <fa>10.0</fa>
-      <fg>-54.12</fg>
-      <bb>-249.6</bb>
+      <fg>-53.07</fg>
+      <bb>-249.69</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-10.14</st>
+      <st>-10.12</st>
       <sst>-8.78</sst>
       <tl>
-        <lev-temp num="0">-10.14</lev-temp>
-        <lev-temp num="1">-9.51</lev-temp>
+        <lev-temp num="0">-10.12</lev-temp>
+        <lev-temp num="1">-9.49</lev-temp>
         <lev-temp num="2">-8.93</lev-temp>
         <lev-temp num="3">-8.42</lev-temp>
-        <lev-temp num="4">-7.98</lev-temp>
+        <lev-temp num="4">-7.97</lev-temp>
         <lev-temp num="5">-7.6</lev-temp>
         <lev-temp num="6">-7.29</lev-temp>
         <lev-temp num="7">-7.06</lev-temp>
@@ -5671,22 +5671,22 @@
       <sf>0.0</sf>
       <ir>166.2</ir>
       <fv>0.0</fv>
-      <fc>22.25</fc>
+      <fc>23.67</fc>
       <fa>10.0</fa>
-      <fg>-50.42</fg>
-      <bb>-248.87</bb>
+      <fg>-49.16</fg>
+      <bb>-249.02</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-10.34</st>
+      <st>-10.3</st>
       <sst>-8.78</sst>
       <tl>
-        <lev-temp num="0">-10.33</lev-temp>
-        <lev-temp num="1">-9.74</lev-temp>
-        <lev-temp num="2">-9.2</lev-temp>
-        <lev-temp num="3">-8.71</lev-temp>
-        <lev-temp num="4">-8.27</lev-temp>
-        <lev-temp num="5">-7.9</lev-temp>
-        <lev-temp num="6">-7.59</lev-temp>
+        <lev-temp num="0">-10.29</lev-temp>
+        <lev-temp num="1">-9.71</lev-temp>
+        <lev-temp num="2">-9.18</lev-temp>
+        <lev-temp num="3">-8.69</lev-temp>
+        <lev-temp num="4">-8.26</lev-temp>
+        <lev-temp num="5">-7.89</lev-temp>
+        <lev-temp num="6">-7.58</lev-temp>
         <lev-temp num="7">-7.33</lev-temp>
         <lev-temp num="8">-7.14</lev-temp>
         <lev-temp num="9">-7.0</lev-temp>
@@ -5741,24 +5741,24 @@
       <sf>0.0</sf>
       <ir>166.19</ir>
       <fv>0.0</fv>
-      <fc>24.71</fc>
+      <fc>26.4</fc>
       <fa>10.0</fa>
-      <fg>-47.34</fg>
-      <bb>-248.24</bb>
+      <fg>-45.86</fg>
+      <bb>-248.46</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-10.5</st>
+      <st>-10.45</st>
       <sst>-8.78</sst>
       <tl>
-        <lev-temp num="0">-10.5</lev-temp>
-        <lev-temp num="1">-9.94</lev-temp>
-        <lev-temp num="2">-9.42</lev-temp>
-        <lev-temp num="3">-8.95</lev-temp>
-        <lev-temp num="4">-8.53</lev-temp>
-        <lev-temp num="5">-8.16</lev-temp>
-        <lev-temp num="6">-7.85</lev-temp>
-        <lev-temp num="7">-7.59</lev-temp>
-        <lev-temp num="8">-7.38</lev-temp>
+        <lev-temp num="0">-10.44</lev-temp>
+        <lev-temp num="1">-9.9</lev-temp>
+        <lev-temp num="2">-9.39</lev-temp>
+        <lev-temp num="3">-8.93</lev-temp>
+        <lev-temp num="4">-8.51</lev-temp>
+        <lev-temp num="5">-8.15</lev-temp>
+        <lev-temp num="6">-7.84</lev-temp>
+        <lev-temp num="7">-7.58</lev-temp>
+        <lev-temp num="8">-7.37</lev-temp>
         <lev-temp num="9">-7.22</lev-temp>
         <lev-temp num="10">-7.11</lev-temp>
         <lev-temp num="11">-7.04</lev-temp>
@@ -5811,27 +5811,27 @@
       <sf>0.0</sf>
       <ir>165.06</ir>
       <fv>-0.0</fv>
-      <fc>23.08</fc>
+      <fc>24.27</fc>
       <fa>10.0</fa>
-      <fg>-49.3</fg>
-      <bb>-247.44</bb>
+      <fg>-48.35</fg>
+      <bb>-247.67</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-10.72</st>
+      <st>-10.66</st>
       <sst>-8.79</sst>
       <tl>
-        <lev-temp num="0">-10.71</lev-temp>
-        <lev-temp num="1">-10.15</lev-temp>
-        <lev-temp num="2">-9.64</lev-temp>
-        <lev-temp num="3">-9.17</lev-temp>
-        <lev-temp num="4">-8.76</lev-temp>
-        <lev-temp num="5">-8.4</lev-temp>
-        <lev-temp num="6">-8.08</lev-temp>
+        <lev-temp num="0">-10.65</lev-temp>
+        <lev-temp num="1">-10.1</lev-temp>
+        <lev-temp num="2">-9.6</lev-temp>
+        <lev-temp num="3">-9.14</lev-temp>
+        <lev-temp num="4">-8.74</lev-temp>
+        <lev-temp num="5">-8.38</lev-temp>
+        <lev-temp num="6">-8.07</lev-temp>
         <lev-temp num="7">-7.81</lev-temp>
-        <lev-temp num="8">-7.6</lev-temp>
+        <lev-temp num="8">-7.59</lev-temp>
         <lev-temp num="9">-7.42</lev-temp>
         <lev-temp num="10">-7.29</lev-temp>
-        <lev-temp num="11">-7.21</lev-temp>
+        <lev-temp num="11">-7.2</lev-temp>
         <lev-temp num="12">-7.15</lev-temp>
         <lev-temp num="13">-7.13</lev-temp>
         <lev-temp num="14">-7.14</lev-temp>
@@ -5881,32 +5881,32 @@
       <sf>0.0</sf>
       <ir>163.89</ir>
       <fv>-0.0</fv>
-      <fc>21.93</fc>
+      <fc>22.86</fc>
       <fa>10.0</fa>
-      <fg>-50.65</fg>
-      <bb>-246.47</bb>
+      <fg>-49.96</fg>
+      <bb>-246.71</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-10.97</st>
+      <st>-10.91</st>
       <sst>-8.85</sst>
       <tl>
-        <lev-temp num="0">-10.97</lev-temp>
-        <lev-temp num="1">-10.39</lev-temp>
-        <lev-temp num="2">-9.87</lev-temp>
-        <lev-temp num="3">-9.4</lev-temp>
-        <lev-temp num="4">-8.99</lev-temp>
-        <lev-temp num="5">-8.62</lev-temp>
-        <lev-temp num="6">-8.3</lev-temp>
-        <lev-temp num="7">-8.03</lev-temp>
-        <lev-temp num="8">-7.8</lev-temp>
-        <lev-temp num="9">-7.62</lev-temp>
+        <lev-temp num="0">-10.9</lev-temp>
+        <lev-temp num="1">-10.34</lev-temp>
+        <lev-temp num="2">-9.83</lev-temp>
+        <lev-temp num="3">-9.37</lev-temp>
+        <lev-temp num="4">-8.96</lev-temp>
+        <lev-temp num="5">-8.6</lev-temp>
+        <lev-temp num="6">-8.28</lev-temp>
+        <lev-temp num="7">-8.01</lev-temp>
+        <lev-temp num="8">-7.79</lev-temp>
+        <lev-temp num="9">-7.61</lev-temp>
         <lev-temp num="10">-7.47</lev-temp>
-        <lev-temp num="11">-7.37</lev-temp>
+        <lev-temp num="11">-7.36</lev-temp>
         <lev-temp num="12">-7.3</lev-temp>
         <lev-temp num="13">-7.26</lev-temp>
         <lev-temp num="14">-7.25</lev-temp>
         <lev-temp num="15">-7.26</lev-temp>
-        <lev-temp num="16">-7.3</lev-temp>
+        <lev-temp num="16">-7.29</lev-temp>
         <lev-temp num="17">-7.35</lev-temp>
         <lev-temp num="18">-7.41</lev-temp>
         <lev-temp num="19">-7.48</lev-temp>
@@ -5951,31 +5951,31 @@
       <sf>0.0</sf>
       <ir>162.72</ir>
       <fv>0.0</fv>
-      <fc>20.96</fc>
+      <fc>21.72</fc>
       <fa>10.0</fa>
-      <fg>-51.79</fg>
-      <bb>-245.47</bb>
+      <fg>-51.26</fg>
+      <bb>-245.7</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.24</st>
+      <st>-11.18</st>
       <sst>-8.96</sst>
       <tl>
-        <lev-temp num="0">-11.24</lev-temp>
-        <lev-temp num="1">-10.65</lev-temp>
-        <lev-temp num="2">-10.12</lev-temp>
-        <lev-temp num="3">-9.64</lev-temp>
-        <lev-temp num="4">-9.21</lev-temp>
-        <lev-temp num="5">-8.84</lev-temp>
-        <lev-temp num="6">-8.51</lev-temp>
-        <lev-temp num="7">-8.23</lev-temp>
-        <lev-temp num="8">-7.99</lev-temp>
-        <lev-temp num="9">-7.8</lev-temp>
+        <lev-temp num="0">-11.17</lev-temp>
+        <lev-temp num="1">-10.59</lev-temp>
+        <lev-temp num="2">-10.07</lev-temp>
+        <lev-temp num="3">-9.6</lev-temp>
+        <lev-temp num="4">-9.18</lev-temp>
+        <lev-temp num="5">-8.81</lev-temp>
+        <lev-temp num="6">-8.49</lev-temp>
+        <lev-temp num="7">-8.21</lev-temp>
+        <lev-temp num="8">-7.98</lev-temp>
+        <lev-temp num="9">-7.79</lev-temp>
         <lev-temp num="10">-7.64</lev-temp>
-        <lev-temp num="11">-7.53</lev-temp>
+        <lev-temp num="11">-7.52</lev-temp>
         <lev-temp num="12">-7.44</lev-temp>
-        <lev-temp num="13">-7.39</lev-temp>
+        <lev-temp num="13">-7.38</lev-temp>
         <lev-temp num="14">-7.36</lev-temp>
-        <lev-temp num="15">-7.36</lev-temp>
+        <lev-temp num="15">-7.35</lev-temp>
         <lev-temp num="16">-7.37</lev-temp>
         <lev-temp num="17">-7.41</lev-temp>
         <lev-temp num="18">-7.46</lev-temp>
@@ -6021,28 +6021,28 @@
       <sf>0.0</sf>
       <ir>162.69</ir>
       <fv>-0.0</fv>
-      <fc>23.89</fc>
+      <fc>25.17</fc>
       <fa>10.0</fa>
-      <fg>-48.13</fg>
-      <bb>-244.71</bb>
+      <fg>-47.1</fg>
+      <bb>-244.96</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.44</st>
+      <st>-11.37</st>
       <sst>-9.08</sst>
       <tl>
-        <lev-temp num="0">-11.44</lev-temp>
-        <lev-temp num="1">-10.87</lev-temp>
-        <lev-temp num="2">-10.35</lev-temp>
-        <lev-temp num="3">-9.87</lev-temp>
-        <lev-temp num="4">-9.44</lev-temp>
-        <lev-temp num="5">-9.06</lev-temp>
-        <lev-temp num="6">-8.72</lev-temp>
-        <lev-temp num="7">-8.43</lev-temp>
-        <lev-temp num="8">-8.18</lev-temp>
-        <lev-temp num="9">-7.98</lev-temp>
-        <lev-temp num="10">-7.81</lev-temp>
-        <lev-temp num="11">-7.68</lev-temp>
-        <lev-temp num="12">-7.58</lev-temp>
+        <lev-temp num="0">-11.37</lev-temp>
+        <lev-temp num="1">-10.81</lev-temp>
+        <lev-temp num="2">-10.3</lev-temp>
+        <lev-temp num="3">-9.83</lev-temp>
+        <lev-temp num="4">-9.4</lev-temp>
+        <lev-temp num="5">-9.03</lev-temp>
+        <lev-temp num="6">-8.7</lev-temp>
+        <lev-temp num="7">-8.41</lev-temp>
+        <lev-temp num="8">-8.17</lev-temp>
+        <lev-temp num="9">-7.96</lev-temp>
+        <lev-temp num="10">-7.8</lev-temp>
+        <lev-temp num="11">-7.67</lev-temp>
+        <lev-temp num="12">-7.57</lev-temp>
         <lev-temp num="13">-7.51</lev-temp>
         <lev-temp num="14">-7.47</lev-temp>
         <lev-temp num="15">-7.45</lev-temp>
@@ -6091,31 +6091,31 @@
       <sf>0.0</sf>
       <ir>162.69</ir>
       <fv>-0.0</fv>
-      <fc>26.03</fc>
+      <fc>27.64</fc>
       <fa>10.0</fa>
-      <fg>-45.45</fg>
-      <bb>-244.16</bb>
+      <fg>-44.14</fg>
+      <bb>-244.46</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.59</st>
+      <st>-11.51</st>
       <sst>-9.16</sst>
       <tl>
-        <lev-temp num="0">-11.58</lev-temp>
-        <lev-temp num="1">-11.04</lev-temp>
-        <lev-temp num="2">-10.54</lev-temp>
-        <lev-temp num="3">-10.07</lev-temp>
-        <lev-temp num="4">-9.65</lev-temp>
-        <lev-temp num="5">-9.26</lev-temp>
-        <lev-temp num="6">-8.92</lev-temp>
-        <lev-temp num="7">-8.62</lev-temp>
-        <lev-temp num="8">-8.37</lev-temp>
-        <lev-temp num="9">-8.15</lev-temp>
-        <lev-temp num="10">-7.97</lev-temp>
-        <lev-temp num="11">-7.83</lev-temp>
-        <lev-temp num="12">-7.72</lev-temp>
+        <lev-temp num="0">-11.5</lev-temp>
+        <lev-temp num="1">-10.98</lev-temp>
+        <lev-temp num="2">-10.48</lev-temp>
+        <lev-temp num="3">-10.03</lev-temp>
+        <lev-temp num="4">-9.61</lev-temp>
+        <lev-temp num="5">-9.23</lev-temp>
+        <lev-temp num="6">-8.9</lev-temp>
+        <lev-temp num="7">-8.6</lev-temp>
+        <lev-temp num="8">-8.35</lev-temp>
+        <lev-temp num="9">-8.14</lev-temp>
+        <lev-temp num="10">-7.96</lev-temp>
+        <lev-temp num="11">-7.82</lev-temp>
+        <lev-temp num="12">-7.71</lev-temp>
         <lev-temp num="13">-7.63</lev-temp>
-        <lev-temp num="14">-7.58</lev-temp>
-        <lev-temp num="15">-7.55</lev-temp>
+        <lev-temp num="14">-7.57</lev-temp>
+        <lev-temp num="15">-7.54</lev-temp>
         <lev-temp num="16">-7.54</lev-temp>
         <lev-temp num="17">-7.55</lev-temp>
         <lev-temp num="18">-7.57</lev-temp>
@@ -6161,37 +6161,37 @@
       <sf>0.0</sf>
       <ir>162.69</ir>
       <fv>0.0</fv>
-      <fc>27.75</fc>
+      <fc>29.62</fc>
       <fa>10.0</fa>
-      <fg>-43.27</fg>
-      <bb>-243.71</bb>
+      <fg>-41.76</fg>
+      <bb>-244.06</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.71</st>
+      <st>-11.61</st>
       <sst>-9.22</sst>
       <tl>
-        <lev-temp num="0">-11.71</lev-temp>
-        <lev-temp num="1">-11.19</lev-temp>
-        <lev-temp num="2">-10.7</lev-temp>
-        <lev-temp num="3">-10.25</lev-temp>
-        <lev-temp num="4">-9.83</lev-temp>
-        <lev-temp num="5">-9.45</lev-temp>
-        <lev-temp num="6">-9.11</lev-temp>
-        <lev-temp num="7">-8.81</lev-temp>
-        <lev-temp num="8">-8.55</lev-temp>
-        <lev-temp num="9">-8.32</lev-temp>
-        <lev-temp num="10">-8.13</lev-temp>
-        <lev-temp num="11">-7.97</lev-temp>
-        <lev-temp num="12">-7.85</lev-temp>
-        <lev-temp num="13">-7.76</lev-temp>
-        <lev-temp num="14">-7.69</lev-temp>
-        <lev-temp num="15">-7.65</lev-temp>
+        <lev-temp num="0">-11.61</lev-temp>
+        <lev-temp num="1">-11.11</lev-temp>
+        <lev-temp num="2">-10.64</lev-temp>
+        <lev-temp num="3">-10.19</lev-temp>
+        <lev-temp num="4">-9.78</lev-temp>
+        <lev-temp num="5">-9.41</lev-temp>
+        <lev-temp num="6">-9.08</lev-temp>
+        <lev-temp num="7">-8.78</lev-temp>
+        <lev-temp num="8">-8.52</lev-temp>
+        <lev-temp num="9">-8.3</lev-temp>
+        <lev-temp num="10">-8.12</lev-temp>
+        <lev-temp num="11">-7.96</lev-temp>
+        <lev-temp num="12">-7.84</lev-temp>
+        <lev-temp num="13">-7.75</lev-temp>
+        <lev-temp num="14">-7.68</lev-temp>
+        <lev-temp num="15">-7.64</lev-temp>
         <lev-temp num="16">-7.62</lev-temp>
         <lev-temp num="17">-7.62</lev-temp>
         <lev-temp num="18">-7.63</lev-temp>
         <lev-temp num="19">-7.66</lev-temp>
         <lev-temp num="20">-7.7</lev-temp>
-        <lev-temp num="21">-7.75</lev-temp>
+        <lev-temp num="21">-7.74</lev-temp>
         <lev-temp num="22">-7.79</lev-temp>
         <lev-temp num="23">-7.84</lev-temp>
         <lev-temp num="24">-7.9</lev-temp>
@@ -6231,35 +6231,35 @@
       <sf>0.0</sf>
       <ir>162.68</ir>
       <fv>0.0</fv>
-      <fc>29.22</fc>
+      <fc>31.31</fc>
       <fa>10.0</fa>
-      <fg>-41.41</fg>
-      <bb>-243.32</bb>
+      <fg>-39.73</fg>
+      <bb>-243.72</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.81</st>
+      <st>-11.7</st>
       <sst>-9.26</sst>
       <tl>
-        <lev-temp num="0">-11.81</lev-temp>
-        <lev-temp num="1">-11.32</lev-temp>
-        <lev-temp num="2">-10.84</lev-temp>
-        <lev-temp num="3">-10.4</lev-temp>
-        <lev-temp num="4">-10.0</lev-temp>
-        <lev-temp num="5">-9.62</lev-temp>
-        <lev-temp num="6">-9.28</lev-temp>
-        <lev-temp num="7">-8.98</lev-temp>
-        <lev-temp num="8">-8.71</lev-temp>
-        <lev-temp num="9">-8.48</lev-temp>
-        <lev-temp num="10">-8.28</lev-temp>
-        <lev-temp num="11">-8.12</lev-temp>
-        <lev-temp num="12">-7.98</lev-temp>
-        <lev-temp num="13">-7.88</lev-temp>
-        <lev-temp num="14">-7.8</lev-temp>
+        <lev-temp num="0">-11.7</lev-temp>
+        <lev-temp num="1">-11.22</lev-temp>
+        <lev-temp num="2">-10.77</lev-temp>
+        <lev-temp num="3">-10.34</lev-temp>
+        <lev-temp num="4">-9.94</lev-temp>
+        <lev-temp num="5">-9.58</lev-temp>
+        <lev-temp num="6">-9.25</lev-temp>
+        <lev-temp num="7">-8.95</lev-temp>
+        <lev-temp num="8">-8.69</lev-temp>
+        <lev-temp num="9">-8.46</lev-temp>
+        <lev-temp num="10">-8.27</lev-temp>
+        <lev-temp num="11">-8.1</lev-temp>
+        <lev-temp num="12">-7.97</lev-temp>
+        <lev-temp num="13">-7.87</lev-temp>
+        <lev-temp num="14">-7.79</lev-temp>
         <lev-temp num="15">-7.74</lev-temp>
         <lev-temp num="16">-7.71</lev-temp>
-        <lev-temp num="17">-7.7</lev-temp>
+        <lev-temp num="17">-7.69</lev-temp>
         <lev-temp num="18">-7.7</lev-temp>
-        <lev-temp num="19">-7.72</lev-temp>
+        <lev-temp num="19">-7.71</lev-temp>
         <lev-temp num="20">-7.74</lev-temp>
         <lev-temp num="21">-7.78</lev-temp>
         <lev-temp num="22">-7.82</lev-temp>
@@ -6301,41 +6301,41 @@
       <sf>0.0</sf>
       <ir>162.68</ir>
       <fv>0.0</fv>
-      <fc>30.5</fc>
+      <fc>32.77</fc>
       <fa>10.0</fa>
-      <fg>-39.79</fg>
-      <bb>-242.97</bb>
+      <fg>-37.97</fg>
+      <bb>-243.43</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.91</st>
+      <st>-11.78</st>
       <sst>-9.29</sst>
       <tl>
-        <lev-temp num="0">-11.9</lev-temp>
-        <lev-temp num="1">-11.43</lev-temp>
-        <lev-temp num="2">-10.97</lev-temp>
-        <lev-temp num="3">-10.54</lev-temp>
-        <lev-temp num="4">-10.14</lev-temp>
-        <lev-temp num="5">-9.78</lev-temp>
-        <lev-temp num="6">-9.44</lev-temp>
-        <lev-temp num="7">-9.14</lev-temp>
-        <lev-temp num="8">-8.87</lev-temp>
-        <lev-temp num="9">-8.63</lev-temp>
-        <lev-temp num="10">-8.43</lev-temp>
-        <lev-temp num="11">-8.26</lev-temp>
-        <lev-temp num="12">-8.11</lev-temp>
-        <lev-temp num="13">-8.0</lev-temp>
-        <lev-temp num="14">-7.91</lev-temp>
+        <lev-temp num="0">-11.78</lev-temp>
+        <lev-temp num="1">-11.32</lev-temp>
+        <lev-temp num="2">-10.88</lev-temp>
+        <lev-temp num="3">-10.47</lev-temp>
+        <lev-temp num="4">-10.08</lev-temp>
+        <lev-temp num="5">-9.73</lev-temp>
+        <lev-temp num="6">-9.4</lev-temp>
+        <lev-temp num="7">-9.1</lev-temp>
+        <lev-temp num="8">-8.84</lev-temp>
+        <lev-temp num="9">-8.61</lev-temp>
+        <lev-temp num="10">-8.41</lev-temp>
+        <lev-temp num="11">-8.24</lev-temp>
+        <lev-temp num="12">-8.1</lev-temp>
+        <lev-temp num="13">-7.99</lev-temp>
+        <lev-temp num="14">-7.9</lev-temp>
         <lev-temp num="15">-7.84</lev-temp>
-        <lev-temp num="16">-7.8</lev-temp>
+        <lev-temp num="16">-7.79</lev-temp>
         <lev-temp num="17">-7.77</lev-temp>
-        <lev-temp num="18">-7.77</lev-temp>
+        <lev-temp num="18">-7.76</lev-temp>
         <lev-temp num="19">-7.77</lev-temp>
         <lev-temp num="20">-7.79</lev-temp>
-        <lev-temp num="21">-7.83</lev-temp>
+        <lev-temp num="21">-7.82</lev-temp>
         <lev-temp num="22">-7.86</lev-temp>
         <lev-temp num="23">-7.9</lev-temp>
         <lev-temp num="24">-7.95</lev-temp>
-        <lev-temp num="25">-8.01</lev-temp>
+        <lev-temp num="25">-8.0</lev-temp>
         <lev-temp num="26">-8.06</lev-temp>
         <lev-temp num="27">-8.13</lev-temp>
         <lev-temp num="28">-8.2</lev-temp>
@@ -6371,35 +6371,35 @@
       <sf>0.0</sf>
       <ir>162.68</ir>
       <fv>-0.0</fv>
-      <fc>31.63</fc>
+      <fc>32.95</fc>
       <fa>10.0</fa>
-      <fg>-38.35</fg>
-      <bb>-242.65</bb>
+      <fg>-37.47</fg>
+      <bb>-243.11</bb>
       <fp>0.0</fp>
       <rc>1</rc>
-      <st>-11.99</st>
+      <st>-11.87</st>
       <sst>-9.32</sst>
       <tl>
-        <lev-temp num="0">-11.99</lev-temp>
-        <lev-temp num="1">-11.53</lev-temp>
-        <lev-temp num="2">-11.09</lev-temp>
-        <lev-temp num="3">-10.67</lev-temp>
-        <lev-temp num="4">-10.28</lev-temp>
-        <lev-temp num="5">-9.92</lev-temp>
-        <lev-temp num="6">-9.59</lev-temp>
-        <lev-temp num="7">-9.29</lev-temp>
-        <lev-temp num="8">-9.02</lev-temp>
-        <lev-temp num="9">-8.78</lev-temp>
-        <lev-temp num="10">-8.57</lev-temp>
-        <lev-temp num="11">-8.39</lev-temp>
-        <lev-temp num="12">-8.24</lev-temp>
-        <lev-temp num="13">-8.11</lev-temp>
-        <lev-temp num="14">-8.02</lev-temp>
-        <lev-temp num="15">-7.94</lev-temp>
-        <lev-temp num="16">-7.89</lev-temp>
+        <lev-temp num="0">-11.87</lev-temp>
+        <lev-temp num="1">-11.42</lev-temp>
+        <lev-temp num="2">-10.99</lev-temp>
+        <lev-temp num="3">-10.59</lev-temp>
+        <lev-temp num="4">-10.21</lev-temp>
+        <lev-temp num="5">-9.86</lev-temp>
+        <lev-temp num="6">-9.54</lev-temp>
+        <lev-temp num="7">-9.24</lev-temp>
+        <lev-temp num="8">-8.98</lev-temp>
+        <lev-temp num="9">-8.75</lev-temp>
+        <lev-temp num="10">-8.54</lev-temp>
+        <lev-temp num="11">-8.37</lev-temp>
+        <lev-temp num="12">-8.22</lev-temp>
+        <lev-temp num="13">-8.1</lev-temp>
+        <lev-temp num="14">-8.01</lev-temp>
+        <lev-temp num="15">-7.93</lev-temp>
+        <lev-temp num="16">-7.88</lev-temp>
         <lev-temp num="17">-7.85</lev-temp>
-        <lev-temp num="18">-7.84</lev-temp>
-        <lev-temp num="19">-7.84</lev-temp>
+        <lev-temp num="18">-7.83</lev-temp>
+        <lev-temp num="19">-7.83</lev-temp>
         <lev-temp num="20">-7.85</lev-temp>
         <lev-temp num="21">-7.87</lev-temp>
         <lev-temp num="22">-7.9</lev-temp>
@@ -6440,44 +6440,44 @@
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>163.81</ir>
-      <fv>1.65</fv>
-      <fc>37.46</fc>
+      <fv>1.16</fv>
+      <fc>38.27</fc>
       <fa>10.0</fa>
-      <fg>-29.85</fg>
-      <bb>-242.76</bb>
+      <fg>-29.89</fg>
+      <bb>-243.13</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.96</st>
+      <st>-11.86</st>
       <sst>-9.33</sst>
       <tl>
-        <lev-temp num="0">-11.96</lev-temp>
-        <lev-temp num="1">-11.57</lev-temp>
-        <lev-temp num="2">-11.17</lev-temp>
-        <lev-temp num="3">-10.77</lev-temp>
-        <lev-temp num="4">-10.4</lev-temp>
-        <lev-temp num="5">-10.05</lev-temp>
-        <lev-temp num="6">-9.72</lev-temp>
-        <lev-temp num="7">-9.42</lev-temp>
-        <lev-temp num="8">-9.15</lev-temp>
-        <lev-temp num="9">-8.91</lev-temp>
-        <lev-temp num="10">-8.7</lev-temp>
-        <lev-temp num="11">-8.52</lev-temp>
-        <lev-temp num="12">-8.36</lev-temp>
-        <lev-temp num="13">-8.23</lev-temp>
-        <lev-temp num="14">-8.12</lev-temp>
-        <lev-temp num="15">-8.04</lev-temp>
-        <lev-temp num="16">-7.98</lev-temp>
+        <lev-temp num="0">-11.86</lev-temp>
+        <lev-temp num="1">-11.47</lev-temp>
+        <lev-temp num="2">-11.08</lev-temp>
+        <lev-temp num="3">-10.69</lev-temp>
+        <lev-temp num="4">-10.33</lev-temp>
+        <lev-temp num="5">-9.99</lev-temp>
+        <lev-temp num="6">-9.67</lev-temp>
+        <lev-temp num="7">-9.38</lev-temp>
+        <lev-temp num="8">-9.11</lev-temp>
+        <lev-temp num="9">-8.88</lev-temp>
+        <lev-temp num="10">-8.67</lev-temp>
+        <lev-temp num="11">-8.49</lev-temp>
+        <lev-temp num="12">-8.34</lev-temp>
+        <lev-temp num="13">-8.21</lev-temp>
+        <lev-temp num="14">-8.11</lev-temp>
+        <lev-temp num="15">-8.03</lev-temp>
+        <lev-temp num="16">-7.97</lev-temp>
         <lev-temp num="17">-7.93</lev-temp>
-        <lev-temp num="18">-7.91</lev-temp>
+        <lev-temp num="18">-7.9</lev-temp>
         <lev-temp num="19">-7.9</lev-temp>
         <lev-temp num="20">-7.9</lev-temp>
         <lev-temp num="21">-7.92</lev-temp>
-        <lev-temp num="22">-7.95</lev-temp>
+        <lev-temp num="22">-7.94</lev-temp>
         <lev-temp num="23">-7.98</lev-temp>
         <lev-temp num="24">-8.02</lev-temp>
         <lev-temp num="25">-8.07</lev-temp>
         <lev-temp num="26">-8.12</lev-temp>
-        <lev-temp num="27">-8.19</lev-temp>
+        <lev-temp num="27">-8.18</lev-temp>
         <lev-temp num="28">-8.25</lev-temp>
         <lev-temp num="29">-8.32</lev-temp>
         <lev-temp num="30">-8.4</lev-temp>
@@ -6510,38 +6510,38 @@
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>164.97</ir>
-      <fv>2.99</fv>
-      <fc>42.43</fc>
+      <fv>2.6</fv>
+      <fc>43.48</fc>
       <fa>10.0</fa>
-      <fg>-22.86</fg>
-      <bb>-243.25</bb>
+      <fg>-22.53</fg>
+      <bb>-243.59</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.82</st>
+      <st>-11.73</st>
       <sst>-9.28</sst>
       <tl>
-        <lev-temp num="0">-11.83</lev-temp>
-        <lev-temp num="1">-11.51</lev-temp>
-        <lev-temp num="2">-11.17</lev-temp>
-        <lev-temp num="3">-10.82</lev-temp>
-        <lev-temp num="4">-10.48</lev-temp>
-        <lev-temp num="5">-10.15</lev-temp>
-        <lev-temp num="6">-9.84</lev-temp>
-        <lev-temp num="7">-9.55</lev-temp>
-        <lev-temp num="8">-9.28</lev-temp>
-        <lev-temp num="9">-9.04</lev-temp>
-        <lev-temp num="10">-8.82</lev-temp>
-        <lev-temp num="11">-8.64</lev-temp>
-        <lev-temp num="12">-8.48</lev-temp>
-        <lev-temp num="13">-8.34</lev-temp>
-        <lev-temp num="14">-8.23</lev-temp>
-        <lev-temp num="15">-8.13</lev-temp>
+        <lev-temp num="0">-11.74</lev-temp>
+        <lev-temp num="1">-11.42</lev-temp>
+        <lev-temp num="2">-11.09</lev-temp>
+        <lev-temp num="3">-10.75</lev-temp>
+        <lev-temp num="4">-10.41</lev-temp>
+        <lev-temp num="5">-10.09</lev-temp>
+        <lev-temp num="6">-9.78</lev-temp>
+        <lev-temp num="7">-9.5</lev-temp>
+        <lev-temp num="8">-9.24</lev-temp>
+        <lev-temp num="9">-9.0</lev-temp>
+        <lev-temp num="10">-8.79</lev-temp>
+        <lev-temp num="11">-8.61</lev-temp>
+        <lev-temp num="12">-8.45</lev-temp>
+        <lev-temp num="13">-8.32</lev-temp>
+        <lev-temp num="14">-8.21</lev-temp>
+        <lev-temp num="15">-8.12</lev-temp>
         <lev-temp num="16">-8.06</lev-temp>
         <lev-temp num="17">-8.01</lev-temp>
         <lev-temp num="18">-7.98</lev-temp>
-        <lev-temp num="19">-7.97</lev-temp>
+        <lev-temp num="19">-7.96</lev-temp>
         <lev-temp num="20">-7.96</lev-temp>
-        <lev-temp num="21">-7.98</lev-temp>
+        <lev-temp num="21">-7.97</lev-temp>
         <lev-temp num="22">-7.99</lev-temp>
         <lev-temp num="23">-8.02</lev-temp>
         <lev-temp num="24">-8.06</lev-temp>
@@ -6549,7 +6549,7 @@
         <lev-temp num="26">-8.16</lev-temp>
         <lev-temp num="27">-8.22</lev-temp>
         <lev-temp num="28">-8.28</lev-temp>
-        <lev-temp num="29">-8.36</lev-temp>
+        <lev-temp num="29">-8.35</lev-temp>
         <lev-temp num="30">-8.43</lev-temp>
         <lev-temp num="31">-8.52</lev-temp>
         <lev-temp num="32">-8.6</lev-temp>
@@ -6580,39 +6580,39 @@
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.13</ir>
-      <fv>4.18</fv>
-      <fc>46.97</fc>
+      <fv>3.83</fv>
+      <fc>48.63</fc>
       <fa>10.0</fa>
-      <fg>-16.64</fg>
-      <bb>-243.92</bb>
+      <fg>-15.7</fg>
+      <bb>-244.29</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.64</st>
+      <st>-11.55</st>
       <sst>-9.19</sst>
       <tl>
-        <lev-temp num="0">-11.65</lev-temp>
-        <lev-temp num="1">-11.4</lev-temp>
-        <lev-temp num="2">-11.11</lev-temp>
-        <lev-temp num="3">-10.82</lev-temp>
-        <lev-temp num="4">-10.51</lev-temp>
-        <lev-temp num="5">-10.21</lev-temp>
-        <lev-temp num="6">-9.92</lev-temp>
-        <lev-temp num="7">-9.64</lev-temp>
-        <lev-temp num="8">-9.39</lev-temp>
-        <lev-temp num="9">-9.15</lev-temp>
-        <lev-temp num="10">-8.94</lev-temp>
-        <lev-temp num="11">-8.75</lev-temp>
-        <lev-temp num="12">-8.59</lev-temp>
-        <lev-temp num="13">-8.44</lev-temp>
-        <lev-temp num="14">-8.33</lev-temp>
-        <lev-temp num="15">-8.23</lev-temp>
-        <lev-temp num="16">-8.15</lev-temp>
-        <lev-temp num="17">-8.1</lev-temp>
-        <lev-temp num="18">-8.06</lev-temp>
+        <lev-temp num="0">-11.55</lev-temp>
+        <lev-temp num="1">-11.31</lev-temp>
+        <lev-temp num="2">-11.03</lev-temp>
+        <lev-temp num="3">-10.74</lev-temp>
+        <lev-temp num="4">-10.44</lev-temp>
+        <lev-temp num="5">-10.15</lev-temp>
+        <lev-temp num="6">-9.87</lev-temp>
+        <lev-temp num="7">-9.6</lev-temp>
+        <lev-temp num="8">-9.34</lev-temp>
+        <lev-temp num="9">-9.11</lev-temp>
+        <lev-temp num="10">-8.91</lev-temp>
+        <lev-temp num="11">-8.72</lev-temp>
+        <lev-temp num="12">-8.56</lev-temp>
+        <lev-temp num="13">-8.42</lev-temp>
+        <lev-temp num="14">-8.31</lev-temp>
+        <lev-temp num="15">-8.22</lev-temp>
+        <lev-temp num="16">-8.14</lev-temp>
+        <lev-temp num="17">-8.09</lev-temp>
+        <lev-temp num="18">-8.05</lev-temp>
         <lev-temp num="19">-8.03</lev-temp>
-        <lev-temp num="20">-8.03</lev-temp>
+        <lev-temp num="20">-8.02</lev-temp>
         <lev-temp num="21">-8.03</lev-temp>
-        <lev-temp num="22">-8.05</lev-temp>
+        <lev-temp num="22">-8.04</lev-temp>
         <lev-temp num="23">-8.07</lev-temp>
         <lev-temp num="24">-8.1</lev-temp>
         <lev-temp num="25">-8.15</lev-temp>
@@ -6643,61 +6643,61 @@
       <at>-9.0</at>
       <td>-11.0</td>
       <ws>26.0</ws>
-      <sn>0.04</sn>
+      <sn>0.03</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.16</ir>
-      <fv>3.64</fv>
-      <fc>45.71</fc>
+      <fv>3.18</fv>
+      <fc>48.12</fc>
       <fa>10.0</fa>
-      <fg>-18.78</fg>
-      <bb>-244.29</bb>
+      <fg>-17.26</fg>
+      <bb>-244.72</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.55</st>
+      <st>-11.43</st>
       <sst>-9.08</sst>
       <tl>
-        <lev-temp num="0">-11.55</lev-temp>
-        <lev-temp num="1">-11.31</lev-temp>
-        <lev-temp num="2">-11.05</lev-temp>
-        <lev-temp num="3">-10.78</lev-temp>
-        <lev-temp num="4">-10.51</lev-temp>
-        <lev-temp num="5">-10.24</lev-temp>
-        <lev-temp num="6">-9.98</lev-temp>
-        <lev-temp num="7">-9.72</lev-temp>
-        <lev-temp num="8">-9.48</lev-temp>
-        <lev-temp num="9">-9.25</lev-temp>
-        <lev-temp num="10">-9.04</lev-temp>
-        <lev-temp num="11">-8.85</lev-temp>
-        <lev-temp num="12">-8.69</lev-temp>
-        <lev-temp num="13">-8.55</lev-temp>
-        <lev-temp num="14">-8.42</lev-temp>
-        <lev-temp num="15">-8.32</lev-temp>
-        <lev-temp num="16">-8.24</lev-temp>
-        <lev-temp num="17">-8.18</lev-temp>
-        <lev-temp num="18">-8.13</lev-temp>
+        <lev-temp num="0">-11.43</lev-temp>
+        <lev-temp num="1">-11.2</lev-temp>
+        <lev-temp num="2">-10.96</lev-temp>
+        <lev-temp num="3">-10.71</lev-temp>
+        <lev-temp num="4">-10.44</lev-temp>
+        <lev-temp num="5">-10.18</lev-temp>
+        <lev-temp num="6">-9.92</lev-temp>
+        <lev-temp num="7">-9.67</lev-temp>
+        <lev-temp num="8">-9.43</lev-temp>
+        <lev-temp num="9">-9.21</lev-temp>
+        <lev-temp num="10">-9.01</lev-temp>
+        <lev-temp num="11">-8.82</lev-temp>
+        <lev-temp num="12">-8.66</lev-temp>
+        <lev-temp num="13">-8.52</lev-temp>
+        <lev-temp num="14">-8.4</lev-temp>
+        <lev-temp num="15">-8.31</lev-temp>
+        <lev-temp num="16">-8.23</lev-temp>
+        <lev-temp num="17">-8.17</lev-temp>
+        <lev-temp num="18">-8.12</lev-temp>
         <lev-temp num="19">-8.1</lev-temp>
-        <lev-temp num="20">-8.09</lev-temp>
-        <lev-temp num="21">-8.09</lev-temp>
+        <lev-temp num="20">-8.08</lev-temp>
+        <lev-temp num="21">-8.08</lev-temp>
         <lev-temp num="22">-8.1</lev-temp>
         <lev-temp num="23">-8.12</lev-temp>
         <lev-temp num="24">-8.15</lev-temp>
         <lev-temp num="25">-8.19</lev-temp>
-        <lev-temp num="26">-8.24</lev-temp>
+        <lev-temp num="26">-8.23</lev-temp>
         <lev-temp num="27">-8.29</lev-temp>
         <lev-temp num="28">-8.35</lev-temp>
         <lev-temp num="29">-8.41</lev-temp>
-        <lev-temp num="30">-8.49</lev-temp>
+        <lev-temp num="30">-8.48</lev-temp>
         <lev-temp num="31">-8.56</lev-temp>
         <lev-temp num="32">-8.64</lev-temp>
         <lev-temp num="33">-8.71</lev-temp>
         <lev-temp num="34">-8.79</lev-temp>
         <lev-temp num="35">-8.87</lev-temp>
         <lev-temp num="36">-8.94</lev-temp>
-        <lev-temp num="37">-9.0</lev-temp>
+        <lev-temp num="37">-8.99</lev-temp>
         <lev-temp num="38">-9.04</lev-temp>
         <lev-temp num="39">-9.08</lev-temp>
         <lev-temp num="40">-9.09</lev-temp>
@@ -6713,48 +6713,48 @@
       <at>-9.0</at>
       <td>-11.0</td>
       <ws>26.0</ws>
-      <sn>0.05</sn>
+      <sn>0.04</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.16</ir>
-      <fv>3.46</fv>
-      <fc>45.28</fc>
+      <fv>2.9</fv>
+      <fc>47.94</fc>
       <fa>10.0</fa>
-      <fg>-19.5</fg>
-      <bb>-244.4</bb>
+      <fg>-17.88</fg>
+      <bb>-244.89</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.52</st>
+      <st>-11.39</st>
       <sst>-9.0</sst>
       <tl>
-        <lev-temp num="0">-11.52</lev-temp>
-        <lev-temp num="1">-11.27</lev-temp>
-        <lev-temp num="2">-11.02</lev-temp>
-        <lev-temp num="3">-10.77</lev-temp>
-        <lev-temp num="4">-10.52</lev-temp>
-        <lev-temp num="5">-10.26</lev-temp>
-        <lev-temp num="6">-10.01</lev-temp>
-        <lev-temp num="7">-9.77</lev-temp>
-        <lev-temp num="8">-9.54</lev-temp>
-        <lev-temp num="9">-9.33</lev-temp>
-        <lev-temp num="10">-9.13</lev-temp>
-        <lev-temp num="11">-8.95</lev-temp>
-        <lev-temp num="12">-8.78</lev-temp>
-        <lev-temp num="13">-8.64</lev-temp>
-        <lev-temp num="14">-8.52</lev-temp>
-        <lev-temp num="15">-8.41</lev-temp>
-        <lev-temp num="16">-8.32</lev-temp>
-        <lev-temp num="17">-8.26</lev-temp>
-        <lev-temp num="18">-8.21</lev-temp>
-        <lev-temp num="19">-8.17</lev-temp>
+        <lev-temp num="0">-11.39</lev-temp>
+        <lev-temp num="1">-11.16</lev-temp>
+        <lev-temp num="2">-10.92</lev-temp>
+        <lev-temp num="3">-10.68</lev-temp>
+        <lev-temp num="4">-10.44</lev-temp>
+        <lev-temp num="5">-10.2</lev-temp>
+        <lev-temp num="6">-9.95</lev-temp>
+        <lev-temp num="7">-9.72</lev-temp>
+        <lev-temp num="8">-9.5</lev-temp>
+        <lev-temp num="9">-9.29</lev-temp>
+        <lev-temp num="10">-9.09</lev-temp>
+        <lev-temp num="11">-8.92</lev-temp>
+        <lev-temp num="12">-8.76</lev-temp>
+        <lev-temp num="13">-8.62</lev-temp>
+        <lev-temp num="14">-8.49</lev-temp>
+        <lev-temp num="15">-8.39</lev-temp>
+        <lev-temp num="16">-8.31</lev-temp>
+        <lev-temp num="17">-8.24</lev-temp>
+        <lev-temp num="18">-8.2</lev-temp>
+        <lev-temp num="19">-8.16</lev-temp>
         <lev-temp num="20">-8.15</lev-temp>
-        <lev-temp num="21">-8.15</lev-temp>
+        <lev-temp num="21">-8.14</lev-temp>
         <lev-temp num="22">-8.15</lev-temp>
         <lev-temp num="23">-8.17</lev-temp>
-        <lev-temp num="24">-8.2</lev-temp>
+        <lev-temp num="24">-8.19</lev-temp>
         <lev-temp num="25">-8.23</lev-temp>
         <lev-temp num="26">-8.27</lev-temp>
         <lev-temp num="27">-8.32</lev-temp>
@@ -6783,46 +6783,46 @@
       <at>-9.0</at>
       <td>-11.0</td>
       <ws>26.0</ws>
-      <sn>0.06</sn>
+      <sn>0.05</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.16</ir>
-      <fv>3.4</fv>
-      <fc>45.16</fc>
+      <fv>2.78</fv>
+      <fc>47.89</fc>
       <fa>10.0</fa>
-      <fg>-19.71</fg>
-      <bb>-244.43</bb>
+      <fg>-18.13</fg>
+      <bb>-244.96</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.51</st>
+      <st>-11.37</st>
       <sst>-8.95</sst>
       <tl>
-        <lev-temp num="0">-11.51</lev-temp>
-        <lev-temp num="1">-11.27</lev-temp>
-        <lev-temp num="2">-11.02</lev-temp>
-        <lev-temp num="3">-10.77</lev-temp>
-        <lev-temp num="4">-10.53</lev-temp>
-        <lev-temp num="5">-10.29</lev-temp>
-        <lev-temp num="6">-10.05</lev-temp>
-        <lev-temp num="7">-9.82</lev-temp>
-        <lev-temp num="8">-9.6</lev-temp>
-        <lev-temp num="9">-9.4</lev-temp>
-        <lev-temp num="10">-9.2</lev-temp>
-        <lev-temp num="11">-9.03</lev-temp>
-        <lev-temp num="12">-8.87</lev-temp>
-        <lev-temp num="13">-8.73</lev-temp>
-        <lev-temp num="14">-8.6</lev-temp>
-        <lev-temp num="15">-8.49</lev-temp>
-        <lev-temp num="16">-8.41</lev-temp>
-        <lev-temp num="17">-8.33</lev-temp>
-        <lev-temp num="18">-8.28</lev-temp>
-        <lev-temp num="19">-8.24</lev-temp>
-        <lev-temp num="20">-8.22</lev-temp>
-        <lev-temp num="21">-8.21</lev-temp>
-        <lev-temp num="22">-8.21</lev-temp>
+        <lev-temp num="0">-11.37</lev-temp>
+        <lev-temp num="1">-11.14</lev-temp>
+        <lev-temp num="2">-10.91</lev-temp>
+        <lev-temp num="3">-10.68</lev-temp>
+        <lev-temp num="4">-10.44</lev-temp>
+        <lev-temp num="5">-10.21</lev-temp>
+        <lev-temp num="6">-9.99</lev-temp>
+        <lev-temp num="7">-9.76</lev-temp>
+        <lev-temp num="8">-9.55</lev-temp>
+        <lev-temp num="9">-9.35</lev-temp>
+        <lev-temp num="10">-9.17</lev-temp>
+        <lev-temp num="11">-8.99</lev-temp>
+        <lev-temp num="12">-8.84</lev-temp>
+        <lev-temp num="13">-8.7</lev-temp>
+        <lev-temp num="14">-8.58</lev-temp>
+        <lev-temp num="15">-8.48</lev-temp>
+        <lev-temp num="16">-8.39</lev-temp>
+        <lev-temp num="17">-8.32</lev-temp>
+        <lev-temp num="18">-8.27</lev-temp>
+        <lev-temp num="19">-8.23</lev-temp>
+        <lev-temp num="20">-8.21</lev-temp>
+        <lev-temp num="21">-8.2</lev-temp>
+        <lev-temp num="22">-8.2</lev-temp>
         <lev-temp num="23">-8.22</lev-temp>
         <lev-temp num="24">-8.24</lev-temp>
         <lev-temp num="25">-8.27</lev-temp>
@@ -6830,7 +6830,7 @@
         <lev-temp num="27">-8.35</lev-temp>
         <lev-temp num="28">-8.4</lev-temp>
         <lev-temp num="29">-8.46</lev-temp>
-        <lev-temp num="30">-8.52</lev-temp>
+        <lev-temp num="30">-8.51</lev-temp>
         <lev-temp num="31">-8.57</lev-temp>
         <lev-temp num="32">-8.63</lev-temp>
         <lev-temp num="33">-8.69</lev-temp>
@@ -6853,52 +6853,52 @@
       <at>-9.0</at>
       <td>-11.0</td>
       <ws>26.0</ws>
-      <sn>0.08</sn>
+      <sn>0.06</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.16</ir>
-      <fv>3.41</fv>
-      <fc>45.18</fc>
+      <fv>2.74</fv>
+      <fc>47.88</fc>
       <fa>10.0</fa>
-      <fg>-19.68</fg>
-      <bb>-244.42</bb>
+      <fg>-18.21</fg>
+      <bb>-244.99</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.51</st>
+      <st>-11.36</st>
       <sst>-8.92</sst>
       <tl>
-        <lev-temp num="0">-11.51</lev-temp>
-        <lev-temp num="1">-11.27</lev-temp>
-        <lev-temp num="2">-11.03</lev-temp>
-        <lev-temp num="3">-10.78</lev-temp>
-        <lev-temp num="4">-10.55</lev-temp>
-        <lev-temp num="5">-10.31</lev-temp>
-        <lev-temp num="6">-10.09</lev-temp>
-        <lev-temp num="7">-9.87</lev-temp>
-        <lev-temp num="8">-9.66</lev-temp>
-        <lev-temp num="9">-9.46</lev-temp>
-        <lev-temp num="10">-9.27</lev-temp>
-        <lev-temp num="11">-9.1</lev-temp>
-        <lev-temp num="12">-8.94</lev-temp>
-        <lev-temp num="13">-8.8</lev-temp>
-        <lev-temp num="14">-8.68</lev-temp>
-        <lev-temp num="15">-8.57</lev-temp>
-        <lev-temp num="16">-8.48</lev-temp>
-        <lev-temp num="17">-8.41</lev-temp>
-        <lev-temp num="18">-8.35</lev-temp>
-        <lev-temp num="19">-8.31</lev-temp>
-        <lev-temp num="20">-8.28</lev-temp>
+        <lev-temp num="0">-11.36</lev-temp>
+        <lev-temp num="1">-11.14</lev-temp>
+        <lev-temp num="2">-10.91</lev-temp>
+        <lev-temp num="3">-10.68</lev-temp>
+        <lev-temp num="4">-10.46</lev-temp>
+        <lev-temp num="5">-10.23</lev-temp>
+        <lev-temp num="6">-10.02</lev-temp>
+        <lev-temp num="7">-9.8</lev-temp>
+        <lev-temp num="8">-9.6</lev-temp>
+        <lev-temp num="9">-9.41</lev-temp>
+        <lev-temp num="10">-9.23</lev-temp>
+        <lev-temp num="11">-9.06</lev-temp>
+        <lev-temp num="12">-8.91</lev-temp>
+        <lev-temp num="13">-8.78</lev-temp>
+        <lev-temp num="14">-8.66</lev-temp>
+        <lev-temp num="15">-8.55</lev-temp>
+        <lev-temp num="16">-8.47</lev-temp>
+        <lev-temp num="17">-8.39</lev-temp>
+        <lev-temp num="18">-8.34</lev-temp>
+        <lev-temp num="19">-8.3</lev-temp>
+        <lev-temp num="20">-8.27</lev-temp>
         <lev-temp num="21">-8.26</lev-temp>
         <lev-temp num="22">-8.26</lev-temp>
         <lev-temp num="23">-8.27</lev-temp>
-        <lev-temp num="24">-8.29</lev-temp>
+        <lev-temp num="24">-8.28</lev-temp>
         <lev-temp num="25">-8.31</lev-temp>
-        <lev-temp num="26">-8.35</lev-temp>
+        <lev-temp num="26">-8.34</lev-temp>
         <lev-temp num="27">-8.38</lev-temp>
-        <lev-temp num="28">-8.43</lev-temp>
+        <lev-temp num="28">-8.42</lev-temp>
         <lev-temp num="29">-8.47</lev-temp>
         <lev-temp num="30">-8.52</lev-temp>
         <lev-temp num="31">-8.58</lev-temp>
@@ -6923,61 +6923,61 @@
       <at>-9.0</at>
       <td>-11.0</td>
       <ws>26.0</ws>
-      <sn>0.09</sn>
+      <sn>0.07</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.16</ir>
-      <fv>3.45</fv>
-      <fc>45.27</fc>
+      <fv>2.75</fv>
+      <fc>47.88</fc>
       <fa>10.0</fa>
-      <fg>-19.53</fg>
-      <bb>-244.4</bb>
+      <fg>-18.19</fg>
+      <bb>-244.98</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.52</st>
+      <st>-11.37</st>
       <sst>-8.9</sst>
       <tl>
-        <lev-temp num="0">-11.52</lev-temp>
-        <lev-temp num="1">-11.28</lev-temp>
-        <lev-temp num="2">-11.04</lev-temp>
-        <lev-temp num="3">-10.8</lev-temp>
-        <lev-temp num="4">-10.57</lev-temp>
-        <lev-temp num="5">-10.34</lev-temp>
-        <lev-temp num="6">-10.12</lev-temp>
-        <lev-temp num="7">-9.91</lev-temp>
-        <lev-temp num="8">-9.71</lev-temp>
-        <lev-temp num="9">-9.51</lev-temp>
-        <lev-temp num="10">-9.33</lev-temp>
-        <lev-temp num="11">-9.17</lev-temp>
-        <lev-temp num="12">-9.01</lev-temp>
-        <lev-temp num="13">-8.88</lev-temp>
-        <lev-temp num="14">-8.75</lev-temp>
-        <lev-temp num="15">-8.65</lev-temp>
-        <lev-temp num="16">-8.56</lev-temp>
-        <lev-temp num="17">-8.48</lev-temp>
-        <lev-temp num="18">-8.42</lev-temp>
-        <lev-temp num="19">-8.37</lev-temp>
-        <lev-temp num="20">-8.34</lev-temp>
-        <lev-temp num="21">-8.32</lev-temp>
-        <lev-temp num="22">-8.32</lev-temp>
-        <lev-temp num="23">-8.32</lev-temp>
+        <lev-temp num="0">-11.37</lev-temp>
+        <lev-temp num="1">-11.14</lev-temp>
+        <lev-temp num="2">-10.91</lev-temp>
+        <lev-temp num="3">-10.69</lev-temp>
+        <lev-temp num="4">-10.47</lev-temp>
+        <lev-temp num="5">-10.26</lev-temp>
+        <lev-temp num="6">-10.05</lev-temp>
+        <lev-temp num="7">-9.84</lev-temp>
+        <lev-temp num="8">-9.65</lev-temp>
+        <lev-temp num="9">-9.46</lev-temp>
+        <lev-temp num="10">-9.29</lev-temp>
+        <lev-temp num="11">-9.13</lev-temp>
+        <lev-temp num="12">-8.98</lev-temp>
+        <lev-temp num="13">-8.85</lev-temp>
+        <lev-temp num="14">-8.73</lev-temp>
+        <lev-temp num="15">-8.62</lev-temp>
+        <lev-temp num="16">-8.54</lev-temp>
+        <lev-temp num="17">-8.46</lev-temp>
+        <lev-temp num="18">-8.4</lev-temp>
+        <lev-temp num="19">-8.36</lev-temp>
+        <lev-temp num="20">-8.33</lev-temp>
+        <lev-temp num="21">-8.31</lev-temp>
+        <lev-temp num="22">-8.31</lev-temp>
+        <lev-temp num="23">-8.31</lev-temp>
         <lev-temp num="24">-8.33</lev-temp>
         <lev-temp num="25">-8.35</lev-temp>
-        <lev-temp num="26">-8.38</lev-temp>
+        <lev-temp num="26">-8.37</lev-temp>
         <lev-temp num="27">-8.41</lev-temp>
         <lev-temp num="28">-8.45</lev-temp>
         <lev-temp num="29">-8.49</lev-temp>
         <lev-temp num="30">-8.53</lev-temp>
         <lev-temp num="31">-8.58</lev-temp>
-        <lev-temp num="32">-8.63</lev-temp>
+        <lev-temp num="32">-8.62</lev-temp>
         <lev-temp num="33">-8.67</lev-temp>
         <lev-temp num="34">-8.72</lev-temp>
         <lev-temp num="35">-8.76</lev-temp>
         <lev-temp num="36">-8.8</lev-temp>
-        <lev-temp num="37">-8.84</lev-temp>
+        <lev-temp num="37">-8.83</lev-temp>
         <lev-temp num="38">-8.87</lev-temp>
         <lev-temp num="39">-8.9</lev-temp>
         <lev-temp num="40">-8.92</lev-temp>
@@ -6993,51 +6993,51 @@
       <at>-9.0</at>
       <td>-11.0</td>
       <ws>26.0</ws>
-      <sn>0.1</sn>
+      <sn>0.08</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>166.15</ir>
-      <fv>3.51</fv>
-      <fc>45.41</fc>
+      <fv>2.8</fv>
+      <fc>47.9</fc>
       <fa>10.0</fa>
-      <fg>-19.3</fg>
-      <bb>-244.37</bb>
+      <fg>-18.11</fg>
+      <bb>-244.95</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.53</st>
+      <st>-11.37</st>
       <sst>-8.88</sst>
       <tl>
-        <lev-temp num="0">-11.53</lev-temp>
-        <lev-temp num="1">-11.29</lev-temp>
-        <lev-temp num="2">-11.05</lev-temp>
-        <lev-temp num="3">-10.82</lev-temp>
-        <lev-temp num="4">-10.59</lev-temp>
-        <lev-temp num="5">-10.37</lev-temp>
-        <lev-temp num="6">-10.16</lev-temp>
-        <lev-temp num="7">-9.95</lev-temp>
-        <lev-temp num="8">-9.76</lev-temp>
-        <lev-temp num="9">-9.57</lev-temp>
-        <lev-temp num="10">-9.39</lev-temp>
-        <lev-temp num="11">-9.23</lev-temp>
-        <lev-temp num="12">-9.08</lev-temp>
-        <lev-temp num="13">-8.94</lev-temp>
-        <lev-temp num="14">-8.82</lev-temp>
-        <lev-temp num="15">-8.72</lev-temp>
-        <lev-temp num="16">-8.62</lev-temp>
-        <lev-temp num="17">-8.55</lev-temp>
-        <lev-temp num="18">-8.48</lev-temp>
-        <lev-temp num="19">-8.43</lev-temp>
-        <lev-temp num="20">-8.4</lev-temp>
-        <lev-temp num="21">-8.38</lev-temp>
-        <lev-temp num="22">-8.37</lev-temp>
-        <lev-temp num="23">-8.37</lev-temp>
+        <lev-temp num="0">-11.37</lev-temp>
+        <lev-temp num="1">-11.15</lev-temp>
+        <lev-temp num="2">-10.93</lev-temp>
+        <lev-temp num="3">-10.71</lev-temp>
+        <lev-temp num="4">-10.49</lev-temp>
+        <lev-temp num="5">-10.28</lev-temp>
+        <lev-temp num="6">-10.08</lev-temp>
+        <lev-temp num="7">-9.88</lev-temp>
+        <lev-temp num="8">-9.69</lev-temp>
+        <lev-temp num="9">-9.51</lev-temp>
+        <lev-temp num="10">-9.35</lev-temp>
+        <lev-temp num="11">-9.19</lev-temp>
+        <lev-temp num="12">-9.04</lev-temp>
+        <lev-temp num="13">-8.91</lev-temp>
+        <lev-temp num="14">-8.8</lev-temp>
+        <lev-temp num="15">-8.69</lev-temp>
+        <lev-temp num="16">-8.6</lev-temp>
+        <lev-temp num="17">-8.53</lev-temp>
+        <lev-temp num="18">-8.47</lev-temp>
+        <lev-temp num="19">-8.42</lev-temp>
+        <lev-temp num="20">-8.39</lev-temp>
+        <lev-temp num="21">-8.37</lev-temp>
+        <lev-temp num="22">-8.36</lev-temp>
+        <lev-temp num="23">-8.36</lev-temp>
         <lev-temp num="24">-8.37</lev-temp>
-        <lev-temp num="25">-8.39</lev-temp>
+        <lev-temp num="25">-8.38</lev-temp>
         <lev-temp num="26">-8.41</lev-temp>
-        <lev-temp num="27">-8.44</lev-temp>
+        <lev-temp num="27">-8.43</lev-temp>
         <lev-temp num="28">-8.47</lev-temp>
         <lev-temp num="29">-8.5</lev-temp>
         <lev-temp num="30">-8.54</lev-temp>
@@ -7063,47 +7063,47 @@
       <at>-8.35</at>
       <td>-10.35</td>
       <ws>26.97</ws>
-      <sn>0.12</sn>
+      <sn>0.1</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>168.42</ir>
-      <fv>6.87</fv>
-      <fc>54.55</fc>
+      <fv>6.35</fv>
+      <fc>55.31</fc>
       <fa>10.0</fa>
-      <fg>-5.27</fg>
-      <bb>-245.1</bb>
+      <fg>-5.52</fg>
+      <bb>-245.59</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-11.33</st>
+      <st>-11.19</st>
       <sst>-8.84</sst>
       <tl>
-        <lev-temp num="0">-11.33</lev-temp>
-        <lev-temp num="1">-11.2</lev-temp>
-        <lev-temp num="2">-11.02</lev-temp>
-        <lev-temp num="3">-10.82</lev-temp>
-        <lev-temp num="4">-10.61</lev-temp>
-        <lev-temp num="5">-10.4</lev-temp>
-        <lev-temp num="6">-10.19</lev-temp>
-        <lev-temp num="7">-9.99</lev-temp>
-        <lev-temp num="8">-9.8</lev-temp>
-        <lev-temp num="9">-9.62</lev-temp>
-        <lev-temp num="10">-9.45</lev-temp>
-        <lev-temp num="11">-9.29</lev-temp>
-        <lev-temp num="12">-9.14</lev-temp>
-        <lev-temp num="13">-9.01</lev-temp>
-        <lev-temp num="14">-8.89</lev-temp>
-        <lev-temp num="15">-8.78</lev-temp>
-        <lev-temp num="16">-8.69</lev-temp>
-        <lev-temp num="17">-8.61</lev-temp>
-        <lev-temp num="18">-8.55</lev-temp>
-        <lev-temp num="19">-8.49</lev-temp>
-        <lev-temp num="20">-8.45</lev-temp>
-        <lev-temp num="21">-8.43</lev-temp>
+        <lev-temp num="0">-11.2</lev-temp>
+        <lev-temp num="1">-11.07</lev-temp>
+        <lev-temp num="2">-10.9</lev-temp>
+        <lev-temp num="3">-10.71</lev-temp>
+        <lev-temp num="4">-10.51</lev-temp>
+        <lev-temp num="5">-10.31</lev-temp>
+        <lev-temp num="6">-10.11</lev-temp>
+        <lev-temp num="7">-9.92</lev-temp>
+        <lev-temp num="8">-9.74</lev-temp>
+        <lev-temp num="9">-9.56</lev-temp>
+        <lev-temp num="10">-9.4</lev-temp>
+        <lev-temp num="11">-9.24</lev-temp>
+        <lev-temp num="12">-9.1</lev-temp>
+        <lev-temp num="13">-8.97</lev-temp>
+        <lev-temp num="14">-8.86</lev-temp>
+        <lev-temp num="15">-8.76</lev-temp>
+        <lev-temp num="16">-8.67</lev-temp>
+        <lev-temp num="17">-8.59</lev-temp>
+        <lev-temp num="18">-8.53</lev-temp>
+        <lev-temp num="19">-8.48</lev-temp>
+        <lev-temp num="20">-8.44</lev-temp>
+        <lev-temp num="21">-8.42</lev-temp>
         <lev-temp num="22">-8.41</lev-temp>
-        <lev-temp num="23">-8.41</lev-temp>
+        <lev-temp num="23">-8.4</lev-temp>
         <lev-temp num="24">-8.41</lev-temp>
         <lev-temp num="25">-8.42</lev-temp>
         <lev-temp num="26">-8.44</lev-temp>
@@ -7112,7 +7112,7 @@
         <lev-temp num="29">-8.52</lev-temp>
         <lev-temp num="30">-8.55</lev-temp>
         <lev-temp num="31">-8.59</lev-temp>
-        <lev-temp num="32">-8.63</lev-temp>
+        <lev-temp num="32">-8.62</lev-temp>
         <lev-temp num="33">-8.66</lev-temp>
         <lev-temp num="34">-8.7</lev-temp>
         <lev-temp num="35">-8.74</lev-temp>
@@ -7133,59 +7133,59 @@
       <at>-7.68</at>
       <td>-9.68</td>
       <ws>27.97</ws>
-      <sn>0.15</sn>
+      <sn>0.13</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>170.74</ir>
-      <fv>9.64</fv>
-      <fc>61.85</fc>
+      <fv>9.24</fv>
+      <fc>62.56</fc>
       <fa>10.0</fa>
-      <fg>5.75</fg>
-      <bb>-246.48</bb>
+      <fg>5.63</fg>
+      <bb>-246.91</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-10.96</st>
+      <st>-10.84</st>
       <sst>-8.7</sst>
       <tl>
-        <lev-temp num="0">-10.97</lev-temp>
-        <lev-temp num="1">-10.95</lev-temp>
-        <lev-temp num="2">-10.86</lev-temp>
-        <lev-temp num="3">-10.73</lev-temp>
-        <lev-temp num="4">-10.57</lev-temp>
-        <lev-temp num="5">-10.39</lev-temp>
-        <lev-temp num="6">-10.21</lev-temp>
-        <lev-temp num="7">-10.02</lev-temp>
-        <lev-temp num="8">-9.84</lev-temp>
-        <lev-temp num="9">-9.67</lev-temp>
-        <lev-temp num="10">-9.5</lev-temp>
-        <lev-temp num="11">-9.34</lev-temp>
-        <lev-temp num="12">-9.2</lev-temp>
-        <lev-temp num="13">-9.07</lev-temp>
-        <lev-temp num="14">-8.95</lev-temp>
-        <lev-temp num="15">-8.84</lev-temp>
-        <lev-temp num="16">-8.75</lev-temp>
-        <lev-temp num="17">-8.67</lev-temp>
-        <lev-temp num="18">-8.6</lev-temp>
-        <lev-temp num="19">-8.55</lev-temp>
-        <lev-temp num="20">-8.51</lev-temp>
-        <lev-temp num="21">-8.48</lev-temp>
-        <lev-temp num="22">-8.46</lev-temp>
-        <lev-temp num="23">-8.45</lev-temp>
-        <lev-temp num="24">-8.45</lev-temp>
-        <lev-temp num="25">-8.46</lev-temp>
-        <lev-temp num="26">-8.47</lev-temp>
-        <lev-temp num="27">-8.49</lev-temp>
+        <lev-temp num="0">-10.85</lev-temp>
+        <lev-temp num="1">-10.83</lev-temp>
+        <lev-temp num="2">-10.75</lev-temp>
+        <lev-temp num="3">-10.62</lev-temp>
+        <lev-temp num="4">-10.47</lev-temp>
+        <lev-temp num="5">-10.3</lev-temp>
+        <lev-temp num="6">-10.12</lev-temp>
+        <lev-temp num="7">-9.95</lev-temp>
+        <lev-temp num="8">-9.77</lev-temp>
+        <lev-temp num="9">-9.6</lev-temp>
+        <lev-temp num="10">-9.45</lev-temp>
+        <lev-temp num="11">-9.3</lev-temp>
+        <lev-temp num="12">-9.16</lev-temp>
+        <lev-temp num="13">-9.03</lev-temp>
+        <lev-temp num="14">-8.92</lev-temp>
+        <lev-temp num="15">-8.82</lev-temp>
+        <lev-temp num="16">-8.73</lev-temp>
+        <lev-temp num="17">-8.65</lev-temp>
+        <lev-temp num="18">-8.59</lev-temp>
+        <lev-temp num="19">-8.53</lev-temp>
+        <lev-temp num="20">-8.49</lev-temp>
+        <lev-temp num="21">-8.47</lev-temp>
+        <lev-temp num="22">-8.45</lev-temp>
+        <lev-temp num="23">-8.44</lev-temp>
+        <lev-temp num="24">-8.44</lev-temp>
+        <lev-temp num="25">-8.45</lev-temp>
+        <lev-temp num="26">-8.46</lev-temp>
+        <lev-temp num="27">-8.48</lev-temp>
         <lev-temp num="28">-8.51</lev-temp>
-        <lev-temp num="29">-8.54</lev-temp>
+        <lev-temp num="29">-8.53</lev-temp>
         <lev-temp num="30">-8.56</lev-temp>
-        <lev-temp num="31">-8.6</lev-temp>
+        <lev-temp num="31">-8.59</lev-temp>
         <lev-temp num="32">-8.63</lev-temp>
         <lev-temp num="33">-8.66</lev-temp>
         <lev-temp num="34">-8.69</lev-temp>
-        <lev-temp num="35">-8.72</lev-temp>
+        <lev-temp num="35">-8.71</lev-temp>
         <lev-temp num="36">-8.73</lev-temp>
         <lev-temp num="37">-8.74</lev-temp>
         <lev-temp num="38">-8.73</lev-temp>
@@ -7203,55 +7203,55 @@
       <at>-7.02</at>
       <td>-9.02</td>
       <ws>28.97</ws>
-      <sn>0.19</sn>
+      <sn>0.17</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.07</ir>
-      <fv>12.23</fv>
-      <fc>68.31</fc>
+      <fv>11.94</fv>
+      <fc>69.44</fc>
       <fa>10.0</fa>
-      <fg>15.45</fg>
-      <bb>-248.16</bb>
+      <fg>15.85</fg>
+      <bb>-248.59</bb>
       <fp>0.0</fp>
       <rc>7</rc>
-      <st>-10.51</st>
+      <st>-10.39</st>
       <sst>-8.47</sst>
       <tl>
-        <lev-temp num="0">-10.52</lev-temp>
-        <lev-temp num="1">-10.61</lev-temp>
-        <lev-temp num="2">-10.62</lev-temp>
-        <lev-temp num="3">-10.56</lev-temp>
-        <lev-temp num="4">-10.46</lev-temp>
-        <lev-temp num="5">-10.33</lev-temp>
-        <lev-temp num="6">-10.18</lev-temp>
-        <lev-temp num="7">-10.02</lev-temp>
-        <lev-temp num="8">-9.86</lev-temp>
-        <lev-temp num="9">-9.7</lev-temp>
-        <lev-temp num="10">-9.54</lev-temp>
-        <lev-temp num="11">-9.39</lev-temp>
-        <lev-temp num="12">-9.25</lev-temp>
-        <lev-temp num="13">-9.12</lev-temp>
-        <lev-temp num="14">-9.01</lev-temp>
-        <lev-temp num="15">-8.9</lev-temp>
-        <lev-temp num="16">-8.81</lev-temp>
-        <lev-temp num="17">-8.73</lev-temp>
-        <lev-temp num="18">-8.66</lev-temp>
-        <lev-temp num="19">-8.6</lev-temp>
-        <lev-temp num="20">-8.56</lev-temp>
-        <lev-temp num="21">-8.53</lev-temp>
-        <lev-temp num="22">-8.51</lev-temp>
-        <lev-temp num="23">-8.49</lev-temp>
-        <lev-temp num="24">-8.49</lev-temp>
-        <lev-temp num="25">-8.49</lev-temp>
-        <lev-temp num="26">-8.5</lev-temp>
+        <lev-temp num="0">-10.41</lev-temp>
+        <lev-temp num="1">-10.5</lev-temp>
+        <lev-temp num="2">-10.51</lev-temp>
+        <lev-temp num="3">-10.46</lev-temp>
+        <lev-temp num="4">-10.37</lev-temp>
+        <lev-temp num="5">-10.24</lev-temp>
+        <lev-temp num="6">-10.1</lev-temp>
+        <lev-temp num="7">-9.95</lev-temp>
+        <lev-temp num="8">-9.79</lev-temp>
+        <lev-temp num="9">-9.64</lev-temp>
+        <lev-temp num="10">-9.49</lev-temp>
+        <lev-temp num="11">-9.34</lev-temp>
+        <lev-temp num="12">-9.21</lev-temp>
+        <lev-temp num="13">-9.09</lev-temp>
+        <lev-temp num="14">-8.97</lev-temp>
+        <lev-temp num="15">-8.87</lev-temp>
+        <lev-temp num="16">-8.78</lev-temp>
+        <lev-temp num="17">-8.71</lev-temp>
+        <lev-temp num="18">-8.64</lev-temp>
+        <lev-temp num="19">-8.59</lev-temp>
+        <lev-temp num="20">-8.54</lev-temp>
+        <lev-temp num="21">-8.51</lev-temp>
+        <lev-temp num="22">-8.49</lev-temp>
+        <lev-temp num="23">-8.48</lev-temp>
+        <lev-temp num="24">-8.48</lev-temp>
+        <lev-temp num="25">-8.48</lev-temp>
+        <lev-temp num="26">-8.49</lev-temp>
         <lev-temp num="27">-8.51</lev-temp>
         <lev-temp num="28">-8.53</lev-temp>
         <lev-temp num="29">-8.55</lev-temp>
         <lev-temp num="30">-8.57</lev-temp>
-        <lev-temp num="31">-8.6</lev-temp>
+        <lev-temp num="31">-8.59</lev-temp>
         <lev-temp num="32">-8.62</lev-temp>
         <lev-temp num="33">-8.64</lev-temp>
         <lev-temp num="34">-8.65</lev-temp>
@@ -7273,64 +7273,64 @@
       <at>-7.0</at>
       <td>-9.0</td>
       <ws>29.0</ws>
-      <sn>0.23</sn>
+      <sn>0.21</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.12</ir>
-      <fv>10.48</fv>
-      <fc>64.4</fc>
+      <fv>10.21</fv>
+      <fc>67.36</fc>
       <fa>10.0</fa>
-      <fg>8.84</fg>
-      <bb>-249.17</bb>
+      <fg>10.99</fg>
+      <bb>-249.71</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-10.25</st>
+      <st>-10.11</st>
       <sst>-8.22</sst>
       <tl>
-        <lev-temp num="0">-10.25</lev-temp>
-        <lev-temp num="1">-10.33</lev-temp>
-        <lev-temp num="2">-10.36</lev-temp>
-        <lev-temp num="3">-10.36</lev-temp>
-        <lev-temp num="4">-10.31</lev-temp>
-        <lev-temp num="5">-10.22</lev-temp>
-        <lev-temp num="6">-10.12</lev-temp>
-        <lev-temp num="7">-9.99</lev-temp>
-        <lev-temp num="8">-9.85</lev-temp>
-        <lev-temp num="9">-9.71</lev-temp>
-        <lev-temp num="10">-9.57</lev-temp>
-        <lev-temp num="11">-9.43</lev-temp>
-        <lev-temp num="12">-9.3</lev-temp>
-        <lev-temp num="13">-9.17</lev-temp>
-        <lev-temp num="14">-9.06</lev-temp>
-        <lev-temp num="15">-8.96</lev-temp>
-        <lev-temp num="16">-8.86</lev-temp>
-        <lev-temp num="17">-8.78</lev-temp>
-        <lev-temp num="18">-8.71</lev-temp>
-        <lev-temp num="19">-8.65</lev-temp>
-        <lev-temp num="20">-8.61</lev-temp>
-        <lev-temp num="21">-8.57</lev-temp>
-        <lev-temp num="22">-8.55</lev-temp>
-        <lev-temp num="23">-8.53</lev-temp>
+        <lev-temp num="0">-10.11</lev-temp>
+        <lev-temp num="1">-10.21</lev-temp>
+        <lev-temp num="2">-10.25</lev-temp>
+        <lev-temp num="3">-10.25</lev-temp>
+        <lev-temp num="4">-10.21</lev-temp>
+        <lev-temp num="5">-10.14</lev-temp>
+        <lev-temp num="6">-10.03</lev-temp>
+        <lev-temp num="7">-9.91</lev-temp>
+        <lev-temp num="8">-9.78</lev-temp>
+        <lev-temp num="9">-9.65</lev-temp>
+        <lev-temp num="10">-9.51</lev-temp>
+        <lev-temp num="11">-9.38</lev-temp>
+        <lev-temp num="12">-9.25</lev-temp>
+        <lev-temp num="13">-9.13</lev-temp>
+        <lev-temp num="14">-9.02</lev-temp>
+        <lev-temp num="15">-8.92</lev-temp>
+        <lev-temp num="16">-8.84</lev-temp>
+        <lev-temp num="17">-8.76</lev-temp>
+        <lev-temp num="18">-8.69</lev-temp>
+        <lev-temp num="19">-8.64</lev-temp>
+        <lev-temp num="20">-8.59</lev-temp>
+        <lev-temp num="21">-8.56</lev-temp>
+        <lev-temp num="22">-8.54</lev-temp>
+        <lev-temp num="23">-8.52</lev-temp>
         <lev-temp num="24">-8.52</lev-temp>
-        <lev-temp num="25">-8.52</lev-temp>
-        <lev-temp num="26">-8.53</lev-temp>
+        <lev-temp num="25">-8.51</lev-temp>
+        <lev-temp num="26">-8.52</lev-temp>
         <lev-temp num="27">-8.53</lev-temp>
         <lev-temp num="28">-8.54</lev-temp>
-        <lev-temp num="29">-8.56</lev-temp>
+        <lev-temp num="29">-8.55</lev-temp>
         <lev-temp num="30">-8.57</lev-temp>
-        <lev-temp num="31">-8.59</lev-temp>
+        <lev-temp num="31">-8.58</lev-temp>
         <lev-temp num="32">-8.59</lev-temp>
-        <lev-temp num="33">-8.6</lev-temp>
+        <lev-temp num="33">-8.59</lev-temp>
         <lev-temp num="34">-8.59</lev-temp>
         <lev-temp num="35">-8.57</lev-temp>
         <lev-temp num="36">-8.52</lev-temp>
         <lev-temp num="37">-8.46</lev-temp>
         <lev-temp num="38">-8.36</lev-temp>
         <lev-temp num="39">-8.22</lev-temp>
-        <lev-temp num="40">-8.05</lev-temp>
+        <lev-temp num="40">-8.04</lev-temp>
         <lev-temp num="41">-7.83</lev-temp>
         <lev-temp num="42">-7.58</lev-temp>
         <lev-temp num="43">-7.3</lev-temp>
@@ -7343,59 +7343,59 @@
       <at>-7.0</at>
       <td>-9.0</td>
       <ws>29.0</ws>
-      <sn>0.26</sn>
+      <sn>0.24</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.12</ir>
-      <fv>9.58</fv>
-      <fc>62.41</fc>
+      <fv>9.17</fv>
+      <fc>66.69</fc>
       <fa>10.0</fa>
-      <fg>5.49</fg>
-      <bb>-249.62</bb>
+      <fg>8.66</fg>
+      <bb>-250.33</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-10.13</st>
+      <st>-9.95</st>
       <sst>-8.04</sst>
       <tl>
-        <lev-temp num="0">-10.13</lev-temp>
-        <lev-temp num="1">-10.18</lev-temp>
-        <lev-temp num="2">-10.21</lev-temp>
-        <lev-temp num="3">-10.2</lev-temp>
-        <lev-temp num="4">-10.17</lev-temp>
-        <lev-temp num="5">-10.11</lev-temp>
-        <lev-temp num="6">-10.03</lev-temp>
-        <lev-temp num="7">-9.93</lev-temp>
-        <lev-temp num="8">-9.82</lev-temp>
-        <lev-temp num="9">-9.7</lev-temp>
-        <lev-temp num="10">-9.58</lev-temp>
-        <lev-temp num="11">-9.45</lev-temp>
-        <lev-temp num="12">-9.33</lev-temp>
-        <lev-temp num="13">-9.21</lev-temp>
-        <lev-temp num="14">-9.1</lev-temp>
-        <lev-temp num="15">-9.0</lev-temp>
-        <lev-temp num="16">-8.91</lev-temp>
-        <lev-temp num="17">-8.83</lev-temp>
-        <lev-temp num="18">-8.76</lev-temp>
-        <lev-temp num="19">-8.7</lev-temp>
-        <lev-temp num="20">-8.65</lev-temp>
-        <lev-temp num="21">-8.61</lev-temp>
-        <lev-temp num="22">-8.59</lev-temp>
-        <lev-temp num="23">-8.57</lev-temp>
-        <lev-temp num="24">-8.56</lev-temp>
-        <lev-temp num="25">-8.55</lev-temp>
-        <lev-temp num="26">-8.55</lev-temp>
-        <lev-temp num="27">-8.55</lev-temp>
+        <lev-temp num="0">-9.95</lev-temp>
+        <lev-temp num="1">-10.03</lev-temp>
+        <lev-temp num="2">-10.07</lev-temp>
+        <lev-temp num="3">-10.09</lev-temp>
+        <lev-temp num="4">-10.07</lev-temp>
+        <lev-temp num="5">-10.02</lev-temp>
+        <lev-temp num="6">-9.95</lev-temp>
+        <lev-temp num="7">-9.86</lev-temp>
+        <lev-temp num="8">-9.75</lev-temp>
+        <lev-temp num="9">-9.64</lev-temp>
+        <lev-temp num="10">-9.52</lev-temp>
+        <lev-temp num="11">-9.4</lev-temp>
+        <lev-temp num="12">-9.28</lev-temp>
+        <lev-temp num="13">-9.17</lev-temp>
+        <lev-temp num="14">-9.07</lev-temp>
+        <lev-temp num="15">-8.97</lev-temp>
+        <lev-temp num="16">-8.88</lev-temp>
+        <lev-temp num="17">-8.81</lev-temp>
+        <lev-temp num="18">-8.74</lev-temp>
+        <lev-temp num="19">-8.68</lev-temp>
+        <lev-temp num="20">-8.64</lev-temp>
+        <lev-temp num="21">-8.6</lev-temp>
+        <lev-temp num="22">-8.58</lev-temp>
+        <lev-temp num="23">-8.56</lev-temp>
+        <lev-temp num="24">-8.55</lev-temp>
+        <lev-temp num="25">-8.54</lev-temp>
+        <lev-temp num="26">-8.54</lev-temp>
+        <lev-temp num="27">-8.54</lev-temp>
         <lev-temp num="28">-8.55</lev-temp>
-        <lev-temp num="29">-8.56</lev-temp>
-        <lev-temp num="30">-8.56</lev-temp>
-        <lev-temp num="31">-8.56</lev-temp>
+        <lev-temp num="29">-8.55</lev-temp>
+        <lev-temp num="30">-8.55</lev-temp>
+        <lev-temp num="31">-8.55</lev-temp>
         <lev-temp num="32">-8.55</lev-temp>
         <lev-temp num="33">-8.53</lev-temp>
         <lev-temp num="34">-8.5</lev-temp>
-        <lev-temp num="35">-8.46</lev-temp>
+        <lev-temp num="35">-8.45</lev-temp>
         <lev-temp num="36">-8.39</lev-temp>
         <lev-temp num="37">-8.3</lev-temp>
         <lev-temp num="38">-8.18</lev-temp>
@@ -7413,58 +7413,58 @@
       <at>-7.0</at>
       <td>-9.0</td>
       <ws>29.0</ws>
-      <sn>0.3</sn>
+      <sn>0.27</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.12</ir>
-      <fv>9.01</fv>
-      <fc>61.16</fc>
+      <fv>8.31</fv>
+      <fc>65.34</fc>
       <fa>10.0</fa>
-      <fg>3.38</fg>
-      <bb>-249.91</bb>
+      <fg>6.04</fg>
+      <bb>-250.73</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-10.06</st>
+      <st>-9.84</st>
       <sst>-7.92</sst>
       <tl>
-        <lev-temp num="0">-10.06</lev-temp>
-        <lev-temp num="1">-10.09</lev-temp>
-        <lev-temp num="2">-10.1</lev-temp>
-        <lev-temp num="3">-10.09</lev-temp>
-        <lev-temp num="4">-10.07</lev-temp>
-        <lev-temp num="5">-10.02</lev-temp>
-        <lev-temp num="6">-9.95</lev-temp>
-        <lev-temp num="7">-9.87</lev-temp>
-        <lev-temp num="8">-9.78</lev-temp>
-        <lev-temp num="9">-9.68</lev-temp>
-        <lev-temp num="10">-9.57</lev-temp>
-        <lev-temp num="11">-9.46</lev-temp>
-        <lev-temp num="12">-9.35</lev-temp>
-        <lev-temp num="13">-9.24</lev-temp>
-        <lev-temp num="14">-9.14</lev-temp>
-        <lev-temp num="15">-9.04</lev-temp>
-        <lev-temp num="16">-8.96</lev-temp>
-        <lev-temp num="17">-8.88</lev-temp>
-        <lev-temp num="18">-8.81</lev-temp>
-        <lev-temp num="19">-8.75</lev-temp>
-        <lev-temp num="20">-8.7</lev-temp>
-        <lev-temp num="21">-8.65</lev-temp>
-        <lev-temp num="22">-8.62</lev-temp>
-        <lev-temp num="23">-8.6</lev-temp>
-        <lev-temp num="24">-8.58</lev-temp>
-        <lev-temp num="25">-8.57</lev-temp>
+        <lev-temp num="0">-9.84</lev-temp>
+        <lev-temp num="1">-9.9</lev-temp>
+        <lev-temp num="2">-9.94</lev-temp>
+        <lev-temp num="3">-9.96</lev-temp>
+        <lev-temp num="4">-9.95</lev-temp>
+        <lev-temp num="5">-9.91</lev-temp>
+        <lev-temp num="6">-9.86</lev-temp>
+        <lev-temp num="7">-9.79</lev-temp>
+        <lev-temp num="8">-9.71</lev-temp>
+        <lev-temp num="9">-9.61</lev-temp>
+        <lev-temp num="10">-9.51</lev-temp>
+        <lev-temp num="11">-9.4</lev-temp>
+        <lev-temp num="12">-9.3</lev-temp>
+        <lev-temp num="13">-9.2</lev-temp>
+        <lev-temp num="14">-9.1</lev-temp>
+        <lev-temp num="15">-9.01</lev-temp>
+        <lev-temp num="16">-8.92</lev-temp>
+        <lev-temp num="17">-8.85</lev-temp>
+        <lev-temp num="18">-8.78</lev-temp>
+        <lev-temp num="19">-8.73</lev-temp>
+        <lev-temp num="20">-8.68</lev-temp>
+        <lev-temp num="21">-8.64</lev-temp>
+        <lev-temp num="22">-8.61</lev-temp>
+        <lev-temp num="23">-8.59</lev-temp>
+        <lev-temp num="24">-8.57</lev-temp>
+        <lev-temp num="25">-8.56</lev-temp>
         <lev-temp num="26">-8.56</lev-temp>
-        <lev-temp num="27">-8.56</lev-temp>
-        <lev-temp num="28">-8.55</lev-temp>
+        <lev-temp num="27">-8.55</lev-temp>
+        <lev-temp num="28">-8.54</lev-temp>
         <lev-temp num="29">-8.54</lev-temp>
         <lev-temp num="30">-8.53</lev-temp>
-        <lev-temp num="31">-8.52</lev-temp>
-        <lev-temp num="32">-8.5</lev-temp>
+        <lev-temp num="31">-8.51</lev-temp>
+        <lev-temp num="32">-8.49</lev-temp>
         <lev-temp num="33">-8.46</lev-temp>
-        <lev-temp num="34">-8.42</lev-temp>
+        <lev-temp num="34">-8.41</lev-temp>
         <lev-temp num="35">-8.35</lev-temp>
         <lev-temp num="36">-8.27</lev-temp>
         <lev-temp num="37">-8.18</lev-temp>
@@ -7483,59 +7483,59 @@
       <at>-7.0</at>
       <td>-9.0</td>
       <ws>29.0</ws>
-      <sn>0.33</sn>
+      <sn>0.3</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.12</ir>
-      <fv>8.61</fv>
-      <fc>60.29</fc>
+      <fv>7.76</fv>
+      <fc>64.03</fc>
       <fa>10.0</fa>
-      <fg>1.92</fg>
-      <bb>-250.1</bb>
+      <fg>3.96</fg>
+      <bb>-250.95</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-10.01</st>
+      <st>-9.78</st>
       <sst>-7.83</sst>
       <tl>
-        <lev-temp num="0">-10.01</lev-temp>
-        <lev-temp num="1">-10.02</lev-temp>
-        <lev-temp num="2">-10.02</lev-temp>
-        <lev-temp num="3">-10.01</lev-temp>
-        <lev-temp num="4">-9.99</lev-temp>
-        <lev-temp num="5">-9.94</lev-temp>
-        <lev-temp num="6">-9.89</lev-temp>
-        <lev-temp num="7">-9.82</lev-temp>
-        <lev-temp num="8">-9.74</lev-temp>
-        <lev-temp num="9">-9.65</lev-temp>
-        <lev-temp num="10">-9.56</lev-temp>
-        <lev-temp num="11">-9.46</lev-temp>
-        <lev-temp num="12">-9.36</lev-temp>
-        <lev-temp num="13">-9.26</lev-temp>
-        <lev-temp num="14">-9.17</lev-temp>
-        <lev-temp num="15">-9.08</lev-temp>
-        <lev-temp num="16">-8.99</lev-temp>
-        <lev-temp num="17">-8.92</lev-temp>
-        <lev-temp num="18">-8.85</lev-temp>
-        <lev-temp num="19">-8.79</lev-temp>
-        <lev-temp num="20">-8.73</lev-temp>
-        <lev-temp num="21">-8.69</lev-temp>
-        <lev-temp num="22">-8.66</lev-temp>
-        <lev-temp num="23">-8.63</lev-temp>
-        <lev-temp num="24">-8.61</lev-temp>
-        <lev-temp num="25">-8.59</lev-temp>
-        <lev-temp num="26">-8.57</lev-temp>
-        <lev-temp num="27">-8.56</lev-temp>
+        <lev-temp num="0">-9.79</lev-temp>
+        <lev-temp num="1">-9.82</lev-temp>
+        <lev-temp num="2">-9.85</lev-temp>
+        <lev-temp num="3">-9.86</lev-temp>
+        <lev-temp num="4">-9.85</lev-temp>
+        <lev-temp num="5">-9.83</lev-temp>
+        <lev-temp num="6">-9.79</lev-temp>
+        <lev-temp num="7">-9.73</lev-temp>
+        <lev-temp num="8">-9.66</lev-temp>
+        <lev-temp num="9">-9.58</lev-temp>
+        <lev-temp num="10">-9.49</lev-temp>
+        <lev-temp num="11">-9.4</lev-temp>
+        <lev-temp num="12">-9.31</lev-temp>
+        <lev-temp num="13">-9.21</lev-temp>
+        <lev-temp num="14">-9.12</lev-temp>
+        <lev-temp num="15">-9.04</lev-temp>
+        <lev-temp num="16">-8.96</lev-temp>
+        <lev-temp num="17">-8.89</lev-temp>
+        <lev-temp num="18">-8.82</lev-temp>
+        <lev-temp num="19">-8.76</lev-temp>
+        <lev-temp num="20">-8.71</lev-temp>
+        <lev-temp num="21">-8.67</lev-temp>
+        <lev-temp num="22">-8.64</lev-temp>
+        <lev-temp num="23">-8.62</lev-temp>
+        <lev-temp num="24">-8.6</lev-temp>
+        <lev-temp num="25">-8.58</lev-temp>
+        <lev-temp num="26">-8.56</lev-temp>
+        <lev-temp num="27">-8.55</lev-temp>
         <lev-temp num="28">-8.54</lev-temp>
         <lev-temp num="29">-8.52</lev-temp>
         <lev-temp num="30">-8.5</lev-temp>
-        <lev-temp num="31">-8.48</lev-temp>
+        <lev-temp num="31">-8.47</lev-temp>
         <lev-temp num="32">-8.44</lev-temp>
         <lev-temp num="33">-8.39</lev-temp>
-        <lev-temp num="34">-8.34</lev-temp>
-        <lev-temp num="35">-8.27</lev-temp>
+        <lev-temp num="34">-8.33</lev-temp>
+        <lev-temp num="35">-8.26</lev-temp>
         <lev-temp num="36">-8.18</lev-temp>
         <lev-temp num="37">-8.08</lev-temp>
         <lev-temp num="38">-7.96</lev-temp>
@@ -7553,56 +7553,56 @@
       <at>-7.0</at>
       <td>-9.0</td>
       <ws>29.0</ws>
-      <sn>0.36</sn>
+      <sn>0.33</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.12</ir>
-      <fv>8.32</fv>
-      <fc>59.66</fc>
+      <fv>7.4</fv>
+      <fc>63.14</fc>
       <fa>10.0</fa>
-      <fg>0.86</fg>
-      <bb>-250.25</bb>
+      <fg>2.57</fg>
+      <bb>-251.09</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.97</st>
+      <st>-9.75</st>
       <sst>-7.76</sst>
       <tl>
-        <lev-temp num="0">-9.97</lev-temp>
-        <lev-temp num="1">-9.97</lev-temp>
-        <lev-temp num="2">-9.97</lev-temp>
-        <lev-temp num="3">-9.95</lev-temp>
-        <lev-temp num="4">-9.92</lev-temp>
-        <lev-temp num="5">-9.89</lev-temp>
-        <lev-temp num="6">-9.83</lev-temp>
-        <lev-temp num="7">-9.77</lev-temp>
-        <lev-temp num="8">-9.7</lev-temp>
-        <lev-temp num="9">-9.62</lev-temp>
-        <lev-temp num="10">-9.54</lev-temp>
-        <lev-temp num="11">-9.45</lev-temp>
-        <lev-temp num="12">-9.36</lev-temp>
-        <lev-temp num="13">-9.27</lev-temp>
-        <lev-temp num="14">-9.18</lev-temp>
-        <lev-temp num="15">-9.1</lev-temp>
-        <lev-temp num="16">-9.02</lev-temp>
-        <lev-temp num="17">-8.95</lev-temp>
-        <lev-temp num="18">-8.88</lev-temp>
-        <lev-temp num="19">-8.82</lev-temp>
-        <lev-temp num="20">-8.77</lev-temp>
-        <lev-temp num="21">-8.72</lev-temp>
-        <lev-temp num="22">-8.68</lev-temp>
-        <lev-temp num="23">-8.65</lev-temp>
-        <lev-temp num="24">-8.62</lev-temp>
-        <lev-temp num="25">-8.6</lev-temp>
-        <lev-temp num="26">-8.58</lev-temp>
-        <lev-temp num="27">-8.55</lev-temp>
-        <lev-temp num="28">-8.53</lev-temp>
+        <lev-temp num="0">-9.75</lev-temp>
+        <lev-temp num="1">-9.77</lev-temp>
+        <lev-temp num="2">-9.79</lev-temp>
+        <lev-temp num="3">-9.79</lev-temp>
+        <lev-temp num="4">-9.78</lev-temp>
+        <lev-temp num="5">-9.76</lev-temp>
+        <lev-temp num="6">-9.72</lev-temp>
+        <lev-temp num="7">-9.67</lev-temp>
+        <lev-temp num="8">-9.61</lev-temp>
+        <lev-temp num="9">-9.55</lev-temp>
+        <lev-temp num="10">-9.47</lev-temp>
+        <lev-temp num="11">-9.39</lev-temp>
+        <lev-temp num="12">-9.31</lev-temp>
+        <lev-temp num="13">-9.22</lev-temp>
+        <lev-temp num="14">-9.14</lev-temp>
+        <lev-temp num="15">-9.06</lev-temp>
+        <lev-temp num="16">-8.99</lev-temp>
+        <lev-temp num="17">-8.92</lev-temp>
+        <lev-temp num="18">-8.85</lev-temp>
+        <lev-temp num="19">-8.8</lev-temp>
+        <lev-temp num="20">-8.74</lev-temp>
+        <lev-temp num="21">-8.7</lev-temp>
+        <lev-temp num="22">-8.67</lev-temp>
+        <lev-temp num="23">-8.64</lev-temp>
+        <lev-temp num="24">-8.61</lev-temp>
+        <lev-temp num="25">-8.59</lev-temp>
+        <lev-temp num="26">-8.57</lev-temp>
+        <lev-temp num="27">-8.54</lev-temp>
+        <lev-temp num="28">-8.52</lev-temp>
         <lev-temp num="29">-8.5</lev-temp>
-        <lev-temp num="30">-8.47</lev-temp>
+        <lev-temp num="30">-8.46</lev-temp>
         <lev-temp num="31">-8.43</lev-temp>
-        <lev-temp num="32">-8.39</lev-temp>
+        <lev-temp num="32">-8.38</lev-temp>
         <lev-temp num="33">-8.33</lev-temp>
         <lev-temp num="34">-8.27</lev-temp>
         <lev-temp num="35">-8.19</lev-temp>
@@ -7623,54 +7623,54 @@
       <at>-7.0</at>
       <td>-9.0</td>
       <ws>29.0</ws>
-      <sn>0.39</sn>
+      <sn>0.35</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>173.12</ir>
-      <fv>8.1</fv>
-      <fc>59.18</fc>
+      <fv>7.13</fv>
+      <fc>62.5</fc>
       <fa>10.0</fa>
-      <fg>0.05</fg>
-      <bb>-250.35</bb>
+      <fg>1.56</fg>
+      <bb>-251.2</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.94</st>
+      <st>-9.72</st>
       <sst>-7.71</sst>
       <tl>
-        <lev-temp num="0">-9.94</lev-temp>
-        <lev-temp num="1">-9.94</lev-temp>
-        <lev-temp num="2">-9.93</lev-temp>
-        <lev-temp num="3">-9.91</lev-temp>
-        <lev-temp num="4">-9.88</lev-temp>
-        <lev-temp num="5">-9.84</lev-temp>
-        <lev-temp num="6">-9.79</lev-temp>
-        <lev-temp num="7">-9.73</lev-temp>
-        <lev-temp num="8">-9.67</lev-temp>
-        <lev-temp num="9">-9.6</lev-temp>
-        <lev-temp num="10">-9.52</lev-temp>
-        <lev-temp num="11">-9.44</lev-temp>
-        <lev-temp num="12">-9.36</lev-temp>
-        <lev-temp num="13">-9.28</lev-temp>
-        <lev-temp num="14">-9.2</lev-temp>
-        <lev-temp num="15">-9.12</lev-temp>
-        <lev-temp num="16">-9.04</lev-temp>
-        <lev-temp num="17">-8.97</lev-temp>
-        <lev-temp num="18">-8.91</lev-temp>
-        <lev-temp num="19">-8.85</lev-temp>
-        <lev-temp num="20">-8.79</lev-temp>
-        <lev-temp num="21">-8.74</lev-temp>
-        <lev-temp num="22">-8.7</lev-temp>
-        <lev-temp num="23">-8.67</lev-temp>
-        <lev-temp num="24">-8.64</lev-temp>
-        <lev-temp num="25">-8.61</lev-temp>
-        <lev-temp num="26">-8.58</lev-temp>
-        <lev-temp num="27">-8.55</lev-temp>
+        <lev-temp num="0">-9.72</lev-temp>
+        <lev-temp num="1">-9.73</lev-temp>
+        <lev-temp num="2">-9.74</lev-temp>
+        <lev-temp num="3">-9.74</lev-temp>
+        <lev-temp num="4">-9.73</lev-temp>
+        <lev-temp num="5">-9.7</lev-temp>
+        <lev-temp num="6">-9.67</lev-temp>
+        <lev-temp num="7">-9.63</lev-temp>
+        <lev-temp num="8">-9.58</lev-temp>
+        <lev-temp num="9">-9.52</lev-temp>
+        <lev-temp num="10">-9.45</lev-temp>
+        <lev-temp num="11">-9.38</lev-temp>
+        <lev-temp num="12">-9.3</lev-temp>
+        <lev-temp num="13">-9.23</lev-temp>
+        <lev-temp num="14">-9.15</lev-temp>
+        <lev-temp num="15">-9.08</lev-temp>
+        <lev-temp num="16">-9.01</lev-temp>
+        <lev-temp num="17">-8.94</lev-temp>
+        <lev-temp num="18">-8.88</lev-temp>
+        <lev-temp num="19">-8.82</lev-temp>
+        <lev-temp num="20">-8.77</lev-temp>
+        <lev-temp num="21">-8.72</lev-temp>
+        <lev-temp num="22">-8.69</lev-temp>
+        <lev-temp num="23">-8.65</lev-temp>
+        <lev-temp num="24">-8.62</lev-temp>
+        <lev-temp num="25">-8.59</lev-temp>
+        <lev-temp num="26">-8.57</lev-temp>
+        <lev-temp num="27">-8.54</lev-temp>
         <lev-temp num="28">-8.51</lev-temp>
-        <lev-temp num="29">-8.48</lev-temp>
-        <lev-temp num="30">-8.44</lev-temp>
+        <lev-temp num="29">-8.47</lev-temp>
+        <lev-temp num="30">-8.43</lev-temp>
         <lev-temp num="31">-8.39</lev-temp>
         <lev-temp num="32">-8.34</lev-temp>
         <lev-temp num="33">-8.28</lev-temp>
@@ -7693,61 +7693,61 @@
       <at>-6.67</at>
       <td>-8.67</td>
       <ws>28.35</ws>
-      <sn>0.42</sn>
+      <sn>0.38</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>174.25</ir>
-      <fv>9.79</fv>
-      <fc>61.02</fc>
+      <fv>8.87</fv>
+      <fc>62.7</fc>
       <fa>10.0</fa>
-      <fg>4.34</fg>
-      <bb>-250.72</bb>
+      <fg>4.27</fg>
+      <bb>-251.55</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.84</st>
+      <st>-9.62</st>
       <sst>-7.65</sst>
       <tl>
-        <lev-temp num="0">-9.84</lev-temp>
-        <lev-temp num="1">-9.87</lev-temp>
-        <lev-temp num="2">-9.87</lev-temp>
-        <lev-temp num="3">-9.86</lev-temp>
-        <lev-temp num="4">-9.83</lev-temp>
-        <lev-temp num="5">-9.8</lev-temp>
-        <lev-temp num="6">-9.75</lev-temp>
-        <lev-temp num="7">-9.7</lev-temp>
-        <lev-temp num="8">-9.64</lev-temp>
-        <lev-temp num="9">-9.58</lev-temp>
-        <lev-temp num="10">-9.51</lev-temp>
-        <lev-temp num="11">-9.43</lev-temp>
-        <lev-temp num="12">-9.36</lev-temp>
-        <lev-temp num="13">-9.28</lev-temp>
-        <lev-temp num="14">-9.21</lev-temp>
-        <lev-temp num="15">-9.13</lev-temp>
-        <lev-temp num="16">-9.06</lev-temp>
-        <lev-temp num="17">-8.99</lev-temp>
-        <lev-temp num="18">-8.93</lev-temp>
-        <lev-temp num="19">-8.87</lev-temp>
-        <lev-temp num="20">-8.81</lev-temp>
-        <lev-temp num="21">-8.76</lev-temp>
-        <lev-temp num="22">-8.72</lev-temp>
-        <lev-temp num="23">-8.68</lev-temp>
-        <lev-temp num="24">-8.64</lev-temp>
-        <lev-temp num="25">-8.61</lev-temp>
-        <lev-temp num="26">-8.57</lev-temp>
-        <lev-temp num="27">-8.54</lev-temp>
-        <lev-temp num="28">-8.5</lev-temp>
+        <lev-temp num="0">-9.63</lev-temp>
+        <lev-temp num="1">-9.66</lev-temp>
+        <lev-temp num="2">-9.68</lev-temp>
+        <lev-temp num="3">-9.69</lev-temp>
+        <lev-temp num="4">-9.68</lev-temp>
+        <lev-temp num="5">-9.66</lev-temp>
+        <lev-temp num="6">-9.63</lev-temp>
+        <lev-temp num="7">-9.59</lev-temp>
+        <lev-temp num="8">-9.54</lev-temp>
+        <lev-temp num="9">-9.49</lev-temp>
+        <lev-temp num="10">-9.43</lev-temp>
+        <lev-temp num="11">-9.36</lev-temp>
+        <lev-temp num="12">-9.3</lev-temp>
+        <lev-temp num="13">-9.23</lev-temp>
+        <lev-temp num="14">-9.16</lev-temp>
+        <lev-temp num="15">-9.09</lev-temp>
+        <lev-temp num="16">-9.02</lev-temp>
+        <lev-temp num="17">-8.96</lev-temp>
+        <lev-temp num="18">-8.9</lev-temp>
+        <lev-temp num="19">-8.84</lev-temp>
+        <lev-temp num="20">-8.79</lev-temp>
+        <lev-temp num="21">-8.74</lev-temp>
+        <lev-temp num="22">-8.7</lev-temp>
+        <lev-temp num="23">-8.66</lev-temp>
+        <lev-temp num="24">-8.63</lev-temp>
+        <lev-temp num="25">-8.6</lev-temp>
+        <lev-temp num="26">-8.56</lev-temp>
+        <lev-temp num="27">-8.53</lev-temp>
+        <lev-temp num="28">-8.49</lev-temp>
         <lev-temp num="29">-8.45</lev-temp>
-        <lev-temp num="30">-8.41</lev-temp>
-        <lev-temp num="31">-8.36</lev-temp>
-        <lev-temp num="32">-8.3</lev-temp>
+        <lev-temp num="30">-8.4</lev-temp>
+        <lev-temp num="31">-8.35</lev-temp>
+        <lev-temp num="32">-8.29</lev-temp>
         <lev-temp num="33">-8.23</lev-temp>
         <lev-temp num="34">-8.16</lev-temp>
-        <lev-temp num="35">-8.08</lev-temp>
-        <lev-temp num="36">-7.99</lev-temp>
-        <lev-temp num="37">-7.89</lev-temp>
+        <lev-temp num="35">-8.07</lev-temp>
+        <lev-temp num="36">-7.98</lev-temp>
+        <lev-temp num="37">-7.88</lev-temp>
         <lev-temp num="38">-7.77</lev-temp>
         <lev-temp num="39">-7.65</lev-temp>
         <lev-temp num="40">-7.51</lev-temp>
@@ -7763,61 +7763,61 @@
       <at>-6.34</at>
       <td>-8.34</td>
       <ws>27.68</ws>
-      <sn>0.46</sn>
+      <sn>0.42</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>175.42</ir>
-      <fv>11.08</fv>
-      <fc>61.78</fc>
+      <fv>10.27</fv>
+      <fc>61.3</fc>
       <fa>10.0</fa>
-      <fg>7.01</fg>
-      <bb>-251.27</bb>
+      <fg>5.12</fg>
+      <bb>-251.87</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.7</st>
+      <st>-9.54</st>
       <sst>-7.55</sst>
       <tl>
-        <lev-temp num="0">-9.7</lev-temp>
-        <lev-temp num="1">-9.76</lev-temp>
-        <lev-temp num="2">-9.78</lev-temp>
-        <lev-temp num="3">-9.79</lev-temp>
-        <lev-temp num="4">-9.78</lev-temp>
-        <lev-temp num="5">-9.75</lev-temp>
-        <lev-temp num="6">-9.72</lev-temp>
-        <lev-temp num="7">-9.67</lev-temp>
-        <lev-temp num="8">-9.62</lev-temp>
-        <lev-temp num="9">-9.56</lev-temp>
-        <lev-temp num="10">-9.49</lev-temp>
-        <lev-temp num="11">-9.42</lev-temp>
-        <lev-temp num="12">-9.35</lev-temp>
-        <lev-temp num="13">-9.28</lev-temp>
-        <lev-temp num="14">-9.21</lev-temp>
-        <lev-temp num="15">-9.14</lev-temp>
-        <lev-temp num="16">-9.07</lev-temp>
-        <lev-temp num="17">-9.01</lev-temp>
-        <lev-temp num="18">-8.94</lev-temp>
-        <lev-temp num="19">-8.88</lev-temp>
-        <lev-temp num="20">-8.83</lev-temp>
-        <lev-temp num="21">-8.77</lev-temp>
-        <lev-temp num="22">-8.73</lev-temp>
-        <lev-temp num="23">-8.69</lev-temp>
-        <lev-temp num="24">-8.65</lev-temp>
-        <lev-temp num="25">-8.61</lev-temp>
-        <lev-temp num="26">-8.57</lev-temp>
-        <lev-temp num="27">-8.52</lev-temp>
-        <lev-temp num="28">-8.48</lev-temp>
-        <lev-temp num="29">-8.43</lev-temp>
-        <lev-temp num="30">-8.38</lev-temp>
+        <lev-temp num="0">-9.54</lev-temp>
+        <lev-temp num="1">-9.59</lev-temp>
+        <lev-temp num="2">-9.62</lev-temp>
+        <lev-temp num="3">-9.63</lev-temp>
+        <lev-temp num="4">-9.63</lev-temp>
+        <lev-temp num="5">-9.61</lev-temp>
+        <lev-temp num="6">-9.59</lev-temp>
+        <lev-temp num="7">-9.55</lev-temp>
+        <lev-temp num="8">-9.51</lev-temp>
+        <lev-temp num="9">-9.46</lev-temp>
+        <lev-temp num="10">-9.41</lev-temp>
+        <lev-temp num="11">-9.35</lev-temp>
+        <lev-temp num="12">-9.29</lev-temp>
+        <lev-temp num="13">-9.22</lev-temp>
+        <lev-temp num="14">-9.16</lev-temp>
+        <lev-temp num="15">-9.1</lev-temp>
+        <lev-temp num="16">-9.03</lev-temp>
+        <lev-temp num="17">-8.97</lev-temp>
+        <lev-temp num="18">-8.91</lev-temp>
+        <lev-temp num="19">-8.86</lev-temp>
+        <lev-temp num="20">-8.8</lev-temp>
+        <lev-temp num="21">-8.75</lev-temp>
+        <lev-temp num="22">-8.71</lev-temp>
+        <lev-temp num="23">-8.67</lev-temp>
+        <lev-temp num="24">-8.63</lev-temp>
+        <lev-temp num="25">-8.59</lev-temp>
+        <lev-temp num="26">-8.55</lev-temp>
+        <lev-temp num="27">-8.51</lev-temp>
+        <lev-temp num="28">-8.47</lev-temp>
+        <lev-temp num="29">-8.42</lev-temp>
+        <lev-temp num="30">-8.37</lev-temp>
         <lev-temp num="31">-8.32</lev-temp>
-        <lev-temp num="32">-8.26</lev-temp>
+        <lev-temp num="32">-8.25</lev-temp>
         <lev-temp num="33">-8.19</lev-temp>
         <lev-temp num="34">-8.11</lev-temp>
-        <lev-temp num="35">-8.03</lev-temp>
-        <lev-temp num="36">-7.93</lev-temp>
-        <lev-temp num="37">-7.82</lev-temp>
+        <lev-temp num="35">-8.02</lev-temp>
+        <lev-temp num="36">-7.92</lev-temp>
+        <lev-temp num="37">-7.81</lev-temp>
         <lev-temp num="38">-7.69</lev-temp>
         <lev-temp num="39">-7.55</lev-temp>
         <lev-temp num="40">-7.38</lev-temp>
@@ -7833,62 +7833,62 @@
       <at>-6.01</at>
       <td>-8.01</td>
       <ws>27.02</ws>
-      <sn>0.5</sn>
+      <sn>0.46</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.58</ir>
-      <fv>12.2</fv>
-      <fc>62.0</fc>
+      <fv>11.5</fv>
+      <fc>60.55</fc>
       <fa>10.0</fa>
-      <fg>8.92</fg>
-      <bb>-251.85</bb>
+      <fg>6.38</fg>
+      <bb>-252.24</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.55</st>
+      <st>-9.44</st>
       <sst>-7.41</sst>
       <tl>
-        <lev-temp num="0">-9.55</lev-temp>
-        <lev-temp num="1">-9.63</lev-temp>
-        <lev-temp num="2">-9.68</lev-temp>
-        <lev-temp num="3">-9.7</lev-temp>
-        <lev-temp num="4">-9.71</lev-temp>
-        <lev-temp num="5">-9.69</lev-temp>
-        <lev-temp num="6">-9.67</lev-temp>
-        <lev-temp num="7">-9.63</lev-temp>
-        <lev-temp num="8">-9.59</lev-temp>
-        <lev-temp num="9">-9.53</lev-temp>
-        <lev-temp num="10">-9.47</lev-temp>
-        <lev-temp num="11">-9.41</lev-temp>
-        <lev-temp num="12">-9.35</lev-temp>
-        <lev-temp num="13">-9.28</lev-temp>
-        <lev-temp num="14">-9.21</lev-temp>
-        <lev-temp num="15">-9.15</lev-temp>
-        <lev-temp num="16">-9.08</lev-temp>
-        <lev-temp num="17">-9.02</lev-temp>
-        <lev-temp num="18">-8.96</lev-temp>
-        <lev-temp num="19">-8.9</lev-temp>
-        <lev-temp num="20">-8.84</lev-temp>
-        <lev-temp num="21">-8.78</lev-temp>
-        <lev-temp num="22">-8.74</lev-temp>
-        <lev-temp num="23">-8.69</lev-temp>
-        <lev-temp num="24">-8.65</lev-temp>
-        <lev-temp num="25">-8.6</lev-temp>
-        <lev-temp num="26">-8.56</lev-temp>
-        <lev-temp num="27">-8.51</lev-temp>
-        <lev-temp num="28">-8.46</lev-temp>
-        <lev-temp num="29">-8.41</lev-temp>
-        <lev-temp num="30">-8.35</lev-temp>
-        <lev-temp num="31">-8.29</lev-temp>
-        <lev-temp num="32">-8.22</lev-temp>
+        <lev-temp num="0">-9.45</lev-temp>
+        <lev-temp num="1">-9.5</lev-temp>
+        <lev-temp num="2">-9.54</lev-temp>
+        <lev-temp num="3">-9.56</lev-temp>
+        <lev-temp num="4">-9.57</lev-temp>
+        <lev-temp num="5">-9.56</lev-temp>
+        <lev-temp num="6">-9.54</lev-temp>
+        <lev-temp num="7">-9.52</lev-temp>
+        <lev-temp num="8">-9.48</lev-temp>
+        <lev-temp num="9">-9.44</lev-temp>
+        <lev-temp num="10">-9.39</lev-temp>
+        <lev-temp num="11">-9.33</lev-temp>
+        <lev-temp num="12">-9.28</lev-temp>
+        <lev-temp num="13">-9.22</lev-temp>
+        <lev-temp num="14">-9.16</lev-temp>
+        <lev-temp num="15">-9.1</lev-temp>
+        <lev-temp num="16">-9.04</lev-temp>
+        <lev-temp num="17">-8.98</lev-temp>
+        <lev-temp num="18">-8.92</lev-temp>
+        <lev-temp num="19">-8.87</lev-temp>
+        <lev-temp num="20">-8.81</lev-temp>
+        <lev-temp num="21">-8.76</lev-temp>
+        <lev-temp num="22">-8.72</lev-temp>
+        <lev-temp num="23">-8.67</lev-temp>
+        <lev-temp num="24">-8.63</lev-temp>
+        <lev-temp num="25">-8.59</lev-temp>
+        <lev-temp num="26">-8.55</lev-temp>
+        <lev-temp num="27">-8.5</lev-temp>
+        <lev-temp num="28">-8.45</lev-temp>
+        <lev-temp num="29">-8.4</lev-temp>
+        <lev-temp num="30">-8.34</lev-temp>
+        <lev-temp num="31">-8.28</lev-temp>
+        <lev-temp num="32">-8.21</lev-temp>
         <lev-temp num="33">-8.14</lev-temp>
-        <lev-temp num="34">-8.06</lev-temp>
+        <lev-temp num="34">-8.05</lev-temp>
         <lev-temp num="35">-7.96</lev-temp>
         <lev-temp num="36">-7.85</lev-temp>
         <lev-temp num="37">-7.72</lev-temp>
-        <lev-temp num="38">-7.58</lev-temp>
+        <lev-temp num="38">-7.57</lev-temp>
         <lev-temp num="39">-7.41</lev-temp>
         <lev-temp num="40">-7.21</lev-temp>
         <lev-temp num="41">-6.98</lev-temp>
@@ -7903,64 +7903,64 @@
       <at>-6.0</at>
       <td>-8.0</td>
       <ws>27.0</ws>
-      <sn>0.54</sn>
+      <sn>0.5</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.61</ir>
-      <fv>11.61</fv>
-      <fc>60.77</fc>
+      <fv>11.12</fv>
+      <fc>59.88</fc>
       <fa>10.0</fa>
-      <fg>6.77</fg>
-      <bb>-252.22</bb>
+      <fg>5.1</fg>
+      <bb>-252.51</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.45</st>
+      <st>-9.38</st>
       <sst>-7.26</sst>
       <tl>
-        <lev-temp num="0">-9.45</lev-temp>
-        <lev-temp num="1">-9.52</lev-temp>
-        <lev-temp num="2">-9.58</lev-temp>
-        <lev-temp num="3">-9.61</lev-temp>
-        <lev-temp num="4">-9.63</lev-temp>
-        <lev-temp num="5">-9.63</lev-temp>
-        <lev-temp num="6">-9.61</lev-temp>
-        <lev-temp num="7">-9.59</lev-temp>
-        <lev-temp num="8">-9.55</lev-temp>
-        <lev-temp num="9">-9.51</lev-temp>
-        <lev-temp num="10">-9.46</lev-temp>
-        <lev-temp num="11">-9.4</lev-temp>
-        <lev-temp num="12">-9.34</lev-temp>
-        <lev-temp num="13">-9.28</lev-temp>
-        <lev-temp num="14">-9.21</lev-temp>
-        <lev-temp num="15">-9.15</lev-temp>
-        <lev-temp num="16">-9.09</lev-temp>
-        <lev-temp num="17">-9.03</lev-temp>
-        <lev-temp num="18">-8.96</lev-temp>
-        <lev-temp num="19">-8.9</lev-temp>
-        <lev-temp num="20">-8.85</lev-temp>
-        <lev-temp num="21">-8.79</lev-temp>
-        <lev-temp num="22">-8.74</lev-temp>
-        <lev-temp num="23">-8.69</lev-temp>
-        <lev-temp num="24">-8.65</lev-temp>
-        <lev-temp num="25">-8.6</lev-temp>
-        <lev-temp num="26">-8.55</lev-temp>
-        <lev-temp num="27">-8.5</lev-temp>
-        <lev-temp num="28">-8.44</lev-temp>
-        <lev-temp num="29">-8.38</lev-temp>
-        <lev-temp num="30">-8.32</lev-temp>
-        <lev-temp num="31">-8.25</lev-temp>
+        <lev-temp num="0">-9.38</lev-temp>
+        <lev-temp num="1">-9.43</lev-temp>
+        <lev-temp num="2">-9.47</lev-temp>
+        <lev-temp num="3">-9.5</lev-temp>
+        <lev-temp num="4">-9.51</lev-temp>
+        <lev-temp num="5">-9.51</lev-temp>
+        <lev-temp num="6">-9.5</lev-temp>
+        <lev-temp num="7">-9.48</lev-temp>
+        <lev-temp num="8">-9.45</lev-temp>
+        <lev-temp num="9">-9.41</lev-temp>
+        <lev-temp num="10">-9.37</lev-temp>
+        <lev-temp num="11">-9.32</lev-temp>
+        <lev-temp num="12">-9.27</lev-temp>
+        <lev-temp num="13">-9.21</lev-temp>
+        <lev-temp num="14">-9.16</lev-temp>
+        <lev-temp num="15">-9.1</lev-temp>
+        <lev-temp num="16">-9.04</lev-temp>
+        <lev-temp num="17">-8.98</lev-temp>
+        <lev-temp num="18">-8.93</lev-temp>
+        <lev-temp num="19">-8.87</lev-temp>
+        <lev-temp num="20">-8.82</lev-temp>
+        <lev-temp num="21">-8.76</lev-temp>
+        <lev-temp num="22">-8.72</lev-temp>
+        <lev-temp num="23">-8.67</lev-temp>
+        <lev-temp num="24">-8.63</lev-temp>
+        <lev-temp num="25">-8.58</lev-temp>
+        <lev-temp num="26">-8.53</lev-temp>
+        <lev-temp num="27">-8.48</lev-temp>
+        <lev-temp num="28">-8.43</lev-temp>
+        <lev-temp num="29">-8.37</lev-temp>
+        <lev-temp num="30">-8.31</lev-temp>
+        <lev-temp num="31">-8.24</lev-temp>
         <lev-temp num="32">-8.17</lev-temp>
-        <lev-temp num="33">-8.09</lev-temp>
+        <lev-temp num="33">-8.08</lev-temp>
         <lev-temp num="34">-7.99</lev-temp>
         <lev-temp num="35">-7.88</lev-temp>
-        <lev-temp num="36">-7.76</lev-temp>
+        <lev-temp num="36">-7.75</lev-temp>
         <lev-temp num="37">-7.61</lev-temp>
-        <lev-temp num="38">-7.45</lev-temp>
+        <lev-temp num="38">-7.44</lev-temp>
         <lev-temp num="39">-7.26</lev-temp>
-        <lev-temp num="40">-7.05</lev-temp>
+        <lev-temp num="40">-7.04</lev-temp>
         <lev-temp num="41">-6.81</lev-temp>
         <lev-temp num="42">-6.55</lev-temp>
         <lev-temp num="43">-6.28</lev-temp>
@@ -7973,62 +7973,62 @@
       <at>-6.0</at>
       <td>-8.0</td>
       <ws>27.0</ws>
-      <sn>0.59</sn>
+      <sn>0.54</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.61</ir>
-      <fv>11.25</fv>
-      <fc>60.05</fc>
+      <fv>10.86</fv>
+      <fc>59.46</fc>
       <fa>10.0</fa>
-      <fg>5.48</fg>
-      <bb>-252.42</bb>
+      <fg>4.25</fg>
+      <bb>-252.67</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.4</st>
+      <st>-9.33</st>
       <sst>-7.15</sst>
       <tl>
-        <lev-temp num="0">-9.4</lev-temp>
-        <lev-temp num="1">-9.46</lev-temp>
-        <lev-temp num="2">-9.51</lev-temp>
-        <lev-temp num="3">-9.54</lev-temp>
-        <lev-temp num="4">-9.56</lev-temp>
-        <lev-temp num="5">-9.57</lev-temp>
-        <lev-temp num="6">-9.56</lev-temp>
-        <lev-temp num="7">-9.54</lev-temp>
-        <lev-temp num="8">-9.51</lev-temp>
-        <lev-temp num="9">-9.48</lev-temp>
-        <lev-temp num="10">-9.43</lev-temp>
-        <lev-temp num="11">-9.38</lev-temp>
-        <lev-temp num="12">-9.33</lev-temp>
-        <lev-temp num="13">-9.27</lev-temp>
-        <lev-temp num="14">-9.21</lev-temp>
-        <lev-temp num="15">-9.15</lev-temp>
-        <lev-temp num="16">-9.09</lev-temp>
-        <lev-temp num="17">-9.03</lev-temp>
-        <lev-temp num="18">-8.97</lev-temp>
-        <lev-temp num="19">-8.91</lev-temp>
-        <lev-temp num="20">-8.85</lev-temp>
-        <lev-temp num="21">-8.79</lev-temp>
-        <lev-temp num="22">-8.74</lev-temp>
-        <lev-temp num="23">-8.69</lev-temp>
-        <lev-temp num="24">-8.64</lev-temp>
-        <lev-temp num="25">-8.59</lev-temp>
-        <lev-temp num="26">-8.54</lev-temp>
-        <lev-temp num="27">-8.48</lev-temp>
-        <lev-temp num="28">-8.42</lev-temp>
-        <lev-temp num="29">-8.36</lev-temp>
-        <lev-temp num="30">-8.29</lev-temp>
-        <lev-temp num="31">-8.21</lev-temp>
-        <lev-temp num="32">-8.12</lev-temp>
-        <lev-temp num="33">-8.03</lev-temp>
-        <lev-temp num="34">-7.92</lev-temp>
-        <lev-temp num="35">-7.8</lev-temp>
+        <lev-temp num="0">-9.33</lev-temp>
+        <lev-temp num="1">-9.38</lev-temp>
+        <lev-temp num="2">-9.42</lev-temp>
+        <lev-temp num="3">-9.44</lev-temp>
+        <lev-temp num="4">-9.46</lev-temp>
+        <lev-temp num="5">-9.46</lev-temp>
+        <lev-temp num="6">-9.45</lev-temp>
+        <lev-temp num="7">-9.44</lev-temp>
+        <lev-temp num="8">-9.41</lev-temp>
+        <lev-temp num="9">-9.38</lev-temp>
+        <lev-temp num="10">-9.34</lev-temp>
+        <lev-temp num="11">-9.3</lev-temp>
+        <lev-temp num="12">-9.25</lev-temp>
+        <lev-temp num="13">-9.2</lev-temp>
+        <lev-temp num="14">-9.15</lev-temp>
+        <lev-temp num="15">-9.1</lev-temp>
+        <lev-temp num="16">-9.04</lev-temp>
+        <lev-temp num="17">-8.99</lev-temp>
+        <lev-temp num="18">-8.93</lev-temp>
+        <lev-temp num="19">-8.87</lev-temp>
+        <lev-temp num="20">-8.82</lev-temp>
+        <lev-temp num="21">-8.77</lev-temp>
+        <lev-temp num="22">-8.72</lev-temp>
+        <lev-temp num="23">-8.67</lev-temp>
+        <lev-temp num="24">-8.62</lev-temp>
+        <lev-temp num="25">-8.57</lev-temp>
+        <lev-temp num="26">-8.52</lev-temp>
+        <lev-temp num="27">-8.47</lev-temp>
+        <lev-temp num="28">-8.41</lev-temp>
+        <lev-temp num="29">-8.35</lev-temp>
+        <lev-temp num="30">-8.28</lev-temp>
+        <lev-temp num="31">-8.2</lev-temp>
+        <lev-temp num="32">-8.11</lev-temp>
+        <lev-temp num="33">-8.02</lev-temp>
+        <lev-temp num="34">-7.91</lev-temp>
+        <lev-temp num="35">-7.79</lev-temp>
         <lev-temp num="36">-7.66</lev-temp>
-        <lev-temp num="37">-7.51</lev-temp>
-        <lev-temp num="38">-7.34</lev-temp>
+        <lev-temp num="37">-7.5</lev-temp>
+        <lev-temp num="38">-7.33</lev-temp>
         <lev-temp num="39">-7.15</lev-temp>
         <lev-temp num="40">-6.94</lev-temp>
         <lev-temp num="41">-6.72</lev-temp>
@@ -8043,60 +8043,60 @@
       <at>-6.0</at>
       <td>-8.0</td>
       <ws>27.0</ws>
-      <sn>0.63</sn>
+      <sn>0.58</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.61</ir>
-      <fv>10.99</fv>
-      <fc>59.53</fc>
+      <fv>10.66</fv>
+      <fc>59.15</fc>
       <fa>10.0</fa>
-      <fg>4.56</fg>
-      <bb>-252.57</bb>
+      <fg>3.62</fg>
+      <bb>-252.79</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.36</st>
+      <st>-9.3</st>
       <sst>-7.07</sst>
       <tl>
-        <lev-temp num="0">-9.36</lev-temp>
-        <lev-temp num="1">-9.41</lev-temp>
-        <lev-temp num="2">-9.45</lev-temp>
-        <lev-temp num="3">-9.48</lev-temp>
-        <lev-temp num="4">-9.5</lev-temp>
-        <lev-temp num="5">-9.51</lev-temp>
-        <lev-temp num="6">-9.51</lev-temp>
-        <lev-temp num="7">-9.5</lev-temp>
-        <lev-temp num="8">-9.47</lev-temp>
-        <lev-temp num="9">-9.44</lev-temp>
-        <lev-temp num="10">-9.4</lev-temp>
-        <lev-temp num="11">-9.36</lev-temp>
-        <lev-temp num="12">-9.31</lev-temp>
-        <lev-temp num="13">-9.26</lev-temp>
-        <lev-temp num="14">-9.2</lev-temp>
-        <lev-temp num="15">-9.15</lev-temp>
-        <lev-temp num="16">-9.09</lev-temp>
-        <lev-temp num="17">-9.03</lev-temp>
-        <lev-temp num="18">-8.97</lev-temp>
-        <lev-temp num="19">-8.91</lev-temp>
-        <lev-temp num="20">-8.85</lev-temp>
-        <lev-temp num="21">-8.79</lev-temp>
-        <lev-temp num="22">-8.74</lev-temp>
-        <lev-temp num="23">-8.69</lev-temp>
-        <lev-temp num="24">-8.63</lev-temp>
-        <lev-temp num="25">-8.58</lev-temp>
-        <lev-temp num="26">-8.52</lev-temp>
-        <lev-temp num="27">-8.46</lev-temp>
-        <lev-temp num="28">-8.39</lev-temp>
-        <lev-temp num="29">-8.32</lev-temp>
+        <lev-temp num="0">-9.3</lev-temp>
+        <lev-temp num="1">-9.34</lev-temp>
+        <lev-temp num="2">-9.37</lev-temp>
+        <lev-temp num="3">-9.4</lev-temp>
+        <lev-temp num="4">-9.41</lev-temp>
+        <lev-temp num="5">-9.42</lev-temp>
+        <lev-temp num="6">-9.41</lev-temp>
+        <lev-temp num="7">-9.4</lev-temp>
+        <lev-temp num="8">-9.38</lev-temp>
+        <lev-temp num="9">-9.35</lev-temp>
+        <lev-temp num="10">-9.32</lev-temp>
+        <lev-temp num="11">-9.28</lev-temp>
+        <lev-temp num="12">-9.24</lev-temp>
+        <lev-temp num="13">-9.19</lev-temp>
+        <lev-temp num="14">-9.14</lev-temp>
+        <lev-temp num="15">-9.09</lev-temp>
+        <lev-temp num="16">-9.04</lev-temp>
+        <lev-temp num="17">-8.98</lev-temp>
+        <lev-temp num="18">-8.93</lev-temp>
+        <lev-temp num="19">-8.87</lev-temp>
+        <lev-temp num="20">-8.82</lev-temp>
+        <lev-temp num="21">-8.76</lev-temp>
+        <lev-temp num="22">-8.71</lev-temp>
+        <lev-temp num="23">-8.66</lev-temp>
+        <lev-temp num="24">-8.61</lev-temp>
+        <lev-temp num="25">-8.56</lev-temp>
+        <lev-temp num="26">-8.5</lev-temp>
+        <lev-temp num="27">-8.44</lev-temp>
+        <lev-temp num="28">-8.38</lev-temp>
+        <lev-temp num="29">-8.31</lev-temp>
         <lev-temp num="30">-8.24</lev-temp>
-        <lev-temp num="31">-8.16</lev-temp>
-        <lev-temp num="32">-8.07</lev-temp>
+        <lev-temp num="31">-8.15</lev-temp>
+        <lev-temp num="32">-8.06</lev-temp>
         <lev-temp num="33">-7.96</lev-temp>
-        <lev-temp num="34">-7.85</lev-temp>
-        <lev-temp num="35">-7.72</lev-temp>
-        <lev-temp num="36">-7.58</lev-temp>
+        <lev-temp num="34">-7.84</lev-temp>
+        <lev-temp num="35">-7.71</lev-temp>
+        <lev-temp num="36">-7.57</lev-temp>
         <lev-temp num="37">-7.42</lev-temp>
         <lev-temp num="38">-7.25</lev-temp>
         <lev-temp num="39">-7.07</lev-temp>
@@ -8113,63 +8113,63 @@
       <at>-6.0</at>
       <td>-8.0</td>
       <ws>27.0</ws>
-      <sn>0.66</sn>
+      <sn>0.61</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.61</ir>
-      <fv>10.79</fv>
-      <fc>59.13</fc>
+      <fv>10.49</fv>
+      <fc>58.9</fc>
       <fa>10.0</fa>
-      <fg>3.85</fg>
-      <bb>-252.68</bb>
+      <fg>3.11</fg>
+      <bb>-252.89</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.33</st>
-      <sst>-7.01</sst>
+      <st>-9.28</st>
+      <sst>-7.0</sst>
       <tl>
-        <lev-temp num="0">-9.33</lev-temp>
-        <lev-temp num="1">-9.37</lev-temp>
-        <lev-temp num="2">-9.41</lev-temp>
-        <lev-temp num="3">-9.44</lev-temp>
-        <lev-temp num="4">-9.46</lev-temp>
-        <lev-temp num="5">-9.46</lev-temp>
-        <lev-temp num="6">-9.46</lev-temp>
-        <lev-temp num="7">-9.45</lev-temp>
-        <lev-temp num="8">-9.44</lev-temp>
-        <lev-temp num="9">-9.41</lev-temp>
-        <lev-temp num="10">-9.38</lev-temp>
-        <lev-temp num="11">-9.34</lev-temp>
-        <lev-temp num="12">-9.29</lev-temp>
-        <lev-temp num="13">-9.25</lev-temp>
-        <lev-temp num="14">-9.19</lev-temp>
-        <lev-temp num="15">-9.14</lev-temp>
-        <lev-temp num="16">-9.08</lev-temp>
-        <lev-temp num="17">-9.03</lev-temp>
-        <lev-temp num="18">-8.97</lev-temp>
-        <lev-temp num="19">-8.91</lev-temp>
-        <lev-temp num="20">-8.85</lev-temp>
-        <lev-temp num="21">-8.79</lev-temp>
-        <lev-temp num="22">-8.73</lev-temp>
-        <lev-temp num="23">-8.68</lev-temp>
-        <lev-temp num="24">-8.62</lev-temp>
-        <lev-temp num="25">-8.56</lev-temp>
-        <lev-temp num="26">-8.5</lev-temp>
-        <lev-temp num="27">-8.43</lev-temp>
-        <lev-temp num="28">-8.36</lev-temp>
-        <lev-temp num="29">-8.29</lev-temp>
-        <lev-temp num="30">-8.2</lev-temp>
-        <lev-temp num="31">-8.11</lev-temp>
-        <lev-temp num="32">-8.01</lev-temp>
-        <lev-temp num="33">-7.9</lev-temp>
+        <lev-temp num="0">-9.28</lev-temp>
+        <lev-temp num="1">-9.31</lev-temp>
+        <lev-temp num="2">-9.34</lev-temp>
+        <lev-temp num="3">-9.36</lev-temp>
+        <lev-temp num="4">-9.37</lev-temp>
+        <lev-temp num="5">-9.38</lev-temp>
+        <lev-temp num="6">-9.38</lev-temp>
+        <lev-temp num="7">-9.37</lev-temp>
+        <lev-temp num="8">-9.35</lev-temp>
+        <lev-temp num="9">-9.33</lev-temp>
+        <lev-temp num="10">-9.3</lev-temp>
+        <lev-temp num="11">-9.26</lev-temp>
+        <lev-temp num="12">-9.22</lev-temp>
+        <lev-temp num="13">-9.18</lev-temp>
+        <lev-temp num="14">-9.13</lev-temp>
+        <lev-temp num="15">-9.08</lev-temp>
+        <lev-temp num="16">-9.03</lev-temp>
+        <lev-temp num="17">-8.98</lev-temp>
+        <lev-temp num="18">-8.92</lev-temp>
+        <lev-temp num="19">-8.87</lev-temp>
+        <lev-temp num="20">-8.81</lev-temp>
+        <lev-temp num="21">-8.76</lev-temp>
+        <lev-temp num="22">-8.71</lev-temp>
+        <lev-temp num="23">-8.65</lev-temp>
+        <lev-temp num="24">-8.6</lev-temp>
+        <lev-temp num="25">-8.54</lev-temp>
+        <lev-temp num="26">-8.48</lev-temp>
+        <lev-temp num="27">-8.42</lev-temp>
+        <lev-temp num="28">-8.35</lev-temp>
+        <lev-temp num="29">-8.27</lev-temp>
+        <lev-temp num="30">-8.19</lev-temp>
+        <lev-temp num="31">-8.1</lev-temp>
+        <lev-temp num="32">-8.0</lev-temp>
+        <lev-temp num="33">-7.89</lev-temp>
         <lev-temp num="34">-7.78</lev-temp>
-        <lev-temp num="35">-7.65</lev-temp>
-        <lev-temp num="36">-7.51</lev-temp>
+        <lev-temp num="35">-7.64</lev-temp>
+        <lev-temp num="36">-7.5</lev-temp>
         <lev-temp num="37">-7.35</lev-temp>
         <lev-temp num="38">-7.18</lev-temp>
-        <lev-temp num="39">-7.01</lev-temp>
+        <lev-temp num="39">-7.0</lev-temp>
         <lev-temp num="40">-6.82</lev-temp>
         <lev-temp num="41">-6.62</lev-temp>
         <lev-temp num="42">-6.42</lev-temp>
@@ -8183,66 +8183,66 @@
       <at>-6.0</at>
       <td>-8.0</td>
       <ws>27.0</ws>
-      <sn>0.7</sn>
+      <sn>0.65</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.61</ir>
-      <fv>10.63</fv>
-      <fc>58.81</fc>
+      <fv>10.36</fv>
+      <fc>58.7</fc>
       <fa>10.0</fa>
-      <fg>3.28</fg>
-      <bb>-252.77</bb>
+      <fg>2.69</fg>
+      <bb>-252.98</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.31</st>
-      <sst>-6.96</sst>
+      <st>-9.25</st>
+      <sst>-6.95</sst>
       <tl>
-        <lev-temp num="0">-9.31</lev-temp>
-        <lev-temp num="1">-9.35</lev-temp>
-        <lev-temp num="2">-9.38</lev-temp>
-        <lev-temp num="3">-9.4</lev-temp>
-        <lev-temp num="4">-9.42</lev-temp>
-        <lev-temp num="5">-9.42</lev-temp>
-        <lev-temp num="6">-9.42</lev-temp>
-        <lev-temp num="7">-9.42</lev-temp>
-        <lev-temp num="8">-9.4</lev-temp>
-        <lev-temp num="9">-9.38</lev-temp>
-        <lev-temp num="10">-9.35</lev-temp>
-        <lev-temp num="11">-9.31</lev-temp>
-        <lev-temp num="12">-9.27</lev-temp>
-        <lev-temp num="13">-9.23</lev-temp>
-        <lev-temp num="14">-9.18</lev-temp>
-        <lev-temp num="15">-9.13</lev-temp>
-        <lev-temp num="16">-9.07</lev-temp>
-        <lev-temp num="17">-9.02</lev-temp>
-        <lev-temp num="18">-8.96</lev-temp>
-        <lev-temp num="19">-8.9</lev-temp>
-        <lev-temp num="20">-8.84</lev-temp>
-        <lev-temp num="21">-8.78</lev-temp>
-        <lev-temp num="22">-8.72</lev-temp>
-        <lev-temp num="23">-8.67</lev-temp>
-        <lev-temp num="24">-8.61</lev-temp>
-        <lev-temp num="25">-8.54</lev-temp>
-        <lev-temp num="26">-8.48</lev-temp>
-        <lev-temp num="27">-8.41</lev-temp>
-        <lev-temp num="28">-8.33</lev-temp>
-        <lev-temp num="29">-8.25</lev-temp>
-        <lev-temp num="30">-8.16</lev-temp>
-        <lev-temp num="31">-8.06</lev-temp>
-        <lev-temp num="32">-7.96</lev-temp>
-        <lev-temp num="33">-7.85</lev-temp>
+        <lev-temp num="0">-9.26</lev-temp>
+        <lev-temp num="1">-9.28</lev-temp>
+        <lev-temp num="2">-9.31</lev-temp>
+        <lev-temp num="3">-9.33</lev-temp>
+        <lev-temp num="4">-9.34</lev-temp>
+        <lev-temp num="5">-9.34</lev-temp>
+        <lev-temp num="6">-9.34</lev-temp>
+        <lev-temp num="7">-9.33</lev-temp>
+        <lev-temp num="8">-9.32</lev-temp>
+        <lev-temp num="9">-9.3</lev-temp>
+        <lev-temp num="10">-9.27</lev-temp>
+        <lev-temp num="11">-9.24</lev-temp>
+        <lev-temp num="12">-9.2</lev-temp>
+        <lev-temp num="13">-9.16</lev-temp>
+        <lev-temp num="14">-9.12</lev-temp>
+        <lev-temp num="15">-9.07</lev-temp>
+        <lev-temp num="16">-9.02</lev-temp>
+        <lev-temp num="17">-8.97</lev-temp>
+        <lev-temp num="18">-8.92</lev-temp>
+        <lev-temp num="19">-8.86</lev-temp>
+        <lev-temp num="20">-8.8</lev-temp>
+        <lev-temp num="21">-8.75</lev-temp>
+        <lev-temp num="22">-8.7</lev-temp>
+        <lev-temp num="23">-8.64</lev-temp>
+        <lev-temp num="24">-8.58</lev-temp>
+        <lev-temp num="25">-8.52</lev-temp>
+        <lev-temp num="26">-8.46</lev-temp>
+        <lev-temp num="27">-8.39</lev-temp>
+        <lev-temp num="28">-8.32</lev-temp>
+        <lev-temp num="29">-8.24</lev-temp>
+        <lev-temp num="30">-8.15</lev-temp>
+        <lev-temp num="31">-8.05</lev-temp>
+        <lev-temp num="32">-7.95</lev-temp>
+        <lev-temp num="33">-7.84</lev-temp>
         <lev-temp num="34">-7.72</lev-temp>
-        <lev-temp num="35">-7.59</lev-temp>
-        <lev-temp num="36">-7.45</lev-temp>
+        <lev-temp num="35">-7.58</lev-temp>
+        <lev-temp num="36">-7.44</lev-temp>
         <lev-temp num="37">-7.29</lev-temp>
         <lev-temp num="38">-7.13</lev-temp>
-        <lev-temp num="39">-6.96</lev-temp>
-        <lev-temp num="40">-6.78</lev-temp>
+        <lev-temp num="39">-6.95</lev-temp>
+        <lev-temp num="40">-6.77</lev-temp>
         <lev-temp num="41">-6.59</lev-temp>
-        <lev-temp num="42">-6.4</lev-temp>
+        <lev-temp num="42">-6.39</lev-temp>
         <lev-temp num="43">-6.2</lev-temp>
         <lev-temp num="44">-6.0</lev-temp>
       </tl>
@@ -8253,63 +8253,63 @@
       <at>-6.0</at>
       <td>-8.0</td>
       <ws>27.0</ws>
-      <sn>0.74</sn>
+      <sn>0.69</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>176.61</ir>
-      <fv>10.49</fv>
-      <fc>58.55</fc>
+      <fv>10.24</fv>
+      <fc>58.53</fc>
       <fa>10.0</fa>
-      <fg>2.8</fg>
-      <bb>-252.84</bb>
+      <fg>2.33</fg>
+      <bb>-253.04</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-9.29</st>
-      <sst>-6.92</sst>
+      <st>-9.24</st>
+      <sst>-6.91</sst>
       <tl>
-        <lev-temp num="0">-9.29</lev-temp>
-        <lev-temp num="1">-9.32</lev-temp>
-        <lev-temp num="2">-9.35</lev-temp>
-        <lev-temp num="3">-9.37</lev-temp>
-        <lev-temp num="4">-9.38</lev-temp>
-        <lev-temp num="5">-9.39</lev-temp>
-        <lev-temp num="6">-9.39</lev-temp>
-        <lev-temp num="7">-9.38</lev-temp>
-        <lev-temp num="8">-9.37</lev-temp>
-        <lev-temp num="9">-9.35</lev-temp>
-        <lev-temp num="10">-9.32</lev-temp>
-        <lev-temp num="11">-9.29</lev-temp>
-        <lev-temp num="12">-9.25</lev-temp>
-        <lev-temp num="13">-9.21</lev-temp>
-        <lev-temp num="14">-9.17</lev-temp>
-        <lev-temp num="15">-9.12</lev-temp>
-        <lev-temp num="16">-9.06</lev-temp>
-        <lev-temp num="17">-9.01</lev-temp>
-        <lev-temp num="18">-8.95</lev-temp>
-        <lev-temp num="19">-8.89</lev-temp>
-        <lev-temp num="20">-8.83</lev-temp>
-        <lev-temp num="21">-8.77</lev-temp>
-        <lev-temp num="22">-8.71</lev-temp>
-        <lev-temp num="23">-8.65</lev-temp>
-        <lev-temp num="24">-8.59</lev-temp>
-        <lev-temp num="25">-8.52</lev-temp>
-        <lev-temp num="26">-8.45</lev-temp>
-        <lev-temp num="27">-8.38</lev-temp>
-        <lev-temp num="28">-8.3</lev-temp>
-        <lev-temp num="29">-8.21</lev-temp>
-        <lev-temp num="30">-8.12</lev-temp>
-        <lev-temp num="31">-8.02</lev-temp>
-        <lev-temp num="32">-7.91</lev-temp>
-        <lev-temp num="33">-7.8</lev-temp>
-        <lev-temp num="34">-7.67</lev-temp>
-        <lev-temp num="35">-7.54</lev-temp>
-        <lev-temp num="36">-7.4</lev-temp>
+        <lev-temp num="0">-9.24</lev-temp>
+        <lev-temp num="1">-9.26</lev-temp>
+        <lev-temp num="2">-9.28</lev-temp>
+        <lev-temp num="3">-9.3</lev-temp>
+        <lev-temp num="4">-9.31</lev-temp>
+        <lev-temp num="5">-9.31</lev-temp>
+        <lev-temp num="6">-9.31</lev-temp>
+        <lev-temp num="7">-9.31</lev-temp>
+        <lev-temp num="8">-9.29</lev-temp>
+        <lev-temp num="9">-9.27</lev-temp>
+        <lev-temp num="10">-9.25</lev-temp>
+        <lev-temp num="11">-9.22</lev-temp>
+        <lev-temp num="12">-9.18</lev-temp>
+        <lev-temp num="13">-9.15</lev-temp>
+        <lev-temp num="14">-9.1</lev-temp>
+        <lev-temp num="15">-9.06</lev-temp>
+        <lev-temp num="16">-9.01</lev-temp>
+        <lev-temp num="17">-8.96</lev-temp>
+        <lev-temp num="18">-8.91</lev-temp>
+        <lev-temp num="19">-8.85</lev-temp>
+        <lev-temp num="20">-8.79</lev-temp>
+        <lev-temp num="21">-8.74</lev-temp>
+        <lev-temp num="22">-8.68</lev-temp>
+        <lev-temp num="23">-8.63</lev-temp>
+        <lev-temp num="24">-8.57</lev-temp>
+        <lev-temp num="25">-8.5</lev-temp>
+        <lev-temp num="26">-8.43</lev-temp>
+        <lev-temp num="27">-8.36</lev-temp>
+        <lev-temp num="28">-8.28</lev-temp>
+        <lev-temp num="29">-8.2</lev-temp>
+        <lev-temp num="30">-8.11</lev-temp>
+        <lev-temp num="31">-8.01</lev-temp>
+        <lev-temp num="32">-7.9</lev-temp>
+        <lev-temp num="33">-7.79</lev-temp>
+        <lev-temp num="34">-7.66</lev-temp>
+        <lev-temp num="35">-7.53</lev-temp>
+        <lev-temp num="36">-7.39</lev-temp>
         <lev-temp num="37">-7.24</lev-temp>
         <lev-temp num="38">-7.08</lev-temp>
-        <lev-temp num="39">-6.92</lev-temp>
+        <lev-temp num="39">-6.91</lev-temp>
         <lev-temp num="40">-6.74</lev-temp>
         <lev-temp num="41">-6.56</lev-temp>
         <lev-temp num="42">-6.38</lev-temp>
@@ -8323,64 +8323,64 @@
       <at>-4.38</at>
       <td>-6.05</td>
       <ws>26.02</ws>
-      <sn>0.8</sn>
+      <sn>0.74</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>182.27</ir>
-      <fv>20.36</fv>
-      <fc>64.2</fc>
+      <fv>20.78</fv>
+      <fc>65.82</fc>
       <fa>10.0</fa>
-      <fg>22.61</fg>
-      <bb>-254.23</bb>
+      <fg>24.45</fg>
+      <bb>-254.42</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-8.92</st>
+      <st>-8.87</st>
       <sst>-6.82</sst>
       <tl>
-        <lev-temp num="0">-8.93</lev-temp>
-        <lev-temp num="1">-9.11</lev-temp>
-        <lev-temp num="2">-9.23</lev-temp>
-        <lev-temp num="3">-9.3</lev-temp>
-        <lev-temp num="4">-9.33</lev-temp>
-        <lev-temp num="5">-9.35</lev-temp>
-        <lev-temp num="6">-9.36</lev-temp>
-        <lev-temp num="7">-9.35</lev-temp>
-        <lev-temp num="8">-9.34</lev-temp>
-        <lev-temp num="9">-9.32</lev-temp>
-        <lev-temp num="10">-9.3</lev-temp>
-        <lev-temp num="11">-9.27</lev-temp>
-        <lev-temp num="12">-9.23</lev-temp>
-        <lev-temp num="13">-9.19</lev-temp>
-        <lev-temp num="14">-9.15</lev-temp>
-        <lev-temp num="15">-9.1</lev-temp>
-        <lev-temp num="16">-9.05</lev-temp>
-        <lev-temp num="17">-9.0</lev-temp>
-        <lev-temp num="18">-8.94</lev-temp>
-        <lev-temp num="19">-8.88</lev-temp>
-        <lev-temp num="20">-8.82</lev-temp>
-        <lev-temp num="21">-8.75</lev-temp>
-        <lev-temp num="22">-8.69</lev-temp>
-        <lev-temp num="23">-8.63</lev-temp>
-        <lev-temp num="24">-8.57</lev-temp>
-        <lev-temp num="25">-8.5</lev-temp>
-        <lev-temp num="26">-8.43</lev-temp>
-        <lev-temp num="27">-8.35</lev-temp>
-        <lev-temp num="28">-8.27</lev-temp>
-        <lev-temp num="29">-8.18</lev-temp>
-        <lev-temp num="30">-8.08</lev-temp>
-        <lev-temp num="31">-7.98</lev-temp>
-        <lev-temp num="32">-7.87</lev-temp>
-        <lev-temp num="33">-7.75</lev-temp>
-        <lev-temp num="34">-7.63</lev-temp>
-        <lev-temp num="35">-7.49</lev-temp>
-        <lev-temp num="36">-7.35</lev-temp>
+        <lev-temp num="0">-8.88</lev-temp>
+        <lev-temp num="1">-9.07</lev-temp>
+        <lev-temp num="2">-9.18</lev-temp>
+        <lev-temp num="3">-9.24</lev-temp>
+        <lev-temp num="4">-9.27</lev-temp>
+        <lev-temp num="5">-9.28</lev-temp>
+        <lev-temp num="6">-9.28</lev-temp>
+        <lev-temp num="7">-9.28</lev-temp>
+        <lev-temp num="8">-9.27</lev-temp>
+        <lev-temp num="9">-9.25</lev-temp>
+        <lev-temp num="10">-9.23</lev-temp>
+        <lev-temp num="11">-9.2</lev-temp>
+        <lev-temp num="12">-9.17</lev-temp>
+        <lev-temp num="13">-9.13</lev-temp>
+        <lev-temp num="14">-9.09</lev-temp>
+        <lev-temp num="15">-9.05</lev-temp>
+        <lev-temp num="16">-9.0</lev-temp>
+        <lev-temp num="17">-8.95</lev-temp>
+        <lev-temp num="18">-8.9</lev-temp>
+        <lev-temp num="19">-8.84</lev-temp>
+        <lev-temp num="20">-8.78</lev-temp>
+        <lev-temp num="21">-8.72</lev-temp>
+        <lev-temp num="22">-8.67</lev-temp>
+        <lev-temp num="23">-8.61</lev-temp>
+        <lev-temp num="24">-8.54</lev-temp>
+        <lev-temp num="25">-8.48</lev-temp>
+        <lev-temp num="26">-8.41</lev-temp>
+        <lev-temp num="27">-8.33</lev-temp>
+        <lev-temp num="28">-8.25</lev-temp>
+        <lev-temp num="29">-8.16</lev-temp>
+        <lev-temp num="30">-8.07</lev-temp>
+        <lev-temp num="31">-7.97</lev-temp>
+        <lev-temp num="32">-7.86</lev-temp>
+        <lev-temp num="33">-7.74</lev-temp>
+        <lev-temp num="34">-7.62</lev-temp>
+        <lev-temp num="35">-7.48</lev-temp>
+        <lev-temp num="36">-7.34</lev-temp>
         <lev-temp num="37">-7.19</lev-temp>
-        <lev-temp num="38">-7.02</lev-temp>
+        <lev-temp num="38">-7.01</lev-temp>
         <lev-temp num="39">-6.82</lev-temp>
-        <lev-temp num="40">-6.58</lev-temp>
+        <lev-temp num="40">-6.57</lev-temp>
         <lev-temp num="41">-6.26</lev-temp>
         <lev-temp num="42">-5.84</lev-temp>
         <lev-temp num="43">-5.24</lev-temp>
@@ -8393,64 +8393,64 @@
       <at>-2.71</at>
       <td>-4.05</td>
       <ws>25.02</ws>
-      <sn>0.89</sn>
+      <sn>0.84</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>188.08</ir>
-      <fv>29.04</fv>
-      <fc>68.48</fc>
+      <fv>29.08</fv>
+      <fc>68.67</fc>
       <fa>10.0</fa>
-      <fg>39.14</fg>
-      <bb>-256.47</bb>
+      <fg>39.1</fg>
+      <bb>-256.73</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-8.33</st>
-      <sst>-6.45</sst>
+      <st>-8.27</st>
+      <sst>-6.44</sst>
       <tl>
-        <lev-temp num="0">-8.35</lev-temp>
-        <lev-temp num="1">-8.7</lev-temp>
-        <lev-temp num="2">-8.94</lev-temp>
-        <lev-temp num="3">-9.1</lev-temp>
-        <lev-temp num="4">-9.2</lev-temp>
-        <lev-temp num="5">-9.26</lev-temp>
-        <lev-temp num="6">-9.29</lev-temp>
-        <lev-temp num="7">-9.3</lev-temp>
-        <lev-temp num="8">-9.3</lev-temp>
-        <lev-temp num="9">-9.29</lev-temp>
-        <lev-temp num="10">-9.27</lev-temp>
-        <lev-temp num="11">-9.24</lev-temp>
-        <lev-temp num="12">-9.21</lev-temp>
-        <lev-temp num="13">-9.17</lev-temp>
-        <lev-temp num="14">-9.13</lev-temp>
-        <lev-temp num="15">-9.09</lev-temp>
-        <lev-temp num="16">-9.04</lev-temp>
-        <lev-temp num="17">-8.98</lev-temp>
-        <lev-temp num="18">-8.93</lev-temp>
-        <lev-temp num="19">-8.87</lev-temp>
-        <lev-temp num="20">-8.8</lev-temp>
-        <lev-temp num="21">-8.74</lev-temp>
-        <lev-temp num="22">-8.68</lev-temp>
-        <lev-temp num="23">-8.61</lev-temp>
-        <lev-temp num="24">-8.55</lev-temp>
-        <lev-temp num="25">-8.48</lev-temp>
-        <lev-temp num="26">-8.4</lev-temp>
-        <lev-temp num="27">-8.32</lev-temp>
-        <lev-temp num="28">-8.23</lev-temp>
-        <lev-temp num="29">-8.14</lev-temp>
-        <lev-temp num="30">-8.04</lev-temp>
-        <lev-temp num="31">-7.94</lev-temp>
-        <lev-temp num="32">-7.82</lev-temp>
-        <lev-temp num="33">-7.7</lev-temp>
-        <lev-temp num="34">-7.56</lev-temp>
-        <lev-temp num="35">-7.41</lev-temp>
+        <lev-temp num="0">-8.28</lev-temp>
+        <lev-temp num="1">-8.63</lev-temp>
+        <lev-temp num="2">-8.87</lev-temp>
+        <lev-temp num="3">-9.03</lev-temp>
+        <lev-temp num="4">-9.13</lev-temp>
+        <lev-temp num="5">-9.19</lev-temp>
+        <lev-temp num="6">-9.22</lev-temp>
+        <lev-temp num="7">-9.24</lev-temp>
+        <lev-temp num="8">-9.23</lev-temp>
+        <lev-temp num="9">-9.22</lev-temp>
+        <lev-temp num="10">-9.2</lev-temp>
+        <lev-temp num="11">-9.18</lev-temp>
+        <lev-temp num="12">-9.15</lev-temp>
+        <lev-temp num="13">-9.11</lev-temp>
+        <lev-temp num="14">-9.07</lev-temp>
+        <lev-temp num="15">-9.03</lev-temp>
+        <lev-temp num="16">-8.98</lev-temp>
+        <lev-temp num="17">-8.93</lev-temp>
+        <lev-temp num="18">-8.88</lev-temp>
+        <lev-temp num="19">-8.82</lev-temp>
+        <lev-temp num="20">-8.76</lev-temp>
+        <lev-temp num="21">-8.7</lev-temp>
+        <lev-temp num="22">-8.65</lev-temp>
+        <lev-temp num="23">-8.59</lev-temp>
+        <lev-temp num="24">-8.52</lev-temp>
+        <lev-temp num="25">-8.45</lev-temp>
+        <lev-temp num="26">-8.38</lev-temp>
+        <lev-temp num="27">-8.3</lev-temp>
+        <lev-temp num="28">-8.22</lev-temp>
+        <lev-temp num="29">-8.13</lev-temp>
+        <lev-temp num="30">-8.03</lev-temp>
+        <lev-temp num="31">-7.93</lev-temp>
+        <lev-temp num="32">-7.81</lev-temp>
+        <lev-temp num="33">-7.69</lev-temp>
+        <lev-temp num="34">-7.55</lev-temp>
+        <lev-temp num="35">-7.4</lev-temp>
         <lev-temp num="36">-7.23</lev-temp>
         <lev-temp num="37">-7.02</lev-temp>
-        <lev-temp num="38">-6.77</lev-temp>
-        <lev-temp num="39">-6.45</lev-temp>
-        <lev-temp num="40">-6.04</lev-temp>
+        <lev-temp num="38">-6.76</lev-temp>
+        <lev-temp num="39">-6.44</lev-temp>
+        <lev-temp num="40">-6.03</lev-temp>
         <lev-temp num="41">-5.5</lev-temp>
         <lev-temp num="42">-4.81</lev-temp>
         <lev-temp num="43">-3.91</lev-temp>
@@ -8463,66 +8463,66 @@
       <at>-1.04</at>
       <td>-2.05</td>
       <ws>24.02</ws>
-      <sn>1.01</sn>
+      <sn>0.95</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
       <sf>0.0</sf>
       <ir>193.89</ir>
-      <fv>36.23</fv>
-      <fc>69.03</fc>
+      <fv>36.02</fv>
+      <fc>68.58</fc>
       <fa>10.0</fa>
-      <fg>50.11</fg>
-      <bb>-259.04</bb>
+      <fg>49.25</fg>
+      <bb>-259.25</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-7.67</st>
+      <st>-7.62</st>
       <sst>-5.87</sst>
       <tl>
-        <lev-temp num="0">-7.69</lev-temp>
-        <lev-temp num="1">-8.17</lev-temp>
-        <lev-temp num="2">-8.53</lev-temp>
-        <lev-temp num="3">-8.79</lev-temp>
-        <lev-temp num="4">-8.97</lev-temp>
-        <lev-temp num="5">-9.09</lev-temp>
-        <lev-temp num="6">-9.17</lev-temp>
-        <lev-temp num="7">-9.22</lev-temp>
-        <lev-temp num="8">-9.24</lev-temp>
-        <lev-temp num="9">-9.24</lev-temp>
-        <lev-temp num="10">-9.23</lev-temp>
-        <lev-temp num="11">-9.21</lev-temp>
-        <lev-temp num="12">-9.19</lev-temp>
-        <lev-temp num="13">-9.15</lev-temp>
-        <lev-temp num="14">-9.11</lev-temp>
-        <lev-temp num="15">-9.07</lev-temp>
-        <lev-temp num="16">-9.02</lev-temp>
-        <lev-temp num="17">-8.97</lev-temp>
-        <lev-temp num="18">-8.91</lev-temp>
-        <lev-temp num="19">-8.85</lev-temp>
-        <lev-temp num="20">-8.78</lev-temp>
-        <lev-temp num="21">-8.72</lev-temp>
-        <lev-temp num="22">-8.66</lev-temp>
-        <lev-temp num="23">-8.59</lev-temp>
-        <lev-temp num="24">-8.52</lev-temp>
-        <lev-temp num="25">-8.45</lev-temp>
-        <lev-temp num="26">-8.37</lev-temp>
-        <lev-temp num="27">-8.29</lev-temp>
-        <lev-temp num="28">-8.2</lev-temp>
-        <lev-temp num="29">-8.1</lev-temp>
-        <lev-temp num="30">-8.0</lev-temp>
-        <lev-temp num="31">-7.88</lev-temp>
-        <lev-temp num="32">-7.75</lev-temp>
-        <lev-temp num="33">-7.61</lev-temp>
-        <lev-temp num="34">-7.44</lev-temp>
-        <lev-temp num="35">-7.24</lev-temp>
-        <lev-temp num="36">-7.0</lev-temp>
+        <lev-temp num="0">-7.63</lev-temp>
+        <lev-temp num="1">-8.11</lev-temp>
+        <lev-temp num="2">-8.46</lev-temp>
+        <lev-temp num="3">-8.72</lev-temp>
+        <lev-temp num="4">-8.9</lev-temp>
+        <lev-temp num="5">-9.03</lev-temp>
+        <lev-temp num="6">-9.1</lev-temp>
+        <lev-temp num="7">-9.15</lev-temp>
+        <lev-temp num="8">-9.17</lev-temp>
+        <lev-temp num="9">-9.18</lev-temp>
+        <lev-temp num="10">-9.17</lev-temp>
+        <lev-temp num="11">-9.15</lev-temp>
+        <lev-temp num="12">-9.12</lev-temp>
+        <lev-temp num="13">-9.09</lev-temp>
+        <lev-temp num="14">-9.05</lev-temp>
+        <lev-temp num="15">-9.01</lev-temp>
+        <lev-temp num="16">-8.97</lev-temp>
+        <lev-temp num="17">-8.92</lev-temp>
+        <lev-temp num="18">-8.86</lev-temp>
+        <lev-temp num="19">-8.81</lev-temp>
+        <lev-temp num="20">-8.75</lev-temp>
+        <lev-temp num="21">-8.68</lev-temp>
+        <lev-temp num="22">-8.63</lev-temp>
+        <lev-temp num="23">-8.56</lev-temp>
+        <lev-temp num="24">-8.5</lev-temp>
+        <lev-temp num="25">-8.43</lev-temp>
+        <lev-temp num="26">-8.35</lev-temp>
+        <lev-temp num="27">-8.27</lev-temp>
+        <lev-temp num="28">-8.18</lev-temp>
+        <lev-temp num="29">-8.09</lev-temp>
+        <lev-temp num="30">-7.98</lev-temp>
+        <lev-temp num="31">-7.87</lev-temp>
+        <lev-temp num="32">-7.74</lev-temp>
+        <lev-temp num="33">-7.6</lev-temp>
+        <lev-temp num="34">-7.43</lev-temp>
+        <lev-temp num="35">-7.23</lev-temp>
+        <lev-temp num="36">-6.99</lev-temp>
         <lev-temp num="37">-6.7</lev-temp>
         <lev-temp num="38">-6.33</lev-temp>
         <lev-temp num="39">-5.87</lev-temp>
         <lev-temp num="40">-5.29</lev-temp>
-        <lev-temp num="41">-4.56</lev-temp>
-        <lev-temp num="42">-3.64</lev-temp>
+        <lev-temp num="41">-4.55</lev-temp>
+        <lev-temp num="42">-3.63</lev-temp>
         <lev-temp num="43">-2.49</lev-temp>
         <lev-temp num="44">-1.08</lev-temp>
       </tl>
@@ -8533,67 +8533,67 @@
       <at>-1.0</at>
       <td>-2.0</td>
       <ws>24.0</ws>
-      <sn>1.11</sn>
+      <sn>1.07</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
-      <sf>43.75</sf>
+      <sf>43.9</sf>
       <ir>194.04</ir>
-      <fv>33.51</fv>
-      <fc>63.23</fc>
+      <fv>33.47</fv>
+      <fc>63.15</fc>
       <fa>10.0</fa>
-      <fg>81.5</fg>
-      <bb>-263.02</bb>
+      <fg>81.35</fg>
+      <bb>-263.21</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-6.64</st>
+      <st>-6.59</st>
       <sst>-5.22</sst>
       <tl>
-        <lev-temp num="0">-6.67</lev-temp>
-        <lev-temp num="1">-7.42</lev-temp>
-        <lev-temp num="2">-7.97</lev-temp>
-        <lev-temp num="3">-8.37</lev-temp>
-        <lev-temp num="4">-8.65</lev-temp>
-        <lev-temp num="5">-8.85</lev-temp>
-        <lev-temp num="6">-8.99</lev-temp>
-        <lev-temp num="7">-9.08</lev-temp>
-        <lev-temp num="8">-9.14</lev-temp>
-        <lev-temp num="9">-9.17</lev-temp>
-        <lev-temp num="10">-9.18</lev-temp>
-        <lev-temp num="11">-9.17</lev-temp>
-        <lev-temp num="12">-9.15</lev-temp>
-        <lev-temp num="13">-9.12</lev-temp>
-        <lev-temp num="14">-9.09</lev-temp>
-        <lev-temp num="15">-9.05</lev-temp>
-        <lev-temp num="16">-9.0</lev-temp>
-        <lev-temp num="17">-8.95</lev-temp>
-        <lev-temp num="18">-8.89</lev-temp>
-        <lev-temp num="19">-8.83</lev-temp>
-        <lev-temp num="20">-8.77</lev-temp>
-        <lev-temp num="21">-8.7</lev-temp>
-        <lev-temp num="22">-8.64</lev-temp>
-        <lev-temp num="23">-8.57</lev-temp>
-        <lev-temp num="24">-8.5</lev-temp>
-        <lev-temp num="25">-8.42</lev-temp>
-        <lev-temp num="26">-8.34</lev-temp>
-        <lev-temp num="27">-8.25</lev-temp>
-        <lev-temp num="28">-8.15</lev-temp>
-        <lev-temp num="29">-8.05</lev-temp>
-        <lev-temp num="30">-7.93</lev-temp>
-        <lev-temp num="31">-7.79</lev-temp>
-        <lev-temp num="32">-7.63</lev-temp>
-        <lev-temp num="33">-7.45</lev-temp>
-        <lev-temp num="34">-7.23</lev-temp>
-        <lev-temp num="35">-6.97</lev-temp>
-        <lev-temp num="36">-6.65</lev-temp>
+        <lev-temp num="0">-6.63</lev-temp>
+        <lev-temp num="1">-7.37</lev-temp>
+        <lev-temp num="2">-7.92</lev-temp>
+        <lev-temp num="3">-8.31</lev-temp>
+        <lev-temp num="4">-8.59</lev-temp>
+        <lev-temp num="5">-8.79</lev-temp>
+        <lev-temp num="6">-8.93</lev-temp>
+        <lev-temp num="7">-9.02</lev-temp>
+        <lev-temp num="8">-9.07</lev-temp>
+        <lev-temp num="9">-9.1</lev-temp>
+        <lev-temp num="10">-9.11</lev-temp>
+        <lev-temp num="11">-9.11</lev-temp>
+        <lev-temp num="12">-9.09</lev-temp>
+        <lev-temp num="13">-9.06</lev-temp>
+        <lev-temp num="14">-9.03</lev-temp>
+        <lev-temp num="15">-8.99</lev-temp>
+        <lev-temp num="16">-8.95</lev-temp>
+        <lev-temp num="17">-8.9</lev-temp>
+        <lev-temp num="18">-8.85</lev-temp>
+        <lev-temp num="19">-8.79</lev-temp>
+        <lev-temp num="20">-8.73</lev-temp>
+        <lev-temp num="21">-8.66</lev-temp>
+        <lev-temp num="22">-8.6</lev-temp>
+        <lev-temp num="23">-8.54</lev-temp>
+        <lev-temp num="24">-8.47</lev-temp>
+        <lev-temp num="25">-8.4</lev-temp>
+        <lev-temp num="26">-8.32</lev-temp>
+        <lev-temp num="27">-8.23</lev-temp>
+        <lev-temp num="28">-8.14</lev-temp>
+        <lev-temp num="29">-8.03</lev-temp>
+        <lev-temp num="30">-7.91</lev-temp>
+        <lev-temp num="31">-7.78</lev-temp>
+        <lev-temp num="32">-7.62</lev-temp>
+        <lev-temp num="33">-7.44</lev-temp>
+        <lev-temp num="34">-7.22</lev-temp>
+        <lev-temp num="35">-6.96</lev-temp>
+        <lev-temp num="36">-6.64</lev-temp>
         <lev-temp num="37">-6.26</lev-temp>
         <lev-temp num="38">-5.79</lev-temp>
         <lev-temp num="39">-5.22</lev-temp>
         <lev-temp num="40">-4.55</lev-temp>
         <lev-temp num="41">-3.78</lev-temp>
         <lev-temp num="42">-2.91</lev-temp>
-        <lev-temp num="43">-1.98</lev-temp>
+        <lev-temp num="43">-1.97</lev-temp>
         <lev-temp num="44">-1.0</lev-temp>
       </tl>
     </prediction>
@@ -8603,67 +8603,67 @@
       <at>-1.0</at>
       <td>-2.0</td>
       <ws>24.0</ws>
-      <sn>1.17</sn>
+      <sn>1.14</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
-      <sf>88.13</sf>
+      <sf>88.35</sf>
       <ir>194.04</ir>
-      <fv>28.05</fv>
-      <fc>53.88</fc>
+      <fv>28.28</fv>
+      <fc>54.43</fc>
       <fa>10.0</fa>
-      <fg>105.88</fg>
-      <bb>-268.22</bb>
+      <fg>106.63</fg>
+      <bb>-268.47</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-5.33</st>
-      <sst>-4.76</sst>
+      <st>-5.27</st>
+      <sst>-4.75</sst>
       <tl>
-        <lev-temp num="0">-5.37</lev-temp>
-        <lev-temp num="1">-6.39</lev-temp>
-        <lev-temp num="2">-7.17</lev-temp>
-        <lev-temp num="3">-7.76</lev-temp>
-        <lev-temp num="4">-8.19</lev-temp>
-        <lev-temp num="5">-8.51</lev-temp>
-        <lev-temp num="6">-8.73</lev-temp>
-        <lev-temp num="7">-8.89</lev-temp>
-        <lev-temp num="8">-8.99</lev-temp>
-        <lev-temp num="9">-9.06</lev-temp>
-        <lev-temp num="10">-9.09</lev-temp>
-        <lev-temp num="11">-9.1</lev-temp>
-        <lev-temp num="12">-9.1</lev-temp>
-        <lev-temp num="13">-9.08</lev-temp>
-        <lev-temp num="14">-9.05</lev-temp>
-        <lev-temp num="15">-9.02</lev-temp>
-        <lev-temp num="16">-8.97</lev-temp>
-        <lev-temp num="17">-8.92</lev-temp>
-        <lev-temp num="18">-8.87</lev-temp>
-        <lev-temp num="19">-8.81</lev-temp>
-        <lev-temp num="20">-8.74</lev-temp>
-        <lev-temp num="21">-8.68</lev-temp>
-        <lev-temp num="22">-8.61</lev-temp>
-        <lev-temp num="23">-8.54</lev-temp>
-        <lev-temp num="24">-8.47</lev-temp>
-        <lev-temp num="25">-8.39</lev-temp>
-        <lev-temp num="26">-8.3</lev-temp>
-        <lev-temp num="27">-8.2</lev-temp>
-        <lev-temp num="28">-8.09</lev-temp>
-        <lev-temp num="29">-7.96</lev-temp>
-        <lev-temp num="30">-7.82</lev-temp>
-        <lev-temp num="31">-7.66</lev-temp>
-        <lev-temp num="32">-7.47</lev-temp>
-        <lev-temp num="33">-7.24</lev-temp>
-        <lev-temp num="34">-6.97</lev-temp>
-        <lev-temp num="35">-6.66</lev-temp>
+        <lev-temp num="0">-5.3</lev-temp>
+        <lev-temp num="1">-6.33</lev-temp>
+        <lev-temp num="2">-7.12</lev-temp>
+        <lev-temp num="3">-7.7</lev-temp>
+        <lev-temp num="4">-8.13</lev-temp>
+        <lev-temp num="5">-8.45</lev-temp>
+        <lev-temp num="6">-8.67</lev-temp>
+        <lev-temp num="7">-8.82</lev-temp>
+        <lev-temp num="8">-8.93</lev-temp>
+        <lev-temp num="9">-8.99</lev-temp>
+        <lev-temp num="10">-9.03</lev-temp>
+        <lev-temp num="11">-9.04</lev-temp>
+        <lev-temp num="12">-9.04</lev-temp>
+        <lev-temp num="13">-9.02</lev-temp>
+        <lev-temp num="14">-9.0</lev-temp>
+        <lev-temp num="15">-8.97</lev-temp>
+        <lev-temp num="16">-8.92</lev-temp>
+        <lev-temp num="17">-8.88</lev-temp>
+        <lev-temp num="18">-8.83</lev-temp>
+        <lev-temp num="19">-8.77</lev-temp>
+        <lev-temp num="20">-8.71</lev-temp>
+        <lev-temp num="21">-8.64</lev-temp>
+        <lev-temp num="22">-8.58</lev-temp>
+        <lev-temp num="23">-8.51</lev-temp>
+        <lev-temp num="24">-8.44</lev-temp>
+        <lev-temp num="25">-8.36</lev-temp>
+        <lev-temp num="26">-8.27</lev-temp>
+        <lev-temp num="27">-8.18</lev-temp>
+        <lev-temp num="28">-8.07</lev-temp>
+        <lev-temp num="29">-7.95</lev-temp>
+        <lev-temp num="30">-7.81</lev-temp>
+        <lev-temp num="31">-7.64</lev-temp>
+        <lev-temp num="32">-7.45</lev-temp>
+        <lev-temp num="33">-7.23</lev-temp>
+        <lev-temp num="34">-6.96</lev-temp>
+        <lev-temp num="35">-6.65</lev-temp>
         <lev-temp num="36">-6.28</lev-temp>
         <lev-temp num="37">-5.84</lev-temp>
-        <lev-temp num="38">-5.34</lev-temp>
-        <lev-temp num="39">-4.76</lev-temp>
+        <lev-temp num="38">-5.33</lev-temp>
+        <lev-temp num="39">-4.75</lev-temp>
         <lev-temp num="40">-4.11</lev-temp>
-        <lev-temp num="41">-3.4</lev-temp>
+        <lev-temp num="41">-3.39</lev-temp>
         <lev-temp num="42">-2.63</lev-temp>
-        <lev-temp num="43">-1.83</lev-temp>
+        <lev-temp num="43">-1.82</lev-temp>
         <lev-temp num="44">-1.0</lev-temp>
       </tl>
     </prediction>
@@ -8673,65 +8673,65 @@
       <at>-1.0</at>
       <td>-2.0</td>
       <ws>24.0</ws>
-      <sn>1.19</sn>
+      <sn>1.17</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
-      <sf>132.48</sf>
+      <sf>132.72</sf>
       <ir>194.04</ir>
-      <fv>20.75</fv>
-      <fc>44.21</fc>
+      <fv>20.12</fv>
+      <fc>43.09</fc>
       <fa>10.0</fa>
-      <fg>127.46</fg>
-      <bb>-274.02</bb>
+      <fg>125.8</fg>
+      <bb>-274.17</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-3.9</st>
+      <st>-3.86</st>
       <sst>-4.43</sst>
       <tl>
-        <lev-temp num="0">-3.93</lev-temp>
-        <lev-temp num="1">-5.21</lev-temp>
-        <lev-temp num="2">-6.21</lev-temp>
-        <lev-temp num="3">-6.99</lev-temp>
-        <lev-temp num="4">-7.59</lev-temp>
-        <lev-temp num="5">-8.04</lev-temp>
-        <lev-temp num="6">-8.37</lev-temp>
-        <lev-temp num="7">-8.61</lev-temp>
-        <lev-temp num="8">-8.78</lev-temp>
-        <lev-temp num="9">-8.89</lev-temp>
-        <lev-temp num="10">-8.97</lev-temp>
-        <lev-temp num="11">-9.01</lev-temp>
-        <lev-temp num="12">-9.03</lev-temp>
-        <lev-temp num="13">-9.02</lev-temp>
-        <lev-temp num="14">-9.01</lev-temp>
-        <lev-temp num="15">-8.98</lev-temp>
-        <lev-temp num="16">-8.94</lev-temp>
-        <lev-temp num="17">-8.9</lev-temp>
-        <lev-temp num="18">-8.84</lev-temp>
-        <lev-temp num="19">-8.78</lev-temp>
-        <lev-temp num="20">-8.72</lev-temp>
-        <lev-temp num="21">-8.65</lev-temp>
-        <lev-temp num="22">-8.58</lev-temp>
-        <lev-temp num="23">-8.51</lev-temp>
-        <lev-temp num="24">-8.43</lev-temp>
-        <lev-temp num="25">-8.34</lev-temp>
-        <lev-temp num="26">-8.24</lev-temp>
-        <lev-temp num="27">-8.13</lev-temp>
-        <lev-temp num="28">-8.0</lev-temp>
-        <lev-temp num="29">-7.86</lev-temp>
-        <lev-temp num="30">-7.69</lev-temp>
-        <lev-temp num="31">-7.5</lev-temp>
-        <lev-temp num="32">-7.27</lev-temp>
-        <lev-temp num="33">-7.01</lev-temp>
-        <lev-temp num="34">-6.71</lev-temp>
-        <lev-temp num="35">-6.36</lev-temp>
-        <lev-temp num="36">-5.96</lev-temp>
-        <lev-temp num="37">-5.51</lev-temp>
-        <lev-temp num="38">-5.0</lev-temp>
+        <lev-temp num="0">-3.89</lev-temp>
+        <lev-temp num="1">-5.16</lev-temp>
+        <lev-temp num="2">-6.15</lev-temp>
+        <lev-temp num="3">-6.93</lev-temp>
+        <lev-temp num="4">-7.53</lev-temp>
+        <lev-temp num="5">-7.97</lev-temp>
+        <lev-temp num="6">-8.31</lev-temp>
+        <lev-temp num="7">-8.55</lev-temp>
+        <lev-temp num="8">-8.72</lev-temp>
+        <lev-temp num="9">-8.83</lev-temp>
+        <lev-temp num="10">-8.91</lev-temp>
+        <lev-temp num="11">-8.95</lev-temp>
+        <lev-temp num="12">-8.97</lev-temp>
+        <lev-temp num="13">-8.97</lev-temp>
+        <lev-temp num="14">-8.95</lev-temp>
+        <lev-temp num="15">-8.93</lev-temp>
+        <lev-temp num="16">-8.89</lev-temp>
+        <lev-temp num="17">-8.85</lev-temp>
+        <lev-temp num="18">-8.8</lev-temp>
+        <lev-temp num="19">-8.74</lev-temp>
+        <lev-temp num="20">-8.68</lev-temp>
+        <lev-temp num="21">-8.61</lev-temp>
+        <lev-temp num="22">-8.55</lev-temp>
+        <lev-temp num="23">-8.48</lev-temp>
+        <lev-temp num="24">-8.4</lev-temp>
+        <lev-temp num="25">-8.31</lev-temp>
+        <lev-temp num="26">-8.21</lev-temp>
+        <lev-temp num="27">-8.11</lev-temp>
+        <lev-temp num="28">-7.98</lev-temp>
+        <lev-temp num="29">-7.84</lev-temp>
+        <lev-temp num="30">-7.67</lev-temp>
+        <lev-temp num="31">-7.48</lev-temp>
+        <lev-temp num="32">-7.26</lev-temp>
+        <lev-temp num="33">-7.0</lev-temp>
+        <lev-temp num="34">-6.7</lev-temp>
+        <lev-temp num="35">-6.35</lev-temp>
+        <lev-temp num="36">-5.95</lev-temp>
+        <lev-temp num="37">-5.5</lev-temp>
+        <lev-temp num="38">-4.99</lev-temp>
         <lev-temp num="39">-4.43</lev-temp>
-        <lev-temp num="40">-3.82</lev-temp>
-        <lev-temp num="41">-3.16</lev-temp>
+        <lev-temp num="40">-3.81</lev-temp>
+        <lev-temp num="41">-3.15</lev-temp>
         <lev-temp num="42">-2.46</lev-temp>
         <lev-temp num="43">-1.74</lev-temp>
         <lev-temp num="44">-1.0</lev-temp>
@@ -8743,63 +8743,63 @@
       <at>-1.0</at>
       <td>-2.0</td>
       <ws>24.0</ws>
-      <sn>1.18</sn>
+      <sn>1.16</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
-      <sf>180.45</sf>
+      <sf>180.67</sf>
       <ir>194.04</ir>
-      <fv>6.97</fv>
-      <fc>26.12</fc>
+      <fv>6.51</fv>
+      <fc>27.19</fc>
       <fa>10.0</fa>
-      <fg>137.91</fg>
-      <bb>-279.67</bb>
+      <fg>138.38</fg>
+      <bb>-280.03</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-2.52</st>
-      <sst>-4.19</sst>
+      <st>-2.43</st>
+      <sst>-4.18</sst>
       <tl>
-        <lev-temp num="0">-2.55</lev-temp>
-        <lev-temp num="1">-3.99</lev-temp>
-        <lev-temp num="2">-5.17</lev-temp>
-        <lev-temp num="3">-6.12</lev-temp>
-        <lev-temp num="4">-6.87</lev-temp>
-        <lev-temp num="5">-7.45</lev-temp>
-        <lev-temp num="6">-7.9</lev-temp>
-        <lev-temp num="7">-8.24</lev-temp>
-        <lev-temp num="8">-8.49</lev-temp>
-        <lev-temp num="9">-8.67</lev-temp>
-        <lev-temp num="10">-8.8</lev-temp>
-        <lev-temp num="11">-8.88</lev-temp>
-        <lev-temp num="12">-8.92</lev-temp>
-        <lev-temp num="13">-8.94</lev-temp>
-        <lev-temp num="14">-8.94</lev-temp>
-        <lev-temp num="15">-8.93</lev-temp>
-        <lev-temp num="16">-8.9</lev-temp>
-        <lev-temp num="17">-8.86</lev-temp>
-        <lev-temp num="18">-8.81</lev-temp>
-        <lev-temp num="19">-8.75</lev-temp>
-        <lev-temp num="20">-8.68</lev-temp>
-        <lev-temp num="21">-8.61</lev-temp>
-        <lev-temp num="22">-8.54</lev-temp>
-        <lev-temp num="23">-8.46</lev-temp>
-        <lev-temp num="24">-8.37</lev-temp>
-        <lev-temp num="25">-8.28</lev-temp>
-        <lev-temp num="26">-8.16</lev-temp>
-        <lev-temp num="27">-8.04</lev-temp>
-        <lev-temp num="28">-7.89</lev-temp>
-        <lev-temp num="29">-7.73</lev-temp>
-        <lev-temp num="30">-7.54</lev-temp>
-        <lev-temp num="31">-7.32</lev-temp>
-        <lev-temp num="32">-7.08</lev-temp>
-        <lev-temp num="33">-6.79</lev-temp>
-        <lev-temp num="34">-6.47</lev-temp>
-        <lev-temp num="35">-6.1</lev-temp>
-        <lev-temp num="36">-5.69</lev-temp>
+        <lev-temp num="0">-2.47</lev-temp>
+        <lev-temp num="1">-3.92</lev-temp>
+        <lev-temp num="2">-5.1</lev-temp>
+        <lev-temp num="3">-6.06</lev-temp>
+        <lev-temp num="4">-6.81</lev-temp>
+        <lev-temp num="5">-7.39</lev-temp>
+        <lev-temp num="6">-7.84</lev-temp>
+        <lev-temp num="7">-8.18</lev-temp>
+        <lev-temp num="8">-8.43</lev-temp>
+        <lev-temp num="9">-8.61</lev-temp>
+        <lev-temp num="10">-8.74</lev-temp>
+        <lev-temp num="11">-8.82</lev-temp>
+        <lev-temp num="12">-8.87</lev-temp>
+        <lev-temp num="13">-8.89</lev-temp>
+        <lev-temp num="14">-8.89</lev-temp>
+        <lev-temp num="15">-8.88</lev-temp>
+        <lev-temp num="16">-8.85</lev-temp>
+        <lev-temp num="17">-8.81</lev-temp>
+        <lev-temp num="18">-8.77</lev-temp>
+        <lev-temp num="19">-8.71</lev-temp>
+        <lev-temp num="20">-8.65</lev-temp>
+        <lev-temp num="21">-8.58</lev-temp>
+        <lev-temp num="22">-8.51</lev-temp>
+        <lev-temp num="23">-8.43</lev-temp>
+        <lev-temp num="24">-8.35</lev-temp>
+        <lev-temp num="25">-8.25</lev-temp>
+        <lev-temp num="26">-8.14</lev-temp>
+        <lev-temp num="27">-8.02</lev-temp>
+        <lev-temp num="28">-7.87</lev-temp>
+        <lev-temp num="29">-7.71</lev-temp>
+        <lev-temp num="30">-7.52</lev-temp>
+        <lev-temp num="31">-7.31</lev-temp>
+        <lev-temp num="32">-7.06</lev-temp>
+        <lev-temp num="33">-6.78</lev-temp>
+        <lev-temp num="34">-6.46</lev-temp>
+        <lev-temp num="35">-6.09</lev-temp>
+        <lev-temp num="36">-5.68</lev-temp>
         <lev-temp num="37">-5.23</lev-temp>
         <lev-temp num="38">-4.73</lev-temp>
-        <lev-temp num="39">-4.19</lev-temp>
+        <lev-temp num="39">-4.18</lev-temp>
         <lev-temp num="40">-3.6</lev-temp>
         <lev-temp num="41">-2.98</lev-temp>
         <lev-temp num="42">-2.34</lev-temp>
@@ -8813,64 +8813,64 @@
       <at>-1.0</at>
       <td>-2.0</td>
       <ws>24.0</ws>
-      <sn>1.12</sn>
+      <sn>1.1</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
-      <sf>229.51</sf>
+      <sf>229.76</sf>
       <ir>194.04</ir>
-      <fv>-10.02</fv>
-      <fc>5.46</fc>
+      <fv>-10.77</fv>
+      <fc>4.81</fc>
       <fa>10.0</fa>
-      <fg>144.11</fg>
-      <bb>-284.89</bb>
+      <fg>142.78</fg>
+      <bb>-285.05</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-1.27</st>
+      <st>-1.23</st>
       <sst>-3.99</sst>
       <tl>
-        <lev-temp num="0">-1.3</lev-temp>
-        <lev-temp num="1">-2.84</lev-temp>
-        <lev-temp num="2">-4.14</lev-temp>
-        <lev-temp num="3">-5.21</lev-temp>
-        <lev-temp num="4">-6.09</lev-temp>
-        <lev-temp num="5">-6.8</lev-temp>
-        <lev-temp num="6">-7.37</lev-temp>
-        <lev-temp num="7">-7.8</lev-temp>
-        <lev-temp num="8">-8.14</lev-temp>
-        <lev-temp num="9">-8.39</lev-temp>
-        <lev-temp num="10">-8.57</lev-temp>
-        <lev-temp num="11">-8.7</lev-temp>
-        <lev-temp num="12">-8.79</lev-temp>
-        <lev-temp num="13">-8.84</lev-temp>
-        <lev-temp num="14">-8.86</lev-temp>
-        <lev-temp num="15">-8.86</lev-temp>
-        <lev-temp num="16">-8.84</lev-temp>
-        <lev-temp num="17">-8.81</lev-temp>
-        <lev-temp num="18">-8.76</lev-temp>
-        <lev-temp num="19">-8.71</lev-temp>
-        <lev-temp num="20">-8.64</lev-temp>
-        <lev-temp num="21">-8.57</lev-temp>
-        <lev-temp num="22">-8.49</lev-temp>
-        <lev-temp num="23">-8.41</lev-temp>
-        <lev-temp num="24">-8.31</lev-temp>
-        <lev-temp num="25">-8.2</lev-temp>
-        <lev-temp num="26">-8.08</lev-temp>
-        <lev-temp num="27">-7.94</lev-temp>
-        <lev-temp num="28">-7.78</lev-temp>
-        <lev-temp num="29">-7.6</lev-temp>
-        <lev-temp num="30">-7.39</lev-temp>
-        <lev-temp num="31">-7.15</lev-temp>
-        <lev-temp num="32">-6.89</lev-temp>
-        <lev-temp num="33">-6.59</lev-temp>
-        <lev-temp num="34">-6.25</lev-temp>
-        <lev-temp num="35">-5.88</lev-temp>
-        <lev-temp num="36">-5.46</lev-temp>
-        <lev-temp num="37">-5.01</lev-temp>
-        <lev-temp num="38">-4.52</lev-temp>
+        <lev-temp num="0">-1.26</lev-temp>
+        <lev-temp num="1">-2.79</lev-temp>
+        <lev-temp num="2">-4.08</lev-temp>
+        <lev-temp num="3">-5.15</lev-temp>
+        <lev-temp num="4">-6.03</lev-temp>
+        <lev-temp num="5">-6.74</lev-temp>
+        <lev-temp num="6">-7.3</lev-temp>
+        <lev-temp num="7">-7.74</lev-temp>
+        <lev-temp num="8">-8.08</lev-temp>
+        <lev-temp num="9">-8.33</lev-temp>
+        <lev-temp num="10">-8.52</lev-temp>
+        <lev-temp num="11">-8.64</lev-temp>
+        <lev-temp num="12">-8.73</lev-temp>
+        <lev-temp num="13">-8.78</lev-temp>
+        <lev-temp num="14">-8.81</lev-temp>
+        <lev-temp num="15">-8.81</lev-temp>
+        <lev-temp num="16">-8.79</lev-temp>
+        <lev-temp num="17">-8.76</lev-temp>
+        <lev-temp num="18">-8.72</lev-temp>
+        <lev-temp num="19">-8.67</lev-temp>
+        <lev-temp num="20">-8.6</lev-temp>
+        <lev-temp num="21">-8.53</lev-temp>
+        <lev-temp num="22">-8.46</lev-temp>
+        <lev-temp num="23">-8.38</lev-temp>
+        <lev-temp num="24">-8.28</lev-temp>
+        <lev-temp num="25">-8.18</lev-temp>
+        <lev-temp num="26">-8.05</lev-temp>
+        <lev-temp num="27">-7.91</lev-temp>
+        <lev-temp num="28">-7.76</lev-temp>
+        <lev-temp num="29">-7.58</lev-temp>
+        <lev-temp num="30">-7.37</lev-temp>
+        <lev-temp num="31">-7.14</lev-temp>
+        <lev-temp num="32">-6.87</lev-temp>
+        <lev-temp num="33">-6.57</lev-temp>
+        <lev-temp num="34">-6.24</lev-temp>
+        <lev-temp num="35">-5.87</lev-temp>
+        <lev-temp num="36">-5.45</lev-temp>
+        <lev-temp num="37">-5.0</lev-temp>
+        <lev-temp num="38">-4.51</lev-temp>
         <lev-temp num="39">-3.99</lev-temp>
-        <lev-temp num="40">-3.44</lev-temp>
+        <lev-temp num="40">-3.43</lev-temp>
         <lev-temp num="41">-2.85</lev-temp>
         <lev-temp num="42">-2.25</lev-temp>
         <lev-temp num="43">-1.63</lev-temp>
@@ -8883,66 +8883,66 @@
       <at>-1.0</at>
       <td>-2.0</td>
       <ws>24.0</ws>
-      <sn>1.02</sn>
+      <sn>1.01</sn>
       <ra>0.0</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>0</cc>
-      <sf>280.02</sf>
+      <sf>280.27</sf>
       <ir>194.04</ir>
-      <fv>-29.42</fv>
-      <fc>-16.4</fc>
+      <fv>-29.92</fv>
+      <fc>-16.95</fc>
       <fa>10.0</fa>
-      <fg>148.51</fg>
-      <bb>-289.73</bb>
+      <fg>147.59</fg>
+      <bb>-289.85</bb>
       <fp>0.0</fp>
       <rc>3</rc>
-      <st>-0.12</st>
-      <sst>-3.84</sst>
+      <st>-0.1</st>
+      <sst>-3.83</sst>
       <tl>
-        <lev-temp num="0">-0.15</lev-temp>
-        <lev-temp num="1">-1.77</lev-temp>
-        <lev-temp num="2">-3.15</lev-temp>
-        <lev-temp num="3">-4.33</lev-temp>
-        <lev-temp num="4">-5.31</lev-temp>
-        <lev-temp num="5">-6.12</lev-temp>
-        <lev-temp num="6">-6.78</lev-temp>
-        <lev-temp num="7">-7.31</lev-temp>
-        <lev-temp num="8">-7.73</lev-temp>
-        <lev-temp num="9">-8.05</lev-temp>
-        <lev-temp num="10">-8.3</lev-temp>
-        <lev-temp num="11">-8.48</lev-temp>
-        <lev-temp num="12">-8.61</lev-temp>
-        <lev-temp num="13">-8.69</lev-temp>
-        <lev-temp num="14">-8.74</lev-temp>
-        <lev-temp num="15">-8.76</lev-temp>
-        <lev-temp num="16">-8.76</lev-temp>
-        <lev-temp num="17">-8.74</lev-temp>
-        <lev-temp num="18">-8.7</lev-temp>
-        <lev-temp num="19">-8.65</lev-temp>
-        <lev-temp num="20">-8.59</lev-temp>
-        <lev-temp num="21">-8.51</lev-temp>
-        <lev-temp num="22">-8.43</lev-temp>
-        <lev-temp num="23">-8.34</lev-temp>
-        <lev-temp num="24">-8.24</lev-temp>
-        <lev-temp num="25">-8.12</lev-temp>
-        <lev-temp num="26">-7.98</lev-temp>
-        <lev-temp num="27">-7.83</lev-temp>
-        <lev-temp num="28">-7.66</lev-temp>
-        <lev-temp num="29">-7.46</lev-temp>
-        <lev-temp num="30">-7.24</lev-temp>
-        <lev-temp num="31">-6.99</lev-temp>
-        <lev-temp num="32">-6.71</lev-temp>
-        <lev-temp num="33">-6.4</lev-temp>
-        <lev-temp num="34">-6.05</lev-temp>
-        <lev-temp num="35">-5.68</lev-temp>
-        <lev-temp num="36">-5.27</lev-temp>
-        <lev-temp num="37">-4.82</lev-temp>
+        <lev-temp num="0">-0.12</lev-temp>
+        <lev-temp num="1">-1.73</lev-temp>
+        <lev-temp num="2">-3.11</lev-temp>
+        <lev-temp num="3">-4.27</lev-temp>
+        <lev-temp num="4">-5.25</lev-temp>
+        <lev-temp num="5">-6.06</lev-temp>
+        <lev-temp num="6">-6.72</lev-temp>
+        <lev-temp num="7">-7.25</lev-temp>
+        <lev-temp num="8">-7.67</lev-temp>
+        <lev-temp num="9">-8.0</lev-temp>
+        <lev-temp num="10">-8.24</lev-temp>
+        <lev-temp num="11">-8.43</lev-temp>
+        <lev-temp num="12">-8.55</lev-temp>
+        <lev-temp num="13">-8.64</lev-temp>
+        <lev-temp num="14">-8.69</lev-temp>
+        <lev-temp num="15">-8.72</lev-temp>
+        <lev-temp num="16">-8.72</lev-temp>
+        <lev-temp num="17">-8.7</lev-temp>
+        <lev-temp num="18">-8.66</lev-temp>
+        <lev-temp num="19">-8.61</lev-temp>
+        <lev-temp num="20">-8.55</lev-temp>
+        <lev-temp num="21">-8.47</lev-temp>
+        <lev-temp num="22">-8.4</lev-temp>
+        <lev-temp num="23">-8.31</lev-temp>
+        <lev-temp num="24">-8.21</lev-temp>
+        <lev-temp num="25">-8.09</lev-temp>
+        <lev-temp num="26">-7.96</lev-temp>
+        <lev-temp num="27">-7.81</lev-temp>
+        <lev-temp num="28">-7.63</lev-temp>
+        <lev-temp num="29">-7.44</lev-temp>
+        <lev-temp num="30">-7.22</lev-temp>
+        <lev-temp num="31">-6.97</lev-temp>
+        <lev-temp num="32">-6.69</lev-temp>
+        <lev-temp num="33">-6.39</lev-temp>
+        <lev-temp num="34">-6.04</lev-temp>
+        <lev-temp num="35">-5.67</lev-temp>
+        <lev-temp num="36">-5.26</lev-temp>
+        <lev-temp num="37">-4.81</lev-temp>
         <lev-temp num="38">-4.34</lev-temp>
-        <lev-temp num="39">-3.84</lev-temp>
+        <lev-temp num="39">-3.83</lev-temp>
         <lev-temp num="40">-3.3</lev-temp>
         <lev-temp num="41">-2.75</lev-temp>
-        <lev-temp num="42">-2.18</lev-temp>
+        <lev-temp num="42">-2.17</lev-temp>
         <lev-temp num="43">-1.59</lev-temp>
         <lev-temp num="44">-1.0</lev-temp>
       </tl>
