@@ -44,9 +44,9 @@
 *     Auteur: Louis-Philippe Crevier
 *     Date: Juillet 1999
 ***
-      SUBROUTINE BALANC ( FS  , FI , P0  , TA , QA , VA , TYP, FT, PR,
+      SUBROUTINE BALANC ( FS  , FI , P0  , TA , QA , VA , TYP, PR,
      *                    iref, ir40, NTP, NTFM, ITP, FLAT,
-     *                    FCOR, WW , ALN, ALR, FP,
+     *                    FCOR, ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    EPSILON, Z0, Z0T, ZU, ZT, ECHEC, dpRT, 
      *                    dpRA, dpSN, npRC, dpIR, dpSF, dpFV, dpFC, 
@@ -74,7 +74,6 @@
 *     QA: Specific humidity (g/kg) at level ZT
 *     VA: Wind (m/s) at level ZU
 *     TYP: Probable type of precipitation ( 1 -> rain, 2 -> snow )
-*     FT: "Forecast time" (GMT)
 *     PR: Precipitation rate (m/s)
 *     NTP: Index for the start of coupling
 *     NTFM: Index for the end of forecast
@@ -86,7 +85,6 @@
 *     EPSILON: Road emissivity
 *     TS0: Target temperature for the end of coupling (C)
 *     FCOR: Coriolis factor
-*     WW: Minimum winds for the day and the night (m/s)
 *     dpRA: Liquid accumulation on the road
 *     dpSN: Solid (snow/ice) accumulation on the road
 *     dpRC: Road condition
@@ -116,9 +114,9 @@
       INTEGER iref, ir40, NTP, NTFM
       DOUBLE PRECISION FS(DTMAX),  FI(DTMAX), P0(DTMAX)
       DOUBLE PRECISION TA(DTMAX), QA(DTMAX), VA(DTMAX)
-      DOUBLE PRECISION TYP(DTMAX), FT(DTMAX), PR(DTMAX)
+      DOUBLE PRECISION TYP(DTMAX), PR(DTMAX)
       DOUBLE PRECISION ITP(n)
-      DOUBLE PRECISION FCOR, WW(2)
+      DOUBLE PRECISION FCOR
       DOUBLE PRECISION ALN, ALR, FP      
       DOUBLE PRECISION  FSCORR, FICORR
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
@@ -320,8 +318,6 @@
          end if
          RHO = REAL(P0(i) / ( RGASD * FOTVT ( TSK , QG ) ))
 
-*        wind modification 
-         call VENMIN  ( WW, FT(i), VA(i) )
 *        energy used/freed by the melting snow/freezing rain
          call VERGLAS ( TYP(i), T(1,now), FP, FZ, PR(i), PR1, PR2, PRG )
 *        coefficients of heat flux

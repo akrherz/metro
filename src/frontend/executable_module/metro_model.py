@@ -228,7 +228,6 @@ class Metro_model(Metro_module):
         lIR = wf_interpolated_data.get_matrix_col('IR').tolist()
         npFA = wf_interpolated_data.get_matrix_col('FA')
         lFA = npFA.tolist()
-        lFT = wf_interpolated_data.get_matrix_col('Time').tolist()
         lPI = wf_interpolated_data.get_matrix_col('PI').tolist()
         lSC = wf_interpolated_data.get_matrix_col('SC').tolist()
 
@@ -306,7 +305,7 @@ class Metro_model(Metro_module):
         macadam.Do_Metro(bFlat,\
                          fLat, fLon, \
                          lLayerThick, nNbrOfLayer, lLayerType, \
-                         lAT, lQP, lWS, lAP, lSF, lIR, lFT, lFA, lPI, lSC,\
+                         lAT, lQP, lWS, lAP, lSF, lIR, lFA, lPI, lSC,\
                          lAT_obs,lST_obs, lSST_obs, \
                          lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \

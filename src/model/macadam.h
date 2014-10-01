@@ -36,7 +36,7 @@
 #define dOMEGA  0.7292e-4 
 
 /* Main call from  python */
-void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP, double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRc, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSWO,  BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth);
+void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP, double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, double* dpFA, double* dpTYP, double* dpRc, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSWO,  BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth);
 	      
 void init_structure(long nTimeStepMax, long nGrilleLevelMax);
 
@@ -54,9 +54,9 @@ extern void initial_(double* dpItp , double* dpRTO, double* dpDTO, double* dpTAO
 		     long* nLenObservation, long* nSize, long* nIR40, \
 		     BOOL* bFlat, long* npSwo, double* dpCapacity, double* dpConductivity); 
 extern void coupla_(double* dpFS, double* dpFI, double* dpPS, double* dpTA, double* dpAH, \
-		    double* dpFF, double* dpTYP, double* dpFT, double* dpQP, double* dpRC, \
+		    double* dpFF, double* dpTYP,  double* dpQP, double* dpRC, \
 		    long* nSize, long* nNtp, long* nNtp2, double* dpItp, double* dpRTO, \
-		    BOOL* bFlat, double* dFCorr, double* dpWw, double* dAln, double* dAlr, \
+		    BOOL* bFlat, double* dFCorr, double* dAln, double* dAlr, \
 		    double* dFp, double* dFsCorr, double* dFiCorr, double* dEr1, double* dEr2, \
 		    BOOL* bFail, double* dEpsilon, double* dZ0, double* dZ0t, double* dZu, \
 		    double* dZt, long* stEcplArray, double* stRApdArray, double* stSNpdArray, \
@@ -66,9 +66,9 @@ extern void coupla_(double* dpFS, double* dpFI, double* dpPS, double* dpTA, doub
 
 
 extern void balanc_(double* dpFS, double* dpFI, double* dpPS, double* dpTA, double* dpAH, \
-		    double* dpFF, double* dpTYP, double* dpFT, double * dpQP, \
+		    double* dpFF, double* dpTYP,  double * dpQP, \
 		    long* nSize, long* nIR40, long* nNtp2, long* nNbrTimeSteps, double* dpItp,\
-		    BOOL* bFlat, double* dFCorr, double* dpWw, double* dAln, double* dAlr, \
+		    BOOL* bFlat, double* dFCorr, double* dAln, double* dAlr, \
 		    double* dFp, double* dFsCorr, double* dFiCorr, double* dEr1, \
 		    double* dEr2, double* dEpsilon, double* dZ0, double* dZ0t, double* dZu, \
 		    double* dZt, long* stEcplArray, double* stRTpdArray, double* stRApdArray, \

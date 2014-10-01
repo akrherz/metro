@@ -42,9 +42,9 @@
 *     Auteur /  Author: Louis-Philippe Crevier
 *     Date: Aout 1999 / August 1999
 ***
-      SUBROUTINE COUPLA ( FS, FI, P0, TA , QA , VA , TYP, FT, PR,
+      SUBROUTINE COUPLA ( FS, FI, P0, TA , QA , VA , TYP, PR,
      *                    PVC , iref, NTP, NTP2, ITP, TSO, FLAT,
-     *                    FCOR, WW , ALN, ALR, FP,
+     *                    FCOR, ALN, ALR, FP,
      *                    FSCORR   , FICORR  , ER1, ER2, 
      *                    FAIL, EPSILON, Z0, Z0T, ZU, ZT, ECHEC,
      *                    dpRA, dpSN, npRC, dpRT, dpIR, dpSF, dpFV,
@@ -72,7 +72,6 @@
 *     QA: Specific humidity (g/kg) at level ZT
 *     VA: Wind (m/s) at level ZU
 *     TYP: Probable type of precipitation ( 1 -> rain, 2 -> snow )
-*     FT: "Forecast time" (GMT)
 *     PR: Precipitation rate (m/s)
 *     PVC: Road condition (0 [dry] ou 1 [wet])
 *     iref: Number of levels in the grid
@@ -86,7 +85,6 @@
 *     EPSILON: Road emissivity
 *     TS0: Target temperature for the end of coupling (C)
 *     FCOR: Coriolis factor
-*     WW: Minimum winds for the day and the night (m/s)
 *     dpRA: Liquid accumulation on the road
 *     dpSN: Solid (snow/ice) accumulation on the road
 *     dpRC: Road condition
@@ -110,9 +108,9 @@
       INTEGER iref, NTP, NTP2
       DOUBLE PRECISION  FS(DTMAX), FI(DTMAX), TA(DTMAX)
       DOUBLE PRECISION QA(DTMAX), PR(DTMAX)
-      DOUBLE PRECISION VA(DTMAX), P0(DTMAX), FT(DTMAX)
+      DOUBLE PRECISION VA(DTMAX), P0(DTMAX)
       DOUBLE PRECISION TYP(DTMAX), PVC(DTMAX)
-      DOUBLE PRECISION FCOR, WW(2)
+      DOUBLE PRECISION FCOR
       DOUBLE PRECISION ALN, ALR, TSO, FP
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
       DOUBLE PRECISION dpSN(DTMAX), dpRA(DTMAX)
@@ -334,8 +332,6 @@
             return
          end if
          RHO = REAL(P0(i) / ( RGASD * FOTVT ( TSK , QG ) ))
-*        Wind modification 
-         call VENMIN  ( WW, FT(i), VA(i) )
 *        Energy used/free by the melting snow/freezing rain
          call VERGLAS ( TYP(i), T(1,now), FP, FZ, PR(i),
      *                  PR1, PR2, PRG, FAIL )

@@ -132,60 +132,6 @@
 
 ************************************************************************
 ***
-*     Subroutine   VENMIN: Impose the minimum winds specified by the WW
-*                           variable. WW(1) is minimum wind for the day
-*                           WW(2) is minimum wind for the night.
-*                           FT is Forecast Time 
-*                           VA is wind speed (Vitesse Air)
-*                           Default is currently 0.
-*
-*     Auteur / Author: Louis-Philippe Crevier
-*     Date: Decembre 1999 / December 1999
-***
-      SUBROUTINE VENMIN ( WW, FT, VA )
-      IMPLICIT NONE
-***                 ***
-*     DEFINITIONS     *
-***                 ***
-***
-*     Input
-*     -------
-*     WW : Minimum winds for the day and the night (m/s)
-*     FT : Forecast time
-*     VA : Wind speed (m/s)
-***
-      DOUBLE PRECISION WW(2), FT
-***
-*     Input/Output
-*     ---------------
-***
-      DOUBLE PRECISION VA
-***
-*
-*     Procedure
-*     =========
-*     Specification of a minimum wind based on the time of the day
-*     WARNING: UTC time. Based on East timezone
-*     -----------------------------------------------------
-      if ( FT .gt. 12.5 .and. FT .lt. 25.5 .or.
-     *     FT .gt. 36.5 .and. FT .lt. 50.0 ) then
-         VA = max( WW(1), VA )
-      else if ( FT .ge. 11.5 .and. FT .le. 12.5 ) then
-         VA = max( WW(2)+(FT-11.5)*(WW(1)-WW(2)), VA )
-      else if ( FT .ge. 25.5 .and. FT .le. 26.5 ) then
-         VA = max( WW(1)+(FT-25.5)*(WW(2)-WW(1)), VA )
-      else if ( FT .ge. 35.5 .and. FT .le. 36.5 ) then
-         VA = max( WW(2)+(FT-35.5)*(WW(1)-WW(2)), VA )
-      else
-         VA = max( WW(2), VA )
-      end if
-
-      return
-      end
-
-
-************************************************************************
-***
 *     Sous-routine TSEVOL: Calcul l'evolution du profil de temperature
 *                          a partir du bilan de surface
 *

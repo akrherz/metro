@@ -144,7 +144,7 @@ Miguel Tremblay  May 2004
  
 ***************************************************************************/
 
-void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFT, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth)
+void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth)
 {
 
   /* Argument de la ligne de commande. Donne par python  */
@@ -173,7 +173,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   long nNtdcl;
   double* dpItp;
   double dDiff;
-  double* dpWw;
   double dAln = 0.5;
   double dAlr = 0.1;
   double dEpsilon = 0.92;
@@ -206,7 +205,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 
   /* double */ 
   dpItp = (double*)malloc((nNGRILLEMAX)*sizeof(double));
-  dpWw = (double*)calloc((2),sizeof(double));
   dpCnt = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
   dpCapacity  = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
   dpConductivity = (double*)calloc((2*nNGRILLEMAX),sizeof(double));
@@ -274,9 +272,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		    &dDiff, &dMLon, npSwo, stTemperatureDepth.pdArray);
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, dpRC, \
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP, dpRC, \
 		    &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp, \
-		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw,  \
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr,   \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray, \
 		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
@@ -313,9 +311,9 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		     &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP, \
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP, \
 		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp,\
-		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, dpWw, \
+		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
 		    stRA.pdArray, stSN.pdArray, stRC.plArray, stRT.pdArray,\
@@ -338,10 +336,10 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   }/* End else observation complete */
 
   /************ roadcast **************************************************/
-  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpFT, dpQP,\
+  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP,\
 		  &stTemperatureDepth.nSize,					\
 		  &nIR40, &nNtp2, &nNbrTimeSteps, dpItp, &bFlat, &dFCorr,\
-		  dpWw,  &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
+		   &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\
 		  &dEr2, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
 		  stRT.pdArray, stRA.pdArray ,stSN.pdArray, stRC.plArray,\
 		  stIR.pdArray, stSF.pdArray, stFV.pdArray, stFC.pdArray,\
@@ -363,8 +361,6 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   /* double */
   free(dpItp);
   dpItp = NULL;
-  free(dpWw);
-  dpWw = NULL;
   free(dpCnt);
   dpCnt = NULL;
   free(dpCapacity);
