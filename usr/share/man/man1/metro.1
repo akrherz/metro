@@ -3,7 +3,8 @@
 metro \- METRo is a road weather forecast software from Environment Canada.
 .SH SYNOPSIS
 .B metro
-[\fB\-\-version\fR] [\fB\-\-help\fR] [\fB\-\-roadcast-start-date\fR \fIdate\fR] [\fB\-\-input\-forecast\fR \fIfilename\fR] [\fB\-\-input\-observation\fR \fIfilename\fR] [\fB\-\-input\-station\fR \fIfilename\fR] [\fB\-\-output\-forecast\fR \fIfilename\fR] [\fB\-\-output\-roadcast\fR \fIfilename\fR] [\fB\-\-config\fR \fIfilename\fR] [\fB\-\-generate\-config\fR \fIfilename\fR] [\fB\-\-log\-file\fR \fIfilename\fR] [\fB\-\-verbose\-level\fR \fIlevel\fR] [\fB\-\-selftest\fR] [\fB\-\-silent\fR] [\fB\-\-lang\fR \fI[fr|en]\fR] [\fB\-\-use\-solarflux\-forecast\fR] [\fB\-\-use\-infrared\-forecast\fR] \fB[\-\-use\-anthropogenic\-flux\fR] [\fB\-\-use-sst-sensor-depth\fR] [\fB\-\-output-subsurface-levels\fR] [\fB\-\-enable\-sunshadow [\fB\-\-sunshadow\-method \fImethod\fR]\fR] 
+[\fB\-\-config\fR \fIfilename\fR][\fB\-\-enable\-sunshadow \fR[\fB\-\-sunshadow\-method \fImethod\fR]\fR] [\fB\-\-help\fR]  [\fB\-\-fix-deep\-soil\-temperature \fItemperature\fR\] [\fB\-\-generate\-config\fR \fIfilename\fR] [\fB\-\-input\-forecast\fR \fIfilename\fR] [\fB\-\-input\-observation\fR \fIfilename\fR] [\fB\-\-input\-station\fR \fIfilename\fR] [\fB\-\-lang\fR \fI[fr|en]\fR] [\fB\-\-log\-file\fR \fIfilename\fR] [\fB\-\-output\-roadcast\fR \fIfilename\fR]  [\fB\-\-output-subsurface-levels\fR] [\fB\-\-roadcast-start-date\fR \fIdate\fR] [\fB\-\-selftest\fR] [\fB\-\-silent\fR] [\fB\-\-use\-anthropogenic\-flux\fR]  [\fB\-\-use\-infrared\-forecast\fR] [\fB\-\-use-sst-sensor-depth\fR] [\fB\-\-use\-solarflux\-forecast\fR] [\fB\-\-verbose\-level\fR \fIlevel\fR] [\fB\-\-version\fR]  
+
 .SH DESCRIPTION
 With the help of observations provided by roads weather stations (road weather information system, RWIS) and the atmospheric forecast, METRo can predict the roads conditions with particular interest such as: freezing rain, accumulation of snow, frost or defrost soil. 
 
@@ -23,6 +24,9 @@ Optional.  METRo uses sun-shadow algorithm to determine if the road is exposed t
 .B \-\-help
 Display a list of command line options.
 .TP
+.B \-\-fix-deep\-soil\-temperature temperature
+Optional. Fix the deep soil temperature to a given value. 'temperature' must be a number between the maximum and minimum road temperature values given in metro_constant.py.
+.TP
 .B \-\-generate\-config filename
 Generate an empty config file.  You can then fill the options that will be used if the option \-\-config is set to filename on a subsequent call to metro.
 .TP
@@ -40,9 +44,6 @@ Choose the language of message for METRo.  Default is english. Only French is cu
 .TP
 .B \-\-log\-file filename
 Set the path of the metro log file.
-.TP
-.B \-\-output\-forecast filename
-Set where the roadcast of METRo will be written.
 .TP
 .B \-\-output\-subsurface\-levels
 Optional.  Put in the output roadcast all the temperature for the subsurfaces levels, 19 levels for roads or a uniform grid at every cm for bridges. WARNING: Using this option slow down METRo by a factor of 2.
@@ -99,6 +100,22 @@ Select the verbose level of the logged messages of metro.
 \-\-version
 output version information and exit
 
+.SH EXAMPLES
+Standard usage of METRo:
+.RS 
+metro  \-\-input\-forecast forecast.xml \-\-input\-observation observation.xml \-\-input\-station station.xml \-\-output\-forecast roadcast.xml
+.RE
+Fix the deep soil temperature to 0 degree Celsius:
+.RS
+metro  \-\-input\-forecast forecast.xml \-\-input\-observation observation.xml \-\-input\-station station.xml \-\-output\-forecast roadcast.xml \-\-fix\-deep\-soil\-temperature 0.0
+.RE
+Use the solar flux in the forecast file:
+.RS
+metro  \-\-input\-forecast forecast.xml \-\-input\-observation observation.xml \-\-input\-station station.xml \-\-output\-forecast roadcast.xml \-\-use\-solarflux\-forecast
+.RE
+Use the sun\-shadow method:
+.RS
+metro  \-\-input\-forecast forecast.xml \-\-input\-observation observation.xml \-\-input\-station station.xml \-\-output\-forecast roadcast.xml \-\-enable\-sunshadow \-\-sunshadow\-method 2
 
 .SH AUTHOR
 Written by Miguel Tremblay, Francois Fortin, Yves Delage and Louis-Philippe Crevier.
