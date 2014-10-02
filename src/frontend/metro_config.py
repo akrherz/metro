@@ -88,7 +88,7 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "input-observation-ref=",
                      "input-forecast=", "input-observation=",
                      "input-station=", 
-                     "output-forecast=", "output-roadcast=",
+                     "output-roadcast=",
                      "bypass-core",
                      "generate-dtd-catalog",
                      "config=","generate-config=","log-file=","verbose-level=",
@@ -364,11 +364,6 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
         if o == "--input-station":
             dConf['FILE_STATION_FILENAME'] = a
 
-        if o == "--output-forecast":
-            print "Warning: --output-forecast option is DEPRECATED and will be removed in the future."
-            print "It's still there for compatibility reason but won't produce any weather forecast."
-            dConf['FILE_FORECAST_OUT_FILENAME'] = a
-        
         if o == "--output-roadcast":
             dConf['FILE_ROADCAST_FILENAME'] = a
 
@@ -564,16 +559,6 @@ def set_default_value( ):
          'COMMENTS':_("max version for valid station file")}  
 
 # ----------------------------------- output -----------------------------------
-
-    dConfig['FILE_FORECAST_OUT_FILENAME'] = \
-        {'VALUE'   :"forecast_out.xml",
-         'FROM'    :CFG_HARDCODED,
-         'COMMENTS':_("forecast output filename")}
-
-    dConfig['FILE_FORECAST_OUT_CURRENT_VERSION'] = \
-        {'VALUE'   :"1.0",
-         'FROM'    :CFG_INTERNAL,
-         'COMMENTS':_("current version for forecast output file")}
 
     dConfig['FILE_ROADCAST_FILENAME'] = \
         {'VALUE'   :"roadcast.xml",
