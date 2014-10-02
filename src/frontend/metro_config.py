@@ -98,7 +98,8 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "use-sst-sensor-depth",
                      "enable-sunshadow",
                      "sunshadow-method=",
-                     "output-subsurface-levels"
+                     "output-subsurface-levels",
+                     "fix-deep-soil-temperature="
                      ]
 
 
@@ -276,6 +277,7 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
     try:
         opts, args = getopt.gnu_getopt( lArgv, sShort_opt, lLong_opt)
+        print args
 
     except getopt.GetoptError, sError:
         # print help information and exit:
@@ -285,7 +287,7 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
     if args != []:
         sMessage = _("problem with arg: ") + str(args) +\
-                   _("\nString(s) was not recognize as an argument.")
+                   _("\nString(s) was not recognized as an argument.")
         print sMessage
         sys.exit(3)
     
@@ -433,7 +435,12 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 	        pass
 
 
-            
+        if o == "--fix-deep-soil-temperature":
+            try:
+                dConfig['DEEP_SOIL_TEMP']['VALUE'] = True
+                dConfig['DEEP_SOIL_TEMP_VALUE']['VALUE'] = a
+            except:
+                pass
 
         if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
@@ -1279,6 +1286,16 @@ def set_default_value( ):
         {'VALUE'    :'UTC',
          'FROM'     :CFG_HARDCODED,
          'COMMENTS' :_("default time zone for observation measure date")}
+
+    dConfig['DEEP_SOIL_TEMP_VALUE'] =\
+        {'VALUE'    : 0.0,
+         'FROM'     : CFG_HARDCODED,
+         'COMMENTS' :_("Value of deep soil temperature")}
+
+    dConfig['DEEP_SOIL_TEMP'] = \
+        {'VALUE'    : False,
+         'FROM'     : CFG_HARDCODED,
+         'COMMENTS' :_("Is the deep soil temperature fixed?")}
 
 
     # ------------------------------ station -----------------------------------

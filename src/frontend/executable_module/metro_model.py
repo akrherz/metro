@@ -242,6 +242,9 @@ class Metro_model(Metro_module):
         lST_obs =  ro_interpolated_data.get_matrix_col('ST').tolist()
         lSST_obs =  ro_interpolated_data.get_matrix_col('SST').tolist()
         lTime_obs = ro_interpolated_data.get_matrix_col('Time').tolist()
+        # Deep soil value given in command line
+        bDeepTemp = metro_config.get_value('DEEP_SOIL_TEMP')
+        dDeepTemp =  float(metro_config.get_value('DEEP_SOIL_TEMP_VALUE'))
 
         nLenObservation = self.__get_observation_lenght(observation)        
         fDeltaTMetroObservation = self.__get_observation_delta_t(observation)
@@ -302,6 +305,7 @@ class Metro_model(Metro_module):
                                    _("Start sending data to METRo core"))
 
         bEchec = []
+
         macadam.Do_Metro(bFlat,\
                          fLat, fLon, \
                          lLayerThick, nNbrOfLayer, lLayerType, \
@@ -310,7 +314,7 @@ class Metro_model(Metro_module):
                          lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \
                          nNbrTimeSteps, bSilent, \
-                         dSstDepth)
+                         dSstDepth, bDeepTemp, dDeepTemp)
         bEchec = (macadam.get_echec())[0]
         # Check if the execution of the model was a succes:
         if bEchec != 0:

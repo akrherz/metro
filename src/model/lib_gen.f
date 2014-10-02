@@ -45,7 +45,8 @@
 *     Date: Decembre 1999 / December 1999
 ***
       SUBROUTINE MAKITP (ITP, iref, ir40, FLAT, FT, TS, 
-     *                   TU, TA, DIFF, LON, SWO_IN, dpTemperatureDepth)
+     *                   TU, TA, DIFF, LON, SWO_IN, dpTemperatureDepth,
+     *                   bDeepTemp, dDeepTemp)
       IMPLICIT NONE
       INTEGER j
       INTEGER Nl, n
@@ -71,10 +72,12 @@
 *     LON: Longitude de la station
 *     DIFF: Vecteur utilise pour creer les profiles initiaux de temperature
 *     dpTemperatureDepth:  Depth of temperature grid levels
+*     bDeepTemp: is the bottom temperature layer given as input?
+*     fDeepTemp: temperature of the bottom layer if bDeepTemp == TRUE
 ***
-      LOGICAL FLAT
+      LOGICAL FLAT, bDeepTemp
       DOUBLE PRECISION FT, TS, TU, TA, DIFF, LON
-      DOUBLE PRECISION dpTemperatureDepth(n)
+      DOUBLE PRECISION dpTemperatureDepth(n), dDeepTemp
       INTEGER iref, ir40, SWO_IN(Nl*4), SWO(Nl,4)
 
 ***
@@ -152,6 +155,9 @@
      *           EXP((-K)*dpTemperatureDepth(j))*ASURF
      *             *SIN(OMEGA*FT-K*dpTemperatureDepth(j)+C)
          end do
+         if ( bDeepTemp ) then
+            ITP(iref) = dDeepTemp
+         end if
       end if
 
       if( .not. bSilent) then

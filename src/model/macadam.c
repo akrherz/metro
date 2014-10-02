@@ -118,6 +118,8 @@ static struct doubleStruct stLT; /* Level temperature */
 [I long nLenObservation : Number of valid observations.  30 seconds steps.]
 [I long nNbrTimeSteps : number of 30 seconds steps in the forecast] 
 [I double dSstDepth : SST sensor depth from station file]
+[I BOOL* bDeepTemp : is the bottom temperature layer given as input?]
+[I double* dDeepTemp : temperature of the bottom layer if bDeepTemp == TRUE]
 
 Returns: None 
  
@@ -144,7 +146,14 @@ Miguel Tremblay  May 2004
  
 ***************************************************************************/
 
-void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP, double* dpFF,  double* dpPS, double* dpFS, double* dpFI, double* dpFA, double* dpTYP, double* dpRC, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSwo, BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth)
+void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones,\
+	       long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP,\
+	       double* dpFF,  double* dpPS, double* dpFS, double* dpFI, \
+	       double* dpFA, double* dpTYP, double* dpRC, double* dpTAO, \
+	       double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO,\
+	       long* npSwo, BOOL* bpNoObs, double dDeltaT,\
+	       long nLenObservation, long nNbrTimeSteps, BOOL bSilent,\
+	       double dSstDepth, BOOL bDeepTemp, double dDeepTemp)
 {
 
   /* Argument de la ligne de commande. Donne par python  */
@@ -194,6 +203,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
   long i;
   long nDeltaTIndice=0;
   long nOne = 1;
+  /* Deep temperature */
+
 
   /* Allocate memory for all structures */
   init_structure(nNbrTimeSteps, nNGRILLEMAX);
@@ -253,7 +264,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
     }
     f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[0]),\
 		    &(dpRTO[0]), &(dpDTO[0]), &(dpTAO[0]), &dDiff, \
-		    &dMLon, npSwo, stTemperatureDepth.pdArray);
+		    &dMLon, npSwo, stTemperatureDepth.pdArray, &bDeepTemp, &dDeepTemp);
     f77name(initial)(dpItp , (dpRTO+1), (dpDTO+1), (dpTAO+1), &nOne,	\
 		     &nLenObservation, &stTemperatureDepth.nSize, &nIR40,\
 		     &bFlat, npSwo, dpCapacity, dpConductivity); 
@@ -269,7 +280,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
       nNtdcl =1;
     f77name(makitp)(dpItp, &stTemperatureDepth.nSize, &nIR40, &bFlat, &(dpTimeO[nNtdcl]),\
 		    &(dpRTO[nNtdcl]), &(dpDTO[nNtdcl]), &(dpTAO[nNtdcl]),\
-		    &dDiff, &dMLon, npSwo, stTemperatureDepth.pdArray);
+		    &dDiff, &dMLon, npSwo, stTemperatureDepth.pdArray, \
+		    &bDeepTemp, &dDeepTemp);
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
     f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP, dpRC, \
@@ -302,7 +314,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNb
 		    &(dpTimeO[nDeltaTIndice]),			      \
 		    &(dpRTO[nDeltaTIndice]), &(dpDTO[nDeltaTIndice]), \
 		    &(dpTAO[nDeltaTIndice]), &dDiff, &dMLon, npSwo, \
-		    stTemperatureDepth.pdArray);
+		    stTemperatureDepth.pdArray, &bDeepTemp, &dDeepTemp);
     nNtdcl  = nLenObservation - nDeltaTIndice -\
       ((nLenObservation-nDeltaTIndice < 28800.0/dDT)	\
        ? nLenObservation-nDeltaTIndice : 28800.0/dDT);

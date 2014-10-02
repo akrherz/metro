@@ -36,7 +36,14 @@
 #define dOMEGA  0.7292e-4 
 
 /* Main call from  python */
-void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP, double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, double* dpFA, double* dpTYP, double* dpRc, double* dpTAO,  double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO, long* npSWO,  BOOL* bpNoObs, double dDeltaT, long nLenObservation, long nNbrTimeSteps, BOOL bSilent, double dSstDepth);
+void Do_Metro(BOOL bFlat, double dMLat, double dMLon, double* dpZones, \
+	      long nNbrOfZone, long* npMateriau, double* dpTA, double* dpQP,\
+	      double* dpFF, double* dpPS, double* dpFsPy, double* dpFI, \
+	      double* dpFA, double* dpTYP, double* dpRc, double* dpTAO, \
+	      double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO,\
+	      long* npSWO,  BOOL* bpNoObs, double dDeltaT, \
+	      long nLenObservation, long nNbrTimeSteps, BOOL bSilent,\
+	      double dSstDepth, BOOL bDeepTemp, double dDeepTemp);
 	      
 void init_structure(long nTimeStepMax, long nGrilleLevelMax);
 
@@ -49,7 +56,7 @@ extern void grille_(long* nSize, long* nIR40, BOOL* bFlat, long* nNbrOfZone,\
 		    long* plArray, double* dpCapacity, double* dpConductivity, double* dSstDepth);
 extern void makitp_(double* dpItp, long* nSize, long* nIR40, BOOL* bFlat, double* dpTimeO, \
 		    double* dpRTO, double* dpDTO, double* dpTAO, double* dDiff, \
-		    double* dMLon, long* npSwo, double* pdArray);
+		    double* dMLon, long* npSwo, double* pdArray, BOOL* bDeepTemp, double* dDeepTemp);
 extern void initial_(double* dpItp , double* dpRTO, double* dpDTO, double* dpTAO, long* nOne, \
 		     long* nLenObservation, long* nSize, long* nIR40, \
 		     BOOL* bFlat, long* npSwo, double* dpCapacity, double* dpConductivity); 
