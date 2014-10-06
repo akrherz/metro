@@ -524,6 +524,10 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
                 
                 # If there is no error, the value is a number, we can continue
+                sMessage = _("Using deep soil temperature: ") + sTemperature +\
+                           _(" degree Celsius")
+                metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
+                                           sMessage)
             except ValueError:
                 sMessage = _("Option '-fix-deep-soil-temperature' must be ") +\
                        _("followed by a numeric value. The given value '") +\
