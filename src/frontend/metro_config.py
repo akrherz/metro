@@ -277,7 +277,6 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
     try:
         opts, args = getopt.gnu_getopt( lArgv, sShort_opt, lLong_opt)
-        print args
 
     except getopt.GetoptError, sError:
         # print help information and exit:
@@ -457,7 +456,6 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
         # Selftest value
         if o == "--selftest":
-            print str(opts)
             
             opts.append(("--output-subsurface-levels",""))
                         
