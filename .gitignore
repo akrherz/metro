@@ -9,4 +9,3 @@ src/frontend/model
 usr/share/metro/data/selftest/roadcast.xml
 usr/share/metro/data/test_suite/*/roadcast_test_suite_run.xml
 src/model/macadam_wrap.c
-
