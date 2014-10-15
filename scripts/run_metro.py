@@ -8,9 +8,9 @@ import datetime
 import numpy as np
 import numpy.ma as ma
 import subprocess
-from pyiem.datatypes import temperature
 import os
 import shutil
+import xml.etree.ElementTree as ET
 
 IOFFSET = 62
 JOFFSET = 70
@@ -30,12 +30,12 @@ def make_output(nc, initts):
     # Setup dimensions
     ncout.createDimension('i_cross', len(nc.dimensions['i_cross']))
     ncout.createDimension('j_cross', len(nc.dimensions['j_cross']))
-    ncout.createDimension('time', 72*4+1)
+    ncout.createDimension('time', 72*3+1)
 
     # Setup variables
     tm = ncout.createVariable('time', np.int, ('time',))
     tm.units = "minutes since %s" % (initts.strftime("%Y-%m-%d %H:%M:%S"),)
-    tm[:] = range(0,72*60+1,15)
+    tm[:] = range(0,72*60+1,20)
     
     i_cross = ncout.createVariable('i_cross', np.float, ('i_cross',))
     i_cross.units = "m"
@@ -84,12 +84,6 @@ def make_output(nc, initts):
     swout.units = "W m s-2"
     swout.long_name = 'Shortwave outgoing'
     swout.missing_value = np.array(1e20, swout.dtype)
-
-    lwout = ncout.createVariable('lwout', np.float, dims)
-    lwout.coordinates = "lon lat"
-    lwout.units = "W m s-2"
-    lwout.long_name = 'Longwave outgoing'
-    lwout.missing_value = np.array(1e20, lwout.dtype)
 
     lf = ncout.createVariable('lf', np.float, dims)
     lf.coordinates = "lon lat"
@@ -177,7 +171,6 @@ def run_model(nc, initts, ncout, oldncout):
     otmpk = ma.array(ncout.variables['tmpk'][:])
     owmps = ma.array(ncout.variables['wmps'][:])
     oswout = ma.array(ncout.variables['swout'][:])
-    olwout = ma.array(ncout.variables['lwout'][:])
     oh = ma.array(ncout.variables['h'][:])
     olf = ma.array(ncout.variables['lf'][:])
     obdeckt = ma.array(ncout.variables['bdeckt'][:])
@@ -229,7 +222,7 @@ def run_model(nc, initts, ncout, oldncout):
                 ts = initts + datetime.timedelta(minutes=int(tm[t]))
                 o.write("""<prediction>
           <forecast-time>%s</forecast-time>
-          <at>10.0</at>
+          <at>%.1f</at>
           <td>3.0</td>
           <ra>0.0</ra>
           <sn>0.0</sn>
@@ -240,7 +233,7 @@ def run_model(nc, initts, ncout, oldncout):
           <sf>999</sf>
           <ir>999</ir>
       </prediction>
-                """ % (ts.strftime("%Y-%m-%dT%H:%MZ"),))
+                """ % (t2[t,i,j] - 273.15, ts.strftime("%Y-%m-%dT%H:%MZ"),))
             
             o.write("</prediction-list></forecast>")
             o.close()
@@ -254,11 +247,40 @@ def run_model(nc, initts, ncout, oldncout):
                 print 'metro error i:%03i j:%03i stderr:|%s|' % (i, j, 
                                                             se.strip())
                 continue
-            print proc.stdout.read()
+            
+            # Starts at :20 minutes after start time
+            tree = ET.parse('roadcast.xml')
+            root = tree.getroot()
+            tstep = 0
+            for c in root.findall('./prediction-list/prediction'):
+                tstep += 1
+                
+                #Road surface temperature    st    Celsius
+                obdeckt[tstep,i,j] = float(c.find('./st').text) + 273.15
+                #Road sub surface temperature* (40 cm)    sst    Celsius
+                #Air temperature    at    Celsius
+                otmpk[tstep,i,j] = float(c.find('./at').text) + 273.15
+                #Dew point    td    Celsius
+                odwpk[tstep,i,j] = float(c.find('./td').text) + 273.15
+                #Wind speed    ws    km/h
+                owmps[tstep,i,j] = float(c.find('./ws').text) + 0.28
+                #Quantity of snow or ice on the road    sn    cm
+                #Quantity of rain on the road    ra    mm
+                #Total (1 hr) snow precipitation    qp-sn    cm
+                #Total (1 hr) rain precipitation    qp-ra    mm
+                #Solar flux    sf    W/m2
+                oswout[tstep,i,j] = float(c.find('./sf').text) 
+                #Incident infra-red flux    ir    W/m2
+                #Vapor flux    fv    W/m2
+                #Sensible heat    fc    W/m2
+                #Anthropogenic flux    fa    W/m2
+                #Ground exchange flux    fg    W/m2
+                #Blackbody effect    bb    W/m2
+                #Phase change    fp    W/m2
+                #Road condition    rc    METRo code
     ncout.variables['tmpk'][:] = otmpk
     ncout.variables['wmps'][:] = owmps
     ncout.variables['swout'][:] = oswout
-    ncout.variables['lwout'][:] = olwout
     ncout.variables['h'][:] = oh
     ncout.variables['lf'][:] = olf
     ncout.variables['bdeckt'][:] = obdeckt
@@ -283,10 +305,10 @@ def find_last_output(initts):
     return None
 
 def downsize_output(initts):
-    ''' Subset the output file, so to save some space 66% actually '''
+    """ Subset the output file, so to save some space 66% actually """
     fn1 = "output/%s_output.nc" % (initts.strftime("%Y%m%d%H%M"),)
     fn2 = "output/%s_iaoutput.nc" % (initts.strftime("%Y%m%d%H%M"),)
-    fn3 = "/mesonet/share/frost/%s_iaoutput.nc" % (
+    fn3 = "/mesonet/share/frost/metro/%s_iaoutput.nc" % (
                                                 initts.strftime("%Y%m%d%H%M"),)
     if os.path.isfile(fn2):
         os.unlink(fn2)
