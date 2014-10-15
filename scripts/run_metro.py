@@ -11,6 +11,8 @@ import subprocess
 import os
 import shutil
 import xml.etree.ElementTree as ET
+import pyiem.datatypes as dt
+import pyiem.meteorology as met
 
 IOFFSET = 62
 JOFFSET = 70
@@ -194,6 +196,8 @@ def run_model(nc, initts, ncout, oldncout):
     #cmd += "--verbose-level 4 "
     cmd += "--use-solarflux-forecast --use-infrared-forecast"
     
+    # We don't have pressure from MM5 (yet)
+    pressure = dt.pressure(1000.0, 'MB')
     
     for i in range(len(nc.dimensions['i_cross'])):
         if errorcount > 100:
@@ -220,20 +224,31 @@ def run_model(nc, initts, ncout, oldncout):
                 datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%MZ"),))
             for t in range(1, len(nc.dimensions['time'])):
                 ts = initts + datetime.timedelta(minutes=int(tm[t]))
+                tmpk = dt.temperature(t2[t,i,j], 'K')
+                mr = dt.mixingratio(q2[t,i,j], 'KG/KG')
+                dwp = met.dewpoint_from_pq(pressure, mr)
+                sped = dt.speed((u10[t,i,j]**2 + v10[t,i,j]**2)**.5, 'MPS')
+                # sn - snow accumulation in cm
+                # ap - surface pressure in mb
                 o.write("""<prediction>
           <forecast-time>%s</forecast-time>
           <at>%.1f</at>
-          <td>3.0</td>
-          <ra>0.0</ra>
+          <td>%.1f</td>
+          <ra>%.1f</ra>
           <sn>0.0</sn>
-          <ws>20</ws>
+          <ws>%.1f</ws>
           <ap>993.8</ap>
           <wd>300</wd>
           <cc>0</cc>
-          <sf>999</sf>
-          <ir>999</ir>
+          <sf>%.1f</sf>
+          <ir>%.1f</ir>
       </prediction>
-                """ % (t2[t,i,j] - 273.15, ts.strftime("%Y-%m-%dT%H:%MZ"),))
+                """ % (ts.strftime("%Y-%m-%dT%H:%MZ"),
+                       tmpk.value("C"), dwp.value("C"),
+                       (rn[t,i,j] + rc[t,i,j])*10.,
+                        sped.value("KMH"),
+                        swdown[t,i,j], lwdown[t,i,j])
+                )
             
             o.write("</prediction-list></forecast>")
             o.close()
