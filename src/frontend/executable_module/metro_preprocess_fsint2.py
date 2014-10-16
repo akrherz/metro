@@ -103,7 +103,8 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                 self.npAzim = horizon_data.get_matrix_col('AZIMUTH')
                 self.npElev = horizon_data.get_matrix_col('ELEVATION')
 
-                # Verification if the array has an monotone and regular incrementation steps
+                # Verification if the array has an monotone and
+                #  regular incrementation steps
                 if not metro_util.is_array_uniform(self.npAzim):
                     sMessage = _("Azimuth data in station configuration file ") +\
                                _("is not ordered by equal growing azimuths. ")+\
@@ -229,13 +230,15 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         # Get data
         npCloudOctal = wf_controlled_data.get_matrix_col('CC')
         npTimeHour =  wf_controlled_data.get_matrix_col('Hour')
-        fStartForecastTime = wf_controlled_data.\
-                             get_matrix_col('FORECAST_TIME')[0]
+        npForecastedTime = wf_controlled_data.\
+                             get_matrix_col('FORECAST_TIME')
+        fStartForecastTime =npForecastedTime [0]
         # Get solar fluxes for this cloud cover for this specific day
-        npSF = metro_physics.get_sf(npCloudOctal, npTimeHour, \
-                                    fStartForecastTime,\
+        npSF  = metro_physics.get_sf(npCloudOctal, npTimeHour, \
+                                    npForecastedTime,\
                                     self.fSunrise, self.fSunset,\
                                     self.fLat, self.fLon)
+
 	npSF2  = metro_util.interpolate(npTime, npSF)
 
         if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
