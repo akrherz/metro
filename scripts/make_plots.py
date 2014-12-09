@@ -4,6 +4,7 @@
 import netCDF4
 import sys
 import datetime
+import os
 import pytz
 from pyiem.plot import MapPlot
 from pyiem.datatypes import temperature
@@ -51,9 +52,16 @@ def make_plots(nc):
                                         pvar, sts.hour, fhour)
             m.postprocess(pqstr=pqstr)
             m.close()
-                      
+    
+def main():
+    """ Go Main Go """
+    fn = sys.argv[1]
+    if not os.path.isfile(fn):
+        print("ABORT: metro/scripts/make_plots.py %s File not found!" % (fn,))
+        return
+    nc = netCDF4.Dataset(fn)
+    make_plots(nc)                      
+
 if __name__ == '__main__':
     ''' See how we are called '''
-    fn = sys.argv[1]
-    nc = netCDF4.Dataset(fn)
-    make_plots(nc)
+    main()
