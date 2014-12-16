@@ -62,18 +62,26 @@ def make_output(nc, initts):
     icond = ncout.createVariable('icond', np.byte, dims)
     icond.coordinates = "lon lat"
     icond.long_name = "Pavement Textual Condition"
-    icond.value0 = 'Dry'
-    icond.value1 = 'frosty'
-    icond.value2 = 'Icy/Snowy'
-    icond.value3 = 'Melting'
-    icond.value4 = 'Freezing'
-    icond.value5 = 'Wet'
+    icond.value1 = 'Dry'
+    icond.value2 = 'Wet road'
+    icond.value3 = 'Ice/snow'
+    icond.value4 = 'Mix snow/water'
+    icond.value5 = 'Dew'
+    icond.value6 = 'Melting Snow'
+    icond.value7 = 'Black Ice'
+    icond.value8 = 'Icing Rain'
         
     bdeckt = ncout.createVariable('bdeckt', np.float, dims)
     bdeckt.coordinates = "lon lat"
     bdeckt.units = "K"
     bdeckt.long_name = 'Bridge Deck Temperature'
     bdeckt.missing_value = np.array(1e20, bdeckt.dtype)
+
+    subsfct = ncout.createVariable('subsfct', np.float, dims)
+    subsfct.coordinates = "lon lat"
+    subsfct.units = "K"
+    subsfct.long_name = 'Road Sub-Surface Temperature (40cm)'
+    subsfct.missing_value = np.array(1e20, bdeckt.dtype)
 
     h = ncout.createVariable('h', np.float, dims)
     h.coordinates = "lon lat"
@@ -117,25 +125,8 @@ def make_output(nc, initts):
     ncout.close()
     return netCDF4.Dataset(fn, 'a')
 
-def make_rwis(lon, lat, initts):
-    """ Generate spinup file """
-    o = open('rwis.xml', 'w')
-    o.write("""<?xml version="1.0"?>
-<observation>
- <header>
-  <filetype>rwis-observation</filetype>
-  <version>1.0</version>
-  <road-station>oaa</road-station>
-  </header>
-  <measure-list>""")
-    # at Air Temp in C
-    # td Dew point in C
-    # pi presence of precipitation 0: No -- 1: Yes
-    # ws wind speed in km / hr
-    # sc condition code  1=DryCond 2=Wet 3=Ice 4=MixWaterSnow 
-    #                    5=dew 6=Meltsnow 7=Frost 8=Ice
-    # st road surface temp
-    # sst sub surface temp
+def fake_rwis(o, initts):
+    """ Generate fake data, just to bootstrap us """
     for hr in range(-12,10):
         ts = initts + datetime.timedelta(hours=hr)
         o.write("""<measure>
@@ -153,7 +144,55 @@ def make_rwis(lon, lat, initts):
     o.write("</measure-list></observation>")
     o.close()
 
-    return 'rwis.xml'
+
+def make_rwis(i, j, initts, oldncout):
+    """ Generate spinup file """
+    i = i - IOFFSET
+    j = j - JOFFSET
+    
+    o = open('rwis.xml', 'w')
+    o.write("""<?xml version="1.0"?>
+<observation>
+ <header>
+  <filetype>rwis-observation</filetype>
+  <version>1.0</version>
+  <road-station>oaa</road-station>
+  </header>
+  <measure-list>""")
+    if oldncout is None:
+        fake_rwis(o, initts)
+        return
+    
+    ts0 = find_initts(oldncout)
+    # at Air Temp in C
+    tmpc = dt.temperature(oldncout.variables['tmpk'][:,i,j], 'K').value('C')
+    # td Dew point in C
+    dwpc = dt.temperature(oldncout.variables['dwpk'][:,i,j], 'K').value('C')
+    # pi presence of precipitation 0: No -- 1: Yes
+    # ws wind speed in km / hr
+    ws = dt.speed(oldncout.variables['wmps'][:,i,j], 'MPS').value('KMH')
+    # sc condition code  1=DryCond 2=Wet 3=Ice 4=MixWaterSnow 
+    #                    5=dew 6=Meltsnow 7=Frost 8=Ice
+    # Was set to 33 for SSI ?
+    icond = oldncout.variables['icond'][:,i,j]
+    # st road surface temp
+    bridgec = dt.temperature(oldncout.variables['bdeckt'][:,i,j], 'K').value('C')
+    # sst sub surface temp
+    subsfc = dt.temperature(oldncout.variables['subsfct'][:,i,j], 'K').value('C')
+    t1 = initts + datetime.timedelta(hours=12)
+    for tstep in range(4, len(oldncout.dimensions['time']), 4):
+        ts = ts0 + datetime.timedelta(
+                                minutes=int(oldncout.variables['time'][tstep]))
+        if ts > t1:
+            break
+        o.write("""<measure><observation-time>%s</observation-time>
+<at>%.2f</at><td>%.2f</td><pi>0</pi><ws>%.2f</ws><sc>%s</sc><st>%.2f</st>
+<sst>%.2f</sst></measure>
+      """ % (ts.strftime("%Y-%m-%dT%H:%MZ"), tmpc[tstep], dwpc[tstep],
+             ws[tstep], icond[tstep], bridgec[tstep], subsfc[tstep]))
+    
+    o.write("</measure-list></observation>")
+    o.close()
 
 def run_model(nc, initts, ncout, oldncout):
     """ Actually run the model, please """
@@ -176,6 +215,7 @@ def run_model(nc, initts, ncout, oldncout):
     oh = ma.array(ncout.variables['h'][:])
     olf = ma.array(ncout.variables['lf'][:])
     obdeckt = ma.array(ncout.variables['bdeckt'][:])
+    osubsfct = ma.array(ncout.variables['subsfct'][:])
     oifrost = ma.array(ncout.variables['ifrost'][:])
     odwpk = ma.array(ncout.variables['dwpk'][:])
     ofrostd = ma.array(ncout.variables['frostd'][:])
@@ -210,7 +250,7 @@ def run_model(nc, initts, ncout, oldncout):
             #Hey, we only care about Iowa data! -97 40 -90 43.75
             if lat < 40 or lat > 43.75 or lon < -97 or lon > -90:
                 continue
-            rwisfn = make_rwis(lon, lat, initts)
+            make_rwis(i, j, initts, oldncout)
             o = open('isumm5.xml', 'w')
             o.write("""<?xml version="1.0"?> 
 <forecast>
@@ -273,12 +313,13 @@ def run_model(nc, initts, ncout, oldncout):
                 #Road surface temperature    st    Celsius
                 obdeckt[tstep,i,j] = float(c.find('./st').text) + 273.15
                 #Road sub surface temperature* (40 cm)    sst    Celsius
+                osubsfct[tstep,i,j] = float(c.find('./sst').text) + 273.15
                 #Air temperature    at    Celsius
                 otmpk[tstep,i,j] = float(c.find('./at').text) + 273.15
                 #Dew point    td    Celsius
                 odwpk[tstep,i,j] = float(c.find('./td').text) + 273.15
                 #Wind speed    ws    km/h
-                owmps[tstep,i,j] = float(c.find('./ws').text) + 0.28
+                owmps[tstep,i,j] = float(c.find('./ws').text)
                 #Quantity of snow or ice on the road    sn    cm
                 #Quantity of rain on the road    ra    mm
                 #Total (1 hr) snow precipitation    qp-sn    cm
@@ -293,12 +334,15 @@ def run_model(nc, initts, ncout, oldncout):
                 #Blackbody effect    bb    W/m2
                 #Phase change    fp    W/m2
                 #Road condition    rc    METRo code
+                oicond[tstep,i,j] = int(c.find('./rc').text)
+                # Octal cloud coverage**    cc    octal
     ncout.variables['tmpk'][:] = otmpk
-    ncout.variables['wmps'][:] = owmps
+    ncout.variables['wmps'][:] = dt.speed(owmps, 'KMH').value('MPS')
     ncout.variables['swout'][:] = oswout
     ncout.variables['h'][:] = oh
     ncout.variables['lf'][:] = olf
     ncout.variables['bdeckt'][:] = obdeckt
+    ncout.variables['subsfct'][:] = osubsfct
     ncout.variables['ifrost'][:] = oifrost
     ncout.variables['frostd'][:] = ofrostd
     ncout.variables['dwpk'][:] = odwpk
@@ -316,7 +360,7 @@ def find_last_output(initts):
         if os.path.isfile(testfn):
             print '  Using %s as warmup values' % (testfn,)
             return netCDF4.Dataset(testfn, 'r')
-    print 'Did not find a previous output, will use dummy RWIS data :('
+    print '  Did not find a previous output, will use dummy RWIS data :('
     return None
 
 def downsize_output(initts):
@@ -335,13 +379,18 @@ def downsize_output(initts):
     # Make sure fn2 exists before deleting the old one
     if os.path.isfile(fn2):
         os.unlink(fn1)
-        print '    Copy %s to %s' % (fn2, fn3)
+        print('  Copy %s to /mesonet/share/frost/metro' % (fn2,))
         shutil.copyfile(fn2, fn3)
     
 
-if __name__ == '__main__':
-    ''' Do something please '''
+def main():
+    """ Go Main Go """
     fn = sys.argv[1]
+    print("--> Start run_metro.py %s %s" % (fn.split("/")[-1], 
+                                datetime.datetime.now().strftime("%H:%M")))
+    if not os.path.isfile(fn):
+        print("ISUMM5 input: %s is missing, abort" % (fn,))
+        return
     nc = netCDF4.Dataset(fn)
     
     initts = find_initts( nc )
@@ -353,5 +402,11 @@ if __name__ == '__main__':
     downsize_output( initts )
     if os.path.isfile('faux_rwis.txt'):
         os.unlink('faux_rwis.txt')
-    
+
+    print("--> End run_metro.py %s" % (
+                            datetime.datetime.now().strftime("%H:%M"),))
+
+if __name__ == '__main__':
+    # Do something please 
+    main()
     
