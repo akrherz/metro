@@ -61,7 +61,6 @@ src/frontend/toolbox/metro_util.py
 src/frontend/toolbox/metro_xml.py
 src/frontend/toolbox/metro_xml_dtd.py
 src/frontend/toolbox/metro_xml_libxml2.py
-src/frontend/toolbox/metro_xml_pyxml.py
 src/frontend/toolbox/__init__.py
 
 src/frontend/data_module/metro_data.py
@@ -78,7 +77,6 @@ src/frontend/executable_module/metro_metro2dom.py
 src/frontend/executable_module/metro_model.py
 src/frontend/executable_module/metro_module.py
 src/frontend/executable_module/metro_postprocess.py
-src/frontend/executable_module/metro_postprocess_display_roadcast.py
 src/frontend/executable_module/metro_postprocess_round_roadcast.py
 src/frontend/executable_module/metro_postprocess_subsample_roadcast.py
 src/frontend/executable_module/metro_preprocess.py
@@ -88,6 +86,8 @@ src/frontend/executable_module/metro_preprocess_interpol_forecast.py
 src/frontend/executable_module/metro_preprocess_interpol_observation.py
 src/frontend/executable_module/metro_preprocess_qa_qc_observation.py
 src/frontend/executable_module/metro_preprocess_qa_qc_forecast.py
+src/frontend/executable_module/metro_preprocess_qa_qc_station.py
+src/frontend/executable_module/metro_preprocess_sunshadw.py
 src/frontend/executable_module/metro_preprocess_validate_input.py
 src/frontend/executable_module/metro_read.py
 src/frontend/executable_module/metro_read_forecast.py
@@ -116,6 +116,7 @@ src/frontend/external_lib/Plist_config/__init__.py
 src/frontend/external_lib/Plist_config/plist_reader.py
 src/frontend/external_lib/Plist_config/plist_writer.py
 src/frontend/external_lib/fpconst.py
+src/frontend/external_lib/sunpos.py
 
 src/model/array2matrix.f
 src/model/balanc.f

@@ -49,7 +49,13 @@ To compile the Fortran model you will need to perform the following action:
 4) Compile model:
     compile the Fortran model (see == Compiling "model" ==)
 
-5) Build Package
+5) Update package list
+    grep -E "^src/frontend/.*\.py" scripts/make_package.py | sort > /tmp/packaged_modules
+    find src/frontend -name *.py | sort > /tmp/actual_modules
+    diff -y -W 200 /tmp/packaged_modules /tmp/actual_modules
+    vi scripts/make_package.py
+
+6) Build Package
     cd scripts/ 
     ./make_package.py
     * You need a valid gpg key to be able to sign your package
