@@ -123,6 +123,11 @@ class Metro_data:
         for i in range(0,len(self.lMatrix_col_name)):
             self.lMatrix_col_usage.append([i])
 
+    def __str__( self ):
+        header = "===============================BEGIN Metro_data object==============================="
+        footer = "================================END Metro_data object================================"
+        return "\n%s\nread only=%s\ndHeader=%s\nColumn name=%s\nColumn index=%s\nMatrix=\n%s\n%s\n" % \
+               (header,self.bRead_only,self.dHeader,self.lMatrix_col_name,self.lMatrix_col_usage,self.npMatrix,footer)
 
     def set_readonly( self, bIs_read_only ):
         """
@@ -477,7 +482,7 @@ class Metro_data:
         else:
             return self.lMatrix_col_usage[-1][-1] + 1
 
-    
+
     def del_matrix_row(self, npIndiceToRemove):
         """
         Delete one or more row identified by indices.
@@ -526,3 +531,4 @@ class Metro_data:
         npMatrix = self.__append_row_to_matrix(npMatrix, npCol)
         npMatrix = npMatrix.transpose()
         return npMatrix
+

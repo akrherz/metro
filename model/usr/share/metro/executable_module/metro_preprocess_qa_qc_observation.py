@@ -87,6 +87,8 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                                             observation_data.\
                                             get_interpolated_data(),\
                                             observation_data)
+            
+            self.__check_deep_soil_value()
 
             pForecast.set_data_collection(forecast_data)
             pObservation.set_data_collection(observation_data)
@@ -485,4 +487,52 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
         ro_controlled_data.set_matrix_col('TD', npTD) 
 
+
+    def __check_deep_soil_value(self):
+        """
+        Description: Check if the value given to --fix-deep-soil-temperature
+         is valid.
+        """
+
+        # If the option is not used, do not perform the check
+        if not metro_config.get_value('DEEP_SOIL_TEMP'):
+            return
+        
+        # Check if the option is given while on a bridge
+        pStation = self.get_infdata_reference('STATION')
+        station_data = pStation.get_data()
+        if station_data.get_station_type():
+            sMessage = _("Option '--fix-deep-soil-temperature' is used while ") +\
+                       _("the station is of type BRIDGE. Deep soil ") +\
+                       _("Temperature  will not be used.") 
+            metro_logger.print_message(metro_logger.LOGGER_MSG_WARNING,\
+                                       sMessage)
+        else: # In case of a road verify if the value is a double
+            sTemperature = metro_config.get_value('DEEP_SOIL_TEMP_VALUE')
+            try:
+                dTemperature = float(sTemperature)
+                if dTemperature > metro_constant.nRoadTemperatureHigh or \
+                   dTemperature < metro_constant.nRoadTemperatureMin:
+                    sMessage = _("Deep soil temperature following the option ")+\
+                               _("'-fix-deep-soil-temperature' must be between ") +\
+                               _("boundaries [") +\
+                               str(metro_constant.nRoadTemperatureMin)+ "," +\
+                               str(metro_constant.nRoadTemperatureHigh)+ "]. '"+\
+                               sTemperature + "' is not in those boundaries."
+                    metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
+                                                sMessage)
+
+                
+                # If there is no error, the value is a number, we can continue
+                sMessage = _("Using deep soil temperature: ") + sTemperature +\
+                           _(" degree Celsius")
+                metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,\
+                                           sMessage)
+            except ValueError:
+                sMessage = _("Option '-fix-deep-soil-temperature' must be ") +\
+                       _("followed by a numeric value. The given value '") +\
+                       sTemperature + _("' is not a number.") 
+                metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
+                                           sMessage)
+            
 

@@ -68,8 +68,8 @@ METRO_CONFIG_GETTEXT_PACKAGE  = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # Constant definition 
-CFG_METRO_VERSION="3.2.7"
-CFG_METRO_DATE="2013-05-27"
+CFG_METRO_VERSION="3.3.0"
+CFG_METRO_DATE="2015-03-10"
 
 
 # Origin of the value (command line, config file, hardcoded value,
@@ -88,7 +88,7 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "input-observation-ref=",
                      "input-forecast=", "input-observation=",
                      "input-station=", 
-                     "output-forecast=", "output-roadcast=",
+                     "output-roadcast=",
                      "bypass-core",
                      "generate-dtd-catalog",
                      "config=","generate-config=","log-file=","verbose-level=",
@@ -96,7 +96,10 @@ CFG_LONG_OPTIONS  = ["help","version",
                      "use-solarflux-forecast", "use-infrared-forecast",
                      "use-anthropogenic-flux",
                      "use-sst-sensor-depth",
+                     "enable-sunshadow",
+                     "sunshadow-method=",
                      "output-subsurface-levels",
+                     "fix-deep-soil-temperature="
                      ]
 
 
@@ -283,7 +286,7 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
     if args != []:
         sMessage = _("problem with arg: ") + str(args) +\
-                   _("\nString(s) was not recognize as an argument.")
+                   _("\nString(s) was not recognized as an argument.")
         print sMessage
         sys.exit(3)
     
@@ -360,11 +363,6 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
         if o == "--input-station":
             dConf['FILE_STATION_FILENAME'] = a
 
-        if o == "--output-forecast":
-            print "Warning: --output-forecast option is DEPRECATED and will be removed in the future."
-            print "It's still there for compatibility reason but won't produce any weather forecast."
-            dConf['FILE_FORECAST_OUT_FILENAME'] = a
-        
         if o == "--output-roadcast":
             dConf['FILE_ROADCAST_FILENAME'] = a
 
@@ -401,6 +399,43 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
             dConfig['XML_STATION_HEADER_EXTENDED_ITEMS'][\
             'VALUE'].append(dSST_DEPTHDict)
 
+
+        if o == "--enable-sunshadow":
+            dConfig['SUNSHADOW']['VALUE'] = True
+            dConfig['XML_STATION_XPATH_HORIZON'] = \
+                {'VALUE'   :"/station/visible-horizon/direction",
+                 'FROM'    :CFG_INTERNAL,
+                 'COMMENTS':_("xpath path for station visible horizon")}
+            dConfig['XML_STATION_HORIZON_STANDARD_ITEMS'] = \
+                {'VALUE' :[{'NAME':"AZIMUTH",
+                            'XML_TAG':"azimuth",
+                            'DATA_TYPE':"REAL"}, 
+                           {'NAME':"ELEVATION", 
+                            'XML_TAG':"elevation",
+                            'DATA_TYPE':"REAL"} 
+                          ],
+                 'FROM'     :CFG_INTERNAL,
+                 'COMMENTS' :_("standard visible horizon items")}
+            dConfig['XML_STATION_HORIZON_EXTENDED_ITEMS'] = \
+                {'VALUE'    :[],
+                 'FROM'     :CFG_INTERNAL,
+                 'COMMENTS' :_("extended visible horizon items")}
+        
+	if o == "--sunshadow-method":
+            try:
+                dConfig['SUNSHADOW_METHOD']['VALUE'] = int(a)
+	    except:
+	    	# Use default sunshadow method (=1)
+	        pass
+
+
+        if o == "--fix-deep-soil-temperature":
+            try:
+                dConfig['DEEP_SOIL_TEMP']['VALUE'] = True
+                dConfig['DEEP_SOIL_TEMP_VALUE']['VALUE'] = a
+            except:
+                pass
+
         if o == "--output-subsurface-levels":
             dConfig['TL']['VALUE'] = True
 
@@ -421,7 +456,6 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
 
         # Selftest value
         if o == "--selftest":
-            print str(opts)
             
             opts.append(("--output-subsurface-levels",""))
                         
@@ -523,16 +557,6 @@ def set_default_value( ):
          'COMMENTS':_("max version for valid station file")}  
 
 # ----------------------------------- output -----------------------------------
-
-    dConfig['FILE_FORECAST_OUT_FILENAME'] = \
-        {'VALUE'   :"forecast_out.xml",
-         'FROM'    :CFG_HARDCODED,
-         'COMMENTS':_("forecast output filename")}
-
-    dConfig['FILE_FORECAST_OUT_CURRENT_VERSION'] = \
-        {'VALUE'   :"1.0",
-         'FROM'    :CFG_INTERNAL,
-         'COMMENTS':_("current version for forecast output file")}
 
     dConfig['FILE_ROADCAST_FILENAME'] = \
         {'VALUE'   :"roadcast.xml",
@@ -1161,6 +1185,7 @@ def set_default_value( ):
                      "metro_string2dom_station",
                      "metro_dom2metro",
                      "metro_preprocess_validate_input",
+                     "metro_preprocess_qa_qc_station",
                      "metro_preprocess_qa_qc_forecast",
                      "metro_preprocess_interpol_forecast",
                      "metro_preprocess_fsint2",
@@ -1246,6 +1271,16 @@ def set_default_value( ):
          'FROM'     :CFG_HARDCODED,
          'COMMENTS' :_("default time zone for observation measure date")}
 
+    dConfig['DEEP_SOIL_TEMP_VALUE'] =\
+        {'VALUE'    : 0.0,
+         'FROM'     : CFG_HARDCODED,
+         'COMMENTS' :_("Value of deep soil temperature")}
+
+    dConfig['DEEP_SOIL_TEMP'] = \
+        {'VALUE'    : False,
+         'FROM'     : CFG_HARDCODED,
+         'COMMENTS' :_("Is the deep soil temperature fixed?")}
+
 
     # ------------------------------ station -----------------------------------
 
@@ -1258,6 +1293,17 @@ def set_default_value( ):
         {'VALUE'   :False,
          'FROM'    :CFG_HARDCODED,
          'COMMENTS':_("Use subsurface temperature sensor depth value from station")}
+
+
+    dConfig['SUNSHADOW'] = \
+        {'VALUE'   :False,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Enable Sun-shadow correction")}
+    
+    dConfig['SUNSHADOW_METHOD'] = \
+        {'VALUE'   :1,
+         'FROM'    :CFG_HARDCODED,
+         'COMMENTS':_("Sun-shadow method number")}
 
     # ------------------------------ roadcast ----------------------------------
 
