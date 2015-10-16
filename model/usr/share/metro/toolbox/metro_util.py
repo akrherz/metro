@@ -416,7 +416,7 @@ def sign(dResult, dSign):
     Description:  See "Returns"
 
     Notes: This is the equivalent of SIGN in fortran.  And no,
-    there is no built-in function that does that.
+    there is no built-in function in python that does that.
 
     Revision History:
     Author		Date		Reason
@@ -658,3 +658,20 @@ def interp(y_values, x_values, new_x_values):
   # Interpolated data
   yy = y[lo] + slopes*(xx - x[lo])
   return yy
+
+def is_array_uniform(npArray):
+  """
+  Check if the array has an monotone and regular incrementation steps.
+
+  Return a boolean value indicating if yes or no, the array is regular.
+  """
+
+  dStartValue = npArray[0]
+  dEndValue = npArray[-1]
+  nLen =  len(npArray)
+
+  npRegularArray = numpy.linspace(dStartValue, dEndValue,nLen)
+  npZeros = numpy.zeros(nLen)
+
+  return ((npRegularArray-npArray) == npZeros).all()
+

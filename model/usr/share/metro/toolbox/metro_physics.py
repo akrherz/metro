@@ -51,6 +51,7 @@ import numpy
 import metro_constant
 import metro_util
 import metro_date
+import Sun
 
 
 def foqst(dTD, dPO):
@@ -101,7 +102,7 @@ def foew(dPO):
     return fResult
 
 
-def get_sf(npCloudsOctal, npTimeHour, fStartForecastTime, \
+def get_sf(npCloudsOctal, npTimeHour, npForecastedTime, \
            fSunriseTimeUTC, fSunsetTimeUTC,  fLat, fLon):
     """
     Description: Return an array containing the values of SF.
@@ -118,30 +119,31 @@ def get_sf(npCloudsOctal, npTimeHour, fStartForecastTime, \
     Return npSF (numpy array): Array containing the solar flux.
      """
     nTimeHourLength = len(npCloudsOctal)
-    (fEot, fR0r, tDeclsc) = metro_date.get_eot(fStartForecastTime, fLat)
-     
+
     npSft = numpy.zeros(nTimeHourLength, dtype=numpy.float)
     npCoeff = numpy.zeros(nTimeHourLength, dtype=numpy.float)
-        
-    ###### In the night, the solar flux is null ###############
-    for i in range(0, nTimeHourLength):
+
+    for i in range(len(npForecastedTime)):
+        cTime = npForecastedTime[i]
         # Current hour is needed for the computation of
         # fDh in the theoritical solar flux.
-        nCurrentHour = (npTimeHour[i])%24
-        # atmospheric forecast is before the sunrise
-        # or after the sunset
-        if metro_date.in_the_dark(nCurrentHour, fSunriseTimeUTC, \
-                              fSunsetTimeUTC):
+        fCurrentHour = float(metro_date.get_hour(cTime))
+
+        # Equation of time of this exact hour
+        (fEot, fR0r, tDeclsc) = metro_date.get_eot(cTime, fLat)
+
+        ###### In the night, the solar flux is null ###############
+        if metro_date.in_the_dark(fCurrentHour, fSunriseTimeUTC, \
+                                  fSunsetTimeUTC):
             npSft[i] = 0
-        else:
-            # Position of the sun around the earth, in radian
-            fDh =  pi*(nCurrentHour/12.0 + fLon/180 - 1) + fEot
+        else: # Position of the sun around the earth, in radian
+            fDh =  pi*(fCurrentHour/12.0 + fLon/180 - 1) + fEot
             fCosz = tDeclsc[0] + tDeclsc[1]*cos(fDh)
             npSft[i] = max(0.0, fCosz)*fR0r
 
 
     npCoeff =  -1.56e-12*npSft**4 + 5.972e-9*npSft**3 -\
-              8.364e-6*npSft**2  + 5.183e-3*npSft - 0.435
+                      8.364e-6*npSft**2  + 5.183e-3*npSft - 0.435
     npCoeff = numpy.where(npCoeff > 0, npCoeff, 0.0)
 
     # Set npCloudsPercent to be able to reference it in the
@@ -159,6 +161,7 @@ def get_sf(npCloudsOctal, npTimeHour, fStartForecastTime, \
     npSF = npSft * npCoeff * npCloudsPercentDay
         
     return npSF
+
 
 def get_cloud_coefficient(npCloudsOctal):
     """
@@ -182,4 +185,38 @@ def get_cloud_coefficient(npCloudsOctal):
         npCoeff2 = numpy.where(npCloudsOctal == i, fCoeff2, npCoeff2)
                  
 
-    return (npCoeff1, npCoeff2) 
+    return (npCoeff1, npCoeff2)
+
+def get_night_or_day(npTime, fLat, fLon):
+    """
+    npTime (numpy): Array of ctime(?) of the station
+    fLat (float): Latitude of the station
+    fLon (float): Longitude of the station
+
+    Return npNightDay (numpy), containing '1' for day, '0' for night, for the
+     the corresponding time in npTime.
+    """
+    ctimeFirstForecast = npTime[0]
+    
+    # Get the sunrise and the sunset
+    nStartYear =  metro_date.get_year(ctimeFirstForecast)
+    nStartMonth =   metro_date.get_month(ctimeFirstForecast)
+    nStartDay =  metro_date.get_day(ctimeFirstForecast)
+    cSun = Sun.Sun()
+    (fSunriseTimeUTC, fSunsetTimeUTC) = cSun.sunRiseSet(\
+        nStartYear, nStartMonth, nStartDay, fLon, fLat)
+
+    npNightDay = numpy.zeros(len(npTime))
+
+    for i in range(len(npNightDay)):
+        cTimeCurrent = npTime[i]
+        nCurrentHour = metro_date.get_hour(cTimeCurrent)
+        nCurrentMinute =  metro_date.get_minute(cTimeCurrent)
+        fCurrentHourMinute = nCurrentHour + nCurrentMinute/60.0
+        if metro_date.in_the_dark(fCurrentHourMinute, fSunriseTimeUTC, \
+                                  fSunsetTimeUTC):
+            npNightDay[i]=1
+
+    return npNightDay
+        
+

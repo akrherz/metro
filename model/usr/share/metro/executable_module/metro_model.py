@@ -228,7 +228,6 @@ class Metro_model(Metro_module):
         lIR = wf_interpolated_data.get_matrix_col('IR').tolist()
         npFA = wf_interpolated_data.get_matrix_col('FA')
         lFA = npFA.tolist()
-        lFT = wf_interpolated_data.get_matrix_col('Time').tolist()
         lPI = wf_interpolated_data.get_matrix_col('PI').tolist()
         lSC = wf_interpolated_data.get_matrix_col('SC').tolist()
 
@@ -243,6 +242,9 @@ class Metro_model(Metro_module):
         lST_obs =  ro_interpolated_data.get_matrix_col('ST').tolist()
         lSST_obs =  ro_interpolated_data.get_matrix_col('SST').tolist()
         lTime_obs = ro_interpolated_data.get_matrix_col('Time').tolist()
+        # Deep soil value given in command line
+        bDeepTemp = metro_config.get_value('DEEP_SOIL_TEMP')
+        dDeepTemp =  float(metro_config.get_value('DEEP_SOIL_TEMP_VALUE'))
 
         nLenObservation = self.__get_observation_lenght(observation)        
         fDeltaTMetroObservation = self.__get_observation_delta_t(observation)
@@ -303,15 +305,16 @@ class Metro_model(Metro_module):
                                    _("Start sending data to METRo core"))
 
         bEchec = []
+
         macadam.Do_Metro(bFlat,\
                          fLat, fLon, \
                          lLayerThick, nNbrOfLayer, lLayerType, \
-                         lAT, lQP, lWS, lAP, lSF, lIR, lFT, lFA, lPI, lSC,\
+                         lAT, lQP, lWS, lAP, lSF, lIR, lFA, lPI, lSC,\
                          lAT_obs,lST_obs, lSST_obs, \
                          lAH, lTime_obs, lSWO, bNoObs,\
                          fDeltaTMetroObservation, nLenObservation, \
                          nNbrTimeSteps, bSilent, \
-                         dSstDepth)
+                         dSstDepth, bDeepTemp, dDeepTemp)
         bEchec = (macadam.get_echec())[0]
         # Check if the execution of the model was a succes:
         if bEchec != 0:
