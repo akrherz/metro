@@ -166,7 +166,7 @@
          iref = int( ZONES(NZONE) / DY )
          DO j=1,iref
 *           Grid of the flux layers
-            dpFluxDepth =  j * DY
+            dpFluxDepth(j) =  j * DY
 *           Grid of temperature layers
             dpTemperatureDepth(j) =  ( real(j)-0.5 ) * DY
 *           Derivate on the flux layers
