@@ -123,8 +123,6 @@ src/model/balanc.f
 src/model/constPhys.f
 src/model/coupla.f
 src/model/flxsurfz.f
-src/model/global.c
-src/model/global.h
 src/model/grille.f
 src/model/initial.f
 src/model/lib_gen.f
@@ -133,8 +131,6 @@ src/model/macadam.c
 src/model/macadam.h
 src/model/macadam.i
 src/model/number.h
-#src/model/_macadam.so.prebuilt
-#src/model/macadam.py.prebuilt
 
 scripts/check_translation.py
 scripts/copy_msgid_msgstr.py
