@@ -47,8 +47,8 @@
       REAL FTEMP(N),FVAP(N)
       DOUBLE PRECISION FCOR(N)
       DOUBLE PRECISION TA(N),QA(N),ZU(N),ZT(N),VA(N)
-      DOUBLE PRECISION Z0(N), Z0T(N), H(N)
-      REAL TG(N),QG(N),UE(N)
+      DOUBLE PRECISION Z0(N), Z0T(N)
+      REAL TG(N),QG(N),UE(N), H(N)
       REAL LZZ0(N),LZZ0T(N)
       REAL fm(N),fh(N)
 *
@@ -227,7 +227,7 @@ c
         hl=(ZU(J)+10*Z0(J))*FACTN
         F=MAX(REAL(ABS(FCOR(J))),CORMIN)
         hs=BS*sqrt(karman*u/(ILMO(J)*F*fm(j)))
-        H(J)=MAX(HMIN,hs,hl,factn/d(ILMO(J)))
+        H(J)=REAL(MAX(HMIN,hs,hl,factn/d(ILMO(J))))
         UNSH=1/H(J)
         unsl=ILMO(J)
         fm(J)=REAL(LZZ0(J)+psi(ZU(J)+Z0(J),unsh)-psi(Z0(J),unsh))
