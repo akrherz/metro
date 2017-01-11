@@ -80,7 +80,10 @@ def get_corrected_solar_flux(utc, S, lat, lon, horiz, m=1):
 		horiz_elev = get_horiz_elev(sun_azim, horiz)
 		
 		## Check whether Sun is above (1) or below (0) visible horizon
-		sun = 1 if (sun_elev > horiz_elev) else 0
+		if (sun_elev > horiz_elev):
+			sun = 1
+		else:
+			sun = 0
 		
 		## If Sun is bellow visible horizon do solar flux correction
 		if (sun == 0):
