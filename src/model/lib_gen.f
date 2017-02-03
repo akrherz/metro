@@ -177,13 +177,13 @@
 *     Auteur/Author: Louis-Philippe Crevier
 *     Date: Octobre 2000
 ***
-      FUNCTION CHKDIV ( DIV, FICH, LIGNE )
+      FUNCTION CHKDIV (DIV, FICH, LIGNE )
       IMPLICIT NONE
       INTEGER CHKDIV
       INTEGER a
       CHARACTER*(*) FICH, LIGNE
       DOUBLE PRECISION DIV
-      if ( DIV .eq. 0.0 ) then
+      if ( abs(DIV) < 1.0D-5 ) then
          a=index(FICH,' ')-1
          FICH=FICH(1:a)//', '//LIGNE
          CHKDIV = 1

@@ -105,11 +105,10 @@
 *     dpConductivity: Thermic conductivity of the road at every level
 ***
       LOGICAL FLAT
-      INTEGER iref, NTP, NTP2
+      INTEGER iref, NTP, NTP2, TYP(DTMAX), PVC(DTMAX)
       DOUBLE PRECISION  FS(DTMAX), FI(DTMAX), TA(DTMAX)
       DOUBLE PRECISION QA(DTMAX), PR(DTMAX)
       DOUBLE PRECISION VA(DTMAX), P0(DTMAX)
-      DOUBLE PRECISION TYP(DTMAX), PVC(DTMAX)
       DOUBLE PRECISION FCOR
       DOUBLE PRECISION ALN, ALR, TSO, FP
       DOUBLE PRECISION EPSILON, ZU, ZT, Z0, Z0T
@@ -152,7 +151,7 @@
       LOGICAL DOWN
       REAL T(n,2), G(0:n)
       REAL QG, RHO, TSK, COUDUR
-      DOUBLE PRECISION AL, M, RA
+      DOUBLE PRECISION AL, M, RA, DIV
       REAL CL, PR1, PR2, DX, PRG, FZ
       REAL coeff1, coeff2, cotemp, COFS, COFI
 ***
@@ -326,9 +325,11 @@
 *        Humidity at the surface
          call SRFHUM  ( QG, CL, ER1, ER2, TSK, P0(i), QA(i), FP )
 *        Air density at ground
-         ier = CHKDIV ( RGASD * FOTVT ( TSK , QG ), "coupla.ftn", 209 )
+         DIV = RGASD * FOTVT ( TSK , QG )
+         ier = CHKDIV (DIV, "coupla.f", 209 )
          if ( ier .eq. 1 ) then
             ECHEC = .true.
+            WRITE(*,*) "Echec in coupla.f"
             return
          end if
          RHO = REAL(P0(i) / ( RGASD * FOTVT ( TSK , QG ) ))
@@ -395,7 +396,7 @@
          FSCORR = 0.0
          FAIL = .true.
          WRITE(*,*) "More than 25 iterations in the coupling phase "
-      else if ( abs(min(99.99,max(-99.99,T(1,now)))) .eq. 99.99 .or.
+      else if ( T(1,now) < -99.99 .or. T(1,now) > 99.99 .or.
      *        FAIL ) then
          FICORR = 0.0
          FSCORR = 0.0
@@ -405,8 +406,8 @@
          FAIL = .true.
          WRITE(*,*) " Temperature over 99 degrees, aborting in coupling"
       else if ( mod(iter,15) .eq. 0 .and.
-     *        min(REAL(max(T(1,now),REAL(TSO-0.1))),REAL(TSO+0.1)) 
-     *    .ne. T(1,now) ) then
+     *        abs(min(REAL(max(T(1,now),REAL(TSO-0.1))),REAL(TSO+0.1)) 
+     *    - T(1,now)) > 1.0D-5 ) then
          coeff1 = 0.0
          coeff2 = 1.5*coeff2
          go to 11

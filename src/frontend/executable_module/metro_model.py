@@ -228,8 +228,9 @@ class Metro_model(Metro_module):
         lIR = wf_interpolated_data.get_matrix_col('IR').tolist()
         npFA = wf_interpolated_data.get_matrix_col('FA')
         lFA = npFA.tolist()
-        lPI = wf_interpolated_data.get_matrix_col('PI').tolist()
-        lSC = wf_interpolated_data.get_matrix_col('SC').tolist()
+        lPI = wf_interpolated_data.get_matrix_col('PI').astype(numpy.int32).tolist()
+        lSC = wf_interpolated_data.get_matrix_col('SC').astype(numpy.int32).tolist()
+        
 
         # Number of 30 seconds step.
         npFT = wf_interpolated_data.get_matrix_col('Time')
@@ -306,14 +307,13 @@ class Metro_model(Metro_module):
 
         bEchec = []
 
-        macadam.Do_Metro(bFlat,\
-                         fLat, fLon, \
-                         lLayerThick, nNbrOfLayer, lLayerType, \
-                         lAT, lQP, lWS, lAP, lSF, lIR, lFA, lPI, lSC,\
-                         lAT_obs,lST_obs, lSST_obs, \
-                         lAH, lTime_obs, lSWO, bNoObs,\
-                         fDeltaTMetroObservation, nLenObservation, \
-                         nNbrTimeSteps, bSilent, \
+        macadam.Do_Metro(bFlat, fLat, fLon, lLayerThick, \
+                         nNbrOfLayer, lLayerType, lAT, lQP, \
+                         lWS, lAP, lSF, lIR, \
+                         lFA, lPI, lSC, lAT_obs, \
+                         lST_obs, lSST_obs, lAH, lTime_obs, \
+                         lSWO, bNoObs, fDeltaTMetroObservation, \
+                         nLenObservation, nNbrTimeSteps, bSilent, \
                          dSstDepth, bDeepTemp, dDeepTemp)
         bEchec = (macadam.get_echec())[0]
         # Check if the execution of the model was a succes:

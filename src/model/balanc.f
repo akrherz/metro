@@ -111,10 +111,10 @@
 *     dpConductivity: Thermic conductivy of the road at every level 
 ***
       LOGICAL FLAT
-      INTEGER iref, ir40, NTP, NTFM
+      INTEGER iref, ir40, NTP, NTFM, TYP(DTMAX)
       DOUBLE PRECISION FS(DTMAX),  FI(DTMAX), P0(DTMAX)
       DOUBLE PRECISION TA(DTMAX), QA(DTMAX), VA(DTMAX)
-      DOUBLE PRECISION TYP(DTMAX), PR(DTMAX)
+      DOUBLE PRECISION PR(DTMAX)
       DOUBLE PRECISION ITP(n)
       DOUBLE PRECISION FCOR
       DOUBLE PRECISION ALN, ALR, FP      
@@ -162,7 +162,7 @@
       EXTERNAL CHKDIV
       INTEGER next, now
       REAL T(n,2), G(0:n)
-      DOUBLE PRECISION FGD, AL, RA, M
+      DOUBLE PRECISION FGD, AL, RA, M, DIV
       REAL QG, RHO, TSK
       REAL CL, PR1, PR2, DX, PRG, FZ
       DOUBLE PRECISION COFS, COFI
@@ -310,7 +310,8 @@
 *        humidite at the suface
          call SRFHUM  ( QG, CL, ER1, ER2, TSK, P0(i), QA(i), FP )
 *        Air density at the surface
-         ier = CHKDIV ( RGASD * FOTVT ( TSK , QG ), "balanc.ftn", 196 )
+         DIV = RGASD * FOTVT ( TSK , QG )
+         ier = CHKDIV (DIV, "balanc.f", 196 )
          if ( ier .eq. 1 ) then
             WRITE(*,*) "Echec dans balanc.f"
             ECHEC = .true.

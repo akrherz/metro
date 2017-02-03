@@ -99,7 +99,7 @@ static struct doubleStruct stLT; /* Level temperature */
 [I double* dpFI : interpolated visible flux]
 [I double* dpFA : interpolated anthropogenic flux]
 [I double* TYP : Type of precipitation: 0 = nada, 1= liquid, 2=solid]
-[I double* dpRC : interpolated road condition. 0 = dry, 1=wet] 
+[I long* npRC : interpolated road condition. 0 = dry, 1=wet] 
 [I double dpTAO : interpolated observed air temperature] 
 [I double* dpRTO : interpolated observed road temperature]
 [I double* dpDTO : interpolated observed deep road temperature]
@@ -149,7 +149,7 @@ Miguel Tremblay  May 2004
 void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones,\
 	       long nNbrOfZone,  long* npMateriau, double* dpTA, double* dpQP,\
 	       double* dpFF,  double* dpPS, double* dpFS, double* dpFI, \
-	       double* dpFA, double* dpTYP, double* dpRC, double* dpTAO, \
+	       double* dpFA, long* npTYP, long* npRC, double* dpTAO, \
 	       double* dpRTO, double* dpDTO, double* dpAH, double* dpTimeO,\
 	       long* npSwo, BOOL* bpNoObs, double dDeltaT,\
 	       long nLenObservation, long nNbrTimeSteps, BOOL bSilent,\
@@ -284,7 +284,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones,\
 		    &bDeepTemp, &dDeepTemp);
     nNtp = - nDeltaTIndice + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP, dpRC, \
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, npTYP, dpQP, npRC, \
 		    &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp, \
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr,   \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2, \
@@ -323,8 +323,8 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones,\
 		     &nIR40, &bFlat, npSwo, dpCapacity, dpConductivity); 
     nNtp = 0 + nNtdcl;
     nNtp2 = nLenObservation - nDeltaTIndice;
-    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP, \
-		    dpRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp,\
+    f77name(coupla)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, npTYP, dpQP, \
+		    npRC, &stTemperatureDepth.nSize, &nNtp, &nNtp2, dpItp,\
 		    &(dpRTO[nLenObservation]), &bFlat, &dFCorr, \
 		    &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1, &dEr2,\
 		    &bFail, &dEpsilon, &dZ0, &dZ0t, &dZu, &dZt, stEc.plArray,\
@@ -348,7 +348,7 @@ void Do_Metro( BOOL bFlat, double dMLat, double dMLon, double* dpZones,\
   }/* End else observation complete */
 
   /************ roadcast **************************************************/
-  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, dpTYP, dpQP,\
+  f77name(balanc)(dpFS, dpFI, dpPS, dpTA, dpAH, dpFF, npTYP, dpQP,\
 		  &stTemperatureDepth.nSize,					\
 		  &nIR40, &nNtp2, &nNbrTimeSteps, dpItp, &bFlat, &dFCorr,\
 		   &dAln, &dAlr, &dFp, &dFsCorr, &dFiCorr, &dEr1,\

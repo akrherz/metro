@@ -49,8 +49,9 @@
 ***
 *     Entrees
 *     -------
+      INTEGER TYP
       REAL TS, FZ
-      DOUBLE PRECISION TYP, FP, PR
+      DOUBLE PRECISION FP, PR
 ***
 *     Sorties
 *     -------
@@ -66,6 +67,8 @@
 *     --------
 ***
       DOUBLE PRECISION RATIO
+      INTEGER RAIN, SNOW
+
 ***
 *     Declarations des constantes physique 
 *     et des fonctions thermodynamiques
@@ -87,36 +90,39 @@
 *     Procedure
 *     =========
       RATIO = 0.0
-      if ( TYP.eq.2. .and. TS.le.FP ) then
+*     To be used to identify TYP 
+      RAIN =1
+      SNOW =2
+      if ( TYP .eq. SNOW .and. TS.le.FP ) then
 *     neige sur route a T < FP
          PR1 = 0.0
          PR2 = REAL(1e3 * PR)
          PRG = 0.0
-      else if ( TYP.eq.1. .and. TS.gt.FP ) then
+      else if ( TYP .eq. RAIN .and. TS.gt.FP ) then
 *     pluie sur route a T > FP
          PR1 = REAL(1e3 * PR)
          PR2 = 0.0
          PRG = 0.0
-      else if ( TYP.eq.2..and. TS.gt.FP+FZ ) then
+      else if ( TYP .eq. SNOW .and. TS.gt.FP+FZ ) then
 *     neige sur route a T > FZ; neige fond au contact de la route
          PR1 = REAL(1e3 * PR)
          PR2 = 0.0
          PRG = REAL(- (PR * CHLF * RAUW))
-      else if ( TYP.eq.1. .and. TS.le.FP-FZ ) then
+      else if ( TYP .eq. RAIN .and. TS.le.FP-FZ ) then
 *     pluie sur route a T < FZ; pluie gele au contact de la route
          PR1 = 0.0
          PR2 = REAL(1e3 * PR)
          PRG = REAL(PR * CHLF * RAUW)
-      else if ( TYP.eq.2. .and.
-     *        max(min(TS,REAL(FP+FZ)),REAL(FP)).eq.TS ) then
+      else if ( TYP .eq. SNOW .and.
+     *  abs(max(min(TS,REAL(FP+FZ)),REAL(FP)) - TS) < 1.0D-5 ) then
 *     neige sur route a FZ > T > 0; une partie de la neige fond au 
 *     contact de la route
          RATIO = 0.25*sin(PI*(TS-FP)/FZ)+0.75
          PR1 = REAL(RATIO * 1e3 * PR)
          PR2 = REAL((1.0-RATIO) * 1e3 * PR)
          PRG = REAL(- (RATIO * PR * CHLF * RAUW))
-      else if ( TYP.eq.1. .and.
-     *        min(max(TS,REAL(FP-FZ)),REAL(FP)).eq.TS ) then
+      else if ( TYP .eq. RAIN .and.
+     *  abs(min(max(TS,REAL(FP-FZ)),REAL(FP)) - TS) < 1.0D-5 ) then
 *     pluie sur route a -FZ < T < 0; une partie de la pluie gele 
 *     au contact de la route
          RATIO = 0.25*sin(PI*(TS-FP)/FZ)+0.75
@@ -333,13 +339,13 @@
 *     -----------------------------------------------------------
          ETAT = 6
       else if ( ER1.lt.CUTOFF .and. ER2.lt.CUTOFF ) then
-         if ( FV1.gt.0.0 .and. PR1 .eq. 0.0 ) then
+         if ( FV1 > 0.0 .and. abs(PR1) < 1.0D-5 ) then
 
 *     -----------------------------------------------------------
 *           5. -> Dew
 *     -----------------------------------------------------------
             ETAT = 5
-         else if ( ( FV2 .gt. 0.0 .and. PR2 .eq. 0.0 ) .or.
+         else if ( ( FV2 .gt. 0.0 .and. abs(PR2) < 1.0D-5 ) .or.
      *               DX .lt. 0.0 ) then
 *     -----------------------------------------------------------
 *           7. -> *** Black ice warning ***
