@@ -69,8 +69,8 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         
             Metro_preprocess.start(self)
 
-
-            self.__remove_bad_arg(observation_data.get_controlled_data())
+            self.__check_nan(observation_data.get_controlled_data())
+            self.__remove_bad_surface_temperature_arg(observation_data.get_controlled_data())
             self.__set_time(observation_data.get_controlled_data())
             self.__check_time_order(observation_data.get_controlled_data(),\
                                     forecast_data.get_controlled_data())
@@ -141,9 +141,52 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         # Registered.
         ro_controlled_data.append_matrix_col('Time', npTime)
     
-    def __remove_bad_arg(self, ro_controlled_data):
+    
+
+    def __check_nan(self, ro_controlled_data):
         """
-        Name: __remove_bad_arg
+        Name: __check_nan
+        Parameters: metro_data controlled_data : controlled observation data
+        Returns: None
+
+        Functions Called: metro_data.get_matrix_col
+                          numpy.where, nonzero, isnan
+                          metro_logger.print_message
+                          metro_data.del_matrix_row
+                          metro_date.get_hour
+                          metro_config.get_value
+
+        Description: Remove the observations containing NaN values.
+
+        Notes: 
+
+        Revision History:
+        Author		Date		Reason
+        Miguel Tremblay      February 2017
+        """
+
+        ################ Fetch all row in the observation matrix ###############
+        lColumn = ro_controlled_data.get_matrix_col_list()        
+
+        for sElement in lColumn:
+            npColumn = ro_controlled_data.get_matrix_col(sElement)
+            npBad = numpy.where(numpy.isnan(npColumn) == True, 1, 0)
+            if len(npBad) > 0:
+                npBadIndices = (numpy.nonzero(npBad))[0]
+                if len(npBadIndices) > 0:
+                    sMessage = _("Invalid value(s) in %s") % (sElement)
+                    metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
+                                            sMessage)
+                    for i in range(0,len(npBadIndices)):
+                        nIndice = npBadIndices[i]
+                        sMessage = _("%dth value in %s is NaN, removing") %  (nIndice, sElement) 
+                        metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
+                                               sMessage)
+                    ro_controlled_data.del_matrix_row(npBadIndices)
+    
+    def __remove_bad_surface_temperature_arg(self, ro_controlled_data):
+        """
+        Name: __remove_bad_surface_temperature_arg
         Parameters: metro_data controlled_data : controlled observation data
         Returns: None
 
