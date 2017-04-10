@@ -6,16 +6,19 @@
 msgid ""
 msgstr ""
 "Project-Id-Version: metro_data_station\n"
-"POT-Creation-Date: Fri Nov  5 15:49:13 2004\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2017-04-10 19:52+0000\n"
 "PO-Revision-Date: 2004-11-05 15:50-0500\n"
 "Last-Translator: Miguel Tremblay <miguel.tremblay@ec.gc.ca>\n"
 "Language-Team: English\n"
+"Language: \n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=ASCII\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=(n != 1);\n"
 
-#: metro_data_station.py:63
+#: metro_data_station.py:114
+#, python-format
 msgid "Wrong argument in the station config file %s."
 msgstr "Wrong argument in the station config file %s."
 
@@ -27,10 +30,12 @@ msgstr "Station type must be \"road\" or \"bridge\". "
 msgid "Using \"road\" as default."
 msgstr "Using \"road\" as default."
 
-#: metro_data_station.py:136
+#: metro_data_station.py:142
+#, fuzzy, python-format
 msgid ""
-"Sensor SST depth value in station config file is not between 0.2 and 0.6. "
-"Value 0.4 for sensor SST depth will be used."
+"Sensor SST depth value in station config file is not between 0.01 m and 1.4 "
+"m. Given value: '%s' m."
 msgstr ""
-"Sensor SST depth value in station config file is not between 0.2 and 0.6. "
-"Value 0.4 for sensor SST depth will be used."
+"Sensor SST depth value in station config file is not between 0.01 m and 1.4. "
+"m. Given value: '%s' m."
+
