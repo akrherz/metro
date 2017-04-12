@@ -158,8 +158,6 @@
 *     Internes
 *     --------
 ***
-      INTEGER ier, CHKDIV
-      EXTERNAL CHKDIV
       INTEGER next, now
       REAL T(n,2), G(0:n)
       DOUBLE PRECISION FGD, AL, RA, M, DIV
@@ -274,8 +272,7 @@
          call SRFHUM  ( QG, CL, ER1, ER2, TSK, P0(i), QA(i), FP )
 *        Air density at the surface
          DIV = RGASD * FOTVT ( TSK , QG )
-         ier = CHKDIV (DIV, "balanc.f", 196 )
-         if ( ier .eq. 1 ) then
+         if (  abs(DIV) < 1.0D-5 ) then
             WRITE(*,*) "Echec dans balanc.f"
             ECHEC = .true.
             return
