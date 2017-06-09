@@ -19,8 +19,8 @@ Copyright (C) 2006 Environment Canada
 Packages included in the directory metro/src/frontend/external_lib are NOT part 
 of METRo but are distributed under the condition of their corresponding license (Python License, Apache License)
 
-It is developped and maintained by the staff of the Centre météorologique du 
-Canada (CMC), Montréal, Québec.
+It is developped and maintained by the staff of the Centre mÃ©tÃ©orologique 
+canadien (CMC), MontrÃ©al, QuÃ©bec.
 
 METRo is mainly written in python but also use fortran and C (to link the python 
 and the fortran). 
@@ -39,10 +39,9 @@ METRo uses needs the following software:
 * python 2.3 or +
 * gfortran
 * SWIG
-* python numarray
+* python numpy
 * libxml2 & libxslt
-* PyXML 0.8.3
-* numpy 0.9.8
+
 
 View INSTALL file for more information
 
@@ -50,4 +49,4 @@ View INSTALL file for more information
 == Contact us ==
 
 You can join the METRo developer team at the address: 
-metro-developers@gna.org
+metro-users@framalistes.org
