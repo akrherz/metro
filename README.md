@@ -1,10 +1,4 @@
-                      METRo README file
-
-
-You are currently reading the README file of the release 3.3.1 (September 2016)
-
-
-== What is METRo ? ==
+# METRo README file
 
 METRo stands for "Model of the Environment and Temperature of Roads".
 It is a road weather forecast software. With the help of observations 
@@ -26,27 +20,12 @@ METRo is mainly written in python but also use fortran and C (to link the python
 and the fortran). 
 
 
-== Documentation ==
+## Documentation 
 
 Documentation can be found online at:
 http://documentation.wikia.com/wiki/METRo
 
-
-== Installing METRo ==
-
-See man page in metro/usr/share/man/man1/ directory.
-METRo uses needs the following software:
-* python 2.3 or +
-* gfortran
-* SWIG
-* python numpy
-* libxml2 & libxslt
-
-
-View INSTALL file for more information
-
-
-== Contact us ==
+## Contact us 
 
 You can join the METRo developer team at the address: 
-metro-users@framalistes.org
+[metro-users@framalistes.org](mailto:metro-users@framalistes.org)
