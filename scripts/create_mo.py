@@ -6,7 +6,7 @@
 # Copyright (C) Her Majesty The Queen in Right of Canada, Environment Canada, 2006
 
 #  Questions or bugs report: metro@ec.gc.ca
-#  METRo repository: https://gna.org/projects/metro/
+#  METRo repository: https://framagit.org/metroprojects/metro
 #  Documentation: http://documentation.wikia.com/wiki/METRo
 #
 #
