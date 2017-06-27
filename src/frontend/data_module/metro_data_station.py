@@ -5,7 +5,7 @@
 
 #  Questions or bugs report: metro@ec.gc.ca
 #  METRo repository: https://framagit.org/metroprojects/metro
-#  Documentation: http://documentation.wikia.com/wiki/METRo
+#  Documentation: https://framagit.org/metroprojects/metro/wikis/home
 #
 #
 # Code contributed by:
@@ -129,7 +129,7 @@ class Metro_data_station(Metro_data):
         Else returns value provided for sensor SST depth in station config file,
         provided that it is included in METRo grid, ie. [0.01,1.4] m.
         See METRo documentation page for more details:
-        http://documentation.wikia.com/wiki/Vertical_levels_(METRo)
+	https://framagit.org/metroprojects/metro/wikis/Vertical_levels_(METRo)
         """
         if metro_config.get_value('SST_DEPTH') == False:
             return 0.4

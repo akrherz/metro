@@ -5,7 +5,7 @@
 
 #  Questions or bugs report: metro@ec.gc.ca
 #  METRo repository: https://framagit.org/metroprojects/metro
-#  Documentation: http://documentation.wikia.com/wiki/METRo
+#  Documentation: https://framagit.org/metroprojects/metro/wikis/home
 #
 #
 # Code contributed by:
@@ -335,7 +335,7 @@ class Metro_preprocess_interpol_observation(Metro_preprocess):
         Description: Does the interpolation of the Road Condition
           33 is the SSI code.  SEE the documentation for the conversion
           between this code and the other standard:
-          http://documentation.wikia.com/wiki/Road_condition_%28METRo%29
+          https://framagit.org/metroprojects/metro/wikis/Road_condition_(METRo)
 
           Revision History:
           Author		Date		Reason

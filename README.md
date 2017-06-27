@@ -23,7 +23,7 @@ and the fortran).
 ## Documentation 
 
 Documentation can be found online at:
-http://documentation.wikia.com/wiki/METRo
+https://framagit.org/metroprojects/metro/wikis/home
 
 ## Contact us 
 

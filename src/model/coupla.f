@@ -4,7 +4,7 @@
 
 *  Questions or bugs report: metro@ec.gc.ca
 *  METRo repository: https://framagit.org/metroprojects/metro
-*  Documentation: http://documentation.wikia.com/wiki/METRo
+*  Documentation: https://framagit.org/metroprojects/metro/wikis/home
 *
 *
 * Code contributed by:

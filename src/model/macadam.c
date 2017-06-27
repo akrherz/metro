@@ -5,7 +5,7 @@
 
 *  Questions or bugs report: metro@ec.gc.ca 
 *  METRo repository: https://framagit.org/metroprojects/metro 
-*  Documentation: http://documentation.wikia.com/wiki/METRo 
+*  Documentation: https://framagit.org/metroprojects/metro/wikis/home 
 * 
 * 
 * Code contributed by:
@@ -90,7 +90,7 @@ static struct doubleStruct stLT; /* Level temperature */
 [I double* dpZones : Depth in meter of each layer of the road]
 [I long nNbrOfZone : Number of layers in the road]
 [I long* npMateriau : code indicating the composition of the road:
-   see http://documentation.wikia.com/wiki/Layer_type_%28METRo%29]
+   see https://framagit.org/metroprojects/metro/wikis/Layer_type_(METRo)]
 [I double* dpTA : interpolated air temperature]
 [I double* dpQP : interpolated quantity of precipitation]
 [I double* dpFF : interpolated wind velocity] 
