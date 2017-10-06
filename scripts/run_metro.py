@@ -1,15 +1,17 @@
 '''
  Run the Bridge Model for each gridpoint in the given netcdf file, yeah
 '''
-import netCDF4
+from __future__ import print_function
 import sys
-import pytz
 import datetime
-import numpy as np
-import numpy.ma as ma
 import subprocess
 import os
 import shutil
+
+import netCDF4
+import pytz
+import numpy as np
+import numpy.ma as ma
 import xml.etree.ElementTree as ET
 import pyiem.datatypes as dt
 import pyiem.meteorology as met
@@ -18,12 +20,14 @@ IOFFSET = 62
 JOFFSET = 70
 CONDITIONS = ['Dry', 'frosty', 'Icy/Snowy', 'Melting', 'Freezing', 'Wet']
 
-def find_initts( nc ):
+
+def find_initts(nc):
     """ Provided the given netcdf file object, figure out the start time """
     tm = nc.variables['time']
-    ts = datetime.datetime.strptime( tm.units[14:], "%Y-%m-%d %H:%M:%S")
+    ts = datetime.datetime.strptime(tm.units[14:], "%Y-%m-%d %H:%M:%S")
     ts = ts.replace(tzinfo=pytz.timezone("UTC"))
     return ts
+
 
 def make_output(nc, initts):
     """ Generate an output file to hold our results """
@@ -37,8 +41,8 @@ def make_output(nc, initts):
     # Setup variables
     tm = ncout.createVariable('time', np.int, ('time',))
     tm.units = "minutes since %s" % (initts.strftime("%Y-%m-%d %H:%M:%S"),)
-    tm[:] = range(0,72*60+1,20)
-    
+    tm[:] = range(0, 72*60+1, 20)
+
     i_cross = ncout.createVariable('i_cross', np.float, ('i_cross',))
     i_cross.units = "m"
     i_cross[:] = range(len(nc.dimensions['i_cross']))
@@ -70,7 +74,7 @@ def make_output(nc, initts):
     icond.value6 = 'Melting Snow'
     icond.value7 = 'Black Ice'
     icond.value8 = 'Icing Rain'
-        
+
     bdeckt = ncout.createVariable('bdeckt', np.float, dims)
     bdeckt.coordinates = "lon lat"
     bdeckt.units = "K"
@@ -85,8 +89,8 @@ def make_output(nc, initts):
 
     h = ncout.createVariable('h', np.float, dims)
     h.coordinates = "lon lat"
-    #h.units = "m"
-    #h.long_name = 'Depth of Frost'
+    # h.units = "m"
+    # h.long_name = 'Depth of Frost'
     h.missing_value = np.array(1e20, h.dtype)
 
     swout = ncout.createVariable('swout', np.float, dims)
@@ -125,6 +129,7 @@ def make_output(nc, initts):
     ncout.close()
     return netCDF4.Dataset(fn, 'a')
 
+
 def fake_rwis(o, initts):
     """ Generate fake data, just to bootstrap us """
     for hr in range(-12,10):
@@ -140,7 +145,7 @@ def fake_rwis(o, initts):
       <sst>17.00</sst>
       </measure>
       """ % (ts.strftime("%Y-%m-%dT%H:%MZ"),))
-    
+
     o.write("</measure-list></observation>")
     o.close()
 
@@ -149,7 +154,7 @@ def make_rwis(i, j, initts, oldncout):
     """ Generate spinup file """
     i = i - IOFFSET
     j = j - JOFFSET
-    
+
     o = open('rwis.xml', 'w')
     o.write("""<?xml version="1.0"?>
 <observation>
@@ -162,7 +167,7 @@ def make_rwis(i, j, initts, oldncout):
     if oldncout is None:
         fake_rwis(o, initts)
         return
-    
+
     ts0 = find_initts(oldncout)
     # at Air Temp in C
     tmpc = dt.temperature(oldncout.variables['tmpk'][:,i,j], 'K').value('C')
@@ -190,9 +195,10 @@ def make_rwis(i, j, initts, oldncout):
 <sst>%.2f</sst></measure>
       """ % (ts.strftime("%Y-%m-%dT%H:%MZ"), tmpc[tstep], dwpc[tstep],
              ws[tstep], icond[tstep], bridgec[tstep], subsfc[tstep]))
-    
+
     o.write("</measure-list></observation>")
     o.close()
+
 
 def run_model(nc, initts, ncout, oldncout):
     """ Actually run the model, please """
@@ -210,38 +216,49 @@ def run_model(nc, initts, ncout, oldncout):
 
     # keep masking in-tact as we only write data below when we have it
     otmpk = ma.array(ncout.variables['tmpk'][:])
+    otmpk._sharedmask = False
     owmps = ma.array(ncout.variables['wmps'][:])
+    owmps._sharedmask = False
     oswout = ma.array(ncout.variables['swout'][:])
+    oswout._sharedmask = False
     oh = ma.array(ncout.variables['h'][:])
+    oh._sharedmask = False
     olf = ma.array(ncout.variables['lf'][:])
+    olf._sharedmask = False
     obdeckt = ma.array(ncout.variables['bdeckt'][:])
+    obdeckt._sharedmask = False
     osubsfct = ma.array(ncout.variables['subsfct'][:])
+    osubsfct._sharedmask = False
     oifrost = ma.array(ncout.variables['ifrost'][:])
+    oifrost._sharedmask = False
     odwpk = ma.array(ncout.variables['dwpk'][:])
+    odwpk._sharedmask = False
     ofrostd = ma.array(ncout.variables['frostd'][:])
+    ofrostd._sharedmask = False
     oicond = ma.array(ncout.variables['icond'][:])
-    #mini = 200
-    #minj = 200
-    #maxi = 0
-    #maxj = 0
+    oicond._sharedmask = False
+    # mini = 200
+    # minj = 200
+    # maxi = 0
+    # maxj = 0
     errorcount = 0
-    
+
     cmd = "python model/usr/bin/metro "
     cmd += "--roadcast-start-date %s " % (initts.strftime("%Y-%m-%dT%H:%MZ"),)
-    cmd += "--input-forecast isumm5.xml " 
+    cmd += "--input-forecast isumm5.xml "
     cmd += "--input-observation rwis.xml "
     cmd += "--input-station station.xml "
     cmd += "--output-roadcast roadcast.xml "
     cmd += "--log-file /dev/null "
-    #cmd += "--verbose-level 4 "
+    # cmd += "--verbose-level 4 "
     cmd += "--use-solarflux-forecast --use-infrared-forecast"
-    
+
     # We don't have pressure from MM5 (yet)
     pressure = dt.pressure(1000.0, 'MB')
-    
+
     for i in range(len(nc.dimensions['i_cross'])):
         if errorcount > 100:
-            print 'Too many errors, aborting....'
+            print('Too many errors, aborting....')
             sys.exit()
         #loopstart = datetime.datetime.now()
         for j in range(len(nc.dimensions['j_cross'])):
@@ -255,7 +272,7 @@ def run_model(nc, initts, ncout, oldncout):
             o.write("""<?xml version="1.0"?> 
 <forecast>
   <header>
-      <production-date>%s</production-date>     
+      <production-date>%s</production-date>
       <version>1.1</version>
       <filetype>forecast</filetype>
       <station-id>ofr</station-id>
@@ -285,56 +302,56 @@ def run_model(nc, initts, ncout, oldncout):
       </prediction>
                 """ % (ts.strftime("%Y-%m-%dT%H:%MZ"),
                        tmpk.value("C"), dwp.value("C"),
-                       (rn[t,i,j] + rc[t,i,j])*10.,
+                       (rn[t, i, j] + rc[t, i, j])*10.,
                         sped.value("KMH"),
-                        swdown[t,i,j], lwdown[t,i,j])
+                        swdown[t, i, j], lwdown[t, i, j])
                 )
-            
+
             o.write("</prediction-list></forecast>")
             o.close()
-            
+
             proc = subprocess.Popen(cmd, shell=True,
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
             se = proc.stderr.read()
             if se != "":
                 errorcount += 1
-                print 'metro error i:%03i j:%03i stderr:|%s|' % (i, j, 
-                                                            se.strip())
+                print(('metro error i:%03i j:%03i stderr:|%s|'
+                       ) % (i, j, se.strip()))
                 continue
-            
+
             # Starts at :20 minutes after start time
             tree = ET.parse('roadcast.xml')
             root = tree.getroot()
             tstep = 0
             for c in root.findall('./prediction-list/prediction'):
                 tstep += 1
-                
-                #Road surface temperature    st    Celsius
-                obdeckt[tstep,i,j] = float(c.find('./st').text) + 273.15
-                #Road sub surface temperature* (40 cm)    sst    Celsius
-                osubsfct[tstep,i,j] = float(c.find('./sst').text) + 273.15
-                #Air temperature    at    Celsius
-                otmpk[tstep,i,j] = float(c.find('./at').text) + 273.15
-                #Dew point    td    Celsius
-                odwpk[tstep,i,j] = float(c.find('./td').text) + 273.15
-                #Wind speed    ws    km/h
-                owmps[tstep,i,j] = float(c.find('./ws').text)
-                #Quantity of snow or ice on the road    sn    cm
-                #Quantity of rain on the road    ra    mm
-                #Total (1 hr) snow precipitation    qp-sn    cm
-                #Total (1 hr) rain precipitation    qp-ra    mm
-                #Solar flux    sf    W/m2
-                oswout[tstep,i,j] = float(c.find('./sf').text) 
-                #Incident infra-red flux    ir    W/m2
-                #Vapor flux    fv    W/m2
-                #Sensible heat    fc    W/m2
-                #Anthropogenic flux    fa    W/m2
-                #Ground exchange flux    fg    W/m2
-                #Blackbody effect    bb    W/m2
-                #Phase change    fp    W/m2
-                #Road condition    rc    METRo code
-                oicond[tstep,i,j] = int(c.find('./rc').text)
+
+                # Road surface temperature    st    Celsius
+                obdeckt[tstep, i, j] = float(c.find('./st').text) + 273.15
+                # Road sub surface temperature* (40 cm)    sst    Celsius
+                osubsfct[tstep, i, j] = float(c.find('./sst').text) + 273.15
+                # Air temperature    at    Celsius
+                otmpk[tstep, i, j] = float(c.find('./at').text) + 273.15
+                # Dew point    td    Celsius
+                odwpk[tstep, i, j] = float(c.find('./td').text) + 273.15
+                # Wind speed    ws    km/h
+                owmps[tstep, i, j] = float(c.find('./ws').text)
+                # Quantity of snow or ice on the road    sn    cm
+                # Quantity of rain on the road    ra    mm
+                # Total (1 hr) snow precipitation    qp-sn    cm
+                # Total (1 hr) rain precipitation    qp-ra    mm
+                # Solar flux    sf    W/m2
+                oswout[tstep, i, j] = float(c.find('./sf').text)
+                # Incident infra-red flux    ir    W/m2
+                # Vapor flux    fv    W/m2
+                # Sensible heat    fc    W/m2
+                # Anthropogenic flux    fa    W/m2
+                # Ground exchange flux    fg    W/m2
+                # Blackbody effect    bb    W/m2
+                # Phase change    fp    W/m2
+                # Road condition    rc    METRo code
+                oicond[tstep, i, j] = int(c.find('./rc').text)
                 # Octal cloud coverage**    cc    octal
     ncout.variables['tmpk'][:] = otmpk
     ncout.variables['wmps'][:] = dt.speed(owmps, 'KMH').value('MPS')
@@ -347,21 +364,23 @@ def run_model(nc, initts, ncout, oldncout):
     ncout.variables['frostd'][:] = ofrostd
     ncout.variables['dwpk'][:] = odwpk
     ncout.variables['icond'][:] = oicond
-    # ncks -d i_cross,62,82 -d j_cross,70,98 201312131200_output.nc 
+    # ncks -d i_cross,62,82 -d j_cross,70,98 201312131200_output.nc
     # 201312131200_output2.nc
-    #print mini, minj, maxi, maxj #62 70 82 98
+    # print mini, minj, maxi, maxj #62 70 82 98
+
 
 def find_last_output(initts):
     ''' See if we have a previous run on file, that can be used to spin up
     our current run '''
-    for i in range(-12,-73,-12):
+    for i in range(-12, -73, -12):
         ts = initts + datetime.timedelta(hours=i)
         testfn = 'output/%s_iaoutput.nc' % (ts.strftime("%Y%m%d%H%M"),)
         if os.path.isfile(testfn):
-            print '  Using %s as warmup values' % (testfn,)
+            print('  Using %s as warmup values' % (testfn,))
             return netCDF4.Dataset(testfn, 'r')
-    print '  Did not find a previous output, will use dummy RWIS data :('
+    print('  Did not find a previous output, will use dummy RWIS data :(')
     return None
+
 
 def downsize_output(initts):
     """ Subset the output file, so to save some space 66% actually """
@@ -381,32 +400,32 @@ def downsize_output(initts):
         os.unlink(fn1)
         print('  Copy %s to /mesonet/share/frost/metro' % (fn2,))
         shutil.copyfile(fn2, fn3)
-    
+
 
 def main():
     """ Go Main Go """
     fn = sys.argv[1]
-    print("--> Start run_metro.py %s %s" % (fn.split("/")[-1], 
-                                datetime.datetime.now().strftime("%H:%M")))
+    print(("--> Start run_metro.py %s %s"
+           ) % (fn.split("/")[-1], datetime.datetime.now().strftime("%H:%M")))
     if not os.path.isfile(fn):
         print("ISUMM5 input: %s is missing, abort" % (fn,))
         return
     nc = netCDF4.Dataset(fn)
-    
-    initts = find_initts( nc )
+
+    initts = find_initts(nc)
     ncout = make_output(nc, initts)
     oldncout = find_last_output(initts)
     run_model(nc, initts, ncout, oldncout)
     ncout.close()
     nc.close()
-    downsize_output( initts )
+    downsize_output(initts)
     if os.path.isfile('faux_rwis.txt'):
         os.unlink('faux_rwis.txt')
 
     print("--> End run_metro.py %s" % (
                             datetime.datetime.now().strftime("%H:%M"),))
 
+
 if __name__ == '__main__':
-    # Do something please 
+    # Do something please
     main()
-    
