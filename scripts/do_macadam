@@ -62,6 +62,12 @@ if [ -n "$PYTHON_INCLUDE" ] ; then
         exit 1
     fi
     PYTHON_INC=-I$PYTHON_INCLUDE
+elif which python-config >/dev/null; then
+    echo "Using python-config to detect python settings."
+    echo "You can override detected values by setting"
+    echo "enviroment variable PYTHON_INCLUDE."
+    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.4\""
+    PYTHON_INC=`python-config --includes`
 else
     echo "----------------------------------------------------------"
     echo "WARNING!"
