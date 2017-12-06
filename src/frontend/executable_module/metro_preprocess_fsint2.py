@@ -95,7 +95,12 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         forecast_data = pForecast.get_data_collection()
         pStation = self.get_infdata_reference('STATION')
         station_data = pStation.get_data()
-	
+
+        if station_data.get_latitude() is None or station_data.get_longitude() is None:
+            sMessage = _("Station position (latitude, longitude) is missing in station configuration file.")
+            metro_logger.print_message(metro_logger.LOGGER_MSG_STOP,\
+                                       sMessage).Metro_util_error(sMessage)
+        
         if self.infdata_exist('HORIZON'):
             pHorizon = self.get_infdata_reference('HORIZON')
             horizon_data = pHorizon.get_data()
