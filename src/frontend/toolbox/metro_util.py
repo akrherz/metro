@@ -215,7 +215,7 @@ def interpolate(xArray, yArray):
     iLenXArray = len(xArray)
     iLenYArray = len(yArray)
     if ( iLenXArray != iLenYArray):
-        sMetroUtilWarning = _("In interpolate, the arrays does not") +\
+        sMetroUtilWarning = _("In interpolate, the arrays does not ") +\
                             _("have the same length. %d != %d\n") %\
                               (iLenXArray, iLenYArray )
         # Error should be thrown ? Text won't be in metro_logger...
