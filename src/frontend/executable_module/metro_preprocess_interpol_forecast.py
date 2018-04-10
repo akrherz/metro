@@ -467,8 +467,8 @@ class Metro_preprocess_interpol_forecast(Metro_preprocess):
             npFA = wf_originpl_data.get_matrix_col('FA')
         # If anthropogenic flux is not specified, FA is set to a constant value of 10 W/m^2
         else:
-            lFA = [10]
-            npFA = numpy.array(lFA)
+            npFA = numpy.empty(self.npTime.size);
+            npFA.fill (10);
 
         npFA = metro_util.interpolate(self.npTime, npFA)
         wf_interpolated_data.append_matrix_col('FA', npFA)
