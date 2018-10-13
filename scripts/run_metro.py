@@ -132,7 +132,7 @@ def make_output(nc, initts):
 
 def fake_rwis(o, initts):
     """ Generate fake data, just to bootstrap us """
-    for hr in range(-12,10):
+    for hr in range(-12, 10):
         ts = initts + datetime.timedelta(hours=hr)
         o.write("""<measure>
       <observation-time>%s</observation-time>
@@ -170,20 +170,22 @@ def make_rwis(i, j, initts, oldncout):
 
     ts0 = find_initts(oldncout)
     # at Air Temp in C
-    tmpc = dt.temperature(oldncout.variables['tmpk'][:,i,j], 'K').value('C')
+    tmpc = dt.temperature(oldncout.variables['tmpk'][:, i, j], 'K').value('C')
     # td Dew point in C
-    dwpc = dt.temperature(oldncout.variables['dwpk'][:,i,j], 'K').value('C')
+    dwpc = dt.temperature(oldncout.variables['dwpk'][:, i, j], 'K').value('C')
     # pi presence of precipitation 0: No -- 1: Yes
     # ws wind speed in km / hr
-    ws = dt.speed(oldncout.variables['wmps'][:,i,j], 'MPS').value('KMH')
-    # sc condition code  1=DryCond 2=Wet 3=Ice 4=MixWaterSnow 
+    ws = dt.speed(oldncout.variables['wmps'][:, i, j], 'MPS').value('KMH')
+    # sc condition code  1=DryCond 2=Wet 3=Ice 4=MixWaterSnow
     #                    5=dew 6=Meltsnow 7=Frost 8=Ice
     # Was set to 33 for SSI ?
-    icond = oldncout.variables['icond'][:,i,j]
+    icond = oldncout.variables['icond'][:, i, j]
     # st road surface temp
-    bridgec = dt.temperature(oldncout.variables['bdeckt'][:,i,j], 'K').value('C')
+    bridgec = dt.temperature(
+        oldncout.variables['bdeckt'][:, i, j], 'K').value('C')
     # sst sub surface temp
-    subsfc = dt.temperature(oldncout.variables['subsfct'][:,i,j], 'K').value('C')
+    subsfc = dt.temperature(
+        oldncout.variables['subsfct'][:, i, j], 'K').value('C')
     t1 = initts + datetime.timedelta(hours=12)
     for tstep in range(4, len(oldncout.dimensions['time']), 4):
         ts = ts0 + datetime.timedelta(
@@ -260,16 +262,16 @@ def run_model(nc, initts, ncout, oldncout):
         if errorcount > 100:
             print('Too many errors, aborting....')
             sys.exit()
-        #loopstart = datetime.datetime.now()
+        # loopstart = datetime.datetime.now()
         for j in range(len(nc.dimensions['j_cross'])):
-            lat = lats[i,j]
-            lon = lons[i,j]
-            #Hey, we only care about Iowa data! -97 40 -90 43.75
+            lat = lats[i, j]
+            lon = lons[i, j]
+            # Hey, we only care about Iowa data! -97 40 -90 43.75
             if lat < 40 or lat > 43.75 or lon < -97 or lon > -90:
                 continue
             make_rwis(i, j, initts, oldncout)
             o = open('isumm5.xml', 'w')
-            o.write("""<?xml version="1.0"?> 
+            o.write("""<?xml version="1.0"?>
 <forecast>
   <header>
       <production-date>%s</production-date>
@@ -281,10 +283,10 @@ def run_model(nc, initts, ncout, oldncout):
                 datetime.datetime.utcnow().strftime("%Y-%m-%dT%H:%MZ"),))
             for t in range(1, len(nc.dimensions['time'])):
                 ts = initts + datetime.timedelta(minutes=int(tm[t]))
-                tmpk = dt.temperature(t2[t,i,j], 'K')
-                mr = dt.mixingratio(q2[t,i,j], 'KG/KG')
+                tmpk = dt.temperature(t2[t, i, j], 'K')
+                mr = dt.mixingratio(q2[t, i, j], 'KG/KG')
                 dwp = met.dewpoint_from_pq(pressure, mr)
-                sped = dt.speed((u10[t,i,j]**2 + v10[t,i,j]**2)**.5, 'MPS')
+                sped = dt.speed((u10[t, i, j]**2 + v10[t, i, j]**2)**.5, 'MPS')
                 # sn - snow accumulation in cm
                 # ap - surface pressure in mb
                 o.write("""<prediction>
@@ -303,8 +305,8 @@ def run_model(nc, initts, ncout, oldncout):
                 """ % (ts.strftime("%Y-%m-%dT%H:%MZ"),
                        tmpk.value("C"), dwp.value("C"),
                        (rn[t, i, j] + rc[t, i, j])*10.,
-                        sped.value("KMH"),
-                        swdown[t, i, j], lwdown[t, i, j])
+                       sped.value("KMH"),
+                       swdown[t, i, j], lwdown[t, i, j])
                 )
 
             o.write("</prediction-list></forecast>")
@@ -313,7 +315,7 @@ def run_model(nc, initts, ncout, oldncout):
             proc = subprocess.Popen(cmd, shell=True,
                                     stdout=subprocess.PIPE,
                                     stderr=subprocess.PIPE)
-            se = proc.stderr.read()
+            se = proc.stderr.read().decode("utf-8")
             if se != "":
                 errorcount += 1
                 print(('metro error i:%03i j:%03i stderr:|%s|'
