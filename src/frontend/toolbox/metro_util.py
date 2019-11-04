@@ -270,7 +270,7 @@ def shift_left(npInput, fValueAdded=0):
 
      """
     # Check the dimension
-    if (npInput.shape <= 0):
+    if (npInput.shape[0] <= 0):
         sMetroUtilError = _("In shift_left, npInput is not of size (1,).\n")+\
                           "len(npInput.shape)=%s"\
                           % (len(npInput.shape))
