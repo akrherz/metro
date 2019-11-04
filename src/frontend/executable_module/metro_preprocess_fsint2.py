@@ -220,17 +220,17 @@ class Metro_preprocess_fsint2(Metro_preprocess):
             npSF = wf_controlled_data.get_matrix_col('SF')
             npSF2 = metro_util.interpolate(npTime, npSF)
             if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
-	    	npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
-		tDate2 = [time.gmtime(x) for x in npFT2]
-		sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
-	    	npSF2 = metro_preprocess_sunshadw.\
+                npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
+                tDate2 = [time.gmtime(x) for x in npFT2]
+                sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
+                npSF2 = metro_preprocess_sunshadw.\
                         get_corrected_solar_flux(tDate2, npSF2, \
                                                  self.fLat, self.fLon,\
                                                  zip(self.npAzim, self.npElev),\
                                                  m=sunshadw_method)
 
             wf_interpolated_data.append_matrix_col('SF', npSF2)
-	    return
+            return
         
         # Get data
         npCloudOctal = wf_controlled_data.get_matrix_col('CC')
@@ -244,13 +244,13 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                                     self.fSunrise, self.fSunset,\
                                     self.fLat, self.fLon)
 
-	npSF2  = metro_util.interpolate(npTime, npSF)
+        npSF2  = metro_util.interpolate(npTime, npSF)
 
         if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
-	    npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
-	    tDate2 = [time.gmtime(x) for x in npFT2]
-	    sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
-	    npSF2 = metro_preprocess_sunshadw.\
+            npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
+            tDate2 = [time.gmtime(x) for x in npFT2]
+            sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
+            npSF2 = metro_preprocess_sunshadw.\
                     get_corrected_solar_flux(tDate2, npSF2, \
                                              self.fLat, self.fLon,\
                                              zip(self.npAzim, self.npElev),\

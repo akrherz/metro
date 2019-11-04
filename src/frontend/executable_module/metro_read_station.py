@@ -73,7 +73,7 @@ class Metro_read_station(Metro_read):
                 self.add_infdata(infdata_station)
 
                 if metro_config.get_value('SUNSHADOW'):
-		    infdata_horizon = metro_infdata.Metro_infdata(
+                    infdata_horizon = metro_infdata.Metro_infdata(
                         'HORIZON', metro_infdata.DATATYPE_METRO_DATA)        
                     self.add_infdata(infdata_horizon)
 

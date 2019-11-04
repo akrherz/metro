@@ -421,12 +421,12 @@ def save_command_line_parameter( lArgv, sShort_opt, lLong_opt ):
                  'FROM'     :CFG_INTERNAL,
                  'COMMENTS' :_("extended visible horizon items")}
         
-	if o == "--sunshadow-method":
+        if o == "--sunshadow-method":
             try:
                 dConfig['SUNSHADOW_METHOD']['VALUE'] = int(a)
-	    except:
-	    	# Use default sunshadow method (=1)
-	        pass
+            except:
+                # Use default sunshadow method (=1)
+                pass
 
 
         if o == "--fix-deep-soil-temperature":

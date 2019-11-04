@@ -84,7 +84,7 @@ class Metro_dom2metro(Metro_module):
             self.domObservation_ref = None
         self.domStation         = pStation.get_input_information()
 
-	if self.infdata_exist('HORIZON'):
+        if self.infdata_exist('HORIZON'):
             pHorizon = self.get_infdata_reference('HORIZON')
             self.domHorizon = self.domStation
             if metro_xml.xpath(self.domHorizon, \
@@ -359,18 +359,18 @@ class Metro_dom2metro(Metro_module):
                 sHeader_xpath = metro_config.get_value('XML_STATION_XPATH_HEADER')
                 # xpath construction
                 sHorizon_xpath = metro_config.get_value('XML_STATION_XPATH_HORIZON')
-	    
+                
                 # concatenation of all the horizon sections
                 lStandard_horizon = metro_config.get_value( \
                     'XML_STATION_HORIZON_STANDARD_ITEMS')
                 lExtended_horizon = metro_config.get_value( \
                     'XML_STATION_HORIZON_EXTENDED_ITEMS')
             
-	        cs_horizon_data = metro_data_station.\
+                cs_horizon_data = metro_data_station.\
                                   Metro_data_station(lStandard_horizon,\
                                                      lExtended_horizon)
-            
-	        horizon_data = self.__extract_data_from_dom(cs_horizon_data,
+                
+                horizon_data = self.__extract_data_from_dom(cs_horizon_data,
                                                             self.domHorizon,
                                                             lHeader_defs,
                                                             sHeader_xpath,
@@ -382,8 +382,8 @@ class Metro_dom2metro(Metro_module):
             except:
                sXmlError = _("XML error in file '%s'.") % (sFilename)
                raise  metro_error.Metro_xml_error(sXmlError)
-	    
-	    pHorizon.set_data(horizon_data)
+
+            pHorizon.set_data(horizon_data)
 
 
 
