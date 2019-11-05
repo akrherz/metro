@@ -240,7 +240,7 @@ def shift_left(npInput, fValueAdded=0):
         Miguel Tremblay    July 2nd         Tired of always doing the same thing.
      """
     # Check the dimension
-    if npInput.shape <= (0,):
+    if npInput.shape[0] <= 0:
         sMetroUtilError = _("In shift_left, npInput is not of size (1,).\n") + \
                           "len(npInput.shape)=%s" % (len(npInput.shape))
         raise metro_error.Metro_util_error(sMetroUtilError)

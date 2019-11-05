@@ -16,9 +16,6 @@ list_of_failure_cases = []
 dict_error = {}
 list_of_errors = []
 error_difference = 0
-max_tag = ''
-max_value_one = 0
-max_value_two = 0
 
 
 # -------------------------------------Class definition: XmlTree--------------------------------------------------------
@@ -61,9 +58,7 @@ class XmlTree:
         global dict_error
         global list_of_errors
         global error_difference
-        global max_tag
-        global max_value_one
-        global max_value_two
+
 
         if excludes is None:
             excludes = []
@@ -99,25 +94,28 @@ class XmlTree:
                     tag_test_suite_run = '<' + xml_file2.tag + '>' + xml_file2.text + '<' + xml_file2.tag + '>'
                     print("{}{}{}".format(tag_reference.ljust(24), '!='.ljust(10), tag_test_suite_run))
 
-                    if xml_file1.tag in dict_error.keys():
-                        abs_error_difference = abs(float(xml_file1.text) - float(xml_file2.text))
-                        if abs_error_difference - abs(dict_error[xml_file1.tag][0] - dict_error[xml_file1.tag][1]) > 0.00000001:
-                            list_of_errors = [float(xml_file1.text), float(xml_file2.text)]
-                            dict_error[xml_file1.tag] = list_of_errors
-                            if abs_error_difference - error_difference > 0.00000001:
-                                error_difference = abs_error_difference
-                                max_tag = xml_file1.tag
-                                max_value_one = float(xml_file1.text)
-                                max_value_two = float(xml_file2.text)
+                    abs_error_difference = abs(float(xml_file1.text) - float(xml_file2.text))
 
-                    elif xml_file1.tag not in dict_error.keys():
-                        list_of_errors = [float(xml_file1.text), float(xml_file2.text)]
-                        dict_error[xml_file1.tag] = list_of_errors
-                        if abs(float(xml_file1.text) - float(xml_file2.text)) - error_difference > 0.00000001:
-                            error_difference = abs(float(xml_file1.text) - float(xml_file2.text))
-                            max_tag = xml_file1.tag
-                            max_value_one = float(xml_file1.text)
-                            max_value_two = float(xml_file2.text)
+                    if xml_file1.tag not in dict_error.keys():
+                        if abs(abs_error_difference - error_difference) <= 0.00000001:
+                            dict_error[xml_file1.tag] = []
+                            dict_error[xml_file1.tag].append([float(xml_file1.text), float(xml_file2.text)])
+                        elif abs_error_difference - error_difference > 0.00000001:
+                            dict_error.clear()
+                            dict_error[xml_file1.tag] = []
+                            dict_error[xml_file1.tag].append([float(xml_file1.text), float(xml_file2.text)])
+                            error_difference = abs_error_difference
+
+
+                    elif xml_file1.tag in dict_error.keys():
+                        if abs(abs_error_difference - error_difference) <= 0.00000001:
+                            list_of_errors = [float(xml_file1.text), float(xml_file2.text)]
+                            dict_error[xml_file1.tag].append(list_of_errors)
+                        elif abs_error_difference - error_difference > 0.00000001:
+                            dict_error.clear()
+                            dict_error[xml_file1.tag] = []
+                            dict_error[xml_file1.tag].append([float(xml_file1.text), float(xml_file2.text)])
+                            error_difference = abs_error_difference
 
             return False
 
@@ -213,9 +211,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
     global dict_error
     global list_of_errors
     global error_difference
-    global max_tag
-    global max_value_one
-    global max_value_two
+
 
     os.chdir(current_case_path)
     XmlTree.sum_of_error_within_tolerance = 0
@@ -233,9 +229,6 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
         dict_error = {}
         list_of_errors = []
         error_difference = 0.0
-        max_tag = ''
-        max_value_one = 0.0
-        max_value_two = 0.0
 
         if comparator.xml_compare(tree1, tree2, ['production-date'],
                                   XmlTree.display_info) and XmlTree.sum_of_error_outside_tolerance == 0:
@@ -251,14 +244,17 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
                       .format(str(XmlTree.sum_of_error_within_tolerance).rjust(4)))
                 print('                             \t  {} differences outside the predefined error tolerance.\n'
                       .format(str(XmlTree.sum_of_error_outside_tolerance).rjust(4)))
-
-                print('The largest error difference exists in tag <{}> and the error difference is {}.\n'.format(max_tag, round(error_difference, 2)))
-                # print('\n                                          roadcast_reference.xml'
-                #       '              roadcast_test_suite.xml')
-                # print('                                          ----------------------'
-                #       '              -----------------------')
-                # print('The largest error difference exists in:      <{0}>{1}<{0}>                       <{0}>{2}<{0}>\n'
-                #       .format(max_tag, max_value_one, max_value_two))
+                print('The largest error difference is:              {}\n'.format(round(error_difference, 2)))
+                print('The largest error difference exists in:       ', end='')
+                print('roadcast_reference.xml'
+                      '         roadcast_test_suite.xml')
+                print('                                              ----------------------'
+                      '         -----------------------')
+                for key, values in dict_error.items():
+                    for value in values:
+                        error_reference = '<' + key + '>' + str(value[0]) + '<' + key + '>'
+                        error_test_suite_run = '<' + key + '>' + str(value[1]) + '<' + key + '>'
+                        print('\t\t\t\t\t\t{}\t\t{}'.format(error_reference.ljust(20), error_test_suite_run.ljust(20)))
 
     except FileNotFoundError:
         pass
