@@ -42,10 +42,8 @@
     Errors must raised here must be catched elsewhere and then be logged through this module, if possible.
 """
 
-
 import os
 import metro_error
-
 
 # set environment variable LANGUAGE and LC_ALL
 if 'LANGUAGE' not in os.environ and 'LC_ALL' not in os.environ:
@@ -109,7 +107,7 @@ def get_exec_root_path():
 
 
 # Ugly way done in order to use the function get_metro_root_path.
-#  We can then use the underscore for the translation with gettext.
+# We can then use the underscore for the translation with gettext.
 
 t = gettext.translation('metro_util', get_metro_root_path() + '/usr/share/locale')
 _ = t.gettext

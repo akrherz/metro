@@ -50,6 +50,7 @@ import os
 import sys
 from scripts.copy_msgid_msgstr import copy_msgid_msgstr
 
+
 sTemporaryDirectory = '/tmp/metro_translation/'
 
 

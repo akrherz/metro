@@ -75,11 +75,9 @@ LOGGER_MSG_STOP_TXTID = _("STOP       ")
 LOGGER_MSG_UNDEFINED_TXTID = _("UNDEFINED  ")
 LOGGER_MSG_EMPTY_TXTID = "             "
 
-# Condition for a message to be displayed:
-# message's category > logger verbosity level
+# Condition for a message to be displayed: message's category > logger verbosity level
 
-# Message's type for the message to be print before
-# METRo initialization phase
+# Message's type for the message to be print before METRo initialization phase
 LOGGER_INIT_MESSAGE = 0
 LOGGER_INIT_SUCCESS = 1
 LOGGER_INIT_ERROR = 2
@@ -251,14 +249,12 @@ def print_message(iMessage_category, sMessage):
                 print(sLine)
         # Control if the message should be displayed in the shell
         if bLogger_shell_display:
-            # print((sMessage_category_string + ": " + sMessage).encode('ISO-8859-1'))
-            print((sMessage_category_string + ": " + sMessage))
+            print(sMessage_category_string + ": " + sMessage)
 
     # Warn the user in the case of an error asking the execution to be stopped.
     if iMessage_category == LOGGER_MSG_STOP:
         print("\n\n------------------------------------------------------------------------")
         print(_("An unrecoverable error has occurred, see details in the log file: "))
-        # print(sLogger_filename.encode('ISO-8859-1'))
         print(sLogger_filename)
         if iLogger_verbose_level != LOGGER_VERBOSE_LEVEL_FULL:
             print("\n")

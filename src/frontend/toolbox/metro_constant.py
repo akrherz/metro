@@ -66,8 +66,7 @@ nLowerPressure = 700
 fNormalPressure = 1013.25  # 1 atmosphere
 nUpperPressure = 1100
 
-# Used in the combination of the observation and the forecast
-#  (metro_preprocess_combine.py)
+# Used in the combination of the observation and the forecast(metro_preprocess_combine.py)
 fConst = 1./(4.0 * 3.6E3)
 
 # Used in metro_physics.py
@@ -76,10 +75,8 @@ fEps2 = 0.3780199778986
 fTrpl = 273.16
 fTcdk = 273.15
 
-# Used in metro_model to define the size of npSwo, because it finally
-#  goes into fortran...
+# Used in metro_model to define the size of npSwo, because it finally goes into fortran...
 nNL = 11520
 
-# METRo output
-#  Indicates at what will be the time interval between 2 field in the roadcast
+# METRo output indicates at what will be the time interval between 2 field in the roadcast
 nMinutesForOutput = 20

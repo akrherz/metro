@@ -1,5 +1,3 @@
-#!/usr/bin/env python
-
 """
     SUNRISET.C - computes Sun rise/set times, start/end of twilight, and the length of the day at any date and latitude
 
@@ -324,11 +322,6 @@ class Sun:
             (in degrees, 1 hr = 15 degr) is equal to the Sun's mean longitude plus/minus 180 degrees!
             (if we neglect aberration, which amounts to 20 seconds of arc or 1.33 seconds of time)
         """
-        # Sidtime at 0h UT = L (Sun's mean longitude) + 180.0 degr
-        # L = M + w, as defined in sunpos().  Since I'm too lazy to
-        # add these numbers, I'll let the C compiler do it for me.
-        # Any decent C compiler will add the constants at compile
-        # time, imposing no runtime or code overhead.
         sidtim0 = self.revolution((180.0 + 356.0470 + 282.9404) + (0.9856002585 + 4.70935E-5) * d)
         return sidtim0
 

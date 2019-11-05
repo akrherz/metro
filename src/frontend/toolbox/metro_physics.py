@@ -136,8 +136,7 @@ def get_sf(npCloudsOctal, npTimeHour, npForecastedTime, fSunriseTimeUTC, fSunset
     npCoeff = -1.56e-12 * npSft ** 4 + 5.972e-9 * npSft ** 3 - 8.364e-6 * npSft ** 2 + 5.183e-3 * npSft - 0.435
     npCoeff = numpy.where(npCoeff > 0, npCoeff, 0.0)
 
-    # Set npCloudsPercent to be able to reference it in the
-    #  numpy.where method.
+    # Set npCloudsPercent to be able to reference it in the numpy.where method.
     npCloudsPercentDay = npCloudsOctal
     # Correction based on the clouds
     for i in range(0, 9):

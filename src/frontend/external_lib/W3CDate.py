@@ -220,11 +220,7 @@ class W3CDate:
         if self.dateMiniTuple is None:
             raise TypeError("date has not been specified")
         self.dateSecs = time.mktime(self.dateMiniTuple)
-        # time.mktime's conversion is affected by the local timezone, which we
-        # don't necessarily want (because we may be representing any timezone).
-        # So, correct for the difference between the local timezone and desired
-        # timezone. If no specific timezone is set, we leave things at the local
-        # timezone.
+
         if self.timezone is not None:
             if self.dateMiniTuple[8] != 0 and time.localtime(self.dateSecs)[8] == 1 and time.daylight:
                 self.dateSecs = self.dateSecs - time.altzone

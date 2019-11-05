@@ -28,11 +28,9 @@ class XmlTree:
     def __init__(self, error_value=0.01):
         self._error = error_value
 
-    # getter method
     def get_error(self):
         return self._error
 
-    # setter method
     def set_error(self, error_value):
         self._error = error_value
 
@@ -54,11 +52,9 @@ class XmlTree:
             :param excludes: list of attributes to exclude from comparison
             :return: True if both files match with each other
         """
-
         global dict_error
         global list_of_errors
         global error_difference
-
 
         if excludes is None:
             excludes = []
@@ -116,7 +112,6 @@ class XmlTree:
                             dict_error[xml_file1.tag] = []
                             dict_error[xml_file1.tag].append([float(xml_file1.text), float(xml_file2.text)])
                             error_difference = abs_error_difference
-
             return False
 
         if not self.text_compare(xml_file1.tail, xml_file2.tail):
@@ -207,11 +202,9 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
         :param verbosity: boolean variable to indicate the willingness of display the comparison result in detial
         :return: comparison result
     """
-
     global dict_error
     global list_of_errors
     global error_difference
-
 
     os.chdir(current_case_path)
     XmlTree.sum_of_error_within_tolerance = 0
@@ -275,7 +268,6 @@ def main():
     parser.add_argument('-e', '--error', type=float, help='specified value of error tolerance')
     parser.add_argument('--clean', action='store_true', help="clean up output XML file 'roadcast_test_suite_run.xml'")
     args = parser.parse_args()
-
     if args.case:
         run_all_cases = False
         if args.verbose:

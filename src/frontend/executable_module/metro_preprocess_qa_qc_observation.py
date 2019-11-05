@@ -216,7 +216,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                               numpy.where, nonzero, arange
                               metro_date.get_day, get_hour, get_minute
                               metro_data.del_matrix_row
-                                metro_logger.print_message
+                              metro_logger.print_message
 
             Description: Check if the time of the observation are in order.
                          Cut the information that are spaced by more than 240 minutes.
@@ -319,8 +319,8 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
                               numpy.where,
                               metro_data.set_attribute
 
-            Description: Set the attributes in road_data_collection to tell if
-                         the values are in accordance of the criterium.
+            Description: Set the attributes in road_data_collection to tell if the values
+                         are in accordance of the criterium.
         """
         npSST = ro_controlled_data.get_matrix_col('SST')
         npAT = ro_controlled_data.get_matrix_col('AT')

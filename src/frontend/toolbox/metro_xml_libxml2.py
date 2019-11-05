@@ -178,10 +178,9 @@ class Metro_xml_libxml2:
         """
         return node.copyNode(True)
 
-    # -------------------------------------------------------
-    # Add '//' on the string and return a copy of the node
-    #  of the node result.
-    # -------------------------------------------------------
+    # ------------------------------------------------------------------------
+    # Add '//' on the string and return a copy of the node of the node result.
+    # ------------------------------------------------------------------------
     def all_matching_xpath(self, dom, sXpath):
         global sAllMatch
         sAllMatch = '//' + sXpath

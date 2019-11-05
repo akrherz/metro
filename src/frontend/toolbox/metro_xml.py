@@ -185,8 +185,7 @@ def extract_data(lDefs, dReadHandlers, nodeItems):
         lData.append(data)
 
     # If there is only one definition of data (lDefs), it is an "array".
-    #  In this case, we must extract the "array" from the list
-    #  [[1,2,3,...,N]]  ==>  [1,2,3,...,N]
+    # In this case, we must extract the "array" from the list [[1,2,3,...,N]]  ==>  [1,2,3,...,N]
     if len(lDefs) == 1:
         if lData:
             lData = lData[0]

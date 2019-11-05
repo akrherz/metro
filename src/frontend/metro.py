@@ -39,14 +39,12 @@ from toolbox import metro_xml
 from toolbox import metro_util
 
 
-# Set encoding to latin-1.  Must reload the sys module because the
-#  setdefaultencoding is deleted after the initialization of python.
-#  See http://masl.gnomehack.com/?N18452CE9 for further documentation
+# Set encoding to latin-1.  Must reload the sys module because the setdefaultencoding is deleted after
+# the initialization of python. See http://masl.gnomehack.com/?N18452CE9 for further documentation.
 
 importlib.reload(sys)
 
-# Add the directories where we can do an import
-# use of Plist_config/PListReader.py
+# Add the directories where we can do an import use of Plist_config/PListReader.py
 pathInclude = sys.path[0] + '/external_lib'
 sys.path.append(pathInclude)
 
@@ -82,7 +80,6 @@ def metro_execute_module(lObject_execution_sequence):
     """
         Load the module sequence for METRo execution.
     """
-    # print("LObject=" + str(lObject_execution_sequence))
     i = 0
     iLen_object_execution_sequence = len(lObject_execution_sequence)
     while i < iLen_object_execution_sequence:

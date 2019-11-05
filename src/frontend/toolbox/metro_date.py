@@ -65,8 +65,7 @@ def parse_date_string(sDate):
     """
     if sDate is not None:
         try:
-            # Strip the date in ISO up to the minute only,
-            # ie. the first 16 characters
+            # Strip the date in ISO up to the minute only, ie. the first 16 characters
             sDate = sDate[0:16]
             tDate = time.strptime(sDate, "%Y-%m-%dT%H:%M")
             fDate = time.mktime(tDate)
@@ -180,8 +179,7 @@ def get_short_time_zone(tm, sTime_zone):
         lTz = sTime_zone.split(',')
         sTime_zone = lTz[0]
 
-    # extract time zone letter
-    # ex: EST5EDT4 -> ESTEDT
+    # extract time zone letter ex: EST5EDT4 -> ESTEDT
     sTz_letter = ""
     for letter in sTime_zone:
         if letter.isalpha():
