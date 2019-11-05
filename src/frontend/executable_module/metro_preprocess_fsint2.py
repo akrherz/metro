@@ -219,7 +219,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
         if  metro_config.get_value('SF'):
             npSF = wf_controlled_data.get_matrix_col('SF')
             npSF2 = metro_util.interpolate(npTime, npSF)
-            if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
+            if ((self.infdata_exist('HORIZON')) and (self.npAzim is not None)):
                 npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
                 tDate2 = [time.gmtime(x) for x in npFT2]
                 sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
@@ -246,7 +246,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
 
         npSF2  = metro_util.interpolate(npTime, npSF)
 
-        if ((self.infdata_exist('HORIZON')) and (self.npAzim != None)):
+        if ((self.infdata_exist('HORIZON')) and (self.npAzim is not None)):
             npFT2 = wf_interpolated_data.get_matrix_col('FORECAST_TIME')
             tDate2 = [time.gmtime(x) for x in npFT2]
             sunshadw_method = metro_config.get_value('SUNSHADOW_METHOD')
