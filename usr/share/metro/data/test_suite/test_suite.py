@@ -86,6 +86,9 @@ class XmlTree:
             elif abs(float(xml_file1.text) - float(xml_file2.text)) - self.get_error() > 0.00000001:
                 XmlTree.sum_of_error_outside_tolerance += 1
                 if display_info:
+                    if XmlTree.sum_of_error_outside_tolerance == 1:
+                        print("\nroadcast_reference.xml            roadcast_test_suite_run.xml"
+                              "\n----------------------            ---------------------------")
                     tag_reference = '<' + xml_file1.tag + '>' + xml_file1.text + '<' + xml_file1.tag + '>'
                     tag_test_suite_run = '<' + xml_file2.tag + '>' + xml_file2.text + '<' + xml_file2.tag + '>'
                     print("{}{}{}".format(tag_reference.ljust(24), '!='.ljust(10), tag_test_suite_run))
@@ -188,6 +191,9 @@ def process_test_result(case_folder, test_code, expected_value_json):
             or (test_code == 0 and expected_value_json == 'SUCCESS' and XmlTree.sum_of_error_outside_tolerance > 0):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
+# ----------------------------------------------------------------------------------------------------------------------
+        print('Exit code: {}\n'.format(test_code))
+# ----------------------------------------------------------------------------------------------------------------------
         print(case_folder, ' FAILURE! ***')
     else:
         print('Something went wrong with this test run, please try to restart it again!')
@@ -199,7 +205,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
         :param current_case_path: directory of the current case that is going to be compared
         :param case_folder: case number that is being compared
         :param error_value: defined error tolerance for the running case
-        :param verbosity: boolean variable to indicate the willingness of display the comparison result in detial
+        :param verbosity: boolean variable to indicate the willingness of display the comparison result in detail
         :return: comparison result
     """
     global dict_error
@@ -379,6 +385,7 @@ def main():
                                                                                   file_station_path,
                                                                                   file_observation_path,
                                                                                   file_output_path)
+
             if verbosity:
                 try:
                     print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} starts to run...... <<<<<<<<<<<<<<<<<<<<<<<<<<'
@@ -389,9 +396,7 @@ def main():
                     print('\n\n')
                     test_run = subprocess.run(command_to_run, shell=True, check=True)
                     print('\n\n{}'.format(arrow_line))
-                    print('\nError Tolerance:                  {}\n'.format(error_value))
-                    print("roadcast_reference.xml            roadcast_test_suite_run.xml"
-                          "\n----------------------            ---------------------------")
+                    print('\nError Tolerance:                  {}'.format(error_value))
                     process_xml_file(current_case_path, folder, error_value, verbosity=True)
                     process_test_result(folder, test_run.returncode, expected_value)
                 except subprocess.CalledProcessError:
