@@ -171,9 +171,10 @@ def process_case_name(case_string, case_list=None):
     return case_list
 
 
-def process_test_result(case_folder, test_code, expected_value_json):
+def process_test_result(case_folder, test_code, expected_value_json, verbosity=False):
     """
         Processes the running result(s) of the test suite
+        :param verbosity: indicate the willingness of the user having the info displayed in detail
         :param case_folder: case name which is being tested
         :param test_code: code returned by the program after done running the case
         :param expected_value_json: predefined value inside 'config.jason' file
@@ -191,9 +192,8 @@ def process_test_result(case_folder, test_code, expected_value_json):
             or (test_code == 0 and expected_value_json == 'SUCCESS' and XmlTree.sum_of_error_outside_tolerance > 0):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
-# ----------------------------------------------------------------------------------------------------------------------
-        print('Exit code: {}\n'.format(test_code))
-# ----------------------------------------------------------------------------------------------------------------------
+        if verbosity:
+            print('Exit code: {}\n'.format(test_code))
         print(case_folder, ' FAILURE! ***')
     else:
         print('Something went wrong with this test run, please try to restart it again!')
@@ -398,11 +398,11 @@ def main():
                     print('\n\n{}'.format(arrow_line))
                     print('\nError Tolerance:                  {}'.format(error_value))
                     process_xml_file(current_case_path, folder, error_value, verbosity=True)
-                    process_test_result(folder, test_run.returncode, expected_value)
+                    process_test_result(folder, test_run.returncode, expected_value, verbosity=True)
                 except subprocess.CalledProcessError:
                     print('\n\n{}'.format(arrow_line))
                     print('No generated XML file to do the comparison.\n')
-                    process_test_result(folder, 1, expected_value)
+                    process_test_result(folder, 1, expected_value, verbosity=True)
                     print('\n{}\n\n'.format(arrow_line))
                     continue
                 os.chdir(test_suite_path)
@@ -412,7 +412,7 @@ def main():
                 test_run = subprocess.run(command_to_run, shell=True, stdout=subprocess.DEVNULL,
                                           stderr=subprocess.STDOUT)
                 process_xml_file(current_case_path, folder, error_value, verbosity=False)
-                process_test_result(folder, test_run.returncode, expected_value)
+                process_test_result(folder, test_run.returncode, expected_value, verbosity=False)
                 os.chdir(test_suite_path)
             # ---------------------------------------Clean up the output XML file---------------------------------------
             if args.clean:

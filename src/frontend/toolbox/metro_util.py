@@ -91,7 +91,7 @@ def get_metro_root_path():
         for sPath in lPythonPath:
             lPath = sPath.split("/")
             if lPath[-2] == "frontend":
-                sRoot_path = (lPath[:-3]).join("/")
+                sRoot_path = "/".join(lPath[:-3])
                 return sRoot_path
         # Nothing have been found
         sError = _("The executable 'metro.py' must be in one of the following directory:\n") + \
@@ -138,13 +138,7 @@ def test_function_existence(sModule_name, sFunction_name):
 
 
 def join_dictionaries(dDict1, dDict2):
-    lKeys = list(dDict1.keys()) + list(dDict2.keys())
-    lValues = list(dDict1.values()) + list(dDict2.values())
-    i = 0
-    dDict3 = {}
-    while i < len(lKeys):
-        dDict3[lKeys[i]] = lValues[i]
-        i = i + 1
+    dDict3 = {**dDict1, **dDict2}
     return dDict3
 
 
