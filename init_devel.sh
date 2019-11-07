@@ -43,18 +43,8 @@ echo "* link to model ( src/frontend/model -> usr/share/metro/model )"
 ln -sf ../../usr/share/metro/model src/frontend/model
 echo ""
 
-echo "* Checking for PYTHON_INCLUDE environment variable"
-if [ ! -n "$PYTHON_INCLUDE" ] ; then
-    echo "----------------------------------------------------------"
-    echo "WARNING!"
-    echo "No PYTHON_INCLUDE defined."
-    echo "Please set environment variable PYTHON_INCLUDE to your"
-    echo "python include directory."
-    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.3\""
-    echo "----------------------------------------------------------"
-    echo ""
-else
-    echo "PYTHON_INCLUDE="$PYTHON_INCLUDE
+if which python-config >/dev/null; then
+    PYTHON_INC=`python-config --includes`
+    echo "* Python include path = "$PYTHON_INC
 fi
-echo ""
 
