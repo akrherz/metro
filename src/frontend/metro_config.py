@@ -57,9 +57,9 @@ _ = metro_util.init_translation('metro_config')
 METRO_CONFIG_GETTEXT_PACKAGE = "metro_config"
 METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
-# Constant definition
-CFG_METRO_VERSION = "3.3.2"
-CFG_METRO_DATE = "2017-10-07"
+# Constant definition 
+CFG_METRO_VERSION="3.3.3"
+CFG_METRO_DATE="2019-11-06"
 
 CFG_INTERNAL = 0
 CFG_HARDCODED = 1
