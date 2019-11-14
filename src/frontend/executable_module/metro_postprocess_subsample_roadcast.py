@@ -98,8 +98,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
             for i in range(0, iNb_timesteps):
                 fCurrentTime = lTimeStep[i] * 3600
                 # Forecast at every 20 minutes, i.e. 1200 seconds
-                # if current time is a 20 minute interval
-                # and roadcast time is >= roadcast start date
+                # if current time is a 20 minute interval and roadcast time is >= roadcast start date
                 if round(fCurrentTime) % nSecondsForOutput == 0:
                     sLast_observation = metro_config.get_value('DATA_ATTRIBUTE_LAST_OBSERVATION')
                     fLast_observation = metro_date.parse_date_string(sLast_observation)
@@ -149,8 +148,7 @@ class Metro_postprocess_subsample_roadcast(Metro_postprocess):
             lRCvect = [0] * rc_subsampled.get_real_nb_matrix_col()
             lMatrix_line = [None] * rc_subsampled.get_real_nb_matrix_col()
 
-            # if current time is a 20 minute interval
-            # and roadcast time is >= roadcast start date
+            # if current time is a 20 minute interval and roadcast time is >= roadcast start date
             if round(fCurrentTime) % nSecondsForOutput == 0 and dElement_Array['ROADCAST_TIME'][i] >= fStartDate:
                 for sElement in list(dElement_Array.keys()):
                     lIndexList = rc_subsampled.index_of_matrix_col(sElement)

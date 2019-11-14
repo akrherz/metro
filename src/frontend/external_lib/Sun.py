@@ -186,8 +186,7 @@ class Sun:
         if upper_limb:
             altit = altit - sradius
 
-        # Compute the diurnal arc that the Sun traverses to reach
-        # the specified altitude altit:
+        # Compute the diurnal arc that the Sun traverses to reach the specified altitude altit:
 
         cost = (self.sind(altit) - self.sind(lat) * self.sind(sdec))/(self.cosd(lat) * self.cosd(sdec))
         if cost >= 1.0:
@@ -273,7 +272,7 @@ class Sun:
         return lon, r
 
     def sunRADec(self, d):
-        """"""
+
         # Compute Sun's ecliptical coordinates
         res = self.sunpos(d)
         lon = res[0]

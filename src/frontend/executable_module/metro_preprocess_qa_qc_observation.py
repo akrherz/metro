@@ -230,8 +230,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         """
         npTime = ro_controlled_data.get_matrix_col('Time')
         npCheck = metro_util.get_difference_array(npTime)
-        # If a gap of more than nGapMinuteObservation
-        #  minutes is identify, cut the value before.
+        # If a gap of more than nGapMinuteObservation minutes is identify, cut the value before.
         npCheck = metro_util.get_difference_array(npTime)
         npBad = numpy.where(npCheck > metro_constant.nGapMinuteObservation * 60, 1, 0)
         npBadIndice = (numpy.nonzero(npBad))[0]
@@ -252,8 +251,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         npTime = ro_controlled_data.get_matrix_col('Time')
         npBad = numpy.where(npCheck < 0, 1, 0)
         npBadIndice = (numpy.nonzero(npBad))[0]
-        # Accept 1 value under zero because the last value of
-        #  npBadIndice = npCheck[len(npCheck)-1] - npCheck[0]
+        # Accept 1 value under zero because the last value of npBadIndice = npCheck[len(npCheck)-1] - npCheck[0]
         if len(npBadIndice) > 1:
             sMessage = _("Time of observation are not in order. ") + _("Check the %d th value") % (npBadIndice[1])
             metro_logger.print_message(metro_logger.LOGGER_MSG_STOP, sMessage)
@@ -287,8 +285,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
         if sStart_time == "":
             return
 
-        # Check if the observation are not before the start of the roadcast
-        #  if specified.
+        # Check if the observation are not before the start of the roadcast if specified.
         fStart_time = metro_date.parse_date_string(sStart_time)
         npOT = ro_controlled_data.get_matrix_col('Time') + nHourStart * 3600
         npDiff = - npOT + int(metro_date.get_hour(fStart_time)) * 3600
@@ -420,8 +417,7 @@ class Metro_preprocess_qa_qc_observation(Metro_preprocess):
 
             Description: Set the time difference between the beginning of observation and the beginning of the roadcast.
         """
-        # Compute the time difference between the first forecast time
-        #  and the beginning of the observation
+        # Compute the time difference between the first forecast time and the beginning of the observation
         StartForecast = wf_controlled_data.get_matrix_col('FORECAST_TIME')[0]
         StartObservation = ro_controlled_data.get_matrix_col('OBSERVATION_TIME')[0]
         fTimeElapsed = metro_date.get_elapsed_time(StartForecast, StartObservation, "UTC", "hours")

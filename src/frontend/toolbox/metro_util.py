@@ -42,8 +42,10 @@
     Errors must raised here must be catched elsewhere and then be logged through this module, if possible.
 """
 
+
 import os
 import metro_error
+
 
 # set environment variable LANGUAGE and LC_ALL
 if 'LANGUAGE' not in os.environ and 'LC_ALL' not in os.environ:

@@ -119,8 +119,7 @@ def get_sf(npCloudsOctal, npTimeHour, npForecastedTime, fSunriseTimeUTC, fSunset
 
     for i in range(len(npForecastedTime)):
         cTime = npForecastedTime[i]
-        # Current hour is needed for the computation of
-        # fDh in the theoretical solar flux.
+        # Current hour is needed for the computation of fDh in the theoretical solar flux.
         fCurrentHour = float(metro_date.get_hour(cTime))
 
         # Equation of time of this exact hour

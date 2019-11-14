@@ -76,7 +76,6 @@ class Metro_data_collection:
         else:
             sMessage = _("Invalid attribute name. Valid attribute name are:\n%s") % (str(self.lAttribute_list))
             print(ERROR_ATTRIBUTE, sMessage)
-            raise
 
     def set_attribute(self, sAttribute_name, value):
         if sAttribute_name in self.lAttribute_list:
@@ -85,7 +84,6 @@ class Metro_data_collection:
         else:
             sMessage = _("Invalid attribute name. Valid attribute name are:\n%s") % (str(self.lAttribute_list))
             print(ERROR_ATTRIBUTE, sMessage)
-            raise
 
     def append_attribute(self, sAttribute_name, value):
         if sAttribute_name not in self.lAttribute_list:
@@ -94,7 +92,6 @@ class Metro_data_collection:
         else:
             sMessage = _("Attribute name '%s' already used") % sAttribute_name
             print(ERROR_ATTRIBUTE, sMessage)
-            raise
 
     def get_attribute_list(self):
         return self.lAttribute_list

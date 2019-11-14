@@ -166,8 +166,8 @@ class Metro_preprocess_combine(Metro_preprocess):
         npSwo = npSwo[self.nDeltaIndice:nLenTDO]
         npCheck = numpy.where(npSwo == 0, 1, 0)
         npBadIndices = (numpy.nonzero(npCheck))[0]
-        # If there is no error in the dew point, use the observations, otherwise
-        #  use the forecast for all the observation.
+        # If there is no error in the dew point, use the observations,
+        # otherwise use the forecast for all the observation.
         if len(npBadIndices) == 0:
             for i in range(0, nLenTDO - self.NTP):
                 npTD[i - self.NTP2] = npTDO[i + self.NTP - 1]
@@ -218,8 +218,7 @@ class Metro_preprocess_combine(Metro_preprocess):
             for i in range(0, nLenWSO - self.NTP):
                 npWS[i - self.NTP2] = npWSO[i + self.NTP - 1]
 
-            # Relaxation of observation on the atmospheric forecast
-            # 4 hour relaxation constant
+            # Relaxation of observation on the atmospheric forecast 4 hour relaxation constant
             nTimeStepsInRelaxation = 4 * 3600 / metro_constant.fTimeStep
             # Check if there is long enough atmospheric forecast
             if nLenWS < nTimeStepsInRelaxation:
@@ -233,8 +232,7 @@ class Metro_preprocess_combine(Metro_preprocess):
             fCurrentObs = npWSO[nLenWSO - 1]
             fCurrentFor = npWS[nLenWSO - self.NTP - self.NTP2]
             if fCurrentObs < fCurrentFor:
-                # The value of 0.01 is arbitrary. It is to avoid a division
-                # by a value too near of zero.
+                # The value of 0.01 is arbitrary. It is to avoid a division by a value too near of zero.
                 if fCurrentFor < 0.01:
                     fCurrentFor = 1.0
                 if fCurrentObs == 0:
@@ -269,7 +267,7 @@ class Metro_preprocess_combine(Metro_preprocess):
         """
         npQP = wf_interpolated_data.get_matrix_col('QP')
 
-        # Create the road condition array. 0 is dry, 1 is wet
+        # Create the road condition array. 0 is dry, 1 is wet.
         # This is only use in the initialization of profile
         npSC = numpy.ones(len(npQP))
 

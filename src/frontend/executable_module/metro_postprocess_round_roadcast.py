@@ -102,7 +102,7 @@ class Metro_postprocess_round_roadcast(Metro_postprocess):
         lExtended_roadcast = metro_config.get_value('XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')
         lRoadcast_items = lStandard_roadcast + lExtended_roadcast
 
-        # Get the default value for the accurary of "float" of the roadcast
+        # Get the default value for the accuracy of "float" of the roadcast
         iDefault_precision = metro_config.get_value('DEFAULT_ROADCAST_PREDICTION_PRECISION')
 
         dData_types = metro_config.get_value('XML_DATATYPE_STANDARD')

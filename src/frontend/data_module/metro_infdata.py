@@ -81,7 +81,6 @@ class Metro_infdata:
             sMessage = _("%s object doesn't have a Metro_data item. ") % (str(self.__class__)) + \
                        _("Try to use the get_data_collection() method")
             print(ERROR_INFDATA_ITEM, sMessage)
-            raise
 
     def set_data(self, value):
         if self.iData_type == DATATYPE_METRO_DATA:
@@ -90,7 +89,6 @@ class Metro_infdata:
             sMessage = _("%s object doesn't have a Metro_data item. ") % (str(self.__class__)) + \
                        _("Try to use the set_data_collection() method")
             print(ERROR_INFDATA_ITEM, sMessage)
-            raise
 
     # DATA COLLECTION
     def get_data_collection(self):
@@ -100,7 +98,6 @@ class Metro_infdata:
             sMessage = _("%s object doesn't have a Metro_data_collection ") % (str(self.__class__)) + \
                        _("item. Try to use the get_data() method.")
             print(ERROR_INFDATA_ITEM, sMessage)
-            raise
 
     def set_data_collection(self, value):
         if self.iData_type == DATATYPE_METRO_DATA_COLLECTION:
@@ -109,4 +106,3 @@ class Metro_infdata:
             sMessage = _("%s object doesn't have a Metro_data_collection ") % (str(self.__class__)) + \
                        _("item. Try to use the set_data() method.")
             print(ERROR_INFDATA_ITEM, sMessage)
-            raise

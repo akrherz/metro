@@ -90,8 +90,7 @@ class Metro_preprocess_fsint2(Metro_preprocess):
                 self.npAzim = horizon_data.get_matrix_col('AZIMUTH')
                 self.npElev = horizon_data.get_matrix_col('ELEVATION')
 
-                # Verification if the array has an monotone and
-                #  regular incrementation steps
+                # Verification if the array has an monotone and regular incrementation steps
                 if not metro_util.is_array_uniform(self.npAzim):
                     sMessage = _("Azimuth data in station configuration file ") + \
                                _("is not ordered by equal growing azimuths. ") + \

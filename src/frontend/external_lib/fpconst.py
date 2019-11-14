@@ -44,7 +44,7 @@ from functools import reduce
 
 
 # check endianess
-_big_endian = struct.pack('i', 1)[0] != '\x01'
+_big_endian = struct.pack('i', 1)[0] != 1
 
 # and define appropriate constants
 if _big_endian:

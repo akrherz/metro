@@ -63,7 +63,7 @@ LOGGER_MSG_EXECSECONDARY = 2  # show if verbosity = FULL
 LOGGER_MSG_WARNING = 11  # show if verbosity = ( FULL || NORMAL )
 LOGGER_MSG_EXECPRIMARY = 12  # show if verbosity = ( FULL || NORMAL )
 LOGGER_MSG_CRITICAL = 21  # always displayed
-LOGGER_MSG_STOP = 22  # alwayds displayed
+LOGGER_MSG_STOP = 22  # always displayed
 
 LOGGER_MSG_DEBUG_TXTID = _("DEBUG      ")
 LOGGER_MSG_INFORMATIVE_TXTID = _("INFORMATIVE")

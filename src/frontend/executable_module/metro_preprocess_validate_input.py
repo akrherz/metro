@@ -138,8 +138,8 @@ class Metro_preprocess_validate_input(Metro_preprocess):
             fNumberHourToRemove = nNumberSecondsToRemove / 3600.0
             fNewStartTime = fFirst_observation_date + nNumberSecondsToRemove
             sNewStartTime = metro_date.seconds2iso8601(fNewStartTime)
-            # Retrieve the first time in observation that is after this date
-            #  numpy trick. Put 0 where the time is under fNewStartTime
+            # Retrieve the first time in observation that is after this date numpy trick.
+            # Put 0 where the time is under fNewStartTime
             npNumberOfItemToRemove = numpy.where(npOT < fNewStartTime, 1, 0)
             #  Get the indice of the last indice that is not zero
             tNonZero = numpy.nonzero(npNumberOfItemToRemove)

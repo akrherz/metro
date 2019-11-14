@@ -29,7 +29,7 @@
 #  along with this program; if not, write to the Free Software
 #  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
 #
-# Every file in the source directories is listed separatly so that we don't
+# Every file in the source directories is listed separately so that we don't
 # include unwanted files.  This way, we are forced to consider what goes in the
 # package and what doesn't each time we make modifications. We don't blindly
 # add a directory with all the temporary and test files and it helps us to keep

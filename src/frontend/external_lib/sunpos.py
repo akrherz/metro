@@ -110,8 +110,7 @@ def get_sun_position(utc, lat, lon):
     dEclipticObliquity = 0.4090928 - 6.2140e-9 * dElapsedJulianDays + 0.0000396 * cos(dOmega)
 
     # Calculate celestial coordinates ( right ascension and declination ) in radians
-    # but without limiting the angle to be less than 2*Pi (i.e., the result may be
-    # greater than 2*Pi)
+    # but without limiting the angle to be less than 2*Pi (i.e., the result may be greater than 2*Pi)
     dSin_EclipticLongitude = sin(dEclipticLongitude)
     dY = cos(dEclipticObliquity) * dSin_EclipticLongitude
     dX = cos(dEclipticLongitude)
@@ -143,13 +142,12 @@ def get_sun_position(utc, lat, lon):
 
 
 if __name__ == "__main__":
-    """Selftest"""
+    """
+        Selftest
+    """
     utc = time.gmtime()
-    # utc = time.strptime("2012-10-09", "%Y-%m-%d")
-
     lat = 48.167803
     lon = 17.106844
-
     sun_azim, sun_elev = get_sun_position(utc, lat, lon)
 
     utc_iso = time.strftime("%Y-%m-%dT%H:%M:%S", utc)

@@ -84,8 +84,7 @@ def get_corrected_solar_flux(utc, S, lat, lon, horiz, m=1):
             if m == 1:
                 S_cor[i] = 0.0
 
-            # Enhanced method:
-            # Replace global solar flux with its diffuse component.
+            # Enhanced method: Replace global solar flux with its diffuse component.
             elif m == 2:
                 S_cor[i] = sflux_diffuse_component(S[i], sun_elev)
 

@@ -60,4 +60,3 @@ class Metro_infdata_container:
             sError = _("'%s' is not a valid infdata name\n") % sInfdata_name + \
                      _("Try one of the following infdata name:\n%s") % sInfdata_name_list
             print(ERROR_INFDATA_CONTAINER, sError)
-            raise

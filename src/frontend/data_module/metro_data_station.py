@@ -49,7 +49,7 @@ _ = metro_util.init_translation('metro_data_station')
 class Metro_data_station(Metro_data):
     """
         Specialised class for station data.
-        This class inherit Metro_data. It add some method facilating the manipulation of station data.
+        This class inherit Metro_data. It add some method facilitating the manipulation of station data.
     """
 
     # Get the longitude of the station

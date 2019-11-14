@@ -122,7 +122,6 @@ def roadlayer_type_to_roadlayer_code(sLayerType):
     if sLayerType in dValidLayerType:
         iLayer_code = dValidLayerType[sLayerType]
     else:
-        # raise an error
         sMessage = _("'%s' is not a valid road layer type. ") % sLayerType + \
                    _("Valid type are %s ") % (list(dValidLayerType.keys())) + \
                    _("Check the station configuration file")

@@ -13,9 +13,15 @@ import xml.etree.ElementTree as ET
 num_of_success = 0
 num_of_failure = 0
 list_of_failure_cases = []
+list_of_missing_file_cases = []
 dict_error = {}
 list_of_errors = []
 error_difference = 0
+forecast_exists = False
+station_exists = False
+observation_exists = False
+json_exists = False
+reference_exists = False
 
 
 # -------------------------------------Class definition: XmlTree--------------------------------------------------------
@@ -42,6 +48,19 @@ class XmlTree:
             :return: the tree which is converted from the 'xml_file'
         """
         return (ET.parse(xml_file)).getroot()
+
+    def text_compare(self, text1, text2):
+        """
+            Compare two text strings
+            :param text1: text one
+            :param text2: text two
+            :return: True if these two text strings are a match
+        """
+        if not text1 and not text2:
+            return True
+        if text1 == '*' or text2 == '*':
+            return True
+        return (text1 or '').strip() == (text2 or '').strip()
 
     def xml_compare(self, xml_file1, xml_file2, excludes=None, display_info=True):
         """
@@ -135,20 +154,6 @@ class XmlTree:
                     pass
         return True
 
-    def text_compare(self, text1, text2):
-        """
-            Compare two text strings
-            :param text1: text one
-            :param text2: text two
-            :return: True if these two text strings are a match
-        """
-        if not text1 and not text2:
-            return True
-        if text1 == '*' or text2 == '*':
-            return True
-        return (text1 or '').strip() == (text2 or '').strip()
-
-
 # -----------------------------------------Method definition------------------------------------------------------------
 def process_case_name(case_string, case_list=None):
     """
@@ -180,21 +185,35 @@ def process_test_result(case_folder, test_code, expected_value_json, verbosity=F
         :param expected_value_json: predefined value inside 'config.jason' file
         :return: case running result
     """
-    global num_of_success
-    global num_of_failure
-    global list_of_failure_cases
+    global num_of_success, num_of_failure, list_of_failure_cases
+    global forecast_exists, station_exists, observation_exists, json_exists, reference_exists
 
     if (test_code == 0 and expected_value_json == 'SUCCESS' and XmlTree.sum_of_error_outside_tolerance == 0) \
             or (test_code != 0 and expected_value_json == 'FAILURE'):
         num_of_success += 1
         print(case_folder, ' SUCCESS!')
+        if (not reference_exists or not json_exists) and verbosity:
+            print()
+            if not reference_exists:
+                print("Note: 'roadcast_reference' file does not exist for {}".format(case_folder))
+            if not json_exists:
+                print("Note: 'config.json' file does not exist for {}".format(case_folder))
+
     elif (test_code != 0 and expected_value_json == 'SUCCESS') or (test_code == 0 and expected_value_json == 'FAILURE') \
-            or (test_code == 0 and expected_value_json == 'SUCCESS' and XmlTree.sum_of_error_outside_tolerance > 0):
+            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '') and XmlTree.sum_of_error_outside_tolerance > 0)\
+            or ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
         if verbosity:
             print('Exit code: {}\n'.format(test_code))
         print(case_folder, ' FAILURE! ***')
+
+        if (not reference_exists or not json_exists) and verbosity:
+            print()
+            if not reference_exists:
+                print("Note: 'roadcast_reference' file does not exist for {}".format(case_folder))
+            if not json_exists:
+                print("Note: 'config.json' file does not exist for {}".format(case_folder))
     else:
         print('Something went wrong with this test run, please try to restart it again!')
 
@@ -211,6 +230,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
     global dict_error
     global list_of_errors
     global error_difference
+    global reference_exists
 
     os.chdir(current_case_path)
     XmlTree.sum_of_error_within_tolerance = 0
@@ -231,13 +251,13 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
 
         if comparator.xml_compare(tree1, tree2, ['production-date'],
                                   XmlTree.display_info) and XmlTree.sum_of_error_outside_tolerance == 0:
-            if verbosity:
+            if reference_exists and verbosity:
                 print('\nXML FILES COMPARISON RESULT: \t', end='')
                 print('  {} differences within the predefined error tolerance.\n'.
                       format(XmlTree.sum_of_error_within_tolerance))
         elif XmlTree.sum_of_error_outside_tolerance != 0:
             XmlTree.list_of_diff_case.append(case_folder)
-            if verbosity:
+            if reference_exists and verbosity:
                 print('\nXML FILES COMPARISON RESULT: ', end='')
                 print('\t  {} differences within the predefined error tolerance.'
                       .format(str(XmlTree.sum_of_error_within_tolerance).rjust(4)))
@@ -254,10 +274,8 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
                         error_reference = '<' + key + '>' + str(value[0]) + '<' + key + '>'
                         error_test_suite_run = '<' + key + '>' + str(value[1]) + '<' + key + '>'
                         print('\t\t\t\t\t\t{}\t\t{}'.format(error_reference.ljust(20), error_test_suite_run.ljust(20)))
-
     except FileNotFoundError:
         pass
-
 
 # ---------------------------------------Method: main()-----------------------------------------------------------------
 def main():
@@ -328,20 +346,25 @@ def main():
 
     if (sorted(list_of_folders) != sorted(case_list)) and not run_all_cases:
         for case in case_list:
-            for folder in list_of_folders:
-                if case not in list_of_folders and case not in list_of_wrong_folders:
+            if list_of_folders:
+                for folder in list_of_folders:
+                    if case not in list_of_folders and case not in list_of_wrong_folders:
+                        list_of_wrong_folders.append(case)
+            else:
+                if case not in list_of_wrong_folders:
                     list_of_wrong_folders.append(case)
         print('\nWarning: No case named by: {}. The program exits with code 0.\n'.
               format(', '.join(list_of_wrong_folders)))
         exit(0)
 
     # -------------------------------------------------Test running process--------------------------------------------
+    global forecast_exists, station_exists, observation_exists, json_exists, reference_exists
+    global num_of_failure, list_of_failure_cases, list_of_missing_file_cases
     file_forecast_path = ''
     file_station_path = ''
     file_observation_path = ''
     extra_parameter = ''
     expected_value = 'SUCCESS'
-    test_run = None
     arrow_line = '>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>'
     ripple_line = '~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~'
 
@@ -352,107 +375,158 @@ def main():
     for folder in list_of_folders:
         current_case_path = './' + str(folder)
         for (dir_path, dir_names, file_names) in os.walk(current_case_path):  # Walk into each case.
+            forecast_exists = False
+            station_exists = False
+            observation_exists = False
+            json_exists = False
+            reference_exists = False
             for file_name in file_names:
                 extra_parameter = ''  # Set a default value for extra_parameter as not all cases need it.
-                if file_name == 'forecast.xml':
-                    file_forecast_path = os.path.join(test_suite_path + dir_path[1:], 'forecast.xml')
-                if file_name == 'station.xml':
-                    file_station_path = os.path.join(test_suite_path + dir_path[1:], 'station.xml')
-                if file_name == 'observation.xml':
-                    file_observation_path = os.path.join(test_suite_path + dir_path[1:], 'observation.xml')
-                if file_name == 'config.json':
-                    os.chdir(current_case_path)  # Change the current path to the current case directory.
-                    with open('config.json') as f:
-                        data = json.load(f)
-                        for key, value in data.items():
-                            if key == 'addition_to_command_line':
-                                if value is not None:
-                                    extra_parameter = value
-                            if key == 'expected_running_result':
-                                if value == 'FAILURE':
-                                    expected_value = 'FAILURE'
-                                elif value == 'SUCCESS':
-                                    expected_value = 'SUCCESS'
-                                else:
-                                    print('Please verify the format/syntax of the config.json file.')
-                            if key == 'error_tolerance':
-                                error_value = value
+                forecast_exists = os.path.isfile(current_case_path + '/forecast.xml')
+                station_exists = os.path.isfile(current_case_path + '/station.xml')
+                observation_exists = os.path.isfile(current_case_path + '/observation.xml')
+                json_exists = os.path.isfile(current_case_path + '/config.json')
+                reference_exists = os.path.isfile(current_case_path + '/roadcast_reference.xml')
 
-            file_output_path = os.path.join(test_suite_path + dir_path[1:], 'roadcast_test_suite_run.xml')
-            os.chdir(test_suite_path)  # Change back the path so as to make the function call.
-            command_to_run = 'python3 ../../../../../src/frontend/metro.py {} --input-forecast {} --input-station {} ' \
-                             '--input-observation {} --output-roadcast {}'.format(extra_parameter, file_forecast_path,
-                                                                                  file_station_path,
-                                                                                  file_observation_path,
-                                                                                  file_output_path)
+            if forecast_exists:
+                file_forecast_path = os.path.join(test_suite_path + dir_path[1:], 'forecast.xml')
+            if station_exists:
+                file_station_path = os.path.join(test_suite_path + dir_path[1:], 'station.xml')
+            if observation_exists:
+                file_observation_path = os.path.join(test_suite_path + dir_path[1:], 'observation.xml')
+            if json_exists:
+                os.chdir(current_case_path)  # Change the current path to the current case directory.
+                with open('config.json') as f:
+                    data = json.load(f)
+                    for key, value in data.items():
+                        if key == 'addition_to_command_line':
+                            if value is not None:
+                                extra_parameter = value
+                        if key == 'expected_running_result':
+                            if value == 'FAILURE':
+                                expected_value = 'FAILURE'
+                            elif value == 'SUCCESS':
+                                expected_value = 'SUCCESS'
+                            else:
+                                print('Please verify the format/syntax of the config.json file.')
+                        if key == 'error_tolerance':
+                            error_value = value
 
-            if verbosity:
-                try:
-                    print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} starts to run...... <<<<<<<<<<<<<<<<<<<<<<<<<<'
-                          '<'.format(folder))
-                    if expected_value == 'FAILURE':
-                        print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to FAIL...... <<<<<<<<<<<<<<<<<<'
-                              '<<<'.format(folder))
-                    print('\n\n')
-                    test_run = subprocess.run(command_to_run, shell=True, check=True)
-                    print('\n\n{}'.format(arrow_line))
-                    print('\nError Tolerance:                  {}'.format(error_value))
-                    process_xml_file(current_case_path, folder, error_value, verbosity=True)
-                    process_test_result(folder, test_run.returncode, expected_value, verbosity=True)
-                except subprocess.CalledProcessError:
-                    print('\n\n{}'.format(arrow_line))
-                    print('No generated XML file to do the comparison.\n')
-                    process_test_result(folder, 1, expected_value, verbosity=True)
+            if forecast_exists and station_exists and observation_exists:
+                file_output_path = os.path.join(test_suite_path + dir_path[1:], 'roadcast_test_suite_run.xml')
+                os.chdir(test_suite_path)  # Change back the path so as to make the function call.
+                command_to_run = 'python3 ../../../../../src/frontend/metro.py {} --input-forecast {} --input-station {} ' \
+                                 '--input-observation {} --output-roadcast {}'.format(extra_parameter,
+                                                                                      file_forecast_path,
+                                                                                      file_station_path,
+                                                                                      file_observation_path,
+                                                                                      file_output_path)
+                if verbosity:
+                    try:
+                        print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} starts to run...... <<<<<<<<<<<<<<<<<<<<<<<<<<'
+                              '<'.format(folder))
+                        if expected_value == 'FAILURE':
+                            print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to FAIL...... <<<<<<<<<<<<<<<<<<'
+                                  '<<<'.format(folder))
+
+                        print('\nSyntax to run {}:'.format(folder))
+                        print('--------------------------------------------------------------------------------')
+                        print(
+                            'python3 ../../../../../src/frontend/metro.py {0} --input-forecast ../test_suite'
+                            '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
+                            '-observation ../test_suite/{1}/observation.xml --output-roadcast '
+                            '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, folder))
+                        print('--------------------------------------------------------------------------------')
+
+                        print('\n\n')
+                        test_run = subprocess.run(command_to_run, shell=True, check=True)
+                        print('\n\n{}'.format(arrow_line))
+                        if reference_exists:
+                            print('\nError Tolerance:                  {}'.format(error_value))
+                        process_xml_file(current_case_path, folder, error_value, verbosity=True)
+                        if not reference_exists:
+                            print('No reference XML file to do the comparison.\n')
+                        process_test_result(folder, test_run.returncode, expected_value, verbosity=True)
+                    except subprocess.CalledProcessError:
+                        print('\n\n{}'.format(arrow_line))
+                        if not reference_exists:
+                            print('No reference XML file to do the comparison.')
+                        print('No generated XML file to do the comparison.\n')
+                        process_test_result(folder, 1, expected_value, verbosity=True)
+                        print('\n{}\n\n'.format(arrow_line))
+                        continue
+                    os.chdir(test_suite_path)
                     print('\n{}\n\n'.format(arrow_line))
-                    continue
-                os.chdir(test_suite_path)
-                print('\n{}\n\n'.format(arrow_line))
 
-            elif not verbosity:
-                test_run = subprocess.run(command_to_run, shell=True, stdout=subprocess.DEVNULL,
-                                          stderr=subprocess.STDOUT)
-                process_xml_file(current_case_path, folder, error_value, verbosity=False)
-                process_test_result(folder, test_run.returncode, expected_value, verbosity=False)
+                elif not verbosity:
+                    test_run = subprocess.run(command_to_run, shell=True, stdout=subprocess.DEVNULL,
+                                              stderr=subprocess.STDOUT)
+                    process_xml_file(current_case_path, folder, error_value, verbosity=False)
+                    process_test_result(folder, test_run.returncode, expected_value, verbosity=False)
+                    os.chdir(test_suite_path)
+                # ---------------------------------------Clean up the output XML file-----------------------------------
+                if args.clean:
+                    try:
+                        os.remove(current_case_path + '/roadcast_test_suite_run.xml')
+                    except FileNotFoundError as e:
+                        continue
+
+            elif not forecast_exists or not station_exists or not observation_exists:
+                if verbosity:
+                    print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} cannot be started...... <<<<<<<<<<<<<<<<<<<<<<'.format(folder))
+                    print('\n{} has missing input file(s): '.format(folder))
+                    if not forecast_exists:
+                        print("\t\t\t\t\t'forecast.xml'")
+                    if not station_exists:
+                        print("\t\t\t\t\t'station.xml'")
+                    if not observation_exists:
+                        print("\t\t\t\t\t'observation.xml'")
+                num_of_failure += 1
+                # list_of_failure_cases.append(folder)
+                list_of_missing_file_cases.append(folder)
+                print(folder, ' FAILURE! ***')
+                if verbosity:
+                    print('\n{}\n\n'.format(arrow_line))
                 os.chdir(test_suite_path)
-            # ---------------------------------------Clean up the output XML file---------------------------------------
-            if args.clean:
-                try:
-                    os.remove(current_case_path + '/roadcast_test_suite_run.xml')
-                except FileNotFoundError as e:
-                    continue
+
     # ----------------------------------------------Summary after test running------------------------------------------
     print('\n\n\n================================================================================')
-    print('\n', '                            ', 'AFTER RUNNING SUMMARY: ')
+    print('\n', '                                  ', 'SUMMARY: ')
     print('\n================================================================================')
     print('Total number of test cases ran:\t\t\t\t', str(num_of_folders), '.\nNumber of cases ran with SUCCESS:\t\t\t',
           str(num_of_success), '.\nNumber of cases  ran with FAILURE: \t\t\t', str(num_of_failure), '.')
 
+    if len(list_of_missing_file_cases) != 0:
+        print('Case(s) missing proper input file(s):\t\t\t', end=' ')
+        print(*list_of_missing_file_cases, sep=', ')
+
+
     if len(XmlTree.list_of_diff_case) != 0:
-        print('Cases having different XML file comparison result:\t', end=' ')
+        print('Case(s) having different XML file comparison result:\t', end=' ')
         print(*XmlTree.list_of_diff_case, sep=', ')
     print('\n\n\n')
 
-    if (not verbosity) and (len(list_of_failure_cases) != 0):
-        print('\n\n\n================================================================================')
-        print('\n', '                        ', 'LIST OF FAILED RUNNING CASES: ')
-        print('\n================================================================================')
-        for case in list_of_failure_cases:
-            print(case)
-        print('\n\n\n')
+    # if (not verbosity) and (len(list_of_failure_cases) != 0):
+    #     print('\n\n\n================================================================================')
+    #     print('\n', '                        ', 'LIST OF FAILED RUNNING CASES: ')
+    #     print('\n================================================================================')
+    #     for case in list_of_failure_cases:
+    #         print(case)
+    #     print('\n\n\n')
 
     if (len(list_of_failure_cases) != 0) and verbosity:
         print('\n\n\n================================================================================')
-        print('\n', '                        ', 'LIST OF FAILED RUNNING CASES: ')
+        print('\n', '                           ', 'FAILED RUNNING CASE(S): ')
         print('\n================================================================================')
         for case in list_of_failure_cases:
             print(case)
             print(ripple_line)
-            print('Syntax to run this individual case: ')
-            print('-----------------------------------')
-            print('python3 ../../../../../src/frontend/metro.py {0} --input-forecast ../test_suite'
+            print('Syntax to run this individual case with more details:')
+            print('-----------------------------------------------------')
+            print('python3 ../../../../../src/frontend/metro.py {0} --verbose-level 4 --input-forecast ../test_suite'
                   '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                   '-observation ../test_suite/{1}/observation.xml --output-roadcast '
-                  '../test_suite/{1}/roadcast_individual_run.xml'.format(extra_parameter, case))
+                  '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, case))
 
 
 if __name__ == '__main__':

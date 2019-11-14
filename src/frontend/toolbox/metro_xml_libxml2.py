@@ -95,7 +95,7 @@ class Metro_xml_libxml2:
             node = nodeBranch.xpathEval(sXpath)
         except IndexError:
             sMessage = "Unable to find an expression corresponding to the " + "Xpath: '%s'" % sAllMatch
-            raise sMessage
+            print(sMessage)
         return node
 
     def get_node_value(self, node):
@@ -127,7 +127,6 @@ class Metro_xml_libxml2:
         if error is not None:
             sMessage = _("At least one error occurred when validating XML file.")
             print(sMessage)
-            raise
         doc = ctxt.doc()
         doc.freeDoc()
 

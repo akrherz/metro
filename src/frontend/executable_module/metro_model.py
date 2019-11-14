@@ -142,7 +142,6 @@ class Metro_model(Metro_module):
         sMessage = "Forecast_data=" + str(lForecast_data)
         metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG, sMessage)
 
-
         # start roadlayer MATRIX
         npLayerType = cs_data.get_matrix_col('TYPE')
         lLayerType = npLayerType.astype(numpy.int32).tolist()
@@ -175,7 +174,7 @@ class Metro_model(Metro_module):
         ft = wforiginal.get_matrix_col('FORECAST_TIME')
 
         # Forecast
-        #  Get the interpolated values.
+        # Get the interpolated values.
         wf_interpolated_data = forecast.get_interpolated_data()
         npAT = wf_interpolated_data.get_matrix_col('AT')
         lAT = npAT.tolist()
