@@ -1,0 +1,12 @@
+test:
+  script:
+  - apt-get update -qy
+  - apt-get install -y mlocate cpio
+  - apt-get install -y gfortran
+  - apt-get install -y swig
+  - apt-get install -y python python-dev python-numpy python-libxml2
+  - python --version
+  - ./setup.sh /usr/local
+  - cd /usr/local/metro/usr/bin
+  - python ./metro --selftest
+  - diff --ignore-matching-lines=".*<production-date>.*</production-date>" ../share/metro/data/selftest/roadcast.xml ../share/metro/data/selftest/roadcast_reference.xml
