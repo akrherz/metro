@@ -44,7 +44,6 @@
 
 from executable_module.metro_preprocess import Metro_preprocess
 import numpy
-from external_lib import fpconst
 import metro_config
 import metro_logger
 import metro_error
@@ -77,13 +76,12 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
             if sElement.find('TIME') > 0:
                 continue
             npElement = wf_controlled_data.get_matrix_col(sElement)
-            # In the case of 'CC', only return an error if both SF and IR
-            #  are not given
+            # In the case of 'CC', only return an error if both SF and IR are not given
             if sElement is 'CC':
                 if metro_config.get_value('SF') and metro_config.get_value('IR'):
                     continue
             for fElement in npElement:
-                if fpconst.isNaN(fElement) or numpy.isnan(fElement):
+                if numpy.isnan(fElement):
                     if wf_controlled_data.is_standardCol(sElement):
                         sMessage = _("Value in forecast file must be valid.\n") \
                                    + _("A value for the element <%s> is invalid") % (sElement.lower()) + \
