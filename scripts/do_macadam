@@ -62,28 +62,28 @@ if [ -n "$PYTHON_INCLUDE" ] ; then
         exit 1
     fi
     PYTHON_INC=-I$PYTHON_INCLUDE
-elif which python-config >/dev/null; then
-    echo "Using python-config to detect python settings."
+elif which python3-config >/dev/null; then
+    echo "Using python3-config to detect python settings."
     echo "You can override detected values by setting"
     echo "enviroment variable PYTHON_INCLUDE."
-    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.4\""
-    PYTHON_INC=`python-config --includes`
+    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python3.6\""
+    PYTHON_INC=`python3-config --includes`
 else
     echo "----------------------------------------------------------"
     echo "WARNING!"
     echo "No python path defined."
-    echo "Will try to used the default path for python 2.4"
+    echo "Will try to used the default path for python 3.6"
     echo "If it still doesn't work,"
     echo "please set environment variable PYTHON_INCLUDE to your"
     echo "python include directory."
-    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.4\""
+    echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python3.6\""
     echo "----------------------------------------------------------"
     echo ""
-    PYTHON_INC="-I/usr/include/python2.4/"
+    PYTHON_INC="-I/usr/include/python3.6/"
 fi
 echo "    Python include path = "$PYTHON_INC
 
-PLATFORM=`python -c "import platform;print platform.architecture()[0]"`
+PLATFORM=`python3 -c "import platform;print(platform.architecture()[0])"`
 if  [ $PLATFORM = "64bit" ]; then
     FORTRAN_DEFAULT_INTEGER="-fdefault-integer-8"
     echo "    64 bit architecture detected"
@@ -93,7 +93,7 @@ fi
 
 echo "    Using SWIG"
 echo '    macadam.i :'
-swig -python  macadam.i 
+swig -python macadam.i
 
 echo "    C compilation"
 gcc -c -fPIC -Wall  -Wno-implicit  macadam.c $PYTHON_INC
@@ -133,6 +133,3 @@ if [ ! -d $destination_path/usr/lib/metro ]; then
     mkdir -p $destination_path/usr/lib/metro
 fi
 cp _macadam.so $destination_path/usr/lib/metro/
-
-
-#cp -v _macadam.so  macadam.py ../frontend/model/

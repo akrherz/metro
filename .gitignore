@@ -1,0 +1,9 @@
+*.pyc
+*.o
+*.so
+macadam.py
+metro.log
+.idea/
+src/frontend/model
+usr/share/metro/data/selftest/roadcast.xml
+

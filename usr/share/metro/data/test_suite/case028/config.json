@@ -1,0 +1,4 @@
+{
+  "addition_to_command_line": "--enable-sunshadow",
+  "expected_running_result": "SUCCESS"
+}
