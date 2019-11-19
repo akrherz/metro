@@ -40,7 +40,7 @@ fi
 echo ""
 
 echo "* link to model ( src/frontend/model -> usr/share/metro/model )"
-ln -sf ../../usr/share/metro/model src/frontend/model
+ln -sTf ../../usr/share/metro/model src/frontend/model
 echo ""
 
 if which python-config >/dev/null; then
