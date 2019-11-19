@@ -44,7 +44,10 @@ DATATYPE_METRO_DATA_COLLECTION = 1
 class Metro_infdata:
 
     def __init__(self, sName, iData_type):
-        self.dItems = {'NAME': sName, 'XML_FORMAT': None, 'INPUT_INFORMATION': None, 'OUTPUT_INFORMATION': None,
+        self.dItems = {'NAME': sName,
+                       'XML_FORMAT': None,
+                       'INPUT_INFORMATION': None,
+                       'OUTPUT_INFORMATION': None,
                        'DATA': None}
         self.iData_type = iData_type
 
