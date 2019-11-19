@@ -113,8 +113,7 @@ def check_translation(sDirectory):
                 break
         # Compare the file with the famous command "msgcmp"
         sCommand = 'msgcmp ' + sOriginalPoFilepath + ' ' + sPoFile + " > /dev/null 2>&1"
-        # If the files are not compatible, the sys.command returns
-        #  something that is not 0.
+        # If the files are not compatible, the sys.command returns something that is not 0.
         if os.system(sCommand):
             # Create the merge file for english
             sMergeFilenameEn = sFilename + '_merge_en.po'
@@ -153,7 +152,6 @@ def check_translation(sDirectory):
 #
 # Author:  Ben Park
 # See post: http://groups.google.com/groups?hl=en&lr=&safe=off&selm=4cc96c48.0204031030.53bfb69f%40posting.google.com
-#
 # --------------------------------------------------------------------------------------------------------------------
 
 
