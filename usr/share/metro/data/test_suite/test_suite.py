@@ -482,7 +482,6 @@ def main():
                     if not observation_exists:
                         print("\t\t\t\t\t'observation.xml'")
                 num_of_failure += 1
-                # list_of_failure_cases.append(folder)
                 list_of_missing_file_cases.append(folder)
                 print(folder, ' FAILURE! ***')
                 if verbosity:
@@ -505,14 +504,6 @@ def main():
         print('Case(s) having different XML file comparison result:\t', end=' ')
         print(*XmlTree.list_of_diff_case, sep=', ')
     print('\n\n\n')
-
-    # if (not verbosity) and (len(list_of_failure_cases) != 0):
-    #     print('\n\n\n================================================================================')
-    #     print('\n', '                        ', 'LIST OF FAILED RUNNING CASES: ')
-    #     print('\n================================================================================')
-    #     for case in list_of_failure_cases:
-    #         print(case)
-    #     print('\n\n\n')
 
     if (len(list_of_failure_cases) != 0) and verbosity:
         print('\n\n\n================================================================================')
