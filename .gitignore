@@ -1,20 +1,9 @@
 *.pyc
 *.o
 *.so
-*.c
-*.xml
-*.json
-*.xml.swp
-*.memdump
-*.txt
-*.directory
-cmd
-ADD_TO_GENERIC_COMMAND_LINE
 macadam.py
 metro.log
 .idea/
-usr/share/metro/model/model
 src/frontend/model
-usr/share/metro/data/test_suite/test_suite_backup_on_Nov_4.py
-usr/share/metro/data/test_suite/test_suite_error.py
+usr/share/metro/data/selftest/roadcast.xml
 
