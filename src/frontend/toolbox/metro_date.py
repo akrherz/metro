@@ -205,10 +205,17 @@ def get_elapsed_time(ftime1, ftime2, sTimeZone="UTC", sUnit="hours"):
         Return nResult (int): Values rounded to sUnit.
     """
     # Transform the ctime in the datetime.datetime class
-    cTime1 = datetime.datetime(get_year(ftime1, sTimeZone), get_month(ftime1, sTimeZone), get_day(ftime1, sTimeZone),
-                               get_hour(ftime1, sTimeZone), get_minute(ftime1, sTimeZone))
-    cTime2 = datetime.datetime(get_year(ftime2, sTimeZone), get_month(ftime2, sTimeZone), get_day(ftime2, sTimeZone),
-                               get_hour(ftime2, sTimeZone), get_minute(ftime2, sTimeZone))
+    cTime1 = datetime.datetime(get_year(ftime1, sTimeZone),
+                               get_month(ftime1, sTimeZone),
+                               get_day(ftime1, sTimeZone),
+                               get_hour(ftime1, sTimeZone),
+                               get_minute(ftime1, sTimeZone))
+
+    cTime2 = datetime.datetime(get_year(ftime2, sTimeZone),
+                               get_month(ftime2, sTimeZone),
+                               get_day(ftime2, sTimeZone),
+                               get_hour(ftime2, sTimeZone),
+                               get_minute(ftime2, sTimeZone))
 
     # Get the timedelta object from the subtraction.
     cTimeDifference = cTime1 - cTime2
