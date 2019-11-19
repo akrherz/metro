@@ -262,7 +262,7 @@ class Metro_model(Metro_module):
         # Creation of the Metro_data object for the roadcast
         lStandard_items = metro_config.get_value('XML_ROADCAST_PREDICTION_STANDARD_ITEMS')
         lExtended_items = metro_config.get_value('XML_ROADCAST_PREDICTION_EXTENDED_ITEMS')
-        lItems = lStandard_items  # + lExtended_items
+        lItems = lStandard_items
 
         # FFTODO append all lExtended_items to metrodata
         roadcast = metro_data.Metro_data(lItems)
