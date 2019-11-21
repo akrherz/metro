@@ -314,15 +314,20 @@ def main():
     run_all_cases = True
     verbosity = False
     default_error_tolerance = 0.01
+
     parser = argparse.ArgumentParser(description='run the test suite')
-    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
+    case_group = parser.add_mutually_exclusive_group()
+    case_group.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
+    case_group.add_argument('-s', '--skip', nargs='+', default=[], metavar='',
+                    help='add case number to a do-not-run case list')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-q', '--quiet', action='store_true', help='display the process in a simple shortened way')
     group.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
     parser.add_argument('-e', '--error', type=float, help='specified value of error tolerance')
     parser.add_argument('--clean', action='store_true', help="clean up output XML file 'roadcast_test_suite_run.xml'")
     args = parser.parse_args()
-    if args.case:
+
+    if args.case or args.skip:
         run_all_cases = False
         if args.verbose:
             verbosity = True
@@ -330,7 +335,8 @@ def main():
             verbosity = False
         else:
             verbosity = False
-    elif not args.case:
+
+    elif not args.case and not args.skip:
         case_name = 'case'
         run_all_cases = True
         if args.verbose:
@@ -353,8 +359,44 @@ def main():
     list_of_folders = []
     list_of_wrong_folders = []
     test_suite_path = os.getcwd()
-    case_list = process_case_name(args.case)
+
+    if args.case:
+        case_list = process_case_name(args.case, case_list=None)
+    else:
+        case_list = []
+
+    if args.skip:
+        do_not_run_case_list = process_case_name(args.skip, case_list=None)
+    else:
+        do_not_run_case_list = []
+
+    if do_not_run_case_list and not case_list:
+        list_of_folders = []
+        case_name = 'case'
+        for folder in sorted(os.listdir(test_suite_path)):
+            if folder.startswith(case_name):
+                list_of_folders.append(folder)
+        list_of_folders = list_of_folders
+
+        for case in do_not_run_case_list:
+            if list_of_folders:
+                for folder in list_of_folders:
+                    if case not in list_of_folders and case not in list_of_wrong_folders:
+                        list_of_wrong_folders.append(case)
+            else:
+                if case not in list_of_wrong_folders:
+                    list_of_wrong_folders.append(case)
+
+        if list_of_wrong_folders:
+            print('\nWarning: No case named by: {}. The program exits with code 0.\n'.
+                  format(', '.join(list_of_wrong_folders)))
+            sys.exit(0)
+
+        case_list = sorted(list(set([folder for folder in sorted(os.listdir(test_suite_path)) if folder.startswith(case_name)])
+                         - set(do_not_run_case_list)))
+
     if run_all_cases:
+        list_of_folders = []
         for folder in sorted(os.listdir(test_suite_path)):
             try:
                 if folder.startswith(case_name):
@@ -363,9 +405,10 @@ def main():
                     if verbosity:
                         print(folder)
             except TypeError:
-                print('There is no folder by the name that you entered.')
                 break
-    elif not run_all_cases:
+
+    if not run_all_cases:
+        list_of_folders = []
         for case in case_list:
             for folder in os.listdir(test_suite_path):
                 if case == folder:
@@ -374,7 +417,7 @@ def main():
                     if verbosity:
                         print(case)
 
-    if (sorted(list_of_folders) != sorted(case_list)) and not run_all_cases:
+    if (sorted(list_of_folders) != sorted(case_list)) and not run_all_cases and not do_not_run_case_list:
         for case in case_list:
             if list_of_folders:
                 for folder in list_of_folders:
@@ -383,6 +426,7 @@ def main():
             else:
                 if case not in list_of_wrong_folders:
                     list_of_wrong_folders.append(case)
+
         print('\nWarning: No case named by: {}. The program exits with code 0.\n'.
               format(', '.join(list_of_wrong_folders)))
         sys.exit(0)
