@@ -8,5 +8,5 @@ test:
   - python3 --version
   - ./setup.sh /usr/local
   - cd /usr/local/metro/usr/bin
-  - python3 ../share/metro/data/test_suite/test_suite.py
+  - python3 ../share/metro/data/test_suite/test_suite.py -c 049
   - diff --ignore-matching-lines=".*<production-date>.*</production-date>" ../share/metro/data/test_suite/case049/roadcast.xml ../share/metro/data/test_suite/case049/roadcast_reference.xml
