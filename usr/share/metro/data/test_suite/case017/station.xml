@@ -15,8 +15,8 @@
     <roadlayer-list>
         <roadlayer>
             <position>1</position>
-	         <type>cement</type>
-	         <thickness>0.19</thickness>
-	     </roadlayer>
+            <type>cement</type>
+            <thickness>0.19</thickness>
+        </roadlayer>
     </roadlayer-list>
 </station>

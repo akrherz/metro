@@ -15,13 +15,13 @@
     <roadlayer-list>
         <roadlayer>
             <position>1</position>
-	         <type>asphalt</type>
-	         <thickness>0.1905</thickness>
-	     </roadlayer>
+            <type>asphalt</type>
+            <thickness>0.1905</thickness>
+        </roadlayer>
         <roadlayer>
             <position>2</position>
             <type>cement</type>
-	         <thickness>0.4570</thickness>
-	     </roadlayer>
+            <thickness>0.4570</thickness>
+        </roadlayer>
     </roadlayer-list>
 </station>

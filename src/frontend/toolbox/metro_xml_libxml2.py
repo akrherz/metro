@@ -1,4 +1,3 @@
-# # -*- coding:iso-8859-1  -*-
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada
 # Copyright (C) Her Majesty The Queen in Right of Canada, Environment Canada, 2006
@@ -36,7 +35,7 @@
 
     Notes:
 
-    Author: François Fortin
+    Author: Francois Fortin
 
     Date: Somewhere in the summer 2004
 """

@@ -1,5 +1,4 @@
 #!/usr/bin/env python
-# -*- coding: iso-8859-1 -*-
 #
 # METRo : Model of the Environment and Temperature of Roads
 # METRo is Free and is proudly provided by the Government of Canada
@@ -37,7 +36,7 @@
 
     Date:        November 10th  2004
 
-    Description: Créer les fichiers .po correspondant au .py. Ecrit ces fichiers dans /tmp/translate pour chacun de
+    Description: Creer les fichiers .po correspondant au .py. Ecrit ces fichiers dans /tmp/translate pour chacun de
                  ces fichiers, il faut mettre la meme string qu'il y a dans msgid a l'interieur de msgstr.
                  Compare ensuite les fichier dans /locale/en/LC_MESSAGES/*.po avec ceux contenu dans /tmp/translate
                  s'il y a une difference, on fait un merge avec les fichiers dans en et fr.

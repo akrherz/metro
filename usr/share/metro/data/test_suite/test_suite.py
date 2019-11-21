@@ -1,14 +1,42 @@
+# METRo : Model of the Environment and Temperature of Roads
+# METRo is Free and is proudly provided by the Government of Canada
+# Copyright (C) Her Majesty The Queen in Right of Canada, Environment Canada, 2006
+#
+#  Questions or bugs report: metro@ec.gc.ca
+#  METRo repository: https://framagit.org/metroprojects/metro
+#  Documentation: https://framagit.org/metroprojects/metro/wikis/home
+#
+# Code contributed by:
+#  Francois Fortin - Canadian meteorological center
+#  Sasa Zhang - Canadian meteorological center
+#
+#  $LastChangedDate$
+#  $LastChangedRevision$
+###################################################################################
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
 """
     This test_suit.py file runs the test suite that comes with the METRo program
 """
-
 
 import argparse
 import json
 import os
 import subprocess
+import sys
 import xml.etree.ElementTree as ET
-
 
 num_of_success = 0
 num_of_failure = 0
@@ -124,7 +152,6 @@ class XmlTree:
                             dict_error[xml_file1.tag].append([float(xml_file1.text), float(xml_file2.text)])
                             error_difference = abs_error_difference
 
-
                     elif xml_file1.tag in dict_error.keys():
                         if abs(abs_error_difference - error_difference) <= 0.00000001:
                             list_of_errors = [float(xml_file1.text), float(xml_file2.text)]
@@ -153,6 +180,7 @@ class XmlTree:
                 if not self.xml_compare(c1, c2, excludes, display_info):
                     pass
         return True
+
 
 # -----------------------------------------Method definition------------------------------------------------------------
 def process_case_name(case_string, case_list=None):
@@ -200,12 +228,13 @@ def process_test_result(case_folder, test_code, expected_value_json, verbosity=F
                 print("Note: 'config.json' file does not exist for {}".format(case_folder))
 
     elif (test_code != 0 and expected_value_json == 'SUCCESS') or (test_code == 0 and expected_value_json == 'FAILURE') \
-            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '') and XmlTree.sum_of_error_outside_tolerance > 0)\
-            or ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
+            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '')
+                and XmlTree.sum_of_error_outside_tolerance > 0) or \
+            ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
         if verbosity:
-            print('Exit code: {}\n'.format(test_code))
+            print('The exit code of metro is: {}\n'.format(test_code))
         print(case_folder, ' FAILURE! ***')
 
         if (not reference_exists or not json_exists) and verbosity:
@@ -276,6 +305,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
                         print('\t\t\t\t\t\t{}\t\t{}'.format(error_reference.ljust(20), error_test_suite_run.ljust(20)))
     except FileNotFoundError:
         pass
+
 
 # ---------------------------------------Method: main()-----------------------------------------------------------------
 def main():
@@ -355,7 +385,7 @@ def main():
                     list_of_wrong_folders.append(case)
         print('\nWarning: No case named by: {}. The program exits with code 0.\n'.
               format(', '.join(list_of_wrong_folders)))
-        exit(0)
+        sys.exit(0)
 
     # -------------------------------------------------Test running process--------------------------------------------
     global forecast_exists, station_exists, observation_exists, json_exists, reference_exists
@@ -499,7 +529,6 @@ def main():
         print('Case(s) missing proper input file(s):\t\t\t', end=' ')
         print(*list_of_missing_file_cases, sep=', ')
 
-
     if len(XmlTree.list_of_diff_case) != 0:
         print('Case(s) having different XML file comparison result:\t', end=' ')
         print(*XmlTree.list_of_diff_case, sep=', ')
@@ -522,3 +551,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    sys.exit(num_of_failure)
