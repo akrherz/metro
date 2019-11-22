@@ -490,20 +490,20 @@ def main():
                 file_output_path = os.path.join(test_suite_path + dir_path[1:], 'roadcast_test_suite_run.xml')
                 os.chdir(test_suite_path)  # Change back the path so as to make the function call.
 
-                command_to_run = 'python3 ../../../../../src/frontend/metro.py {} --input-forecast {} --input-station {} ' \
-                                 '--input-observation {} --output-roadcast {}'.format(extra_parameter,
-                                                                                      file_forecast_path,
-                                                                                      file_station_path,
-                                                                                      file_observation_path,
-                                                                                      file_output_path)
-
-                # .gitlab-ci.yml version of command_to_run
-                # command_to_run = 'python3 ../../metro.py {} --input-forecast {} --input-station {} ' \
+                # command_to_run = 'python3 ../../../../../src/frontend/metro.py {} --input-forecast {} --input-station {} ' \
                 #                  '--input-observation {} --output-roadcast {}'.format(extra_parameter,
                 #                                                                       file_forecast_path,
                 #                                                                       file_station_path,
                 #                                                                       file_observation_path,
                 #                                                                       file_output_path)
+
+                # .gitlab-ci.yml version of command_to_run
+                command_to_run = 'python3 ../../metro.py {} --input-forecast {} --input-station {} ' \
+                                 '--input-observation {} --output-roadcast {}'.format(extra_parameter,
+                                                                                      file_forecast_path,
+                                                                                      file_station_path,
+                                                                                      file_observation_path,
+                                                                                      file_output_path)
 
                 if verbosity:
                     try:
