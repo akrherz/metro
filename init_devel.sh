@@ -43,6 +43,11 @@ echo "* link to model ( src/frontend/model -> usr/share/metro/model )"
 ln -sTf ../../usr/share/metro/model src/frontend/model
 echo ""
 
+echo "* link to metro.py ( usr/bin/metro -> src/frontend/metro.py )"
+mkdir -p usr/bin
+ln -sTf ../../src/frontend/metro.py usr/bin/metro
+echo ""
+
 if which python-config >/dev/null; then
     PYTHON_INC=`python3-config --includes`
     echo "* Python include path = "$PYTHON_INC
