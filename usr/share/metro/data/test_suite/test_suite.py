@@ -1,14 +1,42 @@
+# METRo : Model of the Environment and Temperature of Roads
+# METRo is Free and is proudly provided by the Government of Canada
+# Copyright (C) Her Majesty The Queen in Right of Canada, Environment Canada, 2006
+#
+#  Questions or bugs report: metro@ec.gc.ca
+#  METRo repository: https://framagit.org/metroprojects/metro
+#  Documentation: https://framagit.org/metroprojects/metro/wikis/home
+#
+# Code contributed by:
+#  Francois Fortin - Canadian meteorological center
+#  Sasa Zhang - Canadian meteorological center
+#
+#  $LastChangedDate$
+#  $LastChangedRevision$
+###################################################################################
+#  This program is free software; you can redistribute it and/or modify
+#  it under the terms of the GNU General Public License as published by
+#  the Free Software Foundation; either version 2 of the License, or
+#  (at your option) any later version.
+#
+#  This program is distributed in the hope that it will be useful,
+#  but WITHOUT ANY WARRANTY; without even the implied warranty of
+#  MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+#  GNU General Public License for more details.
+#
+#  You should have received a copy of the GNU General Public License
+#  along with this program; if not, write to the Free Software
+#  Foundation, Inc., 59 Temple Place, Suite 330, Boston, MA  02111-1307  USA
+
 """
     This test_suit.py file runs the test suite that comes with the METRo program
 """
-
 
 import argparse
 import json
 import os
 import subprocess
+import sys
 import xml.etree.ElementTree as ET
-
 
 num_of_success = 0
 num_of_failure = 0
@@ -124,7 +152,6 @@ class XmlTree:
                             dict_error[xml_file1.tag].append([float(xml_file1.text), float(xml_file2.text)])
                             error_difference = abs_error_difference
 
-
                     elif xml_file1.tag in dict_error.keys():
                         if abs(abs_error_difference - error_difference) <= 0.00000001:
                             list_of_errors = [float(xml_file1.text), float(xml_file2.text)]
@@ -141,8 +168,8 @@ class XmlTree:
                 print('tail: {} != {}.'.format(xml_file1.tail, xml_file2.tail))
             return False
 
-        child1 = xml_file1.getchildren()
-        child2 = xml_file2.getchildren()
+        child1 = list(xml_file1)
+        child2 = list(xml_file2)
         if len(child1) != len(child2):
             if display_info:
                 print('children length differs, {} != {}.'.format(len(child1), len(child2)))
@@ -153,6 +180,7 @@ class XmlTree:
                 if not self.xml_compare(c1, c2, excludes, display_info):
                     pass
         return True
+
 
 # -----------------------------------------Method definition------------------------------------------------------------
 def process_case_name(case_string, case_list=None):
@@ -200,12 +228,13 @@ def process_test_result(case_folder, test_code, expected_value_json, verbosity=F
                 print("Note: 'config.json' file does not exist for {}".format(case_folder))
 
     elif (test_code != 0 and expected_value_json == 'SUCCESS') or (test_code == 0 and expected_value_json == 'FAILURE') \
-            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '') and XmlTree.sum_of_error_outside_tolerance > 0)\
-            or ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
+            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '')
+                and XmlTree.sum_of_error_outside_tolerance > 0) or \
+            ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
         if verbosity:
-            print('Exit code: {}\n'.format(test_code))
+            print('The exit code of metro is: {}\n'.format(test_code))
         print(case_folder, ' FAILURE! ***')
 
         if (not reference_exists or not json_exists) and verbosity:
@@ -277,6 +306,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
     except FileNotFoundError:
         pass
 
+
 # ---------------------------------------Method: main()-----------------------------------------------------------------
 def main():
     # ----------------------------------------Process user's input from command line------------------------------------
@@ -284,15 +314,20 @@ def main():
     run_all_cases = True
     verbosity = False
     default_error_tolerance = 0.01
+
     parser = argparse.ArgumentParser(description='run the test suite')
-    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
+    case_group = parser.add_mutually_exclusive_group()
+    case_group.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
+    case_group.add_argument('-s', '--skip', nargs='+', default=[], metavar='',
+                    help='add case number to a do-not-run case list')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-q', '--quiet', action='store_true', help='display the process in a simple shortened way')
     group.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
     parser.add_argument('-e', '--error', type=float, help='specified value of error tolerance')
     parser.add_argument('--clean', action='store_true', help="clean up output XML file 'roadcast_test_suite_run.xml'")
     args = parser.parse_args()
-    if args.case:
+
+    if args.case or args.skip:
         run_all_cases = False
         if args.verbose:
             verbosity = True
@@ -300,7 +335,8 @@ def main():
             verbosity = False
         else:
             verbosity = False
-    elif not args.case:
+
+    elif not args.case and not args.skip:
         case_name = 'case'
         run_all_cases = True
         if args.verbose:
@@ -323,8 +359,44 @@ def main():
     list_of_folders = []
     list_of_wrong_folders = []
     test_suite_path = os.getcwd()
-    case_list = process_case_name(args.case)
+
+    if args.case:
+        case_list = process_case_name(args.case, case_list=None)
+    else:
+        case_list = []
+
+    if args.skip:
+        do_not_run_case_list = process_case_name(args.skip, case_list=None)
+    else:
+        do_not_run_case_list = []
+
+    if do_not_run_case_list and not case_list:
+        list_of_folders = []
+        case_name = 'case'
+        for folder in sorted(os.listdir(test_suite_path)):
+            if folder.startswith(case_name):
+                list_of_folders.append(folder)
+        list_of_folders = list_of_folders
+
+        for case in do_not_run_case_list:
+            if list_of_folders:
+                for folder in list_of_folders:
+                    if case not in list_of_folders and case not in list_of_wrong_folders:
+                        list_of_wrong_folders.append(case)
+            else:
+                if case not in list_of_wrong_folders:
+                    list_of_wrong_folders.append(case)
+
+        if list_of_wrong_folders:
+            print('\nWarning: No case named by: {}. The program exits with code 0.\n'.
+                  format(', '.join(list_of_wrong_folders)))
+            sys.exit(0)
+
+        case_list = sorted(list(set([folder for folder in sorted(os.listdir(test_suite_path)) if folder.startswith(case_name)])
+                         - set(do_not_run_case_list)))
+
     if run_all_cases:
+        list_of_folders = []
         for folder in sorted(os.listdir(test_suite_path)):
             try:
                 if folder.startswith(case_name):
@@ -333,9 +405,10 @@ def main():
                     if verbosity:
                         print(folder)
             except TypeError:
-                print('There is no folder by the name that you entered.')
                 break
-    elif not run_all_cases:
+
+    if not run_all_cases:
+        list_of_folders = []
         for case in case_list:
             for folder in os.listdir(test_suite_path):
                 if case == folder:
@@ -344,7 +417,7 @@ def main():
                     if verbosity:
                         print(case)
 
-    if (sorted(list_of_folders) != sorted(case_list)) and not run_all_cases:
+    if (sorted(list_of_folders) != sorted(case_list)) and not run_all_cases and not do_not_run_case_list:
         for case in case_list:
             if list_of_folders:
                 for folder in list_of_folders:
@@ -353,9 +426,10 @@ def main():
             else:
                 if case not in list_of_wrong_folders:
                     list_of_wrong_folders.append(case)
+
         print('\nWarning: No case named by: {}. The program exits with code 0.\n'.
               format(', '.join(list_of_wrong_folders)))
-        exit(0)
+        sys.exit(0)
 
     # -------------------------------------------------Test running process--------------------------------------------
     global forecast_exists, station_exists, observation_exists, json_exists, reference_exists
@@ -415,12 +489,14 @@ def main():
             if forecast_exists and station_exists and observation_exists:
                 file_output_path = os.path.join(test_suite_path + dir_path[1:], 'roadcast_test_suite_run.xml')
                 os.chdir(test_suite_path)  # Change back the path so as to make the function call.
-                command_to_run = 'python3 ../../../../../src/frontend/metro.py {} --input-forecast {} --input-station {} ' \
+
+                command_to_run = 'python3 ../../../../bin/metro {} --input-forecast {} --input-station {} ' \
                                  '--input-observation {} --output-roadcast {}'.format(extra_parameter,
                                                                                       file_forecast_path,
                                                                                       file_station_path,
                                                                                       file_observation_path,
                                                                                       file_output_path)
+
                 if verbosity:
                     try:
                         print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} starts to run...... <<<<<<<<<<<<<<<<<<<<<<<<<<'
@@ -432,7 +508,7 @@ def main():
                         print('\nSyntax to run {}:'.format(folder))
                         print('--------------------------------------------------------------------------------')
                         print(
-                            'python3 ../../../../../src/frontend/metro.py {0} --input-forecast ../test_suite'
+                            'python3 ../../../../bin/metro {0} --input-forecast ../test_suite'
                             '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                             '-observation ../test_suite/{1}/observation.xml --output-roadcast '
                             '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, folder))
@@ -499,7 +575,6 @@ def main():
         print('Case(s) missing proper input file(s):\t\t\t', end=' ')
         print(*list_of_missing_file_cases, sep=', ')
 
-
     if len(XmlTree.list_of_diff_case) != 0:
         print('Case(s) having different XML file comparison result:\t', end=' ')
         print(*XmlTree.list_of_diff_case, sep=', ')
@@ -514,7 +589,7 @@ def main():
             print(ripple_line)
             print('Syntax to run this individual case with more details:')
             print('-----------------------------------------------------')
-            print('python3 ../../../../../src/frontend/metro.py {0} --verbose-level 4 --input-forecast ../test_suite'
+            print('python3 ../../../../bin/metro {0} --verbose-level 4 --input-forecast ../test_suite'
                   '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                   '-observation ../test_suite/{1}/observation.xml --output-roadcast '
                   '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, case))
@@ -522,3 +597,4 @@ def main():
 
 if __name__ == '__main__':
     main()
+    sys.exit(num_of_failure)

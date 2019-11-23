@@ -10,7 +10,7 @@
             <longitude>41.2091666667</longitude>
         </coordinate>
         <station-type>road</station-type>
-	<sst-sensor-depth>0.04</sst-sensor-depth>
+        <sst-sensor-depth>0.04</sst-sensor-depth>
     </header>
     <roadlayer-list>
         <roadlayer>
