@@ -316,10 +316,8 @@ def main():
     default_error_tolerance = 0.01
 
     parser = argparse.ArgumentParser(description='run the test suite')
-    case_group = parser.add_mutually_exclusive_group()
-    case_group.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
-    case_group.add_argument('-s', '--skip', nargs='+', default=[], metavar='',
-                    help='add case number to a do-not-run case list')
+    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
+    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='', help='add case number to a do-not-run case list')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-q', '--quiet', action='store_true', help='display the process in a simple shortened way')
     group.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
