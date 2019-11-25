@@ -318,34 +318,25 @@ def main():
     parser = argparse.ArgumentParser(description='run the test suite')
     parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number(s) to a case list')
     parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='', help='add case number(s) to a do-not-run case list')
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-q', '--quiet', action='store_true', help='display the process in a simple shortened way')
-    group.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
+    parser.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
     parser.add_argument('-e', '--error', type=float, help='specified value of error tolerance')
     parser.add_argument('--clean', action='store_true', help="clean up output XML file 'roadcast_test_suite_run.xml'")
     args = parser.parse_args()
 
+    if args.verbose:
+        verbosity = True
+    else:
+        verbosity = False
+
     if args.case or args.skip:
         if args.case and args.skip:
-            print("'-c' and '-s' cannot be used at the same time. The METRo program will exit with code 0.")
-            sys.exit(0)
+            print("'-c' and '-s' cannot be used at the same time. The METRo program will exit with code 2.")
+            sys.exit(2)
         run_all_cases = False
-        if args.verbose:
-            verbosity = True
-        elif args.quiet:
-            verbosity = False
-        else:
-            verbosity = False
-
-    elif not args.case and not args.skip:
+    else:
         case_name = 'case'
         run_all_cases = True
-        if args.verbose:
-            verbosity = True
-        elif args.quiet:
-            verbosity = False
-        else:
-            verbosity = False
+
     if args.error:
         error_value = args.error
     else:
