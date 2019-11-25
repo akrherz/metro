@@ -234,7 +234,7 @@ def process_test_result(case_folder, test_code, expected_value_json, verbosity=F
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
         if verbosity:
-            print('The exit code of metro is: {}\n'.format(test_code))
+            print('The exit code of METRo is: {}\n'.format(test_code))
         print(case_folder, ' FAILURE! ***')
 
         if (not reference_exists or not json_exists) and verbosity:
@@ -316,8 +316,8 @@ def main():
     default_error_tolerance = 0.01
 
     parser = argparse.ArgumentParser(description='run the test suite')
-    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
-    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='', help='add case number to a do-not-run case list')
+    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number(s) to a case list')
+    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='', help='add case number(s) to a do-not-run case list')
     group = parser.add_mutually_exclusive_group()
     group.add_argument('-q', '--quiet', action='store_true', help='display the process in a simple shortened way')
     group.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
@@ -326,6 +326,9 @@ def main():
     args = parser.parse_args()
 
     if args.case or args.skip:
+        if args.case and args.skip:
+            print("'-c' and '-s' cannot be used at the same time. The METRo program will exit with code 0.")
+            sys.exit(0)
         run_all_cases = False
         if args.verbose:
             verbosity = True

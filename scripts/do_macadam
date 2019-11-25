@@ -37,7 +37,7 @@ progname=`basename $0`
 METRO_VERSION=3.3.3
 
 
-if [[ $1 = clean ]]; then    
+if [[ $1 = clean ]]; then
     echo "* Cleaning last METRo model build attempt if necessary..."
     rm -f _macadam.so *.o macadam.py macadam_wrap.c
     exit 0
@@ -116,7 +116,7 @@ if [ -z $FC ]; then
 fi
 
 echo "    Fortran compilation"
-$FC -Wall -Wsurprising -W -c -fPIC  $FORTRAN_DEFAULT_INTEGER lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f 
+$FC -Wall -Wsurprising -W -c -fPIC  $FORTRAN_DEFAULT_INTEGER lib_gen.f grille.f array2matrix.f initial.f coupla.f lib_therm.f flxsurfz.f balanc.f constPhys.f
 
 
 echo "    Link"
