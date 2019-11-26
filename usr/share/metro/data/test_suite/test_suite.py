@@ -311,8 +311,6 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
 def main():
     # ----------------------------------------Process user's input from command line------------------------------------
     case_name = ''
-    run_all_cases = True
-    verbosity = False
     default_error_tolerance = 0.01
 
     parser = argparse.ArgumentParser(description='run the test suite')
@@ -342,15 +340,40 @@ def main():
     else:
         error_value = default_error_tolerance
 
+    num_of_folders = 0
+    list_of_folders = []
+    list_of_wrong_folders = []
+    test_suite_path = os.getcwd()
+    num_of_clean_up = 0
+    # -------------------------------------------Clean up the output XML file-------------------------------------------
+    if args.clean:
+        if args.case or args.skip or args.error:
+            print("'--clean' can only be used individually. The METRo program will exit with code 0.")
+            sys.exit(0)
+
+        for folder in sorted(os.listdir(test_suite_path)):
+            if folder.startswith('case'):
+                try:
+                    os.remove(test_suite_path + '/' + folder + '/roadcast_test_suite_run.xml')
+                    num_of_clean_up += 1
+                    if  verbosity:
+                        if num_of_clean_up == 1:
+                            print('File(s) that are successfully removed:')
+                        print(test_suite_path + '/' + folder + '/roadcast_test_suite_run.xml')
+                except FileNotFoundError as e:
+                    continue
+        if num_of_clean_up == 0:
+            print('There is nothing needs to be cleaned up.')
+        else:
+            if not verbosity:
+                print("Note: all 'roadcast_test_suite_run.xml' files are cleaned up.")
+        sys.exit(0)
+
     # --------------------------------------------List of validated test cases------------------------------------------
     if verbosity:
         print('\n\n================================================================================')
         print('\n', '                         ', 'VALIDATED LIST OF TEST CASES: ')
         print('\n================================================================================')
-    num_of_folders = 0
-    list_of_folders = []
-    list_of_wrong_folders = []
-    test_suite_path = os.getcwd()
 
     if args.case:
         case_list = process_case_name(args.case, case_list=None)
@@ -532,12 +555,6 @@ def main():
                     process_xml_file(current_case_path, folder, error_value, verbosity=False)
                     process_test_result(folder, test_run.returncode, expected_value, verbosity=False)
                     os.chdir(test_suite_path)
-                # ---------------------------------------Clean up the output XML file-----------------------------------
-                if args.clean:
-                    try:
-                        os.remove(current_case_path + '/roadcast_test_suite_run.xml')
-                    except FileNotFoundError as e:
-                        continue
 
             elif not forecast_exists or not station_exists or not observation_exists:
                 if verbosity:
