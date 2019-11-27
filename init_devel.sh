@@ -48,7 +48,7 @@ mkdir -p usr/bin
 ln -sTf ../../src/frontend/metro.py usr/bin/metro
 echo ""
 
-if which python-config >/dev/null; then
+if which python3-config >/dev/null; then
     PYTHON_INC=`python3-config --includes`
     echo "* Python include path = "$PYTHON_INC
 fi

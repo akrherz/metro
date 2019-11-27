@@ -303,7 +303,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
                         error_reference = '<' + key + '>' + str(value[0]) + '<' + key + '>'
                         error_test_suite_run = '<' + key + '>' + str(value[1]) + '<' + key + '>'
                         print('\t\t\t\t\t\t{}\t\t{}'.format(error_reference.ljust(20), error_test_suite_run.ljust(20)))
-    except FileNotFoundError:
+    except IOError:
         pass
 
 
@@ -348,7 +348,7 @@ def main():
     # -------------------------------------------Clean up the output XML file-------------------------------------------
     if args.clean:
         if args.case or args.skip or args.error:
-            print("'--clean' can only be used individually. The METRo program will exit with code 0.")
+            print("'--clean' can only be used with '-v'.")
             sys.exit(0)
 
         for folder in sorted(os.listdir(test_suite_path)):
@@ -360,13 +360,13 @@ def main():
                         if num_of_clean_up == 1:
                             print('File(s) that are successfully removed:')
                         print(test_suite_path + '/' + folder + '/roadcast_test_suite_run.xml')
-                except FileNotFoundError as e:
+                except IOError as e:
                     continue
         if num_of_clean_up == 0:
             print('There is nothing needs to be cleaned up.')
         else:
             if not verbosity:
-                print("Note: all 'roadcast_test_suite_run.xml' files are cleaned up.")
+                print("All 'roadcast_test_suite_run.xml' files are cleaned up.")
         sys.exit(0)
 
     # --------------------------------------------List of validated test cases------------------------------------------
