@@ -2,7 +2,7 @@
 <roadcast>
   <header>
     <version>1.6</version>
-    <production-date>2018-03-06T14:17Z</production-date>
+    <production-date>2019-12-04T18:35Z</production-date>
     <road-station>42010001012</road-station>
     <latitude>48.5696</latitude>
     <longitude>18.9915</longitude>
@@ -2326,7 +2326,7 @@
       <fv>-0.0</fv>
       <fc>-70.33</fc>
       <fa>10.0</fa>
-      <fg>261.76</fg>
+      <fg>261.77</fg>
       <bb>-408.06</bb>
       <fp>0.0</fp>
       <rc>1</rc>

@@ -2,7 +2,7 @@
 <roadcast>
   <header>
     <version>1.6</version>
-    <production-date>2018-03-01T19:56Z</production-date>
+    <production-date>2019-12-04T18:35Z</production-date>
     <road-station>oaa</road-station>
     <latitude>48.4527</latitude>
     <longitude>-113.1951</longitude>
@@ -269,21 +269,21 @@
       <at>-15.71</at>
       <td>-17.16</td>
       <ws>7.4</ws>
-      <sn>5.18</sn>
-      <ra>3.93</ra>
+      <sn>4.95</sn>
+      <ra>4.16</ra>
       <qp-sn>46.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.14</ir>
-      <fv>-125.93</fv>
-      <fc>-239.58</fc>
+      <fv>-86.34</fv>
+      <fc>-186.56</fc>
       <fa>10.0</fa>
-      <fg>-460.75</fg>
-      <bb>-309.38</bb>
+      <fg>-351.0</fg>
+      <bb>-292.24</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>3.33</st>
+      <st>0.02</st>
       <sst>-4.79</sst>
     </prediction>
     <prediction>
@@ -293,20 +293,20 @@
       <td>-17.09</td>
       <ws>9.8</ws>
       <sn>4.92</sn>
-      <ra>4.13</ra>
+      <ra>4.12</ra>
       <qp-sn>46.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.0</ir>
-      <fv>-106.38</fv>
-      <fc>-225.05</fc>
+      <fv>-109.98</fv>
+      <fc>-230.27</fc>
       <fa>10.0</fa>
-      <fg>-411.65</fg>
-      <bb>-294.22</bb>
+      <fg>-421.93</fg>
+      <bb>-295.68</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.37</st>
+      <st>0.62</st>
       <sst>-4.79</sst>
     </prediction>
     <prediction>
@@ -315,21 +315,21 @@
       <at>-15.45</at>
       <td>-17.02</td>
       <ws>12.27</ws>
-      <sn>4.9</sn>
-      <ra>4.15</ra>
+      <sn>5.0</sn>
+      <ra>4.06</ra>
       <qp-sn>46.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.86</ir>
-      <fv>-112.9</fv>
-      <fc>-242.94</fc>
+      <fv>-127.03</fv>
+      <fc>-263.72</fc>
       <fa>10.0</fa>
-      <fg>-432.82</fg>
-      <bb>-290.84</bb>
+      <fg>-472.83</fg>
+      <bb>-295.95</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.38</st>
+      <st>0.66</st>
       <sst>-4.8</sst>
     </prediction>
     <prediction>
@@ -338,21 +338,21 @@
       <at>-15.34</at>
       <td>-16.97</td>
       <ws>14.74</ws>
-      <sn>5.29</sn>
-      <ra>3.86</ra>
+      <sn>5.1</sn>
+      <ra>4.03</ra>
       <qp-sn>46.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.73</ir>
-      <fv>-185.03</fv>
-      <fc>-349.36</fc>
+      <fv>-140.2</fv>
+      <fc>-291.11</fc>
       <fa>10.0</fa>
-      <fg>-628.76</fg>
-      <bb>-308.1</bb>
+      <fg>-512.65</fg>
+      <bb>-295.07</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>2.88</st>
+      <st>0.42</st>
       <sst>-4.81</sst>
     </prediction>
     <prediction>
@@ -361,21 +361,21 @@
       <at>-15.11</at>
       <td>-16.77</td>
       <ws>14.8</ws>
-      <sn>5.42</sn>
-      <ra>3.85</ra>
+      <sn>5.23</sn>
+      <ra>4.03</ra>
       <qp-sn>46.57</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.12</ir>
-      <fv>-184.29</fv>
-      <fc>-345.33</fc>
+      <fv>-139.04</fv>
+      <fc>-286.47</fc>
       <fa>10.0</fa>
-      <fg>-623.57</fg>
-      <bb>-308.06</bb>
+      <fg>-506.31</fg>
+      <bb>-294.91</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>2.88</st>
+      <st>0.39</st>
       <sst>-4.81</sst>
     </prediction>
     <prediction>
@@ -385,20 +385,20 @@
       <td>-16.56</td>
       <ws>14.8</ws>
       <sn>5.32</sn>
-      <ra>4.01</ra>
+      <ra>4.02</ra>
       <qp-sn>46.53</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.52</ir>
-      <fv>-145.86</fv>
-      <fc>-292.94</fc>
+      <fv>-139.88</fv>
+      <fc>-284.57</fc>
       <fa>10.0</fa>
-      <fg>-521.64</fg>
-      <bb>-297.35</bb>
+      <fg>-505.43</fg>
+      <bb>-295.49</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.84</st>
+      <st>0.53</st>
       <sst>-4.82</sst>
     </prediction>
     <prediction>
@@ -407,21 +407,21 @@
       <at>-14.68</at>
       <td>-16.37</td>
       <ws>14.8</ws>
-      <sn>5.6</sn>
-      <ra>3.72</ra>
+      <sn>5.46</sn>
+      <ra>3.88</ra>
       <qp-sn>46.5</qp-sn>
       <qp-ra>0.3</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.91</ir>
-      <fv>-121.17</fv>
-      <fc>-254.41</fc>
+      <fv>-122.8</fv>
+      <fc>-256.64</fc>
       <fa>10.0</fa>
-      <fg>3891.56</fg>
-      <bb>-289.78</bb>
-      <fp>4342.0</fp>
+      <fg>2018.9</fg>
+      <bb>-290.27</bb>
+      <fp>2473.69</fp>
       <rc>4</rc>
-      <st>5.59</st>
+      <st>3.03</st>
       <sst>-4.83</sst>
     </prediction>
     <prediction>
@@ -430,21 +430,21 @@
       <at>-14.16</at>
       <td>-15.83</td>
       <ws>14.8</ws>
-      <sn>5.2</sn>
-      <ra>4.12</ra>
+      <sn>5.25</sn>
+      <ra>4.09</ra>
       <qp-sn>46.53</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
-      <sf>12.99</sf>
+      <sf>12.88</sf>
       <ir>206.61</ir>
-      <fv>-120.83</fv>
-      <fc>-246.99</fc>
+      <fv>-127.48</fv>
+      <fc>-256.94</fc>
       <fa>10.0</fa>
-      <fg>-428.72</fg>
-      <bb>-290.49</bb>
+      <fg>-447.64</fg>
+      <bb>-292.71</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.44</st>
+      <st>0.01</st>
       <sst>-4.83</sst>
     </prediction>
     <prediction>
@@ -453,21 +453,21 @@
       <at>-13.63</at>
       <td>-15.28</td>
       <ws>14.8</ws>
-      <sn>5.13</sn>
-      <ra>4.14</ra>
+      <sn>5.19</sn>
+      <ra>4.1</ra>
       <qp-sn>46.57</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
-      <sf>26.55</sf>
+      <sf>26.33</sf>
       <ir>208.34</ir>
-      <fv>-121.54</fv>
-      <fc>-241.66</fc>
+      <fv>-128.58</fv>
+      <fc>-252.0</fc>
       <fa>10.0</fa>
-      <fg>-409.98</fg>
-      <bb>-291.67</bb>
+      <fg>-429.89</fg>
+      <bb>-293.99</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.15</st>
+      <st>0.32</st>
       <sst>-4.83</sst>
     </prediction>
     <prediction>
@@ -476,21 +476,21 @@
       <at>-13.11</at>
       <td>-14.74</td>
       <ws>14.8</ws>
-      <sn>5.22</sn>
-      <ra>3.91</ra>
+      <sn>4.98</sn>
+      <ra>4.16</ra>
       <qp-sn>46.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
-      <sf>41.08</sf>
+      <sf>40.83</sf>
       <ir>210.07</ir>
-      <fv>-114.73</fv>
-      <fc>-225.34</fc>
+      <fv>-120.27</fv>
+      <fc>-233.62</fc>
       <fa>10.0</fa>
-      <fg>2639.54</fg>
-      <bb>-290.34</bb>
-      <fp>3008.8</fp>
+      <fg>-385.2</fg>
+      <bb>-292.2</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>3.93</st>
+      <st>-0.0</st>
       <sst>-4.84</sst>
     </prediction>
     <prediction>
@@ -500,20 +500,20 @@
       <td>-13.95</td>
       <ws>15.42</ws>
       <sn>4.89</sn>
-      <ra>3.25</ra>
+      <ra>3.24</ra>
       <qp-sn>35.3</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>7</cc>
-      <sf>58.84</sf>
+      <sf>58.82</sf>
       <ir>210.08</ir>
-      <fv>-157.17</fv>
-      <fc>-273.94</fc>
+      <fv>-156.54</fv>
+      <fc>-273.15</fc>
       <fa>10.0</fa>
-      <fg>-455.89</fg>
-      <bb>-303.71</bb>
+      <fg>-454.33</fg>
+      <bb>-303.54</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>2.21</st>
+      <st>2.18</st>
       <sst>-4.84</sst>
     </prediction>
     <prediction>
@@ -527,16 +527,16 @@
       <qp-sn>24.0</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>6</cc>
-      <sf>80.84</sf>
+      <sf>80.86</sf>
       <ir>210.04</ir>
-      <fv>-130.74</fv>
-      <fc>-229.15</fc>
+      <fv>-129.38</fv>
+      <fc>-227.26</fc>
       <fa>10.0</fa>
-      <fg>-355.33</fg>
-      <bb>-296.31</bb>
+      <fg>-351.62</fg>
+      <bb>-295.9</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.82</st>
+      <st>0.72</st>
       <sst>-4.84</sst>
     </prediction>
     <prediction>
@@ -545,21 +545,21 @@
       <at>-10.5</at>
       <td>-12.37</td>
       <ws>16.68</ws>
-      <sn>4.02</sn>
+      <sn>4.03</sn>
       <ra>1.37</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>105.28</sf>
+      <sf>105.1</sf>
       <ir>210.01</ir>
-      <fv>-112.61</fv>
-      <fc>-193.54</fc>
+      <fv>-111.37</fv>
+      <fc>-191.71</fc>
       <fa>10.0</fa>
-      <fg>-272.13</fg>
-      <bb>-291.26</bb>
+      <fg>-268.83</fg>
+      <bb>-290.87</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.16</st>
+      <st>-0.24</st>
       <sst>-4.84</sst>
     </prediction>
     <prediction>
@@ -568,21 +568,21 @@
       <at>-9.96</at>
       <td>-11.87</td>
       <ws>16.7</ws>
-      <sn>3.7</sn>
-      <ra>1.1</ra>
+      <sn>3.68</sn>
+      <ra>1.13</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>120.17</sf>
+      <sf>120.45</sf>
       <ir>211.85</ir>
-      <fv>-116.21</fv>
-      <fc>-192.72</fc>
+      <fv>-108.84</fv>
+      <fc>-182.0</fc>
       <fa>10.0</fa>
-      <fg>-260.35</fg>
-      <bb>-293.44</bb>
+      <fg>-239.66</fg>
+      <bb>-291.12</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.29</st>
+      <st>-0.16</st>
       <sst>-4.83</sst>
     </prediction>
     <prediction>
@@ -591,21 +591,21 @@
       <at>-9.44</at>
       <td>-11.39</td>
       <ws>16.7</ws>
-      <sn>3.38</sn>
+      <sn>3.39</sn>
       <ra>1.13</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>135.7</sf>
+      <sf>135.51</sf>
       <ir>213.73</ir>
-      <fv>-108.25</fv>
-      <fc>-175.49</fc>
+      <fv>-107.7</fv>
+      <fc>-174.68</fc>
       <fa>10.0</fa>
-      <fg>-216.32</fg>
-      <bb>-292.02</bb>
+      <fg>-214.97</fg>
+      <bb>-291.84</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.06</st>
+      <st>0.02</st>
       <sst>-4.83</sst>
     </prediction>
     <prediction>
@@ -614,21 +614,21 @@
       <at>-8.92</at>
       <td>-10.92</td>
       <ws>16.7</ws>
-      <sn>3.12</sn>
-      <ra>1.13</ra>
+      <sn>3.11</sn>
+      <ra>1.16</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>152.24</sf>
+      <sf>151.21</sf>
       <ir>215.62</ir>
-      <fv>-98.52</fv>
-      <fc>-156.0</fc>
+      <fv>-107.65</fv>
+      <fc>-169.17</fc>
       <fa>10.0</fa>
-      <fg>544.77</fg>
-      <bb>-290.04</bb>
-      <fp>711.47</fp>
+      <fg>-192.91</fg>
+      <bb>-292.93</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.73</st>
+      <st>0.27</st>
       <sst>-4.82</sst>
     </prediction>
     <prediction>
@@ -637,21 +637,21 @@
       <at>-8.5</at>
       <td>-10.54</td>
       <ws>16.7</ws>
-      <sn>2.8</sn>
-      <ra>1.2</ra>
+      <sn>2.89</sn>
+      <ra>1.13</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>6</cc>
-      <sf>157.75</sf>
+      <sf>156.09</sf>
       <ir>217.11</ir>
-      <fv>-97.77</fv>
-      <fc>-150.53</fc>
+      <fv>-115.64</fv>
+      <fc>-175.93</fc>
       <fa>10.0</fa>
-      <fg>-154.1</fg>
-      <bb>-290.66</bb>
+      <fg>-204.65</fg>
+      <bb>-296.28</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.13</st>
+      <st>0.94</st>
       <sst>-4.82</sst>
     </prediction>
     <prediction>
@@ -660,21 +660,21 @@
       <at>-8.09</at>
       <td>-10.17</td>
       <ws>16.7</ws>
-      <sn>2.58</sn>
-      <ra>1.19</ra>
+      <sn>2.59</sn>
+      <ra>1.21</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>6</cc>
-      <sf>162.35</sf>
+      <sf>162.3</sf>
       <ir>218.6</ir>
-      <fv>-103.65</fv>
-      <fc>-154.98</fc>
+      <fv>-98.93</fv>
+      <fc>-148.2</fc>
       <fa>10.0</fa>
-      <fg>-161.14</fg>
-      <bb>-293.46</bb>
+      <fg>-148.19</fg>
+      <bb>-291.95</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.42</st>
+      <st>0.14</st>
       <sst>-4.81</sst>
     </prediction>
     <prediction>
@@ -683,21 +683,21 @@
       <at>-7.68</at>
       <td>-9.8</td>
       <ws>16.7</ws>
-      <sn>2.42</sn>
-      <ra>1.14</ra>
+      <sn>2.4</sn>
+      <ra>1.18</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>6</cc>
-      <sf>168.17</sf>
+      <sf>167.96</sf>
       <ir>220.08</ir>
-      <fv>-89.46</fv>
-      <fc>-130.79</fc>
+      <fv>-90.03</fv>
+      <fc>-131.55</fc>
       <fa>10.0</fa>
-      <fg>1084.98</fg>
-      <bb>-289.85</bb>
-      <fp>1196.83</fp>
+      <fg>637.59</fg>
+      <bb>-290.02</bb>
+      <fp>751.15</fp>
       <rc>4</rc>
-      <st>1.46</st>
+      <st>0.85</st>
       <sst>-4.8</sst>
     </prediction>
     <prediction>
@@ -706,21 +706,21 @@
       <at>-7.5</at>
       <td>-9.66</td>
       <ws>16.08</ws>
-      <sn>2.2</sn>
-      <ra>1.22</ra>
+      <sn>2.27</sn>
+      <ra>1.15</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>6</cc>
-      <sf>160.16</sf>
+      <sf>160.85</sf>
       <ir>220.64</ir>
-      <fv>-97.59</fv>
-      <fc>-140.29</fc>
+      <fv>-85.86</fv>
+      <fc>-123.61</fc>
       <fa>10.0</fa>
-      <fg>-140.76</fg>
-      <bb>-293.69</bb>
-      <fp>0.0</fp>
+      <fg>1085.92</fg>
+      <bb>-289.84</bb>
+      <fp>1193.74</fp>
       <rc>4</rc>
-      <st>0.49</st>
+      <st>1.46</st>
       <sst>-4.79</sst>
     </prediction>
     <prediction>
@@ -729,21 +729,21 @@
       <at>-7.34</at>
       <td>-9.54</td>
       <ws>15.45</ws>
-      <sn>2.08</sn>
-      <ra>1.22</ra>
+      <sn>2.06</sn>
+      <ra>1.25</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>6</cc>
-      <sf>151.77</sf>
+      <sf>152.04</sf>
       <ir>221.18</ir>
-      <fv>-92.37</fv>
-      <fc>-131.0</fc>
+      <fv>-87.0</fv>
+      <fc>-123.31</fc>
       <fa>10.0</fa>
-      <fg>-133.64</fg>
-      <bb>-293.23</bb>
+      <fg>-118.48</fg>
+      <bb>-291.4</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.42</st>
+      <st>0.06</st>
       <sst>-4.78</sst>
     </prediction>
     <prediction>
@@ -752,21 +752,21 @@
       <at>-7.17</at>
       <td>-9.41</td>
       <ws>14.82</ws>
-      <sn>2.02</sn>
-      <ra>1.19</ra>
+      <sn>1.97</sn>
+      <ra>1.24</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>142.26</sf>
+      <sf>142.91</sf>
       <ir>221.72</ir>
-      <fv>-93.79</fv>
-      <fc>-131.16</fc>
+      <fv>-83.3</fv>
+      <fc>-116.35</fc>
       <fa>10.0</fa>
-      <fg>-145.98</fg>
-      <bb>-295.01</bb>
+      <fg>-116.39</fg>
+      <bb>-291.37</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.77</st>
+      <st>0.06</st>
       <sst>-4.77</sst>
     </prediction>
     <prediction>
@@ -775,21 +775,21 @@
       <at>-7.17</at>
       <td>-9.38</td>
       <ws>14.8</ws>
-      <sn>1.92</sn>
-      <ra>1.24</ra>
+      <sn>2.05</sn>
+      <ra>1.14</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>122.63</sf>
+      <sf>122.45</sf>
       <ir>221.6</ir>
-      <fv>-82.09</fv>
-      <fc>-114.82</fc>
+      <fv>-78.31</fv>
+      <fc>-109.61</fc>
       <fa>10.0</fa>
-      <fg>-133.7</fg>
-      <bb>-291.02</bb>
-      <fp>0.0</fp>
+      <fg>1063.97</fg>
+      <bb>-289.73</bb>
+      <fp>1187.56</fp>
       <rc>4</rc>
-      <st>-0.04</st>
+      <st>1.41</st>
       <sst>-4.76</sst>
     </prediction>
     <prediction>
@@ -799,20 +799,20 @@
       <td>-9.36</td>
       <ws>14.8</ws>
       <sn>2.04</sn>
-      <ra>1.14</ra>
+      <ra>1.18</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>100.14</sf>
+      <sf>100.15</sf>
       <ir>221.47</ir>
-      <fv>-97.43</fv>
-      <fc>-136.62</fc>
+      <fv>-90.18</fv>
+      <fc>-126.65</fc>
       <fa>10.0</fa>
-      <fg>-198.78</fg>
-      <bb>-296.34</bb>
+      <fg>-179.11</fg>
+      <bb>-293.9</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.96</st>
+      <st>0.49</st>
       <sst>-4.75</sst>
     </prediction>
     <prediction>
@@ -821,21 +821,21 @@
       <at>-7.18</at>
       <td>-9.34</td>
       <ws>14.8</ws>
-      <sn>2.1</sn>
-      <ra>1.18</ra>
+      <sn>2.14</sn>
+      <ra>1.15</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>78.55</sf>
+      <sf>78.28</sf>
       <ir>221.33</ir>
-      <fv>-85.34</fv>
-      <fc>-120.11</fc>
+      <fv>-91.33</fv>
+      <fc>-128.56</fc>
       <fa>10.0</fa>
-      <fg>-187.82</fg>
-      <bb>-292.25</bb>
+      <fg>-204.6</fg>
+      <bb>-294.33</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.14</st>
+      <st>0.54</st>
       <sst>-4.73</sst>
     </prediction>
     <prediction>
@@ -844,21 +844,21 @@
       <at>-7.59</at>
       <td>-9.71</td>
       <ws>14.8</ws>
-      <sn>2.33</sn>
-      <ra>1.08</ra>
+      <sn>2.32</sn>
+      <ra>1.1</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>54.33</sf>
+      <sf>53.75</sf>
       <ir>219.62</ir>
-      <fv>-80.1</fv>
-      <fc>-116.06</fc>
+      <fv>-98.21</fv>
+      <fc>-141.48</fc>
       <fa>10.0</fa>
-      <fg>985.85</fg>
-      <bb>-289.51</bb>
-      <fp>1187.56</fp>
+      <fg>-252.04</fg>
+      <bb>-295.71</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.26</st>
+      <st>0.76</st>
       <sst>-4.72</sst>
     </prediction>
     <prediction>
@@ -867,21 +867,21 @@
       <at>-8.0</at>
       <td>-10.09</td>
       <ws>14.8</ws>
-      <sn>2.54</sn>
-      <ra>1.04</ra>
+      <sn>2.52</sn>
+      <ra>1.07</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>30.22</sf>
+      <sf>29.93</sf>
       <ir>217.87</ir>
-      <fv>-84.19</fv>
-      <fc>-125.25</fc>
+      <fv>-99.96</fv>
+      <fc>-147.57</fc>
       <fa>10.0</fa>
-      <fg>946.25</fg>
-      <bb>-289.95</bb>
-      <fp>1187.56</fp>
+      <fg>-285.1</fg>
+      <bb>-295.36</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.29</st>
+      <st>0.63</st>
       <sst>-4.7</sst>
     </prediction>
     <prediction>
@@ -890,21 +890,21 @@
       <at>-8.41</at>
       <td>-10.48</td>
       <ws>14.8</ws>
-      <sn>2.74</sn>
+      <sn>2.75</sn>
       <ra>1.05</ra>
       <qp-sn>12.7</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>6</cc>
-      <sf>7.04</sf>
+      <sf>7.03</sf>
       <ir>216.12</ir>
-      <fv>-101.33</fv>
-      <fc>-153.28</fc>
+      <fv>-101.43</fv>
+      <fc>-153.41</fc>
       <fa>10.0</fa>
-      <fg>-316.35</fg>
-      <bb>-294.9</bb>
+      <fg>-316.62</fg>
+      <bb>-294.93</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.49</st>
+      <st>0.5</st>
       <sst>-4.69</sst>
     </prediction>
     <prediction>
@@ -913,21 +913,21 @@
       <at>-8.96</at>
       <td>-10.89</td>
       <ws>12.39</ws>
-      <sn>3.0</sn>
+      <sn>3.02</sn>
       <ra>1.52</ra>
       <qp-sn>19.77</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>6</cc>
-      <sf>4.3</sf>
+      <sf>4.25</sf>
       <ir>216.99</ir>
-      <fv>-79.94</fv>
-      <fc>-126.81</fc>
+      <fv>-96.64</fv>
+      <fc>-150.53</fc>
       <fa>10.0</fa>
-      <fg>664.79</fg>
-      <bb>-290.19</bb>
-      <fp>930.44</fp>
+      <fg>-312.45</fg>
+      <bb>-296.52</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.96</st>
+      <st>0.87</st>
       <sst>-4.67</sst>
     </prediction>
     <prediction>
@@ -936,21 +936,21 @@
       <at>-9.51</at>
       <td>-11.31</td>
       <ws>9.93</ws>
-      <sn>3.16</sn>
-      <ra>2.2</ra>
+      <sn>3.22</sn>
+      <ra>2.15</ra>
       <qp-sn>26.83</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>7</cc>
-      <sf>2.12</sf>
+      <sf>2.1</sf>
       <ir>217.93</ir>
-      <fv>-87.28</fv>
-      <fc>-140.05</fc>
+      <fv>-94.81</fv>
+      <fc>-150.08</fc>
       <fa>10.0</fa>
-      <fg>-294.4</fg>
-      <bb>-297.13</bb>
+      <fg>-315.01</fg>
+      <bb>-300.16</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.04</st>
+      <st>1.63</st>
       <sst>-4.66</sst>
     </prediction>
     <prediction>
@@ -966,14 +966,14 @@
       <cc>7</cc>
       <sf>0.05</sf>
       <ir>218.88</ir>
-      <fv>-70.04</fv>
-      <fc>-117.2</fc>
+      <fv>-70.87</fv>
+      <fc>-118.37</fc>
       <fa>10.0</fa>
-      <fg>-252.94</fg>
-      <bb>-294.62</bb>
+      <fg>-255.35</fg>
+      <bb>-295.03</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.64</st>
+      <st>0.69</st>
       <sst>-4.64</sst>
     </prediction>
     <prediction>
@@ -982,21 +982,21 @@
       <at>-10.12</at>
       <td>-11.67</td>
       <ws>7.4</ws>
-      <sn>3.39</sn>
-      <ra>2.92</ra>
+      <sn>3.33</sn>
+      <ra>2.99</ra>
       <qp-sn>33.87</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>218.64</ir>
-      <fv>-100.18</fv>
-      <fc>-156.95</fc>
+      <fv>-88.47</fv>
+      <fc>-142.7</fc>
       <fa>10.0</fa>
-      <fg>-336.96</fg>
-      <bb>-308.48</bb>
+      <fg>-306.0</fg>
+      <bb>-303.48</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>3.27</st>
+      <st>2.31</st>
       <sst>-4.63</sst>
     </prediction>
     <prediction>
@@ -1006,20 +1006,20 @@
       <td>-11.59</td>
       <ws>7.4</ws>
       <sn>3.23</sn>
-      <ra>3.11</ra>
+      <ra>3.09</ra>
       <qp-sn>33.83</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>218.37</ir>
-      <fv>-69.65</fv>
-      <fc>-118.51</fc>
+      <fv>-69.62</fv>
+      <fc>-118.47</fc>
       <fa>10.0</fa>
-      <fg>-254.53</fg>
-      <bb>-294.75</bb>
+      <fg>-254.46</fg>
+      <bb>-294.74</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.65</st>
+      <st>0.67</st>
       <sst>-4.61</sst>
     </prediction>
     <prediction>
@@ -1028,21 +1028,21 @@
       <at>-10.23</at>
       <td>-11.51</td>
       <ws>7.4</ws>
-      <sn>3.18</sn>
-      <ra>3.16</ra>
+      <sn>3.21</sn>
+      <ra>3.14</ra>
       <qp-sn>33.8</qp-sn>
       <qp-ra>0.3</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>218.11</ir>
-      <fv>-62.12</fv>
-      <fc>-108.5</fc>
+      <fv>-64.79</fv>
+      <fc>-112.45</fc>
       <fa>10.0</fa>
-      <fg>-233.5</fg>
-      <bb>-290.99</bb>
+      <fg>-241.51</fg>
+      <bb>-292.38</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.1</st>
+      <st>0.2</st>
       <sst>-4.59</sst>
     </prediction>
     <prediction>
@@ -1051,21 +1051,21 @@
       <at>-10.55</at>
       <td>-11.8</td>
       <ws>7.4</ws>
-      <sn>3.17</sn>
-      <ra>3.15</ra>
+      <sn>3.34</sn>
+      <ra>3.0</ra>
       <qp-sn>33.83</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>216.8</ir>
-      <fv>-62.75</fv>
-      <fc>-111.5</fc>
+      <fv>-84.09</fv>
+      <fc>-141.37</fc>
       <fa>10.0</fa>
-      <fg>-238.1</fg>
-      <bb>-290.65</bb>
+      <fg>-299.73</fg>
+      <bb>-301.07</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.18</st>
+      <st>1.9</st>
       <sst>-4.58</sst>
     </prediction>
     <prediction>
@@ -1074,21 +1074,21 @@
       <at>-10.87</at>
       <td>-12.09</td>
       <ws>7.4</ws>
-      <sn>3.34</sn>
-      <ra>3.01</ra>
+      <sn>3.31</sn>
+      <ra>3.06</ra>
       <qp-sn>33.87</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>215.47</ir>
-      <fv>-87.75</fv>
-      <fc>-148.58</fc>
+      <fv>-77.67</fv>
+      <fc>-135.18</fc>
       <fa>10.0</fa>
-      <fg>-312.96</fg>
-      <bb>-302.1</bb>
+      <fg>-284.83</fg>
+      <bb>-297.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>2.04</st>
+      <st>1.18</st>
       <sst>-4.56</sst>
     </prediction>
     <prediction>
@@ -1097,21 +1097,21 @@
       <at>-11.2</at>
       <td>-12.38</td>
       <ws>7.4</ws>
-      <sn>3.4</sn>
-      <ra>2.99</ra>
+      <sn>3.36</sn>
+      <ra>3.06</ra>
       <qp-sn>33.9</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>214.14</ir>
-      <fv>-86.89</fv>
-      <fc>-149.97</fc>
+      <fv>-77.25</fv>
+      <fc>-136.98</fc>
       <fa>10.0</fa>
-      <fg>-313.82</fg>
-      <bb>-301.1</bb>
+      <fg>-286.7</fg>
+      <bb>-296.61</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.9</st>
+      <st>1.04</st>
       <sst>-4.54</sst>
     </prediction>
     <prediction>
@@ -1120,22 +1120,22 @@
       <at>-11.75</at>
       <td>-12.9</td>
       <ws>6.81</ws>
-      <sn>3.45</sn>
-      <ra>2.99</ra>
+      <sn>3.4</sn>
+      <ra>3.06</ra>
       <qp-sn>33.9</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>211.9</ir>
-      <fv>-85.14</fv>
-      <fc>-150.38</fc>
+      <fv>-75.68</fv>
+      <fc>-137.55</fc>
       <fa>10.0</fa>
-      <fg>-314.71</fg>
-      <bb>-301.09</bb>
+      <fg>-287.85</fg>
+      <bb>-296.52</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.9</st>
-      <sst>-4.52</sst>
+      <st>1.02</st>
+      <sst>-4.53</sst>
     </prediction>
     <prediction>
       <roadcast-time>2010-01-01T02:40Z</roadcast-time>
@@ -1143,21 +1143,21 @@
       <at>-12.31</at>
       <td>-13.43</td>
       <ws>6.21</ws>
-      <sn>3.49</sn>
-      <ra>2.99</ra>
+      <sn>3.43</sn>
+      <ra>3.06</ra>
       <qp-sn>33.9</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>209.64</ir>
-      <fv>-83.1</fv>
-      <fc>-150.14</fc>
+      <fv>-73.94</fv>
+      <fc>-137.65</fc>
       <fa>10.0</fa>
-      <fg>-314.72</fg>
-      <bb>-301.12</bb>
+      <fg>-288.47</fg>
+      <bb>-296.52</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.91</st>
+      <st>1.02</st>
       <sst>-4.51</sst>
     </prediction>
     <prediction>
@@ -1166,21 +1166,21 @@
       <at>-12.87</at>
       <td>-13.96</td>
       <ws>5.61</ws>
-      <sn>3.52</sn>
-      <ra>2.99</ra>
+      <sn>3.46</sn>
+      <ra>3.06</ra>
       <qp-sn>33.9</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>207.38</ir>
-      <fv>-80.86</fv>
-      <fc>-149.35</fc>
+      <fv>-72.05</fv>
+      <fc>-137.27</fc>
       <fa>10.0</fa>
-      <fg>-314.03</fg>
-      <bb>-301.19</bb>
+      <fg>-288.52</fg>
+      <bb>-296.58</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.93</st>
+      <st>1.03</st>
       <sst>-4.49</sst>
     </prediction>
     <prediction>
@@ -1189,21 +1189,21 @@
       <at>-13.14</at>
       <td>-14.19</td>
       <ws>5.6</ws>
-      <sn>3.54</sn>
-      <ra>2.99</ra>
+      <sn>3.48</sn>
+      <ra>3.05</ra>
       <qp-sn>33.87</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>206.28</ir>
-      <fv>-81.31</fv>
-      <fc>-151.91</fc>
+      <fv>-72.5</fv>
+      <fc>-139.79</fc>
       <fa>10.0</fa>
-      <fg>-317.96</fg>
-      <bb>-301.02</bb>
+      <fg>-292.4</fg>
+      <bb>-296.4</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.88</st>
+      <st>0.99</st>
       <sst>-4.47</sst>
     </prediction>
     <prediction>
@@ -1212,21 +1212,21 @@
       <at>-13.4</at>
       <td>-14.42</td>
       <ws>5.6</ws>
-      <sn>3.47</sn>
-      <ra>3.05</ra>
+      <sn>3.41</sn>
+      <ra>3.12</ra>
       <qp-sn>33.83</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>205.22</ir>
-      <fv>-72.8</fv>
-      <fc>-142.12</fc>
+      <fv>-64.59</fv>
+      <fc>-130.01</fc>
       <fa>10.0</fa>
-      <fg>-295.8</fg>
-      <bb>-296.1</bb>
+      <fg>-270.88</fg>
+      <bb>-291.5</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.91</st>
+      <st>-0.02</st>
       <sst>-4.46</sst>
     </prediction>
     <prediction>
@@ -1235,21 +1235,21 @@
       <at>-13.66</at>
       <td>-14.65</td>
       <ws>5.6</ws>
-      <sn>3.45</sn>
-      <ra>3.07</ra>
+      <sn>3.59</sn>
+      <ra>2.94</ra>
       <qp-sn>33.8</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.15</ir>
-      <fv>-70.7</fv>
-      <fc>-141.0</fc>
+      <fv>-89.74</fv>
+      <fc>-166.99</fc>
       <fa>10.0</fa>
-      <fg>-292.04</fg>
-      <bb>-294.49</bb>
+      <fg>-346.9</fg>
+      <bb>-304.33</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.56</st>
+      <st>2.48</st>
       <sst>-4.44</sst>
     </prediction>
     <prediction>
@@ -1258,21 +1258,21 @@
       <at>-13.69</at>
       <td>-14.68</td>
       <ws>5.6</ws>
-      <sn>3.67</sn>
-      <ra>2.85</ra>
+      <sn>3.47</sn>
+      <ra>3.07</ra>
       <qp-sn>33.83</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.0</ir>
-      <fv>-62.74</fv>
-      <fc>-129.36</fc>
+      <fv>-69.65</fv>
+      <fc>-139.7</fc>
       <fa>10.0</fa>
-      <fg>2889.5</fg>
-      <bb>-289.94</bb>
-      <fp>3157.54</fp>
+      <fg>-289.21</fg>
+      <bb>-293.85</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>4.15</st>
+      <st>0.44</st>
       <sst>-4.42</sst>
     </prediction>
     <prediction>
@@ -1281,21 +1281,21 @@
       <at>-13.72</at>
       <td>-14.71</td>
       <ws>5.6</ws>
-      <sn>3.55</sn>
-      <ra>3.01</ra>
+      <sn>3.5</sn>
+      <ra>3.07</ra>
       <qp-sn>33.87</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.86</ir>
-      <fv>-80.63</fv>
-      <fc>-155.45</fc>
+      <fv>-72.2</fv>
+      <fc>-143.62</fc>
       <fa>10.0</fa>
-      <fg>-321.88</fg>
-      <bb>-299.67</bb>
+      <fg>-297.15</fg>
+      <bb>-295.2</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.55</st>
+      <st>0.7</st>
       <sst>-4.4</sst>
     </prediction>
     <prediction>
@@ -1311,14 +1311,14 @@
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.73</ir>
-      <fv>-73.99</fv>
-      <fc>-146.4</fc>
+      <fv>-75.13</fv>
+      <fc>-148.02</fc>
       <fa>10.0</fa>
-      <fg>-302.79</fg>
-      <bb>-296.12</bb>
+      <fg>-306.15</fg>
+      <bb>-296.73</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.91</st>
+      <st>1.0</st>
       <sst>-4.39</sst>
     </prediction>
     <prediction>
@@ -1327,21 +1327,21 @@
       <at>-13.78</at>
       <td>-14.77</td>
       <ws>5.6</ws>
-      <sn>3.55</sn>
-      <ra>2.95</ra>
+      <sn>3.54</sn>
+      <ra>2.96</ra>
       <qp-sn>32.47</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.6</ir>
-      <fv>-73.71</fv>
-      <fc>-146.43</fc>
+      <fv>-73.0</fv>
+      <fc>-145.41</fc>
       <fa>10.0</fa>
-      <fg>-302.45</fg>
-      <bb>-295.91</bb>
+      <fg>-300.35</fg>
+      <bb>-295.53</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.87</st>
+      <st>0.78</st>
       <sst>-4.37</sst>
     </prediction>
     <prediction>
@@ -1357,14 +1357,14 @@
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.46</ir>
-      <fv>-62.6</fv>
-      <fc>-130.4</fc>
+      <fv>-62.41</fv>
+      <fc>-130.12</fc>
       <fa>10.0</fa>
-      <fg>2634.75</fg>
-      <bb>-289.66</bb>
+      <fg>2635.32</fg>
+      <bb>-289.55</bb>
       <fp>2903.94</fp>
       <rc>4</rc>
-      <st>3.74</st>
+      <st>3.72</st>
       <sst>-4.35</sst>
     </prediction>
     <prediction>
@@ -1373,21 +1373,21 @@
       <at>-13.84</at>
       <td>-14.83</td>
       <ws>5.6</ws>
-      <sn>3.49</sn>
-      <ra>2.76</ra>
+      <sn>3.62</sn>
+      <ra>2.62</ra>
       <qp-sn>29.6</qp-sn>
       <qp-ra>0.3</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.33</ir>
-      <fv>-65.96</fv>
-      <fc>-135.78</fc>
+      <fv>-63.92</fv>
+      <fc>-132.66</fc>
       <fa>10.0</fa>
-      <fg>-279.88</fg>
-      <bb>-291.47</bb>
-      <fp>0.0</fp>
+      <fg>1422.42</fg>
+      <bb>-290.3</bb>
+      <fp>1695.96</fp>
       <rc>4</rc>
-      <st>-0.05</st>
+      <st>2.14</st>
       <sst>-4.33</sst>
     </prediction>
     <prediction>
@@ -1396,21 +1396,21 @@
       <at>-13.67</at>
       <td>-14.86</td>
       <ws>5.6</ws>
-      <sn>3.62</sn>
-      <ra>2.54</ra>
+      <sn>3.48</sn>
+      <ra>2.7</ra>
       <qp-sn>29.63</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.98</ir>
-      <fv>-92.35</fv>
-      <fc>-170.64</fc>
+      <fv>-69.22</fv>
+      <fc>-138.93</fc>
       <fa>10.0</fa>
-      <fg>-354.34</fg>
-      <bb>-305.33</bb>
+      <fg>-287.56</fg>
+      <bb>-293.39</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>2.61</st>
+      <st>0.31</st>
       <sst>-4.31</sst>
     </prediction>
     <prediction>
@@ -1419,21 +1419,21 @@
       <at>-13.5</at>
       <td>-14.89</td>
       <ws>5.6</ws>
-      <sn>3.63</sn>
-      <ra>2.54</ra>
+      <sn>3.55</sn>
+      <ra>2.6</ra>
       <qp-sn>29.67</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.64</ir>
-      <fv>-93.28</fv>
-      <fc>-169.9</fc>
+      <fv>-63.2</fv>
+      <fc>-128.05</fc>
       <fa>10.0</fa>
-      <fg>-354.38</fg>
-      <bb>-305.84</bb>
-      <fp>0.0</fp>
+      <fg>1391.13</fg>
+      <bb>-290.04</bb>
+      <fp>1657.78</fp>
       <rc>4</rc>
-      <st>2.73</st>
+      <st>2.01</st>
       <sst>-4.3</sst>
     </prediction>
     <prediction>
@@ -1442,21 +1442,21 @@
       <at>-13.33</at>
       <td>-14.92</td>
       <ws>5.6</ws>
-      <sn>3.5</sn>
-      <ra>2.68</ra>
+      <sn>3.59</sn>
+      <ra>2.59</ra>
       <qp-sn>29.7</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>205.31</ir>
-      <fv>-72.28</fv>
-      <fc>-139.77</fc>
+      <fv>-84.86</fv>
+      <fc>-157.18</fc>
       <fa>10.0</fa>
-      <fg>-291.97</fg>
-      <bb>-295.23</bb>
+      <fg>-328.55</fg>
+      <bb>-301.81</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.69</st>
+      <st>1.99</st>
       <sst>-4.28</sst>
     </prediction>
     <prediction>
@@ -1465,21 +1465,21 @@
       <at>-13.36</at>
       <td>-14.96</td>
       <ws>5.6</ws>
-      <sn>3.58</sn>
-      <ra>2.58</ra>
+      <sn>3.54</sn>
+      <ra>2.62</ra>
       <qp-sn>29.67</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>205.19</ir>
-      <fv>-85.58</fv>
-      <fc>-158.3</fc>
+      <fv>-79.91</fv>
+      <fc>-150.68</fc>
       <fa>10.0</fa>
-      <fg>-330.8</fg>
-      <bb>-302.12</bb>
+      <fg>-314.64</fg>
+      <bb>-299.24</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>2.05</st>
+      <st>1.5</st>
       <sst>-4.26</sst>
     </prediction>
     <prediction>
@@ -1488,21 +1488,21 @@
       <at>-13.39</at>
       <td>-14.99</td>
       <ws>5.6</ws>
-      <sn>3.63</sn>
-      <ra>2.5</ra>
+      <sn>3.57</sn>
+      <ra>2.58</ra>
       <qp-sn>29.63</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>205.06</ir>
-      <fv>-62.76</fv>
-      <fc>-125.99</fc>
+      <fv>-86.05</fv>
+      <fc>-159.15</fc>
       <fa>10.0</fa>
-      <fg>2510.62</fg>
-      <bb>-289.76</bb>
-      <fp>2774.06</fp>
+      <fg>-332.44</fg>
+      <bb>-302.3</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>3.56</st>
+      <st>2.09</st>
       <sst>-4.24</sst>
     </prediction>
     <prediction>
@@ -1511,18 +1511,18 @@
       <at>-13.42</at>
       <td>-15.02</td>
       <ws>5.6</ws>
-      <sn>3.44</sn>
+      <sn>3.45</sn>
       <ra>2.7</ra>
       <qp-sn>29.6</qp-sn>
       <qp-ra>0.3</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.93</ir>
-      <fv>-69.3</fv>
-      <fc>-135.99</fc>
+      <fv>-68.97</fv>
+      <fc>-135.49</fc>
       <fa>10.0</fa>
-      <fg>-283.77</fg>
-      <bb>-293.4</bb>
+      <fg>-282.75</fg>
+      <bb>-293.21</bb>
       <fp>0.0</fp>
       <rc>4</rc>
       <st>0.32</st>
@@ -1534,21 +1534,21 @@
       <at>-13.52</at>
       <td>-15.05</td>
       <ws>10.41</ws>
-      <sn>3.74</sn>
-      <ra>2.43</ra>
+      <sn>3.76</sn>
+      <ra>2.44</ra>
       <qp-sn>29.6</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.54</ir>
-      <fv>-88.79</fv>
-      <fc>-180.79</fc>
+      <fv>-89.63</fv>
+      <fc>-181.97</fc>
       <fa>10.0</fa>
-      <fg>2426.89</fg>
-      <bb>-289.02</bb>
+      <fg>2424.55</fg>
+      <bb>-289.35</bb>
       <fp>2770.96</fp>
       <rc>4</rc>
-      <st>3.3</st>
+      <st>3.38</st>
       <sst>-4.21</sst>
     </prediction>
     <prediction>
@@ -1557,21 +1557,21 @@
       <at>-13.62</at>
       <td>-15.08</td>
       <ws>15.34</ws>
-      <sn>3.89</sn>
-      <ra>2.49</ra>
+      <sn>3.88</sn>
+      <ra>2.51</ra>
       <qp-sn>29.6</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>204.14</ir>
-      <fv>-140.74</fv>
-      <fc>-272.94</fc>
+      <fv>-135.37</fv>
+      <fc>-265.38</fc>
       <fa>10.0</fa>
-      <fg>-496.56</fg>
-      <bb>-297.02</bb>
+      <fg>-481.98</fg>
+      <bb>-295.36</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.76</st>
+      <st>0.47</st>
       <sst>-4.19</sst>
     </prediction>
     <prediction>
@@ -1580,21 +1580,21 @@
       <at>-13.72</at>
       <td>-15.11</td>
       <ws>20.28</ws>
-      <sn>4.3</sn>
-      <ra>2.39</ra>
+      <sn>4.41</sn>
+      <ra>2.26</ra>
       <qp-sn>29.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.74</ir>
-      <fv>-175.0</fv>
-      <fc>-339.39</fc>
+      <fv>-136.74</fv>
+      <fc>-284.86</fc>
       <fa>10.0</fa>
-      <fg>-598.5</fg>
-      <bb>-297.84</bb>
-      <fp>0.0</fp>
+      <fg>2268.99</fg>
+      <bb>-287.92</bb>
+      <fp>2764.78</fp>
       <rc>4</rc>
-      <st>0.79</st>
+      <st>2.85</st>
       <sst>-4.17</sst>
     </prediction>
     <prediction>
@@ -1603,21 +1603,21 @@
       <at>-13.88</at>
       <td>-15.37</td>
       <ws>20.4</ws>
-      <sn>4.78</sn>
-      <ra>2.27</ra>
+      <sn>4.73</sn>
+      <ra>2.32</ra>
       <qp-sn>29.63</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>203.08</ir>
-      <fv>-203.97</fv>
-      <fc>-379.75</fc>
+      <fv>-147.64</fv>
+      <fc>-302.36</fc>
       <fa>10.0</fa>
-      <fg>-674.85</fg>
-      <bb>-304.22</bb>
-      <fp>0.0</fp>
+      <fg>905.27</fg>
+      <bb>-290.11</bb>
+      <fp>1432.32</fp>
       <rc>4</rc>
-      <st>1.94</st>
+      <st>1.35</st>
       <sst>-4.15</sst>
     </prediction>
     <prediction>
@@ -1626,21 +1626,21 @@
       <at>-14.04</at>
       <td>-15.64</td>
       <ws>20.4</ws>
-      <sn>4.93</sn>
-      <ra>2.41</ra>
+      <sn>4.99</sn>
+      <ra>2.35</ra>
       <qp-sn>29.67</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>202.41</ir>
-      <fv>-160.42</fv>
-      <fc>-323.1</fc>
+      <fv>-177.6</fv>
+      <fc>-347.43</fc>
       <fa>10.0</fa>
-      <fg>-564.21</fg>
-      <bb>-293.11</bb>
+      <fg>-610.15</fg>
+      <bb>-297.53</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.14</st>
+      <st>0.71</st>
       <sst>-4.13</sst>
     </prediction>
     <prediction>
@@ -1649,21 +1649,21 @@
       <at>-14.21</at>
       <td>-15.91</td>
       <ws>20.4</ws>
-      <sn>5.27</sn>
-      <ra>2.3</ra>
+      <sn>5.34</sn>
+      <ra>2.23</ra>
       <qp-sn>29.7</qp-sn>
       <qp-ra>0.3</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.75</ir>
-      <fv>-200.95</fv>
-      <fc>-380.42</fc>
+      <fv>-142.15</fv>
+      <fc>-298.83</fc>
       <fa>10.0</fa>
-      <fg>-672.41</fg>
-      <bb>-302.79</bb>
-      <fp>0.0</fp>
+      <fg>2266.1</fg>
+      <bb>-288.0</bb>
+      <fp>2783.33</fp>
       <rc>4</rc>
-      <st>1.66</st>
+      <st>2.86</st>
       <sst>-4.12</sst>
     </prediction>
     <prediction>
@@ -1672,21 +1672,21 @@
       <at>-14.21</at>
       <td>-15.88</td>
       <ws>20.4</ws>
-      <sn>5.34</sn>
-      <ra>2.4</ra>
+      <sn>5.38</sn>
+      <ra>2.35</ra>
       <qp-sn>29.67</qp-sn>
       <qp-ra>0.27</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.73</ir>
-      <fv>-166.78</fv>
-      <fc>-334.53</fc>
+      <fv>-178.85</fv>
+      <fc>-351.47</fc>
       <fa>10.0</fa>
-      <fg>-583.99</fg>
-      <bb>-294.41</bb>
+      <fg>-616.09</fg>
+      <bb>-297.49</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.1</st>
+      <st>0.69</st>
       <sst>-4.1</sst>
     </prediction>
     <prediction>
@@ -1695,21 +1695,21 @@
       <at>-14.21</at>
       <td>-15.84</td>
       <ws>20.4</ws>
-      <sn>5.42</sn>
-      <ra>2.41</ra>
+      <sn>5.4</sn>
+      <ra>2.44</ra>
       <qp-sn>29.63</qp-sn>
       <qp-ra>0.23</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.73</ir>
-      <fv>-161.71</fv>
-      <fc>-327.4</fc>
+      <fv>-153.53</fv>
+      <fc>-315.24</fc>
       <fa>10.0</fa>
-      <fg>-570.52</fg>
-      <bb>-293.13</bb>
+      <fg>-547.98</fg>
+      <bb>-290.94</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.14</st>
+      <st>-0.56</st>
       <sst>-4.08</sst>
     </prediction>
     <prediction>
@@ -1718,21 +1718,21 @@
       <at>-14.21</at>
       <td>-15.81</td>
       <ws>20.4</ws>
-      <sn>5.57</sn>
-      <ra>2.33</ra>
+      <sn>5.7</sn>
+      <ra>2.19</ra>
       <qp-sn>29.6</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.73</ir>
-      <fv>-185.03</fv>
-      <fc>-360.25</fc>
+      <fv>-149.48</fv>
+      <fc>-309.63</fc>
       <fa>10.0</fa>
-      <fg>-632.65</fg>
-      <bb>-299.1</bb>
-      <fp>0.0</fp>
+      <fg>2227.46</fg>
+      <bb>-289.94</bb>
+      <fp>2764.78</fp>
       <rc>4</rc>
-      <st>0.97</st>
+      <st>3.21</st>
       <sst>-4.06</sst>
     </prediction>
     <prediction>
@@ -1741,21 +1741,21 @@
       <at>-14.24</at>
       <td>-15.78</td>
       <ws>22.19</ws>
-      <sn>5.71</sn>
-      <ra>2.06</ra>
+      <sn>5.65</sn>
+      <ra>2.12</ra>
       <qp-sn>26.8</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.6</ir>
-      <fv>-209.85</fv>
-      <fc>-400.25</fc>
+      <fv>-187.59</fv>
+      <fc>-370.71</fc>
       <fa>10.0</fa>
-      <fg>-700.6</fg>
-      <bb>-302.1</bb>
+      <fg>-643.69</fg>
+      <bb>-296.99</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.49</st>
+      <st>0.56</st>
       <sst>-4.04</sst>
     </prediction>
     <prediction>
@@ -1764,21 +1764,21 @@
       <at>-14.28</at>
       <td>-15.74</td>
       <ws>24.02</ws>
-      <sn>5.7</sn>
-      <ra>1.88</ra>
+      <sn>5.74</sn>
+      <ra>1.82</ra>
       <qp-sn>24.0</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.47</ir>
-      <fv>-183.72</fv>
-      <fc>-371.89</fc>
+      <fv>-206.68</fv>
+      <fc>-403.77</fc>
       <fa>10.0</fa>
-      <fg>-637.65</fg>
-      <bb>-293.51</bb>
+      <fg>-697.7</fg>
+      <bb>-298.72</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.19</st>
+      <st>0.78</st>
       <sst>-4.03</sst>
     </prediction>
     <prediction>
@@ -1787,21 +1787,21 @@
       <at>-14.31</at>
       <td>-15.71</td>
       <ws>25.85</ws>
-      <sn>6.01</sn>
-      <ra>1.45</ra>
+      <sn>5.93</sn>
+      <ra>1.52</ra>
       <qp-sn>21.2</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.33</ir>
-      <fv>-173.78</fv>
-      <fc>-364.08</fc>
+      <fv>-216.17</fv>
+      <fc>-423.81</fc>
       <fa>10.0</fa>
-      <fg>1369.89</fg>
-      <bb>-289.03</bb>
-      <fp>1985.44</fp>
+      <fg>-726.92</fg>
+      <bb>-298.27</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.76</st>
+      <st>0.65</st>
       <sst>-4.01</sst>
     </prediction>
     <prediction>
@@ -1810,21 +1810,21 @@
       <at>-14.28</at>
       <td>-15.9</td>
       <ws>25.9</ws>
-      <sn>6.04</sn>
-      <ra>1.47</ra>
+      <sn>5.97</sn>
+      <ra>1.53</ra>
       <qp-sn>21.17</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.46</ir>
-      <fv>-212.05</fv>
-      <fc>-416.02</fc>
+      <fv>-189.6</fv>
+      <fc>-384.3</fc>
       <fa>10.0</fa>
-      <fg>-713.73</fg>
-      <bb>-297.12</bb>
+      <fg>-654.65</fg>
+      <bb>-292.21</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.41</st>
+      <st>-0.5</st>
       <sst>-3.99</sst>
     </prediction>
     <prediction>
@@ -1833,21 +1833,21 @@
       <at>-14.24</at>
       <td>-16.1</td>
       <ws>25.9</ws>
-      <sn>6.04</sn>
-      <ra>1.53</ra>
+      <sn>6.17</sn>
+      <ra>1.39</ra>
       <qp-sn>21.13</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.59</ir>
-      <fv>-189.28</fv>
-      <fc>-381.31</fc>
+      <fv>-171.31</fv>
+      <fc>-356.01</fc>
       <fa>10.0</fa>
-      <fg>-650.89</fg>
-      <bb>-291.9</bb>
-      <fp>0.0</fp>
+      <fg>1375.52</fg>
+      <bb>-288.01</bb>
+      <fp>1979.26</fp>
       <rc>4</rc>
-      <st>-0.57</st>
+      <st>1.53</st>
       <sst>-3.97</sst>
     </prediction>
     <prediction>
@@ -1856,21 +1856,21 @@
       <at>-14.21</at>
       <td>-16.3</td>
       <ws>25.9</ws>
-      <sn>6.21</sn>
-      <ra>1.39</ra>
+      <sn>6.14</sn>
+      <ra>1.46</ra>
       <qp-sn>21.1</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.73</ir>
-      <fv>-171.44</fv>
-      <fc>-353.76</fc>
+      <fv>-212.44</fv>
+      <fc>-411.71</fc>
       <fa>10.0</fa>
-      <fg>1374.88</fg>
-      <bb>-287.82</bb>
-      <fp>1976.17</fp>
+      <fg>-709.18</fg>
+      <bb>-296.76</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.48</st>
+      <st>0.33</st>
       <sst>-3.96</sst>
     </prediction>
     <prediction>
@@ -1879,21 +1879,21 @@
       <at>-14.34</at>
       <td>-16.18</td>
       <ws>25.9</ws>
-      <sn>6.17</sn>
-      <ra>1.46</ra>
+      <sn>6.11</sn>
+      <ra>1.52</ra>
       <qp-sn>21.13</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.21</ir>
-      <fv>-210.71</fv>
-      <fc>-413.76</fc>
+      <fv>-188.28</fv>
+      <fc>-381.79</fc>
       <fa>10.0</fa>
-      <fg>-709.75</fg>
-      <bb>-296.49</bb>
+      <fg>-650.4</fg>
+      <bb>-291.54</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.27</st>
+      <st>-0.65</st>
       <sst>-3.94</sst>
     </prediction>
     <prediction>
@@ -1902,21 +1902,21 @@
       <at>-14.47</at>
       <td>-16.04</td>
       <ws>25.9</ws>
-      <sn>6.13</sn>
-      <ra>1.52</ra>
+      <sn>6.26</sn>
+      <ra>1.39</ra>
       <qp-sn>21.17</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>200.68</ir>
-      <fv>-186.43</fv>
-      <fc>-383.72</fc>
+      <fv>-168.19</fv>
+      <fc>-358.25</fc>
       <fa>10.0</fa>
-      <fg>-650.72</fg>
-      <bb>-291.24</bb>
-      <fp>0.0</fp>
+      <fg>1373.06</fg>
+      <bb>-287.34</bb>
+      <fp>1976.17</fp>
       <rc>4</rc>
-      <st>-0.72</st>
+      <st>1.37</st>
       <sst>-3.92</sst>
     </prediction>
     <prediction>
@@ -1925,21 +1925,21 @@
       <at>-14.6</at>
       <td>-15.91</td>
       <ws>25.9</ws>
-      <sn>6.29</sn>
-      <ra>1.39</ra>
+      <sn>6.22</sn>
+      <ra>1.46</ra>
       <qp-sn>21.2</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>200.15</ir>
-      <fv>-166.25</fv>
-      <fc>-360.15</fc>
+      <fv>-207.13</fv>
+      <fc>-418.11</fc>
       <fa>10.0</fa>
-      <fg>1372.87</fg>
-      <bb>-287.04</bb>
-      <fp>1976.17</fp>
+      <fg>-711.05</fg>
+      <bb>-295.95</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.3</st>
+      <st>0.14</st>
       <sst>-3.9</sst>
     </prediction>
     <prediction>
@@ -1948,21 +1948,21 @@
       <at>-14.67</at>
       <td>-16.07</td>
       <ws>24.7</ws>
-      <sn>6.24</sn>
-      <ra>1.46</ra>
+      <sn>6.17</sn>
+      <ra>1.53</ra>
       <qp-sn>21.2</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>199.87</ir>
-      <fv>-203.3</fv>
-      <fc>-408.15</fc>
+      <fv>-181.56</fv>
+      <fc>-377.14</fc>
       <fa>10.0</fa>
-      <fg>-698.09</fg>
-      <bb>-296.51</bb>
+      <fg>-640.38</fg>
+      <bb>-291.56</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.28</st>
+      <st>-0.64</st>
       <sst>-3.89</sst>
     </prediction>
     <prediction>
@@ -1971,21 +1971,21 @@
       <at>-14.74</at>
       <td>-16.23</td>
       <ws>23.46</ws>
-      <sn>6.2</sn>
-      <ra>1.53</ra>
+      <sn>6.33</sn>
+      <ra>1.4</ra>
       <qp-sn>21.2</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>199.61</ir>
-      <fv>-180.02</fv>
-      <fc>-370.55</fc>
+      <fv>-163.2</fv>
+      <fc>-346.64</fc>
       <fa>10.0</fa>
-      <fg>-633.58</fg>
-      <bb>-292.62</bb>
-      <fp>0.0</fp>
+      <fg>1393.43</fg>
+      <bb>-288.68</bb>
+      <fp>1982.35</fp>
       <rc>4</rc>
-      <st>-0.4</st>
+      <st>1.69</st>
       <sst>-3.87</sst>
     </prediction>
     <prediction>
@@ -1994,21 +1994,21 @@
       <at>-14.8</at>
       <td>-16.4</td>
       <ws>22.23</ws>
-      <sn>6.35</sn>
-      <ra>1.4</ra>
+      <sn>6.28</sn>
+      <ra>1.47</ra>
       <qp-sn>21.2</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>199.34</ir>
-      <fv>-162.99</fv>
-      <fc>-341.42</fc>
+      <fv>-200.06</fv>
+      <fc>-393.57</fc>
       <fa>10.0</fa>
-      <fg>1400.45</fg>
-      <bb>-289.93</bb>
-      <fp>1985.44</fp>
+      <fg>-683.2</fg>
+      <bb>-298.91</bb>
+      <fp>0.0</fp>
       <rc>4</rc>
-      <st>1.99</st>
+      <st>0.84</st>
       <sst>-3.85</sst>
     </prediction>
     <prediction>
@@ -2017,21 +2017,21 @@
       <at>-14.61</at>
       <td>-16.24</td>
       <ws>22.2</ws>
-      <sn>6.18</sn>
-      <ra>1.54</ra>
+      <sn>6.21</sn>
+      <ra>1.51</ra>
       <qp-sn>21.17</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>200.11</ir>
-      <fv>-177.92</fv>
-      <fc>-359.33</fc>
+      <fv>-191.55</fv>
+      <fc>-378.31</fc>
       <fa>10.0</fa>
-      <fg>-621.08</fg>
-      <bb>-293.94</bb>
+      <fg>-656.97</fg>
+      <bb>-297.22</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.08</st>
+      <st>0.51</st>
       <sst>-3.84</sst>
     </prediction>
     <prediction>
@@ -2040,21 +2040,21 @@
       <at>-14.41</at>
       <td>-16.07</td>
       <ws>22.2</ws>
-      <sn>6.13</sn>
-      <ra>1.55</ra>
+      <sn>6.21</sn>
+      <ra>1.45</ra>
       <qp-sn>21.13</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>200.91</ir>
-      <fv>-174.24</fv>
-      <fc>-350.4</fc>
+      <fv>-149.03</fv>
+      <fc>-314.68</fc>
       <fa>10.0</fa>
-      <fg>-607.03</fg>
-      <bb>-293.3</bb>
-      <fp>0.0</fp>
+      <fg>1439.28</fg>
+      <bb>-287.18</bb>
+      <fp>1979.26</fp>
       <rc>4</rc>
-      <st>-0.21</st>
+      <st>1.45</st>
       <sst>-3.82</sst>
     </prediction>
     <prediction>
@@ -2063,21 +2063,21 @@
       <at>-14.21</at>
       <td>-15.91</td>
       <ws>22.2</ws>
-      <sn>6.17</sn>
-      <ra>1.46</ra>
+      <sn>6.13</sn>
+      <ra>1.49</ra>
       <qp-sn>21.1</qp-sn>
       <qp-ra>0.2</qp-ra>
       <cc>7</cc>
       <sf>0.0</sf>
       <ir>201.71</ir>
-      <fv>-159.69</fv>
-      <fc>-325.69</fc>
+      <fv>-160.07</fv>
+      <fc>-326.19</fc>
       <fa>10.0</fa>
-      <fg>907.61</fg>
-      <bb>-289.95</bb>
-      <fp>1471.24</fp>
+      <fg>612.25</fg>
+      <bb>-290.04</bb>
+      <fp>1176.84</fp>
       <rc>4</rc>
-      <st>1.28</st>
+      <st>0.88</st>
       <sst>-3.8</sst>
     </prediction>
     <prediction>
@@ -2086,21 +2086,21 @@
       <at>-13.23</at>
       <td>-14.8</td>
       <ws>22.2</ws>
-      <sn>6.01</sn>
-      <ra>1.54</ra>
+      <sn>6.07</sn>
+      <ra>1.47</ra>
       <qp-sn>21.13</qp-sn>
       <qp-ra>0.17</qp-ra>
       <cc>7</cc>
-      <sf>11.64</sf>
+      <sf>11.77</sf>
       <ir>205.62</ir>
-      <fv>-182.75</fv>
-      <fc>-343.15</fc>
+      <fv>-142.83</fv>
+      <fc>-287.01</fc>
       <fa>10.0</fa>
-      <fg>-596.06</fg>
-      <bb>-297.42</bb>
-      <fp>0.0</fp>
+      <fg>1486.06</fg>
+      <bb>-287.66</bb>
+      <fp>1976.17</fp>
       <rc>4</rc>
-      <st>0.64</st>
+      <st>1.62</st>
       <sst>-3.79</sst>
     </prediction>
     <prediction>
@@ -2109,21 +2109,21 @@
       <at>-12.23</at>
       <td>-13.66</td>
       <ws>22.2</ws>
-      <sn>5.72</sn>
-      <ra>1.65</ra>
+      <sn>5.84</sn>
+      <ra>1.51</ra>
       <qp-sn>21.17</qp-sn>
       <qp-ra>0.13</qp-ra>
       <cc>7</cc>
-      <sf>24.44</sf>
+      <sf>24.7</sf>
       <ir>209.62</ir>
-      <fv>-156.21</fv>
-      <fc>-291.39</fc>
+      <fv>-136.2</fv>
+      <fc>-263.14</fc>
       <fa>10.0</fa>
-      <fg>-496.42</fg>
-      <bb>-292.87</bb>
-      <fp>0.0</fp>
+      <fg>1533.21</fg>
+      <bb>-287.94</bb>
+      <fp>1976.17</fp>
       <rc>4</rc>
-      <st>-0.14</st>
+      <st>1.73</st>
       <sst>-3.77</sst>
     </prediction>
     <prediction>
@@ -2132,22 +2132,22 @@
       <at>-11.23</at>
       <td>-12.53</td>
       <ws>22.2</ws>
-      <sn>5.4</sn>
-      <ra>1.72</ra>
+      <sn>5.57</sn>
+      <ra>1.56</ra>
       <qp-sn>21.2</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>38.66</sf>
+      <sf>38.77</sf>
       <ir>213.61</ir>
-      <fv>-145.49</fv>
-      <fc>-262.76</fc>
+      <fv>-134.21</fv>
+      <fc>-246.68</fc>
       <fa>10.0</fa>
-      <fg>-438.28</fg>
-      <bb>-292.31</bb>
-      <fp>0.0</fp>
+      <fg>1568.19</fg>
+      <bb>-289.47</bb>
+      <fp>1976.17</fp>
       <rc>4</rc>
-      <st>-0.15</st>
-      <sst>-3.76</sst>
+      <st>2.13</st>
+      <sst>-3.75</sst>
     </prediction>
     <prediction>
       <roadcast-time>2010-01-01T17:20Z</roadcast-time>
@@ -2155,18 +2155,18 @@
       <at>-9.54</at>
       <td>-11.14</td>
       <ws>21.61</ws>
-      <sn>5.04</sn>
+      <sn>5.08</sn>
       <ra>1.34</ra>
       <qp-sn>15.53</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>55.3</sf>
+      <sf>55.03</sf>
       <ir>220.33</ir>
-      <fv>-149.29</fv>
-      <fc>-242.11</fc>
+      <fv>-149.37</fv>
+      <fc>-242.22</fc>
       <fa>10.0</fa>
-      <fg>-402.82</fg>
-      <bb>-297.05</bb>
+      <fg>-403.3</fg>
+      <bb>-297.07</bb>
       <fp>0.0</fp>
       <rc>4</rc>
       <st>0.85</st>
@@ -2178,21 +2178,21 @@
       <at>-7.84</at>
       <td>-9.74</td>
       <ws>21.01</ws>
-      <sn>4.48</sn>
+      <sn>4.5</sn>
       <ra>0.92</ra>
       <qp-sn>9.87</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>76.13</sf>
+      <sf>75.92</sf>
       <ir>227.11</ir>
-      <fv>-108.2</fv>
-      <fc>-161.4</fc>
+      <fv>-107.94</fv>
+      <fc>-161.07</fc>
       <fa>10.0</fa>
-      <fg>310.44</fg>
-      <bb>-290.29</bb>
-      <fp>557.08</fp>
+      <fg>240.84</fg>
+      <bb>-290.23</bb>
+      <fp>487.05</fp>
       <rc>4</rc>
-      <st>0.46</st>
+      <st>0.35</st>
       <sst>-3.72</sst>
     </prediction>
     <prediction>
@@ -2201,21 +2201,21 @@
       <at>-6.14</at>
       <td>-8.34</td>
       <ws>20.41</ws>
-      <sn>3.85</sn>
-      <ra>0.51</ra>
+      <sn>3.9</sn>
+      <ra>0.48</ra>
       <qp-sn>4.2</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>99.01</sf>
+      <sf>98.87</sf>
       <ir>233.9</ir>
-      <fv>-93.41</fv>
-      <fc>-121.41</fc>
+      <fv>-89.92</fv>
+      <fc>-116.79</fc>
       <fa>10.0</fa>
-      <fg>-162.42</fg>
-      <bb>-290.51</bb>
-      <fp>0.0</fp>
+      <fg>245.42</fg>
+      <bb>-289.58</bb>
+      <fp>398.94</fp>
       <rc>4</rc>
-      <st>-0.2</st>
+      <st>0.19</st>
       <sst>-3.71</sst>
     </prediction>
     <prediction>
@@ -2224,21 +2224,21 @@
       <at>-5.13</at>
       <td>-7.55</td>
       <ws>20.4</ws>
-      <sn>3.31</sn>
+      <sn>3.32</sn>
       <ra>0.43</ra>
       <qp-sn>4.23</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>115.75</sf>
+      <sf>115.58</sf>
       <ir>237.96</ir>
-      <fv>-86.43</fv>
-      <fc>-100.99</fc>
+      <fv>-86.82</fv>
+      <fc>-101.54</fc>
       <fa>10.0</fa>
-      <fg>-114.51</fg>
-      <bb>-290.8</bb>
+      <fg>-115.74</fg>
+      <bb>-290.92</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>-0.07</st>
+      <st>-0.05</st>
       <sst>-3.69</sst>
     </prediction>
     <prediction>
@@ -2252,16 +2252,16 @@
       <qp-sn>4.27</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>133.35</sf>
+      <sf>133.31</sf>
       <ir>241.96</ir>
-      <fv>-79.28</fv>
-      <fc>-81.4</fc>
+      <fv>-79.19</fv>
+      <fc>-81.28</fc>
       <fa>10.0</fa>
-      <fg>-66.45</fg>
-      <bb>-291.08</bb>
+      <fg>-66.26</fg>
+      <bb>-291.06</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.05</st>
+      <st>0.04</st>
       <sst>-3.68</sst>
     </prediction>
     <prediction>
@@ -2275,16 +2275,16 @@
       <qp-sn>4.3</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>152.02</sf>
+      <sf>151.95</sf>
       <ir>245.95</ir>
-      <fv>-71.28</fv>
-      <fc>-61.65</fc>
+      <fv>-70.9</fv>
+      <fc>-61.12</fc>
       <fa>10.0</fa>
-      <fg>-16.16</fg>
-      <bb>-291.21</bb>
+      <fg>-15.22</fg>
+      <bb>-291.1</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.16</st>
+      <st>0.13</st>
       <sst>-3.66</sst>
     </prediction>
     <prediction>
@@ -2293,21 +2293,21 @@
       <at>-2.32</at>
       <td>-5.42</td>
       <ws>20.4</ws>
-      <sn>1.85</sn>
+      <sn>1.86</sn>
       <ra>0.55</ra>
       <qp-sn>4.27</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>160.0</sf>
+      <sf>159.89</sf>
       <ir>249.16</ir>
-      <fv>-62.05</fv>
-      <fc>-42.54</fc>
+      <fv>-61.88</fv>
+      <fc>-42.3</fc>
       <fa>10.0</fa>
-      <fg>24.07</fg>
-      <bb>-290.51</bb>
+      <fg>24.42</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.65</sst>
     </prediction>
     <prediction>
@@ -2321,17 +2321,17 @@
       <qp-sn>4.23</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>166.87</sf>
+      <sf>166.82</sf>
       <ir>252.36</ir>
-      <fv>-54.97</fv>
-      <fc>-27.34</fc>
+      <fv>-54.8</fv>
+      <fc>-27.12</fc>
       <fa>10.0</fa>
-      <fg>56.41</fg>
-      <bb>-290.51</bb>
+      <fg>56.81</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.03</st>
-      <sst>-3.64</sst>
+      <st>0.02</st>
+      <sst>-3.63</sst>
     </prediction>
     <prediction>
       <roadcast-time>2010-01-01T20:00Z</roadcast-time>
@@ -2344,16 +2344,16 @@
       <qp-sn>4.2</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
-      <sf>173.56</sf>
+      <sf>173.55</sf>
       <ir>255.55</ir>
-      <fv>-47.6</fv>
-      <fc>-12.8</fc>
+      <fv>-47.43</fv>
+      <fc>-12.59</fc>
       <fa>10.0</fa>
-      <fg>88.21</fg>
-      <bb>-290.51</bb>
+      <fg>88.64</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.62</sst>
     </prediction>
     <prediction>
@@ -2369,14 +2369,14 @@
       <cc>7</cc>
       <sf>165.68</sf>
       <ir>256.8</ir>
-      <fv>-52.58</fv>
-      <fc>-8.55</fc>
+      <fv>-52.39</fv>
+      <fc>-8.31</fc>
       <fa>10.0</fa>
-      <fg>80.84</fg>
-      <bb>-290.51</bb>
+      <fg>81.33</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.61</sst>
     </prediction>
     <prediction>
@@ -2392,14 +2392,14 @@
       <cc>7</cc>
       <sf>155.3</sf>
       <ir>258.0</ir>
-      <fv>-57.37</fv>
-      <fc>-3.05</fc>
+      <fv>-57.15</fv>
+      <fc>-2.78</fc>
       <fa>10.0</fa>
-      <fg>72.37</fg>
-      <bb>-290.51</bb>
+      <fg>72.92</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.59</sst>
     </prediction>
     <prediction>
@@ -2408,21 +2408,21 @@
       <at>0.19</at>
       <td>-3.7</td>
       <ws>31.41</ws>
-      <sn>0.37</sn>
+      <sn>0.36</sn>
       <ra>0.6</ra>
       <qp-sn>4.2</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
       <sf>144.92</sf>
       <ir>259.2</ir>
-      <fv>-61.6</fv>
-      <fc>3.97</fc>
+      <fv>-61.35</fv>
+      <fc>4.27</fc>
       <fa>10.0</fa>
-      <fg>65.97</fg>
-      <bb>-290.51</bb>
+      <fg>66.58</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>4</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.58</sst>
     </prediction>
     <prediction>
@@ -2431,22 +2431,22 @@
       <at>0.17</at>
       <td>-3.64</td>
       <ws>31.5</ws>
-      <sn>0.19</sn>
+      <sn>0.18</sn>
       <ra>0.58</ra>
       <qp-sn>4.23</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
       <sf>123.96</sf>
       <ir>259.1</ir>
-      <fv>-60.87</fv>
-      <fc>3.37</fc>
+      <fv>-60.63</fv>
+      <fc>3.67</fc>
       <fa>10.0</fa>
-      <fg>45.05</fg>
-      <bb>-290.51</bb>
+      <fg>45.65</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>2</rc>
-      <st>0.03</st>
-      <sst>-3.57</sst>
+      <st>0.02</st>
+      <sst>-3.56</sst>
     </prediction>
     <prediction>
       <roadcast-time>2010-01-01T21:40Z</roadcast-time>
@@ -2454,21 +2454,21 @@
       <at>0.13</at>
       <td>-3.57</td>
       <ws>31.5</ws>
-      <sn>0.1</sn>
+      <sn>0.08</sn>
       <ra>0.57</ra>
       <qp-sn>4.27</qp-sn>
       <qp-ra>0.1</qp-ra>
       <cc>7</cc>
       <sf>102.73</sf>
       <ir>258.96</ir>
-      <fv>-59.99</fv>
-      <fc>2.55</fc>
+      <fv>-59.75</fv>
+      <fc>2.85</fc>
       <fa>10.0</fa>
-      <fg>23.74</fg>
-      <bb>-290.51</bb>
+      <fg>24.34</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>2</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.55</sst>
     </prediction>
     <prediction>
@@ -2477,21 +2477,21 @@
       <at>0.1</at>
       <td>-3.5</td>
       <ws>31.5</ws>
-      <sn>0.08</sn>
+      <sn>0.06</sn>
       <ra>0.51</ra>
       <qp-sn>0.0</qp-sn>
       <qp-ra>0.0</qp-ra>
       <cc>7</cc>
       <sf>81.5</sf>
       <ir>258.83</ir>
-      <fv>-59.11</fv>
-      <fc>1.73</fc>
+      <fv>-58.87</fv>
+      <fc>2.03</fc>
       <fa>10.0</fa>
-      <fg>2.44</fg>
-      <bb>-290.51</bb>
+      <fg>3.04</fg>
+      <bb>-290.45</bb>
       <fp>0.0</fp>
       <rc>2</rc>
-      <st>0.03</st>
+      <st>0.02</st>
       <sst>-3.54</sst>
     </prediction>
   </prediction-list>
