@@ -500,6 +500,8 @@ def main():
                                 print('Please verify the format/syntax of the config.json file.')
                         if key == 'error_tolerance':
                             error_value = value
+                        if key == 'description':
+                            case_description = value
 
             if forecast_exists and station_exists and observation_exists:
                 file_output_path = os.path.join(test_suite_path + dir_path[1:], 'roadcast_test_suite_run.xml')
@@ -516,6 +518,7 @@ def main():
                     try:
                         print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} starts to run...... <<<<<<<<<<<<<<<<<<<<<<<<<<'
                               '<'.format(folder))
+                        print('\n{}\n'.format(case_description))
                         if expected_value == 'FAILURE':
                             print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to FAIL...... <<<<<<<<<<<<<<<<<<'
                                   '<<<'.format(folder))
