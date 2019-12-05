@@ -1,4 +1,5 @@
 {
+  "description": "This is the description message for case040",
   "addition_to_command_line": null,
   "expected_running_result": "SUCCESS"
 }
