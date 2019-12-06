@@ -522,6 +522,9 @@ def main():
                         if expected_value == 'FAILURE':
                             print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to FAIL...... <<<<<<<<<<<<<<<<<<'
                                   '<<<'.format(folder))
+                        if expected_value == 'SUCCESS':
+                            print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to SUCCEED...... <<<<<<<<<<<<<<<<<<'
+                                  '<<<'.format(folder))
 
                         print('\nSyntax to run {}:'.format(folder))
                         print('--------------------------------------------------------------------------------')
