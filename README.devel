@@ -73,7 +73,8 @@ To compile the Fortran model you will need to perform the following action:
             svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/tags/metro-3.2.4
     
 2) Upload package to the GNA web site (http://download.gna.org/metro/)
-   scp metro-3.2.4.tar.bz2  metro-3.2.4.tar.bz2.sig francois_fortin@download.gna.org:/upload/metro/
+   scp metro-3.2.4.tar.bz2  metro-3.2.4.tar.bz2.sig
+   francois_fortin@download.gna.org:/upload/metro/
 
 3) Create a new LATEST_RELEASE file with the new version number.
    The content of the file is:
@@ -85,6 +86,7 @@ To compile the Fortran model you will need to perform the following action:
      metro-3.2.4
    ------------------------------------- cut here --------------------------------
 
-4) Upload the LATEST_RELEASE file to the GNA web site (http://download.gna.org/metro/)
+4) Upload the LATEST_RELEASE file to the GNA web site
+   (http://download.gna.org/metro/)
    scp LATEST_RELEASE francois_fortin@download.gna.org:/upload/metro/
 

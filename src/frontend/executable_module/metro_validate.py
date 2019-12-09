@@ -92,7 +92,8 @@ class Metro_validate(Metro_module):
             try:
                 return metro_xml.validate_string(sXml_content)
             except metro_error.Metro_xml_error as inst:
-                metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG, _("Error when validating ") + _("XML string."))
+                metro_logger.print_message(metro_logger.LOGGER_MSG_DEBUG,
+                                           _("Error when validating ") + _("XML string."))
                 raise metro_error.Metro_xml_error(str(inst))
         else:
             sMessage = _("No XML string to validate")

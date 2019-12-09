@@ -7,11 +7,12 @@ You are reading the test_suite README file of the release 4.0.0 (December 2019)
 
 ======================== What is test_suite.py of METRo? ======================
 The test_suite.py of METRo is created to run pre-selected case(s) automatically.
-Once test_suite.py finishes running, it generates the running result and outputs
-a forecast file named "roadcast_test_suite_run.xml" for each individual pre-
-selected case. It then compares the forecast file "roadcast_test_suite_run.xml"
-with the given benchmark forecast file "roadcast_reference.xml" and displays the
-comparison result for each pre-selected case.
+Once test_suite.py finishes running, it generates the running result and
+outputs a forecast file named "roadcast_test_suite_run.xml" for each individual
+pre-selected case. It then compares the forecast file
+"roadcast_test_suite_run.xml" with the given benchmark forecast file
+"roadcast_reference.xml" and displays the comparison result for each
+pre-selected case.
 
 
 ======================= Where is test_suite.py located? =======================
@@ -39,12 +40,13 @@ config.json:
            lies outside the range of 0.05; in other words, any comparison
            differences within 0.05 are ignored).
 
-           Note: If you would like to use the default error tolerance of "0.01",
-                 there is no need to add this extra attribute in "config.json".
+           Note: If you would like to use the default error tolerance of
+                 "0.01", there is no need to add this extra attribute in
+                 "config.json".
 
 forecast.xml, observation.xml and station.xml:
-           These are the input files and each case should have these three files
-           in order for METRo to generate possible forecast.
+           These are the input files and each case should have these three
+           files in order for METRo to generate possible forecast.
 
 roadcast_reference.xml:
            This is a benchmark forecast file and it only exists for those cases
@@ -67,9 +69,10 @@ roadcast_reference.xml:
            the running results in a verbose version.
 
    "-c XX XX ..." where XX represents the case number:
-           test_suite.py runs the case(s) whose number(s) is/are entered after "-c".
-           You can enter as many case numbers as you would like to run, but you
-           have to enter at least one case number in order to active "-c".
+           test_suite.py runs the case(s) whose number(s) is/are entered after
+           "-c". You can enter as many case numbers as you would like to run,
+           but you have to enter at least one case number in order to active
+           "-c".
 
            Note: "-c" and "-s" cannot be used simultaneously.
 

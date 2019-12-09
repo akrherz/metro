@@ -55,7 +55,8 @@ class Metro_read_observation_ref(Metro_read):
                 metro_logger.print_message(metro_logger.LOGGER_MSG_CRITICAL, sError_message)
             else:
                 # creer et ajouter infdata
-                infdata_observation_ref = metro_infdata.Metro_infdata( 'OBSERVATION_REF', metro_infdata.DATATYPE_METRO_DATA_COLLECTION)
+                infdata_observation_ref = metro_infdata.Metro_infdata( 'OBSERVATION_REF',
+                                                                       metro_infdata.DATATYPE_METRO_DATA_COLLECTION)
                 infdata_observation_ref.set_input_information(sFile_content)
                 self.add_infdata(infdata_observation_ref)
         else:

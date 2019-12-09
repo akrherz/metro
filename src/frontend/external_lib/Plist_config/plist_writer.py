@@ -9,7 +9,8 @@ class Plist_writer:
 
     def __write_header(self):
         self.output.write('<?xml version="1.0" encoding="UTF-8"?>\n')
-        self.output.write('<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n')
+        self.output.write('<!DOCTYPE plist PUBLIC "-//Apple Computer//DTD PLIST 1.0//EN" '
+                          '"http://www.apple.com/DTDs/PropertyList-1.0.dtd">\n')
         self.output.write('<plist version="1.0">\n')
 
     def __write_footer(self):

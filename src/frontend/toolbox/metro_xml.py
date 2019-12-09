@@ -62,7 +62,8 @@ def init(sMetro_xml_lib=""):
             sMessage = _("Fatal error! Can't import '%s' xml library") % sMetro_xml_lib
             metro_logger.print_init_message(metro_logger.LOGGER_INIT_ERROR, sMessage)
         else:
-            metro_logger.print_init_message(metro_logger.LOGGER_INIT_SUCCESS, _("XML library '%s' will be use.") % sMetro_xml_lib)
+            metro_logger.print_init_message(metro_logger.LOGGER_INIT_SUCCESS,
+                                            _("XML library '%s' will be use.") % sMetro_xml_lib)
             metro_xml_lib = __import__(sMetro_xml_lib)
 
     else:
@@ -282,7 +283,8 @@ def create_node_tree_from_dict(domDoc, nodeParent, lDefs, dWriteHandlers, dData)
         append_child(nodeParent, nodeData)
 
 
-def create_node_tree_from_matrix(domDoc, nodeParent, sPrediction_xpath, lDefs, dWriteHandlers, metro_data_object, npMatrix):
+def create_node_tree_from_matrix(domDoc, nodeParent, sPrediction_xpath, lDefs,
+                                 dWriteHandlers, metro_data_object, npMatrix):
     """
         Each prediction will be contained in a node that will have the name given by sPrediction_xpath.
     """

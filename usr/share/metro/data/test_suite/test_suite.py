@@ -225,9 +225,10 @@ def process_test_result(case_folder, test_code, expected_value_json, verbosity=F
             if not json_exists:
                 print("Note: 'config.json' file does not exist for {}".format(case_folder))
 
-    elif (test_code != 0 and expected_value_json == 'SUCCESS') or (test_code == 0 and expected_value_json == 'FAILURE') \
-            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '')
-                and XmlTree.sum_of_error_outside_tolerance > 0) or \
+    elif (test_code != 0 and expected_value_json == 'SUCCESS') or \
+            (test_code == 0 and expected_value_json == 'FAILURE') or \
+            (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '')
+             and XmlTree.sum_of_error_outside_tolerance > 0) or \
             ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
@@ -313,7 +314,8 @@ def main():
 
     parser = argparse.ArgumentParser(description='run the test suite')
     parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number(s) to a case list')
-    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='', help='add case number(s) to a do-not-run case list')
+    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='',
+                        help='add case number(s) to a do-not-run case list')
     parser.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
     parser.add_argument('-e', '--error', type=float, help='specified value of error tolerance')
     parser.add_argument('--clean', action='store_true', help="clean up output XML file 'roadcast_test_suite_run.xml'")
@@ -405,8 +407,8 @@ def main():
                   format(', '.join(list_of_wrong_folders)))
             sys.exit(0)
 
-        case_list = sorted(list(set([folder for folder in sorted(os.listdir(test_suite_path)) if folder.startswith(case_name)])
-                         - set(do_not_run_case_list)))
+        case_list = sorted(list(set([folder for folder in sorted(os.listdir(test_suite_path))
+                                     if folder.startswith(case_name)]) - set(do_not_run_case_list)))
 
     if run_all_cases:
         list_of_folders = []
