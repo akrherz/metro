@@ -64,23 +64,26 @@ To compile the Fortran model you will need to perform the following action:
 == Release ==
 =============
 
-1) Make a tag in SVN for the release of that version. You will need an access to the metro project on GNA to do that.
-    The following is an exemple of the user Francois Fortin making a tags for the 3.2.4 version
+1) Make a tag in SVN for the release of that version.
+   You will need an access to the metro project on GNA to do that.
+   The following is an example of the user Francois Fortin making a tags
+   for the 3.2.4 version
 
-    svn copy svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/trunk \
-             svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/tags/metro-3.2.4
+   svn copy svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/trunk \
+            svn+ssh://francois_fortin@svn.gna.org/svn/metro/metro/tags/metro-3.2.4
     
 2) Upload package to the GNA web site (http://download.gna.org/metro/)
-    scp metro-3.2.4.tar.bz2  metro-3.2.4.tar.bz2.sig francois_fortin@download.gna.org:/upload/metro/
+   scp metro-3.2.4.tar.bz2  metro-3.2.4.tar.bz2.sig francois_fortin@download.gna.org:/upload/metro/
 
-3) Create a new LATEST_RELEASE file with the new version number. The content of the file is:
+3) Create a new LATEST_RELEASE file with the new version number.
+   The content of the file is:
 
-------------------------------------- cut here --------------------------------
-Please note:
+   ------------------------------------- cut here --------------------------------
+   Please note:
 
-- The latest stable version of the METRo package is:
-  metro-3.2.4
-------------------------------------- cut here --------------------------------
+   - The latest stable version of the METRo package is:
+     metro-3.2.4
+   ------------------------------------- cut here --------------------------------
 
 4) Upload the LATEST_RELEASE file to the GNA web site (http://download.gna.org/metro/)
    scp LATEST_RELEASE francois_fortin@download.gna.org:/upload/metro/
