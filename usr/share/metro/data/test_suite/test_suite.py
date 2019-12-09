@@ -192,8 +192,6 @@ def process_case_name(case_string, case_list=None):
     """
     if case_list is None:
         case_list = []
-    case_string = ''.join(case_string)
-    case_string = list(case_string.split(','))
     for case in case_string:
         if case.startswith('case'):
             case = case[4:]
