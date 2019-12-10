@@ -50,7 +50,7 @@ class Metro_dom2metro(Metro_module):
     domStation = None
     domHorizon = None
 
-    # Overwritten methodes
+    # Overwritten methods
     def start(self):
         Metro_module.start(self)
 

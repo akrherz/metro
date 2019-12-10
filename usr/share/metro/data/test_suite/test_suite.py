@@ -590,9 +590,9 @@ def main():
         print('Case(s) missing proper input file(s):\t\t\t', end=' ')
         print(*list_of_missing_file_cases, sep=' ')
 
-    if len(XmlTree.list_of_diff_case) != 0:
-        print('Case(s) having different XML file comparison result:\t', end=' ')
-        print(*XmlTree.list_of_diff_case, sep=' ')
+    if len(list_of_failure_cases) != 0:
+        print('Case(s) does/do not produce expected result(s):\t\t', end=' ')
+        print(*list_of_failure_cases, sep=' ')
     print('\n\n\n')
 
     if (len(list_of_failure_cases) != 0) and verbosity:
