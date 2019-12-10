@@ -583,16 +583,16 @@ def main():
     print('\n\n\n================================================================================')
     print('\n', '                                  ', 'SUMMARY: ')
     print('\n================================================================================')
-    print('Total number of test cases ran:\t\t\t\t', str(num_of_folders), '.\nNumber of cases ran with SUCCESS:\t\t\t',
-          str(num_of_success), '.\nNumber of cases  ran with FAILURE: \t\t\t', str(num_of_failure), '.')
+    print('Total number of test cases ran:\t\t\t\t', str(num_of_folders), '\nNumber of cases ran with SUCCESS:\t\t\t',
+          str(num_of_success), '\nNumber of cases  ran with FAILURE: \t\t\t', str(num_of_failure))
 
     if len(list_of_missing_file_cases) != 0:
         print('Case(s) missing proper input file(s):\t\t\t', end=' ')
-        print(*list_of_missing_file_cases, sep=', ')
+        print(*list_of_missing_file_cases, sep=' ')
 
     if len(XmlTree.list_of_diff_case) != 0:
         print('Case(s) having different XML file comparison result:\t', end=' ')
-        print(*XmlTree.list_of_diff_case, sep=', ')
+        print(*XmlTree.list_of_diff_case, sep=' ')
     print('\n\n\n')
 
     if (len(list_of_failure_cases) != 0) and verbosity:

@@ -12,7 +12,7 @@ init_devel.sh
 -------------
 You need to run the 'init_devel.sh' script to prepare your working directory. 
 If the script complain about the environment variable "PYTHON_INCLUDE": 
-you need to set it to a valid value. Usualy, it will be something like:
+you need to set it to a valid value. Usually, it will be something like:
 'export PYTHON_INCLUDE=/usr/include/pythonX.X' where the X's are the 
 version numbers. You only need to run the 'init_devel.sh' script one time.
 
@@ -35,11 +35,10 @@ To compile the Fortran model you will need to perform the following action:
 ======================
 
 1) Change the METRo version number in the following files:
-    README
     scripts/do_macadam
     src/frontend/metro_config.py
 
-2) Change realease date in the following files:
+2) Change release date in the following files:
     README
     src/frontend/metro_config.py
 
