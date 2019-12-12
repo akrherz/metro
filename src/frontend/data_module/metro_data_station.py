@@ -136,7 +136,8 @@ class Metro_data_station(Metro_data):
         else:
             dStation_header = self.get_header()
             fStation_sst_depth = dStation_header['SST_DEPTH']
-            if fStation_sst_depth == "None" or fStation_sst_depth > 1.4 or fStation_sst_depth < 0.01:
+            # if fStation_sst_depth == "None" or fStation_sst_depth > 1.4 or fStation_sst_depth < 0.01:
+            if fStation_sst_depth is None or fStation_sst_depth > 1.4 or fStation_sst_depth < 0.01:
                 sMessage = _("Sensor SST depth value in station config file is not between 0.01 m and 1.4 m. "
                              "Given value: '%s' m.") % fStation_sst_depth
                 metro_logger.print_message(metro_logger.LOGGER_MSG_STOP, sMessage)
