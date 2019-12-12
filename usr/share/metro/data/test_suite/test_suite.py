@@ -532,7 +532,7 @@ def main():
                             'python3 ../../../../bin/metro {0} --input-forecast ../test_suite'
                             '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                             '-observation ../test_suite/{1}/observation.xml --output-roadcast '
-                            '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, folder))
+                            '../test_suite/{1}/roadcast_test_suite_run.xml\n'.format(extra_parameter, folder))
                         print('--------------------------------------------------------------------------------')
 
                         print('\n\n')
@@ -607,7 +607,7 @@ def main():
             print('python3 ../../../../bin/metro {0} --verbose-level 4 --input-forecast ../test_suite'
                   '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                   '-observation ../test_suite/{1}/observation.xml --output-roadcast '
-                  '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, case))
+                  '../test_suite/{1}/roadcast_test_suite_run.xml\n'.format(extra_parameter, case))
 
 
 if __name__ == '__main__':
