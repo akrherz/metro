@@ -97,7 +97,8 @@ def get_metro_root_path():
         # Nothing have been found
         sError = _("The executable 'metro.py' must be in one of the following directory:\n") + \
                  _("metro_directory/src/frontend' or 'metro_directory/usr/lib/metro'.\n") + \
-                 _("The following path is not valid: '%s'.\n\n") % (sys.path[0]) + _("Aborting execution of METRo.\n")
+                 _("The following path is not valid: '%s'.\n\n") % (sys.path[0]) + \
+                 _("Aborting execution of METRo.\n")
         print(sError)
         sys.exit(1)
     return sRoot_path

@@ -14,7 +14,6 @@
 #
 #  $LastChangedDate$
 #  $LastChangedRevision$
-#
 ########################################################################
 #  This program is free software; you can redistribute it and/or modify
 #  it under the terms of the GNU General Public License as published by
@@ -78,7 +77,7 @@ then
     echo "Ex: ./setup.sh /usr/local/"
     echo "    ./setup.sh /home/user/program/"
     exit 0
-fi  
+fi
 
 
 while getopts "cv" Option
@@ -90,7 +89,7 @@ do
             echo "Usage: $progname [OPTION] destination_path"
             echo ""
             echo "-c  : Will compile the METRo physic model instead of using"
-            echo "      the provided binary. Need gfortran compiler." 
+            echo "      the provided binary. Need gfortran compiler."
             echo "      DEPRECATED, no longer do anything, setup.sh will"
             echo "      always compile the METRo physic model."
  	    echo ""
@@ -136,7 +135,7 @@ if ! locate libgfortran.so.1; then
     bCompile=1
 fi
 echo ""
-    
+
 mkdir -p $destination_path/usr/share/metro/model/
 mkdir -p $destination_path/usr/lib/metro/
 if [ $bCompile == 1 ]; then
@@ -206,7 +205,7 @@ cd $installation_dir
 mkdir -p $destination_path/usr/bin
 echo "* Make link to METRo executable:"
 echo "  $destination_path/usr/bin/metro -> $destination_path/usr/share/metro/metro.py"
-ln -sf ../share/metro/metro.py $destination_path/usr/bin/metro  
+ln -sf ../share/metro/metro.py $destination_path/usr/bin/metro
 
 echo ""
 echo "---------------------------------------------------"
@@ -218,7 +217,7 @@ echo ""
 echo "To test the installation of METRo"
 echo "---------------------------------"
 echo "Go into the METRo directory:"
-echo " 'cd $destination_path/usr/bin/'" 
+echo " 'cd $destination_path/usr/bin/'"
 echo "Launch METRo selftest:"
 echo " 'python metro --selftest'"
 echo "Compare the files:"

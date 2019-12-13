@@ -192,8 +192,6 @@ def process_case_name(case_string, case_list=None):
     """
     if case_list is None:
         case_list = []
-    case_string = ''.join(case_string)
-    case_string = list(case_string.split(','))
     for case in case_string:
         if case.startswith('case'):
             case = case[4:]
@@ -227,14 +225,15 @@ def process_test_result(case_folder, test_code, expected_value_json, verbosity=F
             if not json_exists:
                 print("Note: 'config.json' file does not exist for {}".format(case_folder))
 
-    elif (test_code != 0 and expected_value_json == 'SUCCESS') or (test_code == 0 and expected_value_json == 'FAILURE') \
-            or (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '')
-                and XmlTree.sum_of_error_outside_tolerance > 0) or \
+    elif (test_code != 0 and expected_value_json == 'SUCCESS') or \
+            (test_code == 0 and expected_value_json == 'FAILURE') or \
+            (test_code == 0 and (expected_value_json == 'SUCCESS' or expected_value_json == '')
+             and XmlTree.sum_of_error_outside_tolerance > 0) or \
             ((not forecast_exists or not station_exists or not observation_exists) and not json_exists):
         num_of_failure += 1
         list_of_failure_cases.append(case_folder)
         if verbosity:
-            print('The exit code of metro is: {}\n'.format(test_code))
+            print('The exit code of METRo is: {}\n'.format(test_code))
         print(case_folder, ' FAILURE! ***')
 
         if (not reference_exists or not json_exists) and verbosity:
@@ -303,7 +302,7 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
                         error_reference = '<' + key + '>' + str(value[0]) + '<' + key + '>'
                         error_test_suite_run = '<' + key + '>' + str(value[1]) + '<' + key + '>'
                         print('\t\t\t\t\t\t{}\t\t{}'.format(error_reference.ljust(20), error_test_suite_run.ljust(20)))
-    except FileNotFoundError:
+    except IOError:
         pass
 
 
@@ -311,52 +310,70 @@ def process_xml_file(current_case_path, case_folder, error_value, verbosity=Fals
 def main():
     # ----------------------------------------Process user's input from command line------------------------------------
     case_name = ''
-    run_all_cases = True
-    verbosity = False
     default_error_tolerance = 0.01
 
     parser = argparse.ArgumentParser(description='run the test suite')
-    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number to a case list')
-    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='', help='add case number to a do-not-run case list')
-    group = parser.add_mutually_exclusive_group()
-    group.add_argument('-q', '--quiet', action='store_true', help='display the process in a simple shortened way')
-    group.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
+    parser.add_argument('-c', '--case', nargs='+', default=[], metavar='', help='add case number(s) to a case list')
+    parser.add_argument('-s', '--skip', nargs='+', default=[], metavar='',
+                        help='add case number(s) to a do-not-run case list')
+    parser.add_argument('-v', '--verbose', action='store_true', help='display the process in a complete detailed way')
     parser.add_argument('-e', '--error', type=float, help='specified value of error tolerance')
     parser.add_argument('--clean', action='store_true', help="clean up output XML file 'roadcast_test_suite_run.xml'")
     args = parser.parse_args()
 
-    if args.case or args.skip:
-        run_all_cases = False
-        if args.verbose:
-            verbosity = True
-        elif args.quiet:
-            verbosity = False
-        else:
-            verbosity = False
+    if args.verbose:
+        verbosity = True
+    else:
+        verbosity = False
 
-    elif not args.case and not args.skip:
+    if args.case or args.skip:
+        if args.case and args.skip:
+            print("'-c' and '-s' cannot be used at the same time. The METRo program will exit with code 2.")
+            sys.exit(2)
+        run_all_cases = False
+    else:
         case_name = 'case'
         run_all_cases = True
-        if args.verbose:
-            verbosity = True
-        elif args.quiet:
-            verbosity = False
-        else:
-            verbosity = False
+
     if args.error:
         error_value = args.error
     else:
         error_value = default_error_tolerance
+
+    num_of_folders = 0
+    list_of_folders = []
+    list_of_wrong_folders = []
+    test_suite_path = os.getcwd()
+    num_of_clean_up = 0
+    # -------------------------------------------Clean up the output XML file-------------------------------------------
+    if args.clean:
+        if args.case or args.skip or args.error:
+            print("'--clean' can only be used with '-v'.")
+            sys.exit(0)
+
+        for folder in sorted(os.listdir(test_suite_path)):
+            if folder.startswith('case'):
+                try:
+                    os.remove(test_suite_path + '/' + folder + '/roadcast_test_suite_run.xml')
+                    num_of_clean_up += 1
+                    if  verbosity:
+                        if num_of_clean_up == 1:
+                            print('File(s) that are successfully removed:')
+                        print(test_suite_path + '/' + folder + '/roadcast_test_suite_run.xml')
+                except IOError as e:
+                    continue
+        if num_of_clean_up == 0:
+            print('There is nothing needs to be cleaned up.')
+        else:
+            if not verbosity:
+                print("All 'roadcast_test_suite_run.xml' files are cleaned up.")
+        sys.exit(0)
 
     # --------------------------------------------List of validated test cases------------------------------------------
     if verbosity:
         print('\n\n================================================================================')
         print('\n', '                         ', 'VALIDATED LIST OF TEST CASES: ')
         print('\n================================================================================')
-    num_of_folders = 0
-    list_of_folders = []
-    list_of_wrong_folders = []
-    test_suite_path = os.getcwd()
 
     if args.case:
         case_list = process_case_name(args.case, case_list=None)
@@ -390,8 +407,8 @@ def main():
                   format(', '.join(list_of_wrong_folders)))
             sys.exit(0)
 
-        case_list = sorted(list(set([folder for folder in sorted(os.listdir(test_suite_path)) if folder.startswith(case_name)])
-                         - set(do_not_run_case_list)))
+        case_list = sorted(list(set([folder for folder in sorted(os.listdir(test_suite_path))
+                                     if folder.startswith(case_name)]) - set(do_not_run_case_list)))
 
     if run_all_cases:
         list_of_folders = []
@@ -483,6 +500,8 @@ def main():
                                 print('Please verify the format/syntax of the config.json file.')
                         if key == 'error_tolerance':
                             error_value = value
+                        if key == 'description':
+                            case_description = value
 
             if forecast_exists and station_exists and observation_exists:
                 file_output_path = os.path.join(test_suite_path + dir_path[1:], 'roadcast_test_suite_run.xml')
@@ -499,8 +518,12 @@ def main():
                     try:
                         print('\n>>>>>>>>>>>>>>>>>>>>>>>> {} starts to run...... <<<<<<<<<<<<<<<<<<<<<<<<<<'
                               '<'.format(folder))
+                        print('\n{}\n'.format(case_description))
                         if expected_value == 'FAILURE':
                             print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to FAIL...... <<<<<<<<<<<<<<<<<<'
+                                  '<<<'.format(folder))
+                        if expected_value == 'SUCCESS':
+                            print('>>>>>>>>>>>>>>>>>>>>>>>> {} is expected to SUCCEED...... <<<<<<<<<<<<<<<<<<'
                                   '<<<'.format(folder))
 
                         print('\nSyntax to run {}:'.format(folder))
@@ -509,7 +532,7 @@ def main():
                             'python3 ../../../../bin/metro {0} --input-forecast ../test_suite'
                             '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                             '-observation ../test_suite/{1}/observation.xml --output-roadcast '
-                            '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, folder))
+                            '../test_suite/{1}/roadcast_test_suite_run.xml\n'.format(extra_parameter, folder))
                         print('--------------------------------------------------------------------------------')
 
                         print('\n\n')
@@ -538,12 +561,6 @@ def main():
                     process_xml_file(current_case_path, folder, error_value, verbosity=False)
                     process_test_result(folder, test_run.returncode, expected_value, verbosity=False)
                     os.chdir(test_suite_path)
-                # ---------------------------------------Clean up the output XML file-----------------------------------
-                if args.clean:
-                    try:
-                        os.remove(current_case_path + '/roadcast_test_suite_run.xml')
-                    except FileNotFoundError as e:
-                        continue
 
             elif not forecast_exists or not station_exists or not observation_exists:
                 if verbosity:
@@ -566,16 +583,16 @@ def main():
     print('\n\n\n================================================================================')
     print('\n', '                                  ', 'SUMMARY: ')
     print('\n================================================================================')
-    print('Total number of test cases ran:\t\t\t\t', str(num_of_folders), '.\nNumber of cases ran with SUCCESS:\t\t\t',
-          str(num_of_success), '.\nNumber of cases  ran with FAILURE: \t\t\t', str(num_of_failure), '.')
+    print('Total number of test cases ran:\t\t\t\t', str(num_of_folders), '\nNumber of cases ran with SUCCESS:\t\t\t',
+          str(num_of_success), '\nNumber of cases  ran with FAILURE: \t\t\t', str(num_of_failure))
 
     if len(list_of_missing_file_cases) != 0:
         print('Case(s) missing proper input file(s):\t\t\t', end=' ')
-        print(*list_of_missing_file_cases, sep=', ')
+        print(*list_of_missing_file_cases, sep=' ')
 
-    if len(XmlTree.list_of_diff_case) != 0:
-        print('Case(s) having different XML file comparison result:\t', end=' ')
-        print(*XmlTree.list_of_diff_case, sep=', ')
+    if len(list_of_failure_cases) != 0:
+        print('Case(s) does/do not produce expected result(s):\t\t', end=' ')
+        print(*list_of_failure_cases, sep=' ')
     print('\n\n\n')
 
     if (len(list_of_failure_cases) != 0) and verbosity:
@@ -590,7 +607,7 @@ def main():
             print('python3 ../../../../bin/metro {0} --verbose-level 4 --input-forecast ../test_suite'
                   '/{1}/forecast.xml --input-station ../test_suite/{1}/station.xml --input'
                   '-observation ../test_suite/{1}/observation.xml --output-roadcast '
-                  '../test_suite/{1}/roadcast_individual_run.xml\n'.format(extra_parameter, case))
+                  '../test_suite/{1}/roadcast_test_suite_run.xml\n'.format(extra_parameter, case))
 
 
 if __name__ == '__main__':

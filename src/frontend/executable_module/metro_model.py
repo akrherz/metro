@@ -69,7 +69,8 @@ class Metro_model(Metro_module):
             roadcast_data = self.__create_roadcast_collection(forecast_data, observation_data, station_data)
         else:
             roadcast_data = None
-            metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE, _("Bypassing METRo core, roadcast not created."))
+            metro_logger.print_message(metro_logger.LOGGER_MSG_INFORMATIVE,
+                                       _("Bypassing METRo core, roadcast not created."))
 
         pForecast.set_data_collection(forecast_data)
         pObservation.set_data_collection(observation_data)
