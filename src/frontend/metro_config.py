@@ -57,7 +57,7 @@ METRO_CONFIG_GETTEXT_LOCALEDIR = "./locale"
 
 # Constant definition
 CFG_METRO_VERSION = "4.0.0"
-CFG_METRO_DATE = "2019-11-06"
+CFG_METRO_DATE = "2019-12-18"
 
 # Origin of the value (command line, config file, hardcoded value,
 #                       metro internal constant)
