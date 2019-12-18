@@ -64,7 +64,7 @@ if [ -n "$PYTHON_INCLUDE" ] ; then
     PYTHON_INC=-I$PYTHON_INCLUDE
 elif which python3-config >/dev/null; then
     echo "Using python3-config to detect python settings."
-    echo "You can override detected values by setting"
+    echo -n "You can override detected values by setting "
     echo "enviroment variable PYTHON_INCLUDE."
     echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python3.6\""
     PYTHON_INC=`python3-config --includes`
@@ -81,6 +81,8 @@ else
     echo ""
     PYTHON_INC="-I/usr/include/python3.6/"
 fi
+echo ""
+echo "Compiling..."
 echo "    Python include path = "$PYTHON_INC
 
 PLATFORM=`python3 -c "import platform;print(platform.architecture()[0])"`
