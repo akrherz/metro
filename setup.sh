@@ -147,7 +147,7 @@ if [ $bCompile == 1 ]; then
         echo "to properly install METRo."
         echo "Please set environment variable PYTHON_INCLUDE to your"
         echo "python include directory."
-        echo "Ex: export PYTHON_INCLUDE=\"/usr/local/include/python2.3\""
+        echo "Ex: export PYTHON_INCLUDE=\"/usr/include/python3.6\""
         echo "----------------------------------------------------------"
 	echo ""
     fi

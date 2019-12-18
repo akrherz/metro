@@ -125,7 +125,7 @@ $FC -shared macadam.o macadam_wrap.o  lib_gen.o  grille.o array2matrix.o initial
 
 echo "    Copying .so in usr/share/metro/model"
 if [ ! -d $destination_path/usr/share/metro/model ]; then
-    mkdir $destination_path/usr/share/metro/model
+    mkdir -p $destination_path/usr/share/metro/model
 fi
 cp macadam.py $destination_path/usr/share/metro/model/
 

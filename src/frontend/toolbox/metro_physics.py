@@ -107,7 +107,6 @@ def get_sf(npCloudsOctal, npTimeHour, npForecastedTime, fSunriseTimeUTC, fSunset
                     npCloudOctal (numpy array): array of octal value representing the cloud coverage.
                     fSunriseTimeUTC (float): sunrise time in UTC
                     fSunsetTimeUT (float): sunset time in UTC
-                    nStartForecastTime (??):
                     fLat (float): latitude of emplacement
                     fLon (float): longitude of emplacement
 
