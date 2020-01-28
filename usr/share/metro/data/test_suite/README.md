@@ -1,33 +1,72 @@
--------------------------------------------------------------------------------
-                          METRo test_suite README file
--------------------------------------------------------------------------------
+# METRo test_suite README file
 
-Test suite FAQ of METRo 4.0.0 (December 2019)
-
-
-======================== What is test_suite.py of METRo? ======================
-The test_suite.py of METRo run pre-selected case(s) automatically and output a
-forecast file named "roadcast_test_suite_run.xml" for every pre-selected case.
-It then compares the forecast file "roadcast_test_suite_run.xml" with the given
-benchmark forecast file "roadcast_reference.xml" and displays the comparison
+The `test_suite.py` of METRo runs pre-selected case(s) automatically and output a
+forecast file named `roadcast_test_suite_run.xml` for every pre-selected case.
+It then compares the forecast file `roadcast_test_suite_run.xml` with the given
+benchmark forecast file `roadcast_reference.xml` and displays the comparison
 result.
 
+## Location
 
-======================= Where is test_suite.py located? =======================
-test_suite.py is located in the directory "test_suite", which is in
-"$METRoDIR/usr/share/metro/data/test_suite" where "$METRoDIR" represents the
-home directory of the software METRo.
+`test_suite.py` is located in the directory `$METRoDIR/usr/share/metro/data/test_suite`
+where "$METRoDIR" represents the home directory of the software METRo.
 
-
-======================= Where is each test case located? ======================
-The directory "test_suite" contains all the subdirectories for test cases.
 Each test case contains a subdirectory named "caseDDD", where "DDD" is a three
 digits case number (ex: "case001" represents a case having case number 1, and
 "case020" represents a case having case number 20).
 
+## How to run test_suite.py?
 
-====== What are all the possible files included inside a case directory? ======
-config.json:
+1. Go to the directory "$METRoDIR/usr/share/metro/data/test_suite" where
+   "$METRoDIR" represents the home directory of METRo.
+
+2. Enter "python3 test_suite.py" to run all the cases inside the directory
+   "test_suite" and displays the running results in a simplified version.
+
+   OPTIONS
+   
+   "-v":
+           runs all cases inside the directory "test_suite" and displays the
+           detailed information of running processes and outputs the running
+           results in a verbose version.
+
+   "-c XX XX ..." where XX represents the case number:
+           runs the case(s) whose number(s) is/are entered after "-c". You can
+           enter as many case numbers as you would like to run, but you have to
+           enter at least one case number in order to active "-c".
+
+           Note: "-c" and "-s" cannot be used simultaneously.
+
+   "-s XX XX ..." where XX represents the case number:
+           runs by skipping the case(s) whose number(s) is/are entered after
+           "-s". You can enter as many case numbers as you would like to skip,
+           but you have to enter at least one case number in order to active
+           "-s".
+
+           Note: "-c" and "-s" cannot be used simultaneously.
+
+   "-e YY" where YY represents the error tolerance in floating points:
+           runs all cases inside the directory "test_suite" and compares
+           "roadcast_test_suite_run.xml" with "roadcast_reference.xml" and
+           outputs comparison result(s) using YY instead of the default value
+           of 0.01 as error of tolerance.
+
+   "--clean":
+           deletes all the files named "roadcast_test_suite_run.xml" within the
+           directory "test_suite".
+
+           Note: "--clean" can only be used in combination with "-v" which
+                 displays all the directory/directories where the
+                 "roadcast_test_suite_run.xml" is/are deleted.
+
+   "--help":
+           test_suite.py displays all the detailed information regarding above
+           mentioned parameters.
+
+
+## Files in the test directory
+
+### config.json:
            Configuration file for the test. It includes three attributes:
            "description", "addition_to_command_line" and
            "expected_running_result".
@@ -70,57 +109,13 @@ config.json:
                  "0.01", there is no need to add this extra attribute in
                  "config.json".
 
-forecast.xml, observation.xml and station.xml:
-           METRo standard input files and each case should have these three
+### forecast.xml, observation.xml and station.xml:
+
+          METRo standard input files and each case should have these three
            files in order for METRo to generate possible forecast.
 
-roadcast_reference.xml:
+### roadcast_reference.xml:
            Benchmark forecast file. Only exists for those cases whose attribute
            "expected_running_result" has value of "SUCCESS".
 
 
-======================== How to run test_suite.py? ============================
-1. Go to the directory "$METRoDIR/usr/share/metro/data/test_suite" where
-   "$METRoDIR" represents the home directory of METRo.
-
-2. Enter "python3 test_suite.py" to run all the cases inside the directory
-   "test_suite" and displays the running results in a simplified version.
-
-   OPTIONS
-   "-v":
-           runs all cases inside the directory "test_suite" and displays the
-           detailed information of running processes and outputs the running
-           results in a verbose version.
-
-   "-c XX XX ..." where XX represents the case number:
-           runs the case(s) whose number(s) is/are entered after "-c". You can
-           enter as many case numbers as you would like to run, but you have to
-           enter at least one case number in order to active "-c".
-
-           Note: "-c" and "-s" cannot be used simultaneously.
-
-   "-s XX XX ..." where XX represents the case number:
-           runs by skipping the case(s) whose number(s) is/are entered after
-           "-s". You can enter as many case numbers as you would like to skip,
-           but you have to enter at least one case number in order to active
-           "-s".
-
-           Note: "-c" and "-s" cannot be used simultaneously.
-
-   "-e YY" where YY represents the error tolerance in floating points:
-           runs all cases inside the directory "test_suite" and compares
-           "roadcast_test_suite_run.xml" with "roadcast_reference.xml" and
-           outputs comparison result(s) using YY instead of the default value
-           of 0.01 as error of tolerance.
-
-   "--clean":
-           deletes all the files named "roadcast_test_suite_run.xml" within the
-           directory "test_suite".
-
-           Note: "--clean" can only be used in combination with "-v" which
-                 displays all the directory/directories where the
-                 "roadcast_test_suite_run.xml" is/are deleted.
-
-   "--help":
-           test_suite.py displays all the detailed information regarding above
-           mentioned parameters.
