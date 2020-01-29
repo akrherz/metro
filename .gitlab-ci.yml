@@ -1,4 +1,5 @@
 test:
+  image: mint19
   script:
   - apt-get update -qy
   - apt-get install -y mlocate cpio
