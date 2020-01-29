@@ -1,5 +1,5 @@
 test:
-  image: mint19
+  image: linuxmintd/mint19-amd64
   script:
   - apt-get update -qy
   - apt-get install -y mlocate cpio
