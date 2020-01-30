@@ -1,4 +1,4 @@
-# METRo test_suite README file
+# README test_suite 
 
 The `test_suite.py` of METRo runs pre-selected case(s) automatically and output a
 forecast file named `roadcast_test_suite_run.xml` for every pre-selected case.
