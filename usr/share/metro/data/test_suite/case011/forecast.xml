@@ -15,7 +15,6 @@
       <sn>0.00</sn>
       <ws>10</ws>
       <cc>3</cc>
-      <wd>258</wd>
       <ap>985</ap>
       <pp>10</pp>
     </prediction>
@@ -27,7 +26,6 @@
       <sn>0.00</sn>
       <ws>10</ws>
       <cc>3</cc>
-      <wd>254</wd>
       <ap>985</ap>
       <pp>10</pp>
     </prediction>
@@ -39,7 +37,6 @@
       <sn>0.00</sn>
       <ws>11</ws>
       <cc>3</cc>
-      <wd>244</wd>
       <ap>986</ap>
       <pp>10</pp>
     </prediction>
@@ -51,7 +48,6 @@
       <sn>0.00</sn>
       <ws>11</ws>
       <cc>2</cc>
-      <wd>238</wd>
       <ap>986</ap>
       <pp>10</pp>
     </prediction>
@@ -63,7 +59,6 @@
       <sn>0.00</sn>
       <ws>11</ws>
       <cc>3</cc>
-      <wd>242</wd>
       <ap>986</ap>
       <pp>10</pp>
     </prediction>
@@ -75,7 +70,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>3</cc>
-      <wd>250</wd>
       <ap>986</ap>
       <pp>10</pp>
     </prediction>
@@ -87,7 +81,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>4</cc>
-      <wd>254</wd>
       <ap>986</ap>
       <pp>20</pp>
     </prediction>
@@ -99,7 +92,6 @@
       <sn>0.00</sn>
       <ws>13</ws>
       <cc>5</cc>
-      <wd>248</wd>
       <ap>986</ap>
       <pp>20</pp>
     </prediction>
@@ -111,7 +103,6 @@
       <sn>0.00</sn>
       <ws>13</ws>
       <cc>7</cc>
-      <wd>236</wd>
       <ap>985</ap>
       <pp>20</pp>
     </prediction>
@@ -123,7 +114,6 @@
       <sn>0.00</sn>
       <ws>14</ws>
       <cc>8</cc>
-      <wd>230</wd>
       <ap>985</ap>
       <pp>30</pp>
     </prediction>
@@ -135,7 +125,6 @@
       <sn>0.00</sn>
       <ws>13</ws>
       <cc>7</cc>
-      <wd>232</wd>
       <ap>985</ap>
       <pp>30</pp>
     </prediction>
@@ -147,7 +136,6 @@
       <sn>0.00</sn>
       <ws>11</ws>
       <cc>6</cc>
-      <wd>234</wd>
       <ap>984</ap>
       <pp>30</pp>
     </prediction>
@@ -159,7 +147,6 @@
       <sn>0.00</sn>
       <ws>10</ws>
       <cc>6</cc>
-      <wd>234</wd>
       <ap>984</ap>
       <pp>20</pp>
     </prediction>
@@ -171,7 +158,6 @@
       <sn>0.00</sn>
       <ws>9</ws>
       <cc>6</cc>
-      <wd>234</wd>
       <ap>984</ap>
       <pp>20</pp>
     </prediction>
@@ -183,7 +169,6 @@
       <sn>0.00</sn>
       <ws>8</ws>
       <cc>6</cc>
-      <wd>234</wd>
       <ap>984</ap>
       <pp>20</pp>
     </prediction>
@@ -195,7 +180,6 @@
       <sn>0.00</sn>
       <ws>7</ws>
       <cc>6</cc>
-      <wd>234</wd>
       <ap>984</ap>
       <pp>20</pp>
     </prediction>
@@ -207,7 +191,6 @@
       <sn>0.00</sn>
       <ws>7</ws>
       <cc>5</cc>
-      <wd>240</wd>
       <ap>984</ap>
       <pp>20</pp>
     </prediction>
@@ -219,7 +202,6 @@
       <sn>0.00</sn>
       <ws>8</ws>
       <cc>3</cc>
-      <wd>254</wd>
       <ap>985</ap>
       <pp>20</pp>
     </prediction>
@@ -231,7 +213,6 @@
       <sn>0.00</sn>
       <ws>8</ws>
       <cc>2</cc>
-      <wd>260</wd>
       <ap>985</ap>
       <pp>10</pp>
     </prediction>
@@ -243,7 +224,6 @@
       <sn>0.00</sn>
       <ws>8</ws>
       <cc>2</cc>
-      <wd>260</wd>
       <ap>985</ap>
       <pp>10</pp>
     </prediction>
@@ -255,7 +235,6 @@
       <sn>0.00</sn>
       <ws>9</ws>
       <cc>1</cc>
-      <wd>262</wd>
       <ap>986</ap>
       <pp>10</pp>
     </prediction>
@@ -267,7 +246,6 @@
       <sn>0.00</sn>
       <ws>9</ws>
       <cc>0</cc>
-      <wd>262</wd>
       <ap>986</ap>
       <pp>0</pp>
     </prediction>
@@ -279,7 +257,6 @@
       <sn>0.00</sn>
       <ws>9</ws>
       <cc>0</cc>
-      <wd>262</wd>
       <ap>987</ap>
       <pp>0</pp>
     </prediction>
@@ -291,7 +268,6 @@
       <sn>0.00</sn>
       <ws>10</ws>
       <cc>1</cc>
-      <wd>264</wd>
       <ap>987</ap>
       <pp>0</pp>
     </prediction>
@@ -303,7 +279,6 @@
       <sn>0.00</sn>
       <ws>10</ws>
       <cc>1</cc>
-      <wd>264</wd>
       <ap>988</ap>
       <pp>0</pp>
     </prediction>
@@ -315,7 +290,6 @@
       <sn>0.00</sn>
       <ws>10</ws>
       <cc>1</cc>
-      <wd>260</wd>
       <ap>989</ap>
       <pp>0</pp>
     </prediction>
@@ -327,7 +301,6 @@
       <sn>0.00</sn>
       <ws>11</ws>
       <cc>0</cc>
-      <wd>250</wd>
       <ap>989</ap>
       <pp>0</pp>
     </prediction>
@@ -339,7 +312,6 @@
       <sn>0.00</sn>
       <ws>11</ws>
       <cc>0</cc>
-      <wd>246</wd>
       <ap>990</ap>
       <pp>0</pp>
     </prediction>
@@ -351,7 +323,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>1</cc>
-      <wd>250</wd>
       <ap>990</ap>
       <pp>0</pp>
     </prediction>
@@ -363,7 +334,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>2</cc>
-      <wd>258</wd>
       <ap>991</ap>
       <pp>0</pp>
     </prediction>
@@ -375,7 +345,6 @@
       <sn>0.00</sn>
       <ws>13</ws>
       <cc>3</cc>
-      <wd>262</wd>
       <ap>991</ap>
       <pp>10</pp>
     </prediction>
@@ -387,7 +356,6 @@
       <sn>0.00</sn>
       <ws>13</ws>
       <cc>4</cc>
-      <wd>256</wd>
       <ap>991</ap>
       <pp>10</pp>
     </prediction>
@@ -399,7 +367,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>4</cc>
-      <wd>246</wd>
       <ap>990</ap>
       <pp>10</pp>
     </prediction>
@@ -411,7 +378,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>5</cc>
-      <wd>240</wd>
       <ap>990</ap>
       <pp>20</pp>
     </prediction>
@@ -423,7 +389,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>6</cc>
-      <wd>242</wd>
       <ap>990</ap>
       <pp>20</pp>
     </prediction>
@@ -435,7 +400,6 @@
       <sn>0.00</sn>
       <ws>12</ws>
       <cc>7</cc>
-      <wd>248</wd>
       <ap>990</ap>
       <pp>20</pp>
     </prediction>

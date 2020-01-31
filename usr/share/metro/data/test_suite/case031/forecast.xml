@@ -16,7 +16,6 @@
       <ws>6.0</ws>
       <ap>1000</ap>
       <cc>0</cc>
-      <wd>298</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T13:00Z</forecast-time>
@@ -27,7 +26,6 @@
       <ws>5.5</ws>
       <ap>1000</ap>
       <cc>0</cc>
-      <wd>305</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T14:00Z</forecast-time>
@@ -38,7 +36,6 @@
       <ws>4.5</ws>
       <ap>1000</ap>
       <cc>0</cc>
-      <wd>317</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T15:00Z</forecast-time>
@@ -49,7 +46,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>333</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T16:00Z</forecast-time>
@@ -60,7 +56,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>344</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T17:00Z</forecast-time>
@@ -71,7 +66,6 @@
       <ws>5.0</ws>
       <ap>1000</ap>
       <cc>2</cc>
-      <wd>347</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T18:00Z</forecast-time>
@@ -82,7 +76,6 @@
       <ws>5.5</ws>
       <ap>1000</ap>
       <cc>2</cc>
-      <wd>330</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T19:00Z</forecast-time>
@@ -93,7 +86,6 @@
       <ws>5.5</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>315</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T20:00Z</forecast-time>
@@ -104,7 +96,6 @@
       <ws>5.5</ws>
       <ap>1000</ap>
       <cc>0</cc>
-      <wd>309</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T21:00Z</forecast-time>
@@ -115,7 +106,6 @@
       <ws>5.0</ws>
       <ap>1000</ap>
       <cc>0</cc>
-      <wd>308</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T22:00Z</forecast-time>
@@ -126,7 +116,6 @@
       <ws>4.5</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>307</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-01T23:00Z</forecast-time>
@@ -137,7 +126,6 @@
       <ws>4.5</ws>
       <ap>1000</ap>
       <cc>3</cc>
-      <wd>309</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T00:00Z</forecast-time>
@@ -148,7 +136,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>312</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T01:00Z</forecast-time>
@@ -159,7 +146,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>311</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T02:00Z</forecast-time>
@@ -170,7 +156,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>312</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T03:00Z</forecast-time>
@@ -181,7 +166,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>5</cc>
-      <wd>323</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T04:00Z</forecast-time>
@@ -192,7 +176,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>5</cc>
-      <wd>331</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T05:00Z</forecast-time>
@@ -203,7 +186,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>6</cc>
-      <wd>321</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T06:00Z</forecast-time>
@@ -214,7 +196,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>5</cc>
-      <wd>318</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T07:00Z</forecast-time>
@@ -225,7 +206,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>323</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T08:00Z</forecast-time>
@@ -236,7 +216,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>5</cc>
-      <wd>327</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T09:00Z</forecast-time>
@@ -247,7 +226,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>5</cc>
-      <wd>330</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T10:00Z</forecast-time>
@@ -258,7 +236,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>6</cc>
-      <wd>335</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T11:00Z</forecast-time>
@@ -269,7 +246,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>5</cc>
-      <wd>341</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T12:00Z</forecast-time>
@@ -280,7 +256,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>348</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T13:00Z</forecast-time>
@@ -291,7 +266,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>4</cc>
-      <wd>355</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T14:00Z</forecast-time>
@@ -302,7 +276,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>3</cc>
-      <wd>354</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T15:00Z</forecast-time>
@@ -313,7 +286,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>2</cc>
-      <wd>351</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T16:00Z</forecast-time>
@@ -324,7 +296,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>2</cc>
-      <wd>348</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T17:00Z</forecast-time>
@@ -335,7 +306,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>2</cc>
-      <wd>347</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T18:00Z</forecast-time>
@@ -346,7 +316,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>346</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T19:00Z</forecast-time>
@@ -357,7 +326,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>346</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T20:00Z</forecast-time>
@@ -368,7 +336,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>345</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T21:00Z</forecast-time>
@@ -379,7 +346,6 @@
       <ws>4.0</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>343</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T22:00Z</forecast-time>
@@ -390,7 +356,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>1</cc>
-      <wd>339</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-01-02T23:00Z</forecast-time>
@@ -401,7 +366,6 @@
       <ws>3.5</ws>
       <ap>1000</ap>
       <cc>2</cc>
-      <wd>333</wd>
     </prediction>
   </prediction-list>
 </forecast>

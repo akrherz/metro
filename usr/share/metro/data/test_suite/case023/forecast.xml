@@ -15,7 +15,6 @@
       <ws>1.61</ws>
       <ap>734.84</ap>
       <cc>5</cc>
-      <wd>356.38</wd>
     </prediction>
     <prediction>
       <forecast-time>2007-03-31T13:00Z</forecast-time>
@@ -26,7 +25,6 @@
       <ws>2.58</ws>
       <ap>735.00</ap>
       <cc>5</cc>
-      <wd>338.08</wd>
     </prediction>
     <prediction>
       <forecast-time>2007-03-31T14:00Z</forecast-time>
@@ -37,7 +35,6 @@
       <ws>3.56</ws>
       <ap>735.16</ap>
       <cc>6</cc>
-      <wd>316.80</wd>
     </prediction>
   </prediction-list>
 </forecast>

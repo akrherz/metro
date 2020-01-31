@@ -13,7 +13,6 @@
       <forecast-time>2005-07-14T06:00Z</forecast-time>
       <at>19</at>
       <td>18</td>
-      <wd>990</wd>
       <ws>05</ws>
       <cc>8</cc>
       <pi>0</pi>
@@ -25,7 +24,6 @@
       <forecast-time>2005-07-14T07:00Z</forecast-time>
       <at>19</at>
       <td>18</td>
-      <wd>990</wd>
       <ws>05</ws>
       <cc>8</cc>
       <pi>0</pi>
@@ -37,7 +35,6 @@
       <forecast-time>2005-07-14T08:00Z</forecast-time>
       <at>19</at>
       <td>18</td>
-      <wd>990</wd>
       <ws>05</ws>
       <cc>8</cc>
       <pi>0</pi>
@@ -49,7 +46,6 @@
       <forecast-time>2005-07-14T09:00Z</forecast-time>
       <at>19</at>
       <td>18</td>
-      <wd>990</wd>
       <ws>05</ws>
       <cc>8</cc>
       <pi>0</pi>
@@ -61,7 +57,6 @@
       <forecast-time>2005-07-14T10:00Z</forecast-time>
       <at>20</at>
       <td>18</td>
-      <wd>990</wd>
       <ws>05</ws>
       <cc>8</cc>
       <pi>0</pi>
@@ -73,7 +68,6 @@
       <forecast-time>2005-07-14T11:00Z</forecast-time>
       <at>20</at>
       <td>17</td>
-      <wd>990</wd>
       <ws>05</ws>
       <cc>8</cc>
       <pi>0</pi>
@@ -85,7 +79,6 @@
       <forecast-time>2005-07-14T12:00Z</forecast-time>
       <at>21</at>
       <td>17</td>
-      <wd>360</wd>
       <ws>10</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -97,7 +90,6 @@
       <forecast-time>2005-07-14T13:00Z</forecast-time>
       <at>22</at>
       <td>16</td>
-      <wd>360</wd>
       <ws>10</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -109,7 +101,6 @@
       <forecast-time>2005-07-14T14:00Z</forecast-time>
       <at>23</at>
       <td>16</td>
-      <wd>360</wd>
       <ws>10</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -121,7 +112,6 @@
       <forecast-time>2005-07-14T15:00Z</forecast-time>
       <at>24</at>
       <td>15</td>
-      <wd>360</wd>
       <ws>10</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -133,7 +123,6 @@
       <forecast-time>2005-07-14T16:00Z</forecast-time>
       <at>26</at>
       <td>15</td>
-      <wd>360</wd>
       <ws>10</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -145,7 +134,6 @@
       <forecast-time>2005-07-14T17:00Z</forecast-time>
       <at>27</at>
       <td>15</td>
-      <wd>360</wd>
       <ws>10</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -157,7 +145,6 @@
       <forecast-time>2005-07-14T18:00Z</forecast-time>
       <at>29</at>
       <td>15</td>
-      <wd>360</wd>
       <ws>15</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -169,7 +156,6 @@
       <forecast-time>2005-07-14T19:00Z</forecast-time>
       <at>31</at>
       <td>14</td>
-      <wd>360</wd>
       <ws>15</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -181,7 +167,6 @@
       <forecast-time>2005-07-14T20:00Z</forecast-time>
       <at>32</at>
       <td>13</td>
-      <wd>360</wd>
       <ws>15</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -193,7 +178,6 @@
       <forecast-time>2005-07-14T21:00Z</forecast-time>
       <at>34</at>
       <td>12</td>
-      <wd>360</wd>
       <ws>15</ws>
       <cc>3</cc>
       <pi>0</pi>
@@ -205,7 +189,6 @@
       <forecast-time>2005-07-14T22:00Z</forecast-time>
       <at>32</at>
       <td>12</td>
-      <wd>360</wd>
       <ws>15</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -217,7 +200,6 @@
       <forecast-time>2005-07-14T23:00Z</forecast-time>
       <at>31</at>
       <td>11</td>
-      <wd>360</wd>
       <ws>15</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -229,7 +211,6 @@
       <forecast-time>2005-07-15T00:00Z</forecast-time>
       <at>29</at>
       <td>11</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -241,7 +222,6 @@
       <forecast-time>2005-07-15T01:00Z</forecast-time>
       <at>27</at>
       <td>11</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -253,7 +233,6 @@
       <forecast-time>2005-07-15T02:00Z</forecast-time>
       <at>25</at>
       <td>10</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -265,7 +244,6 @@
       <forecast-time>2005-07-15T03:00Z</forecast-time>
       <at>23</at>
       <td>10</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -277,7 +255,6 @@
       <forecast-time>2005-07-15T04:00Z</forecast-time>
       <at>22</at>
       <td>9</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -289,7 +266,6 @@
       <forecast-time>2005-07-15T05:00Z</forecast-time>
       <at>21</at>
       <td>10</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -301,7 +277,6 @@
       <forecast-time>2005-07-15T06:00Z</forecast-time>
       <at>20</at>
       <td>10</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -313,7 +288,6 @@
       <forecast-time>2005-07-15T07:00Z</forecast-time>
       <at>19</at>
       <td>11</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -325,7 +299,6 @@
       <forecast-time>2005-07-15T08:00Z</forecast-time>
       <at>19</at>
       <td>11</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -337,7 +310,6 @@
       <forecast-time>2005-07-15T09:00Z</forecast-time>
       <at>18</at>
       <td>12</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -349,7 +321,6 @@
       <forecast-time>2005-07-15T10:00Z</forecast-time>
       <at>19</at>
       <td>12</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -361,7 +332,6 @@
       <forecast-time>2005-07-15T11:00Z</forecast-time>
       <at>21</at>
       <td>12</td>
-      <wd>40</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -373,7 +343,6 @@
       <forecast-time>2005-07-15T12:00Z</forecast-time>
       <at>22</at>
       <td>12</td>
-      <wd>140</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -385,7 +354,6 @@
       <forecast-time>2005-07-15T13:00Z</forecast-time>
       <at>25</at>
       <td>14</td>
-      <wd>140</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>0</pi>
@@ -397,7 +365,6 @@
       <forecast-time>2005-07-15T14:00Z</forecast-time>
       <at>27</at>
       <td>15</td>
-      <wd>140</wd>
       <ws>10</ws>
       <cc>0</cc>
       <pi>-1</pi>

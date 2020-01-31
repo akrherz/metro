@@ -15,7 +15,6 @@
       <ws>0.00</ws>
       <ap>976.33</ap>
       <cc>3</cc>
-      <wd>53.35</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T15:00Z</forecast-time>
@@ -26,7 +25,6 @@
       <ws>0.00</ws>
       <ap>976.40</ap>
       <cc>4</cc>
-      <wd>153.24</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T16:00Z</forecast-time>
@@ -37,7 +35,6 @@
       <ws>1.84</ws>
       <ap>976.24</ap>
       <cc>5</cc>
-      <wd>171.71</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T17:00Z</forecast-time>
@@ -48,7 +45,6 @@
       <ws>3.68</ws>
       <ap>976.09</ap>
       <cc>6</cc>
-      <wd>179.96</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T18:00Z</forecast-time>
@@ -59,7 +55,6 @@
       <ws>5.52</ws>
       <ap>975.93</ap>
       <cc>6</cc>
-      <wd>184.44</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T19:00Z</forecast-time>
@@ -70,7 +65,6 @@
       <ws>5.15</ws>
       <ap>975.57</ap>
       <cc>7</cc>
-      <wd>191.21</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T20:00Z</forecast-time>
@@ -81,7 +75,6 @@
       <ws>4.77</ws>
       <ap>975.20</ap>
       <cc>7</cc>
-      <wd>198.26</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T21:00Z</forecast-time>
@@ -92,7 +85,6 @@
       <ws>4.40</ws>
       <ap>974.84</ap>
       <cc>8</cc>
-      <wd>205.39</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T22:00Z</forecast-time>
@@ -103,7 +95,6 @@
       <ws>4.53</ws>
       <ap>974.26</ap>
       <cc>8</cc>
-      <wd>188.55</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-20T23:00Z</forecast-time>
@@ -114,7 +105,6 @@
       <ws>4.65</ws>
       <ap>973.69</ap>
       <cc>8</cc>
-      <wd>158.80</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T00:00Z</forecast-time>
@@ -125,7 +115,6 @@
       <ws>4.78</ws>
       <ap>973.11</ap>
       <cc>8</cc>
-      <wd>124.49</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T01:00Z</forecast-time>
@@ -136,7 +125,6 @@
       <ws>4.43</ws>
       <ap>972.81</ap>
       <cc>8</cc>
-      <wd>113.64</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T02:00Z</forecast-time>
@@ -147,7 +135,6 @@
       <ws>4.08</ws>
       <ap>972.51</ap>
       <cc>8</cc>
-      <wd>7.53</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T03:00Z</forecast-time>
@@ -158,7 +145,6 @@
       <ws>3.73</ws>
       <ap>972.22</ap>
       <cc>8</cc>
-      <wd>326.96</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T04:00Z</forecast-time>
@@ -169,7 +155,6 @@
       <ws>4.00</ws>
       <ap>971.93</ap>
       <cc>8</cc>
-      <wd>339.97</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T05:00Z</forecast-time>
@@ -180,7 +165,6 @@
       <ws>4.26</ws>
       <ap>971.65</ap>
       <cc>8</cc>
-      <wd>34.24</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T06:00Z</forecast-time>
@@ -191,7 +175,6 @@
       <ws>4.52</ws>
       <ap>971.37</ap>
       <cc>8</cc>
-      <wd>98.45</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T07:00Z</forecast-time>
@@ -202,7 +185,6 @@
       <ws>5.78</ws>
       <ap>970.95</ap>
       <cc>8</cc>
-      <wd>87.73</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T08:00Z</forecast-time>
@@ -213,7 +195,6 @@
       <ws>7.03</ws>
       <ap>970.54</ap>
       <cc>8</cc>
-      <wd>86.88</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T09:00Z</forecast-time>
@@ -224,7 +205,6 @@
       <ws>8.29</ws>
       <ap>970.13</ap>
       <cc>8</cc>
-      <wd>86.56</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T10:00Z</forecast-time>
@@ -235,7 +215,6 @@
       <ws>8.31</ws>
       <ap>969.54</ap>
       <cc>8</cc>
-      <wd>66.59</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T11:00Z</forecast-time>
@@ -246,7 +225,6 @@
       <ws>8.34</ws>
       <ap>968.95</ap>
       <cc>8</cc>
-      <wd>50.35</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T12:00Z</forecast-time>
@@ -257,7 +235,6 @@
       <ws>8.36</ws>
       <ap>968.35</ap>
       <cc>8</cc>
-      <wd>38.68</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T13:00Z</forecast-time>
@@ -268,7 +245,6 @@
       <ws>9.05</ws>
       <ap>967.91</ap>
       <cc>8</cc>
-      <wd>34.98</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T14:00Z</forecast-time>
@@ -279,7 +255,6 @@
       <ws>9.75</ws>
       <ap>967.47</ap>
       <cc>8</cc>
-      <wd>27.10</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T15:00Z</forecast-time>
@@ -290,7 +265,6 @@
       <ws>10.44</ws>
       <ap>967.03</ap>
       <cc>8</cc>
-      <wd>2.22</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T16:00Z</forecast-time>
@@ -301,7 +275,6 @@
       <ws>8.79</ws>
       <ap>966.89</ap>
       <cc>8</cc>
-      <wd>3.53</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T17:00Z</forecast-time>
@@ -312,7 +285,6 @@
       <ws>7.15</ws>
       <ap>966.75</ap>
       <cc>8</cc>
-      <wd>4.95</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T18:00Z</forecast-time>
@@ -323,7 +295,6 @@
       <ws>5.51</ws>
       <ap>966.61</ap>
       <cc>8</cc>
-      <wd>6.50</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T19:00Z</forecast-time>
@@ -334,7 +305,6 @@
       <ws>5.54</ws>
       <ap>966.36</ap>
       <cc>8</cc>
-      <wd>353.59</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T20:00Z</forecast-time>
@@ -345,7 +315,6 @@
       <ws>5.58</ws>
       <ap>966.11</ap>
       <cc>8</cc>
-      <wd>320.14</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T21:00Z</forecast-time>
@@ -356,7 +325,6 @@
       <ws>5.61</ws>
       <ap>965.87</ap>
       <cc>8</cc>
-      <wd>266.10</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T22:00Z</forecast-time>
@@ -367,7 +335,6 @@
       <ws>5.43</ws>
       <ap>965.58</ap>
       <cc>8</cc>
-      <wd>146.81</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-21T23:00Z</forecast-time>
@@ -378,7 +345,6 @@
       <ws>5.25</ws>
       <ap>965.28</ap>
       <cc>8</cc>
-      <wd>102.46</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T00:00Z</forecast-time>
@@ -389,7 +355,6 @@
       <ws>5.07</ws>
       <ap>964.99</ap>
       <cc>8</cc>
-      <wd>99.03</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T01:00Z</forecast-time>
@@ -400,7 +365,6 @@
       <ws>6.08</ws>
       <ap>964.98</ap>
       <cc>8</cc>
-      <wd>88.06</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T02:00Z</forecast-time>
@@ -411,7 +375,6 @@
       <ws>7.10</ws>
       <ap>964.97</ap>
       <cc>8</cc>
-      <wd>290.24</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T03:00Z</forecast-time>
@@ -422,7 +385,6 @@
       <ws>8.11</ws>
       <ap>964.96</ap>
       <cc>8</cc>
-      <wd>285.78</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T04:00Z</forecast-time>
@@ -433,7 +395,6 @@
       <ws>6.94</ws>
       <ap>964.91</ap>
       <cc>8</cc>
-      <wd>279.23</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T05:00Z</forecast-time>
@@ -444,7 +405,6 @@
       <ws>5.76</ws>
       <ap>964.86</ap>
       <cc>8</cc>
-      <wd>267.66</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T06:00Z</forecast-time>
@@ -455,7 +415,6 @@
       <ws>4.59</ws>
       <ap>964.82</ap>
       <cc>8</cc>
-      <wd>245.31</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T07:00Z</forecast-time>
@@ -466,7 +425,6 @@
       <ws>6.30</ws>
       <ap>964.61</ap>
       <cc>8</cc>
-      <wd>89.10</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T08:00Z</forecast-time>
@@ -477,7 +435,6 @@
       <ws>8.01</ws>
       <ap>964.40</ap>
       <cc>8</cc>
-      <wd>77.70</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T09:00Z</forecast-time>
@@ -488,7 +445,6 @@
       <ws>9.73</ws>
       <ap>964.19</ap>
       <cc>8</cc>
-      <wd>75.97</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T10:00Z</forecast-time>
@@ -499,7 +455,6 @@
       <ws>8.44</ws>
       <ap>964.03</ap>
       <cc>8</cc>
-      <wd>93.17</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T11:00Z</forecast-time>
@@ -510,7 +465,6 @@
       <ws>7.15</ws>
       <ap>963.86</ap>
       <cc>8</cc>
-      <wd>133.29</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T12:00Z</forecast-time>
@@ -521,7 +475,6 @@
       <ws>5.86</ws>
       <ap>963.69</ap>
       <cc>8</cc>
-      <wd>178.46</wd>
     </prediction>
     <prediction>
       <forecast-time>2009-08-22T13:00Z</forecast-time>
@@ -532,7 +485,6 @@
       <ws>6.24</ws>
       <ap>963.83</ap>
       <cc>8</cc>
-      <wd>182.27</wd>
     </prediction>
   </prediction-list>
 </forecast>

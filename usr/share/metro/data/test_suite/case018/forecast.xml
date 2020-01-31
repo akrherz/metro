@@ -15,7 +15,6 @@
       <ws>16.13844</ws>
       <ap>833.5247</ap>
       <cc>6</cc>
-      <wd>360.0000</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T13:00Z</forecast-time>
@@ -26,7 +25,6 @@
       <ws>14.81364</ws>
       <ap>834.3409</ap>
       <cc>7</cc>
-      <wd>24.4856</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T14:00Z</forecast-time>
@@ -37,7 +35,6 @@
       <ws>12.56436</ws>
       <ap>834.4291</ap>
       <cc>7</cc>
-      <wd>50.0789</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T15:00Z</forecast-time>
@@ -48,7 +45,6 @@
       <ws>14.05476</ws>
       <ap>834.6209</ap>
       <cc>7</cc>
-      <wd>52.5690</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T16:00Z</forecast-time>
@@ -59,7 +55,6 @@
       <ws>14.72364</ws>
       <ap>835.5005</ap>
       <cc>7</cc>
-      <wd>63.3830</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T17:00Z</forecast-time>
@@ -70,7 +65,6 @@
       <ws>13.7484</ws>
       <ap>834.3921</ap>
       <cc>7</cc>
-      <wd>64.3088</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T18:00Z</forecast-time>
@@ -81,7 +75,6 @@
       <ws>14.1012</ws>
       <ap>833.7964</ap>
       <cc>7</cc>
-      <wd>64.9246</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T19:00Z</forecast-time>
@@ -92,7 +85,6 @@
       <ws>14.337</ws>
       <ap>833.4990</ap>
       <cc>7</cc>
-      <wd>59.7019</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T20:00Z</forecast-time>
@@ -103,7 +95,6 @@
       <ws>15.68916</ws>
       <ap>831.8652</ap>
       <cc>8</cc>
-      <wd>46.8128</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T21:00Z</forecast-time>
@@ -114,7 +105,6 @@
       <ws>15.73992</ws>
       <ap>832.8431</ap>
       <cc>8</cc>
-      <wd>50.4909</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T22:00Z</forecast-time>
@@ -125,7 +115,6 @@
       <ws>16.542</ws>
       <ap>833.5317</ap>
       <cc>8</cc>
-      <wd>42.0645</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-17T23:00Z</forecast-time>
@@ -136,7 +125,6 @@
       <ws>16.7994</ws>
       <ap>834.2202</ap>
       <cc>8</cc>
-      <wd>35.3978</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T00:00Z</forecast-time>
@@ -147,7 +135,6 @@
       <ws>17.05644</ws>
       <ap>834.9088</ap>
       <cc>8</cc>
-      <wd>28.6655</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T01:00Z</forecast-time>
@@ -158,7 +145,6 @@
       <ws>16.4016</ws>
       <ap>835.8074</ap>
       <cc>8</cc>
-      <wd>26.4912</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T02:00Z</forecast-time>
@@ -169,7 +155,6 @@
       <ws>15.74676</ws>
       <ap>836.7061</ap>
       <cc>8</cc>
-      <wd>24.1141</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T03:00Z</forecast-time>
@@ -180,7 +165,6 @@
       <ws>15.09156</ws>
       <ap>837.6047</ap>
       <cc>8</cc>
-      <wd>21.5138</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T04:00Z</forecast-time>
@@ -191,7 +175,6 @@
       <ws>13.32072</ws>
       <ap>838.5442</ap>
       <cc>8</cc>
-      <wd>18.8114</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T05:00Z</forecast-time>
@@ -202,7 +185,6 @@
       <ws>11.54952</ws>
       <ap>839.4837</ap>
       <cc>8</cc>
-      <wd>15.7126</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T06:00Z</forecast-time>
@@ -213,7 +195,6 @@
       <ws>9.77832</ws>
       <ap>840.4232</ap>
       <cc>8</cc>
-      <wd>12.1458</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T07:00Z</forecast-time>
@@ -224,7 +205,6 @@
       <ws>9.5346</ws>
       <ap>840.7486</ap>
       <cc>8</cc>
-      <wd>13.0628</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T08:00Z</forecast-time>
@@ -235,7 +215,6 @@
       <ws>9.29052</ws>
       <ap>841.0741</ap>
       <cc>8</cc>
-      <wd>13.9679</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T09:00Z</forecast-time>
@@ -246,7 +225,6 @@
       <ws>9.0468</ws>
       <ap>841.3995</ap>
       <cc>8</cc>
-      <wd>14.8608</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T10:00Z</forecast-time>
@@ -257,7 +235,6 @@
       <ws>7.04808</ws>
       <ap>838.8818</ap>
       <cc>8</cc>
-      <wd>17.3932</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T11:00Z</forecast-time>
@@ -268,7 +245,6 @@
       <ws>5.04972</ws>
       <ap>836.3641</ap>
       <cc>8</cc>
-      <wd>20.8451</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T12:00Z</forecast-time>
@@ -279,7 +255,6 @@
       <ws>3.05136</ws>
       <ap>833.8463</ap>
       <cc>8</cc>
-      <wd>25.7822</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T13:00Z</forecast-time>
@@ -290,7 +265,6 @@
       <ws>3.402</ws>
       <ap>834.3938</ap>
       <cc>8</cc>
-      <wd>38.7970</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T14:00Z</forecast-time>
@@ -301,7 +275,6 @@
       <ws>3.75264</ws>
       <ap>834.9413</ap>
       <cc>8</cc>
-      <wd>51.5662</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T15:00Z</forecast-time>
@@ -312,7 +285,6 @@
       <ws>4.10364</ws>
       <ap>835.4888</ap>
       <cc>8</cc>
-      <wd>62.9711</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T16:00Z</forecast-time>
@@ -323,7 +295,6 @@
       <ws>4.80096</ws>
       <ap>835.4721</ap>
       <cc>7</cc>
-      <wd>64.3466</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T17:00Z</forecast-time>
@@ -334,7 +305,6 @@
       <ws>5.49864</ws>
       <ap>835.4554</ap>
       <cc>6</cc>
-      <wd>65.8409</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T18:00Z</forecast-time>
@@ -345,7 +315,6 @@
       <ws>6.19596</ws>
       <ap>835.4387</ap>
       <cc>6</cc>
-      <wd>67.4676</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T19:00Z</forecast-time>
@@ -356,7 +325,6 @@
       <ws>6.53112</ws>
       <ap>835.0393</ap>
       <cc>6</cc>
-      <wd>55.8211</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T20:00Z</forecast-time>
@@ -367,7 +335,6 @@
       <ws>6.86628</ws>
       <ap>834.6400</ap>
       <cc>6</cc>
-      <wd>43.4955</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T21:00Z</forecast-time>
@@ -378,7 +345,6 @@
       <ws>7.20144</ws>
       <ap>834.2407</ap>
       <cc>6</cc>
-      <wd>31.5675</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T22:00Z</forecast-time>
@@ -389,7 +355,6 @@
       <ws>6.48324</ws>
       <ap>834.3258</ap>
       <cc>6</cc>
-      <wd>41.5706</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-18T23:00Z</forecast-time>
@@ -400,7 +365,6 @@
       <ws>5.76504</ws>
       <ap>834.4109</ap>
       <cc>5</cc>
-      <wd>58.4695</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T00:00Z</forecast-time>
@@ -411,7 +375,6 @@
       <ws>5.04684</ws>
       <ap>834.4960</ap>
       <cc>5</cc>
-      <wd>85.1366</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T01:00Z</forecast-time>
@@ -422,7 +385,6 @@
       <ws>5.57028</ws>
       <ap>834.9321</ap>
       <cc>4</cc>
-      <wd>103.0251</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T02:00Z</forecast-time>
@@ -433,7 +395,6 @@
       <ws>6.09372</ws>
       <ap>835.3683</ap>
       <cc>3</cc>
-      <wd>156.0729</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T03:00Z</forecast-time>
@@ -444,7 +405,6 @@
       <ws>6.61716</ws>
       <ap>835.8044</ap>
       <cc>3</cc>
-      <wd>204.9051</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T04:00Z</forecast-time>
@@ -455,7 +415,6 @@
       <ws>6.68988</ws>
       <ap>835.4789</ap>
       <cc>2</cc>
-      <wd>207.7032</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T05:00Z</forecast-time>
@@ -466,7 +425,6 @@
       <ws>6.76296</ws>
       <ap>835.1536</ap>
       <cc>1</cc>
-      <wd>209.6402</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T06:00Z</forecast-time>
@@ -477,7 +435,6 @@
       <ws>6.83604</ws>
       <ap>834.8281</ap>
       <cc>1</cc>
-      <wd>211.0576</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T07:00Z</forecast-time>
@@ -488,7 +445,6 @@
       <ws>7.39044</ws>
       <ap>834.4449</ap>
       <cc>1</cc>
-      <wd>213.1999</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T08:00Z</forecast-time>
@@ -499,7 +455,6 @@
       <ws>7.94484</ws>
       <ap>834.0617</ap>
       <cc>1</cc>
-      <wd>215.3287</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T09:00Z</forecast-time>
@@ -510,7 +465,6 @@
       <ws>8.49924</ws>
       <ap>833.6785</ap>
       <cc>1</cc>
-      <wd>217.4384</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T10:00Z</forecast-time>
@@ -521,7 +475,6 @@
       <ws>8.30988</ws>
       <ap>833.6612</ap>
       <cc>1</cc>
-      <wd>217.5529</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T11:00Z</forecast-time>
@@ -532,7 +485,6 @@
       <ws>8.12052</ws>
       <ap>833.6439</ap>
       <cc>1</cc>
-      <wd>217.6338</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T12:00Z</forecast-time>
@@ -543,7 +495,6 @@
       <ws>7.93116</ws>
       <ap>833.6266</ap>
       <cc>1</cc>
-      <wd>217.6940</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T13:00Z</forecast-time>
@@ -554,7 +505,6 @@
       <ws>8.64504</ws>
       <ap>833.7191</ap>
       <cc>2</cc>
-      <wd>219.9886</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T14:00Z</forecast-time>
@@ -565,7 +515,6 @@
       <ws>9.35892</ws>
       <ap>833.8115</ap>
       <cc>3</cc>
-      <wd>223.1031</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T15:00Z</forecast-time>
@@ -576,7 +525,6 @@
       <ws>10.0728</ws>
       <ap>833.9040</ap>
       <cc>4</cc>
-      <wd>227.5385</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T16:00Z</forecast-time>
@@ -587,7 +535,6 @@
       <ws>9.48888</ws>
       <ap>833.5098</ap>
       <cc>4</cc>
-      <wd>238.7639</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T17:00Z</forecast-time>
@@ -598,7 +545,6 @@
       <ws>8.90532</ws>
       <ap>833.1156</ap>
       <cc>4</cc>
-      <wd>245.8778</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T18:00Z</forecast-time>
@@ -609,7 +555,6 @@
       <ws>8.32176</ws>
       <ap>832.7214</ap>
       <cc>4</cc>
-      <wd>250.6531</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T19:00Z</forecast-time>
@@ -620,7 +565,6 @@
       <ws>10.12932</ws>
       <ap>832.1416</ap>
       <cc>4</cc>
-      <wd>268.1485</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T20:00Z</forecast-time>
@@ -631,7 +575,6 @@
       <ws>11.93688</ws>
       <ap>831.5617</ap>
       <cc>4</cc>
-      <wd>284.0353</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T21:00Z</forecast-time>
@@ -642,7 +585,6 @@
       <ws>13.74408</ws>
       <ap>830.9819</ap>
       <cc>4</cc>
-      <wd>296.6446</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T22:00Z</forecast-time>
@@ -653,7 +595,6 @@
       <ws>12.81816</ws>
       <ap>830.7873</ap>
       <cc>4</cc>
-      <wd>294.3918</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-19T23:00Z</forecast-time>
@@ -664,7 +605,6 @@
       <ws>11.89188</ws>
       <ap>830.5927</ap>
       <cc>5</cc>
-      <wd>291.6729</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T00:00Z</forecast-time>
@@ -675,7 +615,6 @@
       <ws>10.96596</ws>
       <ap>830.3981</ap>
       <cc>5</cc>
-      <wd>288.3436</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T01:00Z</forecast-time>
@@ -686,7 +625,6 @@
       <ws>12.64212</ws>
       <ap>830.5720</ap>
       <cc>4</cc>
-      <wd>283.0869</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T02:00Z</forecast-time>
@@ -697,7 +635,6 @@
       <ws>14.31828</ws>
       <ap>830.7458</ap>
       <cc>3</cc>
-      <wd>277.6118</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T03:00Z</forecast-time>
@@ -708,7 +645,6 @@
       <ws>15.99444</ws>
       <ap>830.9197</ap>
       <cc>3</cc>
-      <wd>272.0089</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T04:00Z</forecast-time>
@@ -719,7 +655,6 @@
       <ws>13.70844</ws>
       <ap>830.5012</ap>
       <cc>3</cc>
-      <wd>266.1773</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T05:00Z</forecast-time>
@@ -730,7 +665,6 @@
       <ws>11.42244</ws>
       <ap>830.0826</ap>
       <cc>3</cc>
-      <wd>255.4340</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T06:00Z</forecast-time>
@@ -741,7 +675,6 @@
       <ws>9.13644</ws>
       <ap>829.6641</ap>
       <cc>4</cc>
-      <wd>232.5768</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T07:00Z</forecast-time>
@@ -752,7 +685,6 @@
       <ws>10.27728</ws>
       <ap>829.2721</ap>
       <cc>3</cc>
-      <wd>241.8034</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T08:00Z</forecast-time>
@@ -763,7 +695,6 @@
       <ws>11.41776</ws>
       <ap>828.8801</ap>
       <cc>1</cc>
-      <wd>245.5287</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T09:00Z</forecast-time>
@@ -774,7 +705,6 @@
       <ws>12.5586</ws>
       <ap>828.4881</ap>
       <cc>0</cc>
-      <wd>247.5254</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T10:00Z</forecast-time>
@@ -785,7 +715,6 @@
       <ws>12.0492</ws>
       <ap>828.2645</ap>
       <cc>1</cc>
-      <wd>243.5927</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T11:00Z</forecast-time>
@@ -796,7 +725,6 @@
       <ws>11.54016</ws>
       <ap>828.0408</ap>
       <cc>2</cc>
-      <wd>239.9094</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T12:00Z</forecast-time>
@@ -807,7 +735,6 @@
       <ws>11.03076</ws>
       <ap>827.8172</ap>
       <cc>2</cc>
-      <wd>236.4799</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T13:00Z</forecast-time>
@@ -818,7 +745,6 @@
       <ws>11.26404</ws>
       <ap>827.6204</ap>
       <cc>2</cc>
-      <wd>236.3284</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T14:00Z</forecast-time>
@@ -829,7 +755,6 @@
       <ws>11.49768</ws>
       <ap>827.4237</ap>
       <cc>2</cc>
-      <wd>236.0991</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T15:00Z</forecast-time>
@@ -840,7 +765,6 @@
       <ws>11.73096</ws>
       <ap>827.2269</ap>
       <cc>2</cc>
-      <wd>235.7109</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T16:00Z</forecast-time>
@@ -851,7 +775,6 @@
       <ws>12.41388</ws>
       <ap>826.5262</ap>
       <cc>1</cc>
-      <wd>248.7424</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T17:00Z</forecast-time>
@@ -862,7 +785,6 @@
       <ws>13.09644</ws>
       <ap>825.8255</ap>
       <cc>1</cc>
-      <wd>256.4679</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T18:00Z</forecast-time>
@@ -873,7 +795,6 @@
       <ws>13.779</ws>
       <ap>825.1248</ap>
       <cc>1</cc>
-      <wd>261.4117</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T19:00Z</forecast-time>
@@ -884,7 +805,6 @@
       <ws>14.22108</ws>
       <ap>822.6449</ap>
       <cc>1</cc>
-      <wd>278.6680</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T20:00Z</forecast-time>
@@ -895,7 +815,6 @@
       <ws>14.66352</ws>
       <ap>820.1650</ap>
       <cc>1</cc>
-      <wd>291.8792</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T21:00Z</forecast-time>
@@ -906,7 +825,6 @@
       <ws>15.1056</ws>
       <ap>817.6851</ap>
       <cc>1</cc>
-      <wd>301.3728</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T22:00Z</forecast-time>
@@ -917,7 +835,6 @@
       <ws>13.25736</ws>
       <ap>818.2126</ap>
       <cc>2</cc>
-      <wd>299.3554</wd>
     </prediction>
     <prediction>
       <forecast-time>2006-10-20T23:00Z</forecast-time>
@@ -928,7 +845,6 @@
       <ws>11.40948</ws>
       <ap>818.7402</ap>
       <cc>2</cc>
-      <wd>296.5386</wd>
     </prediction>
   </prediction-list>
 </forecast>

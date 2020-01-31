@@ -16,7 +16,6 @@
       <ws>1.1</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -28,7 +27,6 @@
       <ws>0.78</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>9</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -40,7 +38,6 @@
       <ws>2.76</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>179</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -52,7 +49,6 @@
       <ws>4.23</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>174</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -64,7 +60,6 @@
       <ws>3.55</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>171</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -76,7 +71,6 @@
       <ws>2.28</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>155</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -88,7 +82,6 @@
       <ws>5.31</ws>
       <ap>989</ap>
       <cc>8</cc>
-      <wd>176</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -100,7 +93,6 @@
       <ws>2.31</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>164</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -112,7 +104,6 @@
       <ws>2.76</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>172</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -124,7 +115,6 @@
       <ws>1.59</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>164</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -136,7 +126,6 @@
       <ws>0.79</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>202</wd>
       <sf>34</sf>
     </prediction>
     <prediction>
@@ -148,7 +137,6 @@
       <ws>1.11</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>340</wd>
       <sf>52</sf>
     </prediction>
     <prediction>
@@ -160,7 +148,6 @@
       <ws>1.84</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>190</wd>
       <sf>15</sf>
     </prediction>
     <prediction>
@@ -172,7 +159,6 @@
       <ws>1.67</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>175</wd>
       <sf>42</sf>
     </prediction>
     <prediction>
@@ -184,7 +170,6 @@
       <ws>0.1</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>-99999</wd>
       <sf>28</sf>
     </prediction>
     <prediction>
@@ -196,7 +181,6 @@
       <ws>0.01</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -208,7 +192,6 @@
       <ws>0.86</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>153</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -220,7 +203,6 @@
       <ws>0.42</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -232,7 +214,6 @@
       <ws>0.02</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -244,7 +225,6 @@
       <ws>0.17</ws>
       <ap>990</ap>
       <cc>7</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -256,7 +236,6 @@
       <ws>0.04</ws>
       <ap>990</ap>
       <cc>6</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -268,7 +247,6 @@
       <ws>0.14</ws>
       <ap>990</ap>
       <cc>6</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -280,7 +258,6 @@
       <ws>0.11</ws>
       <ap>989</ap>
       <cc>6</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -292,7 +269,6 @@
       <ws>0.28</ws>
       <ap>989</ap>
       <cc>5</cc>
-      <wd>-99999</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -304,7 +280,6 @@
       <ws>2.29</ws>
       <ap>989</ap>
       <cc>5</cc>
-      <wd>154</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -316,7 +291,6 @@
       <ws>0.77</ws>
       <ap>988</ap>
       <cc>5</cc>
-      <wd>29</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -328,7 +302,6 @@
       <ws>1.1</ws>
       <ap>988</ap>
       <cc>6</cc>
-      <wd>77</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -340,7 +313,6 @@
       <ws>1.1</ws>
       <ap>987</ap>
       <cc>6</cc>
-      <wd>179</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -352,7 +324,6 @@
       <ws>0.89</ws>
       <ap>987</ap>
       <cc>7</cc>
-      <wd>156</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -364,7 +335,6 @@
       <ws>1.69</ws>
       <ap>986</ap>
       <cc>7</cc>
-      <wd>167</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -376,7 +346,6 @@
       <ws>0.68</ws>
       <ap>986</ap>
       <cc>7</cc>
-      <wd>156</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -388,7 +357,6 @@
       <ws>1.32</ws>
       <ap>987</ap>
       <cc>7</cc>
-      <wd>133</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -400,7 +368,6 @@
       <ws>1.39</ws>
       <ap>986</ap>
       <cc>7</cc>
-      <wd>163</wd>
       <sf>0</sf>
     </prediction>
     <prediction>
@@ -412,7 +379,6 @@
       <ws>1.09</ws>
       <ap>986</ap>
       <cc>7</cc>
-      <wd>148</wd>
       <sf>26</sf>
     </prediction>
     <prediction>
@@ -424,7 +390,6 @@
       <ws>0.72</ws>
       <ap>986</ap>
       <cc>7</cc>
-      <wd>104</wd>
       <sf>40</sf>
     </prediction>
     <prediction>
@@ -436,7 +401,6 @@
       <ws>1.55</ws>
       <ap>986</ap>
       <cc>7</cc>
-      <wd>175</wd>
       <sf>51</sf>
     </prediction>
     <prediction>
@@ -448,7 +412,6 @@
       <ws>5.1</ws>
       <ap>985</ap>
       <cc>7</cc>
-      <wd>190</wd>
       <sf>297</sf>
     </prediction>
   </prediction-list>

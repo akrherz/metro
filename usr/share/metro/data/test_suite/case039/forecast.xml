@@ -15,7 +15,6 @@
       <ws>2.19</ws>
       <ap>978.65</ap>
       <cc>1</cc>
-      <wd>185.00</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-23T19:00Z</forecast-time>
@@ -26,7 +25,6 @@
       <ws>2.47</ws>
       <ap>978.33</ap>
       <cc>1</cc>
-      <wd>169.84</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-23T20:00Z</forecast-time>
@@ -37,7 +35,6 @@
       <ws>4.62</ws>
       <ap>978.01</ap>
       <cc>2</cc>
-      <wd>120.83</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-23T21:00Z</forecast-time>
@@ -48,7 +45,6 @@
       <ws>5.92</ws>
       <ap>977.69</ap>
       <cc>3</cc>
-      <wd>112.24</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-23T22:00Z</forecast-time>
@@ -59,7 +55,6 @@
       <ws>5.98</ws>
       <ap>977.78</ap>
       <cc>3</cc>
-      <wd>122.04</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-23T23:00Z</forecast-time>
@@ -70,7 +65,6 @@
       <ws>3.49</ws>
       <ap>977.87</ap>
       <cc>4</cc>
-      <wd>103.94</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T00:00Z</forecast-time>
@@ -81,7 +75,6 @@
       <ws>0.85</ws>
       <ap>977.96</ap>
       <cc>5</cc>
-      <wd>109.82</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T01:00Z</forecast-time>
@@ -92,7 +85,6 @@
       <ws>1.55</ws>
       <ap>978.54</ap>
       <cc>5</cc>
-      <wd>94.53</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T02:00Z</forecast-time>
@@ -103,7 +95,6 @@
       <ws>0.12</ws>
       <ap>979.11</ap>
       <cc>5</cc>
-      <wd>95.92</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T03:00Z</forecast-time>
@@ -114,7 +105,6 @@
       <ws>0.51</ws>
       <ap>979.69</ap>
       <cc>5</cc>
-      <wd>101.16</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T04:00Z</forecast-time>
@@ -125,7 +115,6 @@
       <ws>0.00</ws>
       <ap>979.90</ap>
       <cc>6</cc>
-      <wd>99.77</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T05:00Z</forecast-time>
@@ -136,7 +125,6 @@
       <ws>1.60</ws>
       <ap>980.11</ap>
       <cc>7</cc>
-      <wd>100.27</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T06:00Z</forecast-time>
@@ -147,7 +135,6 @@
       <ws>0.00</ws>
       <ap>980.33</ap>
       <cc>7</cc>
-      <wd>96.12</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T07:00Z</forecast-time>
@@ -158,7 +145,6 @@
       <ws>2.00</ws>
       <ap>980.11</ap>
       <cc>8</cc>
-      <wd>95.66</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T08:00Z</forecast-time>
@@ -169,7 +155,6 @@
       <ws>0.00</ws>
       <ap>979.88</ap>
       <cc>8</cc>
-      <wd>89.96</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T09:00Z</forecast-time>
@@ -180,7 +165,6 @@
       <ws>3.41</ws>
       <ap>979.66</ap>
       <cc>8</cc>
-      <wd>92.27</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T10:00Z</forecast-time>
@@ -191,7 +175,6 @@
       <ws>2.30</ws>
       <ap>979.67</ap>
       <cc>7</cc>
-      <wd>83.21</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T11:00Z</forecast-time>
@@ -202,7 +185,6 @@
       <ws>1.64</ws>
       <ap>979.68</ap>
       <cc>7</cc>
-      <wd>93.16</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T12:00Z</forecast-time>
@@ -213,7 +195,6 @@
       <ws>0.71</ws>
       <ap>979.68</ap>
       <cc>7</cc>
-      <wd>88.20</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T13:00Z</forecast-time>
@@ -224,7 +205,6 @@
       <ws>3.21</ws>
       <ap>980.04</ap>
       <cc>8</cc>
-      <wd>88.07</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T14:00Z</forecast-time>
@@ -235,7 +215,6 @@
       <ws>2.39</ws>
       <ap>980.39</ap>
       <cc>7</cc>
-      <wd>90.95</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T15:00Z</forecast-time>
@@ -246,7 +225,6 @@
       <ws>2.11</ws>
       <ap>980.75</ap>
       <cc>8</cc>
-      <wd>96.02</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T16:00Z</forecast-time>
@@ -257,7 +235,6 @@
       <ws>3.18</ws>
       <ap>980.38</ap>
       <cc>7</cc>
-      <wd>96.12</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T17:00Z</forecast-time>
@@ -268,7 +245,6 @@
       <ws>4.35</ws>
       <ap>980.02</ap>
       <cc>7</cc>
-      <wd>95.76</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T18:00Z</forecast-time>
@@ -279,7 +255,6 @@
       <ws>5.53</ws>
       <ap>979.65</ap>
       <cc>7</cc>
-      <wd>95.14</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T19:00Z</forecast-time>
@@ -290,7 +265,6 @@
       <ws>6.57</ws>
       <ap>978.83</ap>
       <cc>7</cc>
-      <wd>87.38</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T20:00Z</forecast-time>
@@ -301,7 +275,6 @@
       <ws>7.60</ws>
       <ap>978.00</ap>
       <cc>8</cc>
-      <wd>80.61</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T21:00Z</forecast-time>
@@ -312,7 +285,6 @@
       <ws>8.64</ws>
       <ap>977.18</ap>
       <cc>8</cc>
-      <wd>74.82</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T22:00Z</forecast-time>
@@ -323,7 +295,6 @@
       <ws>9.27</ws>
       <ap>976.76</ap>
       <cc>8</cc>
-      <wd>78.84</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-24T23:00Z</forecast-time>
@@ -334,7 +305,6 @@
       <ws>9.91</ws>
       <ap>976.35</ap>
       <cc>8</cc>
-      <wd>82.99</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T00:00Z</forecast-time>
@@ -345,7 +315,6 @@
       <ws>10.55</ws>
       <ap>975.93</ap>
       <cc>8</cc>
-      <wd>87.24</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T01:00Z</forecast-time>
@@ -356,7 +325,6 @@
       <ws>7.14</ws>
       <ap>976.14</ap>
       <cc>8</cc>
-      <wd>86.96</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T02:00Z</forecast-time>
@@ -367,7 +335,6 @@
       <ws>3.74</ws>
       <ap>976.35</ap>
       <cc>8</cc>
-      <wd>86.71</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T03:00Z</forecast-time>
@@ -378,7 +345,6 @@
       <ws>0.34</ws>
       <ap>976.56</ap>
       <cc>8</cc>
-      <wd>86.49</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T04:00Z</forecast-time>
@@ -389,7 +355,6 @@
       <ws>1.27</ws>
       <ap>976.10</ap>
       <cc>8</cc>
-      <wd>81.10</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T05:00Z</forecast-time>
@@ -400,7 +365,6 @@
       <ws>2.21</ws>
       <ap>975.64</ap>
       <cc>8</cc>
-      <wd>75.92</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T06:00Z</forecast-time>
@@ -411,7 +375,6 @@
       <ws>3.14</ws>
       <ap>975.17</ap>
       <cc>8</cc>
-      <wd>71.01</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T07:00Z</forecast-time>
@@ -422,7 +385,6 @@
       <ws>5.35</ws>
       <ap>974.47</ap>
       <cc>8</cc>
-      <wd>69.68</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T08:00Z</forecast-time>
@@ -433,7 +395,6 @@
       <ws>7.55</ws>
       <ap>973.77</ap>
       <cc>8</cc>
-      <wd>68.25</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T09:00Z</forecast-time>
@@ -444,7 +405,6 @@
       <ws>9.75</ws>
       <ap>973.07</ap>
       <cc>8</cc>
-      <wd>66.71</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T10:00Z</forecast-time>
@@ -455,7 +415,6 @@
       <ws>8.45</ws>
       <ap>972.74</ap>
       <cc>8</cc>
-      <wd>60.72</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T11:00Z</forecast-time>
@@ -466,7 +425,6 @@
       <ws>7.16</ws>
       <ap>972.42</ap>
       <cc>7</cc>
-      <wd>54.71</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T12:00Z</forecast-time>
@@ -477,7 +435,6 @@
       <ws>5.86</ws>
       <ap>972.10</ap>
       <cc>7</cc>
-      <wd>48.78</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T13:00Z</forecast-time>
@@ -488,7 +445,6 @@
       <ws>6.38</ws>
       <ap>972.58</ap>
       <cc>7</cc>
-      <wd>46.90</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T14:00Z</forecast-time>
@@ -499,7 +455,6 @@
       <ws>6.91</ws>
       <ap>973.07</ap>
       <cc>8</cc>
-      <wd>45.05</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T15:00Z</forecast-time>
@@ -510,7 +465,6 @@
       <ws>7.43</ws>
       <ap>973.56</ap>
       <cc>8</cc>
-      <wd>43.23</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T16:00Z</forecast-time>
@@ -521,7 +475,6 @@
       <ws>9.89</ws>
       <ap>974.15</ap>
       <cc>8</cc>
-      <wd>26.42</wd>
     </prediction>
     <prediction>
       <forecast-time>2010-03-25T17:00Z</forecast-time>
@@ -532,7 +485,6 @@
       <ws>12.34</ws>
       <ap>974.75</ap>
       <cc>7</cc>
-      <wd>13.35</wd>
     </prediction>
   </prediction-list>
 </forecast>
