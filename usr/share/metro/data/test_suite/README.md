@@ -1,4 +1,4 @@
-# METRo test_suite README file
+# README test_suite 
 
 The `test_suite.py` of METRo runs pre-selected case(s) automatically and output a
 forecast file named `roadcast_test_suite_run.xml` for every pre-selected case.
@@ -23,45 +23,41 @@ digits case number (ex: "case001" represents a case having case number 1, and
 2. Enter "python3 test_suite.py" to run all the cases inside the directory
    "test_suite" and displays the running results in a simplified version.
 
-   OPTIONS
+
+           OPTIONS
    
-   "-v":
-           runs all cases inside the directory "test_suite" and displays the
-           detailed information of running processes and outputs the running
-           results in a verbose version.
+             "-v":
+             runs all cases inside the directory "test_suite" and displays the
+             detailed information of running processes and outputs the running
+             results in a verbose version.
 
-   "-c XX XX ..." where XX represents the case number:
-           runs the case(s) whose number(s) is/are entered after "-c". You can
-           enter as many case numbers as you would like to run, but you have to
-           enter at least one case number in order to active "-c".
+             "-c XX XX ..." where XX represents the case number:
+             runs the case(s) whose number(s) is/are entered after "-c". You can
+             enter as many case numbers as you would like to run, but you have to
+             enter at least one case number in order to active "-c". Note: "-c" 
+             and "-s" cannot be used simultaneously.
 
-           Note: "-c" and "-s" cannot be used simultaneously.
+             "-s XX XX ..." where XX represents the case number:
+             runs by skipping the case(s) whose number(s) is/are entered after
+             "-s". You can enter as many case numbers as you would like to skip,
+             but you have to enter at least one case number in order to active
+             "-s". Note: "-c" and "-s" cannot be used simultaneously.
 
-   "-s XX XX ..." where XX represents the case number:
-           runs by skipping the case(s) whose number(s) is/are entered after
-           "-s". You can enter as many case numbers as you would like to skip,
-           but you have to enter at least one case number in order to active
-           "-s".
+             "-e YY" where YY represents the error tolerance in floating points:
+             runs all cases inside the directory "test_suite" and compares
+             "roadcast_test_suite_run.xml" with "roadcast_reference.xml" and
+             outputs comparison result(s) using YY instead of the default value
+             of 0.01 as error of tolerance.
 
-           Note: "-c" and "-s" cannot be used simultaneously.
+              "--clean":
+              deletes all the files named "roadcast_test_suite_run.xml" within the
+              directory "test_suite"."--clean" can only be used in combination 
+              with "-v" which displays all the directory/directories where the
+              "roadcast_test_suite_run.xml" is/are deleted.
 
-   "-e YY" where YY represents the error tolerance in floating points:
-           runs all cases inside the directory "test_suite" and compares
-           "roadcast_test_suite_run.xml" with "roadcast_reference.xml" and
-           outputs comparison result(s) using YY instead of the default value
-           of 0.01 as error of tolerance.
-
-   "--clean":
-           deletes all the files named "roadcast_test_suite_run.xml" within the
-           directory "test_suite".
-
-           Note: "--clean" can only be used in combination with "-v" which
-                 displays all the directory/directories where the
-                 "roadcast_test_suite_run.xml" is/are deleted.
-
-   "--help":
-           test_suite.py displays all the detailed information regarding above
-           mentioned parameters.
+              "--help":
+              test_suite.py displays all the detailed information regarding above
+              mentioned parameters.
 
 
 ## Files in the test directory
