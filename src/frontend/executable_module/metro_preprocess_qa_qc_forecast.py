@@ -77,7 +77,7 @@ class Metro_preprocess_qa_qc_forecast(Metro_preprocess):
                 continue
             npElement = wf_controlled_data.get_matrix_col(sElement)
             # In the case of 'CC', only return an error if both SF and IR are not given
-            if sElement is 'CC':
+            if sElement == 'CC':
                 if metro_config.get_value('SF') and metro_config.get_value('IR'):
                     continue
             for fElement in npElement:
