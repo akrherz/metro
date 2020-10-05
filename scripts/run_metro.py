@@ -245,7 +245,7 @@ def run_model(nc, initts, ncout, oldncout):
     # maxj = 0
     errorcount = 0
 
-    cmd = "/usr/bin/python model/usr/bin/metro "
+    cmd = "python2 model/usr/bin/metro "
     cmd += "--roadcast-start-date %s " % (initts.strftime("%Y-%m-%dT%H:%MZ"),)
     cmd += "--input-forecast isumm5.xml "
     cmd += "--input-observation rwis.xml "
