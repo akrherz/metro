@@ -48,14 +48,6 @@ importlib.reload(sys)
 pathInclude = sys.path[0] + '/external_lib'
 sys.path.append(pathInclude)
 
-# use of _macadam (installed package)
-pathInclude = sys.path[0] + '/../../lib/metro'
-sys.path.append(pathInclude)
-
-# use of _macadam (devel)
-pathInclude = sys.path[0] + '/../../usr/lib/metro'
-sys.path.append(pathInclude)
-
 pathInclude = sys.path[0] + '/executable_module'
 sys.path.append(pathInclude)
 

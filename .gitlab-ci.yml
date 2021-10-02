@@ -1,5 +1,5 @@
 test:
-  image: linuxmintd/mint19-amd64
+  image: ubuntu:20.04
   script:
   - apt-get update -qy
   - apt-get install -y mlocate cpio
