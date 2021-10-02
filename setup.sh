@@ -116,7 +116,6 @@ if [ -d $destination_path ]; then
 fi
 
 mkdir -p $destination_path/usr/share/metro/model/
-mkdir -p $destination_path/usr/lib/metro/
 
 echo "* Building physic model..."
 cd src/model

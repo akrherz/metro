@@ -130,8 +130,4 @@ if [ ! -d $destination_path/usr/share/metro/model ]; then
     mkdir -p $destination_path/usr/share/metro/model
 fi
 cp macadam.py $destination_path/usr/share/metro/model/
-
-if [ ! -d $destination_path/usr/lib/metro ]; then
-    mkdir -p $destination_path/usr/lib/metro
-fi
-cp _macadam.so $destination_path/usr/lib/metro/
+cp _macadam.so $destination_path/usr/share/metro/model/
