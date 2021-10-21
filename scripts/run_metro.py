@@ -39,24 +39,24 @@ def make_output(nc, initts):
     ncout.createDimension('time', 72*3+1)
 
     # Setup variables
-    tm = ncout.createVariable('time', np.int, ('time',))
+    tm = ncout.createVariable('time', int, ('time',))
     tm.units = "minutes since %s" % (initts.strftime("%Y-%m-%d %H:%M:%S"),)
     tm[:] = range(0, 72*60+1, 20)
 
-    i_cross = ncout.createVariable('i_cross', np.float, ('i_cross',))
+    i_cross = ncout.createVariable('i_cross', float, ('i_cross',))
     i_cross.units = "m"
     i_cross[:] = range(len(nc.dimensions['i_cross']))
 
-    j_cross = ncout.createVariable('j_cross', np.float, ('j_cross',))
+    j_cross = ncout.createVariable('j_cross', float, ('j_cross',))
     j_cross.units = "m"
     j_cross[:] = range(len(nc.dimensions['j_cross']))
 
-    lat = ncout.createVariable('lat', np.float, ('i_cross', 'j_cross'))
+    lat = ncout.createVariable('lat', float, ('i_cross', 'j_cross'))
     lat.long_name = "latitude"
     lat.units = "degrees_north"
     lat[:] = nc.variables['latitcrs'][:]
 
-    lon = ncout.createVariable('lon', np.float, ('i_cross', 'j_cross'))
+    lon = ncout.createVariable('lon', float, ('i_cross', 'j_cross'))
     lon.long_name = "longitude"
     lon.units = "degrees_east"
     lon[:] = nc.variables['longicrs'][:]
@@ -75,53 +75,53 @@ def make_output(nc, initts):
     icond.value7 = 'Black Ice'
     icond.value8 = 'Icing Rain'
 
-    bdeckt = ncout.createVariable('bdeckt', np.float, dims)
+    bdeckt = ncout.createVariable('bdeckt', float, dims)
     bdeckt.coordinates = "lon lat"
     bdeckt.units = "K"
     bdeckt.long_name = 'Bridge Deck Temperature'
     bdeckt.missing_value = np.array(1e20, bdeckt.dtype)
 
-    subsfct = ncout.createVariable('subsfct', np.float, dims)
+    subsfct = ncout.createVariable('subsfct', float, dims)
     subsfct.coordinates = "lon lat"
     subsfct.units = "K"
     subsfct.long_name = 'Road Sub-Surface Temperature (40cm)'
     subsfct.missing_value = np.array(1e20, bdeckt.dtype)
 
-    h = ncout.createVariable('h', np.float, dims)
+    h = ncout.createVariable('h', float, dims)
     h.coordinates = "lon lat"
     # h.units = "m"
     # h.long_name = 'Depth of Frost'
     h.missing_value = np.array(1e20, h.dtype)
 
-    swout = ncout.createVariable('swout', np.float, dims)
+    swout = ncout.createVariable('swout', float, dims)
     swout.coordinates = "lon lat"
     swout.units = "W m s-2"
     swout.long_name = 'Shortwave outgoing'
     swout.missing_value = np.array(1e20, swout.dtype)
 
-    lf = ncout.createVariable('lf', np.float, dims)
+    lf = ncout.createVariable('lf', float, dims)
     lf.coordinates = "lon lat"
     lf.missing_value = np.array(1e20, lf.dtype)
 
-    tmpk = ncout.createVariable('tmpk', np.float, dims)
+    tmpk = ncout.createVariable('tmpk', float, dims)
     tmpk.coordinates = "lon lat"
     tmpk.units = 'K'
     tmpk.missing_value = np.array(1e20, tmpk.dtype)
 
-    dwpk = ncout.createVariable('dwpk', np.float, dims)
+    dwpk = ncout.createVariable('dwpk', float, dims)
     dwpk.coordinates = "lon lat"
     dwpk.missing_value = np.array(1e20, dwpk.dtype)
 
-    wmps = ncout.createVariable('wmps', np.float, dims)
+    wmps = ncout.createVariable('wmps', float, dims)
     wmps.coordinates = "lon lat"
     wmps.missing_value = np.array(1e20, wmps.dtype)
 
-    ifrost = ncout.createVariable('ifrost', np.int, dims)
+    ifrost = ncout.createVariable('ifrost', int, dims)
     ifrost.coordinates = "lon lat"
     ifrost.missing_value = 0
     ifrost.missing_value = -1
 
-    frostd = ncout.createVariable('frostd', np.float, dims)
+    frostd = ncout.createVariable('frostd', float, dims)
     frostd.coordinates = "lon lat"
     frostd.missing_value = -99.
     frostd.missing_value = np.array(1e20, frostd.dtype)
